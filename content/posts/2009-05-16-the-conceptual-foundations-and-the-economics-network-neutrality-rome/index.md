@@ -23,7 +23,7 @@ century Rospigliosi palace</a> in the heart of <a
 href="http://en.wikipedia.org/wiki/Rome">Rome</a>.</p>
 
 
-<p style="text-align:center;"><img src="IMG_0261.jpg" alt="" /></p>
+<p style="text-align:center;"><img src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-rome/IMG_0261.jpg" alt="" /></p>
 
 
 <p style="text-align:right;"><em>In this photo: <a
@@ -80,7 +80,7 @@ separated pipes, all dedicated to different kinds of data, e.g. VoIP/IPTV: this
 is what is going to be called &#8220;Fractionalized IP&#8221;.</p>
 
 
-<p style="text-align:center;"><img src="ngn-pipes.png" alt="" /></p>
+<p style="text-align:center;"><img src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-rome/ngn-pipes.png" alt="" /></p>
 
 
 <p>As long as competition remains in place, applying surcharges for guaranteed
@@ -174,13 +174,13 @@ google).</p>
 
 
 <p>The key here is all about business models: advertising is dying, and not
-because of <a href="http://">AdBlock Plus</a>, but because comportamental
-patterns have changed, and, in my opinion, <span class="caps">SPAM</span> and
-phishing play a major role here in making the user feel unconfortable and
-reluctant to accept offers on some random internet web site. So we need to find
-more profitable and efficient business models, thinking about the internet as
-an ecosystem, trying not to push only on our own company, and improving both
-competitivity and facilitation innovation through interoperability.</p>
+because of AdBlock Plus, but because comportamental patterns have changed, and,
+in my opinion, <span class="caps">SPAM</span> and phishing play a major role
+here in making the user feel unconfortable and reluctant to accept offers on
+some random internet web site. So we need to find more profitable and efficient
+business models, thinking about the internet as an ecosystem, trying not to
+push only on our own company, and improving both competitivity and facilitation
+innovation through interoperability.</p>
 
 
 <p>In a nutshell, there wasn&#8217;t much content neither in the presentation

@@ -4,7 +4,7 @@ title: "Facebook Developer Garage 2009, Milan (Italy)"
 tags: [event, facebook, networking, social, web2.0]
 ---
 
-<div style="float:left; margin:8px 10px 4px 0;"><img src="logofb.jpg"/></div>
+<div style="float:left; margin:8px 10px 4px 0;"><img src="/posts/2009-04-26-facebook-developers-garage-2009-milan-italy/logofb.jpg"/></div>
 
 <p>This is my recap of the first <a
 href="http://fb.mikamai.com/programma/">italian facebook developer garage</a>,
@@ -84,7 +84,7 @@ href="http://en.wikipedia.org/wiki/Murphy's_Law">murphy&#8217;s law</a>,
 because the apps didn&#8217;t work on the first shot :).</p>
 
 
-<p style="text-align:center;"><img src="pilu_and_reggie.jpg"/></p>
+<p style="text-align:center;"><img src="/posts/2009-04-26-facebook-developers-garage-2009-milan-italy/pilu_and_reggie.jpg"/></p>
 
 
 <p><a href="http://qik.com/video/1529172">Third talk</a> by <a
@@ -139,8 +139,7 @@ your profile once you&#8217;re done :).</p>
 mine, who arrived late as usual ;).</p>
 
 
-<p style="text-align:center;"><img
-src="relax_at_facebook_developer_garage_2009_in_milan.jpg"/></p>
+<p style="text-align:center;"><img src="/posts/2009-04-26-facebook-developers-garage-2009-milan-italy/relax_at_facebook_developer_garage_2009_in_milan.jpg"/></p>
 
 <h1>Afternoon: marketing and communication</h1>
 

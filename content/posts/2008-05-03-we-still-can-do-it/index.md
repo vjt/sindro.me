@@ -19,7 +19,7 @@ He's been also a skater, so he knows very very well how and when to shoot in
 order to take out the most from your tricks :). Here are two of them,
 portraying me and Sam while doing our best!
 
-![Skating Photo](sk8_-_sam_vjt_1st_may.jpg)
+![Skating Photo](/posts/2008-05-03-we-still-can-do-it/sk8_-_sam_vjt_1st_may.jpg)
 
 It was fun. Really fun. Thank you Sam for taking me out of home :D.
 

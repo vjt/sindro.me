@@ -4,9 +4,9 @@ title: goto fail;
 tags: [apple, fail]
 ---
 
-# In its own words:
+## In its own words:
 
-![goto fail diff](goto-fail.png)
+{{< figure alt="goto fail diff" src="/posts/2014-02-28-goto-fail/goto-fail.png" >}}
 
 Sources:
 [55179.13.c](http://opensource.apple.com/source/Security/Security-55179.13/libsecurity_ssl/lib/sslKeyExchange.c?txt),

@@ -4,7 +4,7 @@ title: "Spent my day on Erlang-Ruby-Marshal today ;-)"
 tags: [erlang, projects, ruby]
 ---
 
-![Erlang logo](erlang.png)
+![Erlang logo](/posts/2010-05-11-spent-my-day-on-erlang-ruby-marshal-today/erlang.png)
 
 In a nutshell, it adds support for unmarshaling 1.9 strings, and implements the
 last missing type (`TYPE_LINK`) that was missing from the code. Tests still

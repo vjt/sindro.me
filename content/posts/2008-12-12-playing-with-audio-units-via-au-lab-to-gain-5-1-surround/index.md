@@ -4,7 +4,7 @@ date: 2008-12-12T01:38:31Z
 tags: [apple, audio, units]
 ---
 
-{{< figure src="au_lab_powa.jpg" alt="au lab pwnz" width="600" height="375" >}}
+{{< figure src="/posts/2008-12-12-playing-with-audio-units-via-au-lab-to-gain-5-1-surround/au_lab_powa.jpg" alt="au lab pwnz" width="600" height="375" >}}
 
 The right session shows a document open on an aggregate audio device between [soundflower](http://www.cycling74.com/products/soundflower) (2ch) and a Creative SBLive with 6 channels: the flower receives sound input from iTunes and routes it to the card channels, using all the 6 speakers.
 
@@ -16,7 +16,7 @@ Result: stereo audio being played on eight channels. Audio Units are a really po
 
 ## UPDATE 19-12-2008
 
-{{< figure src="au_lab_powa_II.jpg" alt="au lab pwnz again" width="600" height="375" >}}
+{{< figure src="/posts/2008-12-12-playing-with-audio-units-via-au-lab-to-gain-5-1-surround/au_lab_powa_II.jpg" alt="au lab pwnz again" width="600" height="375" >}}
 
 Improving: there is no need to use NetSend and NetReceive to play on 8 speakers: an aggregate device composed of Soundflower 2ch, the USB 6ch SBlive and the Built-in output is enough!
 

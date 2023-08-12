@@ -23,15 +23,13 @@ tags: [control, cryptography, privacy, security]
 </ol>
 
 
-</div>
-
 <p><a name="recipe"></a></p>
 
 <h2>The Recipe</h2>
 
 <div style="float:right;text-align:center;position:relative;right:40px;">
-<a href="http://winstonsmith.info/"><img src="pws-logo.png" alt="" /></a><br/><br/>
-<a href="http://e-privacy.winstonsmith.info/"><img src="pe2009small.png" alt="" /></a>
+<a href="http://winstonsmith.info/"><img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/pws-logo.png" alt="" /></a><br/><br/>
+<a href="http://e-privacy.winstonsmith.info/"><img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/pe2009small.png" alt="" /></a>
 </div>
 
 <h3>Ingredients</h3>
@@ -65,7 +63,7 @@ tags: [control, cryptography, privacy, security]
 <p>Put everything into the fridge, and give your brain two days to metabolize it. Then write it all <strong><span class="caps">LOUD</span></strong>.</p>
 
 
-<p style="text-align:center;"><img src="brain.jpg" alt="" /><br/><cite>Photo by <a href="http://www.flickr.com/photos/lorelei-ranveig/2294885580/">lorelei-ranveig</a></cite></p>
+<p style="text-align:center;"><img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/brain.jpg" alt="" /><br/><cite>Photo by <a href="http://www.flickr.com/photos/lorelei-ranveig/2294885580/">lorelei-ranveig</a></cite></p>
 
 
 <p style="text-align:right;"><small class="noprint"><a href="#top">#top</a></small></p>
@@ -97,7 +95,7 @@ tags: [control, cryptography, privacy, security]
 
 <iframe width="100%" height="400" src="https://www.youtube.com/embed/4hRC51w7ee8?rel=0" frameborder="0" allowfullscreen></iframe>
 
-<p style="text-align:right;"><img src="follow-the-leader.jpg" alt="" /><br/><cite>Photo by <a href="http://www.flickr.com/photos/jtu/3551130301/">jtu</a></cite></p>
+<p style="text-align:right;"><img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/follow-the-leader.jpg" alt="" /><br/><cite>Photo by <a href="http://www.flickr.com/photos/jtu/3551130301/">jtu</a></cite></p>
 
 
 <p style="text-align:right;"><small class="noprint"><a href="#top">#top</a></small></p>
@@ -144,7 +142,7 @@ Just be that model citizen
 <p>Again, another case of treathening users&#8217; privacy in the name of security and safety. But this creates a clumsy work environment and imposes procedures that are time- and paper- wasting, while all we need is proper use of technology. <span class="caps">DRM</span>, watermarking and backups aren&#8217;t rocket science: could be applied to business documents to impose ACLs, prevent tampering and theft, while allowing an employee to feel &#8220;free&#8221; and as such carry out its work better. We as well need more education about how to use social networks at work, think twice before we share that &#8220;amusing photo&#8221; or write that &#8220;nasty rant&#8221;, either because <a href="http://snosoft.blogspot.com/2009/02/facebook-from-hackers-perspective.html">someone could use our information against us or our company</a> or because everything we put on the &#8216;net is google&#8217;s domain, it becomes our online identity, and we may regret it sooner or later.</p>
 
 
-<p style="text-align:center;"><img src="bofh-hammer.jpg" alt="" /><br/><cite>Photo by <a href="http://www.flickr.com/photos/bike/198959253/">bike</a></cite></p>
+<p style="text-align:center;"><img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/bofh-hammer.jpg" alt="" /><br/><cite>Photo by <a href="http://www.flickr.com/photos/bike/198959253/">bike</a></cite></p>
 
 
 <p style="text-align:right;"><small class="noprint"><a href="#top">#top</a></small></p>
@@ -178,7 +176,7 @@ Just be that model citizen
 
 
 <div style="float:left;text-align:center;">
-<img src="google.png" alt="" /><br/>
+<img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/google.png" alt="" /><br/>
 (C) Google, <a href="http://www.google.com/permissions/index.html">Fair Use</a>
 </div>
 
@@ -200,7 +198,7 @@ Just be that model citizen
 <p>After the talk, <a href="http://www.delirandom.net/category/en/">vecna</a> asked an interesting question: &laquo;Google now knows not only lots of informations, it also knows how to correlate it (e.g. <a href="http://finance.google.com/">finance</a> + <a href="http://news.google.com/">news</a>) and actually knows, in real time, where the world is heading to, and how. This is an enormous strategic power! How do you cope with that?&raquo;</p>
 
 
-<p style="text-align:center;"><img src="stumbling.jpg" alt="" /><br/><cite>Photo by <a href="http://www.flickr.com/photos/rehvonwald/248356130/">rehvonwald</a></cite></p>
+<p style="text-align:center;"><img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/stumbling.jpg" alt="" /><br/><cite>Photo by <a href="http://www.flickr.com/photos/rehvonwald/248356130/">rehvonwald</a></cite></p>
 
 
 <p>Marco dribbled a bit: &laquo;We always try to be on the &#8220;good&#8221; side and make &#8220;fair&#8221; use of our data. About privacy we try to spread <a href="http://google.com/privacy">knowledge</a> and talk with governments and companies to develop newer and more relevant rules, because e.g. the <a href="http://www.acf.hhs.gov/programs/cse/"><span class="caps">OCSE</span></a> policy was enacted before internet became so widely adopted. Always pursuing the goal to give everyone better services&raquo;</p>
@@ -221,7 +219,7 @@ Just be that model citizen
 <p>The discussion could have continued for the next two or three hours, to the point that even I, noticeably shy at <sup>the first day of</sup> conventions, could have asked something ;) but time was precisely scheduled, so Marco Calamari politely asked the parties to stop and caught the moment to <a href="http://twitter.com/vjt/statuses/1881013015">deliver the 2007 Big Brother Award to the Google representative</a> for the &#8220;most invasive technology&#8221; of the time.</p>
 
 
-<p style="text-align:center;"><img src="google-bba-2007.jpg" alt="" /><br/><cite>Photo by me</cite></p>
+<p style="text-align:center;"><img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/google-bba-2007.jpg" alt="" /><br/><cite>Photo by me</cite></p>
 
 
 <p style="text-align:right;"><small class="noprint"><a href="#top">#top</a></small></p>
@@ -251,7 +249,7 @@ Just be that model citizen
 <p>Well said, vecna, <sup>almost</sup> straight to the point :).</p>
 
 
-<p style="text-align:center;"><a href="http://delirandom.net/sniffjoke"><img src="sniffjoke.jpg" alt="" /></a><br/><cite>Picture by <a href="http://delirandom.net/sniffjoke">vecna</a></cite></p>
+<p style="text-align:center;"><a href="http://delirandom.net/sniffjoke"><img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/sniffjoke.jpg" alt="" /></a><br/><cite>Picture by <a href="http://delirandom.net/sniffjoke">vecna</a></cite></p>
 
 
 <p style="text-align:right;"><small class="noprint"><a href="#top">#top</a></small></p>
@@ -290,7 +288,7 @@ Just be that model citizen
 <p>Last but not least, the weakest link of the chain is people: an employee with a 1300$ salary can be corrupted with a bribe of, say, 15k $, and maybe offer more tapping services that were requested at first.</p>
 
 
-<p style="text-align:center;"><img src="david-mills.jpg" alt="" /><br/><cite>Source: <a href="http://www.guardian.co.uk/politics/2009/feb/17/david-mills-berlusconi-trial">guardian.co.uk</a></cite></p>
+<p style="text-align:center;"><img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/david-mills.jpg" alt="" /><br/><cite>Source: <a href="http://www.guardian.co.uk/politics/2009/feb/17/david-mills-berlusconi-trial">guardian.co.uk</a></cite></p>
 
 
 <p><a name="communication-protection"></a></p>
@@ -302,7 +300,7 @@ Just be that model citizen
 <p>Protection is difficult mainly because of the overabundance of different technologies (PSTN, <span class="caps">ISDN</span>, GSM, <span class="caps">CDMA</span>, UMTS, 3GPP, VoIP, Sat, ...) and institutes that aim to standardize them (ITU, <span class="caps">IETF</span>, Telco consortiums, <span class="caps">ISP</span> consortiums, ...) but most of the time these consortiums act on behalf of $big_companies whose interest is business, not standardization. As such, there are no standard security measures for telephony, but there are some best practices.</p>
 
 
-<p style="text-align:center;"><img src="IMS-overview.png" alt="" /><br/><a href="http://en.wikipedia.org/wiki/IP_Multimedia_Subsystem"><span class="caps">IMS</span></a> Overview <cite>Source: <a href="http://en.wikipedia.org/wiki/File:Ims_overview.png">wikipedia</a></cite></p>
+<p style="text-align:center;"><img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/IMS-overview.png" alt="" /><br/><a href="http://en.wikipedia.org/wiki/IP_Multimedia_Subsystem"><span class="caps">IMS</span></a> Overview <cite>Source: <a href="http://en.wikipedia.org/wiki/File:Ims_overview.png">wikipedia</a></cite></p>
 
 
 <p>The weakest form of protection, carried out into the analog domain (and as such on circuit-switched networks) is <a href="http://en.wikipedia.org/wiki/Scrambler">scrambling</a>, where the original signal is encoded to make it <em>difficult</em> (but not impossible) to recover. Usually scramblers do not remove &#8220;unwanted sequences&#8221; (e.g. complete silence) that make it easier for an attacker to reverse engineer the method used to encode the signal.</p>
@@ -317,7 +315,7 @@ Just be that model citizen
 <p>Quick introduction to VoIP: there are mainly two protocols, <acronym title="Session Initiation Protocol">SIP</acronym> and <acronym title="Real-time Transport Protocol">RTP</acronym>. The former carries <em>signalling</em> information, such as &#8220;User A is calling B, <span class="caps">RING RING</span>!&#8221; and &#8220;User B picked up the receiver, <span class="caps">HELLO</span>?&#8221;. The latter carries <em>media</em> information, the digital representation of voice / images. <span class="caps">SRTP</span> is the cryptographic counterpart of <span class="caps">RTP</span>, but before a secure session can be established, the two peers need to 1) verify each other&#8217;s identity and 2) exchange their respective keys. There are two protocols to exchange keys: the aforementioned <span class="caps">DTLS</span> (<cite>endorsed by Cisco, Cisco and&#8230; Cisco</cite> :)) and <span class="caps">ZRTP</span> (Open Source software designed by <span class="caps">PGP</span> author Phil Zimmermann).</p>
 
 
-<p style="text-align:center;"><img src="SIP-trapezoid.gif" alt="" /><br/>The <span class="caps">SIP</span> trapezoid, <cite>source: <a href="http://www.networkdictionary.com/files/VOIP-Architecture-based-SIP.gif">networkdictionary.com</a></cite></p>
+<p style="text-align:center;"><img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/SIP-trapezoid.gif" alt="" /><br/>The <span class="caps">SIP</span> trapezoid, <cite>source: <a href="http://www.networkdictionary.com/files/VOIP-Architecture-based-SIP.gif">networkdictionary.com</a></cite></p>
 
 
 <p>Why is <span class="caps">DTLS</span> a complicated approach? Because it requires additional headers into <span class="caps">SIP</span> messages and extensions to the <span class="caps">RFC 3261</span> to define a new protocol identifier used by the <code>Via:</code> header. <span class="caps">DTLS</span> also implements a <acronym title="Public Key Infrastructure">PKI</acronym> that requires a CA(Certification Authority), the <em>third party you have to trust</em>. In a VoIP world with different standards, companies and technologies, the road to adoption of <strong>another</strong> variation of the original <span class="caps">SIP</span> standard is long and shaky. Furthermore, the <span class="caps">PKI</span> model means that individuals cannot simply download a software, trust each other and start communicating privately.</p>
@@ -356,5 +354,5 @@ Just be that model citizen
 <p>Good luck, and see you at e-privacy 2010 :).</p>
 
 
-<p style="text-align:center;"><img src="hellais.jpg" alt="" /><br/><a href="http://baculo.org/">hellais</a>, <cite>photo by me</cite></p>
+<p style="text-align:center;"><img src="/posts/2009-05-28-e-privacy-2009-towards-global-control/hellais.jpg" alt="" /><br/><a href="http://baculo.org/">hellais</a>, <cite>photo by me</cite></p>
 

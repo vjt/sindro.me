@@ -20,7 +20,8 @@ developments.</p>
 
 
 <p style="text-align:center;"><img
-src="rospigliosi-palace-statues-room-nnsquad-convention.jpg" alt="" /></p>
+src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/rospigliosi-palace-statues-room-nnsquad-convention.jpg"
+alt="" /></p>
 
 
 <p><a name="continue"></a> The first speech started at 2.15PM and was held by
@@ -52,10 +53,10 @@ class="caps">ISP</span>-owned walled gardens).</p>
 <p>Also, again on the Quality of Service: Trecordi stated the Internet
 succeeded because of its &quot;hourglass model&quot; and &#8220;the capability
 to decouple communications services and network infrastructure&#8221;, but QoS
-requirements (e.g. for VoIP) stress the protocol stack pile, moreover where
-the network pipes are &#8220;overbooked&#8221;. Furthermore, even
-overprovisioning fails, because of the decentralized architecture of the
-Internet, and bottlenecks are mainly located in <a
+requirements (e.g. for VoIP) stress the protocol stack pile, moreover where the
+network pipes are &#8220;overbooked&#8221;. Furthermore, even overprovisioning
+fails, because of the decentralized architecture of the Internet, and
+bottlenecks are mainly located in <a
 href="http://www.mix-it.net/">interconnection points between ISPs</a>.</p>
 
 
@@ -76,7 +77,7 @@ on linux</a> :).</p>
 
 
 <p style="text-align:center;"><img
-src="akamai-how-content-delivery-network-works.png" alt="" /></p>
+src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/akamai-how-content-delivery-network-works.png" alt="" /></p>
 
 
 <p style="text-align:right;"><cite>Source: <a
@@ -139,7 +140,9 @@ comment</a> explains my point of view on this matter, and was also exposed
 later by a member of the audience.</p>
 
 
-<p style="text-align:center;"><img src="bandwidth-usage-p2p.png" alt="" /></p>
+<p style="text-align:center;"><img
+src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/bandwidth-usage-p2p.png"
+alt="" /></p>
 
 
 <p style="text-align:right;"><cite>Source: <a
@@ -209,7 +212,9 @@ evil technologies, and make sure ISPs respect them. We need a huge dose of
 <strong>Faith</strong>, I&#8217;d guess.</p>
 
 
-<p style="text-align:center;"><img src="have-faith.jpg" alt="" /></p>
+<p style="text-align:center;"><img
+src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/have-faith.jpg"
+alt="" /></p>
 
 
 <p style="text-align:right;"><cite>Photo by <a
@@ -229,33 +234,37 @@ single company for historic reasons, and so on).</p>
 <p>The involved parties (and condensed key points) were:</p>
 
 
-<ul> <li><img src="vodafone.png" alt="" /><br/><a
+<ul> <li><img
+src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/vodafone.png"
+alt="" /><br/><a
 href="http://www.linkedin.com/pub/paolo-di-domenico/5/267/95">Paolo di
 Domenico</a> &#8211; <a href="http://www.vodafone.it/">Vodafone</a> &#8211;
 <em>(Score: 3)</em> <ul> <li>Heavy internet users should not be able to degrade
 user experience for other customers</li> <li>We won&#8217;t block traffic on an
 application basis</li> <li>We should be able to manage traffic load and put
 caps when we&#8217;re over capacity</li> <li>SLAs and TOSs trasparency is a
-must</li> </ul> </li> <li><img src="tre.png" alt="" /><br/>Anton Giulio
-Lombardi &#8211; <a href="http://www.tre.it/">Tre</a> &#8211; <em>(Score:
-3)</em> <ul> <li>Devices are <a
-href="http://www.apple.com/iphone">iMproving</a> and becoming multi-connected
-(wifi, gsm, hsdpa), this implies convergence of services that today are
-separated (telephony and internet)</li> <li>Frequencies: on May 6th 2009 in
-Italy has been voted a law proposal that if will pass, mobile operators will be
-allowed to make a broader use of frequencies than now</li> <li>Content is being
-partitioned by the producers in order to get more revenue; multi-connected
-devices which kind of access do they provide? E.g. a PC with an <span
-class="caps">HSDPA</span> module which kind of access does provide? Broadband?
-<span class="caps">UMTS</span>? We need sane regulations in order to alleviate
-load on the mobile operators, or everyone will start using non-compatible
-platforms. (I really could not understand his point).</li> <li>On regulations
-again: people could use our mobile phones (70M in Italy) for payment, but
-legislation is not ready. Also, our company broadcasts <a
+must</li> </ul> </li> <li><img
+src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/tre.png"
+alt="" /><br/>Anton Giulio Lombardi &#8211; <a
+href="http://www.tre.it/">Tre</a> &#8211; <em>(Score: 3)</em> <ul> <li>Devices
+are <a href="http://www.apple.com/iphone">iMproving</a> and becoming
+multi-connected (wifi, gsm, hsdpa), this implies convergence of services that
+today are separated (telephony and internet)</li> <li>Frequencies: on May 6th
+2009 in Italy has been voted a law proposal that if will pass, mobile operators
+will be allowed to make a broader use of frequencies than now</li> <li>Content
+is being partitioned by the producers in order to get more revenue;
+multi-connected devices which kind of access do they provide? E.g. a PC with an
+<span class="caps">HSDPA</span> module which kind of access does provide?
+Broadband?  <span class="caps">UMTS</span>? We need sane regulations in order
+to alleviate load on the mobile operators, or everyone will start using
+non-compatible platforms. (I really could not understand his point).</li>
+<li>On regulations again: people could use our mobile phones (70M in Italy) for
+payment, but legislation is not ready. Also, our company broadcasts <a
 href="http://www.rai.it/"><span class="caps">RAI</span></a> television via
 <span class="caps">DVBH</span>, but <span class="caps">RAI</span> does not
-broadcast itself. Quite odd.</li> </ul> </li> <li><img src="wind.png" alt=""
-/><br/><a
+broadcast itself. Quite odd.</li> </ul> </li> <li><img
+src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/wind.png"
+alt="" /><br/><a
 href="http://www.key4biz.it/Who_is_who/2008/09/Mosca_Raffaele.html">Raffaele
 Mosca</a> &#8211; <a href="http://www.wind.it/">Wind</a> &#8211; <em>(Score:
 3)</em> <ul> <li>Neutrality is the common basis upon which to start any further
@@ -268,7 +277,9 @@ invest in network resources not efficiently used (because of file sharing,
 editor&#8217;s note).</li> <li>In the end, we need a sane and precise
 regulation, because in a multiplayer business context everyone tries to feather
 his own nest (and I hate this status quo, editor&#8217;s note)</li> </ul> </li>
-<li><img src="telecom-w.png" alt="" /><br/><a
+<li><img
+src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/telecom-w.png"
+alt="" /><br/><a
 href="http://www.key4biz.it/Who_is_who/2008/06/Nocentini_Stefano.html">Stefano
 Nocentini</a> &#8211; <a href="http://www.telecomitalia.it/">Telecom Italia</a>
 &#8211; <em>(Score: 5, Insightful)</em> <ul> <li>Think about the internet as an
@@ -289,13 +300,15 @@ town is reached by an highway, just like DSLs (but it&#8217;s a shame,
 editor&#8217;s note).</li> </ul> </li> <li>Conclusion: we need sane regulations
 designed by a scientific round table, and such regulations must be kept
 up-to-date, because the Internet ecosystem is constantly evolving.</li>
-<li><em>Applause</em>.</li> </ul> </li> <li><img src="fastweb.png" alt=""
-/><br/><a href="http://www.linkedin.com/pub/roberto-scrivo/5/19b/87a">Roberto
-Scrivo</a> &#8211; <a href="http://www.fastweb.it/">Fastweb</a> &#8211;
-<em>(Score: 1)</em> <ul> <li>We need regulations</li> <li>We suffer from
-tech-savvyness failure</li> <li>Neutrality isn&#8217;t the problem here,
-it&#8217;s just management</li> <li>We&#8217;ll implement NGNs when
-they&#8217;ll be profitable</li> </ul></li> </ul>
+<li><em>Applause</em>.</li> </ul> </li> <li><img
+src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/fastweb.png"
+alt="" /><br/><a
+href="http://www.linkedin.com/pub/roberto-scrivo/5/19b/87a">Roberto Scrivo</a>
+&#8211; <a href="http://www.fastweb.it/">Fastweb</a> &#8211; <em>(Score:
+1)</em> <ul> <li>We need regulations</li> <li>We suffer from tech-savvyness
+failure</li> <li>Neutrality isn&#8217;t the problem here, it&#8217;s just
+management</li> <li>We&#8217;ll implement NGNs when they&#8217;ll be
+profitable</li> </ul></li> </ul>
 
 
 <p>And eventually <a
@@ -312,7 +325,9 @@ these issues (and not demonize the Internet, editor&#8217;s note).</p>
 <h2>Politics</h2>
 
 
-<div style="float:right;"><img src="gentiloni.jpg" alt="" /></div> 
+<div style="float:right;"><img
+src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/gentiloni.jpg"
+alt="" /></div> 
 
 <p><a href="http://www2.paologentiloni.it/">Paolo Gentiloni</a>, former
 telecommunications minister, said that the State is not just watching:
@@ -334,8 +349,7 @@ note).</p>
 <blockquote> <strong><span class="caps">UPDATE</span></strong>: The Caio Report
 was <a
 href="https://www.wikileaks.org/wiki/Comparing_broadband_in_Italy_with_other_countries:_Francesco_Caio_report:_Portare_l%27Italia_verso_la_leadership_europea_nella_banda_larga:_Considerazioni_sulle_opzioni_di_politica_industriale%2C_12_Mar_2009">leaked
-on wikileaks</a> on May 15, 2009 (thanks
-<a
+on wikileaks</a> on May 15, 2009 (thanks <a
 href="http://blog.quintarelli.it/blog/2009/05/online-il-rapporto-caio.html">Quinta</a>
 for sharing).  </blockquote>
 

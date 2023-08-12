@@ -62,12 +62,12 @@ drwxr-xr-x  2 vjt  8 2007-11-02 16:02 .AppleDesktop/
 
 It works:
 
-![Time machine backing up](tm-backing-up.png)
+![Time machine backing up](/posts/2007-11-2-how-to-backup-with-time-machine-on-a-network-share/tm-backing-up.png)
 
 
 Of course with a bit of cache trashing:
 
-![Cache Trashing](tm-fscache-destroy-after-backup.png)
+![Cache Trashing](/posts/2007-11-2-how-to-backup-with-time-machine-on-a-network-share/tm-fscache-destroy-after-backup.png)
 
 Have fun!
 
@@ -76,10 +76,10 @@ embedded into a .sparsebundle file created on the network share. An AFP share
 has the added benefit of being indexable by spotlight, not to mention that your
 Linux server will appear in the finder as a shiny Mac:
 
-![shiny mac](shiny-mac-icon.png)
+![shiny mac](/posts/2007-11-2-how-to-backup-with-time-machine-on-a-network-share/shiny-mac-icon.png)
 
 and not as a crashed windows pc:
 
-![crashed pc](crashed-pc-icon.png)
+![crashed pc](/posts/2007-11-2-how-to-backup-with-time-machine-on-a-network-share/crashed-pc-icon.png)
 
 :)

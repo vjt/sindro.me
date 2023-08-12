@@ -18,5 +18,5 @@ courtesy of
 [CoconutBattery.app](http://www.coconut-flavour.com/coconutbattery/) and System
 Profiler.app)
 
-![Battery health](healthy_battery_2.png)
-![Battery cycles](healthy_battery_cycle_count.png)
+![Battery health](/posts/2008-01-31-how-to-keep-your-apple-notebook-battery-healthy/healthy_battery_2.png)
+![Battery cycles](/posts/2008-01-31-how-to-keep-your-apple-notebook-battery-healthy/healthy_battery_cycle_count.png)
