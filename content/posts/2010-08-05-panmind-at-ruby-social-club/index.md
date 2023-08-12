@@ -42,7 +42,8 @@ boilerplate code for the ultra-fast AJAX navigation of panmind
 
 The keynote follows, you can download it in PDF (no [exploits, I
 swear!](../2010-08-04-on-the-iphone-pdf-and-kernel-exploit)) [from this
-link](Panmind_at_Ruby_Social_Club_Milano.pdf) or view/comment it on slideshare
+link](/posts/2010-08-05-panmind-at-ruby-social-club/Panmind_at_Ruby_Social_Club_Milano.pdf)
+or view/comment it on slideshare
 [here](http://www.slideshare.net/panmind/panmind-open-source-releases-presented).
 
 Final words: check out [mikamai blog post on the Ruby Social
@@ -58,4 +59,4 @@ src="https://www.slideshare.net/slideshow/embed_code/key/4PwLzCoPaujLIl"
 width="100%" height="500" frameborder="0" marginwidth="0" marginheight="0"
 scrolling="no" allowfullscreen></iframe>
 
-[PDF version](Panmind_at_Ruby_Social_Club_Milano.pdf)
+[PDF version](/posts/2010-08-05-panmind-at-ruby-social-club/Panmind_at_Ruby_Social_Club_Milano.pdf)

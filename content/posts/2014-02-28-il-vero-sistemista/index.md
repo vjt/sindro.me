@@ -3,7 +3,7 @@ date: 2014-02-28T04:00:00
 title: Il vero sistemista
 ---
 
-![Car repair](car.repair.hands.jpg)
+![Car repair](/posts/2014-02-28-il-vero-sistemista/car.repair.hands.jpg)
 
 Il vero sistemista e’ un po’ come il meccanico di una volta, quello che se gli
 portavi la macchina per rifare la convergenza e quando arrivavi sentiva che il

@@ -5,7 +5,7 @@ date: 2007-11-21
 tags: [geek, network, novel]
 ---
 
-![Novel logo](sysadmins2_1.jpg)
+![Novel logo](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins2_1.jpg)
 
 A really, really, really **NERD** novel by [Cory Doctorow][doctorow-archive]
 that tells about a bunch of sysadmins that strive to keep the good ol' Net

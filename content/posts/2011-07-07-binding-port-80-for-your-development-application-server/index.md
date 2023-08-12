@@ -4,7 +4,7 @@ title: Binding 80/TCP as non-root on your development server
 tags: [capabilities, linux, ruby]
 ---
 
-![Neo Tux](neo-tux.png)
+![Neo Tux](/posts/2011-07-07-binding-port-80-for-your-development-application-server/neo-tux.png)
 
 So you have a Linux VM you use for development, because you want to mirror the production environment as closely as possible. You have many applications to deal with, they have to be running at the same time because they are nifty REST JSON web services.
 

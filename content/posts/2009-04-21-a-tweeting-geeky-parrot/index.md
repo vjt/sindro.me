@@ -21,7 +21,7 @@ it, learn it to talk, and letting him .. well, **tweet** his words using a
 speech recognition system put right aside its bar and linked to a twitter
 account? How weird would that be?! :D
 
-{{< figure src="tweeting_parrot.jpg" alt="Tweeting parrot" >}}
+{{< figure src="/posts/2009-04-21-a-tweeting-geeky-parrot/tweeting_parrot.jpg" alt="Tweeting parrot" >}}
 
 Thinking deeply, the weirdest thing is that in 2009, a tweeting parrot makes me
 think about a "parrot with access to twitter" .. and not a bird emitting its

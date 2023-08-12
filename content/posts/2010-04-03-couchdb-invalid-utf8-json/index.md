@@ -4,7 +4,7 @@ date: 2010-04-03T19:00:00Z
 tags: [couchdb, erlang, projects]
 ---
 
-![CouchDB logo](couchdb.png)
+![CouchDB logo](/posts/2010-04-03-couchdb-invalid-utf8-json/couchdb.png)
 
 If your CouchDB 0.11 gives you the "Invalid UTF-8 JSON" error on **every** POST
 or PUT you issue to it, make sure that in your

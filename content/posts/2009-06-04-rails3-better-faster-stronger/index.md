@@ -5,7 +5,8 @@ tags: [development, merb, rails, ruby]
 ---
 
 <div style="float:left; margin:5px 10px 0 0;"><img style="display:inline-block"
-src="rails3-harder-better-faster-stronger.png" /></div>
+src="/posts/2009-06-04-rails3-better-faster-stronger/rails3-harder-better-faster-stronger.png"
+/></div>
 
 <p>For those who understand italian, I&#8217;ve just <a
 href="http://therubymine.com/2009/06/04/rails3-better-faster-stronger/">published

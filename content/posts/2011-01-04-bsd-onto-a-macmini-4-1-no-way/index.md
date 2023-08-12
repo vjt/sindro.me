@@ -4,7 +4,7 @@ title: "*BSD onto a MacMini 4,1? No way. :-("
 tags: [apple, bsd]
 ---
 
-<img src="mini-daemon.png" style="float: right" />
+<img src="/posts/2011-01-04-bsd-onto-a-macmini-4-1-no-way/mini-daemon.png" style="float: right" />
 
 <p>I spent the last two days trying to set up the Aluminium Mac Mini (rev. 4,1)
 as a home <span class="caps">NAS</span> server with encrypted storage, and I

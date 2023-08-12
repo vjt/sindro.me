@@ -8,7 +8,7 @@ When you install the [developer beta of Windows
 7](http://www.microsoft.com/windows/windows-7/beta-download.aspx), after the
 usual 3 reboots cycle, you are greeted with the following image:
 
-{{< figure src="win7_siamese_fight_fish.png" alt="The Betta Siamese Fighting Fish" >}}
+{{< figure src="/posts/2009-01-28-the-windows-7-default-wallpaper-meaning/win7_siamese_fight_fish.png" alt="The Betta Siamese Fighting Fish" >}}
 
 It is the [Siamese fighting fish](http://en.wikipedia.org/wiki/Betta_fish), a
 beautiful tropical fish, but with an interesting characteristic: it is
