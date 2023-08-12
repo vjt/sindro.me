@@ -10,6 +10,7 @@ paginate = 5
 [params]
   favicon = "/favicon.ico"
   brand = "sindro.me"
+  brand_image = "/vjt.jpg"
   description = "feeling bold on the internet - Marcello Barnaba web site"
   dark_mode = true
   index_full_posts = true
