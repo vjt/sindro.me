@@ -2,6 +2,7 @@ baseURL = 'https://vjt.sindro.me/'
 languageCode = 'en-us'
 title = "Marcello Barnaba"
 theme = "poison"
+paginate = 5
 
 [markup.goldmark.renderer]
   unsafe = true
@@ -14,7 +15,8 @@ theme = "poison"
 
   menu = [
     { Name = "About", URL = "/about/", HasChildren = false },
-    { Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 5 }
+    { Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 10 },
+    { Name = "Tags", URL = "/tags/", HasChildren = true, Limit = 10 },
   ]
 
   github_url = "https://github.com/vjt"
@@ -23,7 +25,7 @@ theme = "poison"
   youtube_url = "https://youtube.com/user/vjti"
   instagram_url = "https://instagram.com/vjt42"
   facebook_url = "https://facebook.com/vjt.rb"
-  flickr_url = "https://flickr.com/vjti"
+  flickr_url = "https://flickr.com/vjt-"
   telegram_url = "https://t.me/vjt42"
   email_url = "mailto:vjt@openssl.it"
 
