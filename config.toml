@@ -3,10 +3,8 @@ languageCode = 'en-us'
 title = "Marcello Barnaba"
 theme = "poison"
 
-[markup.goldmark.renderer]
-  unsafe = true
-
 [params]
+  favicon = "favicon.ico"
   brand = "sindro.me"
   description = "feeling bold on the internet - Marcello Barnaba web site"
   dark_mode = true
