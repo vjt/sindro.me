@@ -1,0 +1,31 @@
+baseURL = 'https://vjt.sindro.me/'
+languageCode = 'en-us'
+title = "Marcello Barnaba"
+theme = "poison"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[params]
+  brand = "sindro.me"
+  description = "feeling bold on the internet - Marcello Barnaba web site"
+  dark_mode = true
+
+  menu = [
+    { Name = "About", URL = "/about/", HasChildren = false },
+    { Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 5 }
+  ]
+
+  github_url = "https://github.com/vjt"
+  linkedin_url = "https://linkedin.com/in/marcellobarnaba"
+  twitter_url = "https://twitter.com/vjt"
+  youtube_url = "https://youtube.com/user/vjti"
+  instagram_url = "https://instagram.com/vjt42"
+  facebook_url = "https://facebook.com/vjt.rb"
+  flickr_url = "https://flickr.com/vjti"
+  telegram_url = "https://t.me/vjt42"
+  email_url = "mailto:vjt@openssl.it"
+
+[taxonomies]
+  series = 'series'
+  tags = 'tags'
