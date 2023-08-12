@@ -12,6 +12,7 @@ paginate = 5
   brand = "sindro.me"
   description = "feeling bold on the internet - Marcello Barnaba web site"
   dark_mode = true
+  index_full_posts = true
 
   menu = [
     { Name = "About", URL = "/about/", HasChildren = false },
