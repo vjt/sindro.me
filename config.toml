@@ -1,4 +1,4 @@
-baseURL = 'https://vjt.sindro.me/'
+baseURL = 'https://sindro.me/'
 languageCode = 'en-us'
 title = "Marcello Barnaba"
 theme = "poison"
