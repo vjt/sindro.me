@@ -291,7 +291,8 @@ location, thus making <span class="caps">ASLR</span> ineffective and bypassed.
 <strong><span class="caps">PWN</span></strong>!</p>
 
 
-<p>Check JF slides out <a href="Advances_in_Win32_ASLR_Evasion.pdf">here</a>
+<p>Check JF slides out <a
+href="/posts/2011-07-02-ph-neutral-0x7db/Advances_in_Win32_ASLR_Evasion.pdf">here</a>
 &#8211; thanks for sharing <a href="http://twitter.com/not_me">@not_me</a>!</p>
 
 

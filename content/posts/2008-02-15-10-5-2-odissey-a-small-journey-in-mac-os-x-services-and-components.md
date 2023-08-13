@@ -16,7 +16,7 @@ Spotlight also feels faster and faster on every upgrade, and I'm a heavy
 spotlight user, so this makes me really happy. Thanks Apple engineers!
 
 Back to the topic: why odissey? Because as per [my battery
-hints](../2008-01-31-how-to-keep-your-apple-notebook-battery-healthy/), I managed
+hints](/posts/2008-01-31-how-to-keep-your-apple-notebook-battery-healthy/), I managed
 to make my MacBook2,1 SHUT DOWN while at 74% of the "Writing files" phase of
 the combo update... resulting in a completely broken system, as every geek
 could imagine :). Apple updated some libraries, and upon reboot simply nothing
