@@ -11,7 +11,7 @@ paginate = 5
   favicon = "/favicon.ico"
   brand = "sindro.me"
   brand_image = "/vjt.jpg"
-  description = "feeling bold on the internet - Marcello Barnaba web site"
+  description = "feeling bold on the internet"
   dark_mode = true
   index_full_posts = true
   foot_image = "/glider.png"
@@ -19,8 +19,14 @@ paginate = 5
 
   menu = [
     { Name = "About", URL = "/about/", HasChildren = false },
-    { Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 10 },
-    { Name = "Tags", URL = "/tags/", HasChildren = true, Limit = 10 },
+    { Name = "Tags", URL = "/tags/" },
+    { Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 5 },
+    { Name = "Links", URL = "" },
+    { Name = "Resume", URL = "/resume.pdf", External = true },
+    { Name = "Segmentation fault (core dumped)", URL = "https://segmentation-fault.core-dumped.info/", External = true },
+    { Name = "Wikipedia", URL = "https://en.wikipedia.org/wiki/User:Vjt", External = true },
+    { Name = "Historical college projects", URL = "https://barnaba.openssl.it/", External = true },
+    { Name = "Hacks - antifork (outdated)", URL = "https://antifork.org/", External = true },
   ]
 
   github_url = "https://github.com/vjt"
