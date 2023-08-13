@@ -14,6 +14,8 @@ paginate = 5
   description = "feeling bold on the internet - Marcello Barnaba web site"
   dark_mode = true
   index_full_posts = true
+  foot_image = "/glider.png"
+  foot_link = "https://catb.org/jargon"
 
   menu = [
     { Name = "About", URL = "/about/", HasChildren = false },
