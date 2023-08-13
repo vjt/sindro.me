@@ -41,7 +41,7 @@ boilerplate code for the ultra-fast AJAX navigation of panmind
 [projects](http://panmind.org/tour/collaborate).
 
 The keynote follows, you can download it in PDF (no [exploits, I
-swear!](../2010-08-04-on-the-iphone-pdf-and-kernel-exploit)) [from this
+swear!](/posts/2010-08-04-on-the-iphone-pdf-and-kernel-exploit)) [from this
 link](/posts/2010-08-05-panmind-at-ruby-social-club/Panmind_at_Ruby_Social_Club_Milano.pdf)
 or view/comment it on slideshare
 [here](http://www.slideshare.net/panmind/panmind-open-source-releases-presented).

@@ -213,7 +213,7 @@ Just be that model citizen
 <p>Also, please remember that Google as a company has to operate into the legal framework, so many of those questions should be directed to the institutions, and not to us. The legal framework is quite a bit &#8220;bugged&#8221; at the moment, but we hope things will change fast. We absolutely need more discussion to generate a well designed framework about the internet, privacy, and issues shared at the global level.&raquo;</p>
 
 
-<p>mmhmh, the last phrase <a href="../16/the-conceptual-foundations-and-the-economics-network-neutrality-part-2.html">reminds me the conclusion of the nnsquad convention&#8230;</a> quite funny.</p>
+<p>mmhmh, the last phrase <a href="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2">reminds me the conclusion of the nnsquad convention&#8230;</a> quite funny.</p>
 
 
 <p>The discussion could have continued for the next two or three hours, to the point that even I, noticeably shy at <sup>the first day of</sup> conventions, could have asked something ;) but time was precisely scheduled, so Marco Calamari politely asked the parties to stop and caught the moment to <a href="http://twitter.com/vjt/statuses/1881013015">deliver the 2007 Big Brother Award to the Google representative</a> for the &#8220;most invasive technology&#8221; of the time.</p>

@@ -11,7 +11,7 @@ href="http://www.fub.it/">Fondazione Ugo Bordoni</a>.</p>
 
 
 <p>In the <a
-href="../2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-rome">first
+href="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-rome">first
 part</a> I described the morning session, dedicated to the definition of
 Network neutrality, and how global economics  can cope with it. The afternoon
 was dedicated to more technical talks, and I had the occasion to hear telcos
