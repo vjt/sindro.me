@@ -12,6 +12,7 @@ paginate = 5
   brand = "sindro.me"
   brand_image = "/vjt.jpg"
   description = "feeling bold on the internet"
+  blurb = "This is sindro.me, a weblog by Marcello Barnaba (@vjt) about technology, development, software, the internet, entertainment, politics, sociology, and the answer to Life, Universe, and Everything (42)."
   dark_mode = true
   index_full_posts = true
   foot_image = "/glider.png"
