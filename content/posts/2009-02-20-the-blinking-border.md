@@ -2,6 +2,7 @@
 date: 2009-02-20T04:00:00Z
 title: The obfuscated blinking border
 tags: [javascript, obfuscated]
+categories: [development, all]
 ---
 
 This is the obfuscated piece of Javascript code that implements the red border

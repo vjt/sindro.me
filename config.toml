@@ -41,5 +41,6 @@ paginate = 5
   email_url = "mailto:vjt@openssl.it"
 
 [taxonomies]
+  category = 'categories'
   series = 'series'
   tags = 'tags'

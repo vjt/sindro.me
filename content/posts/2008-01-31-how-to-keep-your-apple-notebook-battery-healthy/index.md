@@ -2,6 +2,7 @@
 date: 2008-01-31
 title: how to keep your apple notebook battery healthy
 tags: [apple, battery, healty, how-to, howto, life, notebook]
+categories: [development, all]
 ---
 
 3 simple rules:

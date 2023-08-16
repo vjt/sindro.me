@@ -2,6 +2,7 @@
 title: Girl Geek Dinners Workshop @Apple Store, 16 May 2009, Rome
 date: 2009-05-18T15:00:00
 tags: [apple, dinner, geek, girls, iphone, mobile, networking, social, web2.0]
+categories: [number-42, all]
 ---
 
 <p>&laquo;<cite>Women! The <a href="http://www.flickr.com/photos/matteorocchi/3401964231/">knife grinder</a> is here!</cite>&raquo; &#8211; Apart from funny jokes ;) the italian <a href="http://www.apple.com/it/retail/romaest/">Apple Store</a> together with <a href="http://www.girlgeekdinnersroma.com/">Girl Geek Dinners Roma</a> organized on May 16, 2009, a workshop about mobile lifestyle (focusing on the <a href="http://www.apple.com/iphone">iPhone</a>, of course).</p>

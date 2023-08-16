@@ -2,6 +2,7 @@
 date: 2011-07-07T14:00:00Z
 title: Binding 80/TCP as non-root on your development server
 tags: [capabilities, linux, ruby]
+categories: [development, all]
 ---
 
 ![Neo Tux](/posts/2011-07-07-binding-port-80-for-your-development-application-server/neo-tux.png)

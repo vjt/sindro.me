@@ -2,10 +2,11 @@
 date: 2008-01-16
 tags: [compile, openserver, python, sco]
 title: How to compile python2.5 on SCO_SV
+categories: [development, all]
 ---
 
 - You must have PTH installed, and maybe other libs.
-- This was tested on SCO_SV os507 3.2 5.0.7 i386
+- This was tested on `SCO_SV os507 3.2 5.0.7 i386`
 
 If you have UDK, run:
 

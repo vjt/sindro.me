@@ -2,6 +2,7 @@
 title: I've already got Mac OS Snow Leopard 10.6
 date: 2008-06-07T13:00:00Z
 tags: [apple, leopard, macos, snow]
+categories: [number-42, all]
 ---
 
 And this is the proof:

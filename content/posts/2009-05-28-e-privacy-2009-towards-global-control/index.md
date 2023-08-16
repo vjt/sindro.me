@@ -2,6 +2,7 @@
 title: "E-Privacy 2009: Towards Global Control"
 date: 2009-05-28T13:00:00
 tags: [control, cryptography, privacy, security]
+categories: [politics, all]
 ---
 
 <p><a name="top"></a></p>

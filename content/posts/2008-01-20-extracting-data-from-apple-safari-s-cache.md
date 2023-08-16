@@ -2,6 +2,7 @@
 title: Extracting data from Apple Safari's cache
 date: 2008-01-20
 tags: [apple, cache, extract, recover, safari, sqlite]
+categories: [development, all]
 ---
 
 Five minutes ago, I overwritten the super-shining-new CSS stylesheet that
