@@ -2,6 +2,7 @@
 date: 2008-11-12T21:00:00Z
 title: Making the CCacheServer Kerberos Ticket server actually Work(tm) on OSX
 tags: [apple, kerberos, macos, ticket]
+categories: [development, all]
 ---
 
 If you're wondering **why** the `CCacheServer` daemon, that caches in memory

@@ -2,6 +2,7 @@
 title: Google Maps (part I of "The Googling")
 date: 2008-02-14
 tags: [entertainment, funny, google, maps, video]
+categories: [number-42, all]
 ---
 
 Ever had some concerns about Google Maps and how much that app can see about

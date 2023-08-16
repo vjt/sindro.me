@@ -2,6 +2,7 @@
 title: PH-Neutral 0x7db
 date: 2011-07-02T17:00:00
 tags: [conference, hack, security]
+categories: [development, all]
 ---
 
 <p>&#8220;<strong>If it is good, they stop making it</strong>&#8221;, the

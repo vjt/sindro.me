@@ -2,6 +2,7 @@
 date: "2009-01-29T09:00:00Z"
 title: "The jQuery ajax-upload-fu plugin"
 tags: [ajax, javascript, jquery, plugin, projects, upload]
+categories: [development, all]
 ---
 
 I recently wrote [jQuery plug-in](http://gist.github.com/54441), that allows

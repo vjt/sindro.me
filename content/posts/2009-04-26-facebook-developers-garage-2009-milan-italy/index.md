@@ -2,6 +2,7 @@
 date: 2009-04-26T23:00:00Z
 title: "Facebook Developer Garage 2009, Milan (Italy)"
 tags: [event, facebook, networking, social, web2.0]
+categories: [development, all]
 ---
 
 <div style="float:left; margin:8px 10px 4px 0;"><img src="/posts/2009-04-26-facebook-developers-garage-2009-milan-italy/logofb.jpg"/></div>

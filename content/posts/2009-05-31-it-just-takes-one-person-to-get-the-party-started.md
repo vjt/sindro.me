@@ -2,6 +2,7 @@
 date: 2009-05-31T10:00:00Z
 title: It just takes one person to get the party started
 tags: [party, social, video, web2.0]
+categories: [politics, all]
 ---
 
 {{< youtube Frd0CPYuZgU >}}
