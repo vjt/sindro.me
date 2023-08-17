@@ -2,7 +2,7 @@
 title: We still can do it
 date: 2008-05-03
 tags: [photography, skating]
-categories: [number-42, all]
+categories: [number-42]
 ---
 
 Well, it seems that I've got no reason to be paranoid about my age: I still can

@@ -2,7 +2,7 @@
 title: The best way to begin a new day
 date: 2009-05-26T10:00:00Z
 tags: [data, linux, recovery, xfs]
-categories: [development, all]
+categories: [development]
 ---
 
 ```

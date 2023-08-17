@@ -2,7 +2,7 @@
 title: "Playing with Audio Units via AU Lab to gain 5.1 surround"
 date: 2008-12-12T01:38:31Z
 tags: [apple, audio, units]
-categories: [number-42, all]
+categories: [number-42]
 ---
 
 {{< figure src="/posts/2008-12-12-playing-with-audio-units-via-au-lab-to-gain-5-1-surround/au_lab_powa.jpg" alt="au lab pwnz" width="600" height="375" >}}

@@ -2,7 +2,7 @@
 title: Notice to all employees
 date: 2009-02-24T13:06:14-05:00
 tags: [crisis, funny, management, weird]
-categories: [politics, all]
+categories: [politics]
 ---
 
 (As read on [full-disclosure](http://lists.grok.org.uk/pipermail/full-disclosure/2009-February/068153.html))

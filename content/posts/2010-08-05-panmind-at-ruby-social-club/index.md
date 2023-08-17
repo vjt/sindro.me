@@ -2,7 +2,7 @@
 date: 2010-08-05T16:00:00Z
 title: Panmind spin-offs presented at Ruby Social Club Milan
 tags: [open source, panmind, rails, ruby]
-categories: [development, all]
+categories: [development]
 ---
 
 On July 22nd 2010, [Mikamai](http://mikamai.com/) hosted a [Ruby Social Club in

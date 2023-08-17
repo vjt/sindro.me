@@ -2,7 +2,7 @@
 date: "2009-02-03T14:00:00Z"
 title: "Continuous evolution"
 tags: [capistrano, evolution, ruby]
-categories: [number-42, all]
+categories: [number-42]
 ---
 
 ```bash

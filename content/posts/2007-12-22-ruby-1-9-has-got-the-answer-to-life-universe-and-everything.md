@@ -2,7 +2,7 @@
 title: Ruby 1.9 has got the answer to life, universe and everything
 date: 2007-12-22 22:00:00
 tags: [funny, ruby, weird]
-categories: [number-42, all]
+categories: [number-42]
 ---
 
 ```ruby

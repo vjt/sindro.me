@@ -2,7 +2,7 @@
 date: "2008-06-03T00:00:00Z"
 title: "What does your .bash_history say?"
 tags: ["bash", "geek", "history", "shell"]
-categories: [number-42, all]
+categories: [number-42]
 ---
 
 A [friend of mine](http://www.linkedin.com/in/easter) told me that on techie
