@@ -2,7 +2,7 @@
 date: 2008-10-22T15:00:00Z
 title: Pushing git commit messages to lighthouse in a batch
 tags: [git, github, lighthouse, ruby]
-categories: [development, all]
+categories: [development]
 ---
 
 If you use github-provided lighthouse integration, from the "Admin" pages of

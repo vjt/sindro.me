@@ -2,7 +2,7 @@
 title: "The mayonnaise jar and two glasses of wine"
 date: "2008-10-20T16:00:00Z"
 tags: [answer, everything, life, universe]
-categories: [number-42, all]
+categories: [number-42]
 ---
 
 "Quando ti sembra di avere troppe cose da gestire nella vita, quando 24 ore in

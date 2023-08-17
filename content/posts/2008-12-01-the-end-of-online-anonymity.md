@@ -2,7 +2,7 @@
 date: "2008-12-01T22:00:00Z"
 title: "The end of online anonymity"
 tags: ["facebook", "networking", "social", "web2.0"]
-categories: [politics, all]
+categories: [politics]
 ---
 
 Exactly the words that run around my mind these days:

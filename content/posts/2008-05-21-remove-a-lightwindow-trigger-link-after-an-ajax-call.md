@@ -2,7 +2,7 @@
 title: "Remove a lightwindow trigger link after an AJAX call"
 date: "2008-05-21T17:00:00Z"
 tags: [javascript, lightwindow, rails, ruby]
-categories: [development, all]
+categories: [development]
 ---
 
 Well, this is the result of 2 days of head-banging with lightwindow:

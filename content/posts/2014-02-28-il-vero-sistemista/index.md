@@ -1,7 +1,7 @@
 ---
 date: 2014-02-28T04:00:00
 title: Il vero sistemista
-categories: [number-42, all]
+categories: [number-42]
 ---
 
 ![Car repair](/posts/2014-02-28-il-vero-sistemista/car.repair.hands.jpg)

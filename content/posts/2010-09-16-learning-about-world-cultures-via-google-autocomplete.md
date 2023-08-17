@@ -2,7 +2,7 @@
 date: 2010-09-16T20:00:00Z
 title: Learning about world cultures via Google Autocomplete
 tags: [funny, google, http, instant, mining, suggest]
-categories: [development, all]
+categories: [development]
 ---
 
 Out of curiosity, I was looking how a browser interacts with the Google Instant
