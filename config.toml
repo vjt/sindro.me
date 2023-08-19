@@ -16,7 +16,7 @@ paginate = 5
   dark_mode = true
   index_full_posts = true
   foot_image = "/glider.png"
-  foot_link = "https://catb.org/jargon"
+  foot_link = "http://catb.org/jargon"
 
   menu = [
     { Name = "About", URL = "/about/", HasChildren = false },
