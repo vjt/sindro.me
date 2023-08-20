@@ -50,10 +50,9 @@ your choices.
 
 Thank you for being a valued member of my blog community.
 
-Sincerely,
-
-Marcello Barnaba
-
-[sindro.me](https://sindro.me)
-
+Sincerely,  
+Marcello Barnaba  
+[sindro.me](https://sindro.me)  
 [vjt@sindro.me](mailto:vjt@sindro.me)
+
+Last updated: 2023-08-20

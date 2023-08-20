@@ -37,7 +37,7 @@ laws, or regulations.
 
 ## 4. Privacy and Data Protection
 
-**Data Collection:** I may collect and process personal information as
+4.1. **Data Collection:** I may collect and process personal information as
 described in my [Privacy Policy](/privacy/).
 
 ## 5. Disclaimers and Limitation of Liability
@@ -63,4 +63,9 @@ If you have any questions or concerns about these Terms, please contact me at
 By using this Website, you acknowledge that you have read, understood, and
 agree to these Terms of Service.
 
-Last updated: 2023-08-17
+Sincerely,  
+Marcello Barnaba  
+[sindro.me](https://sindro.me)  
+[vjt@sindro.me](mailto:vjt@sindro.me)
+
+Last updated: 2023-08-20
