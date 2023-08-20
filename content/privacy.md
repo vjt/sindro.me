@@ -40,10 +40,13 @@ on this page.
 ## 6. Contact Us
 
 If you have any questions or concerns about my Privacy Policy, please contact
-me at vjt@sindro.me.
-
-Last updated: 2023-08-17
+me at [vjt@sindro.me](mailto:vjt@sindro.me).
 
 By using my blog, you agree to the terms outlined in this Privacy Policy.
 
-*sindro.me*
+Sincerely,  
+Marcello Barnaba  
+[sindro.me](https://sindro.me)  
+[vjt@sindro.me](mailto:vjt@sindro.me)
+
+Last updated: 2023-08-20
