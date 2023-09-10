@@ -214,5 +214,5 @@ href="http://www.wind.it/">wind</a>).</p>
 
 <blockquote> <strong><span class="caps">UPDATE</span></strong> May 17, 2009:
 The second part is available: <a
-href="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2">https://sindro.me/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2</a>
+href="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2">https://sindro.me/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2</a>
 </blockquote>
