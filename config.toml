@@ -33,6 +33,7 @@ paginate = 5
   github_url = "https://github.com/vjt"
   linkedin_url = "https://linkedin.com/in/marcellobarnaba"
   twitter_url = "https://twitter.com/vjt"
+  mastodon_url = "https://mastodon.social/@vjt"
   youtube_url = "https://youtube.com/user/vjti"
   instagram_url = "https://instagram.com/vjt42"
   facebook_url = "https://facebook.com/vjt.rb"
