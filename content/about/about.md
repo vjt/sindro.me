@@ -29,7 +29,9 @@ account](http://github.com/vjt).
 I write code in many programming languages, I used to spend a lot of time with
 [Ruby](http://ruby-lang.org/), until 2021, and currently I code mostly in
 Python, golang, rust, and whatever tool fits the bill. I used to write software
-also in C, C++, Perl, PHP and Erlang.
+also in C, C++, Perl, PHP and Erlang. My current favorite programming language
+is [rust](https://www.rust-lang.org/) and I am having a really great time with
+it!
 
 I've used to work for more than 10yrs for a specialized agency of the United
 Nations, [IFAD](http://www.ifad.org), before switching and becoming a
