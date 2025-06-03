@@ -1,10 +1,10 @@
 ---
 title: "About the author"
-date: 2023-08-12
+date: 2025-06-03
 ---
 
 Hello! I'm Marcello Barnaba, an Italian computer nerd, born on April, 11th
-1981, currently located in [Bari, Italy](https://goo.gl/maps/DGa8AKUeqejgofbB7).
+1981, currently located in [Rome, Italy](https://maps.app.goo.gl/hPk6oSuYz6akYp4o6).
 
 My interests range from Software Development to Computer Networks and Security,
 from Maths to Physics and Astronomy, Sociology... more generally, anything
@@ -28,10 +28,10 @@ account](http://github.com/vjt).
 
 I write code in many programming languages, I used to spend a lot of time with
 [Ruby](http://ruby-lang.org/), until 2021, and currently I code mostly in
-Python, golang, rust, and whatever tool fits the bill. I used to write software
-also in C, C++, Perl, PHP and Erlang. My current favorite programming language
-is [rust](https://www.rust-lang.org/) and I am having a really great time with
-it!
+Python and rust - and as needed in whatever tool fits the bill. I used to write
+software also in C, C++, Perl, PHP, Erlang and Golang. My current favorite
+programming language is [rust](https://www.rust-lang.org/) and I am having a
+really great time with it!
 
 I've used to work for more than 10yrs for a specialized agency of the United
 Nations, [IFAD](http://www.ifad.org), before switching and becoming a
