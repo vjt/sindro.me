@@ -2,7 +2,9 @@ baseURL = 'https://sindro.me/'
 languageCode = 'en-us'
 title = "Marcello Barnaba"
 theme = "poison"
-paginate = 5
+
+[pagination]
+  pagerSize = 5
 
 [markup.goldmark.renderer]
   unsafe = true
