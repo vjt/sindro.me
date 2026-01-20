@@ -2,9 +2,10 @@ baseURL = 'https://sindro.me/'
 languageCode = 'en-us'
 title = "Marcello Barnaba"
 theme = "poison"
+summaryLength = 250
 
 [pagination]
-  pagerSize = 5
+  pagerSize = 10
 
 [markup.goldmark.renderer]
   unsafe = true
@@ -16,7 +17,7 @@ theme = "poison"
   description = "feeling bold on the internet"
   blurb = "This is sindro.me, a weblog by Marcello Barnaba (@vjt) about technology, development, software, the internet, entertainment, politics, sociology, and the answer to Life, Universe, and Everything (42)."
   dark_mode = true
-  noSummary = true
+  noSummary = false
   foot_image = "/glider.png"
   foot_link = "http://catb.org/jargon"
 
