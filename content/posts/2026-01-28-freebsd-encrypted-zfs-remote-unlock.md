@@ -94,4 +94,21 @@ If you want to stop praying every time you type reboot, grab the script from my 
 
 https://github.com/vjt/mfsroot-geli-dropbear
 
+Download it, run it, and it'll create a `/boot/mfsroot.gz` file. You can then enable it at boot by editing your `loader.conf`:
+
+```sh
+# Load modules
+geom_md_load="YES"
+zfs_load="YES"
+
+# Load initrd
+mfs_load="YES"
+mfs_type="md_image"
+mfs_name="/boot/mfsroot"
+
+vfs.root.mountfrom="ufs:/dev/md0"
+```
+
+Ensure to not have a `geom_eli_load="YES"` line in your `loader.conf` otherwise the kernel will detect your encrypted root and ask you to insert its password!
+
 FreeBSD is powerful, but sometimes you have to scratch your own itch!
