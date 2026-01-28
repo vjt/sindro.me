@@ -244,3 +244,13 @@ tank/usr/ports  zfs       136G    2.6G    134G     2%    /usr/ports
 tank/usr/src    zfs       134G    773M    134G     1%    /usr/src
 tank/usr/obj    zfs       134G     96K    134G     0%    /usr/obj
 ```
+
+## How about unlocking the root at boot?
+
+For the 2 1/2 years since I wrote this I've been at the mercy of the VNC
+console of the VPS to insert the password during boot time, that is very
+unconvenient to say the least.
+
+But no more! [I've set up an initial ram
+disk](https://sindro.me/posts/2026-01-28-freebsd-encrypted-zfs-remote-unlock/)
+and I can now unlock the VPS remotely over SSH - no browser required :-)

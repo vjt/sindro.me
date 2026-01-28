@@ -7,7 +7,7 @@ categories: [development]
 
 ## Remote LUKS? Pfft. Here is how to SSH-Unlock a ZFS-Encrypted FreeBSD Root (The Hard Way)
 
-If you run FreeBSD on a remote server with full disk encryption (ZFS on GELI), you know the panic of rebooting. You are always at the mercy of a KVM-over-IP or a VNC connection from the browser, to insert the root filesystem password at the kernel prompt.
+If you run FreeBSD [like I do](https://sindro.me/posts/2023-08-13-freebsd-encrypted-root-on-zfs/), on a remote server with full disk encryption (ZFS on GELI), you know the panic of rebooting. You are always at the mercy of a KVM-over-IP or a VNC connection from the browser, to insert the root filesystem password at the kernel prompt.
 
 Nevertheless, if you (like me) run a system with `kern.securelevel` > 0, then installing a new libc means rebooting single user and installing the updates over said KVM or VNC connection, that is _not ergonomic_ to say the least.
 
