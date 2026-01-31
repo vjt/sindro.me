@@ -12,7 +12,7 @@ So I went full paranoid and built a proper 5G backup setup.
 ## The Hardware
 
 - [GL.iNet X-3000](https://www.gl-inet.com/products/gl-x3000/) with a Quectel RM520N-GL modem
-- [Poynting XPOL-24](https://poyntingdirect.co.uk/product/xpol-24-5g/) directional antenna mounted on the wall outside my home office 
+- [Poynting XPOL-24](https://poynting.tech/antennas/xpol-24/) directional antenna mounted on the wall outside my home office
 
 5G signal here is non-existing, so I had to use heavy artillery. The Poynting is a beast. 11 dBi gain, real 4x4 MIMO, cross-polarized, weather-sealed. Point it at the nearest tower and suddenly your SINR jumps from "meh" to "holy shit."
 
@@ -45,5 +45,19 @@ There's also `force-bands` if you want to lock your modem to specific LTE/NR ban
 My 5G backup now sits at 300+ Mbps down, 50+ up. When fiber dies, my router fails over automatically courtesy of `mwan3`. Meetings continue. Clients remain unaware. Blood pressure stays normal.
 
 The code is MIT licensed and lives at [github.com/vjt/quectel-5g-tools](https://github.com/vjt/quectel-5g-tools). PRs welcome.
+
+## Images
+
+The Poynting right after unboxing and set up on the test tripod:
+
+![Poynting test](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/xpol-24-testing.jpg)
+
+The X3000 wall-mounted a couple days after the "holy shit!" 300Mbit download moment during testing
+
+![X3000 Wall Mount](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/x3000-wall-mount.jpg)
+
+The Poynting wall mounted in its (semi) final setup. My biggest DIY so far - I had never drilled concrete before while standing on a 2m ladder on a first floor terrace :-D
+
+![Poynting Wall Mount](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/xpol-24-wall-mount.jpg)
 
 Have fun!
