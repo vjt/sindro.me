@@ -1,0 +1,49 @@
+---
+title: "5G as Fiber Backup: Never Miss a Meeting Again"
+date: 2026-01-31
+tags: ["5g", "networking", "openwrt", "python", "sysadmin"]
+description: "Open source Python tools for Quectel 5G modems on OpenWRT. Real-time signal monitoring with audio feedback for antenna pointing. MIT licensed."
+---
+
+Last month my fiber went down during an important work meeting. I was stuck on my phone hotspot, apologizing profusely while my screen share looked like a slideshow from 1998. Never again.
+
+So I went full paranoid and built a proper 5G backup setup.
+
+## The Hardware
+
+- [GL.iNet X-3000](https://www.gl-inet.com/products/gl-x3000/) with a Quectel RM520N-GL modem
+- [Poynting XPOL-24](https://poyntingdirect.co.uk/product/xpol-24-5g/) directional antenna mounted on the wall outside my home office 
+
+5G signal here is non-existing, so I had to use heavy artillery. The Poynting is a beast. 11 dBi gain, real 4x4 MIMO, cross-polarized, weather-sealed. Point it at the nearest tower and suddenly your SINR jumps from "meh" to "holy shit."
+
+But pointing a directional antenna without visual feedback is painful. You're basically spinning in circles, refreshing a web UI, cursing at the sky.
+
+## The Software
+
+I wrote a set of tools to solve this: [quectel-5g-tools](https://github.com/vjt/quectel-5g-tools).
+
+`5g-info` dumps everything your modem knows in a readable format:
+
+![5g-info output](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/5g-info.png)
+
+`5g-monitor` is an ncurses TUI that refreshes in real-time and—here's the good part—**beeps based on your SINR**. Higher signal quality = more beeps. Point the antenna, listen for beeps, tighten the bolts. Done.
+
+![5g-monitor TUI](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/5g-monitor.png)
+
+It's like a metal detector, but for 5G.
+
+## Technical Notes
+
+The modem speaks AT commands over `/dev/ttyUSB2`. The tools parse responses from `AT+QENG`, `AT+QCAINFO`, and friends to extract serving cell info, carrier aggregation status, and neighbor cells.
+
+Everything runs on OpenWRT. Install deps with `opkg install python3-pyserial python3-toml python3-ncurses`, clone the repo, and run `./bin/5g-monitor`. No compilation, no containers, no bullshit.
+
+There's also `force-bands` if you want to lock your modem to specific LTE/NR bands (useful when the modem insists on connecting to a faraway tower with better RSRP but worse throughput).
+
+## Result
+
+My 5G backup now sits at 300+ Mbps down, 50+ up. When fiber dies, my router fails over automatically courtesy of `mwan3`. Meetings continue. Clients remain unaware. Blood pressure stays normal.
+
+The code is MIT licensed and lives at [github.com/vjt/quectel-5g-tools](https://github.com/vjt/quectel-5g-tools). PRs welcome.
+
+Have fun!
