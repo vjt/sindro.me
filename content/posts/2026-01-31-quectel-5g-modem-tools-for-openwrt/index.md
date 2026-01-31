@@ -5,7 +5,7 @@ tags: ["5g", "networking", "openwrt", "python", "sysadmin"]
 description: "Open source Python tools for Quectel 5G modems on OpenWRT. Real-time signal monitoring with audio feedback for antenna pointing. MIT licensed."
 ---
 
-Last month my fiber went down during an important work meeting. I was stuck on my phone hotspot, apologizing profusely while my screen share looked like a slideshow from 1998. Never again.
+A couple months ago my fiber went down - as per Murphy's Law - on the day of an important work meeting with a partner company. Jamming between the distant AP of my neighbor and my phone hotspot, but both sucked hard. 200ms rtt, 15% packet loss. I was then apologizing profusely while my video started looking like a slideshow from 1998 - and no one could parse what I was saying. Shut down video, keep silent, missed opportunity. Never again!
 
 So I went full paranoid and built a proper 5G backup setup.
 
