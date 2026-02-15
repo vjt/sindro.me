@@ -3,12 +3,16 @@ title: "WiFi Presence Detection for Home Assistant Using OpenWrt"
 date: 2026-02-15
 tags: ["home-assistant", "openwrt", "wifi", "python", "mqtt", "sysadmin", "networking"]
 categories: ["development", "Open Source"]
-description: "How I built a WiFi-based room-level presence detection system for Home Assistant using hostapd logs from OpenWrt APs — no Bluetooth beacons, no phone polling, no cloud. Just your existing WiFi infrastructure doing what it already knows."
+description: "Room-level presence detection for Home Assistant using hostapd logs from OpenWrt APs. Augments GPS with room tracking and covers household members who don't have the HA companion app — like a housekeeper who stays over twice a week."
 ---
 
-My home has six OpenWrt access points spread across three floors. They already know exactly which phone is connected to which AP at every moment. This information is right there in the hostapd logs, screaming to be used. Yet Home Assistant's default presence detection relies on GPS (slow, battery-hungry) or Bluetooth beacons (another piece of hardware to buy and maintain for each room). Neither felt right.
+I had two problems with Home Assistant's presence detection.
 
-So I wrote [openwrt-ha-presence](https://github.com/vjt/openwrt-ha-presence): a state machine that parses `AP-STA-CONNECTED` / `AP-STA-DISCONNECTED` events from hostapd, builds per-person home/away state with room-level tracking, and publishes it to Home Assistant via MQTT Discovery. No cloud, no beacons, no polling. Python, async, ~900 lines of actual logic.
+The first: GPS tells you *if* someone is home, but not *where* in the house they are. My home has six OpenWrt access points spread across three floors. They already know exactly which phone is connected to which AP at every moment — that's room-level presence, right there in the hostapd logs, screaming to be used. Knowing who's in which room opens up a whole class of automations that GPS can't touch: lights that follow you, climate control per occupied room, a dashboard that shows the household at a glance.
+
+The second: our housekeeper stays at our place a couple days a week. I don't want to set up a full HA account for her, install the companion app on her phone, or deal with GPS permissions. But I *do* need to know if she's home — because my alarm automation needs to know whether the house is actually empty before arming. Her phone connects to WiFi. That's all I need.
+
+So I wrote [openwrt-ha-presence](https://github.com/vjt/openwrt-ha-presence): a state machine that parses `AP-STA-CONNECTED` / `AP-STA-DISCONNECTED` events from hostapd, builds per-person home/away state with room-level tracking, and publishes it to Home Assistant via MQTT Discovery. It augments GPS presence with room information and covers people who don't have the companion app. No cloud, no beacons, no polling. Python, async, ~900 lines of actual logic.
 
 ![Home Assistant room tracking history](/posts/2026-02-15-wifi-presence-detection-home-assistant/home-assistant.png)
 
@@ -77,7 +81,7 @@ Green bullet for arrivals, red for departures, room names in cyan. Pure stdlib, 
 
 ## Alarm Automation
 
-The original itch I was scratching: arm the alarm when everyone leaves.
+The original itch I was scratching: arm the alarm when everyone leaves. "Everyone" includes the housekeeper, who doesn't have the HA companion app — her WiFi tracker is the only presence signal I have for her. The automation checks GPS zone for me and Sara and WiFi state for all three of us, treating `unknown` and `unavailable` as "not home" (because if the tracker has never reported, the person is definitely not confirmed inside):
 
 ```yaml
 automation:
@@ -87,21 +91,25 @@ automation:
         entity_id:
           - device_tracker.alice_wifi
           - device_tracker.bob_wifi
+          - device_tracker.charlie_wifi
         to: "not_home"
     condition:
       - condition: state
         entity_id: device_tracker.alice_wifi
-        state: "not_home"
+        state: ["not_home", "unavailable", "unknown"]
       - condition: state
         entity_id: device_tracker.bob_wifi
-        state: "not_home"
+        state: ["not_home", "unavailable", "unknown"]
+      - condition: state
+        entity_id: device_tracker.charlie_wifi
+        state: ["not_home", "unavailable", "unknown"]
     action:
       - service: alarm_control_panel.alarm_arm_away
         target:
           entity_id: alarm_control_panel.home_alarm
 ```
 
-Pro tip: reference `device_tracker.<person>_wifi` directly in automations, not the `person` entity. HA's `person` entity prioritises router trackers when they say `home`, but falls through to GPS when they say `not_home`. If GPS is stale (and it will be), the person entity will say `home` even after WiFi says `not_home`. Not ideal when you're trying to arm an alarm.
+The `unavailable` / `unknown` bit matters. The housekeeper visits twice a week — so between visits, her tracker sits at `unknown` (never seen) or `not_home` (last seen days ago). Without those extra states in the condition, the automation would never fire when she's not around. Ask me how I know.
 
 ## What's Next
 
