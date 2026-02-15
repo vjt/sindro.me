@@ -8,7 +8,7 @@ description: "How I built a WiFi-based room-level presence detection system for 
 
 My home has six OpenWrt access points spread across three floors. They already know exactly which phone is connected to which AP at every moment. This information is right there in the hostapd logs, screaming to be used. Yet Home Assistant's default presence detection relies on GPS (slow, battery-hungry) or Bluetooth beacons (another piece of hardware to buy and maintain for each room). Neither felt right.
 
-So I wrote [openwrt-presence](https://github.com/vjt/openwrt-presence): a state machine that parses `AP-STA-CONNECTED` / `AP-STA-DISCONNECTED` events from hostapd, builds per-person home/away state with room-level tracking, and publishes it to Home Assistant via MQTT Discovery. No cloud, no beacons, no polling. Python, async, ~900 lines of actual logic.
+So I wrote [openwrt-ha-presence](https://github.com/vjt/openwrt-ha-presence): a state machine that parses `AP-STA-CONNECTED` / `AP-STA-DISCONNECTED` events from hostapd, builds per-person home/away state with room-level tracking, and publishes it to Home Assistant via MQTT Discovery. No cloud, no beacons, no polling. Python, async, ~900 lines of actual logic.
 
 ![Home Assistant room tracking history](/posts/2026-02-15-wifi-presence-detection-home-assistant/home-assistant.png)
 
@@ -59,17 +59,13 @@ On startup, the engine backfills the last 4 hours from VictoriaLogs to rebuild s
 
 ### Sara's phone: 3,821 events in 10 days
 
-This was the best one. My partner Sara has an iPhone 16 Pro. I have an iPhone 16 Pro Max. Same house, same APs, same network. Yet her phone was generating **3.4x more WiFi events** than mine. 78% of all her events were flapping — rapid connect/disconnect cycles on the same AP.
+This was the best one. My wife Sara has an iPhone 16 Pro. I have an iPhone 16 Pro Max. Same house, same APs, same network. Yet her phone was generating **3.4x more WiFi events** than mine. 78% of all her events were flapping — rapid connect/disconnect cycles on the same AP.
 
 The diagnosis: two APs (office on the first floor, livingroom on the ground floor) stacked vertically with both running at 23 dBm — maximum transmit power. Through a 2.7m Italian concrete ceiling, Sara's phone was seeing nearly identical signal strength from both APs and thrashing between them every 1-3 seconds. Her worst oscillation streak: **161 connects**, bouncing back and forth like a ping-pong ball.
 
 802.11r Fast Transition was making it *worse* — sub-second roaming meant the phone could thrash faster than it could with full re-authentication.
 
 Fix: dropped TX power from 23 to 14 dBm on interior APs, and configured usteer's `min_connect_snr` and `min_snr` thresholds to prevent weak associations. The phone can't thrash between APs if the AP refuses to talk to it.
-
-## Graceful Shutdown
-
-The event loop tails VictoriaLogs via a long-lived HTTP streaming connection. When you hit Ctrl+C, `async for event in stream` blocks forever waiting for the next chunk. The fix was racing `__anext__()` against a stop event using `asyncio.wait(FIRST_COMPLETED)`, with a sentinel pattern because `StopAsyncIteration` can't propagate out of an asyncio Task (it becomes a `RuntimeError`). Standard asyncio fun.
 
 ## The Monitor
 
@@ -111,6 +107,6 @@ Pro tip: reference `device_tracker.<person>_wifi` directly in automations, not t
 
 Nothing. It works. 86 tests, zero I/O in the engine tests, Docker Compose deployment, runs on my server since early February with no issues. The code is MIT licensed.
 
-Source: [github.com/vjt/openwrt-presence](https://github.com/vjt/openwrt-presence)
+Source: [github.com/vjt/openwrt-ha-presence](https://github.com/vjt/openwrt-ha-presence)
 
 Have fun!
