@@ -26,11 +26,22 @@ OpenWrt APs  →  openwrt-presence  →  MQTT  →  Home Assistant
 Every 5 seconds, `openwrt-presence` hits the `/metrics` endpoint on each AP and grabs `wifi_station_signal_dbm` for every associated station. That's the RSSI — how loud your phone's signal is at that AP. The engine then processes the snapshot:
 
 1. **Visible MAC** → CONNECTED. Room = AP with the strongest RSSI.
-2. **Disappeared MAC** (was visible, now gone from all APs) → DEPARTING. A 120-second timer starts.
+2. **Disappeared MAC** (was visible, now gone from all APs) → DEPARTING. A departure timer starts.
 3. **Timer expires** → AWAY. The person has left the house.
 4. **Reappears before timeout** → CONNECTED again. Timer cancelled. Welcome back.
 
-That's it. All APs are equal. No special categories, no log parsing, no event ordering headaches. The RSSI tells you where people are. The absence of RSSI tells you they're gone.
+### Exit vs Interior Nodes
+
+Not all APs are equal. Disconnecting from your garden AP means something very different than disconnecting from your bedroom AP. Your phone goes dark on the bedroom AP? It probably dozed. Your phone goes dark on the garden AP? You probably walked out.
+
+So nodes can be marked as **exit** or **interior** (the default):
+
+- **Exit nodes** (garden): device disappears → short timeout (`departure_timeout`, mine is 120s). If you don't reappear on any AP, you've left.
+- **Interior nodes** (office, bedroom, kitchen): device disappears → long safety-net timeout (`away_timeout`, default 18h). Your phone dozed? Don't care. Come back whenever.
+
+This is opt-in. If you don't mark any nodes as exit, all nodes use `departure_timeout` — simple and flat. But if you have an AP at the entrance to your house, mark it `exit: true` and enjoy fast departure detection without false positives from phone doze on interior APs.
+
+Room selection uses the strongest RSSI. Your phone is in whichever room hears it loudest.
 
 For each person, HA gets:
 
@@ -38,12 +49,6 @@ For each person, HA gets:
 - `sensor.<person>_room` — `office`, `bedroom`, `kitchen`, etc.
 
 Auto-discovered via MQTT. Zero manual HA config.
-
-### Why RSSI?
-
-Your phone connects to an AP. But it's also *audible* to neighboring APs at the same time. RSSI gives you the full picture: your phone might be *associated* with the office AP, but the bedroom AP hears it louder — because you walked over there 30 seconds ago and the phone hasn't roamed yet. Signal strength doesn't lie, doesn't depend on roaming decisions, and doesn't care about your phone's WiFi power-saving mood swings.
-
-Room = strongest signal. Simple, robust, correct.
 
 ## The Journey
 
@@ -93,7 +98,7 @@ The event-based approach worked, eventually. But it was fragile in a fundamental
 
 I was already running `prometheus-node-exporter-lua` on every AP for system metrics (CPU, memory, the usual). The `wifi_stations` collector exposes `wifi_station_signal_dbm` per associated station — RSSI, right there, already being collected by Telegraf and stored in VictoriaMetrics every 5 seconds.
 
-So I rewrote the engine to query VictoriaMetrics instead of parsing logs. No more events — just periodic RSSI snapshots. Room selection by strongest signal instead of most-recent-connect. The exit/interior node distinction disappeared entirely. Much cleaner.
+So I rewrote the engine to query VictoriaMetrics instead of parsing logs. No more events — just periodic RSSI snapshots. Room selection by strongest signal instead of most-recent-connect. The exit/interior node model carried over, now controlling which timeout to apply when a device vanished from all APs. Much cleaner.
 
 But something was off. Detection felt... sluggish. When I walked from one room to another, the state change took ages. Walk tests confirmed it: the `max_inactivity` fix on the WiFi driver was working perfectly — the AP cleared my phone from its association list in 12 seconds. But VictoriaMetrics was **29 seconds behind**. The phone appeared on albert's assoclist at 11:30:21, but VictoriaMetrics didn't show it until 11:30:50.
 
@@ -132,7 +137,7 @@ AP → openwrt-presence
 
 Detection is now limited only by the poll interval. Walk from office to bedroom? The next 5-second poll catches it. Leave the house? 120 seconds of silence and you're marked away. No events to miss, no logs to parse, no pipeline to overflow, no timestamps to sort. Just: "I see your phone at this AP with this signal strength. I don't see it anymore. It's been 2 minutes. You're gone."
 
-The code got simpler too. No exit/interior node distinction (all nodes are equal), no event ordering logic, no backfill, no clock skew worries, no streaming connections. The engine processes snapshots, not events. The source scrapes endpoints, not log APIs. 58 tests, all pure-logic.
+The code got simpler too. No event ordering logic, no backfill, no clock skew worries, no streaming connections. The engine processes snapshots, not events. The source scrapes endpoints, not log APIs. The exit/interior node model still drives the timeout logic — but now it's just a question of which timeout to apply when a MAC vanishes, not which events to ignore. 74 tests, all pure-logic.
 
 ## The Monitor
 
@@ -176,7 +181,7 @@ The `unavailable` / `unknown` bit matters. The housekeeper visits twice a week �
 
 ## What's Next
 
-Nothing. It works. Three architectures later, this one sticks. 58 tests, Docker Compose deployment, runs on my server with detection in under 5 seconds. The code is MIT licensed.
+Nothing. It works. Three architectures later, this one sticks. 74 tests, Docker Compose deployment, runs on my server with detection in under 5 seconds. The code is MIT licensed.
 
 Source: [github.com/vjt/openwrt-ha-presence](https://github.com/vjt/openwrt-ha-presence)
 
