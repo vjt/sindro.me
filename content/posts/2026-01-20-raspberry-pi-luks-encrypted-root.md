@@ -1,6 +1,6 @@
 ---
 title: Raspberry PI 5 encrypted root with LUKS
-date: 2026-01-20
+date: 2026-01-20 (updated 2026-03-14)
 tags: [linux, raspberrypi, sysadmin]
 categories: [development]
 ---
@@ -31,7 +31,7 @@ post](https://rr-developer.github.io/LUKS-on-Raspberry-Pi/) that gave me the
 initial pointers on how to set this up. But that 2021 post is now slightly
 outdated, and many steps are no longer necessary.
 
-- An RPI5 with debian 13 or newer
+- An RPI5 with debian 13 (trixie) or newer
 - A decent and reliable USB stick that can be fully erased
 - A keyboard and monitor directly connected to the RPI
 
@@ -39,15 +39,16 @@ outdated, and many steps are no longer necessary.
 
 The overall idea is:
 
-- We prepare an initrd that contains the `resize2fs` tool that allows shrinking
-  and enlarging `ext4` filesystems
+- We prepare an initrd that contains the following tools:
+  - `resize2fs` to shrink and enlarge `ext4` filesystems
+  - `cryptsetup` to deal with partitions encryption
 - We configure the system to boot off an encrypted root that does not exist yet,
   thus forcing the system to fall into the initrd.
 - While in initrd, we shrink the root filesystem to the smallest possible size
-- We copy the root filesystem from the cleartext device over to the USB stick
-- We create the encrypted device using LUKS
+- We copy the root filesystem from the cleartext partition over to the USB stick
+- We create the encrypted partition using LUKS
 - We copy back the root filesystem from the USB stick back to the encrypted
-  device
+  partition
 - We extend the root filesystem to the maximum size
 - We configure SSH in the initrd so that you can unlock it even after you've
   deployed your raspberry pi in a location without a keyboard or screen.
@@ -92,13 +93,19 @@ later:
 > sudo cp /boot/firmware/cmdline.txt /boot/firmware/cmdline.txt.bak
 ```
 
-Then edit `/boot/firmware/cmdline.txt` and replace any `root=XXX` setting with
-`root=/dev/mapper/cryptroot`.
+Then edit `/boot/firmware/cmdline.txt` do the following:
+- replace any `root=XXX` setting with `root=/dev/mapper/cryptroot`.
+- For an SD card, append the line with `cryptdevice=/dev/mmcblk0p1:cryptroot`
+- For an SSD, append the line with `cryptdevice=/dev/nvme0n1p2:cryptroot`
 
 For example, my `cmdline.txt` looks like this:
 ```
-console=tty1 root=/dev/mapper/cryptroot rootfstype=ext4 fsck.repair=yes rootwait
+console=serial0,115200 console=tty1 root=/dev/mapper/cryptroot rootfstype=ext4 fsck.repair=yes rootwait cryptdevice=/dev/nvme0n1p2:cryptroot
 ```
+
+Feel free to leave any other parameter present, like the one for WiFi
+country code `cfg80211.ieee80211_regdom=XX`, which regulate wireless
+channels and power levels according to local laws.
 
 ### 3. Install cryptsetup, initramfs tools and busybox
 
@@ -121,7 +128,7 @@ Verify that your PI AES hardware acceleration is working as expected:
 
 you should get similar values.
 
-### 4. Configure the initramfs to include `resize2fs`
+### 4. Configure the initramfs to include `resize2fs` and `cryptsetup`
 
 Create a new `/etc/initramfs-tools/hooks/luks_hooks` file, containing:
 
@@ -135,6 +142,7 @@ esac
 . /usr/share/initramfs-tools/hook-functions
 
 copy_exec /sbin/resize2fs /sbin
+copy_exec /sbin/cryptsetup /sbin
 ```
 
 and making it executable:
@@ -151,6 +159,7 @@ Add the following lines at the bottom of `/etc/initramfs-tools/modules`:
 aes_ce_blk
 sha2_ce
 dm_crypt
+algif_skcipher
 ```
 
 ### 6. Ask the initramfs to include *most* modules
@@ -178,18 +187,18 @@ update-initramfs: Generating /boot/initrd.img-6.12.62+rpt-rpi-2712
 Let's check we have everything we need:
 
 ```
-> lsinitramfs /boot/firmware/initramfs_2712 |grep -E 'sbin/(cryptsetup|resize2fs|fdisk)'
+> lsinitramfs /boot/firmware/initramfs_2712 | grep -E 'sbin/(cryptsetup|resize2fs)'
 usr/sbin/cryptsetup
 usr/sbin/resize2fs
-usr/sbin/fdisk
 ```
 
 and:
 
 ```
-> lsinitramfs /boot/firmware/initramfs_2712 |grep -E 'aes.ce.blk|sha2.ce|dm.crypt'
+> lsinitramfs /boot/firmware/initramfs_2712 | grep -E 'aes.ce.blk|sha2.ce|dm.crypt|algif.skcipher'
 usr/lib/modules/6.12.62+rpt-rpi-2712/kernel/arch/arm64/crypto/aes-ce-blk.ko.xz
 usr/lib/modules/6.12.62+rpt-rpi-2712/kernel/arch/arm64/crypto/sha2-ce.ko.xz
+usr/lib/modules/6.12.62+rpt-rpi-2712/kernel/crypto/algif_skcipher.ko.xz
 usr/lib/modules/6.12.62+rpt-rpi-2712/kernel/drivers/md/dm-crypt.ko.xz
 ```
 
@@ -205,6 +214,9 @@ your disposable USB stick to the pi and:
 After a few attempts to mount `/dev/mapper/cryptroot`, the initramfs will give
 up and drop you to a shell whose prompt is just `(initramfs) `. In this shell we
 have root access and we can manipulate the block devices connected to the pi.
+
+> ⚠️ Please note that the keyboard layout for this shell is English US.
+> You may want to change this to the one matching your own keyboard.
 
 ### 1. Ensure that you can access all needed devices
 
@@ -287,7 +299,10 @@ Run:
 dd bs=4k count=XXXXX if=/dev/nvme0n1p2 | sha1sum
 ```
 
-and take note of the resulting checksum. Taking a picture of the screen works :)
+where you need to replace `XXXXX` with the number of blocks you took note of in the
+previous step.
+
+Take note of the resulting checksum. Taking a picture of the screen works :)
 
 ### 6. Copy the root filesystem over to the USB stick
 
@@ -297,6 +312,9 @@ filesystem to it with:
 ```
 dd bs=4k count=XXXXX if=/dev/nvme0n1p2 of=/dev/sda
 ```
+
+where you need to replace `XXXXX` with the number of blocks you took note of in an
+earlier step.
 
 This will take some time, so please be patient and wait.
 
@@ -309,6 +327,9 @@ ensure it was stored properly:
 dd bs=4k count=XXXXX if=/dev/sda | sha1sum
 ```
 
+where you need to replace `XXXXX` with the number of blocks you took note of in an
+earlier step.
+
 This should perfectly match with the checksum we found at step 5. If this is not
 the case, you should use a different USB stick. If you don't have another one,
 then you can undo the changes so far by looking at step 3 in this section, and
@@ -319,7 +340,7 @@ reboot your pi.
 This is the command I settled on:
 
 ```
-cryptsetup --type luks2 --cipher aes-xts-plain64 --hash sha256 -–keysize 256 luksFormat /dev/nvme0n1p2
+cryptsetup --type luks2 --cipher aes-xts-plain64 --hash sha256 -–key-size 256 luksFormat /dev/nvme0n1p2
 ```
 
 The defaults nowadays are to use `argon2id` as Password-Base Key Derivation
@@ -330,6 +351,11 @@ system boots to unlock the root disk and let the system continue booting.
 
 Ensure to choose a decently sized passphrase, and check out [this
 page](https://xkcd.com/936/) if you need advice.
+
+
+> ⚠️ Please remember that, unless you changed it, the keyboard layout
+> for this shell is English US. This might differ from your actual
+> keyboard layout as configured on your raspberry pi install.
 
 ### 9. Copy back the root filesystem to the encrypted device
 
@@ -347,12 +373,18 @@ filesystem:
 dd bs=4k count=XXXXX if=/dev/sda of=/dev/mapper/cryptroot
 ```
 
-and let's calculate the checksum of the copy so to ensure that what we've copied
+where you need to replace `XXXXX` with the number of blocks you took note of in an
+earlier step.
+
+Let's calculate the checksum of the copy so to ensure that what we've copied
 back matched what's on the USB stick, that we found at step 7:
 
 ```
 dd bs=4k count=XXXXX if=/dev/mapper/cryptroot | sha1sum
 ```
+
+where you need to replace `XXXXX` with the number of blocks you took note of in an
+earlier step.
 
 if there's a mismatch, ouch - your root filesystem should still be safe on the
 USB stick, but at this point this means either the USB stick is faulty or the
@@ -368,7 +400,7 @@ e2fsck /dev/mapper/cryptroot
 
 and let's resize it back to the maximum size of the underlying device:
 ```
-resize2fs -f /dev/mapper/sdcard
+resize2fs -f /dev/mapper/cryptroot
 ```
 
 at this point, we can exit from the initramfs shell and the boot process will
