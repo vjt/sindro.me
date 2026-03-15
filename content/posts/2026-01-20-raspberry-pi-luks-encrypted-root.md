@@ -1,6 +1,7 @@
 ---
 title: Raspberry PI 5 encrypted root with LUKS
-date: 2026-01-20 (updated 2026-03-14)
+date: 2026-01-20
+updated: 2026-03-14
 tags: [linux, raspberrypi, sysadmin]
 categories: [development]
 ---
@@ -24,12 +25,18 @@ Furthermore I can now snapshot the entire HAOS VM and I have much more
 flexibility in managing it. Last but not least, I can also use the remaining RPI
 CPU and RAM for something else.
 
-## Requirements
+## Credits
 
 First, a big thank you [to this
 post](https://rr-developer.github.io/LUKS-on-Raspberry-Pi/) that gave me the
 initial pointers on how to set this up. But that 2021 post is now slightly
 outdated, and many steps are no longer necessary.
+
+Second, a big thank you [to Eric Fjøsne](https://github.com/ericfjosne) for
+[actually using this guide and fixing it](https://github.com/vjt/sindro.me/pull/1)
+as I wrote it mostly after-the-fact :-).
+
+## Requirements
 
 - An RPI5 with debian 13 (trixie) or newer
 - A decent and reliable USB stick that can be fully erased
