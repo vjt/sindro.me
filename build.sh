@@ -5,8 +5,13 @@ set -e
 
 rm -rf public
 
+BASEURL_FLAG=""
+if [ -f .baseurl ]; then
+  BASEURL_FLAG="--baseURL $(cat .baseurl)"
+fi
+
 echo "Building Hugo site..."
-hugo "$@"
+hugo $BASEURL_FLAG "$@"
 
 echo "Indexing with Pagefind..."
 npx -y pagefind --site public \
