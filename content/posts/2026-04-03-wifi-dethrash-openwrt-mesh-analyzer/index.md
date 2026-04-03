@@ -144,9 +144,21 @@ It joins thrashing data with overlap data: a pair only gets a recommendation if 
 
 The recommender is opinionated. When both APs in a thrashing pair have weak signal (below -75 dBm), it recommends increasing txpower on the AP with more headroom — lower current power means more room to grow. It explicitly won't increase an AP that's already cranked to max. When signal is healthy but overlapping, it reduces the louder AP to create differentiation.
 
-## usteer: The Missing Piece
+## Roaming Coordinators: usteer, DAWN, and nrsyncd
 
-[usteer](https://openwrt.org/docs/guide-user/network/wifi/usteer) is OpenWrt's roaming coordinator. It runs on each AP, shares client hearing data over the mesh, and can nudge clients toward better APs. The key settings:
+OpenWrt has three options for coordinating roaming across APs, and it's worth understanding the trade-offs.
+
+**[DAWN](https://github.com/berlin-open-wireless-lab/DAWN)** (Decentralized WiFi Controller) was the original answer. It scores clients based on RSSI and channel load, and can deny probe/auth/association requests to force clients onto better APs. It's been effectively abandoned — the last meaningful development is years old, and it doesn't work reliably on recent OpenWrt releases. Not worth considering.
+
+**[usteer](https://openwrt.org/docs/guide-user/network/wifi/usteer)** replaced DAWN as OpenWrt's recommended roaming daemon. It does neighbor report synchronization, hearing map sharing, and active client steering via BSS Transition Management (802.11v) frames. In theory, it's the complete solution.
+
+In practice, usteer has a reputation for being unreliable. Known issues include: `roam_kick_delay` [not working](https://github.com/openwrt/usteer/issues/6), channel load steering [never triggering](https://github.com/openwrt/usteer/issues/5), Intel WiFi cards ignoring BTM requests entirely, and [soft-bricking reports](https://forum.openwrt.org/t/packet-steering-usteer-802-11krv-soft-bricks-routers-worked-before-in-24-10-4-5-snapshots-not-in-25-12-0/247333) on recent OpenWrt snapshots. The forum consensus leans toward "usteer tries to do too much and does none of it consistently well."
+
+**[nrsyncd](https://github.com/Fail-Safe/nrsyncd)** takes the opposite approach: it *only* distributes 802.11k neighbor reports across APs via mDNS. No steering, no kicking, no policy decisions. It gives clients the information they need to make good roaming choices, then gets out of the way. Lightweight, focused, and hard to break.
+
+### What I'm Running
+
+I'm currently using usteer, but with all the aggressive features disabled. The key settings:
 
 - **`signal_diff_threshold`**: only steer if the target AP is this many dB stronger. Set too low and you cause unnecessary roaming. Set too high and clients stay stuck on bad APs. I run 9 dB.
 - **`roam_scan_snr`**: when a client's SNR drops below this, usteer starts considering alternatives. I use 25 dB — it triggers scanning early without kicking anyone.
@@ -158,6 +170,10 @@ The philosophy: **usteer should suggest, never force.** Use `signal_diff` for ge
 But there's a critical prerequisite: **802.11v** (BSS Transition Management). Without it, usteer's only tools are rejecting probe responses and blocking associations — both blunt instruments. With 802.11v enabled, usteer can send BTM frames: polite "hey, there's a better AP over there" hints that the client can accept or ignore. Most modern devices (iPhones, recent Android) honor BTM requests.
 
 The analyzer now checks 802.11v status via the `wifi_iface_ieee80211v_enabled` metric and flags APs where it's missing. This was a bug we found in our own setup — usteer was enabled but couldn't actually steer because 802.11v was never turned on.
+
+### The Verdict (Pending)
+
+I'm giving usteer a fair trial. With 802.11v now enabled, it finally has the tools to do gentle BTM steering. If `roam_events` stays at zero and thrashing doesn't improve over the next week, usteer is dead weight and I'll switch to nrsyncd — same neighbor report distribution, none of the steering complexity that doesn't work anyway.
 
 ## What I Learned
 
