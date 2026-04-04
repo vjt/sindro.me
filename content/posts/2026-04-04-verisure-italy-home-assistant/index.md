@@ -170,7 +170,12 @@ lasciato indietro.
 
 ## Installazione
 
-Se hai Verisure Italia e Home Assistant:
+L'integrazione si installa tramite [HACS](https://hacs.xyz/) (Home
+Assistant Community Store) — il gestore di componenti custom della
+community. Se non l'hai ancora installato,
+[segui la guida ufficiale](https://www.hacs.xyz/docs/use/download/download/).
+
+Una volta che HACS è attivo:
 
 [![Aggiungi a HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=vjt&repository=ha-verisure-italy&category=integration)
 
@@ -180,6 +185,11 @@ Oppure manualmente via HACS → Custom repositories →
 Il client API si installa automaticamente da PyPI. Il config flow
 guida il setup con supporto 2FA completo. La dashboard si genera
 da sola.
+
+> **Perché non è nel catalogo ufficiale di HA?** L'integrazione è
+> giovane — la sto mettendo alla prova con i primi utenti prima di
+> sottoporla per l'inclusione ufficiale. HACS è il canale giusto
+> per questa fase.
 
 ## Cosa manca
 
