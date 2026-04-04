@@ -5,6 +5,8 @@ tags: [answer, everything, life, universe]
 categories: [number-42]
 ---
 
+![The mayonnaise jar and two glasses of wine](mayonnaise-jar.png)
+
 "Quando ti sembra di avere troppe cose da gestire nella vita, quando 24 ore in
 un giorno non sono abbastanza, ricordati del vaso della Maionese e dei due
 bicchieri di vino..."
