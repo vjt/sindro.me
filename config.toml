@@ -18,7 +18,6 @@ summaryLength = 250
   description = "feeling bold on the internet"
   blurb = "This is sindro.me, a weblog by Marcello Barnaba (@vjt) about technology, development, software, the internet, entertainment, politics, sociology, and the answer to Life, Universe, and Everything (42)."
   dark_mode = true
-  noSummary = false
   foot_image = "/glider.png"
   foot_link = "http://catb.org/jargon"
 
@@ -51,5 +50,4 @@ summaryLength = 250
 
 [taxonomies]
   category = 'categories'
-  series = 'series'
   tags = 'tags'
