@@ -39,6 +39,9 @@ Ma le ads sono il meno. I veri problemi sono:
   arriva. A volte ricarichi l'app e riprovi. Nel 2026.
 - **Nessuno storage permanente.** Le immagini catturate spariscono. Non
   c'è uno storico consultabile.
+- **Nessun timestamp sulle immagini.** Catturi una foto e non sai
+  _quando_ è stata scattata né _da quale camera_. Devi ricordartelo tu.
+  Per un sistema di sicurezza è imbarazzante.
 - **Notifiche generiche.** Una notifica uguale per tutti. Niente
   notifiche actionable, niente notifiche critiche che bypassano il
   "Non Disturbare".
