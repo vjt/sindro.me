@@ -16,3 +16,5 @@ not_found_text: "Sorry, we've misplaced that URL or it's pointing to something t
 not_found_link: "Head back home"
 toggle_theme: "Toggle light/dark mode"
 about: "about"
+toggle_menu: "Toggle menu"
+close_menu: "Close menu"

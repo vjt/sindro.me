@@ -16,3 +16,5 @@ not_found_text: "Ci dispiace, questo URL non esiste o punta a qualcosa che non c
 not_found_link: "Torna alla home"
 toggle_theme: "Cambia tema chiaro/scuro"
 about: "info"
+toggle_menu: "Apri/chiudi menu"
+close_menu: "Chiudi menu"
