@@ -38,7 +38,7 @@ h2:first-of-type {
 }
 h3 { font-size: 12pt; border-bottom: 2px solid #268bd2; padding-bottom: 3pt; }
 h4 { color: #268bd2; font-size: 10.5pt; margin-bottom: 2pt; }
-h4 + p em { color: #777; font-size: 9pt; }
+h4 + p em { color: #555; font-size: 9pt; }
 hr { border: none; border-top: 1px solid #ddd; margin: 0.8rem 0; }
 a { color: #268bd2; text-decoration: none; }
 ul { padding-left: 1.2rem; margin: 0.3rem 0; }
@@ -63,14 +63,14 @@ p { margin: 0.3rem 0; }
     text-align: center;
     margin-top: 1.5rem;
     font-size: 8pt;
-    color: #777;
+    color: #555;
 }
 .footer-img em { font-size: 9pt; }
 .footer {
     text-align: center;
     margin-top: 1rem;
     font-size: 8pt;
-    color: #999;
+    color: #666;
 }
 """
 
