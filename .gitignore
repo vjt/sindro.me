@@ -1,2 +1,5 @@
 .claude
 .baseurl
+/public
+/resources
+.hugo_build.lock
