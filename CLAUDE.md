@@ -1,119 +1,112 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is the source code for **sindro.me**, a personal technical blog by Marcello Barnaba (@vjt). The site is a static website generated using Hugo with a custom fork of the Poison theme.
+**sindro.me** — a bilingual (EN/IT) personal technical blog by Marcello Barnaba (@vjt). Static site generated with Hugo, using a custom fork of the Poison theme.
 
-**Technology Stack:**
-- Hugo v0.154.5+extended (static site generator)
-- Custom fork of the Poison theme (originally based on Hyde)
-- Remark42 for privacy-focused commenting system
-- Markdown with YAML front matter for content
-- Git LFS for `.mp4` files
-- Pagefind for search (built via `build.sh`)
+## Tech Stack
+
+- **Hugo** (extended) — static site generator
+- **Poison theme** — custom fork, git submodule at `themes/poison/` ([github.com/vjt/poison](https://github.com/vjt/poison))
+- **Pagefind** — client-side search, built via `build.sh`
+- **WeasyPrint** — generates resume PDFs from markdown at build time (Python venv at `../.venv`)
+- **Remark42** — comments system (comments shared across language versions via canonical URL)
+- **Git LFS** — for `.mp4` files
 
 ## Key Commands
 
-### Development Server
 ```bash
-hugo server -D
+./build.sh              # Full build: Hugo + Pagefind + resume PDFs
+hugo server -D          # Dev server with drafts on localhost:1313
 ```
-- Starts local development server with live reload
-- `-D` includes draft content
-- Accessible at `http://localhost:1313` by default
 
-### Production Build
+## Multilingual (i18n)
+
+- **English** is the default language, served at `/` (no prefix)
+- **Italian** is served at `/it/`
+- Content files use language suffixes: `post.en.md` / `post.it.md`
+- UI strings in `i18n/en.yaml` and `i18n/it.yaml`
+- Language switcher (flag emojis) in mobile header and sidebar
+- nginx detects `Accept-Language` header and `lang` cookie for root `/` redirect
+
+### Creating bilingual content
+
 ```bash
-./build.sh
-```
-- Runs `hugo --minify` + Pagefind indexing
-- Generates optimized static site in `public/` directory
+# Single file post
+hugo new posts/YYYY-MM-DD-slug.en.md
+# Then create posts/YYYY-MM-DD-slug.it.md with same front matter (translated title)
 
-### Content Creation
-```bash
-hugo new posts/YYYY-MM-DD-slug-title.md
-```
-- Posts use date-prefixed naming: `YYYY-MM-DD-slug.md`
-- For posts with images, use a page bundle: `content/posts/YYYY-MM-DD-slug/index.md`
-
-## Architecture and Structure
-
-### Content Organization
-
-Posts can be organized in two ways:
-1. **Single file posts**: `content/posts/YYYY-MM-DD-slug.md` — for text-only posts
-2. **Page bundles**: `content/posts/YYYY-MM-DD-slug/index.md` — for posts with images/assets alongside
-
-Page bundles are preferred when a post has associated media files. Images go in the same directory as `index.md`.
-
-### Image References
-
-In page bundles, reference images with the full path from the site root:
-```markdown
-![Alt text](/posts/YYYY-MM-DD-slug/image-name.png)
+# Page bundle (posts with images)
+mkdir content/posts/YYYY-MM-DD-slug
+# Create index.en.md and index.it.md — images are shared between languages
 ```
 
-YouTube embeds use Hugo shortcodes:
+## Content Structure
+
 ```
-{{</* youtube VIDEO_ID */>}}
+content/
+├── about/_index.{en,it}.md       # About page
+├── resume/_index.{en,it}.md      # Resume (dynamic ages via shortcodes)
+├── privacy.{en,it}.md            # Privacy policy
+├── tos.{en,it}.md                # Terms of service
+├── deletion.{en,it}.md           # Data deletion info
+└── posts/
+    ├── YYYY-MM-DD-slug.{en,it}.md           # Single file posts
+    └── YYYY-MM-DD-slug/index.{en,it}.md     # Page bundles (with images)
 ```
 
-### Configuration
+## Custom Shortcodes
 
-- `config.toml`: Main site configuration (baseURL, params, menus, social links, taxonomies)
-- `themes/poison/`: Theme customizations and layouts (Git submodule, fork at `https://github.com/vjt/poison`)
-- Base URL: `https://sindro.me/`
-- Dark mode enabled by default
-- Remark42 comments at `remark.sindro.me`
+- `{{</* years-since "2021-12-01" */>}}` — outputs integer years since a date
+- `{{</* age "2020-08-01" */>}}` — outputs years, or months (locale-aware) if under 2 years
 
-### Front Matter Format
+Used in the resume and about pages to auto-compute ages and tenures at build time.
 
-Posts use YAML front matter delimited by `---`:
+## Resume Pipeline
+
+The resume lives in `content/resume/_index.{en,it}.md` (markdown). Two outputs:
+
+1. **Web page** — Hugo renders via `themes/poison/layouts/resume/resume.html` at `/resume/` and `/it/resume/`
+2. **PDF** — `scripts/resume-pdf.py` reads the markdown, resolves shortcodes, renders via WeasyPrint
+
+Both are generated automatically by `build.sh`. Output: `public/resume.pdf` and `public/resume-it.pdf`.
+
+## Theme (Poison fork)
+
+The theme is a git submodule. Changes must be committed in `themes/poison/` first, then the parent repo commits the updated submodule pointer.
+
+Key customizations over upstream:
+- i18n support with `{{ i18n }}` calls throughout templates
+- Language switcher partial
+- Resume page layout
+- Pagefind search integration
+- Remark42 comments with cross-language thread sharing
+- KaTeX/tabs removed (dead weight)
+- Dead CSS cleaned from poole.css/hyde.css
+
+## Configuration
+
+- `config.toml` — site config with `[languages.en]` and `[languages.it]` blocks
+- Per-language menus, descriptions, and blurbs
+- `.baseurl` file (gitignored) — overrides baseURL for staging builds
+
+## Front Matter
+
 ```yaml
 ---
 title: "Post Title"
 date: YYYY-MM-DD
 tags: [tag1, tag2]
 categories: [category1]
-description: "Optional description for SEO/social"
+description: "Optional SEO description"
+image: optional-og-image.png
 ---
 ```
 
 Common categories: `development`, `System Administration`, `Rants`, `Open Source`, `politics`, `number-42`
 
-### Static Assets
-
-- `static/`: Root-level static files (favicon, author photo, GPG key, resume PDF) — copied to site root
-- Page bundle assets: images placed alongside `index.md` in post directories
-
-### Taxonomies
-
-- **Categories**: Broad content classification
-- **Tags**: Granular topic tagging
-- **Series**: Multi-part article groupings
-
 ## Writing Style
 
-Marcello's voice: conversational, technically precise, opinionated, irreverent. First-person narrative. Mixes deep technical detail with colorful language. Self-deprecating humor.
-
-Recurring patterns:
-- Opens with a personal anecdote or frustration that motivated the project
-- "## The Problem" / "## The Solution" structure for technical posts
-- "Never. Again." for dramatic emphasis after describing a failure
-- "It's [year], and we are still..." for frustration with unsolved problems
-- "Ask me how I know." after describing a non-obvious gotcha
-- "Have fun!" or "Happy hacking!" as closing
-- Casual asides in parentheses
-- Code blocks with practical, copy-pasteable commands
-- Links to GitHub repos at the end
-- No unnecessary formality — profanity when warranted
-
-## Important Notes
-
-- The theme is a Git submodule; modifications should be committed in the submodule repository
-- Hugo extended version is required (v0.154.5+extended)
-- Unsafe HTML rendering is enabled (`markup.goldmark.renderer.unsafe = true`)
-- The blog is deployed on a server, not built locally — Hugo is not installed on the development laptop
-- Network infrastructure context is available at `~/.claude/network-setup.md`
+Conversational, technically precise, opinionated, irreverent. First person. Mixes deep technical detail with colorful language. Self-deprecating humor. Informal "tu" in Italian.
