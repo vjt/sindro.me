@@ -6,13 +6,12 @@ set -e
 VENV="$(dirname "$(realpath "$0")")/../.venv"
 rm -rf public
 
-BASEURL_FLAG=""
-if [ -f .baseurl ]; then
-  BASEURL_FLAG="--baseURL $(cat .baseurl)"
-fi
-
 echo "Building Hugo site..."
-hugo $BASEURL_FLAG "$@"
+if [ -f .baseurl ]; then
+  hugo --baseURL "$(cat .baseurl)" "$@"
+else
+  hugo "$@"
+fi
 
 echo "Indexing with Pagefind..."
 npx -y pagefind --site public \
