@@ -15,6 +15,6 @@ hugo $BASEURL_FLAG "$@"
 
 echo "Indexing with Pagefind..."
 npx -y pagefind --site public \
-  --glob "{posts,about,deletion,privacy,tos}/**/*.html"
+  --glob "{posts,about,deletion,privacy,tos,it/posts,it/about,it/deletion,it/privacy,it/tos}/**/*.html"
 
 echo "Build complete!"
