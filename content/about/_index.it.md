@@ -38,20 +38,27 @@ Erlang e Golang. Il mio linguaggio di programmazione preferito al momento è
 [Rust](https://www.rust-lang.org/) e mi sto divertendo davvero tanto!
 
 Ho lavorato per più di 10 anni per un'agenzia specializzata delle Nazioni
-Unite, [IFAD](http://www.ifad.org), prima di cambiare e diventare un
-soddisfatto Production Engineer a Meta (precedentemente nota come Facebook,
-inc), ruolo che ricopro ormai da quasi due anni.
+Unite, [IFAD](http://www.ifad.org), prima di cambiare e diventare Production
+Engineer a [Meta](https://about.meta.com/) (precedentemente nota come Facebook,
+inc), dove lavoro da oltre {{< years-since "2021-12-01" >}} anni.
 
-Sono il padre orgoglioso di due bambini meravigliosi, Alessandro e Orlando,
-attualmente di 3 e 2 anni, l'unico motivo per stare svegli di notte oltre a
-scrivere codice ;-).
+Sono il padre orgoglioso di tre bambini meravigliosi — Alessandro, {{< age "2020-08-01" >}};
+Orlando, {{< age "2021-07-01" >}}; e Athena, {{< age "2026-03-01" >}} —
+l'unico motivo per stare svegli di notte oltre a scrivere codice ;-).
+Ultimamente sono anche dipendente dal bruciare token di Claude come se non ci
+fosse un domani.
 
 Viaggio per conferenze di lavoro/tecnologia/sicurezza e per
 [immersioni](https://prodivingroma.it/) [subacquee](http://www.acquazzurra.it/),
 scattando foto, scrivendo diari e godendomi la vita – che è troppo breve per
 chiedersi il perché :).
-Faccio anche [tweet](http://twitter.com/vjt) e
-[condivido](https://plus.google.com/107382538213680942210) cose su internet.
+Faccio anche [tweet](http://twitter.com/vjt) e condivido cose su internet.
+Mi trovate su [LinkedIn](https://linkedin.com/in/marcellobarnaba).
+Sono anche su [Facebook](https://facebook.com/vjt.rb) e
+[Instagram](https://instagram.com/vjt42) — quelli sono privati, ma mandatemi
+pure una richiesta di follow.
+
+Per la storia professionale completa, date un'occhiata al mio [curriculum](/it/resume/).
 
 **Buona permanenza su [sindro.me](/)!**
 

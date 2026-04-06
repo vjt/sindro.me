@@ -49,10 +49,10 @@ defaultContentLanguageInSubdir = false
       blurb = "This is sindro.me, a weblog by Marcello Barnaba (@vjt) about technology, development, software, the internet, entertainment, politics, sociology, and the answer to Life, Universe, and Everything (42)."
       menu = [
         { Name = "About", URL = "/about/", HasChildren = false },
-        { Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 5 },
+        { Name = "Resume", URL = "/resume/" },
+        { Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 7 },
         { Name = "Links", URL = "" },
         { Name = "Privacy Policy", URL = "/privacy/", External = true },
-        { Name = "Resume", URL = "/resume.pdf", External = true },
         { Name = "Segmentation fault (core dumped)", URL = "https://segmentation-fault.core-dumped.info/", External = true },
         { Name = "Wikipedia", URL = "https://en.wikipedia.org/wiki/User:Vjt", External = true },
         { Name = "Historical college projects", URL = "https://barnaba.openssl.it/", External = true },
@@ -68,10 +68,10 @@ defaultContentLanguageInSubdir = false
       blurb = "Questo è sindro.me, un blog di Marcello Barnaba (@vjt) su tecnologia, sviluppo, software, internet, intrattenimento, politica, sociologia e la risposta alla Vita, all'Universo e a Tutto Quanto (42)."
       menu = [
         { Name = "Chi sono", URL = "/it/about/", HasChildren = false },
-        { Name = "Articoli", URL = "/it/posts/", Pre = "Recenti", HasChildren = true, Limit = 5 },
+        { Name = "Curriculum", URL = "/it/resume/" },
+        { Name = "Articoli", URL = "/it/posts/", Pre = "Recenti", HasChildren = true, Limit = 7 },
         { Name = "Link", URL = "" },
         { Name = "Privacy", URL = "/it/privacy/", External = true },
-        { Name = "Curriculum", URL = "/resume.pdf", External = true },
         { Name = "Segmentation fault (core dumped)", URL = "https://segmentation-fault.core-dumped.info/", External = true },
         { Name = "Wikipedia", URL = "https://it.wikipedia.org/wiki/Utente:Vjt", External = true },
         { Name = "Progetti universitari", URL = "https://barnaba.openssl.it/", External = true },

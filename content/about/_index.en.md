@@ -36,19 +36,26 @@ software also in C, C++, Perl, PHP, Erlang and Golang. My current favorite
 programming language is [rust](https://www.rust-lang.org/) and I am having a
 really great time with it!
 
-I've used to work for more than 10yrs for a specialized agency of the United
+I worked for more than 10 years for a specialized agency of the United
 Nations, [IFAD](http://www.ifad.org), before switching and becoming a
-satisfied Production Engineer at Meta (formerly known as Facebook, inc) and
-currently holding the role for almost two years.
+Production Engineer at [Meta](https://about.meta.com/) (formerly known as
+Facebook, inc), where I've been working for over {{< years-since "2021-12-01" >}} years.
 
-I'm a proud father of two wonderful kids, Alessandro and Orlando, currently
-3yrs and 2yrs old, the only reason to stay up at night beside writing code ;-).
+I'm a proud father of three wonderful kids — Alessandro, {{< age "2020-08-01" >}};
+Orlando, {{< age "2021-07-01" >}}; and Athena, {{< age "2026-03-01" >}} —
+the only reasons to stay up at night beside writing code ;-). Lately I'm also
+addicted to burning Claude tokens like there's no tomorrow.
 
 I travel around for work/technology/security conferences and
 [SCUBA](https://prodivingroma.it/) [diving](http://www.acquazzurra.it/), taking
 photos, writing diaries and enjoying life – that's too short to wonder why :).
-I also [tweet](http://twitter.com/vjt) and
-[share](https://plus.google.com/107382538213680942210) stuff on the interwebs.
+I also [tweet](http://twitter.com/vjt) and share stuff on the interwebs.
+You can find me on [LinkedIn](https://linkedin.com/in/marcellobarnaba).
+I'm also on [Facebook](https://facebook.com/vjt.rb) and
+[Instagram](https://instagram.com/vjt42) — those are private, but feel free to
+send a follow request.
+
+For the full professional story, check out my [resume](/resume/).
 
 **Have a good time here on [sindro.me](/)!**
 
