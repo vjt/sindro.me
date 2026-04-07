@@ -1,7 +1,7 @@
 ---
 date: 2009-01-29T19:00:00Z
 title: "Un miglioramento a permalink_fu: permettere la modifica dei permalink e inviare redirect HTTP al volo"
-tags: [permalink, plugin, projects, rails, ruby]
+tags: [ruby, projects, rails]
 categories: [development]
 ---
 

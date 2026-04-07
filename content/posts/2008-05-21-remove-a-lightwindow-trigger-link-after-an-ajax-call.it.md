@@ -1,7 +1,7 @@
 ---
 title: "Rimuovere un link trigger di lightwindow dopo una chiamata AJAX"
 date: "2008-05-21T17:00:00Z"
-tags: [javascript, lightwindow, rails, ruby]
+tags: [javascript, rails, ruby]
 categories: [development]
 ---
 

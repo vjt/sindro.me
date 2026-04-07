@@ -2,7 +2,7 @@
 title: How to Backup with Time Machine on a Network Share
 author: Marcello Barnaba
 date: 2007-11-02
-tags: [apple, backup, debian, netatalk]
+tags: [apple, backup, linux, networking]
 categories: [development]
 ---
 

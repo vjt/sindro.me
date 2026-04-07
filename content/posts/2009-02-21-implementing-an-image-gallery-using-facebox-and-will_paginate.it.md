@@ -1,7 +1,7 @@
 ---
 date: 2009-02-21T00:00:00Z
 title: Implementare una galleria immagini con facebox e will_paginate
-tags: [facebox, javascript, jquery, projects, ruby, will_paginate]
+tags: [javascript, projects, ruby]
 categories: [development]
 ---
 

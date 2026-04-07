@@ -1,7 +1,7 @@
 ---
 title: 'Talk su MetalOS ad All Systems Go! 2025'
 date: 2025-10-09
-tags: [linux, systemd, sysadmin, facebook]
+tags: [linux, sysadmin, facebook]
 categories: [development]
 ---
 

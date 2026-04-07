@@ -1,7 +1,7 @@
 ---
 date: "2011-09-12T12:00:00Z"
 title: "Install node.js via APT on Debian Squeeze"
-tags: [debian, nodejs, sysadm]
+tags: [linux, javascript, sysadmin]
 categories: [development]
 ---
 

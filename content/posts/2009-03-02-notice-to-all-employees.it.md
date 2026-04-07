@@ -1,7 +1,7 @@
 ---
 title: Avviso a tutti i dipendenti
 date: 2009-02-24T13:06:14-05:00
-tags: [crisis, funny, management, weird]
+tags: [politics, funny, weird]
 categories: [politics]
 ---
 

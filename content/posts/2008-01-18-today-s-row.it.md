@@ -1,7 +1,7 @@
 ---
 title: La riga del giorno
 date: 2008-01-18
-tags: [bash, obfuscated, oneliner, replace, ruby, sed]
+tags: [bash, geek, replace, ruby]
 categories: [number-42]
 ---
 

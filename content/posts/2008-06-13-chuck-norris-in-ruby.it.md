@@ -1,7 +1,7 @@
 ---
 title: Chuck Norris in Ruby
 date: 2008-06-13T12:00:00Z
-tags: [chuck, funny, ruby]
+tags: [funny, ruby]
 categories: [number-42]
 ---
 

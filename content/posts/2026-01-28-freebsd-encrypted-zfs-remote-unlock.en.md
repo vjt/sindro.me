@@ -1,7 +1,7 @@
 ---
 title: FreeBSD encrypted ZFS remote unlocking via SSH
 date: 2026-01-28
-tags: [freebsd, zfs, sysadmin]
+tags: [freebsd, sysadmin]
 categories: [development]
 ---
 

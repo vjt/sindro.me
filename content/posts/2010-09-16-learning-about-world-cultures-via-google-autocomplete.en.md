@@ -1,7 +1,7 @@
 ---
 date: 2010-09-16T20:00:00Z
 title: Learning about world cultures via Google Autocomplete
-tags: [funny, google, http, instant, mining, suggest]
+tags: [funny, networking]
 categories: [development]
 ---
 

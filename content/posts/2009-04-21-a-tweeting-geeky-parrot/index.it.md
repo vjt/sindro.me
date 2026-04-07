@@ -1,7 +1,7 @@
 ---
 date: "2009-04-21T23:00:00Z"
 title: "Un pappagallo geek che twitta"
-tags: [brain, parrot, social, twitter, web2.0, weird]
+tags: [social, web2.0, weird]
 categories: [politics]
 ---
 

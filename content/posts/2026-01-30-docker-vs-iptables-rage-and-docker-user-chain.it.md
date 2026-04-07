@@ -1,7 +1,7 @@
 ---
 title: "Docker vs. iptables: una storia di rabbia e la chain DOCKER-USER"
 date: 2026-01-30T00:00:00+01:00
-tags: ["docker", "networking", "iptables", "linux", "sysadmin", "home-assistant"]
+tags: [linux, networking, sysadmin, home-assistant]
 categories: ["System Administration", "Rants", "Open Source"]
 description: "La gestione di iptables da parte di Docker è un incubo per i setup ibridi host/VM. Ecco perché iptables-save fallisce, e il modo corretto e deterministico per risolvere."
 ---

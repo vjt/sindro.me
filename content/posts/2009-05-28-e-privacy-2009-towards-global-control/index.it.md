@@ -1,7 +1,7 @@
 ---
 title: "E-Privacy 2009: Verso il Controllo Globale"
 date: 2009-05-28T13:00:00
-tags: [control, cryptography, privacy, security]
+tags: [security, politics]
 categories: [politics]
 ---
 

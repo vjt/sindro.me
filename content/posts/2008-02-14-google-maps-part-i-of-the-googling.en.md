@@ -1,7 +1,7 @@
 ---
 title: Google Maps (part I of "The Googling")
 date: 2008-02-14
-tags: [entertainment, funny, google, maps, video]
+tags: [funny, video]
 categories: [number-42]
 ---
 

@@ -1,7 +1,7 @@
 ---
 date: 2009-05-16T04:00:00
 title: The conceptual foundations and the economics network neutrality [Part 2] - 14 May 2009, Rome
-tags: [economics, network, neutrality, politics]
+tags: [politics, networking]
 categories: [politics]
 ---
 

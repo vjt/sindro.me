@@ -1,7 +1,7 @@
 ---
 date: 2010-09-16T20:00:00Z
 title: Scoprire le culture del mondo tramite l'autocompletamento di Google
-tags: [funny, google, http, instant, mining, suggest]
+tags: [funny, networking]
 categories: [development]
 ---
 

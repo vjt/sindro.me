@@ -1,7 +1,7 @@
 ---
 date: "2009-02-10T18:08:34Z"
 title: "Come creare un mirror statico del sito opensource.org"
-tags: [bash, mirror, opensource]
+tags: [bash, open-source]
 categories: [development]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Girl Geek Dinners Workshop @Apple Store, 16 May 2009, Rome
 date: 2009-05-18T15:00:00
-tags: [apple, dinner, geek, girls, iphone, mobile, networking, social, web2.0]
+tags: [apple, geek, networking, social, web2.0]
 categories: [number-42]
 ---
 

@@ -1,7 +1,7 @@
 ---
 date: 2011-07-07T14:00:00Z
 title: Binding 80/TCP as non-root on your development server
-tags: [capabilities, linux, ruby]
+tags: [linux, ruby]
 categories: [development]
 ---
 

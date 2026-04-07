@@ -1,7 +1,7 @@
 ---
 title: We still can do it
 date: 2008-05-03
-tags: [photography, skating]
+tags: [photography]
 categories: [number-42]
 ---
 

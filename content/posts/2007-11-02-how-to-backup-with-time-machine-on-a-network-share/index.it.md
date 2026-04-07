@@ -2,7 +2,7 @@
 title: Come fare il backup con Time Machine su una condivisione di rete
 author: Marcello Barnaba
 date: 2007-11-02
-tags: [apple, backup, debian, netatalk]
+tags: [apple, backup, linux, networking]
 categories: [development]
 ---
 

@@ -2,7 +2,7 @@
 title: When Sysadmins Ruled the Earth
 author: Marcello Barnaba
 date: 2007-11-21
-tags: [geek, network, novel]
+tags: [geek, networking]
 categories: [politics]
 ---
 

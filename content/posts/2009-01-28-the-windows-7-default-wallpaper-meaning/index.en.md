@@ -1,7 +1,7 @@
 ---
 date: 2009-01-28T15:00:00Z
 title: The Windows 7 default wallpaper meaning.
-tags: [betta, fish, microsoft, siamese, wallpaper, windows]
+tags: []
 categories: [politics]
 ---
 

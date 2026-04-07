@@ -1,7 +1,7 @@
 ---
 title: "Giocare con le Audio Units tramite AU Lab per ottenere il surround 5.1"
 date: 2008-12-12T01:38:31Z
-tags: [apple, audio, units]
+tags: [apple]
 categories: [number-42]
 ---
 

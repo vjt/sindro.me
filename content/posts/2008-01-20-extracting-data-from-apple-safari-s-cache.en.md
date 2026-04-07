@@ -1,7 +1,7 @@
 ---
 title: Extracting data from Apple Safari's cache
 date: 2008-01-20
-tags: [apple, cache, extract, recover, safari, sqlite]
+tags: [apple, backup]
 categories: [development]
 ---
 

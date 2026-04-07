@@ -1,7 +1,7 @@
 ---
 title: "The mayonnaise jar and two glasses of wine"
 date: "2008-10-20T16:00:00Z"
-tags: [answer, everything, life, universe]
+tags: [life]
 categories: [number-42]
 ---
 

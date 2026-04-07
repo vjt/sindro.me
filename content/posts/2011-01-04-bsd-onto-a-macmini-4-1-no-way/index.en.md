@@ -1,7 +1,7 @@
 ---
 date: 2011-01-04T18:00:00Z
 title: "*BSD onto a MacMini 4,1? No way. :-("
-tags: [apple, bsd, freebsd, openbsd, netbsd]
+tags: [apple, freebsd]
 categories: [development]
 ---
 

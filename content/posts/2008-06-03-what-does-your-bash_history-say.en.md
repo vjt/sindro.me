@@ -1,7 +1,7 @@
 ---
 date: "2008-06-03T00:00:00Z"
 title: "What does your .bash_history say?"
-tags: ["bash", "geek", "history", "shell"]
+tags: [bash, geek]
 categories: [number-42]
 ---
 

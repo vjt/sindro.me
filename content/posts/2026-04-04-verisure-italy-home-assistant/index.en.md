@@ -1,7 +1,7 @@
 ---
 title: "How I replaced the Verisure app with Home Assistant"
 date: 2026-04-04
-tags: [home-assistant, verisure, python, security, home-automation]
+tags: [home-assistant, python, security]
 categories: [development]
 description: "The Verisure app is garbage: slow, ad-infested, zero automations. I replaced it with a custom Home Assistant integration."
 ---

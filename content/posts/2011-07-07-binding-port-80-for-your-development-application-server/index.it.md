@@ -1,7 +1,7 @@
 ---
 date: 2011-07-07T14:00:00Z
 title: Fare il bind della porta 80/TCP come non-root sul server di sviluppo
-tags: [capabilities, linux, ruby]
+tags: [linux, ruby]
 categories: [development]
 ---
 

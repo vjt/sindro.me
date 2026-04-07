@@ -2,7 +2,7 @@
 title: Raspberry PI 5 encrypted root with LUKS
 date: 2026-01-20
 updated: 2026-03-14
-tags: [linux, raspberrypi, sysadmin]
+tags: [linux, sysadmin]
 categories: [development]
 ---
 

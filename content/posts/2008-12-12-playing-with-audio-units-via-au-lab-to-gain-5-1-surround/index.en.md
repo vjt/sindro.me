@@ -1,7 +1,7 @@
 ---
 title: "Playing with Audio Units via AU Lab to gain 5.1 surround"
 date: 2008-12-12T01:38:31Z
-tags: [apple, audio, units]
+tags: [apple]
 categories: [number-42]
 ---
 

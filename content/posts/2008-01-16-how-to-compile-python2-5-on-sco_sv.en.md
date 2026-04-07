@@ -1,6 +1,6 @@
 ---
 date: 2008-01-16
-tags: [compile, openserver, python, sco]
+tags: [sysadmin, python]
 title: How to compile python2.5 on SCO_SV
 categories: [development]
 ---

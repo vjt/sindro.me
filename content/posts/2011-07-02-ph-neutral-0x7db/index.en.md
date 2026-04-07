@@ -1,7 +1,7 @@
 ---
 title: PH-Neutral 0x7db
 date: 2011-07-02T17:00:00
-tags: [conference, hack, security]
+tags: [events, security]
 categories: [development]
 ---
 

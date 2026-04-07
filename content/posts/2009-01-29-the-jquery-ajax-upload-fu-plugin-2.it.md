@@ -1,7 +1,7 @@
 ---
 date: "2009-01-29T09:00:00Z"
 title: "Il plugin jQuery ajax-upload-fu"
-tags: [ajax, javascript, jquery, plugin, projects, upload]
+tags: [javascript, ruby, projects]
 categories: [development]
 ---
 

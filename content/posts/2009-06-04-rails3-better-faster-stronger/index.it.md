@@ -1,7 +1,7 @@
 ---
 title: 'Rails3: Better, Faster, Stronger'
 date: 2009-06-04
-tags: [development, merb, rails, ruby]
+tags: [rails, ruby]
 categories: [development]
 ---
 

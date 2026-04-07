@@ -1,7 +1,7 @@
 ---
 date: "2009-02-03T14:00:00Z"
 title: "Evoluzione continua"
-tags: [capistrano, evolution, ruby]
+tags: [rails, ruby]
 categories: [number-42]
 ---
 

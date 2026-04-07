@@ -1,7 +1,7 @@
 ---
 date: "2009-02-10T18:08:34Z"
 title: "How to mirror a static copy of the opensource.org website"
-tags: [bash, mirror, opensource]
+tags: [bash, open-source]
 categories: [development]
 ---
 

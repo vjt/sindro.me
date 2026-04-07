@@ -1,7 +1,7 @@
 ---
 date: 2008-01-25
 title: Python2.4's urllib2 broken by default on Solaris Express 5.11
-tags: [authentication, digest, hg, mercurial, patch, python, solaris]
+tags: [security, git, python, sysadmin]
 categories: [development]
 ---
 

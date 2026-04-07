@@ -1,7 +1,7 @@
 ---
 title: Urinals in amsterdam
 date: 2008-05-05
-tags: [amsterdam, funny, weird]
+tags: [funny, weird]
 categories: [number-42]
 ---
 

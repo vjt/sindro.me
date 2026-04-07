@@ -1,7 +1,7 @@
 ---
 title: Active Gibberish
 date: 2008-01-22
-tags: [gibberish, localization, rails, ruby]
+tags: [funny, rails, ruby]
 categories: [development]
 ---
 

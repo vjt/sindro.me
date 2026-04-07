@@ -1,7 +1,7 @@
 ---
 title: "CouchDB 0.11 Invalid UTF-8 JSON: Solved"
 date: 2010-04-03T19:00:00Z
-tags: [couchdb, erlang, projects]
+tags: [erlang, projects]
 categories: [development]
 ---
 
