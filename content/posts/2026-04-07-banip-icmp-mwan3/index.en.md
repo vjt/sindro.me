@@ -71,7 +71,7 @@ speed: 3,587,090 bytes/sec  # 28 Mbps
 
 ## Step 2: The dual-WAN rabbit hole
 
-My OpenWrt router `golem` (Banana Pi R4) does dual-WAN failover with mwan3. Two uplinks:
+My OpenWrt router `golem` (GL.iNet MT-6000 running my own OpenWrt build) does dual-WAN failover with mwan3. Two uplinks:
 - **Fiber** (`eth1`, metric 10) — primary
 - **5G** (`br-lan.253`, VLAN on the LAN bridge to a 5G modem, metric 20) — backup
 
