@@ -151,9 +151,9 @@ Lost 2 ping(s) on interface wan (eth1). Current score: 9
 Check (ping) failed for target "8.8.8.8" on interface wan (eth1). Current score: 10
 ```
 
-**Constant ping failures** on the fiber interface. The score bounces between 9 and 10 (threshold for "down" is 5 consecutive failures bringing it to 0), so mwan3 never fully declares the fiber dead — but every tracking cycle, most pings fail. 942 failures out of 1068 checks in the log — an **88% failure rate**.
+**Constant ping failures** on the fiber interface. The score bounces between 9 and 10 (threshold for "down" is 5 consecutive failures bringing it to 0), so mwan3 never fully declares the fiber dead — but every tracking cycle, most pings fail. The logread buffer was full of nothing but failures, page after page.
 
-At first I thought: "There's no way the fiber has 88% packet loss." I was right. It doesn't.
+At first I thought: "There's no way the fiber has this much packet loss." I was right. It doesn't.
 
 ## Step 5: But the fiber is fine!
 
