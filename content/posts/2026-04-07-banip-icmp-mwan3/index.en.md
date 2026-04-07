@@ -124,7 +124,7 @@ I then traced the actual network path. The 5G uplink goes through CGNAT (`172.20
 
 ## Step 4: But WHY was WG on the 5G link?
 
-## Step 5: The mwan3 logs tell a story
+The fiber would need to be *down* for 5G to become the default. Time to check the mwan3 logs.
 
 ```
 $ ssh root@golem 'logread | grep mwan3track.*wan | tail -20'
@@ -139,7 +139,7 @@ Check (ping) failed for target "8.8.8.8" on interface wan (eth1). Current score:
 
 At first I thought: "There's no way the fiber has 88% packet loss." I was right. It doesn't.
 
-## Step 6: But the fiber is fine!
+## Step 5: But the fiber is fine!
 
 A sustained ping shows zero packet loss:
 
@@ -151,7 +151,7 @@ rtt min/avg/max/mdev = 12.631/13.010/13.827/0.264 ms
 
 Perfect. 13ms, zero loss. So why do the one-shot pings from mwan3 fail?
 
-## Step 7: Replicating mwan3's exact behavior
+## Step 6: Replicating mwan3's exact behavior
 
 mwan3track uses a clever mechanism to bind pings to a specific interface: `LD_PRELOAD=/lib/mwan3/libwrap_mwan3_sockopt.so.1.0` — a shared library that intercepts socket calls and sets `SO_BINDTODEVICE` and the fwmark. I read through the mwan3track shell script to understand exactly how it pings, then replicated it:
 
@@ -185,7 +185,7 @@ I also tested three variants to narrow it down:
 
 My first hypothesis was fork/exec overhead — maybe under load, the 4-second timeout was starting before the ping actually sent. But the system load was 0.14. I increased the timeout to 10 seconds: still 3/30 failures. Not a timeout issue.
 
-## Step 8: tcpdump reveals the truth
+## Step 7: tcpdump reveals the truth
 
 I captured packets during the failing pings:
 
@@ -196,7 +196,7 @@ I captured packets during the failing pings:
 
 **The replies ARE arriving.** Every single one. The network has zero packet loss. Something between the network interface and the ping process is eating the replies.
 
-## Step 9: The culprit — banIP ICMP flood protection
+## Step 8: The culprit — banIP ICMP flood protection
 
 ```
 $ nft list ruleset | grep icmpflood
