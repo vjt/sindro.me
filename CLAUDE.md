@@ -4,12 +4,12 @@ Guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-**sindro.me** — a bilingual (EN/IT) personal technical blog by Marcello Barnaba (@vjt). Static site generated with Hugo, using a custom fork of the Poison theme.
+**sindro.me** — a bilingual (EN/IT) personal technical blog by Marcello Barnaba (@vjt). Static site generated with Hugo, using a custom fork of the Sindrome theme.
 
 ## Tech Stack
 
 - **Hugo** (extended) — static site generator
-- **Poison theme** — custom fork, git submodule at `themes/poison/` ([github.com/vjt/poison](https://github.com/vjt/poison))
+- **Sindrome theme** — custom fork, git submodule at `themes/sindrome/` ([github.com/vjt/hugo-sindrome-theme](https://github.com/vjt/hugo-sindrome-theme))
 - **Pagefind** — client-side search, built via `build.sh`
 - **WeasyPrint** — generates resume PDFs from markdown at build time (Python venv at `../.venv`)
 - **Remark42** — comments system (comments shared across language versions via canonical URL)
@@ -68,14 +68,14 @@ Used in the resume and about pages to auto-compute ages and tenures at build tim
 
 The resume lives in `content/resume/_index.{en,it}.md` (markdown). Two outputs:
 
-1. **Web page** — Hugo renders via `themes/poison/layouts/resume/resume.html` at `/resume/` and `/it/resume/`
+1. **Web page** — Hugo renders via `themes/sindrome/layouts/resume/resume.html` at `/resume/` and `/it/resume/`
 2. **PDF** — `scripts/resume-pdf.py` reads the markdown, resolves shortcodes, renders via WeasyPrint
 
 Both are generated automatically by `build.sh`. Output: `public/resume.pdf` and `public/resume-it.pdf`.
 
 ## Theme (Poison fork)
 
-The theme is a git submodule. Changes must be committed in `themes/poison/` first, then the parent repo commits the updated submodule pointer.
+The theme is a git submodule. Changes must be committed in `themes/sindrome/` first, then the parent repo commits the updated submodule pointer.
 
 Key customizations over upstream:
 - i18n support with `{{ i18n }}` calls throughout templates

@@ -10,7 +10,7 @@ description: "Un post meta sull'uso di Claude Code per tradurre 69 articoli, rid
 
 È questa la sensazione che ho avuto lavorando con [Claude Code](https://claude.ai/code) negli ultimi due giorni. Ho rifatto completamente questo blog — tradotto tutti e 69 gli articoli in italiano, ridisegnato il layout da zero, aggiunto un easter egg nerd con la sequenza di boot del kernel, ripulito anni di tag accumulati, e iterato su decine di decisioni di design. Tutto tracciato in git, tutto verificabile, tutto live.
 
-**Ogni singolo commit è pubblico.** Se vuoi vedere il processo grezzo — il brainstorming, le iterazioni, i bugfix, il botta e risposta — è tutto nel repo: **[github.com/vjt/sindro.me](https://github.com/vjt/sindro.me)** (e il fork del tema: [github.com/vjt/poison](https://github.com/vjt/poison)). Non mi vergogno a mostrare come viene fatta la salsiccia. Anzi, spero che qualcuno lo trovi utile come esempio concreto di cosa sia davvero lo sviluppo assistito dall'AI — con tutti i difetti annessi.
+**Ogni singolo commit è pubblico.** Se vuoi vedere il processo grezzo — il brainstorming, le iterazioni, i bugfix, il botta e risposta — è tutto nel repo: **[github.com/vjt/sindro.me](https://github.com/vjt/sindro.me)** (e il fork del tema: [github.com/vjt/hugo-sindrome-theme](https://github.com/vjt/hugo-sindrome-theme)). Non mi vergogno a mostrare come viene fatta la salsiccia. Anzi, spero che qualcuno lo trovi utile come esempio concreto di cosa sia davvero lo sviluppo assistito dall'AI — con tutti i difetti annessi.
 
 Ecco il mio grafico di contribuzione su GitHub, per dimostrare che non sto esagerando:
 
@@ -20,7 +20,7 @@ Quel muro verde sono 40 giorni di lavoro con Claude su un sacco di progetti — 
 
 ## Il punto di partenza
 
-Questo blog esiste dal 2007, ma la versione Hugo risale al 2023 quando ho migrato da WordPress. Usava il [tema Poison](https://github.com/vjt/poison) — un fork di Hyde/Poole — con sidebar scura, solo in inglese, e un layout che urlava "il 2015 chiama, vuole il suo CSS indietro."
+Questo blog esiste dal 2007, ma la versione Hugo risale al 2023 quando ho migrato da WordPress. Usava il [tema Poison](https://github.com/lukeorth/poison) (ora forkato come [Sindrome](https://github.com/vjt/hugo-sindrome-theme)) — un fork di Hyde/Poole — con sidebar scura, solo in inglese, e un layout che urlava "il 2015 chiama, vuole il suo CSS indietro."
 
 ![Il vecchio layout — sidebar scura, solo inglese, CSS Hyde/Poole](/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/old-layout-desktop.png)
 

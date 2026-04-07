@@ -1,3 +1,3 @@
-[submodule "themes/poison"]
-	path = themes/poison
-	url = git@github.com:vjt/poison
+[submodule "themes/sindrome"]
+	path = themes/sindrome
+	url = git@github.com:vjt/hugo-sindrome-theme
