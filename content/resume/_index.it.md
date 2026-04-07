@@ -5,7 +5,7 @@ layout: resume
 noComments: true
 ---
 
-## Marcello Barnaba
+# Marcello Barnaba
 
 **Production Engineer** · Roma, Italia · [vjt@openssl.it](mailto:vjt@openssl.it)
 
