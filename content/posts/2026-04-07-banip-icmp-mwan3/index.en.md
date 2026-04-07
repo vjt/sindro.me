@@ -142,20 +142,20 @@ $ curl -s 'https://victorialogs/select/logsql/query' \
 
 The system booted on **February 4th** (uptime: 61 days). At boot time, the WireGuard interface came up. netifd created a static route for the WG endpoint IP, pinned to whatever gateway was active at that moment. The fiber was still initializing — mwan3 hadn't declared it online yet — so the route went to 5G. And it stayed there. Forever.
 
-The VictoriaLogs data also showed the fiber repeatedly going "online" — meaning it had gone *offline* before each of those dates. mwan3 was declaring the fiber dead periodically, even though the link was physically fine. But why? Time to check the health checks.
+The VictoriaLogs data also showed the fiber repeatedly going "online" — meaning it had gone *offline* before each of those dates. mwan3 was declaring the fiber dead periodically, even though the link was physically fine.
+
+And remember those useless `logread` results? They were actually the first clue — the ring buffer was full of nothing but mwan3 ping failures on the fiber interface:
 
 ```
-$ ssh root@golem 'logread | grep mwan3track.*wan | tail -20'
 Check (ping) failed for target "8.8.8.8" on interface wan (eth1). Current score: 10
 Check (ping) failed for target "1.1.1.1" on interface wan (eth1). Current score: 10
-Check (ping) failed for target "8.8.8.8" on interface wan (eth1). Current score: 10
 Lost 2 ping(s) on interface wan (eth1). Current score: 9
 Check (ping) failed for target "8.8.8.8" on interface wan (eth1). Current score: 10
 ```
 
-**Constant ping failures** on the fiber interface. The score bounces between 9 and 10 (threshold for "down" is 5 consecutive failures bringing it to 0), so mwan3 never fully declares the fiber dead — but every tracking cycle, most pings fail. The logread buffer was full of nothing but failures, page after page.
+Page after page of failures. The score bounces between 9 and 10 (threshold for "down" is 5 consecutive failures bringing it to 0), so mwan3 never fully declares the fiber dead — but periodically enough failures align and mwan3 declares it offline, then back online. This explains both the VictoriaLogs pattern and the stale WG route.
 
-At first I thought: "There's no way the fiber has this much packet loss." I was right. It doesn't.
+But wait — the fiber can't actually have this much packet loss. Right?
 
 ## Step 5: But the fiber is fine!
 
@@ -296,7 +296,7 @@ Except I also have **Telegraf** running on the same router, doing latency measur
 
 Six targets, 10 pings each, every 0.5 seconds, bound to the same `eth1` interface. That's **60 ICMP echo replies** per measurement cycle, all arriving in bursts on the fiber WAN. With a burst tolerance of 5, banIP was massacring them.
 
-So the 88% mwan3 failure rate wasn't just from mwan3's own 3 pings hitting the limit — it was Telegraf's 60 pings **consuming all the burst tokens**, leaving nothing for mwan3's health checks that happened to arrive in the same window. The two systems were unknowingly competing for the same 5-packet burst budget.
+So the constant mwan3 failures weren't just from mwan3's own 3 pings hitting the limit — it was Telegraf's 60 pings **consuming all the burst tokens**, leaving nothing for mwan3's health checks that happened to arrive in the same window. The two systems were unknowingly competing for the same 5-packet burst budget.
 
 Individually, every default is reasonable:
 - banIP burst 5 is fine for ICMP flood protection
