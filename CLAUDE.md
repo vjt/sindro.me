@@ -4,12 +4,12 @@ Guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-**sindro.me** — a bilingual (EN/IT) personal technical blog by Marcello Barnaba (@vjt). Static site generated with Hugo, using a custom fork of the Sindrome theme.
+**sindro.me** — a bilingual (EN/IT) personal technical blog by Marcello Barnaba (@vjt). Static site generated with Hugo, using the Sindrome theme.
 
 ## Tech Stack
 
 - **Hugo** (extended) — static site generator
-- **Sindrome theme** — custom fork, git submodule at `themes/sindrome/` ([github.com/vjt/hugo-sindrome-theme](https://github.com/vjt/hugo-sindrome-theme))
+- **Sindrome theme** — custom theme (forked from Poison/Hyde), git submodule at `themes/sindrome/` ([github.com/vjt/hugo-sindrome-theme](https://github.com/vjt/hugo-sindrome-theme))
 - **Pagefind** — client-side search, built via `build.sh`
 - **WeasyPrint** — generates resume PDFs from markdown at build time (Python venv at `../.venv`)
 - **Remark42** — comments system (comments shared across language versions via canonical URL)
@@ -22,25 +22,26 @@ Guidance for AI assistants working with this repository.
 hugo server -D          # Dev server with drafts on localhost:1313
 ```
 
+Note: Hugo is NOT installed on this machine (Raspberry Pi). Builds happen on `vjt@m42` (FreeBSD server) at `/srv/www/sindro.me/staging/` and `/srv/www/sindro.me/prod/`.
+
 ## Multilingual (i18n)
 
 - **English** is the default language, served at `/` (no prefix)
 - **Italian** is served at `/it/`
 - Content files use language suffixes: `post.en.md` / `post.it.md`
 - UI strings in `i18n/en.yaml` and `i18n/it.yaml`
-- Language switcher (flag emojis) in mobile header and sidebar
+- Language switcher (flag emojis) in sidebar and responsive header
 - nginx detects `Accept-Language` header and `lang` cookie for root `/` redirect
 
 ### Creating bilingual content
 
 ```bash
-# Single file post
-hugo new posts/YYYY-MM-DD-slug.en.md
-# Then create posts/YYYY-MM-DD-slug.it.md with same front matter (translated title)
-
-# Page bundle (posts with images)
+# Page bundle (preferred — posts with images)
 mkdir content/posts/YYYY-MM-DD-slug
 # Create index.en.md and index.it.md — images are shared between languages
+
+# Single file post (no images)
+# Create posts/YYYY-MM-DD-slug.en.md and posts/YYYY-MM-DD-slug.it.md
 ```
 
 ## Content Structure
@@ -73,18 +74,24 @@ The resume lives in `content/resume/_index.{en,it}.md` (markdown). Two outputs:
 
 Both are generated automatically by `build.sh`. Output: `public/resume.pdf` and `public/resume-it.pdf`.
 
-## Theme (Poison fork)
+## Theme (Sindrome)
 
-The theme is a git submodule. Changes must be committed in `themes/sindrome/` first, then the parent repo commits the updated submodule pointer.
+Forked from Poison/Hyde, completely rewritten CSS. Git submodule at `themes/sindrome/`. Changes must be committed in the submodule first, then the parent repo commits the updated submodule pointer.
 
-Key customizations over upstream:
-- i18n support with `{{ i18n }}` calls throughout templates
-- Language switcher partial
-- Resume page layout
-- Pagefind search integration
-- Remark42 comments with cross-language thread sharing
-- KaTeX/tabs removed (dead weight)
-- Dead CSS cleaned from poole.css/hyde.css
+### Layout
+- **CSS Grid** — 3-column desktop (sidebar | content | TOC), hamburger below 1200px
+- **Light-first** with system-aware dark mode (`prefers-color-scheme`)
+- **No-FOUC** — inline script in `<head>` applies dark class before paint
+- **Boot splash** — Linux kernel boot sequence on first visit (`sessionStorage`)
+
+### Key files
+- `assets/css/layout.css` — CSS Grid, breakpoints, responsive
+- `assets/css/components.css` — all UI components
+- `assets/js/light_dark.js` — theme toggle with system preference detection
+- `assets/js/hamburger.js` — mobile menu toggle
+- `assets/js/boot-splash.js` — boot sequence animation
+- `layouts/partials/header.html` — responsive header bar
+- `layouts/partials/boot-splash.html` — boot splash markup + inline CSS
 
 ## Configuration
 
@@ -99,13 +106,12 @@ Key customizations over upstream:
 title: "Post Title"
 date: YYYY-MM-DD
 tags: [tag1, tag2]
-categories: [category1]
 description: "Optional SEO description"
 image: optional-og-image.png
 ---
 ```
 
-Common categories: `development`, `System Administration`, `Rants`, `Open Source`, `politics`, `number-42`
+No categories — tags only.
 
 ## Writing Style
 
