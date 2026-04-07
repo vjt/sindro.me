@@ -14,7 +14,7 @@ Here's my GitHub contribution graph to prove I'm not exaggerating:
 
 ![GitHub activity showing a storm of commits](/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/github-activity.png)
 
-Yeah. That green wall is what two days of AI-assisted development looks like.
+That green wall is 40 days of working with Claude across a bunch of projects — [home automation integrations](/posts/2026-04-04-verisure-italy-home-assistant/), [OpenWrt networking tools](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/), [WiFi presence detection](/posts/2026-02-15-wifi-presence-detection-home-assistant/), [5G modem tooling](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/), and this blog redesign. The last two days alone account for a ridiculous chunk of it.
 
 ## The starting point
 

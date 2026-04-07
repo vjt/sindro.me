@@ -14,7 +14,7 @@ Ecco il mio grafico di contribuzione su GitHub, per dimostrare che non sto esage
 
 ![Attività GitHub con una valanga di commit](/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/github-activity.png)
 
-Sì. Quel muro verde è l'aspetto di due giorni di sviluppo assistito dall'AI.
+Quel muro verde sono 40 giorni di lavoro con Claude su un sacco di progetti — [integrazioni domotiche](/it/posts/2026-04-04-verisure-italy-home-assistant/), [strumenti di rete per OpenWrt](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/), [rilevamento presenza WiFi](/it/posts/2026-02-15-wifi-presence-detection-home-assistant/), [tooling per modem 5G](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/), e questo redesign del blog. Solo gli ultimi due giorni coprono una fetta ridicola del totale.
 
 ## Il punto di partenza
 
