@@ -1,7 +1,7 @@
 ---
 title: Sblocco remoto via SSH di ZFS cifrato su FreeBSD
 date: 2026-01-28
-tags: [freebsd, sysadmin]
+tags: [ai-generated, freebsd, sysadmin]
 categories: [development]
 ---
 
