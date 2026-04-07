@@ -1,7 +1,7 @@
 ---
 date: 2009-01-28T15:00:00Z
 title: The Windows 7 default wallpaper meaning.
-tags: []
+tags: [funny, weird]
 categories: [politics]
 ---
 

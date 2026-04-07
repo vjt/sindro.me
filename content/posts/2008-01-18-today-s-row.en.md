@@ -1,7 +1,7 @@
 ---
 title: Today's row
 date: 2008-01-18
-tags: [bash, geek, replace, ruby]
+tags: [bash, geek, ruby]
 categories: [number-42]
 ---
 
