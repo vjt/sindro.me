@@ -140,7 +140,28 @@ $ curl -s 'https://victorialogs/select/logsql/query' \
 2026-04-05T06:53:53  Interface wan (eth1) is online    # and again
 ```
 
-The system booted on **February 4th** (uptime: 61 days). At boot time, the WireGuard interface came up. netifd created a static route for the WG endpoint IP, pinned to whatever gateway was active at that moment. The fiber was still initializing — mwan3 hadn't declared it online yet — so the route went to 5G. And it stayed there. Forever.
+A few things jumped out. First: the earliest entry is from February 7th — but the 5G uptime was 1485 hours. Quick math:
+
+```
+$ ssh root@golem 'mwan3 status | grep wan5g'
+interface wan5g is online (online 83h:06m, uptime 1485h:25m)
+# 1485 hours = 61 days → system booted February 4th
+```
+
+Second: the first `wan (eth1) is online` entry is from **March 10th** — a full month after boot. That means from February 4th to March 10th, mwan3 never once declared the fiber online (or it went offline so fast the "online" event didn't make it into the log window). Either way, when WireGuard came up at boot on February 4th, the fiber wasn't available. The WG endpoint route went to 5G.
+
+I confirmed this was indeed a static route set at boot time, not by mwan3:
+
+```
+$ ip route show 46.38.233.77
+46.38.233.77 via 192.168.253.254 dev br-lan.253 proto static metric 20
+
+$ ip route show table all | grep 46.38
+46.38.233.77 via 192.168.253.254 dev br-lan.253 table 2 proto static metric 20
+46.38.233.77 via 192.168.253.254 dev br-lan.253 proto static metric 20
+```
+
+`proto static` — set by netifd at WireGuard interface-up time, present in both the main table and table 2 (wan5g). Never updated. Never re-evaluated. The fiber came back on March 10th, but the route stayed on 5G. For two months.
 
 The VictoriaLogs data also showed the fiber repeatedly going "online" — meaning it had gone *offline* before each of those dates. mwan3 was declaring the fiber dead periodically, even though the link was physically fine.
 
