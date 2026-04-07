@@ -180,18 +180,18 @@ The timeline was damning:
 
 Meanwhile, the 5G link logged dozens of offline/online flaps (the 5G modem reconnects constantly — noisy but irrelevant).
 
-The picture was clear. In the first three days after boot, mwan3 declared the fiber *dead* three times — for **8.7 hours**, **3.3 hours**, and **13.6 hours** respectively. After February 7th, the pattern changed: offline events became brief blips of under a minute.
+The picture was clear. In the first three days, mwan3 declared the fiber *dead* three times — for **8.7 hours**, **3.3 hours**, and **13.6 hours** respectively. After February 7th, the pattern changed: offline events became brief blips of under a minute.
 
-Now: when WireGuard came up during boot on February 4th, netifd needed a gateway for the endpoint route. PPPoE (fiber) takes time to negotiate. The 5G modem — a separate device behind a VLAN, already powered on — gets a DHCP lease faster. At WG interface-up time, the only working default route was through 5G. The static route was created:
+And now I remembered: in early February, I had just finished setting up the [5G backup link](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/) and was testing failover by **manually taking the fiber down** to see if the 5G could hold the entire household. During that testing, I noticed WireGuard kept sticking on the dead link, so I restarted it — `ifdown wg && ifup wg`. Which created the endpoint route through the 5G backup, because that's what was active at the time:
 
 ```
 $ ip route show 46.38.233.77
 46.38.233.77 via 192.168.253.254 dev br-lan.253 proto static metric 20
 ```
 
-`proto static` — set by netifd, present in both the main table and table 2 (wan5g). **Never updated. Never re-evaluated.** The fiber came back hours later, then went down again, then came back and stabilized. The WireGuard route stayed on 5G for two months.
+`proto static` — set by netifd at WireGuard interface-up time, present in both the main table and table 2 (wan5g). **Never updated. Never re-evaluated.** I brought the fiber back, everything looked fine, traffic flowed normally. But the WG endpoint route stayed cemented on 5G. I didn't dig into *why* WireGuard kept sticking — I just restarted it and moved on. Now I know: every restart re-created the static route via whatever gateway was active at that moment.
 
-And those 102,935 "Check (ping) failed" entries VictoriaLogs had collected since February 4th? They explained everything — mwan3 saw constant ping failures on the fiber, keeping the score at 9-10 (just barely online). Periodically, enough failures aligned to push the score to zero, and mwan3 would declare the fiber offline. In early February, those drops lasted hours because the score struggled to recover. By March, something shifted in the timing and recovery was fast — but the WG route was already cemented.
+And those 102,935 "Check (ping) failed" entries VictoriaLogs had collected since? They explained the rest of the story. Even after my testing was done, mwan3 saw constant ping failures on the fiber, keeping the score at 9-10 (just barely online). Periodically, enough failures aligned to push the score to zero, and mwan3 would declare the fiber offline. In early February, those drops lasted hours because the score struggled to recover. By March, something shifted in the timing and recovery was fast — but the WG route was already cemented, and the system had no mechanism to fix it.
 
 But wait — the fiber can't *actually* have this much packet loss. Right?
 

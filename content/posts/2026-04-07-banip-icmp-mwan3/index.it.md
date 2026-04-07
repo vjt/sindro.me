@@ -114,18 +114,18 @@ La timeline era schiacciante:
 
 Nel frattempo, il link 5G mostrava decine di flap offline/online (il modem 5G si riconnette di continuo — rumoroso ma irrilevante).
 
-Il quadro era chiaro. Nei primi tre giorni dopo il boot, mwan3 aveva dichiarato la fibra *morta* tre volte — per **8.7 ore**, **3.3 ore** e **13.6 ore** rispettivamente. Dopo il 7 febbraio, il pattern era cambiato: gli eventi offline erano diventati blip di meno di un minuto.
+Il quadro era chiaro. Nei primi tre giorni, mwan3 aveva dichiarato la fibra *morta* tre volte — per **8.7 ore**, **3.3 ore** e **13.6 ore** rispettivamente. Dopo il 7 febbraio, il pattern era cambiato: gli eventi offline erano diventati blip di meno di un minuto.
 
-Ecco il pezzo chiave: quando WireGuard si è avviato durante il boot del 4 febbraio, netifd aveva bisogno di un gateway per il route dell'endpoint. Il PPPoE (fibra) richiede tempo per negoziare. Il modem 5G — un dispositivo separato dietro una VLAN, già acceso — ottiene un lease DHCP più velocemente. Al momento dell'avvio dell'interfaccia WG, l'unico route di default funzionante passava per il 5G. Il route statico venne creato:
+E a quel punto mi sono ricordato: a inizio febbraio avevo appena finito di configurare il [backup 5G](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/) e stavo testando il failover **tirando giù la fibra manualmente** per vedere se il 5G reggeva tutta la casa. Durante quei test, avevo notato che WireGuard restava incollato al link morto, così lo riavviavo — `ifdown wg && ifup wg`. Che creava il route dell'endpoint attraverso il backup 5G, perché era quello attivo in quel momento:
 
 ```
 $ ip route show 46.38.233.77
 46.38.233.77 via 192.168.253.254 dev br-lan.253 proto static metric 20
 ```
 
-`proto static` — impostato da netifd, presente sia nella tabella principale che nella table 2 (wan5g). **Mai aggiornato. Mai rivalutato.** La fibra tornò ore dopo, poi andò giù di nuovo, poi tornò e si stabilizzò. Il route WireGuard restò sul 5G per due mesi.
+`proto static` — impostato da netifd all'avvio dell'interfaccia WireGuard, presente sia nella tabella principale che nella table 2 (wan5g). **Mai aggiornato. Mai rivalutato.** Riportavo su la fibra, tutto sembrava a posto, il traffico scorreva normalmente. Ma il route dell'endpoint WG restava cementato sul 5G. Non avevo indagato il *perché* WireGuard restava incollato — lo riavviavo e andavo avanti. Adesso lo so: ogni riavvio ri-creava il route statico via qualsiasi gateway fosse attivo in quel momento.
 
-E quelle 102.935 entry "Check (ping) failed" che VictoriaLogs aveva accumulato dal 4 febbraio? Spiegavano tutto — mwan3 vedeva fallimenti ping costanti sulla fibra, mantenendo lo score a 9-10 (appena appena online). Periodicamente, abbastanza fallimenti si allineavano per far scendere lo score a zero, e mwan3 dichiarava la fibra offline. A inizio febbraio, quei drop duravano ore perché lo score faticava a recuperare. A marzo, qualcosa nei tempi era cambiato e il recupero era rapido — ma il route WG era già cementato.
+E quelle 102.935 entry "Check (ping) failed" che VictoriaLogs aveva accumulato da allora? Spiegavano il resto della storia. Anche dopo che i miei test erano finiti, mwan3 vedeva fallimenti ping costanti sulla fibra, mantenendo lo score a 9-10 (appena appena online). Periodicamente, abbastanza fallimenti si allineavano per far scendere lo score a zero, e mwan3 dichiarava la fibra offline. A inizio febbraio, quei drop duravano ore perché lo score faticava a recuperare. A marzo, qualcosa nei tempi era cambiato e il recupero era rapido — ma il route WG era già cementato, e il sistema non aveva nessun meccanismo per correggerlo.
 
 Ma aspetta — la fibra non può *davvero* avere tutta questa packet loss. Giusto?
 
