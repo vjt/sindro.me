@@ -124,7 +124,23 @@ I then traced the actual network path. The 5G uplink goes through CGNAT (`172.20
 
 ## Step 4: But WHY was WG on the 5G link?
 
-The fiber would need to be *down* for 5G to become the default. Time to check the mwan3 logs.
+The fiber would need to be *down* for 5G to become the default. OpenWrt's logread only keeps a ring buffer, so I dug into VictoriaLogs where all syslog is shipped. The interface state change history told the story:
+
+```
+$ curl -s 'https://victorialogs/select/logsql/query' \
+  --data-urlencode 'query=tags.hostname:"golem.bad.ass" "is offline" OR "is online"'
+
+2026-02-07T22:49:01  Interface wan5g (br-lan.253) is online
+...dozens of wan5g online/offline entries...
+2026-03-10T15:58:53  Interface wan (eth1) is online    # fiber came back
+2026-03-14T00:04:20  Interface wan (eth1) is online    # fiber came back again
+2026-04-03T03:36:01  Interface wan (eth1) is online    # and again
+2026-04-05T06:53:53  Interface wan (eth1) is online    # and again
+```
+
+The system booted on **February 4th** (uptime: 61 days). At boot time, the WireGuard interface came up. netifd created a static route for the WG endpoint IP, pinned to whatever gateway was active at that moment. The fiber was still initializing — mwan3 hadn't declared it online yet — so the route went to 5G. And it stayed there. Forever.
+
+The mwan3 logs also showed the fiber repeatedly going "online" — meaning it had gone *offline* before each of those dates. But why? The fiber link was physically fine. Time to check the mwan3 health checks.
 
 ```
 $ ssh root@golem 'logread | grep mwan3track.*wan | tail -20'
