@@ -124,59 +124,76 @@ I then traced the actual network path. The 5G uplink goes through CGNAT (`172.20
 
 ## Step 4: But WHY was WG on the 5G link?
 
-The fiber would need to be *down* for 5G to become the default. I checked `logread` first — nothing useful, the ring buffer only held today's logs. All I could see was the current stream of ping failures.
-
-But all syslog from this router is shipped to VictoriaLogs (centralized log storage). So I queried the interface state change history going back months:
-
-```
-$ curl -s 'https://victorialogs/select/logsql/query' \
-  --data-urlencode 'query=tags.hostname:"golem.bad.ass" "is offline" OR "is online"'
-
-2026-02-07T22:49:01  Interface wan5g (br-lan.253) is online
-...dozens of wan5g online/offline entries...
-2026-03-10T15:58:53  Interface wan (eth1) is online    # fiber came back
-2026-03-14T00:04:20  Interface wan (eth1) is online    # fiber came back again
-2026-04-03T03:36:01  Interface wan (eth1) is online    # and again
-2026-04-05T06:53:53  Interface wan (eth1) is online    # and again
-```
-
-A few things jumped out. First: the earliest entry is from February 7th — but the 5G uptime was 1485 hours. Quick math:
-
-```
-$ ssh root@golem 'mwan3 status | grep wan5g'
-interface wan5g is online (online 83h:06m, uptime 1485h:25m)
-# 1485 hours = 61 days → system booted February 4th
-```
-
-Second: the first `wan (eth1) is online` entry is from **March 10th** — a full month after boot. That means from February 4th to March 10th, mwan3 never once declared the fiber online (or it went offline so fast the "online" event didn't make it into the log window). Either way, when WireGuard came up at boot on February 4th, the fiber wasn't available. The WG endpoint route went to 5G.
-
-I confirmed this was indeed a static route set at boot time, not by mwan3:
-
-```
-$ ip route show 46.38.233.77
-46.38.233.77 via 192.168.253.254 dev br-lan.253 proto static metric 20
-
-$ ip route show table all | grep 46.38
-46.38.233.77 via 192.168.253.254 dev br-lan.253 table 2 proto static metric 20
-46.38.233.77 via 192.168.253.254 dev br-lan.253 proto static metric 20
-```
-
-`proto static` — set by netifd at WireGuard interface-up time, present in both the main table and table 2 (wan5g). Never updated. Never re-evaluated. The fiber came back on March 10th, but the route stayed on 5G. For two months.
-
-The VictoriaLogs data also showed the fiber repeatedly going "online" — meaning it had gone *offline* before each of those dates. mwan3 was declaring the fiber dead periodically, even though the link was physically fine.
-
-And remember those useless `logread` results? They were actually the first clue — the ring buffer was full of nothing but mwan3 ping failures on the fiber interface:
+The fiber would have to be *down* at boot for 5G to become the default. First stop: `logread` on the router. Useless — the ring buffer only holds the current day's logs. But what it contained was already suspicious: page after page of mwan3 ping failures on the fiber interface:
 
 ```
 Check (ping) failed for target "8.8.8.8" on interface wan (eth1). Current score: 10
 Check (ping) failed for target "1.1.1.1" on interface wan (eth1). Current score: 10
-Lost 2 ping(s) on interface wan (eth1). Current score: 9
 Check (ping) failed for target "8.8.8.8" on interface wan (eth1). Current score: 10
 ```
 
-Page after page of failures. The score bounces between 9 and 10 (threshold for "down" is 5 consecutive failures bringing it to 0), so mwan3 never fully declares the fiber dead — but periodically enough failures align and mwan3 declares it offline, then back online. This explains both the VictoriaLogs pattern and the stale WG route.
+Thousands of failures. Score bouncing between 9 and 10 — individual pings fail constantly, but enough succeed each cycle to keep the score from dropping to 0 (which would declare the interface dead). This was the first real clue.
 
-But wait — the fiber can't actually have this much packet loss. Right?
+All syslog from this router ships to VictoriaLogs (centralized log storage). Time for forensics. First, nail down when this started:
+
+```
+$ ssh root@golem 'mwan3 status | grep wan5g'
+interface wan5g is online (online 83h:06m, uptime 1485h:25m)
+```
+
+1485 hours ÷ 24 = 61.8 days before April 7th → **February 4th**. Then I queried every mwan3 interface state change since:
+
+```
+$ curl -sk 'https://victorialogs/select/logsql/query' \
+  --data-urlencode 'query=tags.hostname:golem AND ("is online" OR "is offline")'
+```
+
+The timeline was damning:
+
+```
+# First log entry: ping failures start immediately
+2026-02-04T21:00  Check (ping) failed for "8.8.8.8" on wan (eth1). Score: 10
+...failures every few minutes for 90 minutes...
+
+# Then the score finally hits zero:
+2026-02-04T22:30  Interface wan (eth1) is offline
+
+# 8.7 HOURS later:
+2026-02-05T07:13  Interface wan (eth1) is online
+
+# Two more long outages in the next two days:
+2026-02-06T10:45  Interface wan (eth1) is offline
+2026-02-06T14:03  Interface wan (eth1) is online              # 3.3 hours offline
+2026-02-06T22:56  Interface wan (eth1) is offline
+2026-02-07T12:34  Interface wan (eth1) is online              # 13.6 hours offline
+
+# Then silence for a month. After Feb 7, only brief blips:
+2026-03-10T15:54  Interface wan (eth1) is offline
+2026-03-10T15:58  Interface wan (eth1) is online              # 4 minutes
+2026-03-14T00:03  Interface wan (eth1) is offline
+2026-03-14T00:04  Interface wan (eth1) is online              # 52 seconds
+2026-04-03T03:35  Interface wan (eth1) is offline
+2026-04-03T03:36  Interface wan (eth1) is online              # 52 seconds
+2026-04-05T06:53  Interface wan (eth1) is offline
+2026-04-05T06:53  Interface wan (eth1) is online              # 53 seconds
+```
+
+Meanwhile, the 5G link logged dozens of offline/online flaps (the 5G modem reconnects constantly — noisy but irrelevant).
+
+The picture was clear. In the first three days after boot, mwan3 declared the fiber *dead* three times — for **8.7 hours**, **3.3 hours**, and **13.6 hours** respectively. After February 7th, the pattern changed: offline events became brief blips of under a minute.
+
+Now: when WireGuard came up during boot on February 4th, netifd needed a gateway for the endpoint route. PPPoE (fiber) takes time to negotiate. The 5G modem — a separate device behind a VLAN, already powered on — gets a DHCP lease faster. At WG interface-up time, the only working default route was through 5G. The static route was created:
+
+```
+$ ip route show 46.38.233.77
+46.38.233.77 via 192.168.253.254 dev br-lan.253 proto static metric 20
+```
+
+`proto static` — set by netifd, present in both the main table and table 2 (wan5g). **Never updated. Never re-evaluated.** The fiber came back hours later, then went down again, then came back and stabilized. The WireGuard route stayed on 5G for two months.
+
+And those 102,935 "Check (ping) failed" entries VictoriaLogs had collected since February 4th? They explained everything — mwan3 saw constant ping failures on the fiber, keeping the score at 9-10 (just barely online). Periodically, enough failures aligned to push the score to zero, and mwan3 would declare the fiber offline. In early February, those drops lasted hours because the score struggled to recover. By March, something shifted in the timing and recovery was fast — but the WG route was already cemented.
+
+But wait — the fiber can't *actually* have this much packet loss. Right?
 
 ## Step 5: But the fiber is fine!
 
@@ -256,7 +273,7 @@ The `ping -c 50` persistent test works because it sends one packet per second wi
 
 1. banIP drops ICMP replies that arrive in bursts (by design — "flood protection")
 2. mwan3 health checks use one-shot pings that create bursty reply patterns
-3. mwan3 sees ~15% ping failure rate on fiber, score oscillates at 9-10
+3. mwan3 sees constant ping failures on fiber, score oscillates at 9-10
 4. At some point (probably during a real brief fiber hiccup), the score dropped to 0 and mwan3 switched to 5G
 5. WireGuard endpoint route got created via 5G gateway
 6. Fiber came back, mwan3 score recovered, traffic flowed normally — **but the WG static route remained on 5G**

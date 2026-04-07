@@ -58,15 +58,76 @@ Il link 5G passa per CGNAT (`172.20.x.x`), 25ms di latenza. La fibra passa per u
 
 ## Step 4: Ma PERCHÉ WG era sul 5G?
 
-La fibra avrebbe dovuto essere *down* perché il 5G diventasse il default. I log di mwan3 raccontavano una storia:
+La fibra avrebbe dovuto essere *down* al boot perché il 5G diventasse il default. Primo controllo: `logread` sul router. Inutile — il ring buffer contiene solo i log del giorno corrente. Ma quello che conteneva era già sospetto: pagine e pagine di fallimenti ping mwan3 sull'interfaccia fibra:
 
 ```
-Check (ping) failed for target "8.8.8.8" on interface wan (eth1). Score: 10
-Check (ping) failed for target "1.1.1.1" on interface wan (eth1). Score: 10
-Lost 2 ping(s) on interface wan (eth1). Score: 9
+Check (ping) failed for target "8.8.8.8" on interface wan (eth1). Current score: 10
+Check (ping) failed for target "1.1.1.1" on interface wan (eth1). Current score: 10
+Check (ping) failed for target "8.8.8.8" on interface wan (eth1). Current score: 10
 ```
 
-**Fallimenti ping costanti** sulla fibra. 942 su 1068 check — tasso di fallimento dell'88%! mwan3 non dichiara mai la fibra morta (lo score non arriva mai a 0), ma quasi tutti i ping falliscono.
+Migliaia di fallimenti. Lo score oscillava tra 9 e 10 — i singoli ping fallivano costantemente, ma abbastanza ne passavano per impedire allo score di arrivare a 0 (che dichiarerebbe l'interfaccia morta). Questo era il primo vero indizio.
+
+Tutto il syslog di questo router viene spedito a VictoriaLogs (log storage centralizzato). Tempo di fare forensics. Prima cosa, stabilire la data:
+
+```
+$ ssh root@golem 'mwan3 status | grep wan5g'
+interface wan5g is online (online 83h:06m, uptime 1485h:25m)
+```
+
+1485 ore ÷ 24 = 61.8 giorni prima del 7 aprile → **4 febbraio**. Poi ho interrogato VictoriaLogs per ogni cambio di stato di interfaccia da allora:
+
+```
+$ curl -sk 'https://victorialogs/select/logsql/query' \
+  --data-urlencode 'query=tags.hostname:golem AND ("is online" OR "is offline")'
+```
+
+La timeline era schiacciante:
+
+```
+# Prima entry: i ping falliscono subito
+2026-02-04T21:00  Check (ping) failed for "8.8.8.8" on wan (eth1). Score: 10
+...fallimenti ogni pochi minuti per 90 minuti...
+
+# Poi lo score arriva a zero:
+2026-02-04T22:30  Interface wan (eth1) is offline
+
+# 8.7 ORE dopo:
+2026-02-05T07:13  Interface wan (eth1) is online
+
+# Altri due lunghi down nei due giorni successivi:
+2026-02-06T10:45  Interface wan (eth1) is offline
+2026-02-06T14:03  Interface wan (eth1) is online              # 3.3 ore offline
+2026-02-06T22:56  Interface wan (eth1) is offline
+2026-02-07T12:34  Interface wan (eth1) is online              # 13.6 ore offline
+
+# Poi silenzio per un mese. Dopo il 7 feb, solo brevi blip:
+2026-03-10T15:54  Interface wan (eth1) is offline
+2026-03-10T15:58  Interface wan (eth1) is online              # 4 minuti
+2026-03-14T00:03  Interface wan (eth1) is offline
+2026-03-14T00:04  Interface wan (eth1) is online              # 52 secondi
+2026-04-03T03:35  Interface wan (eth1) is offline
+2026-04-03T03:36  Interface wan (eth1) is online              # 52 secondi
+2026-04-05T06:53  Interface wan (eth1) is offline
+2026-04-05T06:53  Interface wan (eth1) is online              # 53 secondi
+```
+
+Nel frattempo, il link 5G mostrava decine di flap offline/online (il modem 5G si riconnette di continuo — rumoroso ma irrilevante).
+
+Il quadro era chiaro. Nei primi tre giorni dopo il boot, mwan3 aveva dichiarato la fibra *morta* tre volte — per **8.7 ore**, **3.3 ore** e **13.6 ore** rispettivamente. Dopo il 7 febbraio, il pattern era cambiato: gli eventi offline erano diventati blip di meno di un minuto.
+
+Ecco il pezzo chiave: quando WireGuard si è avviato durante il boot del 4 febbraio, netifd aveva bisogno di un gateway per il route dell'endpoint. Il PPPoE (fibra) richiede tempo per negoziare. Il modem 5G — un dispositivo separato dietro una VLAN, già acceso — ottiene un lease DHCP più velocemente. Al momento dell'avvio dell'interfaccia WG, l'unico route di default funzionante passava per il 5G. Il route statico venne creato:
+
+```
+$ ip route show 46.38.233.77
+46.38.233.77 via 192.168.253.254 dev br-lan.253 proto static metric 20
+```
+
+`proto static` — impostato da netifd, presente sia nella tabella principale che nella table 2 (wan5g). **Mai aggiornato. Mai rivalutato.** La fibra tornò ore dopo, poi andò giù di nuovo, poi tornò e si stabilizzò. Il route WireGuard restò sul 5G per due mesi.
+
+E quelle 102.935 entry "Check (ping) failed" che VictoriaLogs aveva accumulato dal 4 febbraio? Spiegavano tutto — mwan3 vedeva fallimenti ping costanti sulla fibra, mantenendo lo score a 9-10 (appena appena online). Periodicamente, abbastanza fallimenti si allineavano per far scendere lo score a zero, e mwan3 dichiarava la fibra offline. A inizio febbraio, quei drop duravano ore perché lo score faticava a recuperare. A marzo, qualcosa nei tempi era cambiato e il recupero era rapido — ma il route WG era già cementato.
+
+Ma aspetta — la fibra non può *davvero* avere tutta questa packet loss. Giusto?
 
 ## Step 5: Ma la fibra funziona!
 
@@ -124,7 +185,7 @@ Il `ping -c 50` persistente funziona perché manda un pacchetto al secondo con u
 
 1. banIP droppa le risposte ICMP che arrivano in burst (by design — "flood protection")
 2. Gli health check mwan3 usano ping one-shot che creano pattern bursty
-3. mwan3 vede ~15% di fallimento ping sulla fibra, score oscilla a 9-10
+3. mwan3 vede fallimenti ping costanti sulla fibra, score oscilla a 9-10
 4. A un certo punto (probabilmente durante un vero micro-down della fibra), lo score è sceso a 0 e mwan3 è passato al 5G
 5. Il route endpoint WireGuard è stato creato via il gateway 5G
 6. La fibra è tornata, lo score mwan3 si è ripreso, il traffico normale scorreva correttamente — **ma il route statico WG è rimasto sul 5G**
@@ -185,7 +246,7 @@ Solo che ho anche **Telegraf** sullo stesso router, che misura la latenza:
 
 Sei target, 10 ping ciascuno, ogni 0.5 secondi, bindati sulla stessa interfaccia `eth1`. Sono **60 echo reply ICMP** per ciclo di misurazione, tutti in arrivo in burst sulla WAN fibra. Con tolleranza burst di 5, banIP li massacrava.
 
-Quindi l'88% di fallimento mwan3 non era solo per i 3 ping di mwan3 che colpivano il limite — erano i 60 ping di Telegraf che **consumavano tutti i token del burst**, senza lasciare niente per gli health check di mwan3 che arrivavano nella stessa finestra. I due sistemi competevano inconsapevolmente per lo stesso budget di 5 pacchetti burst.
+Quindi i continui fallimenti mwan3 non erano solo per i 3 ping di mwan3 che colpivano il limite — erano i 60 ping di Telegraf che **consumavano tutti i token del burst**, senza lasciare niente per gli health check di mwan3 che arrivavano nella stessa finestra. I due sistemi competevano inconsapevolmente per lo stesso budget di 5 pacchetti burst.
 
 Individualmente, ogni default è ragionevole:
 - banIP burst 5 va bene per protezione flood ICMP
