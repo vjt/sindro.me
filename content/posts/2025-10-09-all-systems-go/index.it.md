@@ -1,7 +1,7 @@
 ---
 title: 'Talk su MetalOS ad All Systems Go! 2025'
 date: 2025-10-09
-tags: [linux, sysadmin, facebook]
+tags: [linux, sysadmin, meta]
 categories: [development]
 ---
 
@@ -13,7 +13,7 @@ Il tema di quest'anno è stato prevalentemente "container, container, container"
 
 Ho presentato insieme al mio collega [Serge Dubrouski](https://www.linkedin.com/in/serge-dubrouski-2902638/) il nostro lavoro nella costruzione di un sistema operativo alla scala di Meta. Gestiamo un sistema operativo basato su immagini, ma l'azienda viene da due decenni di aggiornamenti del SO online, quindi abbiamo dovuto progettare una strategia di migrazione adeguata e gettare le fondamenta per il futuro.
 
-Descriviamo come prepariamo le release CentOS dall'upstream, gli [strumenti OSS](https://github.com/facebookincubator/antlir) che abbiamo costruito per creare le immagini del SO, e la tecnologia interna (MetalOS) che abbiamo ideato per costruire un SO che gira su milioni di server Linux.
+Descriviamo come prepariamo le release CentOS dall'upstream, gli [strumenti OSS](https://github.com/metaincubator/antlir) che abbiamo costruito per creare le immagini del SO, e la tecnologia interna (MetalOS) che abbiamo ideato per costruire un SO che gira su milioni di server Linux.
 
 {{< youtube PpDDdLMiPCs >}}
 
