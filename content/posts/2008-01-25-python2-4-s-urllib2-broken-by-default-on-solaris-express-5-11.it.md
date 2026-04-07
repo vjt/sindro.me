@@ -2,7 +2,6 @@
 date: 2008-01-25
 title: urllib2 di Python2.4 rotto di default su Solaris Express 5.11
 tags: [security, git, python, sysadmin]
-categories: [development]
 ---
 
 Mentre installavo allegramente i prerequisiti per compilare un'applicazione su

@@ -2,7 +2,6 @@
 title: Ruby 1.9 conosce la risposta alla vita, all'universo e a tutto quanto
 date: 2007-12-22 22:00:00
 tags: [funny, ruby, weird]
-categories: [number-42]
 ---
 
 ```ruby

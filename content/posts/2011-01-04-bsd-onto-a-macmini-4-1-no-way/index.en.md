@@ -2,7 +2,6 @@
 date: 2011-01-04T18:00:00Z
 title: "*BSD onto a MacMini 4,1? No way. :-("
 tags: [apple, freebsd]
-categories: [development]
 ---
 
 <img src="/posts/2011-01-04-bsd-onto-a-macmini-4-1-no-way/mini-daemon.png" style="float: right" />

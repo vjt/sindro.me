@@ -2,7 +2,6 @@
 date: 2009-02-21T00:00:00Z
 title: Implementing an image gallery using facebox and will_paginate
 tags: [javascript, projects, ruby]
-categories: [development]
 ---
 
 On [VisitaCSA](http://www.visitacsa.it/) we're using

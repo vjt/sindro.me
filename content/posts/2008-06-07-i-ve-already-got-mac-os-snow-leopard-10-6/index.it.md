@@ -2,7 +2,6 @@
 title: Ho già Mac OS Snow Leopard 10.6
 date: 2008-06-07T13:00:00Z
 tags: [apple, macos]
-categories: [number-42]
 ---
 
 E questa è la prova:

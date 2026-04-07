@@ -2,7 +2,6 @@
 title: 'pfasciilogd: collegare pf e fail2ban'
 date: 2023-08-17
 tags: [freebsd, sysadmin, security]
-categories: [development]
 ---
 
 ## TL;DR

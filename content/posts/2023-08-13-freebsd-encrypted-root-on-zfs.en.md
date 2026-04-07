@@ -2,7 +2,6 @@
 title: FreeBSD encrypted root on ZFS
 date: 2023-08-13
 tags: [freebsd, sysadmin]
-categories: [development]
 ---
 
 ## Preface

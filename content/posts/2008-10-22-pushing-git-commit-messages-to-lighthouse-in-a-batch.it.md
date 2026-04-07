@@ -2,7 +2,6 @@
 date: 2008-10-22T15:00:00Z
 title: Inviare i messaggi di commit git a Lighthouse in batch
 tags: [git, ruby]
-categories: [development]
 ---
 
 Se usi l'integrazione con Lighthouse fornita da GitHub, dalle pagine "Admin"

@@ -2,7 +2,6 @@
 title: "Rimuovere un link trigger di lightwindow dopo una chiamata AJAX"
 date: "2008-05-21T17:00:00Z"
 tags: [javascript, rails, ruby]
-categories: [development]
 ---
 
 Ecco, questo è il risultato di 2 giorni di testate contro il muro con lightwindow:

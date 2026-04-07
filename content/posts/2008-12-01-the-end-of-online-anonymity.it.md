@@ -2,7 +2,6 @@
 date: "2008-12-01T22:00:00Z"
 title: "La fine dell'anonimato online"
 tags: ["facebook", "networking", "social", "web2.0"]
-categories: [politics]
 ---
 
 Esattamente le parole che mi girano per la testa in questi giorni:

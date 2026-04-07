@@ -2,7 +2,6 @@
 title: "Odissea 10.5.2: un piccolo viaggio tra i servizi e componenti di Mac OS X"
 date: 2008-02-15
 tags: [apple, backup, macos]
-categories: [development]
 ---
 
 

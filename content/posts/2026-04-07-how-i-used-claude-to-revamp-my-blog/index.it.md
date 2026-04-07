@@ -2,7 +2,6 @@
 title: "Come ho usato Claude per rifare completamente il blog in due giorni"
 date: 2026-04-07
 tags: [ai-generated, projects, sysadmin]
-categories: [development]
 description: "Un post meta sull'uso di Claude Code per tradurre 69 articoli, ridisegnare il layout da zero e aggiungere un easter egg con la sequenza di boot — tutto in 48 ore di iterazione continua."
 ---
 

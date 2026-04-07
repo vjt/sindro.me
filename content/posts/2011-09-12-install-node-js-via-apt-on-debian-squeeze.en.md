@@ -2,7 +2,6 @@
 date: "2011-09-12T12:00:00Z"
 title: "Install node.js via APT on Debian Squeeze"
 tags: [linux, javascript, sysadmin]
-categories: [development]
 ---
 
 Abstract: add [SID](http://www.debian.org/releases/sid/) APT source, configure

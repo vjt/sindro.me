@@ -2,7 +2,6 @@
 title: "10.5.2 Odissey: a small journey in Mac OS X services and components"
 date: 2008-02-15
 tags: [apple, backup, macos]
-categories: [development]
 ---
 
 

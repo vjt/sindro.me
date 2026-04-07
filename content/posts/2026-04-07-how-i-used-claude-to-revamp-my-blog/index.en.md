@@ -2,7 +2,6 @@
 title: "How I Used Claude to Completely Revamp My Blog in Two Days"
 date: 2026-04-07
 tags: [ai-generated, projects, sysadmin]
-categories: [development]
 description: "A meta post about using Claude Code to translate 69 posts, redesign the layout from scratch, and add a boot sequence easter egg — all in 48 hours of constant iteration."
 ---
 

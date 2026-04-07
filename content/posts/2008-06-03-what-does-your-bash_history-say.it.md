@@ -2,7 +2,6 @@
 date: "2008-06-03T00:00:00Z"
 title: "Cosa dice la tua .bash_history?"
 tags: [bash, geek]
-categories: [number-42]
 ---
 
 Un [mio amico](http://www.linkedin.com/in/easter) mi ha detto che sui blog

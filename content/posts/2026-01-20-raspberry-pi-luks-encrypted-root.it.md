@@ -3,7 +3,6 @@ title: Root cifrata con LUKS su Raspberry PI 5
 date: 2026-01-20
 updated: 2026-03-14
 tags: [linux, sysadmin]
-categories: [development]
 ---
 
 ## Premessa

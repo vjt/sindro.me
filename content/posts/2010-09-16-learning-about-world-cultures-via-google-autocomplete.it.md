@@ -2,7 +2,6 @@
 date: 2010-09-16T20:00:00Z
 title: Scoprire le culture del mondo tramite l'autocompletamento di Google
 tags: [funny, networking]
-categories: [development]
 ---
 
 Per curiosità, stavo guardando come un browser interagisce col backend di Google

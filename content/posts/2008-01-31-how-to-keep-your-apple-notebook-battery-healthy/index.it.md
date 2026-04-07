@@ -2,7 +2,6 @@
 date: 2008-01-31
 title: Come mantenere in salute la batteria del tuo notebook Apple
 tags: [apple, howto, life]
-categories: [development]
 ---
 
 3 semplici regole:

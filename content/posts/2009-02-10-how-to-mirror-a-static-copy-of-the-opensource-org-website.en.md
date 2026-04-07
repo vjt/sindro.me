@@ -2,7 +2,6 @@
 date: "2009-02-10T18:08:34Z"
 title: "How to mirror a static copy of the opensource.org website"
 tags: [bash, open-source]
-categories: [development]
 ---
 
 I currently maintain the [italian mirror](http://opensource.antifork.org/) of

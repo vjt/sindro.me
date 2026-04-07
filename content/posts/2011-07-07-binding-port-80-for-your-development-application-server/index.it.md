@@ -2,7 +2,6 @@
 date: 2011-07-07T14:00:00Z
 title: Fare il bind della porta 80/TCP come non-root sul server di sviluppo
 tags: [linux, ruby]
-categories: [development]
 ---
 
 ![Neo Tux](/posts/2011-07-07-binding-port-80-for-your-development-application-server/neo-tux.png)

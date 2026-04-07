@@ -1,7 +1,6 @@
 ---
 title: The best blog post I've ever wrote
 date: 2008-07-08T16:00:00Z
-categories: [number-42]
 ---
 
 ```

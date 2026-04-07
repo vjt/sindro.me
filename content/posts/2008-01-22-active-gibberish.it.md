@@ -2,7 +2,6 @@
 title: Active Gibberish
 date: 2008-01-22
 tags: [funny, rails, ruby]
-categories: [development]
 ---
 
 **AGGIORNAMENTO: non ti serve questo codice, perché a partire dalla versione 2.2 di Rails il supporto alla localizzazione è integrato.**

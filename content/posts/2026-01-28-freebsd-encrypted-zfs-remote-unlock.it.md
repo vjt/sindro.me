@@ -2,7 +2,6 @@
 title: Sblocco remoto via SSH di ZFS cifrato su FreeBSD
 date: 2026-01-28
 tags: [ai-generated, freebsd, sysadmin]
-categories: [development]
 ---
 
 ## LUKS remoto? Pfft. Ecco come sbloccare via SSH una root ZFS cifrata su FreeBSD (nel modo difficile)

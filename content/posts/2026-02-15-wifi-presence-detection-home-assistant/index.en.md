@@ -2,7 +2,6 @@
 title: "WiFi Presence Detection for Home Assistant Using OpenWrt"
 date: 2026-02-15
 tags: [ai-generated, iot, home-assistant, openwrt, networking, python, sysadmin]
-categories: ["development", "Open Source"]
 description: "Room-level presence detection for Home Assistant by scraping RSSI metrics directly from OpenWrt APs. Strongest signal picks the room. No TSDB, no log parsing, no cloud — just your APs telling you where everyone is."
 ---
 

@@ -2,7 +2,6 @@
 date: 2008-01-16
 tags: [sysadmin, python]
 title: Come compilare python2.5 su SCO_SV
-categories: [development]
 ---
 
 - Devi avere PTH installato, e forse altre librerie.

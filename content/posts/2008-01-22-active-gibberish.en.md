@@ -2,7 +2,6 @@
 title: Active Gibberish
 date: 2008-01-22
 tags: [funny, rails, ruby]
-categories: [development]
 ---
 
 **UPDATE: you don’t need this code, because starting from the 2.2 version of Rails, localization support is built-in.**

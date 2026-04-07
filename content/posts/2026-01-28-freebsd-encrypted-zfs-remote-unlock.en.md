@@ -2,7 +2,6 @@
 title: FreeBSD encrypted ZFS remote unlocking via SSH
 date: 2026-01-28
 tags: [ai-generated, freebsd, sysadmin]
-categories: [development]
 ---
 
 ## Remote LUKS? Pfft. Here is how to SSH-Unlock a ZFS-Encrypted FreeBSD Root (The Hard Way)

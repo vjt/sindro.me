@@ -2,7 +2,6 @@
 title: Sappiamo ancora farlo
 date: 2008-05-03
 tags: [photography]
-categories: [number-42]
 ---
 
 Beh, a quanto pare non ho motivo di essere paranoico per la mia età: so ancora

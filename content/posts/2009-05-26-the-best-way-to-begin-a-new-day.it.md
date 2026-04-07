@@ -2,7 +2,6 @@
 title: Il modo migliore per iniziare una nuova giornata
 date: 2009-05-26T10:00:00Z
 tags: [linux, backup]
-categories: [development]
 ---
 
 ```

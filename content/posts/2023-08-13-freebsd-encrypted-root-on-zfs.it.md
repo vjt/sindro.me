@@ -2,7 +2,6 @@
 title: Root cifrata su ZFS con FreeBSD
 date: 2023-08-13
 tags: [freebsd, sysadmin]
-categories: [development]
 ---
 
 ## Premessa

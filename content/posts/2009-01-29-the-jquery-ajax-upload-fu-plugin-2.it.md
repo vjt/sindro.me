@@ -2,7 +2,6 @@
 date: "2009-01-29T09:00:00Z"
 title: "Il plugin jQuery ajax-upload-fu"
 tags: [javascript, ruby, projects]
-categories: [development]
 ---
 
 Di recente ho scritto un [plug-in jQuery](http://gist.github.com/54441) che

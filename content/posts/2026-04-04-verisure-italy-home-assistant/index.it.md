@@ -2,7 +2,6 @@
 title: "Come ho rimpiazzato l'app Verisure con Home Assistant"
 date: 2026-04-04
 tags: [ai-generated, reverse-engineering, iot, home-assistant, python, security]
-categories: [development]
 description: "L'app Verisure fa schifo: lenta, piena di pubblicità, zero automazioni. L'ho rimpiazzata con un componente custom per Home Assistant."
 ---
 

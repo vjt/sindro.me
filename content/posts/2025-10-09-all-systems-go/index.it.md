@@ -2,7 +2,6 @@
 title: 'Talk su MetalOS ad All Systems Go! 2025'
 date: 2025-10-09
 tags: [linux, sysadmin, meta]
-categories: [development]
 ---
 
 Ho presentato un talk ad [All Systems Go 2025](https://all-systems-go.io/), la conferenza fondamentale sullo userspace Linux. La conferenza è organizzata principalmente dal team di systemd, ed è un punto d'incontro annuale per tutti quelli che lavorano su software di sistema Linux.

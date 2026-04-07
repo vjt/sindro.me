@@ -2,7 +2,6 @@
 date: 2009-01-29T19:00:00Z
 title: "A permalink_fu improvement: allow modification of permalinks and send HTTP redirects on-the-fly"
 tags: [ruby, projects, rails]
-categories: [development]
 ---
 
 Another spin-off from the [www.visitacsa.it](http://www.visitacsa.it/) website:

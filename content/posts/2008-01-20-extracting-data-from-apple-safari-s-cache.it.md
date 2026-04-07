@@ -2,7 +2,6 @@
 title: Estrarre dati dalla cache di Apple Safari
 date: 2008-01-20
 tags: [apple, backup]
-categories: [development]
 ---
 
 Cinque minuti fa ho sovrascritto il nuovissimo e fiammante foglio di stile CSS
