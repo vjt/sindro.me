@@ -1,7 +1,7 @@
 ---
 title: "wifi-dethrash: Finding and Fixing WiFi Mesh Thrashing on OpenWrt"
 date: 2026-04-03
-tags: [iot, openwrt, networking, monitoring, python, sysadmin]
+tags: [ai-generated, iot, openwrt, networking, monitoring, python, sysadmin]
 categories: ["development", "Open Source"]
 description: "My OpenWrt mesh had a roaming problem: one phone bounced between APs 129 times in 24 hours. I built a tool to diagnose WiFi thrashing, visualize roaming patterns, and generate actionable fixes. Here's the full stack: Lua collector, Go station resolver, Python analyzer, and a 13-panel Grafana dashboard."
 ---
