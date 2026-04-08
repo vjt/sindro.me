@@ -4,6 +4,8 @@ date: 2026-01-28
 tags: [ai-generated, freebsd, sysadmin]
 ---
 
+![Un rack server bloccato in un data center buio, un fascio di connessione SSH che raggiunge un lucchetto di cifratura luminoso](/posts/2026-01-28-freebsd-encrypted-zfs-remote-unlock/cover.jpg)
+
 ## LUKS remoto? Pfft. Ecco come sbloccare via SSH una root ZFS cifrata su FreeBSD (nel modo difficile)
 
 Se usi FreeBSD [come me](https://sindro.me/posts/2023-08-13-freebsd-encrypted-root-on-zfs/), su un server remoto con cifratura completa del disco (ZFS su GELI), conosci il panico del riavvio. Sei sempre alla mercé di un KVM-over-IP o di una connessione VNC dal browser, per inserire la password del filesystem root al prompt del kernel.

@@ -4,6 +4,8 @@ date: 2026-01-28
 tags: [ai-generated, freebsd, sysadmin]
 ---
 
+![A locked server rack in a dark data center, an SSH connection beam reaching toward a glowing encryption padlock](/posts/2026-01-28-freebsd-encrypted-zfs-remote-unlock/cover.jpg)
+
 ## Remote LUKS? Pfft. Here is how to SSH-Unlock a ZFS-Encrypted FreeBSD Root (The Hard Way)
 
 If you run FreeBSD [like I do](https://sindro.me/posts/2023-08-13-freebsd-encrypted-root-on-zfs/), on a remote server with full disk encryption (ZFS on GELI), you know the panic of rebooting. You are always at the mercy of a KVM-over-IP or a VNC connection from the browser, to insert the root filesystem password at the kernel prompt.
