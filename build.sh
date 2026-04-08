@@ -4,14 +4,14 @@
 set -e
 
 VENV="$(dirname "$(realpath "$0")")/../.venv"
+
+# Source .env for HUGO_BASEURL and other overrides
+[ -f .env ] && . ./.env
+
 rm -rf public
 
 echo "Building Hugo site..."
-if [ -f .baseurl ]; then
-  hugo --baseURL "$(cat .baseurl)" "$@"
-else
-  hugo "$@"
-fi
+hugo "$@"
 
 echo "Indexing with Pagefind..."
 npx -y pagefind --site public \
