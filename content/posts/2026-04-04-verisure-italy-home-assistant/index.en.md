@@ -5,6 +5,8 @@ tags: [ai-generated, reverse-engineering, iot, home-assistant, python, security]
 description: "The Verisure app is garbage: slow, ad-infested, zero automations. I replaced it with a custom Home Assistant integration."
 ---
 
+![A cracked phone with a bloated alarm app tossed in the trash, while a Home Assistant dashboard glows triumphantly on a tablet](/posts/2026-04-04-verisure-italy-home-assistant/cover.jpg)
+
 The Verisure app is garbage. There, I said it.
 
 It's not that the alarm itself is bad — the SDVECU panel is solid, the
