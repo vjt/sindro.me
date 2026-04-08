@@ -5,7 +5,7 @@ tags: [ai-generated, sysadmin, observability, projects]
 description: "How I replayed 25 million log entries through a full enrichment pipeline — GeoIP, ASN, reverse DNS — on a Raspberry Pi 5, with Claude doing the heavy lifting on code."
 ---
 
-![BSD daemon with telemetry flowing through an enrichment pipeline into VictoriaLogs](/posts/2026-04-08-backfilling-two-years-of-logs/cover.png)
+![BSD daemon with telemetry flowing through an enrichment pipeline into VictoriaLogs](/posts/2026-04-08-backfilling-two-years-of-logs/cover.jpg)
 
 I have a FreeBSD server called m42 that's been running for years. It handles email (Postfix + Dovecot + Rspamd), web (nginx with a dozen vhosts), firewall (pf), and all the usual suspects. It generates thousands of log entries per day across four distinct formats: BSD syslog, fail2ban, pf packet filter, and nginx access/error logs.
 
