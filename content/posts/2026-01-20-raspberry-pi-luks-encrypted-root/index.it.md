@@ -5,6 +5,8 @@ updated: 2026-03-14
 tags: [linux, sysadmin]
 ---
 
+![Un Raspberry Pi 5 su una scrivania con un SSD raffigurato come una cassaforte luminosa, un lucchetto che fluttua sopra](/posts/2026-01-20-raspberry-pi-luks-encrypted-root/cover.jpg)
+
 ## Premessa
 
 Quindi ho cominciato a far girare [Home Assistant](https://www.home-assistant.io/)

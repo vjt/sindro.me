@@ -5,6 +5,8 @@ updated: 2026-03-14
 tags: [linux, sysadmin]
 ---
 
+![A Raspberry Pi 5 on a desk with an SSD depicted as a glowing vault, a padlock icon floating above](/posts/2026-01-20-raspberry-pi-luks-encrypted-root/cover.jpg)
+
 ## Preface
 
 So I started running [home assistant](https://www.home-assistant.io/) at home
