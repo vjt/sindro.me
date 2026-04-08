@@ -6,9 +6,9 @@ description: "Un rate limit ICMP del firewall droppava le risposte degli health 
 featuredImage: "cover.jpg"
 ---
 
-![La guardia banIP blocca i ping sulla superstrada della fibra mentre il traffico si ingolfa sul backup 5G](cover.jpg)
+**TL;DR:** Se usi OpenWrt con mwan3 (failover multi-WAN) e una VPN WireGuard in **split-tunnel** (cioè NON routi tutto il traffico attraverso la VPN), aggiungi `nohostroute=1` all'interfaccia WireGuard. Senza, netifd crea un route statico per l'endpoint WireGuard all'avvio dell'interfaccia, pinnato a qualsiasi uplink sia attivo in quel momento. Per il primo corollario della Legge di Murphy, tutto ciò che può andare storto andrà storto *nel momento peggiore possibile* — quindi il link primario sarà giù esattamente quando WireGuard parte, e il route dell'endpoint resta incollato permanentemente al backup. La tua VPN resterà incollata al backup lento mentre il link primario se ne sta lì a non fare un cazzo. Non te ne accorgerai finché non dovrai trasferire qualcosa di grosso.
 
-**TL;DR:** Se usi OpenWrt con mwan3 (failover multi-WAN) e WireGuard, aggiungi `nohostroute=1` all'interfaccia WireGuard. Senza, netifd crea un route statico per l'endpoint WireGuard all'avvio dell'interfaccia, pinnato a qualsiasi uplink sia attivo in quel momento. Per il primo corollario della Legge di Murphy, tutto ciò che può andare storto andrà storto *nel momento peggiore possibile* — quindi il link primario sarà giù esattamente quando WireGuard parte, e il route dell'endpoint resta incollato permanentemente al backup. La tua VPN resterà incollata al backup lento mentre il link primario se ne sta lì a non fare un cazzo. Non te ne accorgerai finché non dovrai trasferire qualcosa di grosso.
+(Se *routi* tutto il traffico attraverso WireGuard, l'host route ti **serve** per evitare un routing loop — ma su un setup multi-WAN, il problema del route stantio resta identico. Ti servirà un workaround diverso, tipo uno script hotplug che aggiorni il route dell'endpoint quando mwan3 switcha uplink.)
 
 Oggi ho scoperto che il mio tunnel WireGuard verso un server remoto strisciava a **2 Mbps** da inizio febbraio. Il fix ha richiesto due comandi UCI. La root cause era il flag `nohostroute` mancante — più un bonus: il mio stesso firewall sabotava i miei stessi health check, facendo sembrare la fibra abbastanza inaffidabile da impedire al sistema di auto-correggersi.
 
@@ -26,7 +26,7 @@ Eppure.
 
 ## Step 1: È WireGuard il collo di bottiglia?
 
-Il mio primo istinto è stato che la crypto WireGuard saturasse la CPU del Pi. Quindi ho testato il throughput SSH grezzo, poi installato iperf3 (che si è bloccato in installazione per un prompt debconf interattivo su un sistema headless — classico). I numeri:
+Il mio primo istinto è stato che la crypto WireGuard saturasse la CPU del Pi. Installato iperf3:
 
 ```
 $ iperf3 -c m42 -t 5
@@ -187,13 +187,13 @@ Il `ping -c 50` persistente funziona perché manda un pacchetto al secondo con u
 ## La cascata completa
 
 1. banIP droppa le risposte ICMP che arrivano in burst (by design — "flood protection")
-2. Gli health check mwan3 usano ping one-shot che creano pattern bursty
-3. mwan3 vede fallimenti ping costanti sulla fibra, score oscilla a 9-10
-4. A un certo punto (probabilmente durante un vero micro-down della fibra), lo score è sceso a 0 e mwan3 è passato al 5G
-5. Il route endpoint WireGuard è stato creato via il gateway 5G
-6. La fibra è tornata, lo score mwan3 si è ripreso, il traffico normale scorreva correttamente — **ma il route statico WG è rimasto sul 5G**
-7. Tutto il traffico WireGuard attraverso il tunnel: 2 Mbps invece di 70 Mbps
-8. Per **due mesi** — dal boot del sistema il 4 febbraio
+2. Gli health check mwan3 + i ping di Telegraf creano pattern ICMP bursty che colpiscono il limite
+3. mwan3 vede fallimenti ping costanti sulla fibra, dichiarandola periodicamente offline
+4. A inizio febbraio, testando il nuovo backup 5G, ho tirato giù la fibra manualmente e riavviato WG
+5. netifd ha creato il route dell'endpoint WG via il 5G — l'unico gateway attivo in quel momento
+6. La fibra è tornata, il traffico scorreva normalmente — **ma il route statico WG è rimasto sul 5G**
+7. banIP continuava a causare "outage" sporadici sulla fibra, impedendo al sistema di auto-correggersi
+8. Tutto il traffico WireGuard: 2 Mbps invece di 70 Mbps. **Per due mesi.**
 
 ## Il fix
 
@@ -213,7 +213,7 @@ ifdown wg && ifup wg
 
 Il primo comando alza il rate limit ICMP da 25/sec a 250/sec, così i ping bursty di mwan3 non raggiungono mai la soglia di drop.
 
-Il secondo comando è il **vero fix della root cause**. Di default, netifd crea un route statico per l'IP dell'endpoint WireGuard per prevenire routing loop (se tutto il traffico passasse per la VPN, i pacchetti criptati proverebbero anche loro a passare per la VPN → loop infinito). Ma io **non** routo tutto il traffico per la VPN — solo `192.168.50.0/24`. L'IP endpoint `46.38.233.77` deve semplicemente seguire la default route, che mwan3 gestisce. Senza `nohostroute=1`, viene creato un route statico all'avvio dell'interfaccia WireGuard, pinnato a qualsiasi gateway sia attivo in quel momento. Se la fibra sta ancora inizializzando o mwan3 non l'ha ancora dichiarata online, il route va sul 5G — e ci resta per sempre.
+Il secondo comando è il **vero fix della root cause**. Di default, netifd crea un route statico per l'IP dell'endpoint WireGuard per prevenire routing loop (se tutto il traffico passasse per la VPN, i pacchetti criptati proverebbero anche loro a passare per la VPN → loop infinito). Ma io **non** routo tutto il traffico per la VPN — solo `192.168.50.0/24`. L'IP endpoint `46.38.233.77` deve semplicemente seguire la default route, che mwan3 gestisce. Senza `nohostroute=1`, viene creato un route statico all'avvio dell'interfaccia WireGuard, pinnato a qualsiasi gateway sia attivo in quel momento. Se la fibra è giù quando WG parte — perché stai testando il failover, per un vero outage, o perché banIP ha convinto mwan3 che è morta — il route va sul 5G e ci resta per sempre.
 
 Con `nohostroute=1`, nessun route statico. Il traffico WireGuard verso l'endpoint segue la default route. Se la fibra va giù, mwan3 switcha il default sul 5G, e WireGuard segue automaticamente. Nessun route stantio, nessun intervento manuale.
 

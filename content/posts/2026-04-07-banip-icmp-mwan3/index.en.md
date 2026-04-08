@@ -6,9 +6,9 @@ description: "A firewall ICMP rate limit was dropping mwan3 health check replies
 featuredImage: "cover.jpg"
 ---
 
-![banIP guard blocking ping packets on the fiber highway while traffic jams on the 5G backup](cover.jpg)
+**TL;DR:** If you run OpenWrt with mwan3 (multi-WAN failover) and a **split-tunnel** WireGuard VPN (i.e., you're NOT routing all traffic through it), add `nohostroute=1` to your WireGuard interface. Without it, netifd creates a static route for the WireGuard endpoint at interface-up time, pinned to whatever uplink happens to be active at that moment. By the first corollary of Murphy's Law, anything that can go wrong will go wrong *at the worst possible moment* — so your primary link will be down precisely when WireGuard starts, and the endpoint route gets permanently stuck on the backup. Your VPN will be stuck on the slow backup while your primary link sits there doing nothing. You won't notice until you need to transfer something big.
 
-**TL;DR:** If you run OpenWrt with mwan3 (multi-WAN failover) and WireGuard, add `nohostroute=1` to your WireGuard interface. Without it, netifd creates a static route for the WireGuard endpoint at interface-up time, pinned to whatever uplink happens to be active at that moment. By the first corollary of Murphy's Law, anything that can go wrong will go wrong *at the worst possible moment* — so your primary link will be down precisely when WireGuard starts, and the endpoint route gets permanently stuck on the backup. Your VPN will be stuck on the slow backup while your primary link sits there doing nothing. You won't notice until you need to transfer something big.
+(If you *are* routing all traffic through WireGuard, you **need** the host route to prevent a routing loop — but on a multi-WAN setup, the same stale-route problem applies. You'll need a different workaround, like a hotplug script that updates the endpoint route when mwan3 switches uplinks.)
 
 Today I discovered that my WireGuard tunnel to a remote server has been crawling at **2 Mbps** since early February. The fix took two UCI commands. The root cause was the missing `nohostroute` flag — plus a bonus: my own firewall was sabotaging my own health checks, making the fiber look unreliable enough that the system never self-corrected.
 
@@ -40,16 +40,7 @@ HTTPS downloads from the same server's public IP? 28 Mbps. So the server is fine
 
 ## Step 1: Is WireGuard the bottleneck?
 
-My first instinct was that WireGuard crypto was somehow saturating the Pi's CPU. So I tested the raw SSH throughput:
-
-```
-$ ssh root@m42 'dd if=/dev/zero bs=1M count=10' | dd of=/dev/null
-10485760 bytes copied, 53.5782 s, 196 kB/s
-```
-
-196 KB/s. Abysmal. But that `dd` test is misleading — small blocks, SSH overhead. So I installed iperf3 and tested properly. Getting iperf3 installed was its own adventure — `apt-get install -y iperf3` hung because Debian's postinst script has an interactive debconf prompt asking whether to start iperf3 as a daemon. On a headless system. With no terminal. Classic.
-
-After killing the stuck dpkg, forcing `DEBIAN_FRONTEND=noninteractive`, and finally getting iperf3 running:
+My first instinct was that WireGuard crypto was somehow saturating the Pi's CPU. So I installed iperf3 and tested properly:
 
 ```
 $ iperf3 -c m42 -t 5
@@ -74,7 +65,7 @@ speed: 3,587,090 bytes/sec  # 28 Mbps
 
 ## Step 2: The dual-WAN rabbit hole
 
-My OpenWrt router `golem` (GL.iNet MT-6000 running my own OpenWrt build) does dual-WAN failover with mwan3. Two uplinks:
+My router `golem` does dual-WAN failover with mwan3. Two uplinks:
 - **Fiber** (`eth1`, metric 10) — primary
 - **5G** (`br-lan.253`, VLAN on the LAN bridge to a 5G modem, metric 20) — backup
 
@@ -235,14 +226,7 @@ Total failures: 4/30
 
 But `ping -c 50` (single process, persistent socket) works perfectly. The difference between spawning 50 processes and keeping one socket open.
 
-I also tested three variants to narrow it down:
-- One-shot with LD_PRELOAD (mwan3's WRAP): 4/30 failures
-- One-shot with just `-I eth1` (no preload): 4/30 failures
-- One-shot with no interface binding at all: 4/30 failures
-
-**Same failure rate in all cases.** The LD_PRELOAD wrapper isn't the issue. The interface binding isn't the issue. It's something about running `ping -c 1` as separate processes.
-
-My first hypothesis was fork/exec overhead — maybe under load, the 4-second timeout was starting before the ping actually sent. But the system load was 0.14. I increased the timeout to 10 seconds: still 3/30 failures. Not a timeout issue.
+I tested three variants — with mwan3's `LD_PRELOAD` wrapper, with just `-I eth1`, and with no interface binding at all. **Same 4/30 failure rate in every case.** Not the wrapper, not the interface binding, not a timeout issue. Something about running `ping -c 1` as separate processes.
 
 ## Step 7: tcpdump reveals the truth
 
@@ -274,14 +258,14 @@ The `ping -c 50` persistent test works because it sends one packet per second wi
 
 ## The full cascade
 
-1. banIP drops ICMP replies that arrive in bursts (by design — "flood protection")
-2. mwan3 health checks use one-shot pings that create bursty reply patterns
-3. mwan3 sees constant ping failures on fiber, score oscillates at 9-10
-4. At some point (probably during a real brief fiber hiccup), the score dropped to 0 and mwan3 switched to 5G
-5. WireGuard endpoint route got created via 5G gateway
-6. Fiber came back, mwan3 score recovered, traffic flowed normally — **but the WG static route remained on 5G**
-7. All WireGuard traffic through the tunnel: 2 Mbps instead of 70 Mbps
-8. For **two months** — since the system booted on February 4th
+1. banIP drops ICMP replies arriving in bursts (by design — "flood protection")
+2. mwan3 health checks + Telegraf pings create bursty ICMP patterns that hit the limit
+3. mwan3 sees constant ping failures on fiber, periodically declaring it offline
+4. In early February, while testing the new 5G backup, I manually downed the fiber and restarted WG
+5. netifd created the WG endpoint route via 5G — the only active gateway at that moment
+6. Fiber came back, traffic flowed normally — **but the WG static route stayed on 5G**
+7. banIP kept causing sporadic fiber "outages," preventing the system from ever self-correcting
+8. All WireGuard traffic: 2 Mbps instead of 70 Mbps. **For two months.**
 
 ## The fix
 
@@ -301,7 +285,7 @@ ifdown wg && ifup wg
 
 The first command raises the ICMP rate limit from 25/sec to 250/sec, so mwan3's bursty pings never hit the drop threshold.
 
-The second command is the **actual root cause fix**. By default, netifd creates a static host route for the WireGuard endpoint IP to prevent routing loops (if all traffic went through the VPN, the encrypted packets would also try to go through the VPN → infinite loop). But I'm **not** routing all traffic through the VPN — only `192.168.50.0/24`. The endpoint IP `46.38.233.77` should just follow the default route, which mwan3 manages. Without `nohostroute=1`, a static route gets created at WireGuard interface-up time, pinned to whatever gateway happens to be active at that instant. If the fiber is still initializing or mwan3 hasn't declared it online yet, the route goes to 5G — and stays there forever.
+The second command is the **actual root cause fix**. By default, netifd creates a static host route for the WireGuard endpoint IP to prevent routing loops (if all traffic went through the VPN, the encrypted packets would also try to go through the VPN → infinite loop). But I'm **not** routing all traffic through the VPN — only `192.168.50.0/24`. The endpoint IP `46.38.233.77` should just follow the default route, which mwan3 manages. Without `nohostroute=1`, a static route gets created at WireGuard interface-up time, pinned to whatever gateway happens to be active at that instant. If the fiber happens to be down when WG starts — because you're testing failover, because of a real outage, because banIP made mwan3 think it's dead — the route goes to 5G and stays there forever.
 
 With `nohostroute=1`, there's no static route. WireGuard traffic to the endpoint follows the default route. If fiber goes down, mwan3 switches the default to 5G, and WireGuard follows automatically. When fiber comes back, it switches back. No stale routes, no manual intervention.
 
