@@ -5,6 +5,8 @@ tags: [ai-generated, iot, home-assistant, openwrt, networking, python, sysadmin]
 description: "Rilevamento presenza a livello di stanza per Home Assistant tramite scraping delle metriche RSSI direttamente dagli AP OpenWrt. Il segnale più forte sceglie la stanza. Niente TSDB, niente parsing di log, niente cloud — solo i tuoi AP che ti dicono dove sono tutti."
 ---
 
+![Vista a spaccato di una casa con access point WiFi in ogni stanza, telefoni collegati all'AP più vicino in base alla potenza del segnale](/posts/2026-02-15-wifi-presence-detection-home-assistant/cover.jpg)
+
 Avevo due problemi con il rilevamento presenza di Home Assistant.
 
 Il primo: il GPS ti dice *se* qualcuno è a casa, ma non *dove* in casa si trova. La mia casa ha sei access point OpenWrt distribuiti su tre piani. Sanno già esattamente quale telefono è connesso a quale AP in ogni momento -- sono dati di presenza a livello di stanza, lì nello stack WiFi, che urlano per essere usati. Sapere chi è in quale stanza apre un'intera classe di automazioni che il GPS non può toccare: luci che ti seguono, climatizzazione per stanza occupata, una dashboard che mostra la situazione della casa a colpo d'occhio.

@@ -5,6 +5,8 @@ tags: [ai-generated, iot, home-assistant, openwrt, networking, python, sysadmin]
 description: "Room-level presence detection for Home Assistant by scraping RSSI metrics directly from OpenWrt APs. Strongest signal picks the room. No TSDB, no log parsing, no cloud — just your APs telling you where everyone is."
 ---
 
+![Cozy cutaway view of a multi-story home with WiFi access points in each room, phones tethered to the nearest AP by signal strength](/posts/2026-02-15-wifi-presence-detection-home-assistant/cover.jpg)
+
 I had two problems with Home Assistant's presence detection.
 
 The first: GPS tells you *if* someone is home, but not *where* in the house they are. My home has six OpenWrt access points spread across three floors. They already know exactly which phone is connected to which AP at every moment — that's room-level presence data, sitting right there in the WiFi stack, screaming to be used. Knowing who's in which room opens up a whole class of automations that GPS can't touch: lights that follow you, climate control per occupied room, a dashboard that shows the household at a glance.
