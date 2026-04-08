@@ -5,6 +5,8 @@ tags: [ai-generated, projects, sysadmin]
 description: "Un post meta sull'uso di Claude Code per tradurre 69 articoli, ridisegnare il layout da zero e aggiungere un easter egg con la sequenza di boot — tutto in 48 ore di iterazione continua."
 ---
 
+![Uno sviluppatore sorridente davanti a un blog ridisegnato, mentre un robot AI soddisfatto riposa sullo sfondo circondato da token di codice fluttuanti](/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/cover.jpg)
+
 È come avere un ingegnere incredibilmente veloce, competente e preciso seduto accanto a te — uno che ti lascia davvero fluire creativamente senza freni. Dici "e se facessimo..." e trenta secondi dopo hai un prototipo funzionante davanti agli occhi. Dici "no, più così" e ha già finito prima che tu abbia spiegato il perché.
 
 È questa la sensazione che ho avuto lavorando con [Claude Code](https://claude.ai/code) negli ultimi due giorni. Ho rifatto completamente questo blog — tradotto tutti e 69 gli articoli in italiano, ridisegnato il layout da zero, aggiunto un easter egg nerd con la sequenza di boot del kernel, ripulito anni di tag accumulati, e iterato su decine di decisioni di design. Tutto tracciato in git, tutto verificabile, tutto live.
