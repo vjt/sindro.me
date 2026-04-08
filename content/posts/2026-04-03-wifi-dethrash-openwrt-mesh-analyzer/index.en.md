@@ -5,6 +5,8 @@ tags: [ai-generated, iot, openwrt, networking, monitoring, python, sysadmin]
 description: "My OpenWrt mesh had a roaming problem: one phone bounced between APs 129 times in 24 hours. I built a tool to diagnose WiFi thrashing, visualize roaming patterns, and generate actionable fixes. Here's the full stack: Lua collector, Go station resolver, Python analyzer, and a 13-panel Grafana dashboard."
 ---
 
+![A house cross-section with WiFi access points on each floor, signal waves overlapping, and a phone bouncing chaotically between them](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/cover.jpg)
+
 It started with [WiFi presence detection](/posts/2026-02-15-wifi-presence-detection-home-assistant/). I had built a system that tracks which room everyone is in by scraping RSSI from my OpenWrt APs. It worked — but the room assignments kept flickering. Kitchen. Office. Kitchen. Office. Three times in ten seconds. The state machine was fine. The WiFi wasn't.
 
 My home network runs six OpenWrt APs across three floors, two SSIDs — Mercury on 5 GHz, Saturn on 2.4 GHz — all backed by 802.11r for fast roaming. From the outside, it looks like a proper mesh. From the inside, one phone was bouncing between access points **129 times in 24 hours**.

@@ -5,6 +5,8 @@ tags: [ai-generated, iot, openwrt, networking, monitoring, python, sysadmin]
 description: "La mia mesh OpenWrt aveva un problema di roaming: un telefono è rimbalzato tra AP 129 volte in 24 ore. Ho costruito uno strumento per diagnosticare il thrashing WiFi, visualizzare i pattern di roaming, e generare fix azionabili. Ecco l'intero stack: collector Lua, station resolver Go, analyzer Python, e una dashboard Grafana con 13 pannelli."
 ---
 
+![Sezione di una casa con access point WiFi su ogni piano, onde del segnale sovrapposte, e un telefono che rimbalza caoticamente tra di essi](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/cover.jpg)
+
 Tutto è cominciato con il [rilevamento presenza WiFi](/posts/2026-02-15-wifi-presence-detection-home-assistant/). Avevo costruito un sistema che traccia in quale stanza si trova ognuno scrapando l'RSSI dai miei AP OpenWrt. Funzionava -- ma le assegnazioni delle stanze continuavano a sfarfallare. Cucina. Ufficio. Cucina. Ufficio. Tre volte in dieci secondi. La macchina a stati era a posto. Il WiFi no.
 
 La mia rete domestica ha sei AP OpenWrt su tre piani, due SSID -- Mercury su 5 GHz, Saturn su 2,4 GHz -- tutti con 802.11r per il roaming veloce. Vista da fuori, sembra una mesh fatta bene. Vista da dentro, un telefono rimbalzava tra access point **129 volte in 24 ore**.
