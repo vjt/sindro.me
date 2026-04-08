@@ -5,6 +5,8 @@ tags: [ai-generated, iot, networking, openwrt, python, sysadmin]
 description: "Strumenti Python open source per modem Quectel 5G su OpenWRT. Monitoraggio del segnale in tempo reale con feedback audio per il puntamento dell'antenna. Licenza MIT."
 ---
 
+![Antenna direzionale su un muro puntata verso una torre cellulare, cavo in fibra che si spezza da un lato mentre le onde 5G colmano il divario](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/cover.jpg)
+
 Un paio di mesi fa, la fibra è andata giù. Come da primo corollario di Murphy, è successo nel momento peggiore in assoluto: subito prima di una riunione cruciale con un'azienda partner. Mi sono ritrovato a saltare freneticamente tra l'AP di un vicino lontano e l'hotspot del telefono, ma entrambi facevano schifo. Parliamo di 200ms di RTT e 15% di packet loss. Mi stavo scusando a profusione mentre il mio feed video si trasformava in uno slideshow del 1998; nessuno capiva una parola di quello che dicevo. Ho finito per spegnere il video e stare zitto. Opportunità persa. **Mai. Più.**
 
 Così sono andato in modalità paranoica totale e ho costruito un setup di backup 5G serio.
