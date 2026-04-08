@@ -95,7 +95,7 @@ Negli ultimi 30 giorni, ho fatto più di **5.000 commit** su una dozzina di prog
 - Creato [WiFi Dethrash](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/), un analizzatore di reti mesh per OpenWrt.
 - Scritto un [sistema di rilevamento presenza WiFi](/it/posts/2026-02-15-wifi-presence-detection-home-assistant/) per Home Assistant.
 - Costruito [tool per modem 5G](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/) per OpenWrt.
-- [Riprocessato due anni di log](/it/posts/2026-04-09-backfilling-two-years-of-logs/) attraverso una pipeline di enrichment completa.
+- [Riprocessato due anni di log](/it/posts/2026-04-08-backfilling-two-years-of-logs/) attraverso una pipeline di enrichment completa.
 
 Ogni singolo progetto fatto dal terminale. CSS, Python, Go, Lua, shell script, template Hugo, config nginx, unit systemd, codice di networking kernel-adjacent. L'intero stack, dall'alto al basso, da riga di comando.
 

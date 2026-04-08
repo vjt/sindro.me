@@ -95,7 +95,7 @@ Over the past 30 days, I've made over **5,000 commits** across a dozen projects 
 - Created [WiFi Dethrash](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/), an OpenWrt mesh network analyzer.
 - Wrote a [WiFi presence detection system](/posts/2026-02-15-wifi-presence-detection-home-assistant/) for Home Assistant.
 - Built [5G modem tools](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/) for OpenWrt.
-- [Backfilled two years of logs](/posts/2026-04-09-backfilling-two-years-of-logs/) through a full enrichment pipeline.
+- [Backfilled two years of logs](/posts/2026-04-08-backfilling-two-years-of-logs/) through a full enrichment pipeline.
 
 Every single one of these was done from the terminal. CSS, Python, Go, Lua, shell scripts, Hugo templates, nginx configs, systemd units, kernel-adjacent networking code. The full stack, top to bottom, on the command line.
 
