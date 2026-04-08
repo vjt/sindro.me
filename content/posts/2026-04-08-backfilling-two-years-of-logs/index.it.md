@@ -116,7 +116,7 @@ La lezione: il costo di un'ora in più di progettazione è triviale rispetto a u
 - **~8 ore** per rieseguire tutto attraverso la pipeline completa
 - Gira su un **Raspberry Pi 5** (4 core, 16GB RAM, NVMe) nel mio salotto
 
-Il Pi ha raggiunto l'87% di utilizzo CPU durante il backfill — VictoriaLogs al 67%, Telegraf al 40% — e ha retto senza problemi. La pipeline live ha continuato a girare in parallelo. Nessuna entry persa, nessun servizio interrotto.
+Il Pi ha raggiunto un load average di 19 su 4 core durante il backfill — lavorava duro, ma ha retto. La pipeline live ha continuato a girare in parallelo per tutta la durata. Nessuna entry persa, nessun servizio interrotto.
 
 ## Provalo a casa
 

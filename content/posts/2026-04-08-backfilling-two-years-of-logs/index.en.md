@@ -116,7 +116,7 @@ The lesson: the cost of an extra hour of design is trivial compared to an 8-hour
 - **~8 hours** to replay everything through the full pipeline
 - Running on a **Raspberry Pi 5** (4 cores, 16GB RAM, NVMe) in my living room
 
-The Pi peaked at 87% CPU utilization during the backfill — VictoriaLogs at 67%, Telegraf at 40% — and handled it without breaking a sweat. The live pipeline kept running in parallel. No entries lost, no services disrupted.
+The Pi hit a load average of 19 on 4 cores during the backfill — it was working hard, but it handled it. The live pipeline kept running in parallel throughout. No entries lost, no services disrupted.
 
 ## Try this at home
 
