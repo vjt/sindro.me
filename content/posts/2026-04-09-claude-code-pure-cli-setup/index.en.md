@@ -1,11 +1,13 @@
 ---
 title: "My Claude Code Setup: Pure CLI, Pure Unix, Zero IDE"
-date: 2026-04-08
+date: 2026-04-09
 tags: [ai-generated, projects, sysadmin, cli]
 description: "How I run Claude Code on a Raspberry Pi inside tmux, roam sessions from phone to laptop over SSH, and shipped 5000 commits in 30 days without touching an IDE."
 ---
 
-![Writing this very post from my phone over SSH — screenshot of Termius on iOS connected to Claude Code inside tmux](/posts/2026-04-08-claude-code-pure-cli-setup/phone-screenshot.png)
+![A grungy underground zine-style illustration of hands on a keyboard, green phosphor terminal glow, Unix iconography collaged around the edges](/posts/2026-04-09-claude-code-pure-cli-setup/cover.jpg)
+
+![Writing this very post from my phone over SSH — screenshot of Termius on iOS connected to Claude Code inside tmux](/posts/2026-04-09-claude-code-pure-cli-setup/phone-screenshot.png)
 
 This is me writing this very post. From my phone. Over SSH. In the bathtub, probably.
 
@@ -68,7 +70,9 @@ The killer features for this workflow:
 
 ### WireGuard: seamless mobility
 
-I have a WireGuard VPN configured as on-demand on all my devices. When I'm on my home WiFi, traffic goes direct over the LAN. When I step outside, WireGuard kicks in automatically and tunnels me back home. The transition is invisible — the SSH connection doesn't even drop.
+I have a WireGuard VPN configured as on-demand on all my devices. When I'm on my home WiFi, traffic goes direct over the LAN. When I step outside, WireGuard kicks in automatically and tunnels me back home.
+
+Now, the SSH connection _does_ drop when the endpoint switches from a local LAN IP to a VPN one — TCP doesn't survive that. But it doesn't matter: in Termius you tap "Start over", the connection re-establishes in a second, you type `tmux -u at`, and you're right back where you were. The tmux session didn't go anywhere. Total roundtrip: three seconds.
 
 My `~/.ssh/config` on the laptop and the saved connections in Termius both use the Pi's local LAN IP. WireGuard handles routing regardless of where I physically am. Same IP, same connection, whether I'm in the living room or at a café.
 
@@ -76,7 +80,11 @@ My `~/.ssh/config` on the laptop and the saved connections in Termius both use t
 
 On iOS I use [Termius](https://termius.com/) (free version). Saved connection to `nowhere`, SSH key imported, done. The critical trick: I mapped `Ctrl-F` (my tmux prefix) to a button above the keyboard. This gives me full tmux control from the phone — switching windows, splitting panes, entering copy mode, all of it.
 
+Scrolling works beautifully — Termius converts touch events to scroll, so I just swipe up and down through Claude's output with my finger. It feels completely natural.
+
 The phone is surprisingly usable for this workflow. I'm not _writing_ code on it (Claude does that), but I can review diffs, approve tool calls, read build output, check staging, and give Claude instructions. Which is 90% of what I do anyway.
+
+And here's the thing about typing on a phone: I make an _absurd_ number of typos. Look at the screenshot above — that prompt is riddled with them. But it doesn't matter. LLMs are fuzzy matchers by nature. They parse intent, not keystrokes. "stsging" is "staging", "tge" is "the", "donMr" is "don't" — Claude never even blinks. This turns what would normally be a friction nightmare (tiny keyboard, fat fingers, autocorrect fighting you) into a non-issue. You type fast, you don't correct, and it just works. Typos become a _feature_ of the workflow, not a bug.
 
 ## The results
 
@@ -87,7 +95,7 @@ Over the past 30 days, I've made over **5,000 commits** across a dozen projects 
 - Created [WiFi Dethrash](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/), an OpenWrt mesh network analyzer.
 - Wrote a [WiFi presence detection system](/posts/2026-02-15-wifi-presence-detection-home-assistant/) for Home Assistant.
 - Built [5G modem tools](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/) for OpenWrt.
-- [Backfilled two years of logs](/posts/2026-04-08-backfilling-two-years-of-logs/) through a full enrichment pipeline.
+- [Backfilled two years of logs](/posts/2026-04-09-backfilling-two-years-of-logs/) through a full enrichment pipeline.
 
 Every single one of these was done from the terminal. CSS, Python, Go, Lua, shell scripts, Hugo templates, nginx configs, systemd units, kernel-adjacent networking code. The full stack, top to bottom, on the command line.
 
@@ -97,6 +105,6 @@ The insight is that Claude Code doesn't need an IDE because _it is the IDE_. It 
 
 And tmux is the perfect companion because it gives you everything a modern IDE's "workspace" concept provides — persistent sessions, multiple contexts, searchable history, pane layouts — without any of the bloat.
 
-I started programming on a 486 in the '90s with Turbo Pascal and a 80x25 terminal. Then the industry spent 25 years convincing me I needed GUIs, mice, IDEs, visual debuggers, point-and-click deployment tools. Now AI brings me back to a terminal, a keyboard, and the ability to describe what I want in plain language.
+I started programming in QBasic on an Olivetti Prodest PC1 — an 8088 — in 1988. I was seven years old, staring at an 80x25 amber terminal, and I thought it was the most magical thing in the world. Then the industry spent 35 years convincing me I needed GUIs, mice, IDEs, visual debuggers, point-and-click deployment tools. Now AI brings me back to a terminal, a keyboard, and the ability to describe what I want in plain language.
 
 I've come full circle, and I've never been happier playing with computers.
