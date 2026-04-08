@@ -6,6 +6,8 @@ description: "Un rate limit ICMP del firewall droppava le risposte degli health 
 featuredImage: "cover.jpg"
 ---
 
+![La guardia banIP blocca i ping sulla superstrada della fibra mentre il traffico si ingolfa sul backup 5G](cover.jpg)
+
 **TL;DR:** Se usi OpenWrt con mwan3 (failover multi-WAN) e WireGuard, aggiungi `nohostroute=1` all'interfaccia WireGuard. Senza, netifd crea un route statico per l'endpoint WireGuard all'avvio dell'interfaccia, pinnato a qualsiasi uplink sia attivo in quel momento. Per il primo corollario della Legge di Murphy, tutto ciò che può andare storto andrà storto *nel momento peggiore possibile* — quindi il link primario sarà giù esattamente quando WireGuard parte, e il route dell'endpoint resta incollato permanentemente al backup. La tua VPN resterà incollata al backup lento mentre il link primario se ne sta lì a non fare un cazzo. Non te ne accorgerai finché non dovrai trasferire qualcosa di grosso.
 
 Oggi ho scoperto che il mio tunnel WireGuard verso un server remoto strisciava a **2 Mbps** da inizio febbraio. Il fix ha richiesto due comandi UCI. La root cause era il flag `nohostroute` mancante — più un bonus: il mio stesso firewall sabotava i miei stessi health check, facendo sembrare la fibra abbastanza inaffidabile da impedire al sistema di auto-correggersi.
