@@ -4,6 +4,10 @@ title: Rome RSC 2011
 tags: [social, rails, ruby]
 ---
 
+{{< retrospective year="2026" >}}
+RVM is still around but most Rubyists have switched to `rbenv`, `asdf`, or `mise` for version management. The Ruby Social Club meetups faded out, but the Italian Ruby community lives on through [RubyDay](https://rubyday.it/) and various local groups.
+{{< /retrospective >}}
+
 Thanks to [@jodosha](http://twitter.com/jodosha) efforts and praising the
 former ~~Javaday~~ event, now renamed into [codemotion](http://codemotion.it/)
 that brought in Rome many Ruby developers from Milan, Padua and other parts of
