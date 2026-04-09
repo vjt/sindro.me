@@ -3,9 +3,8 @@ title: "When Sysadmins Ruled the Earth"
 author: Marcello Barnaba
 date: 2007-11-21
 tags: [geek, networking]
+image: cover.jpg
 ---
-
-![Novel logo](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins2_1.jpg)
 
 A really, really, really **NERD** novel by [Cory Doctorow](https://craphound.com/)
 that tells about a bunch of sysadmins that strive to keep the good ol' Net
