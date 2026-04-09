@@ -16,11 +16,11 @@ The `<canvas>` element is the new shiny thing. Safari and Firefox support it, Ch
 
 ## Five layers deep
 
-The key insight is performance. Redrawing an entire gauge on every frame is wasteful — the bezel, the ticks, the numbers never change. So I stack **five separate canvas elements** on top of each other: background, dial markings, threshold arc, needle, and gloss overlay. When the value changes, only the needle layer redraws. Everything else stays put.
+His key insight is performance. Redrawing an entire gauge on every frame is wasteful — the bezel, the ticks, the numbers never change. He stacks **five separate canvas elements** on top of each other: background, dial markings, threshold arc, needle, and gloss overlay. When the value changes, only the needle layer redraws. Everything else stays put. I just gaze at it and think: this is brilliant.
 
-## The API that doesn't exist yet
+## My part: packaging the engine
 
-Canvas gives you rectangles, arcs, and Bezier curves. That's it. I need ellipses, filled polygons, and boxed arcs — so I extend `CanvasRenderingContext2D` with helper methods like `fillEllipse()`, `fillPolygon()`, and `strokeBoxedArc()`. The gauge is fully configurable: min/max values, start/end angles, tick spacing, color threshold, and a toggleable glossy overlay that makes it look like a real instrument.
+What I do is rework the whole thing for reuse. I extend `CanvasRenderingContext2D` with helper methods like `fillEllipse()`, `fillPolygon()`, and `strokeBoxedArc()`, add proper object orientation, theming support, and make the gauge fully configurable: min/max values, start/end angles, tick spacing, color threshold, and a toggleable glossy overlay.
 
 The real pain is cross-browser compatibility. Firefox has its own non-standard text rendering APIs (`mozPathText` and friends) that I have to polyfill. And for IE? Microsoft's own `excanvas` library translates Canvas calls to VML — a vector markup language that ships with IE since version 5. It works. Barely.
 

@@ -16,11 +16,11 @@ L'elemento `<canvas>` è la novità del momento. Safari e Firefox lo supportano,
 
 ## Cinque layer di profondità
 
-L'intuizione chiave è la performance. Ridisegnare un intero tachimetro ad ogni frame è uno spreco — la cornice, le tacche, i numeri non cambiano mai. Quindi impilo **cinque canvas separati** uno sopra l'altro: sfondo, indicatori, arco di soglia, lancetta e overlay lucido. Quando il valore cambia, si ridisegna solo il layer della lancetta. Tutto il resto resta fermo.
+La sua intuizione chiave è la performance. Ridisegnare un intero tachimetro ad ogni frame è uno spreco — la cornice, le tacche, i numeri non cambiano mai. Lui impila **cinque canvas separati** uno sopra l'altro: sfondo, indicatori, arco di soglia, lancetta e overlay lucido. Quando il valore cambia, si ridisegna solo il layer della lancetta. Tutto il resto resta fermo. Io lo guardo e penso: geniale.
 
-## L'API che non esiste ancora
+## La mia parte: impacchettare il motore
 
-Canvas ti dà rettangoli, archi e curve di Bezier. Punto. Io ho bisogno di ellissi, poligoni pieni e archi inscatolati — e quindi estendo il `CanvasRenderingContext2D` con metodi helper come `fillEllipse()`, `fillPolygon()` e `strokeBoxedArc()`. Il tachimetro è completamente configurabile: valori min/max, angoli di inizio/fine, spaziatura delle tacche, soglia colore e un overlay lucido attivabile che gli dà l'aspetto di uno strumento vero.
+Quello che faccio io è rilavorare il tutto per il riuso. Estendo il `CanvasRenderingContext2D` con metodi helper come `fillEllipse()`, `fillPolygon()` e `strokeBoxedArc()`, aggiungo una struttura object-oriented come si deve, il supporto ai temi, e rendo il tachimetro completamente configurabile: valori min/max, angoli di inizio/fine, spaziatura delle tacche, soglia colore e un overlay lucido attivabile.
 
 Il vero dolore è la compatibilità cross-browser. Firefox ha le sue API non-standard per il rendering del testo (`mozPathText` e compagnia bella) che devo polyfillare. E per IE? La libreria `excanvas` di Microsoft traduce le chiamate Canvas in VML — un linguaggio di markup vettoriale presente in IE fin dalla versione 5. Funziona. A malapena.
 
