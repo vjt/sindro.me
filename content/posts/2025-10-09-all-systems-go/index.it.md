@@ -4,6 +4,8 @@ date: 2025-10-09
 tags: [linux, sysadmin, meta]
 ---
 
+![Due speaker sul palco a una conferenza Linux, un gigantesco schermo dietro di loro con Tux su una flotta di server](/posts/2025-10-09-all-systems-go/cover.jpg)
+
 Ho presentato un talk ad [All Systems Go 2025](https://all-systems-go.io/), la conferenza fondamentale sullo userspace Linux. La conferenza è organizzata principalmente dal team di systemd, ed è un punto d'incontro annuale per tutti quelli che lavorano su software di sistema Linux.
 
 Il tema di quest'anno è stato prevalentemente "container, container, container", con molte nuove funzionalità in systemd per supportare la containerizzazione e anche esperienze pratiche da persone che lavorano sul campo su come usano systemd e software collaterali per costruire infrastrutture a container.
