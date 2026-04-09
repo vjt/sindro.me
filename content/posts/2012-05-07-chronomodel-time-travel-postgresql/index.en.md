@@ -1,0 +1,120 @@
+---
+title: "ChronoModel: Time Travel for PostgreSQL"
+date: 2012-05-07
+tags: [ruby, postgresql, rails, open-source]
+description: "I just shipped a Ruby gem that implements Oracle's Flashback Queries on PostgreSQL using views, rules, and table inheritance. Five days from first commit to release."
+image: cover.jpg
+featuredImage: cover.jpg
+---
+
+{{< retrospective year="2026" >}}
+ChronoModel is still alive — 14 years, 41 releases, 201 stars. The rules got replaced by INSTEAD OF triggers in [v0.6](https://github.com/ifad/chronomodel/tree/v0.6.0) (2014), the `box()`/`point()` hack by proper `tsrange` columns, and the monkey-patching by a proper adapter registration. [Geremia Taglialatela](https://github.com/tagliala) took over maintenance in 2020 and pushed it to [v5.0.0](https://rubygems.org/gems/chrono_model/versions/5.0.0) with Rails 8.1 and Ruby 4.0 support. The core idea — updatable views on `public`, current data on `temporal`, history on `history` with table inheritance — never changed. The [repo](https://github.com/ifad/chronomodel) is healthy and actively maintained.
+{{< /retrospective >}}
+
+Five days ago I had an idea. Today I'm releasing [ChronoModel](https://github.com/ifad/chronomodel), a Ruby gem that gives your ActiveRecord models full temporal capabilities on PostgreSQL. What Oracle sells as [Flashback Queries](http://docs.oracle.com/cd/B28359_01/appdev.111/b28424/adfns_flashback.htm) and charges enterprise money for, we can do with standard SQL on Postgres 9.0+.
+
+<!--more-->
+
+## The problem
+
+At [IFAD](http://www.ifad.org/) we have a recurring need: knowing what the data looked like at any point in the past. What was this project's budget on March 15th? When did this beneficiary's address change? Who approved what, and what did the record look like at the time?
+
+The textbook answer is a [Slowly Changing Dimension Type 2](http://en.wikipedia.org/wiki/Slowly_changing_dimension#Type_2) — you keep a history of every row with validity timestamps, and query against them. Every enterprise database vendor has a proprietary solution for this. PostgreSQL doesn't. Or rather, PostgreSQL gives you all the building blocks, and nobody had assembled them into a Rails-friendly package. Until now.
+
+## The architecture
+
+ChronoModel uses three PostgreSQL schemas working together:
+
+- **`temporal`** — holds the real "current" tables
+- **`history`** — holds history tables that **inherit** from the temporal ones, adding `valid_from`, `valid_to`, and `recorded_at` columns
+- **`public`** — holds **updatable views** that your application sees as regular tables
+
+Your Rails models point at the views in `public`. They look and behave exactly like normal tables. Behind the scenes, PostgreSQL [rules](http://www.postgresql.org/docs/9.1/static/rules.html) on those views intercept every INSERT, UPDATE, and DELETE and route them to the right places:
+
+- **INSERT**: creates a row in `temporal` (current data) and a row in `history` (with `valid_from = now()`)
+- **UPDATE**: closes the current history entry (sets `valid_to = now()`), opens a new one, and updates the temporal table
+- **DELETE**: closes the history entry and removes the temporal row
+
+The beautiful part is that your application code doesn't change at all. Queries hit the `public` views, which show current data from `temporal`. History accumulates silently in `history`.
+
+## The clever bit
+
+How do you prevent overlapping history entries for the same record? PostgreSQL doesn't have temporal constraint support (yet — there's a [SQL:2011 proposal](http://en.wikipedia.org/wiki/SQL:2011) for it). But it does have [GiST exclusion constraints](http://www.postgresql.org/docs/9.1/static/sql-createtable.html#SQL-CREATETABLE-EXCLUDE), and GiST can index geometric types.
+
+So I abuse geometry. Each history entry's validity period becomes a **box** in 2D space — one axis is time (as epoch seconds), the other is the record ID:
+
+```sql
+CONSTRAINT overlapping_times EXCLUDE USING gist (
+  box(
+    point( extract( epoch FROM valid_from), id ),
+    point( extract( epoch FROM valid_to - INTERVAL '1 millisecond'), id )
+  ) WITH &&
+)
+```
+
+Two boxes overlap (`&&`) only if they share both the same ID and an overlapping time range. If anyone tries to insert a contradictory history entry, PostgreSQL rejects it at the constraint level. Bulletproof temporal integrity using spatial indexes. I'm unreasonably proud of this hack.
+
+## The Rails integration
+
+Getting this to work transparently with ActiveRecord required... creativity. The adapter subclasses `PostgreSQLAdapter` and overrides every DDL method — `create_table`, `drop_table`, `rename_table`, `add_column`, `rename_column`, `change_column`, `remove_column`, `add_index`, `remove_index`, and more. All of them check if the table is temporal and route operations to both schemas accordingly.
+
+From your migration, it's one option:
+
+```ruby
+create_table :countries, temporal: true do |t|
+  t.string :name
+  t.string :code
+  t.timestamps
+end
+```
+
+That single `temporal: true` creates the temporal table, the history table with inheritance, the public view, all the rules, the GiST index, and the exclusion constraint. Drop-in.
+
+Then in your model:
+
+```ruby
+class Country < ActiveRecord::Base
+  include ChronoModel::TimeMachine
+end
+```
+
+And you get time travel:
+
+```ruby
+# Current data — works exactly like before
+Country.where(code: 'IT')
+
+# What did Italy look like on January 1st 2010?
+Country.as_of(Time.utc(2010, 1, 1)).find_by(code: 'IT')
+
+# Full history of a record
+italy = Country.find_by(code: 'IT')
+italy.history  # => all versions, with valid_from/valid_to
+
+# Temporal associations propagate automatically
+italy.as_of(1.year.ago).projects  # also loaded as-of that date
+```
+
+I also added [CTE](http://www.postgresql.org/docs/9.1/static/queries-with.html) (Common Table Expression) support to ActiveRecord's query builder, because Rails 3 doesn't have it and the `as_of` queries need `WITH` clauses. That required patching `Arel::Visitors::PostgreSQL` to emit proper SQL.
+
+## The ugly truth
+
+Let me be honest about the hack that makes this work. To inject the adapter, I do this:
+
+```ruby
+silence_warnings do
+  ActiveRecord::ConnectionAdapters::PostgreSQLAdapter = ChronoModel::Adapter
+end
+```
+
+Yes, I replace the entire PostgreSQL adapter constant. And I patch `ActiveRecord::Associations::Association` to propagate the `as_of_time` across temporal associations.
+
+It works. It's ugly. It'll need to be cleaned up before this thing sees a 1.0. But it works, and it works transparently — your existing code doesn't change.
+
+## Five days
+
+Thirty-six commits from the initial README to this release. No tests yet — they're coming, I promise. The SQL is solid (I've been testing the schema approach manually for weeks before writing the gem), but the Ruby side needs proper specs.
+
+If you work with PostgreSQL and Rails and you've ever needed historical queries, audit trails, or temporal reporting: `gem install chrono_model` and try it. The [source is on GitHub](https://github.com/ifad/chronomodel). Issues, PRs, and complaints welcome.
+
+Time travel shouldn't cost an Oracle license.
