@@ -2,7 +2,6 @@
 date: "2009-04-21T23:00:00Z"
 title: "A tweeting (geeky) parrot"
 tags: [social, web2.0, weird]
-hideVintage: true
 ---
 
 I'm searching for a new pet. [We](https://nhaima.org/) already have two
