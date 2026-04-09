@@ -4,6 +4,10 @@ title: "*BSD su un MacMini 4,1? Neanche per sogno. :-("
 tags: [apple, freebsd]
 ---
 
+{{< retrospective year="2026" >}}
+Buone notizie: FreeBSD supporta pienamente l'hardware del MacMini 4,1 (NV MCP89 SATA, BCM57762 NIC) da FreeBSD 9.x (2012). Anche NetBSD e OpenBSD hanno aggiunto il supporto. Il "neanche per sogno" nel titolo non è invecchiato bene — i BSD girano tranquillamente su questa macchina ormai.
+{{< /retrospective >}}
+
 <img src="/posts/2011-01-04-bsd-onto-a-macmini-4-1-no-way/mini-daemon.png" style="float: right" />
 
 <p>Ho passato gli ultimi due giorni a cercare di configurare il Mac Mini in alluminio (rev. 4,1)

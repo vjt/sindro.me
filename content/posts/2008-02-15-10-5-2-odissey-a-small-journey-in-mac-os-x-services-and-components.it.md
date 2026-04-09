@@ -4,6 +4,9 @@ date: 2008-02-15
 tags: [apple, backup, macos]
 ---
 
+{{< retrospective year="2026" >}}
+Il recovery in single-user mode (Cmd-S, `fsck`, mount in scrittura) descritto qui non funziona più sui Mac moderni. Apple ha rimosso la modalità single-user in macOS Catalina (2019), il volume di sistema è diventato read-only con il Signed System Volume in Big Sur (2020), e i Mac Apple Silicon usano un'architettura di recovery completamente diversa.
+{{< /retrospective >}}
 
 Beh, sono davvero contento di OSX 10.5.2. Anche se non sono uno di quelli che
 ha insultato Apple per la barra dei menu traslucida che a tutti fa schifo...

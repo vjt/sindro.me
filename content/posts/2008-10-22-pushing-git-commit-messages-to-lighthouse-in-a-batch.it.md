@@ -4,6 +4,10 @@ title: Inviare i messaggi di commit git a Lighthouse in batch
 tags: [git, ruby]
 ---
 
+{{< retrospective year="2026" >}}
+Lighthouse (il project tracker di ENTP) ha chiuso nel 2012, e la sua integrazione con GitHub non esiste più. Se cerchi il collegamento automatico tra commit e issue, tutte le piattaforme moderne (GitHub Issues, GitLab, Jira, Linear) lo fanno nativamente.
+{{< /retrospective >}}
+
 Se usi l'integrazione con Lighthouse fornita da GitHub, dalle pagine "Admin"
 del tuo repository git, potresti esserti imbattuto in un difetto: ogni
 changeset su Lighthouse appare come se fosse stato fatto dall'utente Lighthouse

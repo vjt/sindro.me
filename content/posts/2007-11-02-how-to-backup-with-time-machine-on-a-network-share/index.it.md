@@ -5,6 +5,10 @@ date: 2007-11-02
 tags: [apple, backup, linux, networking]
 ---
 
+{{< retrospective year="2026" >}}
+Apple ha aggiunto il supporto nativo a Time Machine via SMB in macOS High Sierra (2017) e ha deprecato AFP in Big Sur (2020). Oggi qualsiasi NAS con una semplice condivisione Samba funziona senza problemi — niente Netatalk, Avahi o marker file. Il Time Capsule è stato dismesso nel 2018.
+{{< /retrospective >}}
+
 *Ingredienti*: Debian, Netatalk, Avahi, un po' di trucchetti.
 
 ## Passo 1: Ricompilare Netatalk con supporto SSL

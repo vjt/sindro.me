@@ -2,8 +2,11 @@
 date: "2009-01-29T09:00:00Z"
 title: "Il plugin jQuery ajax-upload-fu"
 tags: [javascript, ruby, projects]
-hideVintage: true
 ---
+
+{{< retrospective year="2026" >}}
+Questo plugin si basava su `$.browser` (rimosso in jQuery 1.9) e sul trucco dell'era Prototype di nascondere un file input sotto il cursore. I browser moderni supportano la File API, l'upload drag-and-drop, e `input.click()` funziona ovunque ormai -- niente più inseguimento del mouse.
+{{< /retrospective >}}
 
 Di recente ho scritto un [plug-in jQuery](http://gist.github.com/54441) che
 permette l'upload di file via **AJAX** senza usare un pulsante file input

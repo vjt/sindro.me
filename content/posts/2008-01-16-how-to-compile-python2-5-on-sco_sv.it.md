@@ -4,6 +4,10 @@ tags: [sysadmin, python]
 title: Come compilare python2.5 su SCO_SV
 ---
 
+{{< retrospective year="2026" >}}
+Sia Python 2.5 (EOL 2011) che SCO OpenServer sono estinti. SCO/Xinuos è fallita, e lo stesso Python 2 ha raggiunto la fine del ciclo di vita a gennaio 2020. Questo è un fossile digitale.
+{{< /retrospective >}}
+
 - Devi avere PTH installato, e forse altre librerie.
 - Testato su `SCO_SV os507 3.2 5.0.7 i386`
 

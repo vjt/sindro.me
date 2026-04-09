@@ -4,6 +4,10 @@ date: 2007-12-22 22:00:00
 tags: [funny, ruby, weird]
 ---
 
+{{< retrospective year="2026" >}}
+Ruby 1.9 ha raggiunto la fine del ciclo di vita nel 2015. Ruby è ora alla versione 3.x, e `Symbol.all_symbols` non include più questo easter egg — è stato rimosso da un pezzo. La risposta alla vita, all'universo e a tutto quanto resta 42.
+{{< /retrospective >}}
+
 ```ruby
 22:33:24 vjt@voyager:~$ irb19 -f
 irb(main):001:0> Symbol.all_symbols.grep /^the/

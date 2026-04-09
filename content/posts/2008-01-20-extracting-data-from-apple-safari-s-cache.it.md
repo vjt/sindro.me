@@ -4,6 +4,10 @@ date: 2008-01-20
 tags: [apple, backup]
 ---
 
+{{< retrospective year="2026" >}}
+Safari ha abbandonato questo formato di cache SQLite anni fa. Più o meno da Safari 10 / macOS Sierra (2016), la cache è stata spostata in `com.apple.WebKit.Networking` in un formato blob binario — il vecchio `Cache.db` non esiste più.
+{{< /retrospective >}}
+
 Cinque minuti fa ho sovrascritto il nuovissimo e fiammante foglio di stile CSS
 che implementa la combinazione di colori attuale, perché volevo ripristinare
 quello originale e metterlo in un nuovo tema per questo sito, così che chi

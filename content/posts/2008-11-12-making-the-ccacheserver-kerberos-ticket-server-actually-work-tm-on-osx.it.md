@@ -4,6 +4,10 @@ title: Far funzionare davvero(tm) il CCacheServer Kerberos Ticket su OSX
 tags: [apple, security, macos]
 ---
 
+{{< retrospective year="2026" >}}
+Apple ha sostituito l'implementazione MIT Kerberos con Heimdal in OS X 10.7 Lion (2011), rimuovendo completamente `CCacheServer`. Sui macOS moderni, la System Integrity Protection (SIP, da 10.11 El Capitan) impedisce comunque di modificare qualsiasi cosa sotto `/System/Library/`.
+{{< /retrospective >}}
+
 Se ti stai chiedendo **perché** il demone `CCacheServer`, che tiene in memoria
 i ticket Kerberos ottenuti tramite `kinit(1)`, NON parte... è a causa di un
 bug **strano** riguardante il `LimitLoadToSessionType` specificato nel .plist

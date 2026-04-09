@@ -4,6 +4,10 @@ title: Fare il bind della porta 80/TCP come non-root sul server di sviluppo
 tags: [linux, ruby]
 ---
 
+{{< retrospective year="2026" >}}
+Da Linux 4.11 (2017), `sysctl net.ipv4.ip_unprivileged_port_start=0` permette a qualsiasi utente di fare il bind sulle porte basse senza capabilities — niente `setcap`. Inoltre, il web server Thin mostrato qui è obsoleto da quando Puma è diventato il server Rails di default in Rails 5 (2016). E se usi Docker, niente di tutto questo conta comunque.
+{{< /retrospective >}}
+
 ![Neo Tux](/posts/2011-07-07-binding-port-80-for-your-development-application-server/neo-tux.png)
 
 Quindi hai una VM Linux che usi per lo sviluppo, perché vuoi replicare

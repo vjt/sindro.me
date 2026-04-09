@@ -4,6 +4,10 @@ date: 2008-01-22
 tags: [funny, rails, ruby]
 ---
 
+{{< retrospective year="2026" >}}
+Il plugin Gibberish e tutto questo approccio sono morti e sepolti. Rails 2.2 (2008) ha aggiunto il supporto I18n integrato, e da Rails 3 in poi il modo standard è `config/locales/*.yml` con la gem `i18n`. I messaggi di errore di ActiveRecord, i nomi dei campi e tutte le stringhe dell'interfaccia sono gestiti nativamente — niente plugin, niente monkey-patching.
+{{< /retrospective >}}
+
 **AGGIORNAMENTO: non ti serve questo codice, perché a partire dalla versione 2.2 di Rails il supporto alla localizzazione è integrato.**
 
 ## Localizzazione dei messaggi di errore di Active Record

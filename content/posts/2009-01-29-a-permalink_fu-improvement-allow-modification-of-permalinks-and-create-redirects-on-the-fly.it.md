@@ -4,6 +4,10 @@ title: "Un miglioramento a permalink_fu: permettere la modifica dei permalink e 
 tags: [ruby, projects, rails]
 ---
 
+{{< retrospective year="2026" >}}
+Il plugin `permalink_fu` è stato abbandonato da oltre un decennio. Rails ha eliminato l'intero sistema di plugin in Rails 4 (2013) -- la gem `friendly_id` è diventata il sostituto standard per gli URL slug.
+{{< /retrospective >}}
+
 Un altro spin-off dal sito [www.visitacsa.it](http://www.visitacsa.it/): un
 miglioramento a
 [permalink_fu](http://github.com/technoweenie/permalink_fu/tree/master) che

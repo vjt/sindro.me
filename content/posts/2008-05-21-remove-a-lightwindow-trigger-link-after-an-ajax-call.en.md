@@ -2,7 +2,6 @@
 title: "Remove a lightwindow trigger link after an AJAX call"
 date: "2008-05-21T17:00:00Z"
 tags: [javascript, rails, ruby]
-hideVintage: true
 ---
 
 {{< retrospective year="2026" >}}

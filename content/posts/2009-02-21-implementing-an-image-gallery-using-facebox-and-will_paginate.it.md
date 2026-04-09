@@ -4,6 +4,10 @@ title: Implementare una galleria immagini con facebox e will_paginate
 tags: [javascript, projects, ruby]
 ---
 
+{{< retrospective year="2026" >}}
+La maggior parte dello stack qui è morto: il `.live()` di jQuery è stato rimosso nella 1.9, `attachment_fu` è stato soppiantato da Paperclip e poi da ActiveStorage integrato in Rails (Rails 5.2, 2018). Sia il plugin registry di jQuery che RubyForge hanno chiuso i battenti da anni.
+{{< /retrospective >}}
+
 Su [VisitaCSA](http://www.visitacsa.it/) stiamo usando
 [facebox](http://famspam.com/facebox) di
 [defunkt](http://errtheblog.com/) per mostrare le [immagini dei

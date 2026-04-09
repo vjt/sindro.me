@@ -2,8 +2,11 @@
 date: "2009-02-10T18:08:34Z"
 title: "Come creare un mirror statico del sito opensource.org"
 tags: [bash, open-source]
-hideVintage: true
 ---
+
+{{< retrospective year="2026" >}}
+Il sito opensource.org è stato ridisegnato diverse volte dal 2009, e il mirror italiano su opensource.antifork.org non esiste più da un pezzo. L'approccio basato su wget descritto qui non produrrebbe più una copia utilizzabile di un sito moderno pieno di JavaScript.
+{{< /retrospective >}}
 
 Attualmente mantengo il [mirror italiano](http://opensource.antifork.org/) del
 sito web della [Open Source Initiative](http://opensource.org/), e oggi mi sono

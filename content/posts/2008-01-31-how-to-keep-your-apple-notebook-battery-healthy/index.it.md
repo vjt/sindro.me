@@ -4,6 +4,10 @@ title: Come mantenere in salute la batteria del tuo notebook Apple
 tags: [apple, howto, life]
 ---
 
+{{< retrospective year="2026" >}}
+Questi consigli sono ormai l'opposto di quel che Apple raccomanda. Le batterie al litio moderne si degradano più in fretta con i cicli di scarica completa. Da macOS Catalina (2019), la "Ricarica ottimizzata della batteria" si ferma automaticamente all'80%. Apple consiglia di tenere il MacBook collegato quando possibile e ha rimosso la guida sulla "calibrazione tramite scarica completa" intorno al 2012.
+{{< /retrospective >}}
+
 3 semplici regole:
 
 - NON lasciare il caricatore collegato quando la batteria è carica, neanche quando vai a dormire.
