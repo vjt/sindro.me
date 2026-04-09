@@ -2,8 +2,11 @@
 title: PH-Neutral 0x7db
 date: 2011-07-02T17:00:00
 tags: [events, security]
-hideVintage: true
 ---
+
+{{< retrospective year="2026" >}}
+PH-Neutral è stata l'ultima edizione — fedele al motto sul badge, "if it is good, they stop making it." Phenoelit si è sciolta poco dopo. Molte delle tecniche di attacco descritte qui (bypass ASLR, downgrade Chip & PIN, intercettazione TETRA) sono state nel frattempo patchate o mitigate, ma le lezioni di fondo sui difetti implementativi nelle tecnologie "sicure" restano senza tempo. La ricerca sull'exploitation DWARF di James Oakley e Sergey Bratus è diventata un paper fondamentale nel campo.
+{{< /retrospective >}}
 
 <p>&#8220;<strong>If it is good, they stop making it</strong>&#8221;, il
 payoff stampato sui laccetti della conferenza, distribuiti a ogni partecipante,
