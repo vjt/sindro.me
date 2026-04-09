@@ -4,6 +4,8 @@ title: Learning about world cultures via Google Autocomplete
 tags: [funny, networking]
 ---
 
+![A search bar with autocomplete ribbons connecting to world landmarks on a stylized globe](/posts/2010-09-16-learning-about-world-cultures-via-google-autocomplete/cover.jpg)
+
 Out of curiosity, I was looking how a browser interacts with the Google Instant
 backend. While looking at the HTTP exchanges via Firebug, I first asked myself
 why they're encoding HTML and JS with `\xYY` escape sequences, then why the
