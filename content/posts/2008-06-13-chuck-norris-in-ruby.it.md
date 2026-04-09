@@ -10,7 +10,7 @@ Contesto per i lettori più giovani: a metà anni 2000, i "fatti su Chuck Norris
 {{< /retrospective >}}
 
 [intinig](http://tempe.st/) ha portato il potere del calcio rotante di
-[Chuck](http://uncyclopedia.wikia.com/wiki/Chuck_Norris) in Ruby! Dategli
+[Chuck](https://en.uncyclopedia.co/wiki/Chuck_Norris) in Ruby! Dategli
 un'occhiata...
 
 [https://github.com/intinig/chuck_norris/tree/master/chuck_norris.rb](

@@ -10,7 +10,7 @@ Context for younger readers: in the mid-2000s, "Chuck Norris facts" were an absu
 {{< /retrospective >}}
 
 [intinig](http://tempe.st/) ported
-[Chuck's](http://uncyclopedia.wikia.com/wiki/Chuck_Norris) roundhouse kick
+[Chuck's](https://en.uncyclopedia.co/wiki/Chuck_Norris) roundhouse kick
 power to Ruby! Have a look...
 
 [https://github.com/intinig/chuck_norris/tree/master/chuck_norris.rb](
