@@ -24,8 +24,6 @@ Canvas ti dava rettangoli, archi e curve di Bezier. Punto. Io avevo bisogno di e
 
 Il vero dolore era la compatibilità cross-browser. Firefox aveva le sue API non-standard per il rendering del testo (`mozPathText` e compagnia bella) che ho dovuto polyfillare. E per IE? La libreria `excanvas` di Microsoft traduceva le chiamate Canvas in VML — un linguaggio di markup vettoriale presente in IE fin dalla versione 5. Funzionava. A malapena.
 
-## Il verdetto
+## Provalo
 
-Il [canvas-speedometer](https://github.com/vjt/canvas-speedometer) è stato un esercizio divertente nel spingere ai limiti un'API appena nata. Ha dimostrato che HTML5 poteva offrire grafica ricca e interattiva senza plugin — in un'epoca in cui questa era ancora un'affermazione controversa.
-
-Flash è morto. Canvas ha vinto. E anche se nel 2026 nessuno ha più bisogno di disegnarsi i gauge a mano quando basta una chiamata D3.js o un `conic-gradient` in CSS, c'è ancora qualcosa di appagante nel disegnare ogni pixel da solo.
+Il [canvas-speedometer](https://github.com/vjt/canvas-speedometer) è su GitHub. Dimostra che HTML5 può offrire grafica ricca e interattiva senza plugin — niente Flash, niente applet Java, niente generazione di immagini lato server. Solo JavaScript e un tag `<canvas>`. Secondo me questo è il futuro.

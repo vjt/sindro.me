@@ -24,8 +24,6 @@ Canvas gave you rectangles, arcs, and Bezier curves. That's it. I needed ellipse
 
 The real pain was cross-browser compatibility. Firefox had its own non-standard text rendering APIs (`mozPathText` and friends) that I had to polyfill. And for IE? Microsoft's own `excanvas` library translated Canvas calls to VML — a vector markup language that shipped with IE since version 5. It worked. Barely.
 
-## The verdict
+## Try it
 
-The [canvas-speedometer](https://github.com/vjt/canvas-speedometer) was a fun exercise in pushing a brand-new API to its limits. It proved that HTML5 could deliver rich, interactive graphics without plugins — at a time when that was still a controversial claim.
-
-Flash is dead now. Canvas won. And while nobody needs to hand-roll gauge widgets in 2026 when a single D3.js call or a CSS `conic-gradient` can do the job, I still think there's something satisfying about drawing every pixel yourself.
+The [canvas-speedometer](https://github.com/vjt/canvas-speedometer) is on GitHub. It proves that HTML5 can deliver rich, interactive graphics without plugins — no Flash, no Java applets, no server-side image generation. Just JavaScript and a `<canvas>` tag. I think this is the future.
