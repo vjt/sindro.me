@@ -78,7 +78,7 @@ La versione minima di PostgreSQL e' saltata dalla 9.0 alla 9.3. Alcuni utenti ha
 
 ## I test
 
-Il post della v0.1.0 diceva "nessun test per ora — arriveranno, promesso." Sono arrivati. La [v0.3.0](https://github.com/ifad/chronomodel/tree/v0.3.0) (giugno 2012, sei settimane dopo) ha aggiunto spec RSpec complete. Alla v1.0.0 ci sono 5.000+ righe di codice di test che coprono tabelle temporali, query storiche, associazioni, time query, STI, indici, migration, schema dump, e comportamento standard di ActiveRecord.
+Il post della v0.1.0 diceva "nessun test per ora — arriveranno, promesso." Sono arrivati. La [v0.3.0](https://github.com/ifad/chronomodel/tree/v0.3.0) (giugno 2012, sei settimane dopo) ha aggiunto spec RSpec complete. Alla v1.0.0 ci sono [5.000+ righe di codice di test](https://github.com/ifad/chronomodel/tree/v1.0.0/spec) che coprono tabelle temporali, query storiche, associazioni, time query, STI, indici, migration, schema dump, e comportamento standard di ActiveRecord.
 
 La suite di test gira su multiple versioni di Rails via [Appraisal](https://github.com/thoughtbot/appraisal) — Rails 5.0, 5.1, e 5.2 per la v1.0.0. La [v0.13.1](https://github.com/ifad/chronomodel/tree/v0.13.1), taggata trenta minuti prima della v1.0.0, e' l'ultima versione a supportare Rails 4.2.
 
