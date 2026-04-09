@@ -2,8 +2,11 @@
 date: 2010-08-05T16:00:00Z
 title: Panmind spin-offs presented at Ruby Social Club Milan
 tags: [open-source, projects, rails, ruby]
-hideVintage: true
 ---
+
+{{< retrospective year="2026" >}}
+Panmind is long gone, and all the GitHub repos (ssl_helper, bigbro, recaptcha, zendesk, jquery-ajax-nav) are dead links. The Rails plugin ecosystem described here was replaced by gems and engines. SlideShare killed their old embeds, but the PDF keynote survives below.
+{{< /retrospective >}}
 
 On July 22nd 2010, [Mikamai](http://mikamai.com/) hosted a [Ruby Social Club in
 Milan](http://blog.mikamai.com/2010/07/la-notte-del-ruby-social-club/), where
@@ -44,9 +47,6 @@ boilerplate code for the ultra-fast AJAX navigation of panmind
 The keynote follows, you can download it in PDF (no [exploits, I
 swear!](/posts/2010-08-04-on-the-iphone-pdf-and-kernel-exploit)) [from this
 link](/posts/2010-08-05-panmind-at-ruby-social-club/Panmind_at_Ruby_Social_Club_Milano.pdf)
-or view/comment it on slideshare
-[here](http://www.slideshare.net/panmind/panmind-open-source-releases-presented).
-
 Final words: check out [mikamai blog post on the Ruby Social
 Club](https://blog.mikamai.com/post/129408154293/la-notte-del-ruby-social-club)
 to read the other keynotes (I will, hopefully, update this post with sum-ups of
@@ -55,9 +55,6 @@ twitter](http://twitter.com/panmind) or [on GitHub](http://github.com/Panmind)
 if you're interested in contributing to our open source projects or [you want to
 work with us](http://panmind.org/jobs).
 
-<iframe
-src="https://www.slideshare.net/slideshow/embed_code/key/4PwLzCoPaujLIl"
-width="100%" height="500" frameborder="0" marginwidth="0" marginheight="0"
-scrolling="no" allowfullscreen></iframe>
-
-[PDF version](/posts/2010-08-05-panmind-at-ruby-social-club/Panmind_at_Ruby_Social_Club_Milano.pdf)
+<object data="/posts/2010-08-05-panmind-at-ruby-social-club/Panmind_at_Ruby_Social_Club_Milano.pdf" type="application/pdf" width="100%" height="600">
+  <p><a href="/posts/2010-08-05-panmind-at-ruby-social-club/Panmind_at_Ruby_Social_Club_Milano.pdf">Download the keynote (PDF)</a></p>
+</object>

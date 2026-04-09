@@ -2,8 +2,11 @@
 date: 2010-08-05T16:00:00Z
 title: Gli spin-off di Panmind presentati al Ruby Social Club Milano
 tags: [open-source, projects, rails, ruby]
-hideVintage: true
 ---
+
+{{< retrospective year="2026" >}}
+Panmind non esiste più, e tutte le repo GitHub (ssl_helper, bigbro, recaptcha, zendesk, jquery-ajax-nav) sono link morti. L'ecosistema di plugin Rails descritto qui è stato sostituito da gem e engine. SlideShare ha ammazzato i vecchi embed, ma il PDF della presentazione sopravvive qui sotto.
+{{< /retrospective >}}
 
 Il 22 luglio 2010, [Mikamai](http://mikamai.com/) ha ospitato un [Ruby Social
 Club a Milano](http://blog.mikamai.com/2010/07/la-notte-del-ruby-social-club/),
@@ -48,9 +51,6 @@ codice boilerplate per la navigazione AJAX ultra-veloce dei
 La presentazione segue: puoi scaricarla in PDF (nessun [exploit, lo
 giuro!](/posts/2010-08-04-on-the-iphone-pdf-and-kernel-exploit)) [da questo
 link](/posts/2010-08-05-panmind-at-ruby-social-club/Panmind_at_Ruby_Social_Club_Milano.pdf)
-o visualizzarla/commentarla su Slideshare
-[qui](http://www.slideshare.net/panmind/panmind-open-source-releases-presented).
-
 Ultime parole: dai un'occhiata al [post sul blog di Mikamai sul Ruby Social
 Club](https://blog.mikamai.com/post/129408154293/la-notte-del-ruby-social-club)
 per leggere le altre presentazioni (spero di aggiornare questo post con dei
@@ -59,9 +59,6 @@ Twitter](http://twitter.com/panmind) o [su GitHub](http://github.com/Panmind)
 se ti interessa contribuire ai nostri progetti open source o se [vuoi lavorare
 con noi](http://panmind.org/jobs).
 
-<iframe
-src="https://www.slideshare.net/slideshow/embed_code/key/4PwLzCoPaujLIl"
-width="100%" height="500" frameborder="0" marginwidth="0" marginheight="0"
-scrolling="no" allowfullscreen></iframe>
-
-[Versione PDF](/posts/2010-08-05-panmind-at-ruby-social-club/Panmind_at_Ruby_Social_Club_Milano.pdf)
+<object data="/posts/2010-08-05-panmind-at-ruby-social-club/Panmind_at_Ruby_Social_Club_Milano.pdf" type="application/pdf" width="100%" height="600">
+  <p><a href="/posts/2010-08-05-panmind-at-ruby-social-club/Panmind_at_Ruby_Social_Club_Milano.pdf">Scarica la presentazione (PDF)</a></p>
+</object>
