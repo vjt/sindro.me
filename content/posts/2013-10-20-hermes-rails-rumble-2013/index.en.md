@@ -30,8 +30,10 @@ The app was a standard Rails stack — nothing exotic. But the piece I'm most pr
 
 ## From hackathon to the UN
 
-About a year later, in November 2014, I brought Hermes into [IFAD](https://www.ifad.org/) — a specialized agency of the United Nations, where I was working. My team there funded continued development, the repo moved to [ifad/hermes](https://github.com/ifad/hermes), and it became a real internal tool for delivering quick, context-aware tutorials across our line-of-business web applications. The concept is everywhere now — every SaaS product has onboarding tooltips and contextual help. When we built it, it was genuinely innovative.
+The truth is, Hermes wasn't a random hackathon idea. Amedeo and I were both working at [IFAD](https://www.ifad.org/) — a specialized agency of the United Nations — and we genuinely needed contextual help for our line-of-business web apps. When the Rails Rumble came around and nobody had a killer idea, Amedeo said "let's build that help system we keep talking about." The team loved it.
 
-A weekend hackathon project finding a home at a UN agency. That's the kind of thing that makes you think the open-source model actually works — sometimes the best way to prove an idea is to build it in 48 hours and put it on GitHub.
+That's what made Hermes good: we weren't inventing a problem to solve in 48 hours, we already had one. After the Rumble, the project came back to IFAD with us, the repo moved to [ifad/hermes](https://github.com/ifad/hermes), and my team funded continued development. It became a real internal tool — quick, context-aware tutorials across our web applications. Everything stayed open source.
+
+The concept is everywhere now — every SaaS product has onboarding tooltips and contextual help. When we built it, it was genuinely innovative. Sometimes the best hackathon projects are the ones where you already know the problem cold.
 
 The code: [github.com/vjt/r13-hermes](https://github.com/vjt/r13-hermes)

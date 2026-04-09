@@ -30,8 +30,10 @@ L'app era un classico stack Rails — niente di esotico. Ma il pezzo di cui vado
 
 ## Dall'hackathon all'ONU
 
-Circa un anno dopo, nel novembre 2014, ho portato Hermes all'[IFAD](https://www.ifad.org/) — un'agenzia specializzata delle Nazioni Unite dove lavoravo. Il mio team ha finanziato lo sviluppo successivo, il repo si è spostato su [ifad/hermes](https://github.com/ifad/hermes), ed è diventato un vero strumento interno per distribuire tutorial rapidi e contestuali sulle nostre applicazioni web line-of-business. Il concetto è ovunque oggi — ogni prodotto SaaS ha tooltip di onboarding e help contestuale. Quando l'abbiamo costruito noi, era genuinamente innovativo.
+La verità è che Hermes non era un'idea random da hackathon. Io e Amedeo lavoravamo entrambi all'[IFAD](https://www.ifad.org/) — un'agenzia specializzata delle Nazioni Unite — e avevamo davvero bisogno di help contestuale per le nostre applicazioni web line-of-business. Quando è arrivata la Rails Rumble e nessuno aveva un'idea killer, Amedeo ha detto "costruiamo quel sistema di help di cui parliamo sempre." Al team è piaciuto subito.
 
-Un progetto da hackathon del weekend che trova casa in un'agenzia ONU. È il genere di cosa che ti fa pensare che il modello open-source funzioni davvero — a volte il modo migliore per dimostrare un'idea è costruirla in 48 ore e metterla su GitHub.
+È questo che ha reso Hermes buono: non stavamo inventando un problema da risolvere in 48 ore, ne avevamo già uno. Dopo la Rumble, il progetto è tornato all'IFAD con noi, il repo si è spostato su [ifad/hermes](https://github.com/ifad/hermes), e il mio team ha finanziato lo sviluppo successivo. È diventato un vero strumento interno — tutorial rapidi e contestuali sulle nostre applicazioni web. Tutto è rimasto open source.
+
+Il concetto è ovunque oggi — ogni prodotto SaaS ha tooltip di onboarding e help contestuale. Quando l'abbiamo costruito noi, era genuinamente innovativo. A volte i migliori progetti da hackathon sono quelli in cui conosci già il problema a menadito.
 
 Il codice: [github.com/vjt/r13-hermes](https://github.com/vjt/r13-hermes)
