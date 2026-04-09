@@ -144,3 +144,7 @@ constraints. And, sincerely, I see little benefit in it. It’s a
 “paginate-with-one-item-per-page” hack, after all :).
 
 Have fun!
+
+{{< retrospective year="2026" >}}
+Most of the stack here is dead: jQuery's `.live()` was removed in 1.9, `attachment_fu` was superseded by Paperclip and then by Rails' built-in ActiveStorage (Rails 5.2, 2018). The jQuery plugin registry and RubyForge both shut down years ago.
+{{< /retrospective >}}

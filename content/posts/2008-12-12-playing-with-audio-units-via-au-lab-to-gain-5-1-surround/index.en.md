@@ -24,3 +24,7 @@ Also, note the new bus: it's required because the AUMatrixReverb effect added to
 
 Result: excellent 7.1
 
+{{< retrospective year="2026" >}}
+Apple removed AU Lab from Xcode/developer tools around 2019, and Soundflower was abandoned by Cycling '74 (acquired by Ableton). The modern replacement is [BlackHole](https://github.com/ExistentialAudio/BlackHole) — a virtual audio driver that does the same job.
+{{< /retrospective >}}
+

@@ -45,3 +45,7 @@ instruct launchd to automatically start up the daemon and run it once for
 user](http://developer.apple.com/technotes/tn2005/tn2083.html#TABLAUNCHAGENTSUBTYPES),
 when kinit asks its services. But, if the key is set in the `.plist`, a
 launchctl load on it fails with "nothing found to load". Weird!
+
+{{< retrospective year="2026" >}}
+Apple replaced the MIT Kerberos implementation with Heimdal in OS X 10.7 Lion (2011), removing `CCacheServer` entirely. On modern macOS, System Integrity Protection (SIP, since 10.11 El Capitan) prevents editing anything under `/System/Library/` anyway.
+{{< /retrospective >}}

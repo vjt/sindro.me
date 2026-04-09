@@ -72,3 +72,7 @@ try it out.</p>
 <p>I hope this information is useful to anyone who tries a similar adventure,
 comments are appreciated :-).</p>
 
+{{< retrospective year="2026" >}}
+Good news: FreeBSD has fully supported the MacMini 4,1 hardware (NV MCP89 SATA, BCM57762 NIC) since FreeBSD 9.x (2012). NetBSD and OpenBSD also gained support. The "no way" in the title aged poorly — BSDs run fine on this machine now.
+{{< /retrospective >}}
+

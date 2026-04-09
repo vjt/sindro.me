@@ -58,3 +58,7 @@ http authorization required
 ```
 
 !! YAY! :D
+
+{{< retrospective year="2026" >}}
+Both Python 2.5 (EOL 2011) and SCO OpenServer are extinct. SCO/Xinuos went bankrupt, and Python 2 itself reached end-of-life in January 2020. This is a digital fossil.
+{{< /retrospective >}}

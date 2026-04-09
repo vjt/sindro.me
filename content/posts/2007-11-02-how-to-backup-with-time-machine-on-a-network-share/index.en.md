@@ -71,6 +71,10 @@ Of course with a bit of cache trashing:
 
 Have fun!
 
+{{< retrospective year="2026" >}}
+Apple added native SMB-based Time Machine support in macOS High Sierra (2017) and deprecated AFP in Big Sur (2020). Today any NAS with a plain Samba share works out of the box — no Netatalk, Avahi or marker files needed. Time Capsule was discontinued in 2018.
+{{< /retrospective >}}
+
 PS: You can use SMB shares too, as the hard link to directories stuff is
 embedded into a .sparsebundle file created on the network share. An AFP share
 has the added benefit of being indexable by spotlight, not to mention that your

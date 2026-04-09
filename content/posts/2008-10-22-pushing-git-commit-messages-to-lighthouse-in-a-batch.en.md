@@ -46,3 +46,7 @@ Have fun!
 References:
 
 the [git-lh script on github](http://gist.github.com/53917)
+
+{{< retrospective year="2026" >}}
+Lighthouse (the project tracker by ENTP) shut down in 2012, and its GitHub integration is long gone. If you're looking for commit-to-issue linking, every modern platform (GitHub Issues, GitLab, Jira, Linear) does this natively.
+{{< /retrospective >}}

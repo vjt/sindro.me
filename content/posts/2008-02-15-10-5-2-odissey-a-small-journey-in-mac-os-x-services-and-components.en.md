@@ -97,6 +97,12 @@ After the installer completed its job, I rebooted and a shiny new 10.5.2
 greeted me with the usual Mac **OS X** login window that on my box sports the
 "All your base are belong to us" slogan ;).
 
-Hope you enjoyed this journey as I did, and if you're a Linux fanb^Wuser don't
+Hope you enjoyed this journey as I did.
+
+{{< retrospective year="2026" >}}
+The single-user mode recovery (Cmd-S, `fsck`, mount writable) described here no longer works on modern Macs. Apple removed single-user mode in macOS Catalina (2019), the system volume became read-only with Signed System Volume in Big Sur (2020), and Apple Silicon Macs use a completely different recovery architecture.
+{{< /retrospective >}}
+
+If you're a Linux fanb^Wuser don't
 underestimate the cleanliness and cleverness of Mac **OS X** that every Apple
 geek tries to share with you!

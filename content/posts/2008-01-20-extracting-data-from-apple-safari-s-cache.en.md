@@ -82,3 +82,7 @@ sqlite> select receiver_data from cfurl_cache_blob_data
 ```
 
 YAY! Found it! A quick cut&paste.. and the lost theme is back! :D
+
+{{< retrospective year="2026" >}}
+Safari abandoned this SQLite cache format years ago. Since roughly Safari 10 / macOS Sierra (2016), the cache moved to `com.apple.WebKit.Networking` in a binary blob format — the old `Cache.db` no longer exists.
+{{< /retrospective >}}

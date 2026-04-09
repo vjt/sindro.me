@@ -18,5 +18,9 @@ courtesy of
 [CoconutBattery.app](http://www.coconut-flavour.com/coconutbattery/) and System
 Profiler.app)
 
+{{< retrospective year="2026" >}}
+This advice is now the opposite of what Apple recommends. Modern lithium-ion batteries degrade faster from deep discharge cycles. Since macOS Catalina (2019), "Optimized Battery Charging" stops at 80% automatically. Apple recommends keeping your MacBook plugged in when possible and removed the "calibrate by full discharge" guidance around 2012.
+{{< /retrospective >}}
+
 ![Battery health](/posts/2008-01-31-how-to-keep-your-apple-notebook-battery-healthy/healthy_battery_2.png)
 ![Battery cycles](/posts/2008-01-31-how-to-keep-your-apple-notebook-battery-healthy/healthy_battery_cycle_count.png)

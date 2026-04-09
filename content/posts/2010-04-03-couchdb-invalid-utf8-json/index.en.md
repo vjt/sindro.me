@@ -26,3 +26,7 @@ but I didn't want to "remove and reinstall" because I like to understand what's
 going on ;-).
 
 <small>Footnote: could this be the end of Hiatus? I hope so ;-p</small>
+
+{{< retrospective year="2026" >}}
+CouchDB 0.11 is ancient history — CouchDB 3.x has been the current line since 2020, and the Erlang library layout changed completely. This specific fix is unlikely to apply to any modern installation.
+{{< /retrospective >}}
