@@ -31,13 +31,7 @@ On [Valentine's Day 2014](https://github.com/ifad/chronomodel/tree/v0.6.0), I [r
 
 The [original exclusion constraint](/posts/2012-05-07-chronomodel-time-travel-postgresql/#the-architecture) was my proudest hack — abusing GiST geometric indexes to prevent overlapping history entries by encoding time ranges as 2D boxes. It worked, but it was a hack. [PostgreSQL 9.2](https://www.postgresql.org/docs/9.2/rangetypes.html) shipped proper range types, and by [9.3](https://www.postgresql.org/docs/9.3/rangetypes.html) they were solid.
 
-[Same day](https://github.com/ifad/chronomodel/commit/be57527), same v0.6.0: replaced the geometric hack with native `tsrange` columns. The exclusion constraint now reads like what it actually means:
-
-```sql
-EXCLUDE USING gist (id WITH =, validity WITH &&)
-```
-
-Before:
+[Same day](https://github.com/ifad/chronomodel/commit/be57527), same v0.6.0: replaced the geometric hack with native `tsrange` columns. The constraint went from this:
 
 ```sql
 -- v0.1.0: encode time as geometry, hope for the best
@@ -49,14 +43,27 @@ EXCLUDE USING gist (
 )
 ```
 
-After:
+to this:
 
 ```sql
 -- v0.6.0: say what you mean
 EXCLUDE USING gist ( id WITH =, validity WITH && )
 ```
 
-The database understands what it's enforcing.
+And the WHERE clauses for [temporal queries](https://github.com/ifad/chronomodel/commit/be57527#diff-da3a15e41e4e17573e2a4c7eb7d3ed7a1b6f0f6efda3ef2a2c5e3e6e1f5c0a3a) cleaned up just as dramatically:
+
+```sql
+-- v0.1.0: "what year is it?!" as a geometry problem
+WHERE box(point(date_part('epoch', valid_from), 0),
+          point(date_part('epoch', valid_to), 0))
+   && box(point(date_part('epoch', '2014-01-01'), 0),
+          point(date_part('epoch', '2014-01-01'), 0))
+
+-- v0.6.0: just ask
+WHERE '2014-01-01' <@ validity
+```
+
+The database understands what it's enforcing, and so does anyone reading the query log.
 
 ### Monkey-patching → proper adapter
 
