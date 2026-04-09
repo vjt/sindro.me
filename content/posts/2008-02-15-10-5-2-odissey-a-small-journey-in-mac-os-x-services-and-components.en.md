@@ -4,6 +4,9 @@ date: 2008-02-15
 tags: [apple, backup, macos]
 ---
 
+{{< retrospective year="2026" >}}
+The single-user mode recovery (Cmd-S, `fsck`, mount writable) described here no longer works on modern Macs. Apple removed single-user mode in macOS Catalina (2019), the system volume became read-only with Signed System Volume in Big Sur (2020), and Apple Silicon Macs use a completely different recovery architecture.
+{{< /retrospective >}}
 
 Well, I'm really happy with OSX 10.5.2. Even though I'm not the one that blamed Apple
 for the translucent menu bar that everyone dislikes.. well, I like it. I don't
@@ -98,10 +101,6 @@ greeted me with the usual Mac **OS X** login window that on my box sports the
 "All your base are belong to us" slogan ;).
 
 Hope you enjoyed this journey as I did.
-
-{{< retrospective year="2026" >}}
-The single-user mode recovery (Cmd-S, `fsck`, mount writable) described here no longer works on modern Macs. Apple removed single-user mode in macOS Catalina (2019), the system volume became read-only with Signed System Volume in Big Sur (2020), and Apple Silicon Macs use a completely different recovery architecture.
-{{< /retrospective >}}
 
 If you're a Linux fanb^Wuser don't
 underestimate the cleanliness and cleverness of Mac **OS X** that every Apple

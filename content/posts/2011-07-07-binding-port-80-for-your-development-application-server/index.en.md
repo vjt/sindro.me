@@ -4,6 +4,10 @@ title: Binding 80/TCP as non-root on your development server
 tags: [linux, ruby]
 ---
 
+{{< retrospective year="2026" >}}
+Since Linux 4.11 (2017), `sysctl net.ipv4.ip_unprivileged_port_start=0` lets any user bind low ports without capabilities — no `setcap` needed. Also, the Thin web server shown here has been obsolete since Puma became the default Rails server in Rails 5 (2016). And if you're using Docker, none of this matters anyway.
+{{< /retrospective >}}
+
 ![Neo Tux](/posts/2011-07-07-binding-port-80-for-your-development-application-server/neo-tux.png)
 
 So you have a Linux VM you use for development, because you want to mirror the
@@ -55,7 +59,3 @@ thin start -a yourapp -p 80
 >> Listening on yourapp:80, CTRL+C to stop
 ...
 ```
-
-{{< retrospective year="2026" >}}
-Since Linux 4.11 (2017), `sysctl net.ipv4.ip_unprivileged_port_start=0` lets any user bind low ports without capabilities — no `setcap` needed. Also, the Thin web server shown here has been obsolete since Puma became the default Rails server in Rails 5 (2016). And if you're using Docker, none of this matters anyway.
-{{< /retrospective >}}

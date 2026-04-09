@@ -5,6 +5,10 @@ date: 2007-11-02
 tags: [apple, backup, linux, networking]
 ---
 
+{{< retrospective year="2026" >}}
+Apple added native SMB-based Time Machine support in macOS High Sierra (2017) and deprecated AFP in Big Sur (2020). Today any NAS with a plain Samba share works out of the box — no Netatalk, Avahi or marker files needed. Time Capsule was discontinued in 2018.
+{{< /retrospective >}}
+
 *Ingredients*: Debian, Netatalk, Avahi, some trickery.
 
 ## Step 1: Recompile Netatalk with SSL Support
@@ -70,11 +74,6 @@ Of course with a bit of cache trashing:
 ![Cache Trashing](/posts/2007-11-02-how-to-backup-with-time-machine-on-a-network-share/tm-fscache-destroy-after-backup.png)
 
 Have fun!
-
-{{< retrospective year="2026" >}}
-Apple added native SMB-based Time Machine support in macOS High Sierra (2017) and deprecated AFP in Big Sur (2020). Today any NAS with a plain Samba share works out of the box — no Netatalk, Avahi or marker files needed. Time Capsule was discontinued in 2018.
-{{< /retrospective >}}
-
 PS: You can use SMB shares too, as the hard link to directories stuff is
 embedded into a .sparsebundle file created on the network share. An AFP share
 has the added benefit of being indexable by spotlight, not to mention that your

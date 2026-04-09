@@ -4,6 +4,10 @@ date: 2008-01-20
 tags: [apple, backup]
 ---
 
+{{< retrospective year="2026" >}}
+Safari abandoned this SQLite cache format years ago. Since roughly Safari 10 / macOS Sierra (2016), the cache moved to `com.apple.WebKit.Networking` in a binary blob format — the old `Cache.db` no longer exists.
+{{< /retrospective >}}
+
 Five minutes ago, I overwrote the super-shining-new CSS stylesheet that
 implements the current color scheme, because i wanted to restore the original
 one and put it in a new theme for this site, so that people who enjoyed the old
@@ -82,7 +86,3 @@ sqlite> select receiver_data from cfurl_cache_blob_data
 ```
 
 YAY! Found it! A quick cut&paste.. and the lost theme is back! :D
-
-{{< retrospective year="2026" >}}
-Safari abandoned this SQLite cache format years ago. Since roughly Safari 10 / macOS Sierra (2016), the cache moved to `com.apple.WebKit.Networking` in a binary blob format — the old `Cache.db` no longer exists.
-{{< /retrospective >}}

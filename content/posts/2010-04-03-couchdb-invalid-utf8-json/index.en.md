@@ -4,6 +4,10 @@ date: 2010-04-03T19:00:00Z
 tags: [erlang, projects]
 ---
 
+{{< retrospective year="2026" >}}
+CouchDB 0.11 is ancient history — CouchDB 3.x has been the current line since 2020, and the Erlang library layout changed completely. This specific fix is unlikely to apply to any modern installation.
+{{< /retrospective >}}
+
 ![CouchDB logo](/posts/2010-04-03-couchdb-invalid-utf8-json/couchdb.png)
 
 If your CouchDB 0.11 gives you the "Invalid UTF-8 JSON" error on **every** POST
@@ -26,7 +30,3 @@ but I didn't want to "remove and reinstall" because I like to understand what's
 going on ;-).
 
 <small>Footnote: could this be the end of Hiatus? I hope so ;-p</small>
-
-{{< retrospective year="2026" >}}
-CouchDB 0.11 is ancient history — CouchDB 3.x has been the current line since 2020, and the Erlang library layout changed completely. This specific fix is unlikely to apply to any modern installation.
-{{< /retrospective >}}

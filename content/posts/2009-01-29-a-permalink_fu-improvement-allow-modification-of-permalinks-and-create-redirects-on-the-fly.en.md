@@ -4,6 +4,10 @@ title: "A permalink_fu improvement: allow modification of permalinks and send HT
 tags: [ruby, projects, rails]
 ---
 
+{{< retrospective year="2026" >}}
+The `permalink_fu` plugin has been abandoned for over a decade. Rails dropped the entire plugin system in Rails 4 (2013) — the `friendly_id` gem became the standard replacement for URL slugs.
+{{< /retrospective >}}
+
 Another spin-off from the [www.visitacsa.it](http://www.visitacsa.it/) website:
 a [permalink_fu](http://github.com/technoweenie/permalink_fu/tree/master)
 improvement that allows **dynamic permalinks**. I know it is an
@@ -39,7 +43,3 @@ Have a look over [my repository at
 github](http://github.com/vjt/permalink_fu/tree/master), read the
 [README](http://github.com/vjt/permalink_fu/blob/b8d979f28c9795389cc65e9670a3529f805618dc/README)
 that contains the documentation of the added features, and check out the code!
-
-{{< retrospective year="2026" >}}
-The `permalink_fu` plugin has been abandoned for over a decade. Rails dropped the entire plugin system in Rails 4 (2013) — the `friendly_id` gem became the standard replacement for URL slugs.
-{{< /retrospective >}}

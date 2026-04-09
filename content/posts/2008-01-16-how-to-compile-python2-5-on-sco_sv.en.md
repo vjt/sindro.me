@@ -4,6 +4,10 @@ tags: [sysadmin, python]
 title: How to compile python2.5 on SCO_SV
 ---
 
+{{< retrospective year="2026" >}}
+Both Python 2.5 (EOL 2011) and SCO OpenServer are extinct. SCO/Xinuos went bankrupt, and Python 2 itself reached end-of-life in January 2020. This is a digital fossil.
+{{< /retrospective >}}
+
 - You must have PTH installed, and maybe other libs.
 - This was tested on `SCO_SV os507 3.2 5.0.7 i386`
 
@@ -58,7 +62,3 @@ http authorization required
 ```
 
 !! YAY! :D
-
-{{< retrospective year="2026" >}}
-Both Python 2.5 (EOL 2011) and SCO OpenServer are extinct. SCO/Xinuos went bankrupt, and Python 2 itself reached end-of-life in January 2020. This is a digital fossil.
-{{< /retrospective >}}

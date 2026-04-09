@@ -4,6 +4,10 @@ title: Python2.4's urllib2 broken by default on Solaris Express 5.11
 tags: [security, git, python, sysadmin]
 ---
 
+{{< retrospective year="2026" >}}
+Sun was acquired by Oracle in 2010 and Solaris is effectively abandoned since Oracle gutted the team in 2017. Python 2.4 and `urllib2` are long gone — `urllib2` was merged into `urllib.request` in Python 3.
+{{< /retrospective >}}
+
 While happily installing prerequisites to build an app on [Solaris
 11](http://sun.com/software/solaris), i enjoyed having
 [Mercurial](http://selenic.com/mercurial) already installed in the base
@@ -45,7 +49,3 @@ to someone ;).
 
 Solaris looks like a nice beast, though. I’ll have to learn more about it as
 well. :).
-
-{{< retrospective year="2026" >}}
-Sun was acquired by Oracle in 2010 and Solaris is effectively abandoned since Oracle gutted the team in 2017. Python 2.4 and `urllib2` are long gone — `urllib2` was merged into `urllib.request` in Python 3.
-{{< /retrospective >}}

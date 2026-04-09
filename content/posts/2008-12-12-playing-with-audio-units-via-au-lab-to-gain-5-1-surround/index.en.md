@@ -4,6 +4,10 @@ date: 2008-12-12T01:38:31Z
 tags: [apple]
 ---
 
+{{< retrospective year="2026" >}}
+Apple removed AU Lab from Xcode/developer tools around 2019, and Soundflower was abandoned by Cycling '74 (acquired by Ableton). The modern replacement is [BlackHole](https://github.com/ExistentialAudio/BlackHole) — a virtual audio driver that does the same job.
+{{< /retrospective >}}
+
 {{< figure src="/posts/2008-12-12-playing-with-audio-units-via-au-lab-to-gain-5-1-surround/au_lab_powa.jpg" alt="au lab pwnz" width="600" height="375" >}}
 
 The right session shows a document open on an aggregate audio device between [soundflower](http://www.cycling74.com/products/soundflower) (2ch) and a Creative SBLive with 6 channels: the flower receives sound input from iTunes and routes it to the card channels, using all the 6 speakers.
@@ -23,8 +27,4 @@ Improving: there is no need to use NetSend and NetReceive to play on 8 speakers:
 Also, note the new bus: it's required because the AUMatrixReverb effect added to the center channel to improve the audio stereophony actually takes two channels, so it overlaps with the following one (the LFE). But applying the effect to a bus does not exhibit this side effect.
 
 Result: excellent 7.1
-
-{{< retrospective year="2026" >}}
-Apple removed AU Lab from Xcode/developer tools around 2019, and Soundflower was abandoned by Cycling '74 (acquired by Ableton). The modern replacement is [BlackHole](https://github.com/ExistentialAudio/BlackHole) — a virtual audio driver that does the same job.
-{{< /retrospective >}}
 
