@@ -6,7 +6,7 @@ hideVintage: true
 ---
 
 {{< retrospective year="2026" >}}
-Contesto per i lettori più giovani: a metà anni 2000, i "fatti su Chuck Norris" erano un meme internet assurdamente popolare — una lista infinita di battute iperboliche sull'invincibilità dell'attore ("Chuck Norris può dividere per zero"). Naturalmente qualcuno doveva implementarli in Ruby. Il blog di intinig è sparito, ma il repo GitHub è ancora online — una classe `ChuckNorris` che rifiuta di essere istanziata ("No one initializes Chuck Norris") o ereditata.
+Contesto per i lettori più giovani: a metà anni 2000, i "fatti su Chuck Norris" erano un meme internet assurdamente popolare — una lista infinita di battute iperboliche sull'invincibilità dell'attore ("Chuck Norris può dividere per zero"). Naturalmente qualcuno doveva implementarli in Ruby. Il blog di intinig è sparito, ma il repo GitHub è ancora online — una classe `ChuckNorris` che rifiuta di essere istanziata ("No one initializes Chuck Norris") o ereditata. Il bello: se ci provi, percorre `ObjectSpace` e annulla ogni istanza della tua classe. Calcio rotante all'intero runtime Ruby.
 {{< /retrospective >}}
 
 [intinig](http://tempe.st/) ha portato il potere del calcio rotante di
