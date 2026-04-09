@@ -173,6 +173,6 @@ It works. It's ugly. It'll need to be cleaned up before this thing sees a 1.0. B
 
 Thirty-six commits from the initial README to this release. No tests yet — they're coming, I promise. The SQL is solid (I've been testing the schema approach manually for weeks before writing the gem), but the Ruby side needs proper specs.
 
-If you work with PostgreSQL and Rails and you've ever needed historical queries, audit trails, or temporal reporting: `gem install chrono_model` and try it. The [source is on GitHub](https://github.com/ifad/chronomodel). Issues, PRs, and complaints welcome.
+If you work with PostgreSQL and Rails and you've ever needed historical queries, audit trails, or temporal reporting: `gem install chrono_model` and try it. The [source is on GitHub](https://github.com/ifad/chronomodel), and the [API documentation](https://vjt.github.io/chronomodel/) covers every public method. Issues, PRs, and complaints welcome.
 
 Time travel shouldn't cost an Oracle license.
