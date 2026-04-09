@@ -6,7 +6,7 @@ hideVintage: true
 ---
 
 {{< retrospective year="2026" >}}
-Contesto per i lettori più giovani: a metà anni 2000, i "fatti su Chuck Norris" erano un meme internet assurdamente popolare — una lista infinita di battute iperboliche sull'invincibilità dell'attore ("Chuck Norris può dividere per zero"). Naturalmente qualcuno doveva implementarli in Ruby. Il repo è ancora online — una classe `ChuckNorris` che rifiuta di essere istanziata ("No one initializes Chuck Norris") o ereditata. Il blog di intinig reindirizza altrove, e il link a Uncyclopedia è bloccato.
+Contesto per i lettori più giovani: a metà anni 2000, i "fatti su Chuck Norris" erano un meme internet assurdamente popolare — una lista infinita di battute iperboliche sull'invincibilità dell'attore ("Chuck Norris può dividere per zero"). Naturalmente qualcuno doveva implementarli in Ruby. Tutti i link sono morti tranne il repo GitHub, che è ancora online — una classe `ChuckNorris` che rifiuta di essere istanziata ("No one initializes Chuck Norris") o ereditata.
 {{< /retrospective >}}
 
 [intinig](http://tempe.st/) ha portato il potere del calcio rotante di
