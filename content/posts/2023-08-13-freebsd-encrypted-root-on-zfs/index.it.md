@@ -4,6 +4,8 @@ date: 2023-08-13
 tags: [freebsd, sysadmin]
 ---
 
+![Un server FreeBSD cifrato avvolto in scudi traslucidi, il cloud AWS che si sgretola sullo sfondo](/posts/2023-08-13-freebsd-encrypted-root-on-zfs/cover.jpg)
+
 ## Premessa
 
 Nel 2023, gestisco ancora il mio mailserver. Sì, perché mi piace avere il
