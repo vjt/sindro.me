@@ -90,7 +90,7 @@ The final push is a weekend sprint. [Rails 5.0 through 5.2 support](https://gith
 - **20:54** — [v1.0.0](https://github.com/ifad/chronomodel/compare/v0.13.1...v1.0.0): `:gem: this is v1.0.0`
 - **21:17** — [v1.0.1](https://github.com/ifad/chronomodel/compare/v1.0.0...v1.0.1), because of course there's a v1.0.1
 
-Then the refactoring runs until 5 AM — [extracting the adapter into clean modules](https://github.com/ifad/chronomodel/commit/45f4db0), [rewriting `on_schema`](https://github.com/ifad/chronomodel/commit/aa8a5c5) to use thread-local storage, fixing CodeClimate smells, increasing coverage. Because tagging 1.0 doesn't mean you stop. It means you finally have permission to clean up properly.
+Then the refactoring runs until [5 AM](https://github.com/ifad/chronomodel/commit/3a13f10) — [extracting the adapter into clean modules](https://github.com/ifad/chronomodel/commit/45f4db0), [rewriting `on_schema`](https://github.com/ifad/chronomodel/commit/aa8a5c5) to use thread-local storage, fixing CodeClimate smells, increasing coverage. Because tagging 1.0 doesn't mean you stop. It means you finally have permission to clean up properly.
 
 ## What didn't change
 

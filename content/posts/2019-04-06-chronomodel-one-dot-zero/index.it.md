@@ -90,7 +90,7 @@ Lo sprint finale e' un weekend. Il [supporto Rails 5.0-5.2](https://github.com/i
 - **20:54** — [v1.0.0](https://github.com/ifad/chronomodel/compare/v0.13.1...v1.0.0): `:gem: this is v1.0.0`
 - **21:17** — [v1.0.1](https://github.com/ifad/chronomodel/compare/v1.0.0...v1.0.1), perche' ovviamente c'e' una v1.0.1
 
-Poi il refactoring va avanti fino alle 5 di mattina — [estrazione dell'adapter in moduli puliti](https://github.com/ifad/chronomodel/commit/45f4db0), [riscrittura di `on_schema`](https://github.com/ifad/chronomodel/commit/aa8a5c5) con thread-local storage, fix degli smell di CodeClimate, aumento della coverage. Perche' taggare la 1.0 non significa che ti fermi. Significa che finalmente hai il permesso di fare pulizia come si deve.
+Poi il refactoring va avanti fino alle [5 di mattina](https://github.com/ifad/chronomodel/commit/3a13f10) — [estrazione dell'adapter in moduli puliti](https://github.com/ifad/chronomodel/commit/45f4db0), [riscrittura di `on_schema`](https://github.com/ifad/chronomodel/commit/aa8a5c5) con thread-local storage, fix degli smell di CodeClimate, aumento della coverage. Perche' taggare la 1.0 non significa che ti fermi. Significa che finalmente hai il permesso di fare pulizia come si deve.
 
 ## Cosa non e' cambiato
 
