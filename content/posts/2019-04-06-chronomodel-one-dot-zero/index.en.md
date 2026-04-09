@@ -13,7 +13,7 @@ After v1.0.0, [Geremia Taglialatela](https://github.com/tagliala) took over and 
 
 Seven years ago I [released ChronoModel v0.1.0](/posts/2012-05-07-chronomodel-time-travel-postgresql/) — a Ruby gem that gives ActiveRecord models temporal capabilities on PostgreSQL. Five days of hacking, thirty-six commits, no tests, and a confession about monkey-patching the PostgreSQL adapter constant.
 
-Today I'm tagging v1.0.0. The commit message is `:gem: this is v1.0.0`. Not much of a speech, but the code speaks for itself: 506 commits, 31 releases, 52 files changed, 5,392 lines added. The core idea — updatable views on `public`, current data on `temporal`, history on `history` with table inheritance — never changed. Everything else did.
+Today I'm tagging [v1.0.0](https://github.com/ifad/chronomodel/commit/aa07e74). The [commit message](https://github.com/ifad/chronomodel/commit/aa07e74) is `:gem: this is v1.0.0`. Not much of a speech, but the code speaks for itself: 506 commits, 31 releases, 52 files changed, 5,392 lines added. The [core idea](/posts/2012-05-07-chronomodel-time-travel-postgresql/#the-architecture) — updatable views on `public`, current data on `temporal`, history on `history` with table inheritance — never changed. Everything else did.
 
 <!--more-->
 
@@ -23,13 +23,13 @@ Three things were wrong with v0.1.0, and I said so at the time. All three are fi
 
 ### Rules → INSTEAD OF triggers
 
-The original design used PostgreSQL [rules](http://www.postgresql.org/docs/9.1/static/rules.html) to make the public views writable. Rules work, but they have sharp edges — they rewrite queries at parse time, they can't handle `RETURNING` clauses properly, and debugging them is a nightmare.
+The [original design](/posts/2012-05-07-chronomodel-time-travel-postgresql/#the-architecture) used PostgreSQL [rules](http://www.postgresql.org/docs/9.1/static/rules.html) to make the public views writable. Rules work, but they have sharp edges — they rewrite queries at parse time, they can't handle `RETURNING` clauses properly, and debugging them is a nightmare.
 
-On [Valentine's Day 2014](https://github.com/ifad/chronomodel/tree/v0.6.0), I ripped them all out and replaced them with INSTEAD OF triggers. Same behavior, cleaner execution model. Triggers fire at statement execution time, handle `RETURNING` naturally, and you can actually debug them. The [commit message](https://github.com/ifad/chronomodel/commit/05aff8cc) says "BREAKING CHANGE" — because it was. Every temporal table needed a migration to switch over.
+On [Valentine's Day 2014](https://github.com/ifad/chronomodel/tree/v0.6.0), I [ripped them all out](https://github.com/ifad/chronomodel/commit/05aff8cc) and replaced them with INSTEAD OF triggers. Same behavior, cleaner execution model. Triggers fire at statement execution time, handle `RETURNING` naturally, and you can actually debug them. The commit message says "BREAKING CHANGE" — because it was. Every temporal table needed a migration to switch over.
 
 ### box()/point() → tsrange
 
-The original exclusion constraint was my proudest hack — abusing GiST geometric indexes to prevent overlapping history entries by encoding time ranges as 2D boxes. It worked, but it was a hack. PostgreSQL 9.2 shipped proper range types, and by 9.3 they were solid.
+The [original exclusion constraint](/posts/2012-05-07-chronomodel-time-travel-postgresql/#the-architecture) was my proudest hack — abusing GiST geometric indexes to prevent overlapping history entries by encoding time ranges as 2D boxes. It worked, but it was a hack. [PostgreSQL 9.2](https://www.postgresql.org/docs/9.2/rangetypes.html) shipped proper range types, and by [9.3](https://www.postgresql.org/docs/9.3/rangetypes.html) they were solid.
 
 [Same day](https://github.com/ifad/chronomodel/commit/be57527), same v0.6.0: replaced the geometric hack with native `tsrange` columns. The exclusion constraint now reads like what it actually means:
 
@@ -41,7 +41,7 @@ No more `box(point(extract(epoch from valid_from), id), ...)`. Just: "don't allo
 
 ### Monkey-patching → proper adapter
 
-The v0.1.0 "ugly truth":
+The v0.1.0 ["ugly truth"](/posts/2012-05-07-chronomodel-time-travel-postgresql/#the-ugly-truth):
 
 ```ruby
 silence_warnings do
@@ -61,17 +61,17 @@ The minimum PostgreSQL version jumped from 9.0 to 9.3. Some users had to upgrade
 
 The v0.1.0 post said "no tests yet — they're coming, I promise." They came. [v0.3.0](https://github.com/ifad/chronomodel/tree/v0.3.0) (June 2012, six weeks later) added comprehensive RSpec specs. By v1.0.0 there are 5,000+ lines of test code covering temporal tables, history queries, associations, time queries, STI, indexes, migrations, schema dumping, and standard ActiveRecord behavior.
 
-The test suite runs against multiple Rails versions via [Appraisal](https://github.com/thoughtbot/appraisal) — Rails 5.0, 5.1, and 5.2 for v1.0.0. The v0.13.1 release, tagged thirty minutes before v1.0.0, is the last version supporting Rails 4.2.
+The test suite runs against multiple Rails versions via [Appraisal](https://github.com/thoughtbot/appraisal) — Rails 5.0, 5.1, and 5.2 for v1.0.0. The [v0.13.1](https://github.com/ifad/chronomodel/tree/v0.13.1) release, tagged thirty minutes before v1.0.0, is the last version supporting Rails 4.2.
 
 ## The weekend of April 6th
 
-The final push is a weekend sprint. Rails 5.0 through 5.2 support lands in the afternoon, Rails 4.2 gets dropped, specs get added, deprecation warnings get fixed. Then three releases in under an hour:
+The final push is a weekend sprint. [Rails 5.0 through 5.2 support](https://github.com/ifad/chronomodel/commit/f2bbdb3) lands in the afternoon, [Rails 4.2 gets dropped](https://github.com/ifad/chronomodel/commit/ab10280), specs get [added](https://github.com/ifad/chronomodel/commit/f043ef7), deprecation warnings get fixed. Then three releases in under an hour:
 
 - **20:25** — [v0.13.1](https://github.com/ifad/chronomodel/tree/v0.13.1): "the last version to support Rails 4.2"
 - **20:54** — [v1.0.0](https://github.com/ifad/chronomodel/tree/v1.0.0): `:gem: this is v1.0.0`
-- **21:17** — v1.0.1, because of course there's a v1.0.1
+- **21:17** — [v1.0.1](https://github.com/ifad/chronomodel/tree/v1.0.1), because of course there's a v1.0.1
 
-Then the refactoring runs until 5 AM — extracting the adapter into clean modules, rewriting `on_schema` to use thread-local storage, fixing CodeClimate smells, increasing coverage. Because tagging 1.0 doesn't mean you stop. It means you finally have permission to clean up properly.
+Then the refactoring runs until 5 AM — [extracting the adapter into clean modules](https://github.com/ifad/chronomodel/commit/45f4db0), [rewriting `on_schema`](https://github.com/ifad/chronomodel/commit/aa8a5c5) to use thread-local storage, fixing CodeClimate smells, increasing coverage. Because tagging 1.0 doesn't mean you stop. It means you finally have permission to clean up properly.
 
 ## What didn't change
 

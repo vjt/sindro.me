@@ -13,7 +13,7 @@ Dopo la v1.0.0, [Geremia Taglialatela](https://github.com/tagliala) ha preso in 
 
 Sette anni fa ho [rilasciato ChronoModel v0.1.0](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/) — una gem Ruby che da' ai modelli ActiveRecord capacita' temporali su PostgreSQL. Cinque giorni di hacking, trentasei commit, nessun test, e una confessione sul monkey-patching della costante dell'adapter PostgreSQL.
 
-Oggi taggo la v1.0.0. Il messaggio di commit e' `:gem: this is v1.0.0`. Non proprio un discorso memorabile, ma il codice parla da solo: 506 commit, 31 release, 52 file modificati, 5.392 righe aggiunte. L'idea di base — viste aggiornabili su `public`, dati correnti su `temporal`, storico su `history` con table inheritance — non e' mai cambiata. Tutto il resto si'.
+Oggi taggo la [v1.0.0](https://github.com/ifad/chronomodel/commit/aa07e74). Il [messaggio di commit](https://github.com/ifad/chronomodel/commit/aa07e74) e' `:gem: this is v1.0.0`. Non proprio un discorso memorabile, ma il codice parla da solo: 506 commit, 31 release, 52 file modificati, 5.392 righe aggiunte. L'[idea di base](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/#larchitettura) — viste aggiornabili su `public`, dati correnti su `temporal`, storico su `history` con table inheritance — non e' mai cambiata. Tutto il resto si'.
 
 <!--more-->
 
@@ -23,13 +23,13 @@ Tre cose erano sbagliate nella v0.1.0, e l'avevo detto io stesso. Tutte e tre so
 
 ### Regole → trigger INSTEAD OF
 
-Il design originale usava le [regole](http://www.postgresql.org/docs/9.1/static/rules.html) di PostgreSQL per rendere scrivibili le viste public. Le regole funzionano, ma hanno spigoli vivi — riscrivono le query a parse time, non gestiscono bene le clausole `RETURNING`, e il debugging e' un incubo.
+Il [design originale](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/#larchitettura) usava le [regole](http://www.postgresql.org/docs/9.1/static/rules.html) di PostgreSQL per rendere scrivibili le viste public. Le regole funzionano, ma hanno spigoli vivi — riscrivono le query a parse time, non gestiscono bene le clausole `RETURNING`, e il debugging e' un incubo.
 
-Il [giorno di San Valentino 2014](https://github.com/ifad/chronomodel/tree/v0.6.0), le ho strappate tutte e sostituite con trigger INSTEAD OF. Stesso comportamento, modello di esecuzione piu' pulito. I trigger scattano al momento dell'esecuzione, gestiscono `RETURNING` naturalmente, e si possono davvero debuggare. Il [messaggio di commit](https://github.com/ifad/chronomodel/commit/05aff8cc) dice "BREAKING CHANGE" — perche' lo era. Ogni tabella temporale aveva bisogno di una migration per passare al nuovo sistema.
+Il [giorno di San Valentino 2014](https://github.com/ifad/chronomodel/tree/v0.6.0), le ho [strappate tutte](https://github.com/ifad/chronomodel/commit/05aff8cc) e sostituite con trigger INSTEAD OF. Stesso comportamento, modello di esecuzione piu' pulito. I trigger scattano al momento dell'esecuzione, gestiscono `RETURNING` naturalmente, e si possono davvero debuggare. Il messaggio di commit dice "BREAKING CHANGE" — perche' lo era. Ogni tabella temporale aveva bisogno di una migration per passare al nuovo sistema.
 
 ### box()/point() → tsrange
 
-Il vincolo di esclusione originale era il mio hack piu' orgoglioso — abusare degli indici geometrici GiST per impedire entry storiche sovrapposte codificando gli intervalli temporali come box 2D. Funzionava, ma era un hack. PostgreSQL 9.2 ha introdotto i range type nativi, e dalla 9.3 erano solidi.
+Il [vincolo di esclusione originale](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/#larchitettura) era il mio hack piu' orgoglioso — abusare degli indici geometrici GiST per impedire entry storiche sovrapposte codificando gli intervalli temporali come box 2D. Funzionava, ma era un hack. [PostgreSQL 9.2](https://www.postgresql.org/docs/9.2/rangetypes.html) ha introdotto i range type nativi, e dalla [9.3](https://www.postgresql.org/docs/9.3/rangetypes.html) erano solidi.
 
 [Stesso giorno](https://github.com/ifad/chronomodel/commit/be57527), stessa v0.6.0: sostituito l'hack geometrico con colonne `tsrange` native. Il vincolo di esclusione adesso si legge come quello che effettivamente significa:
 
@@ -41,7 +41,7 @@ Niente piu' `box(point(extract(epoch from valid_from), id), ...)`. Solo: "non pe
 
 ### Monkey-patching → adapter corretto
 
-La "verita' scomoda" della v0.1.0:
+La ["verita' scomoda"](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/#la-verita-scomoda) della v0.1.0:
 
 ```ruby
 silence_warnings do
@@ -61,17 +61,17 @@ La versione minima di PostgreSQL e' saltata dalla 9.0 alla 9.3. Alcuni utenti ha
 
 Il post della v0.1.0 diceva "nessun test per ora — arriveranno, promesso." Sono arrivati. La [v0.3.0](https://github.com/ifad/chronomodel/tree/v0.3.0) (giugno 2012, sei settimane dopo) ha aggiunto spec RSpec complete. Alla v1.0.0 ci sono 5.000+ righe di codice di test che coprono tabelle temporali, query storiche, associazioni, time query, STI, indici, migration, schema dump, e comportamento standard di ActiveRecord.
 
-La suite di test gira su multiple versioni di Rails via [Appraisal](https://github.com/thoughtbot/appraisal) — Rails 5.0, 5.1, e 5.2 per la v1.0.0. La release v0.13.1, taggata trenta minuti prima della v1.0.0, e' l'ultima versione a supportare Rails 4.2.
+La suite di test gira su multiple versioni di Rails via [Appraisal](https://github.com/thoughtbot/appraisal) — Rails 5.0, 5.1, e 5.2 per la v1.0.0. La [v0.13.1](https://github.com/ifad/chronomodel/tree/v0.13.1), taggata trenta minuti prima della v1.0.0, e' l'ultima versione a supportare Rails 4.2.
 
 ## Il weekend del 6 aprile
 
-Lo sprint finale e' un weekend. Il supporto Rails 5.0-5.2 arriva nel pomeriggio, Rails 4.2 viene droppato, le spec vengono aggiunte, i deprecation warning vengono risolti. Poi tre release in meno di un'ora:
+Lo sprint finale e' un weekend. Il [supporto Rails 5.0-5.2](https://github.com/ifad/chronomodel/commit/f2bbdb3) arriva nel pomeriggio, [Rails 4.2 viene droppato](https://github.com/ifad/chronomodel/commit/ab10280), le spec vengono [aggiunte](https://github.com/ifad/chronomodel/commit/f043ef7), i deprecation warning vengono risolti. Poi tre release in meno di un'ora:
 
 - **20:25** — [v0.13.1](https://github.com/ifad/chronomodel/tree/v0.13.1): "the last version to support Rails 4.2"
 - **20:54** — [v1.0.0](https://github.com/ifad/chronomodel/tree/v1.0.0): `:gem: this is v1.0.0`
-- **21:17** — v1.0.1, perche' ovviamente c'e' una v1.0.1
+- **21:17** — [v1.0.1](https://github.com/ifad/chronomodel/tree/v1.0.1), perche' ovviamente c'e' una v1.0.1
 
-Poi il refactoring va avanti fino alle 5 di mattina — estrazione dell'adapter in moduli puliti, riscrittura di `on_schema` con thread-local storage, fix degli smell di CodeClimate, aumento della coverage. Perche' taggare la 1.0 non significa che ti fermi. Significa che finalmente hai il permesso di fare pulizia come si deve.
+Poi il refactoring va avanti fino alle 5 di mattina — [estrazione dell'adapter in moduli puliti](https://github.com/ifad/chronomodel/commit/45f4db0), [riscrittura di `on_schema`](https://github.com/ifad/chronomodel/commit/aa8a5c5) con thread-local storage, fix degli smell di CodeClimate, aumento della coverage. Perche' taggare la 1.0 non significa che ti fermi. Significa che finalmente hai il permesso di fare pulizia come si deve.
 
 ## Cosa non e' cambiato
 
