@@ -1,4 +1,10 @@
+<div align="center">
+
+<img src="glider.svg" alt="Hacker Emblem" width="96">
+
 # [sindro.me](https://sindro.me)
+
+</div>
 
 A bilingual (EN/IT) personal technical blog by [Marcello Barnaba](https://sindro.me/about/) ([@vjt](https://github.com/vjt)). Static site generated with [Hugo](https://gohugo.io/), using the [Sindrome theme](https://github.com/vjt/hugo-sindrome-theme).
 
