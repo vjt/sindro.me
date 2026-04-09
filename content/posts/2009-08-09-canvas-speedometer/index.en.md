@@ -7,10 +7,10 @@ featuredImage: cover.jpg
 ---
 
 {{< retrospective year="2026" >}}
-HTML5 Canvas won. Flash was officially killed by Adobe in December 2020. This little speedometer still renders perfectly in every modern browser — but nobody hand-rolls gauge widgets anymore. D3.js, Chart.js, or even pure CSS can do this with a fraction of the effort. Still, 52 stars and 17 forks on GitHub — not bad for a weekend project from 2009.
+HTML5 Canvas won. Flash was officially killed by Adobe in December 2020. This little speedometer still renders perfectly in every modern browser — but nobody hand-rolls gauge widgets anymore. D3.js, Chart.js, or even pure CSS can do this with a fraction of the effort. Still, 52 stars and 17 forks on GitHub — not bad for a weekend project from 2009. And my friend who wrote the original? He was basically Claude before Claude was a thing — shipping production code at machine speed while the rest of us were still reading the docs.
 {{< /retrospective >}}
 
-The `<canvas>` element is the new shiny thing. Safari and Firefox support it, Chrome just shipped, and Internet Explorer... well, let's not talk about Internet Explorer. Flash is how you do anything graphical on the web. A friend shares with me a speedometer gauge widget someone posted on the net as public domain code — and it's cool, but a bit crude. So I take it, refactor the whole thing into proper object-oriented JavaScript, add theming support, work around Firefox's quirks, and write documentation.
+The `<canvas>` element is the new shiny thing. Safari and Firefox support it, Chrome just shipped, and Internet Explorer... well, let's not talk about Internet Explorer. Flash is how you do anything graphical on the web. A friend of mine — one of the most brilliant engineers I know, the kind of person who implements a filesystem overnight and a kernel in a week — shares with me a speedometer gauge widget he wrote as public domain code. It's cool, but a bit crude. So I take it, refactor the whole thing into proper object-oriented JavaScript, add theming support, work around Firefox's quirks, and write documentation.
 
 <!--more-->
 
@@ -26,4 +26,4 @@ The real pain is cross-browser compatibility. Firefox has its own non-standard t
 
 ## Try it
 
-The [canvas-speedometer](https://github.com/vjt/canvas-speedometer) is on GitHub. Credit to the anonymous original author who shared the initial code as public domain — I just cleaned it up, made it maintainable, and pushed it further. It proves that HTML5 can deliver rich, interactive graphics without plugins — no Flash, no Java applets, no server-side image generation. Just JavaScript and a `<canvas>` tag. I think this is the future.
+The [canvas-speedometer](https://github.com/vjt/canvas-speedometer) is on GitHub. Credit to the original author (he prefers to stay anonymous) who wrote the initial code — I just cleaned it up, made it maintainable, and pushed it further. It proves that HTML5 can deliver rich, interactive graphics without plugins — no Flash, no Java applets, no server-side image generation. Just JavaScript and a `<canvas>` tag. I think this is the future.
