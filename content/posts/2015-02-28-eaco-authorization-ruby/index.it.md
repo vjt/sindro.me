@@ -180,7 +180,7 @@ Entrambe le direzioni funzionano — `user.can?` e `document.allows?` — perche
 
 ## Made in Italy
 
-La gem e' sotto licenza MIT e [su GitHub](https://github.com/ifad/eaco). La documentazione YARD copre ogni metodo pubblico. Le feature Cucumber si leggono come specifiche — lo scenario Enterprise modella una struttura organizzativa reale con la complessita' che ci si aspetta da un'agenzia ONU.
+La gem e' sotto licenza MIT e [su GitHub](https://github.com/ifad/eaco). La documentazione YARD copre ogni metodo pubblico. Le [feature Cucumber](https://github.com/ifad/eaco/blob/v0.8.0/features/enterprise_authorization.feature) si leggono come specifiche — lo scenario Enterprise modella una struttura organizzativa reale con la complessita' che ci si aspetta da un'agenzia ONU.
 
 Se le tue esigenze di autorizzazione vanno oltre "admin o no" — se l'accesso dipende da *chi e' l'utente in relazione alla risorsa* — prova Eaco. `gem install eaco` e crea il tuo `config/authorization.rb`.
 
