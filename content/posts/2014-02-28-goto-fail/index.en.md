@@ -2,6 +2,7 @@
 date: 2014-02-28T03:00:00
 title: goto fail;
 tags: [apple, funny]
+hideVintage: true
 ---
 
 ## In its own words:
