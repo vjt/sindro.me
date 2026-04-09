@@ -13,25 +13,25 @@ Dopo la v1.0.0, [Geremia Taglialatela](https://github.com/tagliala) ha preso in 
 
 Sette anni fa ho [rilasciato ChronoModel v0.1.0](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/) — una gem Ruby che da' ai modelli ActiveRecord capacita' temporali su PostgreSQL. Cinque giorni di hacking, trentasei commit, nessun test, e una confessione sul monkey-patching della costante dell'adapter PostgreSQL.
 
-Oggi taggo la [v1.0.0](https://github.com/ifad/chronomodel/commit/aa07e74). Il [messaggio di commit](https://github.com/ifad/chronomodel/commit/aa07e74) e' `:gem: this is v1.0.0`. Non proprio un discorso memorabile, ma il codice parla da solo: 506 commit, 31 release, 52 file modificati, 5.392 righe aggiunte. L'[idea di base](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/#larchitettura) — viste aggiornabili su `public`, dati correnti su `temporal`, storico su `history` con table inheritance — non e' mai cambiata. Tutto il resto si'.
+Oggi taggo la [v1.0.0](https://github.com/ifad/chronomodel/commit/aa07e74). Il messaggio di commit e' `:gem: this is v1.0.0`. Non proprio un discorso memorabile, ma il codice parla da solo: 506 commit, 31 release, 52 file modificati, 5.392 righe aggiunte. L'[idea di base](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/#larchitettura) — viste aggiornabili su `public`, dati correnti su `temporal`, storico su `history` con table inheritance — non e' mai cambiata. Tutto il resto si'.
 
 <!--more-->
 
 ## Cosa e' cambiato
 
-Tre cose erano sbagliate nella v0.1.0, e l'avevo detto io stesso. Tutte e tre sono risolte.
+Tre cose erano sbagliate nella v0.1.0, e l'avevo detto io stesso. Tutte e tre risolte lo stesso giorno — [San Valentino 2014](https://github.com/ifad/chronomodel/tree/v0.6.0), la [release v0.6.0](https://github.com/ifad/chronomodel/compare/v0.5.7...v0.6.0). Una riscrittura completa del layer database mantenendo l'API Ruby identica. La versione minima di PostgreSQL e' saltata dalla 9.0 alla 9.3. Se la v0.1.0 era "questo funziona," la v0.6.0 era "questo funziona *correttamente*."
 
 ### Regole → trigger INSTEAD OF
 
 Il [design originale](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/#larchitettura) usava le [regole](http://www.postgresql.org/docs/9.1/static/rules.html) di PostgreSQL per rendere scrivibili le viste public. Le regole funzionano, ma hanno spigoli vivi — riscrivono le query a parse time, non gestiscono bene le clausole `RETURNING`, e il debugging e' un incubo.
 
-Il [giorno di San Valentino 2014](https://github.com/ifad/chronomodel/tree/v0.6.0), le ho [strappate tutte](https://github.com/ifad/chronomodel/commit/05aff8cc) e sostituite con trigger INSTEAD OF. Stesso comportamento, modello di esecuzione piu' pulito. I trigger scattano al momento dell'esecuzione, gestiscono `RETURNING` naturalmente, e si possono davvero debuggare. Il messaggio di commit dice "BREAKING CHANGE" — perche' lo era. Ogni tabella temporale aveva bisogno di una migration per passare al nuovo sistema.
+Le ho [strappate tutte](https://github.com/ifad/chronomodel/commit/05aff8cc) e sostituite con trigger INSTEAD OF. Stesso comportamento, modello di esecuzione piu' pulito. I trigger scattano al momento dell'esecuzione, gestiscono `RETURNING` naturalmente, e si possono davvero debuggare. Il messaggio di commit dice "BREAKING CHANGE" — perche' lo era. Ogni tabella temporale aveva bisogno di una migration per passare al nuovo sistema.
 
 ### box()/point() → tsrange
 
 Il [vincolo di esclusione originale](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/#larchitettura) era il mio hack piu' orgoglioso — abusare degli indici geometrici GiST per impedire entry storiche sovrapposte codificando gli intervalli temporali come box 2D. Funzionava, ma era un hack. [PostgreSQL 9.2](https://www.postgresql.org/docs/9.2/rangetypes.html) ha introdotto i range type nativi, e dalla [9.3](https://www.postgresql.org/docs/9.3/rangetypes.html) erano solidi.
 
-[Stesso giorno](https://github.com/ifad/chronomodel/commit/be57527), stessa v0.6.0: sostituito l'hack geometrico con colonne `tsrange` native. Il vincolo e' passato da questo:
+[Sostituito](https://github.com/ifad/chronomodel/commit/be57527) l'hack geometrico con colonne `tsrange` native. Il vincolo e' passato da questo:
 
 ```sql
 -- v0.1.0: codifica il tempo come geometria, spera nel meglio
@@ -76,12 +76,6 @@ end
 ```
 
 Sparita. ChronoModel adesso si [registra](https://github.com/ifad/chronomodel/commit/c11b30f) come sottoclasse dell'adapter. Si configura in `database.yml` con `adapter: chronomodel` e ActiveRecord lo carica attraverso la sua risoluzione standard degli adapter. Nessuna costante e' stata maltrattata.
-
-## San Valentino 2014
-
-La [release v0.6.0](https://github.com/ifad/chronomodel/tree/v0.6.0) merita una menzione a parte. Tre breaking change in un giorno — trigger, tsrange, registrazione dell'adapter. Una riscrittura completa del layer database mantenendo l'API Ruby identica. Se la v0.1.0 era "questo funziona," la v0.6.0 era "questo funziona *correttamente*."
-
-La versione minima di PostgreSQL e' saltata dalla 9.0 alla 9.3. Alcuni utenti hanno dovuto aggiornare i loro database. Nessuno si e' lamentato — la nuova implementazione era visibilmente migliore.
 
 ## I test
 
