@@ -30,10 +30,12 @@ L'app era un classico stack Rails — niente di esotico. Ma il pezzo di cui vado
 
 ## Dall'hackathon all'ONU
 
-La verità è che Hermes non era un'idea random da hackathon. Io e Amedeo lavoravamo entrambi all'[IFAD](https://www.ifad.org/) — un'agenzia specializzata delle Nazioni Unite — e avevamo davvero bisogno di help contestuale per le nostre applicazioni web line-of-business. Quando è arrivata la Rails Rumble e nessuno aveva un'idea killer, Amedeo ha detto "costruiamo quel sistema di help di cui parliamo sempre." Al team è piaciuto subito.
+Il bello di Amedeo, il mio capo all'[IFAD](https://www.ifad.org/) — un'agenzia specializzata delle Nazioni Unite — è che è uno di quelli che passa il tempo a guardare fuori dalla finestra, e tu pensi che stia sognando ad occhi aperti, ma in realtà sta mappando processi di business e bisogni reali in design brillanti nella sua testa. Poi si gira e ti tira fuori qualcosa di geniale.
 
-È questo che ha reso Hermes buono: non stavamo inventando un problema da risolvere in 48 ore, ne avevamo già uno. Dopo la Rumble, il progetto è tornato all'IFAD con noi, il repo si è spostato su [ifad/hermes](https://github.com/ifad/hermes), e il mio team ha finanziato lo sviluppo successivo. È diventato un vero strumento interno — tutorial rapidi e contestuali sulle nostre applicazioni web. Tutto è rimasto open source.
+Hermes è uno di quei momenti. Non stavamo parlando di nessun sistema di help prima. Nessuno aveva un progetto di help contestuale su nessuna roadmap. Quando arriva la Rails Rumble e al team serve un'idea, Amedeo torna da un pisolino e fa "help contestuale — un tag script che butti dentro una qualsiasi web app, e lui fa tutto il resto." Così, dal nulla. Al team piace all'istante.
 
-Il concetto è ovunque oggi — ogni prodotto SaaS ha tooltip di onboarding e help contestuale. Quando l'abbiamo costruito noi, era genuinamente innovativo. A volte i migliori progetti da hackathon sono quelli in cui conosci già il problema a menadito.
+È questo che rende Hermes buono: l'idea è genuinamente originale, non qualcosa che ci rigiravamo da tempo. Viene da uno che capisce come le persone usano davvero le applicazioni line-of-business, e che vede il vuoto che nessun altro nota. Dopo la Rumble, promuoviamo il progetto dentro l'IFAD, il repo si sposta su [ifad/hermes](https://github.com/ifad/hermes), e addirittura assumiamo uno dei membri del team per un periodo per continuare a svilupparlo. Diventa un vero strumento interno — tutorial rapidi e contestuali sulle nostre applicazioni web. Tutto resta open source.
+
+Il concetto è ovunque oggi — ogni prodotto SaaS ha tooltip di onboarding e help contestuale. Quando l'abbiamo costruito noi, era genuinamente innovativo. A volte i migliori progetti da hackathon vengono da un visionario che conosce il problema a fondo, anche quando nessun altro lo vede ancora.
 
 Il codice: [github.com/vjt/r13-hermes](https://github.com/vjt/r13-hermes)
