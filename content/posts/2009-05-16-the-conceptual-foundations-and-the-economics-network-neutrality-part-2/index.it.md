@@ -4,10 +4,6 @@ title: Le basi concettuali e l'economia della neutralita' della rete [Parte 2] -
 tags: [politics, networking]
 ---
 
-{{< retrospective year="2026" >}}
-Molto è cambiato dal 2009. La promessa del Rapporto Caio di banda larga al 99% entro il 2011 non si è mai concretizzata — l'Italia lotta ancora con il digital divide nel 2026. Fastweb è stata acquisita da Swisscom. Tre e Wind si sono fuse in WindTre. Tele2 è uscita dal mercato italiano. Il protocollo P4P non è mai decollato. La Deep Packet Inspection è diventata molto più diffusa di quanto si temesse, ora equipaggiamento standard per gli stati di sorveglianza in tutto il mondo. Paolo Gentiloni è diventato Presidente del Consiglio e poi Commissario europeo.
-{{< /retrospective >}}
-
 <p>Questa e' la seconda parte del mio resoconto del convegno <a
 href="http://www.nnsquad.it/">nnsquad.it</a> tenutosi a Roma il 14 maggio 2009,
 ospitato dalla fondazione di consulenti <span class="caps">ICT</span> <a

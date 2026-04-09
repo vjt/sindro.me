@@ -2,6 +2,7 @@
 date: 2009-01-28T15:00:00Z
 title: Il significato dello sfondo predefinito di Windows 7.
 tags: [funny, weird]
+hideVintage: true
 ---
 
 Quando installi la [beta per sviluppatori di Windows

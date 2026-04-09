@@ -1,6 +1,7 @@
 ---
 title: Il miglior post che abbia mai scritto
 date: 2008-07-08T16:00:00Z
+hideVintage: true
 ---
 
 ```

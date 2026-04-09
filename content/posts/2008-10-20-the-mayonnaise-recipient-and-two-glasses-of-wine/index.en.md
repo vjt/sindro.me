@@ -2,6 +2,7 @@
 title: "The mayonnaise jar and two glasses of wine"
 date: "2008-10-20T16:00:00Z"
 tags: [life]
+hideVintage: true
 ---
 
 ![The mayonnaise jar and two glasses of wine](mayonnaise-jar.jpg)

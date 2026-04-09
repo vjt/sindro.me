@@ -5,6 +5,7 @@ date: 2007-11-21
 tags: [geek, networking]
 image: cover.jpg
 featuredImage: cover.jpg
+hideVintage: true
 ---
 
 Un romanzo davvero, davvero, davvero **NERD** di [Cory Doctorow](https://craphound.com/)

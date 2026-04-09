@@ -2,6 +2,7 @@
 date: 2009-02-20T04:00:00Z
 title: Il bordo lampeggiante offuscato
 tags: [javascript, geek]
+hideVintage: true
 ---
 
 Questo e' il pezzo di codice Javascript offuscato che implementa il bordo rosso
