@@ -2,9 +2,10 @@
 title: "Il barattolo di maionese e due bicchieri di vino"
 date: "2008-10-20T16:00:00Z"
 tags: [life]
+hideVintage: true
 ---
 
-![Il barattolo di maionese e due bicchieri di vino](mayonnaise-jar.png)
+![Il barattolo di maionese e due bicchieri di vino](mayonnaise-jar.jpg)
 
 "Quando ti sembra di avere troppe cose da gestire nella vita, quando 24 ore in
 un giorno non sono abbastanza, ricordati del vaso della Maionese e dei due

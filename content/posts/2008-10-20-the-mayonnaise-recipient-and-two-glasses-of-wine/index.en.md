@@ -2,9 +2,10 @@
 title: "The mayonnaise jar and two glasses of wine"
 date: "2008-10-20T16:00:00Z"
 tags: [life]
+hideVintage: true
 ---
 
-![The mayonnaise jar and two glasses of wine](mayonnaise-jar.png)
+![The mayonnaise jar and two glasses of wine](mayonnaise-jar.jpg)
 
 When things in your life seem almost too much to handle, when 24 hours in a day
 are not enough, remember the mayonnaise jar and the 2 glasses of wine.
