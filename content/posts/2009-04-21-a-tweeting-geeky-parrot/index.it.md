@@ -2,6 +2,7 @@
 date: "2009-04-21T23:00:00Z"
 title: "Un pappagallo geek che twitta"
 tags: [social, web2.0, weird]
+hideVintage: true
 ---
 
 Sto cercando un nuovo animale domestico. [Noi](https://nhaima.org/) abbiamo

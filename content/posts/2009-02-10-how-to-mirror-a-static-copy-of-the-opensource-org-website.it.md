@@ -2,6 +2,7 @@
 date: "2009-02-10T18:08:34Z"
 title: "Come creare un mirror statico del sito opensource.org"
 tags: [bash, open-source]
+hideVintage: true
 ---
 
 Attualmente mantengo il [mirror italiano](http://opensource.antifork.org/) del

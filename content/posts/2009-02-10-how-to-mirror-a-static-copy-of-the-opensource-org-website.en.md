@@ -2,7 +2,12 @@
 date: "2009-02-10T18:08:34Z"
 title: "How to mirror a static copy of the opensource.org website"
 tags: [bash, open-source]
+hideVintage: true
 ---
+
+{{< retrospective year="2026" >}}
+The opensource.org site has been redesigned several times since 2009, and the Italian mirror at opensource.antifork.org is long gone. The wget-based mirroring approach described here would no longer produce a usable copy of a modern JavaScript-heavy site.
+{{< /retrospective >}}
 
 I currently maintain the [italian mirror](http://opensource.antifork.org/) of
 the [Open Source Initiative](http://opensource.org/) web site, and today I

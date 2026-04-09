@@ -2,7 +2,12 @@
 date: "2011-09-12T12:00:00Z"
 title: "Install node.js via APT on Debian Squeeze"
 tags: [linux, javascript, sysadmin]
+hideVintage: true
 ---
+
+{{< retrospective year="2026" >}}
+Debian Squeeze reached end-of-life in 2016, and Node.js now ships official `.deb` packages via NodeSource or comes pre-packaged in every modern Debian release. You definitely do not want to cross-compile from SID anymore -- just use `nvm` or the official repos.
+{{< /retrospective >}}
 
 Abstract: add [SID](http://www.debian.org/releases/sid/) APT source, configure
 [APT Pinning](http://wiki.debian.org/AptPreferences) to give `squeeze` packages

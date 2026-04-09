@@ -2,7 +2,12 @@
 title: "Remove a lightwindow trigger link after an AJAX call"
 date: "2008-05-21T17:00:00Z"
 tags: [javascript, rails, ruby]
+hideVintage: true
 ---
+
+{{< retrospective year="2026" >}}
+LightWindow is long dead -- it was a Prototype.js-era modal library that vanished around 2010. If you need modals today, the `<dialog>` HTML element does the job natively.
+{{< /retrospective >}}
 
 Well, this is the result of 2 days of head-banging with lightwindow:
 
