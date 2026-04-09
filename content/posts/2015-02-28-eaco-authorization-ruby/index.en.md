@@ -123,7 +123,7 @@ I also have a CouchDB-Lucene adapter for another IFAD project, but the jsonb one
 
 ## La Guardiana
 
-The authorization check in the [controller](https://github.com/ifad/eaco/blob/v0.8.0/lib/eaco/controller.rb#L92) is guarded by a 48-line ASCII art guardian figure in the source comments. Her name is La Guardiana, and she watches over every `before_filter :confront_eaco` call. Because if you're going to deny access, you should do it with style.
+The authorization check in the [controller](https://github.com/ifad/eaco/blob/v0.8.0/lib/eaco/controller.rb#L92) is guarded by a 48-line ASCII art guardian figure in the source comments. Her name is La Guardiana, and she watches over every `before_filter :confront_eaco` call. Because if you're going to deny access, you should do it with style. (She's not alone — [Ayanami Rei](https://vjt.github.io/eaco/Eaco/Cucumber/World.html) watches over the test suite.)
 
 ```ruby
 class DocumentsController < ApplicationController

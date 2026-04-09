@@ -123,7 +123,7 @@ Ho anche un adapter CouchDB-Lucene per un altro progetto IFAD, ma quello jsonb e
 
 ## La Guardiana
 
-Il controllo di autorizzazione nel [controller](https://github.com/ifad/eaco/blob/v0.8.0/lib/eaco/controller.rb#L92) e' sorvegliato da una figura ASCII art di 48 righe nei commenti del sorgente. Si chiama La Guardiana, e veglia su ogni chiamata `before_filter :confront_eaco`. Perche' se devi negare l'accesso, devi farlo con stile.
+Il controllo di autorizzazione nel [controller](https://github.com/ifad/eaco/blob/v0.8.0/lib/eaco/controller.rb#L92) e' sorvegliato da una figura ASCII art di 48 righe nei commenti del sorgente. Si chiama La Guardiana, e veglia su ogni chiamata `before_filter :confront_eaco`. Perche' se devi negare l'accesso, devi farlo con stile. (Non e' sola — [Ayanami Rei](https://vjt.github.io/eaco/Eaco/Cucumber/World.html) veglia sulla suite di test.)
 
 ```ruby
 class DocumentsController < ApplicationController
