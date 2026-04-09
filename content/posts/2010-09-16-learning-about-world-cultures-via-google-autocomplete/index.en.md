@@ -2,7 +2,6 @@
 date: 2010-09-16T20:00:00Z
 title: Learning about world cultures via Google Autocomplete
 tags: [funny, networking]
-hideVintage: true
 ---
 
 ![A search bar with autocomplete ribbons connecting to world landmarks on a stylized globe](/posts/2010-09-16-learning-about-world-cultures-via-google-autocomplete/cover.jpg)
