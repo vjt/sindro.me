@@ -2,7 +2,6 @@
 date: 2009-05-16T02:00:00
 title: Le basi concettuali e l'economia della neutralita' della rete [Parte 1] - 14 maggio 2009, Roma
 tags: [politics, networking]
-hideVintage: true
 ---
 
 <p><a
