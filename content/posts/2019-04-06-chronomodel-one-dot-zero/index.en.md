@@ -50,7 +50,7 @@ to this:
 EXCLUDE USING gist ( id WITH =, validity WITH && )
 ```
 
-And the WHERE clauses for [temporal queries](https://github.com/ifad/chronomodel/commit/be57527#diff-da3a15e41e4e17573e2a4c7eb7d3ed7a1b6f0f6efda3ef2a2c5e3e6e1f5c0a3a) cleaned up just as dramatically:
+And the WHERE clauses for [temporal queries](https://github.com/ifad/chronomodel/commit/be57527) cleaned up just as dramatically:
 
 ```sql
 -- v0.1.0: "what year is it?!" as a geometry problem
@@ -91,7 +91,7 @@ The final push is a weekend sprint. [Rails 5.0 through 5.2 support](https://gith
 - **20:54** — [v1.0.0](https://github.com/ifad/chronomodel/compare/v0.13.1...v1.0.0): `:gem: this is v1.0.0`
 - **21:17** — [v1.0.1](https://github.com/ifad/chronomodel/compare/v1.0.0...v1.0.1), because of course there's a v1.0.1
 
-Then the refactoring runs until [5 AM](https://github.com/ifad/chronomodel/commit/3a13f10) — [extracting the adapter into clean modules](https://github.com/ifad/chronomodel/commit/45f4db0), [rewriting `on_schema`](https://github.com/ifad/chronomodel/commit/aa8a5c5) to use thread-local storage, fixing CodeClimate smells, increasing coverage. Because tagging 1.0 doesn't mean you stop. It means you finally have permission to clean up properly.
+Then the refactoring runs until [5 AM](https://github.com/ifad/chronomodel/commit/3a13f10) — [extracting the adapter into clean modules](https://github.com/ifad/chronomodel/commit/9ff1ab5), [rewriting `on_schema`](https://github.com/ifad/chronomodel/commit/aa8a5c5) to use thread-local storage, fixing CodeClimate smells, increasing coverage. Because tagging 1.0 doesn't mean you stop. It means you finally have permission to clean up properly.
 
 ## What didn't change
 
