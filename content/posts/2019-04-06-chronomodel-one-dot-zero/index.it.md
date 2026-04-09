@@ -8,7 +8,7 @@ featuredImage: cover.jpg
 ---
 
 {{< retrospective year="2026" >}}
-Dopo la v1.0.0, [Geremia Taglialatela](https://github.com/tagliala) ha preso in mano la manutenzione e l'ha portato alla [v5.0.0](https://rubygems.org/gems/chrono_model/versions/5.0.0) con supporto per Rails 8.1 e Ruby 4.0. La gem e' a 201 stelle e ancora attivamente mantenuta. Altri sette anni di produzione all'IFAD — e si continua — oltre i sette che ci sono voluti per arrivare alla 1.0. La [documentazione API](https://vjt.github.io/chronomodel/) e il [repo](https://github.com/ifad/chronomodel) sono entrambi vivi.
+La mia ultima release e' stata la [v1.2.2](https://rubygems.org/gems/chrono_model/versions/1.2.2) a maggio 2019. Dopo, [Geremia Taglialatela](https://github.com/tagliala) ha preso in mano la manutenzione e l'ha portato alla [v5.0.0](https://rubygems.org/gems/chrono_model/versions/5.0.0) con supporto per Rails 8.1 e Ruby 4.0. [34 release](https://rubygems.org/gems/chrono_model/versions) in 14 anni, 201 stelle, e ancora attivamente mantenuta. La [documentazione API](https://vjt.github.io/chronomodel/) e il [repo](https://github.com/ifad/chronomodel) sono entrambi vivi.
 {{< /retrospective >}}
 
 Sette anni fa ho [rilasciato ChronoModel v0.1.0](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/) — una gem Ruby che da' ai modelli ActiveRecord capacita' temporali su PostgreSQL. Cinque giorni di hacking, trentasei commit, nessun test, e una confessione sul monkey-patching della costante dell'adapter PostgreSQL.
