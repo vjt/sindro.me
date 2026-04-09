@@ -4,6 +4,8 @@ date: 2023-08-17
 tags: [freebsd, sysadmin, security]
 ---
 
+![A fortress wall of glowing firewall rules with Beastie standing guard, deflecting port scanners with a ban hammer](/posts/2023-08-17-pfasciilogd-link-pf-and-fail2ban/cover.jpg)
+
 ## TL;DR
 
 FreeBSD: How to block port scanners from enumerating open ports on your
