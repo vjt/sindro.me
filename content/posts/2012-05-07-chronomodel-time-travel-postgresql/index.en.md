@@ -27,6 +27,8 @@ The textbook answer to temporal data is a [Slowly Changing Dimension Type 2](htt
 
 My bet was to make it **completely transparent** to the application. No schema changes in your models, no special save methods, no history tables to manage by hand. You add `temporal: true` to your migration and `include ChronoModel::TimeMachine` in your model, and everything else happens behind the scenes. Your existing code doesn't change — it just gains the ability to look into the past.
 
+The critical insight is that all of this happens **in the database**, not in the application layer. PostgreSQL rules intercept every write and atomically maintain the history. There's no "forget to call `save_with_history!`" bug. There's no race condition between writing the current row and the history entry. Referential integrity is guaranteed by the database itself — if the transaction commits, the history is consistent. Period.
+
 That transparency is also the riskiest part of the design, because making it invisible to ActiveRecord means getting *very* intimate with ActiveRecord's internals. More on that later.
 
 ## The architecture

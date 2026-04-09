@@ -27,6 +27,8 @@ La risposta da manuale per i dati temporali e' una [Slowly Changing Dimension Ty
 
 La mia scommessa e' stata renderlo **completamente trasparente** per l'applicazione. Nessun cambiamento di schema nei modelli, nessun metodo di salvataggio speciale, nessuna tabella di storico da gestire a mano. Aggiungi `temporal: true` nella migration e `include ChronoModel::TimeMachine` nel modello, e tutto il resto succede dietro le quinte. Il codice esistente non cambia — acquisisce semplicemente la capacita' di guardare nel passato.
 
+Il punto cruciale e' che tutto questo succede **nel database**, non nell'applicazione. Le regole PostgreSQL intercettano ogni scrittura e mantengono lo storico atomicamente. Non esiste il bug "mi sono dimenticato di chiamare `save_with_history!`". Non ci sono race condition tra la scrittura della riga corrente e dell'entry storica. L'integrita' referenziale e' garantita dal database stesso — se la transazione va in commit, lo storico e' consistente. Punto.
+
 Quella trasparenza e' anche la parte piu' rischiosa del design, perche' renderlo invisibile ad ActiveRecord significa entrare *molto* in intimita' con gli internals di ActiveRecord. Ma ci arriviamo dopo.
 
 ## L'architettura
