@@ -3,6 +3,8 @@ date: 2014-02-28T04:00:00
 title: The real sysadmin
 ---
 
+![A mechanic lovingly tuning a vintage server rack in his garage at night, warm amber light, stars through the open door](/posts/2014-02-28-il-vero-sistemista/cover.jpg)
+
 ![Car repair](/posts/2014-02-28-il-vero-sistemista/car.repair.hands.jpg)
 
 The real sysadmin is like the old-fashioned car mechanic, the one you brought
