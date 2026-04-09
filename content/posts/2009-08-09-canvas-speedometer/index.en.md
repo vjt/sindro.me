@@ -1,5 +1,5 @@
 ---
-title: "Canvas Speedometer: an HTML5 gauge when Flash was still king"
+title: "Canvas Speedometer: an HTML5 gauge in a Flash world"
 date: 2009-08-09
 tags: [javascript, html5, open-source]
 image: cover.jpg
