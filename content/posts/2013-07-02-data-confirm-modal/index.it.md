@@ -8,14 +8,14 @@ featuredImage: cover.jpg
 ---
 
 {{< retrospective year="2026" >}}
-Questa piccola gem e' cresciuta fino a 268 stelle e 112 fork, con 32 contributori in 7 anni. Ha imparato [Bootstrap 3, poi 4 con auto-detection](https://github.com/ifad/data-confirm-modal/blob/v1.6.0/vendor/assets/javascripts/data-confirm-modal.js#L12-L33) (v1.6.0), ha ottenuto un'[API JavaScript standalone](https://github.com/ifad/data-confirm-modal#without-rails) per app non-Rails (v1.2.0), un [pacchetto npm](https://www.npmjs.com/package/data-confirm-modal) (v1.4.0), e ha continuato a funzionare con ogni versione di Rails fino alla 6.0. Il concetto e' diventato talmente mainstream che ogni framework UI oggi ha il suo componente di conferma. Il [repo](https://github.com/ifad/data-confirm-modal) e' ancora online.
+Questa piccola gem e' cresciuta fino a 268 stelle e 112 fork, con 32 contributori in 7 anni. Ha imparato [Bootstrap 3, poi 4 con auto-detection](https://github.com/ifad/data-confirm-modal/blob/v1.6.0/vendor/assets/javascripts/data-confirm-modal.js#L12-L33) (v1.6.0), ha ottenuto una [modalita' non-Rails](https://github.com/ifad/data-confirm-modal#without-rails-with-data-attributes) con callback `dataConfirmModal.confirm()` (v1.2.0), un [pacchetto npm](https://www.npmjs.com/package/data-confirm-modal) (v1.4.0), e ha continuato a funzionare con ogni versione di Rails fino alla 6.0. Il concetto e' diventato talmente mainstream che ogni framework UI oggi ha il suo componente di conferma. Il [repo](https://github.com/ifad/data-confirm-modal) e' ancora online.
 {{< /retrospective >}}
 
 Un utente all'[IFAD](http://www.ifad.org/) ha fatto troppi danni la settimana scorsa.
 
 Non intenzionalmente — ha semplicemente cliccato attraverso una catena di azioni distruttive, liquidando allegramente i dialog `confirm()` del browser senza leggerli. Perche' nessuno li legge. Sono brutti dialog di sistema grigi che si confondono con il flusso di lavoro. Clicca OK, clicca OK, clicca OK — e improvvisamente meta' dei dati e' sparita.
 
-Cosi' l'ho sistemato. E poi ho estratto la fix in una gem, perche' questo problema non e' specifico della nostra applicazione. Oggi rilascio [data-confirm-modal](https://github.com/ifad/data-confirm-modal) — 116 righe di JavaScript che sostituiscono il `confirm()` integrato di Rails con un [modal Bootstrap](http://twitter.github.io/bootstrap/javascript.html#modals).
+Cosi' l'ho sistemato. E poi ho estratto la fix in una gem, perche' questo problema non e' specifico della nostra applicazione. Oggi rilascio [data-confirm-modal](https://github.com/ifad/data-confirm-modal) — 116 righe di JavaScript che sostituiscono il `confirm()` integrato di Rails con un [modal Bootstrap](https://getbootstrap.com/2.3.2/javascript.html#modals).
 
 <!--more-->
 
@@ -83,4 +83,4 @@ L'incidente vero e proprio all'IFAD ha coinvolto un utente che gestiva dati di p
 
 La fix nella nostra applicazione e' stata immediata: sostituire `confirm()` con un modal che esige attenzione. L'estrazione in una gem ha richiesto tre commit e sei minuti. A volte il miglior open source nasce dai peggiori incidenti in produzione.
 
-[Sorgente su GitHub](https://github.com/ifad/data-confirm-modal). PR benvenute — specialmente se anche voi siete stati scottati dal `confirm()`.
+[Sorgente su GitHub](https://github.com/ifad/data-confirm-modal). [Provalo su JSFiddle](https://jsfiddle.net/zpu4u6mh/). PR benvenute — specialmente se anche voi siete stati scottati dal `confirm()`.
