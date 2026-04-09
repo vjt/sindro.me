@@ -2,7 +2,6 @@
 title: "E-Privacy 2009: Verso il Controllo Globale"
 date: 2009-05-28T13:00:00
 tags: [security, politics]
-hideVintage: true
 ---
 
 ![Un gigantesco occhio di sorveglianza fatto di tracce circuitali sospeso su una città, persone sotto con scudi crittografici](/posts/2009-05-28-e-privacy-2009-towards-global-control/cover.jpg)

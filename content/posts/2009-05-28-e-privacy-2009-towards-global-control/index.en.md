@@ -2,7 +2,6 @@
 title: "E-Privacy 2009: Towards Global Control"
 date: 2009-05-28T13:00:00
 tags: [security, politics]
-hideVintage: true
 ---
 
 ![A giant surveillance eye made of circuit traces hovering over a city, people below holding up encryption shields](/posts/2009-05-28-e-privacy-2009-towards-global-control/cover.jpg)
