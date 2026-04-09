@@ -2,6 +2,7 @@
 date: 2009-05-16T04:00:00
 title: Le basi concettuali e l'economia della neutralita' della rete [Parte 2] - 14 maggio 2009, Roma
 tags: [politics, networking]
+hideVintage: true
 ---
 
 <p>Questa e' la seconda parte del mio resoconto del convegno <a

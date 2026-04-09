@@ -2,6 +2,7 @@
 date: 2010-09-16T20:00:00Z
 title: Scoprire le culture del mondo tramite l'autocompletamento di Google
 tags: [funny, networking]
+hideVintage: true
 ---
 
 ![Una barra di ricerca con nastri di autocompletamento che si collegano a monumenti del mondo su un globo stilizzato](/posts/2010-09-16-learning-about-world-cultures-via-google-autocomplete/cover.jpg)

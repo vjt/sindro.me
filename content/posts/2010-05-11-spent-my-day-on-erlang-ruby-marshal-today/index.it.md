@@ -2,6 +2,7 @@
 date: 2010-05-11T19:00:00Z
 title: "Oggi ho speso la giornata su Erlang-Ruby-Marshal ;-)"
 tags: [erlang, projects, ruby]
+hideVintage: true
 ---
 
 ![Erlang logo](/posts/2010-05-11-spent-my-day-on-erlang-ruby-marshal-today/erlang.png)

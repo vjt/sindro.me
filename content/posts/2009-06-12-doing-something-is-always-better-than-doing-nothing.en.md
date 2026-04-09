@@ -2,6 +2,7 @@
 date: 2009-06-12T15:32:20Z
 title: Doing something is always better than doing nothing
 tags: [video, web2.0]
+hideVintage: true
 ---
 
 From the stage of web2.0 Expo 2008 in San Francisco, [Clay
