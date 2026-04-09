@@ -31,7 +31,7 @@ Fai login con Facebook, l'app scarica la tua lista amici con foto e dati del pro
 
 Quarantotto ore sono tantissime e niente allo stesso tempo. Hai tempo di costruire qualcosa di vero, ma non abbastanza per farlo pulito. Solo il ballo dell'OAuth con Facebook ci ha mangiato un paio d'ore. Il deploy era Unicorn dietro nginx, pushato via Capistrano su un VPS — la demo girava su `i.sindro.me`. Il codice è esattamente quello che ti aspetti da un hackathon di 48 ore: funziona, è brutto, e nessuno ha scritto test.
 
-Ecco un reel dall'hackathon — "la leggenda del pianista sulla keyboard" — il sottoscritto, privato del sonno e ubriaco, che scrive codice a tempo con [Windowpane](https://www.youtube.com/watch?v=rVPnBCl-7Mc) degli Opeth durante la Rails Rumble:
+Ecco un reel dall'hackathon — "la leggenda del pianista sulla keyboard" — il sottoscritto, privato del sonno e ubriaco, che scrive codice a tempo con [Windowpane](https://www.youtube.com/watch?v=O4OxrhVxCWY) degli Opeth durante la Rails Rumble:
 
 <video controls width="100%" preload="metadata">
   <source src="/posts/2012-10-14-guess-the-friend-rails-rumble-2012/guessthefriend-reel.mp4" type="video/mp4">

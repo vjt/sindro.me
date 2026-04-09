@@ -31,7 +31,7 @@ You log in with Facebook, the app pulls your friends list with their photos and 
 
 Forty-eight hours is both a lot and nothing. You have time to build something real, but not enough to make it clean. The Facebook OAuth dance alone ate a few hours. Deployment was Unicorn behind nginx, pushed via Capistrano to a VPS — the demo ran at `i.sindro.me`. The code is exactly what you'd expect from a 48-hour hackathon: it works, it's ugly, and nobody wrote tests.
 
-Here's a reel from the hackathon — "la leggenda del pianista sulla keyboard" — yours truly, sleep-deprived and drunk, coding in tempo with Opeth's [Windowpane](https://www.youtube.com/watch?v=rVPnBCl-7Mc) during the Rails Rumble:
+Here's a reel from the hackathon — "la leggenda del pianista sulla keyboard" — yours truly, sleep-deprived and drunk, coding in tempo with Opeth's [Windowpane](https://www.youtube.com/watch?v=O4OxrhVxCWY) during the Rails Rumble:
 
 <video controls width="100%" preload="metadata">
   <source src="/posts/2012-10-14-guess-the-friend-rails-rumble-2012/guessthefriend-reel.mp4" type="video/mp4">
