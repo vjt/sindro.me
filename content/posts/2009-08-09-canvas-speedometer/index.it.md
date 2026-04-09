@@ -10,7 +10,7 @@ featuredImage: cover.jpg
 HTML5 Canvas ha vinto. Flash è stato ufficialmente ucciso da Adobe a dicembre 2020. Questo tachimetrino si renderizza ancora perfettamente su qualsiasi browser moderno — ma nessuno si mette più a disegnare widget gauge a mano. D3.js, Chart.js, o anche solo CSS possono farlo con una frazione dello sforzo. Eppure, 52 stelle e 17 fork su GitHub: il mio repo più stellato, e ne vado irragionevolmente fiero.
 {{< /retrospective >}}
 
-Siamo nell'estate 2009, e l'elemento `<canvas>` è la novità del momento. Safari e Firefox lo supportano, Chrome è appena uscito, e Internet Explorer... vabbè, di Internet Explorer non parliamo. Flash è lo standard de facto per qualsiasi cosa grafica sul web. Ma io voglio capire cosa può davvero fare questa Canvas API — e così sto costruendo un tachimetro animato, a tema, completamente configurabile, tutto in JavaScript.
+L'elemento `<canvas>` è la novità del momento. Safari e Firefox lo supportano, Chrome è appena uscito, e Internet Explorer... vabbè, di Internet Explorer non parliamo. Flash è lo standard de facto per qualsiasi cosa grafica sul web. Ma io voglio capire cosa può davvero fare questa Canvas API — e così sto costruendo un tachimetro animato, a tema, completamente configurabile, tutto in JavaScript.
 
 <!--more-->
 
