@@ -13,6 +13,15 @@ Sorgenti:
 [55471.c](http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c?txt)
 
 Differenze nel codice sorgente tra due versioni consecutive del
-Security.framework, un componente MacOS/iOS. L'apparentemente innocuo goto
-fail; in più è la causa di una [grave falla di sicurezza nella maggior parte dei
-prodotti Apple](http://nakedsecurity.sophos.com/2014/02/24/anatomy-of-a-goto-fail-apples-ssl-bug-explained-plus-an-unofficial-patch/).
+Security.framework, un componente macOS/iOS. L'apparentemente innocuo `goto
+fail;` in più — una riga duplicata senza parentesi graffe attorno al corpo
+dell'`if` — faceva sì che la verifica dei certificati SSL/TLS venisse
+silenziosamente saltata del tutto. Qualsiasi certificato veniva accettato come
+valido, rendendo ogni connessione HTTPS sui dispositivi affetti vulnerabile ad
+attacchi man-in-the-middle. Il bug
+([CVE-2014-1266](https://nvd.nist.gov/vuln/detail/CVE-2014-1266)) colpiva iOS
+6/7 e OS X Mavericks, ed è stato patchato in iOS 7.0.6 e OS X 10.9.2. È
+diventato uno degli esempi più famosi del perché le parentesi graffe contano e
+del perché la code review trova quello che il compilatore non vede. Vedi
+[l'analisi tecnica di ImperialViolet](https://www.imperialviolet.org/2014/02/22/applebug.html)
+per tutti i dettagli.
