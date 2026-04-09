@@ -8,7 +8,7 @@ featuredImage: cover.jpg
 ---
 
 {{< retrospective year="2026" >}}
-This tiny gem grew to 268 stars and 112 forks, with 32 contributors over 7 years. It learned [Bootstrap 3, then 4 with auto-detection](https://github.com/ifad/data-confirm-modal/blob/v1.6.0/vendor/assets/javascripts/data-confirm-modal.js#L12-L33) (v1.6.0), got a [non-Rails mode](https://github.com/ifad/data-confirm-modal?tab=readme-ov-file#without-rails-with-data-attributes-example-b3-example-b4) with `dataConfirmModal.confirm()` callbacks (v1.2.0), an [npm package](https://www.npmjs.com/package/data-confirm-modal) (v1.4.0), and kept working with every Rails version through 6.0. The concept became so mainstream that every UI framework now ships its own confirmation dialog component. The [repo](https://github.com/ifad/data-confirm-modal) is still up.
+This tiny gem grew to 268 stars and 112 forks, with 32 contributors over 7 years. It learned [Bootstrap 3, then 4 with auto-detection](https://github.com/ifad/data-confirm-modal/blob/v1.6.0/vendor/assets/javascripts/data-confirm-modal.js#L12-L33) (v1.6.0), got a [non-Rails mode](https://github.com/ifad/data-confirm-modal?tab=readme-ov-file#without-rails-with-data-attributes-example-b3-example-b4) with `dataConfirmModal.confirm()` callbacks (v1.2.0), an [npm package](https://www.npmjs.com/package/data-confirm-modal) still pulling 3,700 downloads/week (v1.4.0), and kept working with every Rails version through 6.0. The concept became so mainstream that every UI framework now ships its own confirmation dialog component. The [repo](https://github.com/ifad/data-confirm-modal) is still up.
 {{< /retrospective >}}
 
 A user at [IFAD](http://www.ifad.org/) did too much damage last week.
