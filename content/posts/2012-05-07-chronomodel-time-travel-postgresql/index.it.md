@@ -47,7 +47,50 @@ I tuoi modelli Rails puntano alle viste in `public`. Appaiono e si comportano es
 
 La parte bella e' che il codice della tua applicazione non cambia per niente. Le query vanno sulle viste `public`, che mostrano i dati correnti da `temporal`. Lo storico si accumula silenziosamente in `history`.
 
-Ecco come appare la regola di UPDATE in SQL puro (dal [reference completo dello schema](https://github.com/ifad/chronomodel/blob/v0.1.0/README.sql)):
+Ecco la struttura SQL completa per una tabella `countries` (dal [reference completo dello schema](https://github.com/ifad/chronomodel/blob/v0.1.0/README.sql)):
+
+```sql
+create schema temporal;  -- i dati correnti vivono qui
+create schema history;   -- i dati storici vivono qui
+
+-- La tabella reale, nello schema temporal
+create table temporal.countries (
+  id   serial primary key,
+  name varchar
+);
+
+-- La tabella storica EREDITA da quella temporale — quindi ha
+-- tutte le stesse colonne, piu' i campi di tracciamento validita'.
+-- Nessuna duplicazione di schema, nessun drift tra le colonne.
+create table history.countries (
+  hid         serial primary key,
+  valid_from  timestamp not null,
+  valid_to    timestamp not null default '9999-12-31',
+  recorded_at timestamp not null default now(),
+
+  constraint from_before_to check (valid_from < valid_to),
+
+  constraint overlapping_times exclude using gist (
+    box(
+      point( extract( epoch from valid_from), id ),
+      point( extract( epoch from valid_to - interval '1 millisecond'), id )
+    ) with &&
+  )
+) inherits ( temporal.countries );
+
+-- Quello che l'applicazione vede: una semplice vista sui dati correnti
+create view public.countries as select * from only temporal.countries;
+```
+
+Tre cose da notare:
+
+1. **`inherits ( temporal.countries )`** — la tabella storica eredita lo schema dalla tabella corrente. Aggiungi una colonna a `temporal.countries`, appare automaticamente in `history.countries`. Nessun drift nelle migration, mai.
+
+2. **`select * from only temporal.countries`** — la keyword `ONLY` e' cruciale. Senza, l'ereditarieta' di PostgreSQL farebbe si' che la vista restituisca righe sia dalla tabella temporale *che* da quella storica. `ONLY` la limita ai dati correnti.
+
+3. **La exclusion constraint** — abuso degli indici geometrici GiST per prevenire entry storiche sovrapposte per lo stesso record. Ogni periodo di validita' diventa un **box** nello spazio 2D (asse tempo x ID record). Due box si sovrappongono (`&&`) solo se condividono sia lo stesso ID che un intervallo temporale sovrapposto. Se qualcuno prova a inserire un'entry contraddittoria, PostgreSQL la rifiuta a livello di vincolo. Integrita' temporale blindata usando indici spaziali. Sono irragionevolmente orgoglioso di questo hack.
+
+Poi le regole rendono la vista scrivibile. Ecco la UPDATE (la piu' interessante):
 
 ```sql
 create rule countries_upd as on update to countries do instead (
@@ -67,24 +110,7 @@ create rule countries_upd as on update to countries do instead (
 );
 ```
 
-Una regola SQL, tre operazioni, una transazione. La sentinella `'9999-12-31'` marca l'entry attualmente valida. La gem genera queste regole automaticamente per ogni tabella temporale — non scrivi mai questo SQL a mano.
-
-## Il colpo di genio
-
-Come si prevengono entry storiche sovrapposte per lo stesso record? PostgreSQL non ha supporto per vincoli temporali (ancora — c'e' una [proposta SQL:2011](http://en.wikipedia.org/wiki/SQL:2011) per questo). Ma ha le [exclusion constraint GiST](http://www.postgresql.org/docs/9.1/static/sql-createtable.html#SQL-CREATETABLE-EXCLUDE), e GiST sa indicizzare tipi geometrici.
-
-E allora abuso della geometria. Il periodo di validita' di ogni entry storica diventa un **box** nello spazio 2D — un asse e' il tempo (come secondi epoch), l'altro e' l'ID del record:
-
-```sql
-CONSTRAINT overlapping_times EXCLUDE USING gist (
-  box(
-    point( extract( epoch FROM valid_from), id ),
-    point( extract( epoch FROM valid_to - INTERVAL '1 millisecond'), id )
-  ) WITH &&
-)
-```
-
-Due box si sovrappongono (`&&`) solo se condividono sia lo stesso ID che un intervallo temporale sovrapposto. Se qualcuno prova a inserire un'entry storica contraddittoria, PostgreSQL la rifiuta a livello di vincolo. Integrita' temporale blindata usando indici spaziali. Sono irragionevolmente orgoglioso di questo hack.
+Una regola, tre operazioni, una transazione. La sentinella `'9999-12-31'` marca l'entry attualmente valida. La gem genera tutto questo — gli schemi, le tabelle con ereditarieta', la vista, le regole, gli indici, i vincoli — da una singola opzione `temporal: true`. Non scrivi mai questo SQL a mano.
 
 ## L'integrazione Rails
 

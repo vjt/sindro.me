@@ -47,7 +47,50 @@ Your Rails models point at the views in `public`. They look and behave exactly l
 
 The beautiful part is that your application code doesn't change at all. Queries hit the `public` views, which show current data from `temporal`. History accumulates silently in `history`.
 
-Here's what the UPDATE rule looks like in plain SQL (from the [full schema reference](https://github.com/ifad/chronomodel/blob/v0.1.0/README.sql)):
+Here's the complete SQL structure for a `countries` table (from the [full schema reference](https://github.com/ifad/chronomodel/blob/v0.1.0/README.sql)):
+
+```sql
+create schema temporal;  -- current data lives here
+create schema history;   -- historical data lives here
+
+-- The real table, in the temporal schema
+create table temporal.countries (
+  id   serial primary key,
+  name varchar
+);
+
+-- The history table INHERITS from the temporal one — so it has
+-- all the same columns, plus validity tracking fields.
+-- No schema duplication, no column drift.
+create table history.countries (
+  hid         serial primary key,
+  valid_from  timestamp not null,
+  valid_to    timestamp not null default '9999-12-31',
+  recorded_at timestamp not null default now(),
+
+  constraint from_before_to check (valid_from < valid_to),
+
+  constraint overlapping_times exclude using gist (
+    box(
+      point( extract( epoch from valid_from), id ),
+      point( extract( epoch from valid_to - interval '1 millisecond'), id )
+    ) with &&
+  )
+) inherits ( temporal.countries );
+
+-- What the application sees: a plain view over current data
+create view public.countries as select * from only temporal.countries;
+```
+
+Three things to notice:
+
+1. **`inherits ( temporal.countries )`** — the history table inherits the schema from the current table. Add a column to `temporal.countries`, it automatically appears in `history.countries`. No migration drift, ever.
+
+2. **`select * from only temporal.countries`** — the `ONLY` keyword is crucial. Without it, PostgreSQL's inheritance means the view would return rows from both the temporal *and* the history table. `ONLY` restricts it to the current data.
+
+3. **The exclusion constraint** — I abuse GiST geometric indexes to prevent overlapping history entries for the same record. Each validity period becomes a **box** in 2D space (time axis × record ID). Two boxes overlap (`&&`) only if they share the same ID and an overlapping time range. If anyone tries to insert a contradictory history entry, PostgreSQL rejects it at the constraint level. Bulletproof temporal integrity using spatial indexes. I'm unreasonably proud of this hack.
+
+Then the rules make the view writable. Here's UPDATE (the most interesting one):
 
 ```sql
 create rule countries_upd as on update to countries do instead (
@@ -67,24 +110,7 @@ create rule countries_upd as on update to countries do instead (
 );
 ```
 
-One SQL rule, three operations, one transaction. The `'9999-12-31'` sentinel marks the currently-valid entry. The gem generates these rules automatically for every temporal table — you never write this SQL by hand.
-
-## The clever bit
-
-How do you prevent overlapping history entries for the same record? PostgreSQL doesn't have temporal constraint support (yet — there's a [SQL:2011 proposal](http://en.wikipedia.org/wiki/SQL:2011) for it). But it does have [GiST exclusion constraints](http://www.postgresql.org/docs/9.1/static/sql-createtable.html#SQL-CREATETABLE-EXCLUDE), and GiST can index geometric types.
-
-So I abuse geometry. Each history entry's validity period becomes a **box** in 2D space — one axis is time (as epoch seconds), the other is the record ID:
-
-```sql
-CONSTRAINT overlapping_times EXCLUDE USING gist (
-  box(
-    point( extract( epoch FROM valid_from), id ),
-    point( extract( epoch FROM valid_to - INTERVAL '1 millisecond'), id )
-  ) WITH &&
-)
-```
-
-Two boxes overlap (`&&`) only if they share both the same ID and an overlapping time range. If anyone tries to insert a contradictory history entry, PostgreSQL rejects it at the constraint level. Bulletproof temporal integrity using spatial indexes. I'm unreasonably proud of this hack.
+One rule, three operations, one transaction. The `'9999-12-31'` sentinel marks the currently-valid entry. The gem generates all of this — the schemas, the tables with inheritance, the view, the rules, the indexes, the constraints — from a single `temporal: true` option. You never write this SQL by hand.
 
 ## The Rails integration
 
