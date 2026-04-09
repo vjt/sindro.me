@@ -34,6 +34,7 @@ defaultContentLanguageInSubdir = false
   remark42 = true
   remark42_host = "https://remark.sindro.me"
   remark42_site_id = "remark.sindro.me"
+  remark42_url = "https://sindro.me"
 
 [taxonomies]
   category = 'categories'
