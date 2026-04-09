@@ -6,7 +6,7 @@ hideVintage: true
 ---
 
 {{< retrospective year="2026" >}}
-Context for younger readers: in the mid-2000s, "Chuck Norris facts" were an absurdly popular internet meme — an endless list of hyperbolic jokes about the actor's supposed invincibility ("Chuck Norris can divide by zero"). Naturally, someone had to implement them in Ruby. All the links are dead except the GitHub repo, which is still up — a `ChuckNorris` class that refuses to be instantiated ("No one initializes Chuck Norris") or subclassed.
+Context for younger readers: in the mid-2000s, "Chuck Norris facts" were an absurdly popular internet meme — an endless list of hyperbolic jokes about the actor's supposed invincibility ("Chuck Norris can divide by zero"). Naturally, someone had to implement them in Ruby. intinig's blog is gone, but the GitHub repo is still up — a `ChuckNorris` class that refuses to be instantiated ("No one initializes Chuck Norris") or subclassed.
 {{< /retrospective >}}
 
 [intinig](http://tempe.st/) ported
