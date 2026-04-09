@@ -2,6 +2,8 @@
 title: "Compilare pacchetti OpenWrt con VM cloud usa-e-getta e un bot Telegram"
 date: 2026-03-28
 tags: [openwrt, docker, python, networking]
+image: cover.jpg
+featuredImage: cover.jpg
 description: "Un sistema basato su Docker che fa polling dei repo git, lancia VM Hetzner effimere per compilare pacchetti OpenWrt cross-architettura, e mette tutto dietro un bot Telegram. Ciclo completo: ~2 minuti, ~0,001 EUR a build."
 ---
 

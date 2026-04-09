@@ -2,6 +2,8 @@
 title: "Hermes: help contestuale in 48 ore (Rails Rumble 2013)"
 date: 2013-10-20
 tags: [rails, ruby, open-source, hackathon]
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 {{< retrospective year="2026" >}}

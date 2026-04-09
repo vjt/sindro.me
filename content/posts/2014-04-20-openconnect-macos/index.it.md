@@ -2,6 +2,8 @@
 title: "Riprendere il controllo della rete da Cisco AnyConnect"
 date: 2014-04-20
 tags: [networking, macos, security, open-source]
+image: cover.jpg
+featuredImage: cover.jpg
 description: "Cisco AnyConnect sequestra l'intero stack di rete. Ecco come l'ho sostituito con OpenConnect, split tunneling e split DNS su macOS."
 ---
 

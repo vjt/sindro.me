@@ -2,6 +2,8 @@
 title: "Taking Back Your Network Stack from Cisco AnyConnect"
 date: 2014-04-20
 tags: [networking, macos, security, open-source]
+image: cover.jpg
+featuredImage: cover.jpg
 description: "Cisco AnyConnect hijacks your entire network stack. Here is how I replaced it with OpenConnect, split tunneling, and split DNS on macOS."
 ---
 
