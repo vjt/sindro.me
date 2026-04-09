@@ -53,7 +53,7 @@ def send_rfc5424(sock: socket.socket, msg: str) -> None:
     sock.sendall(frame)
 ```
 
-TCP backpressure handles flow control — when Telegraf can't keep up (mostly due to DNS lookups), the TCP send blocks. No data loss, no buffering complexity, no rate limiting logic. The protocol does the work.
+In theory, TCP backpressure handles flow control — when Telegraf can't keep up, the TCP send blocks. No data loss, no buffering complexity. The protocol does the work. In practice... well, keep reading.
 
 ## The enrichment pipeline
 
@@ -107,16 +107,34 @@ I went through several iterations of this backfill. Each time I discovered somet
 
 The lesson: the cost of an extra hour of design is trivial compared to an 8-hour backfill you have to throw away. Do your brainstorming. Audit field by field. Compare live entries against what your tool produces. Then — and only then — pull the trigger.
 
+## The sharp edges
+
+Remember the part where I said "TCP backpressure handles flow control"? Turns out that's aspirational, not factual.
+
+**Telegraf's reverse_dns processor is fundamentally broken for high-volume use.** The `Unordered.Enqueue()` method in `plugins/common/parallel/unordered.go` is a bare channel send with no timeout or fallback. When the worker pool is saturated by slow DNS lookups, it blocks the entire pipeline. Not slow throughput — *zero* throughput. Everything upstream stalls.
+
+**The syslog TCP input uses an unbounded worker pool** (Go `pond` library) that defeats TCP backpressure entirely. The TCP reader never blocks, the pool queue grows without limit, and Telegraf's `metric_buffer_limit` ring buffer silently drops the oldest metrics when it overflows. We lost 10.5 million entries before discovering this. There is no configuration option to prevent it.
+
+**We also killed Technitium DNS** — our local resolver — by hammering it with hundreds of parallel PTR lookups while it was logging every query. Disabling the query log plugin and restarting fixed it, but forward DNS resolution was dead for several minutes. Collateral damage on the home network. My family was not amused.
+
+### The fix: AI-operated SIGSTOP/SIGCONT
+
+Since Telegraf provides no backpressure and no way to prevent metric drops, I had Claude monitor the delta between entries sent by the script and entries actually landed in VictoriaLogs, checking every 60 seconds. When the delta exceeds 3.5M (approaching the 5M buffer limit), Claude sends `SIGSTOP` to pause the backfill script. When Telegraf drains to 250K delta, Claude sends `SIGCONT`. The script's in-memory dedup set stays alive (no kill/restart), so no entries are re-sent and no delete/re-run is needed.
+
+It's a sawtooth pattern: burst for ~9 minutes, pause for ~35 minutes while Telegraf catches up. The AI wasn't just writing code — it was *operating the system in real-time*, making judgment calls about when to pause and resume based on live telemetry. I went to sleep; Claude babysat the infrastructure. That's a mode of human-AI collaboration I didn't plan for but wouldn't trade.
+
+The lesson: even "enterprise-grade" open source tools have sharp edges at scale. Telegraf is fantastic for live traffic at 1 msg/sec, but its internal architecture — unbounded queues, blocking processors, silent metric drops — makes high-volume backfill treacherous. We documented the full root cause and plan to submit a PR upstream to influxdata/telegraf with a fix (non-blocking select with default passthrough for unenriched metrics).
+
 ## The numbers
 
 - **25 million entries** across four log formats (BSD syslog, fail2ban, pf, nginx)
 - **Two years** of restic snapshots (2024-05 through 2026-04)
 - **~350 lines of Python** for the replay script (down from ~700 lines that duplicated pipeline logic)
 - **Four Starlark processors**, one Go GeoIP enricher, one reverse DNS resolver
-- **~8 hours** to replay everything through the full pipeline
+- **~10-12 hours** to replay everything through the full pipeline (with SIGSTOP/SIGCONT throttling — ~9 min sending, ~35 min draining per cycle, ~100K entries/hr effective throughput)
 - Running on a **Raspberry Pi 5** (4 cores, 16GB RAM, NVMe) in my living room
 
-The Pi hit a load average of 19 on 4 cores during the backfill — it was working hard, but it handled it. The live pipeline kept running in parallel throughout. No entries lost, no services disrupted.
+The Pi hit a load average of 19 on 4 cores during send bursts and idled during drain cycles — a sawtooth pattern that the hardware handled perfectly. The live pipeline kept running in parallel throughout.
 
 ## Try this at home
 

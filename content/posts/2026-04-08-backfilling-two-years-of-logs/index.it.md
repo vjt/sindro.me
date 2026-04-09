@@ -53,7 +53,7 @@ def send_rfc5424(sock: socket.socket, msg: str) -> None:
     sock.sendall(frame)
 ```
 
-Il backpressure TCP gestisce il controllo di flusso — quando Telegraf non riesce a stare al passo (soprattutto per i lookup DNS), il send TCP si blocca. Nessuna perdita di dati, nessuna complessità di buffering, nessuna logica di rate limiting. Il protocollo fa il lavoro.
+In teoria, il backpressure TCP gestisce il controllo di flusso — quando Telegraf non riesce a stare al passo, il send TCP si blocca. Nessuna perdita di dati, nessuna complessità di buffering. Il protocollo fa il lavoro. In pratica... continua a leggere.
 
 ## La pipeline di enrichment
 
@@ -107,16 +107,34 @@ Ho attraversato diverse iterazioni di questo backfill. Ogni volta scoprivo qualc
 
 La lezione: il costo di un'ora in più di progettazione è triviale rispetto a un backfill di 8 ore che devi buttare via. Fai il tuo brainstorming. Audita campo per campo. Confronta le entry live con quello che produce il tuo strumento. Poi — e solo poi — schiaccia il grilletto.
 
+## Gli spigoli vivi
+
+Vi ricordate la parte in cui dicevo "il backpressure TCP gestisce il controllo di flusso"? Ecco, quello era più un auspicio che un dato di fatto.
+
+**Il processore reverse_dns di Telegraf è fondamentalmente rotto per l'uso ad alto volume.** Il metodo `Unordered.Enqueue()` in `plugins/common/parallel/unordered.go` è un channel send nudo senza timeout né fallback. Quando il worker pool è saturo per i lookup DNS lenti, blocca l'intera pipeline. Non throughput lento — throughput *zero*. Tutto quello che sta a monte si ferma.
+
+**L'input syslog TCP usa un worker pool illimitato** (libreria Go `pond`) che vanifica completamente il backpressure TCP. Il reader TCP non si blocca mai, la coda del pool cresce senza limiti, e il ring buffer `metric_buffer_limit` di Telegraf butta silenziosamente le metriche più vecchie quando sfora. Abbiamo perso 10,5 milioni di entry prima di accorgercene. Non esiste un'opzione di configurazione per impedirlo.
+
+**Abbiamo anche ammazzato Technitium DNS** — il nostro resolver locale — bombardandolo con centinaia di lookup PTR in parallelo mentre loggava ogni query. Disabilitare il plugin di query log e riavviare ha risolto, ma la risoluzione DNS forward è stata morta per diversi minuti. Danno collaterale sulla rete di casa. La mia famiglia non era divertita.
+
+### La soluzione: SIGSTOP/SIGCONT orchestrato dall'AI
+
+Dato che Telegraf non fornisce backpressure e nessun modo per prevenire la perdita di metriche, ho fatto monitorare a Claude il delta tra le entry inviate dallo script e quelle effettivamente atterrate in VictoriaLogs, controllando ogni 60 secondi. Quando il delta supera 3,5M (avvicinandosi al limite del buffer di 5M), Claude manda `SIGSTOP` per mettere in pausa lo script di backfill. Quando Telegraf draina a 250K di delta, Claude manda `SIGCONT`. Il set di dedup in memoria dello script resta vivo (nessun kill/restart), quindi nessuna entry viene reinviata e nessun delete/re-run è necessario.
+
+È un pattern a dente di sega: burst per ~9 minuti, pausa per ~35 minuti mentre Telegraf smaltisce. L'AI non stava solo scrivendo codice — stava *operando il sistema in tempo reale*, prendendo decisioni su quando mettere in pausa e riprendere basandosi sulla telemetria live. Io sono andato a dormire; Claude ha fatto da babysitter all'infrastruttura. È una modalità di collaborazione uomo-AI che non avevo pianificato ma che non scambierei con nulla.
+
+La lezione: anche i tool open source "enterprise-grade" hanno spigoli vivi su larga scala. Telegraf è fantastico per il traffico live a 1 msg/sec, ma la sua architettura interna — code illimitate, processori bloccanti, perdita silente di metriche — rende il backfill ad alto volume insidioso. Abbiamo documentato la root cause completa e pianifichiamo di inviare una PR upstream a influxdata/telegraf con un fix (select non bloccante con passthrough di default per le metriche non arricchite).
+
 ## I numeri
 
 - **25 milioni di entry** su quattro formati di log (BSD syslog, fail2ban, pf, nginx)
 - **Due anni** di snapshot restic (2024-05 fino a 2026-04)
 - **~350 righe di Python** per lo script di replay (dalle ~700 righe che duplicavano la logica della pipeline)
 - **Quattro processori Starlark**, un enricher GeoIP in Go, un resolver reverse DNS
-- **~8 ore** per rieseguire tutto attraverso la pipeline completa
+- **~10-12 ore** per rieseguire tutto attraverso la pipeline completa (con throttling SIGSTOP/SIGCONT — ~9 min di invio, ~35 min di drenaggio per ciclo, ~100K entry/ora di throughput effettivo)
 - Gira su un **Raspberry Pi 5** (4 core, 16GB RAM, NVMe) nel mio salotto
 
-Il Pi ha raggiunto un load average di 19 su 4 core durante il backfill — lavorava duro, ma ha retto. La pipeline live ha continuato a girare in parallelo per tutta la durata. Nessuna entry persa, nessun servizio interrotto.
+Il Pi raggiungeva un load average di 19 su 4 core durante i burst di invio e restava idle durante i cicli di drenaggio — un pattern a dente di sega che l'hardware ha gestito perfettamente. La pipeline live ha continuato a girare in parallelo per tutta la durata.
 
 ## Provalo a casa
 
