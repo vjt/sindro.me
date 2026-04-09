@@ -2,8 +2,11 @@
 title: Active Gibberish
 date: 2008-01-22
 tags: [funny, rails, ruby]
-hideVintage: true
 ---
+
+{{< retrospective year="2026" >}}
+The Gibberish plugin and this entire approach are long dead. Rails 2.2 (2008) added built-in I18n support, and since Rails 3 the standard way is `config/locales/*.yml` with the `i18n` gem. ActiveRecord error messages, field names, and all UI strings are handled natively — no plugins, no monkey-patching.
+{{< /retrospective >}}
 
 **UPDATE: you don’t need this code, because starting from the 2.2 version of Rails, localization support is built-in.**
 
