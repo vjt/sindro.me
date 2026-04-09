@@ -26,11 +26,11 @@ The integration was a single `<script>` tag. That JS file opened a channel back 
 
 We built the whole thing at [48rails](https://web.archive.org/web/2013*/48rails.com), a coworking space in Italy that was basically our home base for this kind of insanity. Two days of intense coding, questionable food choices, and zero sleep. The usual.
 
-The app was a standard Rails stack — nothing exotic. The interesting part was the JS client and the real-time channel architecture, which we got working surprisingly well for something thrown together in a weekend.
+The app was a standard Rails stack — nothing exotic. The interesting part was the JS client, and in particular the **element inspector**: an in-page tool that lets admins pick which DOM element to attach help content to. It works by creating four red overlay `<div>`s (N/S/E/W) that frame whichever element is under the cursor, using `getBoundingClientRect()` with scroll offset compensation. On click, it walks the DOM upward computing a CSS selector via `id` or `nth-child`, then sends it back to the admin panel via `postMessage`. A crude, beautiful hack — we built our own mini browser inspector in a hackathon. The [code is here](https://github.com/vjt/r13-hermes/blob/master/app/assets/javascripts/hermes.js) if you want to see the `author` function.
 
 ## From hackathon to the UN
 
-Here's the part I never expected: about a year later, in November 2014, [IFAD](https://www.ifad.org/) — a specialized agency of the United Nations — picked up the project and funded continued development. The repo moved to [ifad/hermes](https://github.com/ifad/hermes) and became a real internal tool for embedding contextual documentation across their web platforms.
+About a year later, in November 2014, I brought Hermes into [IFAD](https://www.ifad.org/) — a specialized agency of the United Nations, where I was working. My team there funded continued development, the repo moved to [ifad/hermes](https://github.com/ifad/hermes), and it became a real internal tool for delivering quick, context-aware tutorials across our line-of-business web applications. The concept is everywhere now — every SaaS product has onboarding tooltips and contextual help. When we built it, it was genuinely innovative.
 
 A weekend hackathon project finding a home at a UN agency. That's the kind of thing that makes you think the open-source model actually works — sometimes the best way to prove an idea is to build it in 48 hours and put it on GitHub.
 

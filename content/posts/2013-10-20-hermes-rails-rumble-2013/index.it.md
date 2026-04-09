@@ -26,11 +26,11 @@ L'integrazione era un singolo tag `<script>`. Quel file JS apriva un canale vers
 
 Abbiamo costruito il tutto al [48rails](https://web.archive.org/web/2013*/48rails.com), uno spazio di coworking in Italia che era praticamente la nostra base per questo tipo di follie. Due giorni di coding intenso, scelte alimentari discutibili e zero sonno. Il solito.
 
-L'app era un classico stack Rails — niente di esotico. La parte interessante era il client JS e l'architettura del canale real-time, che abbiamo fatto funzionare sorprendentemente bene per qualcosa messo insieme in un weekend.
+L'app era un classico stack Rails — niente di esotico. La parte interessante era il client JS, e in particolare l'**element inspector**: un tool in-page che permette agli admin di scegliere a quale elemento DOM agganciare il contenuto di aiuto. Funziona creando quattro `<div>` overlay rossi (N/S/E/W) che incorniciano l'elemento sotto il cursore, usando `getBoundingClientRect()` con compensazione dello scroll. Al click, risale il DOM calcolando un selettore CSS tramite `id` o `nth-child`, e lo rimanda al pannello admin via `postMessage`. Un hack grezzo e bellissimo — ci siamo costruiti un mini browser inspector durante un hackathon, privati del sonno e a birra. Il [codice è qui](https://github.com/vjt/r13-hermes/blob/master/app/assets/javascripts/hermes.js) se vuoi vedere la funzione `author`.
 
 ## Dall'hackathon all'ONU
 
-Ecco la parte che non mi aspettavo: circa un anno dopo, nel novembre 2014, l'[IFAD](https://www.ifad.org/) — un'agenzia specializzata delle Nazioni Unite — ha preso in mano il progetto e finanziato lo sviluppo successivo. Il repo si è spostato su [ifad/hermes](https://github.com/ifad/hermes) ed è diventato un vero strumento interno per integrare documentazione contestuale nelle loro piattaforme web.
+Circa un anno dopo, nel novembre 2014, ho portato Hermes all'[IFAD](https://www.ifad.org/) — un'agenzia specializzata delle Nazioni Unite dove lavoravo. Il mio team ha finanziato lo sviluppo successivo, il repo si è spostato su [ifad/hermes](https://github.com/ifad/hermes), ed è diventato un vero strumento interno per distribuire tutorial rapidi e contestuali sulle nostre applicazioni web line-of-business. Il concetto è ovunque oggi — ogni prodotto SaaS ha tooltip di onboarding e help contestuale. Quando l'abbiamo costruito noi, era genuinamente innovativo.
 
 Un progetto da hackathon del weekend che trova casa in un'agenzia ONU. È il genere di cosa che ti fa pensare che il modello open-source funzioni davvero — a volte il modo migliore per dimostrare un'idea è costruirla in 48 ore e metterla su GitHub.
 
