@@ -5,7 +5,7 @@ tags: [git, ruby]
 ---
 
 If you use github-provided lighthouse integration, from the "Admin" pages of
-your git repository, you may have stumbled upon on a glitch: every changeset on
+your git repository, you may have stumbled upon a glitch: every changeset on
 lighthouse appears as done by the lighthouse user that configured the
 integration on github.
 

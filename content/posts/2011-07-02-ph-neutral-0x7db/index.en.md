@@ -27,8 +27,8 @@ arms.</p>
 
 <p>&#8220;This conference has never started on time&#8221;, he continued,
 &#8220;so there was no reason to do that for this last one&#8221;. the schedule
-is straightforward: party, the next days talks from 12.00PM to 7.30PM, then
-party, and the last days talks from 12.00PM to 5.30PM. definitely a setup
+is straightforward: party, the next day's talks from 12.00PM to 7.30PM, then
+party, and the last day's talks from 12.00PM to 5.30PM. definitely a setup
 well-playing with the available alcohol :-D.</p>
 
 
@@ -89,7 +89,7 @@ thread</a>.</p>
 class="caps">WLAN</span> router horror stories</a></h2>
 
 
-<p>Did you ever woder what happens when the wireless network password is
+<p>Did you ever wonder what happens when the wireless network password is
 directly tied to the device <span class="caps">MAC</span> address, from which
 it can be inferred because it is part of the essid? horror stories, as the an
 Austrian (<a href="http://twitter.com/sviehb">ViBi</a>) and a German (<a
@@ -163,7 +163,7 @@ showing us packet dumps in wireshark, thanks to chinese hackers who wrote the
 dissectors. He was also able to associate to a tetra network used by <span
 class="caps">BVG</span>, the german public transportation system, and listen to
 a call between the headquarters and all train drivers: the former was asking
-the latters to push a button contemporarily. Yes, sir: in the 21st century you
+the latter to push a button contemporarily. Yes, sir: in the 21st century you
 still need people to do that. Awesome.  If you want to build your own, you
 should first learn how radio communication works, buy yourself a <a
 href="http://www.funcubedongle.com/">FUNcube</a> dongle and check out the <a
@@ -217,7 +217,7 @@ intercepting the pin as the user types it.</p>
 <strong>inside</strong> a <code>POS</code> or an <code>ATM</code>, thus
 possibly going unnoticed for a long period of time. And even if there are
 insurances that cover you against these frauds, if you&#8217;re a frequent
-traveller, you can hard time in demonstrating you were a victim, both because
+traveller, you can have a hard time in demonstrating you were a victim, both because
 the card number and pin match, and because this is now considered as a
 &#8220;secure&#8221; technology that cannot be broken.</p>
 
@@ -226,7 +226,7 @@ the card number and pin match, and because this is now considered as a
 
 
 <p>Thanks to Andrea Barisani and Davide Bianco for making us aware of the
-downgrade flaw. If you want to know more, here are their slide published on
+downgrade flaw. If you want to know more, here are their slides published on
 their company site, <a href="http://inversepath.com/">inversepath.com</a>.</p>
 
 
@@ -299,7 +299,7 @@ href="/posts/2011-07-02-ph-neutral-0x7db/Advances_in_Win32_ASLR_Evasion.pdf">her
 <p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/jf.jpg" alt="" /></p>
 
 
-<p>JF apologized at least 4 times before ending up closing its laptop and
+<p>JF apologized at least 4 times before ending up closing his laptop and
 ending the presentation with vodka and gin, because he said that he did not do
 a good work in explaining but, as I also told him later, he was more than
 effective: it&#8217;s not easy at all to understand how all the side effects
@@ -399,7 +399,7 @@ majority of OSs, possibly making up an infection vector.</p>
 undocumented, cargo-culted piece of code written because somehow today and
 tomorrow the <span class="caps">GDB</span> devs needed instrumentations, and
 <span class="caps">GCC</span> devs built in an excessively powerful tool to
-support them, but said tool can then be abused and no one really know how the
+support them, but said tool can then be abused and no one really knows how the
 first releases work &#8211; unless you skim through random posts on the <span
 class="caps">GCC</span> mailing list. More recent releases are pretty
 documented, <a href="http://dwarfstd.org/Download.php">though</a>.</p>
@@ -477,7 +477,7 @@ href="http://www.ted.com/talks/jeff_hawkins_on_how_brain_science_will_change_com
 class="caps">TED</span> video</a>) in hackers&#8217; minds. I talked about the
 <a href="http://numenta.com/htm-overview/htm-algorithms.php">HTMs</a> <a
 href="http://numenta.com/htm-overview/education.php">paper</a> to the folks I
-met, and I was surprised no one of them knew about a technology aimed at
+met, and I was surprised none of them knew about a technology aimed at
 building intelligent machines by reimplementing the human brain&#8217;s
 cortical algorithm in silicon.  For instance, Chris Valasek and JF talks
 demonstrate the basis of expertise: more and more you receive inputs from a
@@ -509,7 +509,7 @@ title="by natural language training">98% Zero-Day Virus Detection</a></h2>
 href="http://ph-neutral.darklab.org/talks/jes.html">social engineering</a> and
 <a
 href="http://www.slideshare.net/nbrito01/phneutral-0x7db-exploit-next-generation">Exploit
-Next Generation++</a> talks were a bit foggy, I ever failed to recognized the
+Next Generation++</a> talks were a bit foggy, I even failed to recognize the
 metasploit source code language (ahem). :-)</p>
 
 

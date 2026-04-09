@@ -10,7 +10,7 @@ description: "Docker's handling of iptables is a nightmare for hybrid host/VM se
 It is 2026, and we are still fighting with Docker’s absolute arrogance regarding Linux networking.
 
 Here is the scenario: I run a hybrid host. On one side, I have a KVM virtual machine running **Home Assistant** (because I need full OS control and [full-disk encryption](https://sindro.me/posts/2026-01-20-raspberry-pi-luks-encrypted-root/)).
-On the other, I have the usual suspect list of Docker containers — **NUT** for monitoring my shitty Lakeview (Vultech) UPS and **Technitium** for DNS and DHCP—running on the bare metal host.
+On the other, I have the usual suspect list of Docker containers — **NUT** for monitoring my shitty Lakeview (Vultech) UPS, and **Technitium** for DNS and DHCP — running on the bare metal host.
 
 It sounds simple. It should be simple.
 

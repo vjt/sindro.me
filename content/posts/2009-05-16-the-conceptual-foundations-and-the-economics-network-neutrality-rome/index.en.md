@@ -37,7 +37,7 @@ freedom, and how to cope with this in a society where security measures are <a
 href="http://sniffo.org/node/22">constantly increasing</a>, and as such
 contrast in a virtual world with no barriers whatsoever. Furthermore,
 it&#8217;s a virtual arena in which everything can be free, <a
-href="http://thepiratebay.org/">not only information</a>, and people is
+href="http://thepiratebay.org/">not only information</a>, and people are
 becoming accustomed to it.</p>
 
 
@@ -57,7 +57,7 @@ to prevent and mitigate <span class="caps">DDOS</span> attacks, or
 antivirii/IDS [systems]. Also tiered service plans, where you get lower latency
 or wider upload bandwidth if you pay more, are acceptable, because
 &#8220;quality of service&#8221; isn&#8217;t an absolute value: it depends by
-the kind of services the user uses. And in  the majority of cases, he/she
+the kind of services the user uses. And in the majority of cases, he/she
 doesn&#8217;t grasp (or even need to) the concepts behind them.</p>
 
 
@@ -89,7 +89,7 @@ experience: gamers have entirely different expectations than
 &#8220;e-mailers&#8221;, and the formers will willingly pay more for Fast-path
 DSLs to pwn their friends, while geeks enjoy a static IP address to reach their
 server at home while they&#8217;re on the go. Partitioning resources on user
-demand can  make a more profitable and efficient use of them, as long as it is
+demand can make a more profitable and efficient use of them, as long as it is
 done wisely and <strong>transparently</strong> to users. When transparency
 fails, you get the backlash that <a
 href="http://en.wikipedia.org/wiki/Comcast#Network_neutrality">Comcast received
@@ -121,7 +121,7 @@ B</span>, and so on).</p>
 <p>Applause for Mr. Carter, leaving the stage to <a
 href="http://blog.quintarelli.it/">Stefano Quintarelli</a> from <a
 href="http://www.nnsquad.it/">nnsquad.it</a>. He identified in <a
-href="http://www.fub.it/files/Slide_Quintarelli_14_05_09.pdf">its
+href="http://www.fub.it/files/Slide_Quintarelli_14_05_09.pdf">his
 presentation</a> five key points upon which build a &laquo;neutral Internet
 without absurd restrictions&raquo;:</p>
 
@@ -165,7 +165,7 @@ one of the main keys of UE development, that happens via innovative
 applications and services.</p>
 
 
-<p>&#8220;Neutrality cannot prescind from economic development&#8221;, he
+<p>&#8220;Neutrality cannot be separated from economic development&#8221;, he
 states, and to ask users to pay more to have better services, users must
 actually <strong>feel</strong> the service quality is improved, and to deliver
 more data rapidly we need a more powerful infrastructure. Who&#8217;s gonna pay
@@ -174,22 +174,22 @@ google).</p>
 
 
 <p>The key here is all about business models: advertising is dying, and not
-because of AdBlock Plus, but because comportamental patterns have changed, and,
+because of AdBlock Plus, but because behavioral patterns have changed, and,
 in my opinion, <span class="caps">SPAM</span> and phishing play a major role
-here in making the user feel unconfortable and reluctant to accept offers on
+here in making the user feel uncomfortable and reluctant to accept offers on
 some random internet web site. So we need to find more profitable and efficient
 business models, thinking about the internet as an ecosystem, trying not to
-push only on our own company, and improving both competitivity and facilitation
+push only on our own company, and improving both competitivity and facilitating
 innovation through interoperability.</p>
 
 
-<p>In a nutshell, there wasn&#8217;t much content neither in the presentation
-nor in the discussion, because, as <a
+<p>In a nutshell, there wasn&#8217;t much content either in the presentation
+or in the discussion, because, as <a
 href="http://en.wikipedia.org/wiki/Eric_E._Schmidt">Google <span
 class="caps">CEO</span></a> stated when commenting the 2009 Q1 report in the
 context of the world financial crisis, <a
 href="http://awurl.com/FgYWkh9Ey#first_awesome_highlight">we&#8217;re in an
-un-chartered territory</a>. I think that smart people will win in the end,
+uncharted territory</a>. I think that smart people will win in the end,
 because they&#8217;ll invent the next generation service that doesn&#8217;t
 need either low latency or high bandwidth and will be extremely useful to its
 users. Something capable to reach <a href="http://facebook.com/">200M of users

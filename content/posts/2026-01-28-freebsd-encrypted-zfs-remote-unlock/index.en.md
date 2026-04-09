@@ -73,12 +73,12 @@ We need to:
 
 The resulting environment is beautiful. When the server boots, it loads the 30MB ramdisk and configures the network.
 
-I SSH in and get a shell, and from the host console I can also log on with a password of the system, or another one if we don't want to copy over the target system's password hash to the unencrypted ramdisk.
+I SSH in and get a shell, and from the host console I can also log on with the system's password, or a different one if we don't want to copy over the target system's password hash to the unencrypted ramdisk.
 
 Once inside, I have three custom tools:
 
 * `unlock.sh`: Attaches the GELI provider using the keyfile and password.
-* `enter.sh`: Imports the ZFS pool to a temporary mountpoint and chroots into it. This allows me to run `freebsd-update` (or nowadays `pkg upgrade` as I have pkgbase) or fix configs in Single User mode equivalence - without booting the full system.
+* `enter.sh`: Imports the ZFS pool to a temporary mountpoint and chroots into it. This allows me to run `freebsd-update` (or nowadays `pkg upgrade` as I have pkgbase) or fix configs in a Single User mode equivalent - without booting the full system.
 * `boot.sh`: Performs the clean pivot to the decrypted OS.
 
 ## Downsides
@@ -110,6 +110,6 @@ mfs_name="/boot/mfsroot"
 vfs.root.mountfrom="ufs:/dev/md0"
 ```
 
-Ensure to not have a `geom_eli_load="YES"` line in your `loader.conf` otherwise the kernel will detect your encrypted root and ask you to insert its password!
+Ensure you don't have a `geom_eli_load="YES"` line in your `loader.conf`, otherwise the kernel will detect your encrypted root and ask you to insert its password!
 
 FreeBSD is powerful, but sometimes you have to scratch your own itch!

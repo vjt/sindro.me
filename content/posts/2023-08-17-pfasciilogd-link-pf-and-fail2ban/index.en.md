@@ -51,13 +51,13 @@ listening on pflog0, link-type PFLOG (OpenBSD pflog file), capture size 262144 b
 
 These logs can be saved by `pflogd` into a `pcap` format file in
 `/var/log/pflog`, that can be used for async troubleshooting and inspection, as
-well using `tcpdump` or anything that can parse `pcap` files (such as
+well as using `tcpdump` or anything that can parse `pcap` files (such as
 wireshark).
 
 ## Limits of binary logs
 
 I had already configured `fail2ban` to parse `postfix`, `dovecot` and `nginx`
-logs, so that if you try to brute an SMTP or IMAP passwd on my box or you try
+logs, so that if you try to brute-force an SMTP or IMAP passwd on my box or you try
 to run something like [`nikto`](https://github.com/sullo/nikto) against my web
 site you'll soon be banned by `fail2ban` and your incoming connections will be
 dropped by `pf`.

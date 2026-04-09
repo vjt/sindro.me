@@ -40,7 +40,7 @@ Download the avahi service file, put it into `/etc/avahi/services` and reload av
 
 ## Step 4: Set Up Time Machine Backup
 
-You need two files on your afp network share: .com.apple.timemachine.supported and a dot-file named with your en0 MAC address. To create it, the easier way is to attach an USB/Firewire disk, rename it with the name of the intended network share (specified into the AppleVolumes file) and enable time machine on it.
+You need two files on your afp network share: .com.apple.timemachine.supported and a dot-file named with your en0 MAC address. To create it, the easier way is to attach an USB/Firewire disk, rename it with the name of the intended network share (specified in the AppleVolumes file) and enable time machine on it.
 
 Then, copy over the .00… file on the external disk into your home dir, eject the disk, mount the network share from the finder and copy the file there.
 

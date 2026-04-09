@@ -62,7 +62,7 @@ class="caps">FQL</span></a>, <a
 href="http://wiki.developers.facebook.com/index.php/FBJS"><span
 class="caps">FBJS</span></a>), the main <a
 href="http://wiki.developers.facebook.com/index.php/Anatomy_of_a_Facebook_App">integration
-points</a> whitin the platform (notifications, publisher, ...), and he showed
+points</a> within the platform (notifications, publisher, ...), and he showed
 sample code to implement some of the most used <span class="caps">FBML</span>
 tags (<code>fb:comments</code>, <code>fb:share</code>, <code>fb:feed</code>, <a
 href="http://wiki.developers.facebook.com/wiki/FBML">and so on</a>). He
@@ -180,10 +180,10 @@ href="http://www.civati.it/cv.htm">Giuseppe Civati</a> were on stage, and
 talked about politics and social networking, a much buzzed topic these days,
 mainly because of <a
 href="http://en.wikipedia.org/wiki/Barack_Obama#2008_presidential_campaign">obama&#8217;s
-successfull usage  of it</a> that resulted him taking office at the white house
+successful usage of it</a> that resulted him taking office at the white house
 on january 20, 2009. I think that the core of it was his message, not being
 &#8220;vote for myself&#8221;, rather being &#8220;go vote, you dumbxxx!&#8221;
-:), a perfect example of giving voice to a psico-social tension via the
+:), a perfect example of giving voice to a psycho-social tension via the
 internet. People spread out via facebook, twitter, and other social networks
 their action of being gone to vote, and as <a
 href="http://en.wikipedia.org/wiki/Robert_Cialdini">psychologists</a> have
@@ -192,7 +192,7 @@ are doing&#8221;.</p>
 
 
 <p>The downside of this talk was that was too much politics oriented, and
-wheter we should talk about politics and the internet, some <a
+whether we should talk about politics and the internet, some <a
 href="http://twitter.com/fedepo/statuses/1594019457">felt that the guy was
 pushing it too hard</a>. Hey, that&#8217;s what good about social media: give
 voice to everyone, and when someone is abusing the stage, shout it loud!
@@ -244,7 +244,7 @@ buy a skoda car and go out with the matching friend for a date.</p>
 
 
 <p>The key points of the app were the seasonality (launched some days before
-valentine day), the wording, very simplicistic and ironic, communication,
+valentine day), the wording, very simplistic and ironic, communication,
 interactivity, yada, yada yada. The host then pointed out that facebook is an
 &#8220;amplifier of social interactions&#8221; (because of the missing physical
 contact and the written communication, I&#8217;d add) and that is a powerful
@@ -261,7 +261,7 @@ it&#8217;s the <strong>internet</strong>, dude.</p>
 
 <p>Also, Daniela&#8217;s claims weren&#8217;t reflected in the application they
 built, as an audience member noted: &#8220;if you say that facebook is by
-people and for people, why did you made an app that gave them a false result?
+people and for people, why did you make an app that gave them a false result?
 Which kind of enjoyment did it make to them, apart from finding a false
 match?&#8221;. She answered that the app wasn&#8217;t meant to actually find
 matches, but just to &#8220;give some minutes of &#8220;fun&#8221; to the user,

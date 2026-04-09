@@ -12,15 +12,15 @@ usual 3 reboots cycle, you are greeted with the following image:
 
 It is the [Siamese fighting fish](http://en.wikipedia.org/wiki/Betta_fish), a
 beautiful tropical fish, but with an interesting characteristic: it is
-extremely aggressive. It is popular belief that two males fight themselves even
+extremely aggressive. It is popular belief that two males fight each other even
 in the wild, but that's not quite true. This belief descends from the behaviour
-of the fish into an aquarium, where *the victor continuously attacking the
+of the fish in an aquarium, where *the victor continuously attacks the
 loser, eventually causing the loser's death*.
 
 Now, think about the software ecosystem as an aquarium. And think about
-Microsoft into this aquarium. The latest release of Microsoft OS has an
+Microsoft in this aquarium. The latest release of Microsoft OS has an
 aggressive fish as its default skin, and it is alone in this aquarium. And
-there's no place for anyone else: they'll fight whoever adversary, even if it's
+there's no place for anyone else: they'll fight whatever adversary, even if it's
 from the same species.
 
-What's uncertain is .. they'll succeed, or not? :). We'll see!
+What's uncertain is .. whether they'll succeed, or not? :). We'll see!

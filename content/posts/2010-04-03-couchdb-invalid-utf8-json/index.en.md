@@ -15,7 +15,7 @@ On [our](http://exelab.eu/) dev server, I found there two directories
 ("couch-0.10" and "mochiweb-r97") from the old 0.10 setup that were causing
 this issue.
 
-This applies if you upgraded from source, as you've probably did, because there
+This applies if you upgraded from source, as you've probably done, because there
 aren't too many packages of CouchDB 0.11 as of April 2010 :-).
 
 Huge thanks to [@couchdb](http://twitter.com/couchdb) for [hinting me in the

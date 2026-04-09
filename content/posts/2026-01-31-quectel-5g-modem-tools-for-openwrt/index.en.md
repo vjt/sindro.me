@@ -16,7 +16,7 @@ So I went full paranoid and built a proper 5G backup setup.
 - [GL.iNet X-3000](https://www.gl-inet.com/products/gl-x3000/) with a Quectel RM520N-GL modem
 - [Poynting XPOL-24](https://poynting.tech/antennas/xpol-24/) directional antenna mounted on the wall outside my home office
 
-5G signal here is non-existing, so I had to use heavy artillery. The Poynting is a beast. 11 dBi gain, real 4x4 MIMO, cross-polarized, weather-sealed. Point it at the nearest tower and suddenly your SINR jumps from "meh" to "holy shit."
+5G signal here is non-existent, so I had to use heavy artillery. The Poynting is a beast. 11 dBi gain, real 4x4 MIMO, cross-polarized, weather-sealed. Point it at the nearest tower and suddenly your SINR jumps from "meh" to "holy shit."
 
 But pointing a directional antenna without visual feedback is painful. You're basically spinning in circles, refreshing a web UI, cursing at the sky.
 

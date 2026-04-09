@@ -8,7 +8,7 @@ On July 22nd 2010, [Mikamai](http://mikamai.com/) hosted a [Ruby Social Club in
 Milan](http://blog.mikamai.com/2010/07/la-notte-del-ruby-social-club/), where
 nearly 50 people attended watching five speeches about Ruby, Web development
 and Startups. I was glad to be one of the speakers, and I presented a set of
-Rails plugins [we](http://mind2mind.is/) spinned off from our latest (and
+Rails plugins [we](http://mind2mind.is/) spun off from our latest (and
 greatest) project: [Panmind](http://panmind.org/) (read more on [the about
 page](http://panmind.org/about)) and released as Open Source on
 [GitHub](http://github.com/Panmind).
@@ -51,7 +51,7 @@ Club](https://blog.mikamai.com/post/129408154293/la-notte-del-ruby-social-club)
 to read the other keynotes (I will, hopefully, update this post with sum-ups of
 them when time permits :-)) and [say hello on
 twitter](http://twitter.com/panmind) or [on GitHub](http://github.com/Panmind)
-if you're interested in contributing our open source projects or [you want to
+if you're interested in contributing to our open source projects or [you want to
 work with us](http://panmind.org/jobs).
 
 <iframe

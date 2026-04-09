@@ -1,11 +1,11 @@
 ---
-title: "10.5.2 Odissey: a small journey in Mac OS X services and components"
+title: "10.5.2 Odyssey: a small journey in Mac OS X services and components"
 date: 2008-02-15
 tags: [apple, backup, macos]
 ---
 
 
-Well, I'm really happy with OSX 10.5.2. Even I'm not the one that blamed Apple
+Well, I'm really happy with OSX 10.5.2. Even though I'm not the one that blamed Apple
 for the translucent menu bar that everyone dislikes.. well, I like it. I don't
 care about the TM menu bar tool, because I haven't bought (yet) the nifty Time
 Capsule, I like the spinner in the Airport menu and, most of all, I really like
@@ -15,7 +15,7 @@ headset.
 Spotlight also feels faster and faster on every upgrade, and I'm a heavy
 spotlight user, so this makes me really happy. Thanks Apple engineers!
 
-Back to the topic: why odissey? Because as per [my battery
+Back to the topic: why odyssey? Because as per [my battery
 hints](/posts/2008-01-31-how-to-keep-your-apple-notebook-battery-healthy/), I managed
 to make my MacBook2,1 SHUT DOWN while at 74% of the "Writing files" phase of
 the combo update... resulting in a completely broken system, as every geek
@@ -35,14 +35,14 @@ Furthermore, OSX takes this approach one step further, following the best
 software engineering principles, where functionalities are implemented in
 Frameworks and both the GUI and CLI interfaces use it. Well done!
 
-The odissey started with a `CMD-S` to boot in single user mode, a `/sbin/fsck
+The odyssey started with a `CMD-S` to boot in single user mode, a `/sbin/fsck
 -fy`, and a `/sbin/mount -uw /` to get a writable root. I started directly with
 a `hdiutil attach -noverify -verbose -mount required
 /Users/vjt/Downloads/MacOSXUpdCombo10.5.2.dmg` in order to mount the update
 disk image, but it failed because the `diskarbitrationd` daemon wasn't running.
 
 So, I fired up `launchctl` and issued `load
-/System/Librar/LaunchDaemons/com.apple.diskarbitrationd.plist`, when I
+/System/Library/LaunchDaemons/com.apple.diskarbitrationd.plist`, when I
 discovered that it needed both the `configd` daemon and the `notifyd` daemon,
 so I loaded them up both via launchctl and.. **YAY**! The disk image was
 correctly mounted in `/Volumes/Mac OS X Update Combined`!
@@ -84,7 +84,7 @@ but still the same ugly `NSInvalidArgumentException` error when launching the
 `installer` utility. Sigh. :(
 
 At this point, I gave up because my journey had been interesting enough and I
-had a really more comfortable way to fix up my problem: a **USB**-attached hard
+had a much more comfortable way to fix up my problem: a **USB**-attached hard
 disk with a vanilla Leopard installation, from which I could boot up my
 MacBook, double click the disk image from the Finder and lazily launch an
 `installer -target /Volumes/disk0 -package /Volumes/Mac OS X Update

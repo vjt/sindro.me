@@ -15,10 +15,10 @@ proverb](http://en.wikipedia.org/wiki/If_the_mountain_won't_come_to_Muhammad)
 :).
 
 *EDIT 2023: CAUTION: these links are expired :-(*
-It has been spinned off from the [Visita CSA
+It has been spun off from the [Visita CSA
 application](http://www.visitacsa.it/) JavaScript codebase, see the
 [gist](http://gist.github.com/54441) for more information, and have a look
-[onto the live app code for an example of its
+[at the live app code for an example of its
 usage](http://www.visitacsa.it/javascripts/business-registration.js).
 
 Here is the source code:
@@ -31,7 +31,7 @@ Here is the source code:
 // the input button under the cursor. <<If Muhammad won't go to
 // the the mountain, the mountain will come to Muhammad.>> :-).
 //
-// This approach is needed on the majority of browser, except
+// This approach is needed on the majority of browsers, except
 // Safari, on which the coder is allowed to trigger a "click" 
 // event onto an input type=file element. On other browsers,
 // you can not, that's why the complicated mousemove approach

@@ -9,27 +9,27 @@ tags: [freebsd, sysadmin]
 ## Preface
 
 In 2023, I still run my own mailserver. Yes, because I like to keep control of
-(at least part) my own digital life, and I enjoy having multiple domain names
-on which I have stuff on. However, I was paying 30€/month to AWS to get in
+(at least part of) my own digital life, and I enjoy having multiple domain names
+on which I have stuff. However, I was paying 30€/month to AWS to get in
 exchange 2 cores, 2GiBs of RAM and 40G of disk, barely sufficient to run
 IMAP+SMTP+MySQL+Clamd, let alone any form of spam protection or full-text
 search on email bodies.
 
-So, I was paying a lot of money to run a shitty service, and I even though
-about shutting everything off and move my mail and my web sites onto some
+So, I was paying a lot of money to run a shitty service, and I even thought
+about shutting everything off and moving my mail and my web sites onto some
 form of fully hosted service.
 
 ## I still want to do it
 
 Say what, to host four domains with just some email redirects plus the web
-sites I run, I would have spent more I was paying to also cripple me to
+sites I run, I would have spent more than I was paying, only to cripple myself to
 some service vendor and their politics.
 
 So, I wanted to run FreeBSD and I started scouting on the [ISPs
 page](https://www.freebsd.org/commercial/isp/) until I decided to review
 [Hetzner](https://www.hetzner.com/cloud) and
 [netcup](https://www.netcup.eu/vserver/vps.php), that both offer aggressive
-pricing and a old fashioned VPS and little more.
+pricing and an old-fashioned VPS and little more.
 
 ## Settling on a vendor
 
@@ -250,7 +250,7 @@ tank/usr/obj    zfs       134G     96K    134G     0%    /usr/obj
 
 For the 2 1/2 years since I wrote this I've been at the mercy of the VNC
 console of the VPS to insert the password during boot time, that is very
-unconvenient to say the least.
+inconvenient to say the least.
 
 But no more! [I've set up an initial ram
 disk](https://sindro.me/posts/2026-01-28-freebsd-encrypted-zfs-remote-unlock/)

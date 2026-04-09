@@ -36,7 +36,7 @@ are absolutely pertinent here:
 > until programmers stop acting like obfuscation is morally hazardous, they’re
 > not artists, just kids who don’t want their food to touch.”.
 
-You can view the code with syntax hilighting on
+You can view the code with syntax highlighting on
 [github](https://gist.github.com/vjt/67277), or with the “View source” function
 of your browser while you’re on the [segfault
 site](https://segmentation-fault.core-dumped.info/). :)

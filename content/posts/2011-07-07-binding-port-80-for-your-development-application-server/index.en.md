@@ -11,16 +11,16 @@ production environment as closely as possible. You have many applications to
 deal with, they have to be running at the same time because they are nifty REST
 JSON web services.
 
-You are very tired to remember which one you put on port `8081`, and your
+You are very tired of remembering which one you put on port `8081`, and your
 configuration files slowly become a real mess. So you set up IP address aliases
 in for the network interface and decide to assign even host names –
 `/etc/hosts` is just fine – for each app.
 
 Then, in such a setup, why would you still need to run them on ports higher
-than `1024`? Wouldn't be just great to type the application name in the browser
+than `1024`? Wouldn't it be just great to type the application name in the browser
 address bar? Indeed it is, but it's better to not run them as `root`, anyway.
 
-The solution are [Linux
+The solution is [Linux
 capabilities](http://www.kernel.org/doc/man-pages/online/pages/man7/capabilities.7.html)
 (see also [here](http://www.friedhoff.org/posixfilecaps.html)). The one that
 interests us is `cap_net_bind_service`: it gives a process the right to bind

@@ -15,7 +15,7 @@ Exactly the words that run around my mind these days:
 > contestants, the act of being observed will change our behavior. Our personal
 > brand image will become our public identity and therefore our identity.
 
-I'd think these describe exactly the "facebook effect".
+I think these words describe exactly the "facebook effect".
 
 What do you think?
 

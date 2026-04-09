@@ -60,7 +60,7 @@ reader work out-of-the-box.</p>
 href="http://code.google.com/p/cryptsetup/wiki/FrequentlyAskedQuestions"><span
 class="caps">LUKS</span></a> and, while I&#8217;m not that competent in
 cryptography, looks like it is more evolved than the *BSD counterparts, and
-anyway it is more versatile tool than the tools in OpenBSD and NetBSD. On the
+anyway it is a more versatile tool than the tools in OpenBSD and NetBSD. On the
 latter, having to set up <span class="caps">GPT</span> and DK Wedges to make
 the <span class="caps">CGD</span> and synch <span class="caps">MBR</span> and
 Disklabel to make the boot loader work (yuck!), everything coupled with rEFIt

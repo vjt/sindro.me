@@ -8,8 +8,8 @@ tags: [funny, rails, ruby]
 
 ## Localization for Active Record error messages
 
-Today i had to answer to one of the questions every non-english Rails developer
-stumbles upon now or after.. how to localize AR error messages for pleasant
+Today I had to answer one of the questions every non-English Rails developer
+stumbles upon sooner or later.. how to localize AR error messages for pleasant
 appearance to a non-english customer ;).
 
 First off, thanks to [defunkt’s](http://errtheblog.com) excellent gibberish
@@ -56,7 +56,7 @@ order to avoid possible future key clashes. Finally, AR array is overwritten
 with the new one freshly built.
 
 This solution assumes that the application will show only in a single language,
-if you need localized error messages in different language you should put this
+if you need localized error messages in a different language you should put this
 code in some `around_filter`, like Gibberish documentation suggests.
 
 OK, messages are translated, but what about field names? I used english field

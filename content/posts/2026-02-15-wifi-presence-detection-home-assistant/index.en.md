@@ -81,13 +81,13 @@ Four out of six APs didn't have NTP enabled. The garden AP — the *exit node*, 
 
 #### Backfill ordering
 
-On startup, the engine backfilled the last 4 hours from VictoriaLogs to rebuild state. Problem: VictoriaLogs returns results grouped by log stream (per-AP), not in global chronological order. So if the last stream returned is from the office, you end up in the office — even if the *most recent* event was from the livingroom. Fix: sort all backfill events by timestamp before processing. Simple, once you stop trusting the API to do it for you.
+On startup, the engine backfilled the last 4 hours from VictoriaLogs to rebuild state. Problem: VictoriaLogs returns results grouped by log stream (per-AP), not in global chronological order. So if the last stream returned is from the office, you end up in the office — even if the *most recent* event was from the living room. Fix: sort all backfill events by timestamp before processing. Simple, once you stop trusting the API to do it for you.
 
 #### Sara's phone: 3,821 events in 10 days
 
 This was the best one. My wife Sara has an iPhone 16 Pro. I have an iPhone 16 Pro Max. Same house, same APs, same network. Yet her phone was generating **3.4x more WiFi events** than mine. 78% of all her events were flapping — rapid connect/disconnect cycles on the same AP.
 
-The diagnosis: two APs (office on the first floor, livingroom on the ground floor) stacked vertically with both running at 23 dBm — maximum transmit power. Through a 2.7m Italian concrete ceiling, Sara's phone was seeing nearly identical signal strength from both APs and thrashing between them every 1-3 seconds. Her worst oscillation streak: **161 connects**, bouncing back and forth like a ping-pong ball.
+The diagnosis: two APs (office on the first floor, living room on the ground floor) stacked vertically with both running at 23 dBm — maximum transmit power. Through a 2.7m Italian concrete ceiling, Sara's phone was seeing nearly identical signal strength from both APs and thrashing between them every 1-3 seconds. Her worst oscillation streak: **161 connects**, bouncing back and forth like a ping-pong ball.
 
 802.11r Fast Transition was making it *worse* — sub-second roaming meant the phone could thrash faster than it could with full re-authentication.
 

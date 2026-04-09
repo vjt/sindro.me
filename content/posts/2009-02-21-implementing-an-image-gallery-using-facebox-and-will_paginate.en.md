@@ -14,7 +14,7 @@ But we needed more than a simple display lightbox, because we wanted our users
 to navigate easily between all images, possibly without modifying facebox at
 all. The solution turned out to be pretty simple, thanks also to the
 [`will_paginate`](http://github.com/mislav/will_paginate/wikis) plugin we were
-already using. It all burns out to have:
+already using. It all boils down to having:
 
 - A Photo model, instrumented with the `has_attachment` method
 - Resource routes for photos (`map.resources :photos, :only => :show` in
@@ -23,7 +23,7 @@ already using. It all burns out to have:
   with a `:per_page` argument of 1
 - An HTML view for the photo resource, that has pagination controls using the
   `will_paginate` helper
-- Some jQuery code hooks onto the pagination links and make the browser load
+- Some jQuery code hooks onto the pagination links and makes the browser load
   via AJAX the next photo directly into the facebox.
 
 Here is the relevant code, simplified from what's actually online, because the
@@ -137,9 +137,9 @@ $(document).ready(function() {
 });
 ```
 
-Well, maybe I should to wrap up all this stuff in a simple-and-nice-to-use
+Well, maybe I should wrap up all this stuff in a simple-and-nice-to-use
 plugin, but it’s all built around reusable components, and the effort needed to
-keep it up-to-date is currently out of order for me because of time
+keep it up-to-date is currently out of the question for me because of time
 constraints. And, sincerely, I see little benefit in it. It’s a
 “paginate-with-one-item-per-page” hack, after all :).
 

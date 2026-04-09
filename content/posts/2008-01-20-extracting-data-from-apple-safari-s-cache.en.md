@@ -4,10 +4,10 @@ date: 2008-01-20
 tags: [apple, backup]
 ---
 
-Five minutes ago, I overwritten the super-shining-new CSS stylesheet that
+Five minutes ago, I overwrote the super-shining-new CSS stylesheet that
 implements the current color scheme, because i wanted to restore the original
 one and put it in a new theme for this site, so that people who enjoyed the old
-theme could continue to use it. But, as the most kiddiest system administrator,
+theme could continue to use it. But, as the most kiddie system administrator,
 i uncompressed the original files from the backup archive OVER the current
 ones..
 

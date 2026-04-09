@@ -17,8 +17,8 @@ much](http://blog.wired.com/wiredscience/2009/04/braintweet.html) [in the last
 days](http://search.twitter.com/search?max_id=1578807214&page=1&q=brain+twitter+interface),
 this evening a quite random funny thought has stumbled into my mind: what about
 getting a [grey parrot](http://en.wikipedia.org/wiki/African_Grey_Parrot), grow
-it, learn it to talk, and letting him .. well, **tweet** his words using a
-speech recognition system put right aside its bar and linked to a twitter
+it, teach it to talk, and letting him .. well, **tweet** his words using a
+speech recognition system put right beside its cage and linked to a twitter
 account? How weird would that be?! :D
 
 {{< figure src="/posts/2009-04-21-a-tweeting-geeky-parrot/tweeting_parrot.jpg" alt="Tweeting parrot" >}}
@@ -29,7 +29,7 @@ natural verse. Am I overloaded by this social media thingie? Should I take some
 vacation?
 
 I guess. But not right now. The first [Italian Facebook Developer
-Garage](http://fb.mikamai.com/) is right two days away.. :)
+Garage](http://fb.mikamai.com/) is just two days away.. :)
 
 *Image courtesy of
 [@ozjulian](http://www.flickr.com/photos/ozjulian/2933796654/) on

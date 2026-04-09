@@ -6,7 +6,7 @@ tags: [apple, security, macos]
 
 If you're wondering **why** the `CCacheServer` daemon, that caches in memory
 Kerberos tickets obtained via `kinit(1)` is NOT starting .. that's because of a
-**strange** bug regarding the `LimitLoadToSessionType` specified into the agent
+**strange** bug regarding the `LimitLoadToSessionType` specified in the agent
 .plist, located into
 `/System/Library/LaunchAgents/edu.mit.kerberos.CCacheServer.plist` on OSX 10.5
 systems.

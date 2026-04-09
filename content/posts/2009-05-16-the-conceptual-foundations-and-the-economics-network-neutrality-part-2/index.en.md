@@ -44,7 +44,7 @@ journalists working in &quot;hot&quot; areas</a>, among many others.</p>
 
 
 <p>Another point about legislation is that it isn&#8217;t the same in all
-countries, althought the Internet is spread all over the world; moreover we
+countries, although the Internet is spread all over the world; moreover we
 should define on what networks we should assess neutrality, because not
 necessarily an IP network is connected to the Internet (think about <span
 class="caps">ISP</span>-owned walled gardens).</p>
@@ -95,7 +95,7 @@ the nearest datacenter virtual IP address, and then serves content off the
 cache.</p>
 
 
-<p>This are approaches that try to mitigate the best-effort nature of the
+<p>These are approaches that try to mitigate the best-effort nature of the
 Internet, but maybe there are better solutions. <span class="caps">NGN</span>
 aims to be one of those, by providing multiple network pipes dedicated to
 deliver different types of network traffic, with their specific QoS needs.
@@ -120,12 +120,12 @@ class="caps">RELOAD</span></a>, currently (still) in draft status, used to
 implement peer-to-peer <a
 href="http://en.wikipedia.org/wiki/Session_Initiation_Protocol"><span
 class="caps">SIP</span></a>, and so a decentralized VoIP infrastructure with no
-big name behind it. I&#8217;m no surprised that <span
+big name behind it. I&#8217;m not surprised that <span
 class="caps">RELOAD</span> and <span class="caps">P2PSIP</span> weren&#8217;t
 mentioned in the talk.</p>
 
 
-<p>Of course neither NGNs neither <span class="caps">P2P</span>/CDN
+<p>Of course neither NGNs nor <span class="caps">P2P</span>/CDN
 technologies will cover the entire internet in no time: the good &#8216;ol net
 will <em>float</em> upon these new technologies and on legacy ones (such as
 IPv4) in the next years, because changing network infrastructure imposes heavy
@@ -133,7 +133,7 @@ costs on ISPs. One may ask whether also content providers should contribute to
 network infrastructure development, as they&#8217;re the ones that would
 benefit from wider BW and lower latency. Prof. Trecordi said yes, <a
 href="http://precursorblog.com/content/google-uses-21-times-more-bandwidth-it-pays-first-ever-research-study">google
-uses 21 times more bandwidth it pays for</a>. Hell. LaTeX isn&#8217;t enough to
+uses 21 times more bandwidth than it pays for</a>. Hell. LaTeX isn&#8217;t enough to
 make content, mr Ph.D. <a
 href="http://precursorblog.com/content/google-uses-21-times-more-bandwidth-it-pays-first-ever-research-study#comment-4558">This
 comment</a> explains my point of view on this matter, and was also exposed
@@ -151,7 +151,7 @@ slides</a></cite></p>
 
 
 <p>Whichever networking infrastructure we may adopt in the future, we cannot
-prescind from a plain fact: just a minority of the users will consume the
+disregard a plain fact: just a minority of the users will consume the
 majority of the bandwidth.. as happened with Napster in 2000, when because of
 <a href="http://en.wikipedia.org/wiki/Shawn_Fanning's">Shawn Fanning</a>
 software was allegedly consuming <a
@@ -181,13 +181,13 @@ class="caps">P2P</span> connections to the nearest ones.</p>
 
 <p>The <a
 href="http://torrentfreak.com/uncovering-the-dark-side-of-p4p-080824/">dark
-side of <span class="caps">P4P</span></a>, as Ernesto&#8217;s Torrentfreak
-founder points out, is that it can open a big can of worms, because the <span
+side of <span class="caps">P4P</span></a>, as Ernesto, Torrentfreak&#8217;s
+founder, points out, is that it can open a big can of worms, because the <span
 class="caps">P4P</span> working group <a
 href="http://www.awesomehighlighter.com/page/display/S4E2UjZZH">&quot;includes
 some prominent members of the entertainment industry and well known anti-piracy
 lobbyists&quot;</a> (sorry but the highlighter didn&#8217;t work well on this
-page). I&#8217;m unable to say Ernesto is  wrong, also because of statement
+page). I&#8217;m unable to say Ernesto is  wrong, also because of statements
 like the one Sony pictures <span class="caps">CEO</span> said yesterday May 15
 2009: <a
 href="http://www.boingboing.net/2009/05/15/sony-pictures-ceo-no.html">&quot;<cite>nothing
@@ -242,7 +242,7 @@ Domenico</a> &#8211; <a href="http://www.vodafone.it/">Vodafone</a> &#8211;
 <em>(Score: 3)</em> <ul> <li>Heavy internet users should not be able to degrade
 user experience for other customers</li> <li>We won&#8217;t block traffic on an
 application basis</li> <li>We should be able to manage traffic load and put
-caps when we&#8217;re over capacity</li> <li>SLAs and TOSs trasparency is a
+caps when we&#8217;re over capacity</li> <li>SLAs and TOSs transparency is a
 must</li> </ul> </li> <li><img
 src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/tre.png"
 alt="" /><br/>Anton Giulio Lombardi &#8211; <a
@@ -283,7 +283,7 @@ alt="" /><br/><a
 href="http://www.key4biz.it/Who_is_who/2008/06/Nocentini_Stefano.html">Stefano
 Nocentini</a> &#8211; <a href="http://www.telecomitalia.it/">Telecom Italia</a>
 &#8211; <em>(Score: 5, Insightful)</em> <ul> <li>Think about the internet as an
-highway, so we can elucubrate more thoughtly.  <ul> <li>Speed limits equal BW
+highway, so we can think more thoughtfully.  <ul> <li>Speed limits equal BW
 limits, because you can reach them, but not when there&#8217;s a traffic
 jam.</li> <li>An highway is sized upon a mean usage, and so is the network
 infrastructure: so the idea of an &#8220;intelligent departure&#8221;, if you
@@ -365,7 +365,7 @@ and we&#8217;re working on this.</p>
 
 <p>In a nutshell, the event was interesting, a bit pleonastic because the same
 topics were carried over and over through the day, and it was an assessment of
-the current situation (un-chartered territory) but at least I heard politicians
+the current situation (uncharted territory) but at least I heard politicians
 say &#8220;yes the internet is important, is valuable, and is worth
 pushing&#8221;. I don&#8217;t remember how many times I said these words in the
 past.</p>

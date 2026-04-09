@@ -11,7 +11,7 @@ tags: [linux, sysadmin]
 
 So I started running [home assistant](https://www.home-assistant.io/) at home
 on a raspberry PI 5 machine and I just installed HAOS on an SD. I then started
-growing deeply uncomfortable on storing credentials in the HA filesystem in
+growing deeply uncomfortable about storing credentials in the HA filesystem in
 clear text (any obfuscation is not enough).
 
 Considering configuring an encrypted root with HAOS is simply not possible
@@ -101,10 +101,10 @@ later:
 > sudo cp /boot/firmware/cmdline.txt /boot/firmware/cmdline.txt.bak
 ```
 
-Then edit `/boot/firmware/cmdline.txt` do the following:
+Then edit `/boot/firmware/cmdline.txt` and do the following:
 - replace any `root=XXX` setting with `root=/dev/mapper/cryptroot`.
-- For an SD card, append the line with `cryptdevice=/dev/mmcblk0p1:cryptroot`
-- For an SSD, append the line with `cryptdevice=/dev/nvme0n1p2:cryptroot`
+- For an SD card, append to the line `cryptdevice=/dev/mmcblk0p1:cryptroot`
+- For an SSD, append to the line `cryptdevice=/dev/nvme0n1p2:cryptroot`
 
 For example, my `cmdline.txt` looks like this:
 ```
@@ -112,7 +112,7 @@ console=serial0,115200 console=tty1 root=/dev/mapper/cryptroot rootfstype=ext4 f
 ```
 
 Feel free to leave any other parameter present, like the one for WiFi
-country code `cfg80211.ieee80211_regdom=XX`, which regulate wireless
+country code `cfg80211.ieee80211_regdom=XX`, which regulates wireless
 channels and power levels according to local laws.
 
 ### 3. Install cryptsetup, initramfs tools and busybox
@@ -172,7 +172,7 @@ algif_skcipher
 
 ### 6. Ask the initramfs to include *most* modules
 
-The initramfs tools try to miminize the number of modules installed in the RAM
+The initramfs tools try to minimize the number of modules installed in the RAM
 disk, doing some fancy detection of the hardware and the needed ones. However
 this may fail and you may end up with a system that just hangs in the initramfs.
 
@@ -246,7 +246,7 @@ Let's re-run the benchmarks:
     aes-xts        256b      1761.5 MiB/s      1813.9 MiB/s
 ```
 
-If all is good, We can now proceed with our plan: shrink the root filesystem,
+If all is good, we can now proceed with our plan: shrink the root filesystem,
 copy it over to the USB stick, create a new encrypted device and move the root
 filesystem back to the encrypted device.
 
@@ -263,7 +263,7 @@ if there are some serious errors, it may be best to stop and undo the changes
 done so far to avoid serious data corruption. It's time to restore the
 `cmdline.txt` backup we did earlier.
 
-Use `lsblk` to find the device name of the the `512M` partition - that'd be
+Use `lsblk` to find the device name of the `512M` partition - that'd be
 `/dev/mmcblk0p1` if using an SD card or `/dev/nvme0n1p1` if using an NVME drive.
 
 Then, let's mount it, restore the former `cmdline.txt` and reboot:
@@ -276,7 +276,7 @@ umount /foo
 reboot
 ```
 
-That'll undoes the boot from the encrypted root, and the pi will boot back from
+That'll undo the boot from the encrypted root, and the pi will boot back from
 the cleartext root. Having a non-repairable filesystem is dangerous, so seek
 some advice :-).
 
@@ -348,7 +348,7 @@ reboot your pi.
 This is the command I settled on:
 
 ```
-cryptsetup --type luks2 --cipher aes-xts-plain64 --hash sha256 -–key-size 256 luksFormat /dev/nvme0n1p2
+cryptsetup --type luks2 --cipher aes-xts-plain64 --hash sha256 --key-size 256 luksFormat /dev/nvme0n1p2
 ```
 
 The defaults nowadays are to use `argon2id` as Password-Base Key Derivation
@@ -374,7 +374,7 @@ cryptsetup luksOpen /dev/nvme0n1p2 cryptroot
 ```
 
 key in the passphrase that you inserted at step 8. This will make available a
-ned `/dev/mapper/cryptroot` device node, on which we can now copy back our root
+new `/dev/mapper/cryptroot` device node, on which we can now copy back our root
 filesystem:
 
 ```
@@ -385,7 +385,7 @@ where you need to replace `XXXXX` with the number of blocks you took note of in 
 earlier step.
 
 Let's calculate the checksum of the copy so to ensure that what we've copied
-back matched what's on the USB stick, that we found at step 7:
+back matches what's on the USB stick, that we found at step 7:
 
 ```
 dd bs=4k count=XXXXX if=/dev/mapper/cryptroot | sha1sum
@@ -508,7 +508,7 @@ when waiting for the root to be unlocked.
 
 ## Did it blend?
 
-Of course it did! If you've made this far, congratulations! You can now enjoy
+Of course it did! If you've made it this far, congratulations! You can now enjoy
 your mini Linux server with encrypted root. Upon reboot, just connect over SSH
 to it, and run:
 
