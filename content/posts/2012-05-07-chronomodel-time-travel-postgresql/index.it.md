@@ -47,6 +47,28 @@ I tuoi modelli Rails puntano alle viste in `public`. Appaiono e si comportano es
 
 La parte bella e' che il codice della tua applicazione non cambia per niente. Le query vanno sulle viste `public`, che mostrano i dati correnti da `temporal`. Lo storico si accumula silenziosamente in `history`.
 
+Ecco come appare la regola di UPDATE in SQL puro (dal [reference completo dello schema](https://github.com/ifad/chronomodel/blob/v0.1.0/README.sql)):
+
+```sql
+create rule countries_upd as on update to countries do instead (
+  -- Chiudi l'entry storica corrente
+  update history.countries
+    set   valid_to = now()
+    where id       = old.id and valid_to = '9999-12-31';
+
+  -- Apri una nuova entry storica con i dati aggiornati
+  insert into history.countries ( id, name, valid_from )
+  values ( old.id, new.name, now() );
+
+  -- Aggiorna la tabella corrente
+  update only temporal.countries
+    set name = new.name
+    where id = old.id
+);
+```
+
+Una regola SQL, tre operazioni, una transazione. La sentinella `'9999-12-31'` marca l'entry attualmente valida. La gem genera queste regole automaticamente per ogni tabella temporale — non scrivi mai questo SQL a mano.
+
 ## Il colpo di genio
 
 Come si prevengono entry storiche sovrapposte per lo stesso record? PostgreSQL non ha supporto per vincoli temporali (ancora — c'e' una [proposta SQL:2011](http://en.wikipedia.org/wiki/SQL:2011) per questo). Ma ha le [exclusion constraint GiST](http://www.postgresql.org/docs/9.1/static/sql-createtable.html#SQL-CREATETABLE-EXCLUDE), e GiST sa indicizzare tipi geometrici.
@@ -105,7 +127,7 @@ italy.history  # => tutte le versioni, con valid_from/valid_to
 italy.as_of(1.year.ago).projects  # caricati anche loro a quella data
 ```
 
-Ho anche aggiunto il supporto [CTE](http://www.postgresql.org/docs/9.1/static/queries-with.html) (Common Table Expression) al query builder di ActiveRecord, perche' Rails 3 non ce l'ha e le query `as_of` hanno bisogno di clausole `WITH`. Questo ha richiesto una patch a `Arel::Visitors::PostgreSQL` per emettere SQL corretto.
+Ho anche [aggiunto il supporto CTE](https://github.com/ifad/chronomodel/blob/v0.1.0/lib/chrono_model/patches.rb#L39-L62) (Common Table Expressions) al query builder di ActiveRecord, perche' Rails 3 non ha le clausole `WITH` e le query `as_of` ne hanno bisogno. Questo ha richiesto una [patch al visitor PostgreSQL di Arel](https://github.com/ifad/chronomodel/blob/v0.1.0/lib/chrono_model/patches.rb#L64-L78) per emettere SQL corretto.
 
 ## La verita' scomoda
 

@@ -47,6 +47,28 @@ Your Rails models point at the views in `public`. They look and behave exactly l
 
 The beautiful part is that your application code doesn't change at all. Queries hit the `public` views, which show current data from `temporal`. History accumulates silently in `history`.
 
+Here's what the UPDATE rule looks like in plain SQL (from the [full schema reference](https://github.com/ifad/chronomodel/blob/v0.1.0/README.sql)):
+
+```sql
+create rule countries_upd as on update to countries do instead (
+  -- Close the current history entry
+  update history.countries
+    set   valid_to = now()
+    where id       = old.id and valid_to = '9999-12-31';
+
+  -- Open a new history entry with the updated data
+  insert into history.countries ( id, name, valid_from )
+  values ( old.id, new.name, now() );
+
+  -- Update the current table
+  update only temporal.countries
+    set name = new.name
+    where id = old.id
+);
+```
+
+One SQL rule, three operations, one transaction. The `'9999-12-31'` sentinel marks the currently-valid entry. The gem generates these rules automatically for every temporal table — you never write this SQL by hand.
+
 ## The clever bit
 
 How do you prevent overlapping history entries for the same record? PostgreSQL doesn't have temporal constraint support (yet — there's a [SQL:2011 proposal](http://en.wikipedia.org/wiki/SQL:2011) for it). But it does have [GiST exclusion constraints](http://www.postgresql.org/docs/9.1/static/sql-createtable.html#SQL-CREATETABLE-EXCLUDE), and GiST can index geometric types.
@@ -105,7 +127,7 @@ italy.history  # => all versions, with valid_from/valid_to
 italy.as_of(1.year.ago).projects  # also loaded as-of that date
 ```
 
-I also added [CTE](http://www.postgresql.org/docs/9.1/static/queries-with.html) (Common Table Expression) support to ActiveRecord's query builder, because Rails 3 doesn't have it and the `as_of` queries need `WITH` clauses. That required patching `Arel::Visitors::PostgreSQL` to emit proper SQL.
+I also [added CTE support](https://github.com/ifad/chronomodel/blob/v0.1.0/lib/chrono_model/patches.rb#L39-L62) (Common Table Expressions) to ActiveRecord's query builder, because Rails 3 doesn't have `WITH` clauses and the `as_of` queries need them. That required [patching Arel's PostgreSQL visitor](https://github.com/ifad/chronomodel/blob/v0.1.0/lib/chrono_model/patches.rb#L64-L78) to emit the correct SQL.
 
 ## The ugly truth
 
