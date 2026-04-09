@@ -4,6 +4,8 @@ date: 2009-05-28T13:00:00
 tags: [security, politics]
 ---
 
+![Un gigantesco occhio di sorveglianza fatto di tracce circuitali sospeso su una città, persone sotto con scudi crittografici](/posts/2009-05-28-e-privacy-2009-towards-global-control/cover.jpg)
+
 <p><a name="top"></a></p>
 <h2>Indice</h2>
 
