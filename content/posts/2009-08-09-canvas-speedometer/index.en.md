@@ -7,7 +7,7 @@ featuredImage: cover.jpg
 ---
 
 {{< retrospective year="2026" >}}
-HTML5 Canvas won. Flash was officially killed by Adobe in December 2020. This little speedometer still renders perfectly in every modern browser — but nobody hand-rolls gauge widgets anymore. D3.js, Chart.js, or even pure CSS can do this with a fraction of the effort. Still, 52 stars and 17 forks on GitHub: my most starred repo, and I'm unreasonably proud of it.
+HTML5 Canvas won. Flash was officially killed by Adobe in December 2020. This little speedometer still renders perfectly in every modern browser — but nobody hand-rolls gauge widgets anymore. D3.js, Chart.js, or even pure CSS can do this with a fraction of the effort. Still, 52 stars and 17 forks on GitHub — not bad for a weekend project from 2009.
 {{< /retrospective >}}
 
 The `<canvas>` element is the new shiny thing. Safari and Firefox support it, Chrome just shipped, and Internet Explorer... well, let's not talk about Internet Explorer. Flash is how you do anything graphical on the web. But I want to see what this Canvas API can really do — so I'm building a fully animated, themed speedometer gauge widget entirely in JavaScript.
