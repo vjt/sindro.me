@@ -37,7 +37,26 @@ The [original exclusion constraint](/posts/2012-05-07-chronomodel-time-travel-po
 EXCLUDE USING gist (id WITH =, validity WITH &&)
 ```
 
-No more `box(point(extract(epoch from valid_from), id), ...)`. Just: "don't allow two ranges for the same ID that overlap." The database understands what it's enforcing.
+Before:
+
+```sql
+-- v0.1.0: encode time as geometry, hope for the best
+EXCLUDE USING gist (
+  box(
+    point( date_part('epoch', valid_from), id ),
+    point( date_part('epoch', valid_to - INTERVAL '1 msec'), id )
+  ) WITH &&
+)
+```
+
+After:
+
+```sql
+-- v0.6.0: say what you mean
+EXCLUDE USING gist ( id WITH =, validity WITH && )
+```
+
+The database understands what it's enforcing.
 
 ### Monkey-patching → proper adapter
 

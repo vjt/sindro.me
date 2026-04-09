@@ -37,7 +37,26 @@ Il [vincolo di esclusione originale](/it/posts/2012-05-07-chronomodel-time-trave
 EXCLUDE USING gist (id WITH =, validity WITH &&)
 ```
 
-Niente piu' `box(point(extract(epoch from valid_from), id), ...)`. Solo: "non permettere due range per lo stesso ID che si sovrappongano." Il database capisce quello che sta enforcing.
+Prima:
+
+```sql
+-- v0.1.0: codifica il tempo come geometria, spera nel meglio
+EXCLUDE USING gist (
+  box(
+    point( date_part('epoch', valid_from), id ),
+    point( date_part('epoch', valid_to - INTERVAL '1 msec'), id )
+  ) WITH &&
+)
+```
+
+Dopo:
+
+```sql
+-- v0.6.0: dici quello che intendi
+EXCLUDE USING gist ( id WITH =, validity WITH && )
+```
+
+Il database capisce quello che sta enforcing.
 
 ### Monkey-patching → adapter corretto
 
