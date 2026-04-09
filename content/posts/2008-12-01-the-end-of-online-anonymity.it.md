@@ -4,6 +4,10 @@ title: "La fine dell'anonimato online"
 tags: ["facebook", "networking", "social", "web2.0"]
 ---
 
+{{< retrospective year="2026" >}}
+Si è rivelato terribilmente accurato. La "personalità leggermente alterata" ora si chiama "personal brand" ed è obbligatoria per la sopravvivenza professionale. Cambridge Analytica ha dimostrato che i dati degli utenti possono influenzare le elezioni. Instagram e TikTok hanno amplificato di ordini di grandezza l'effetto "essere osservati cambia il comportamento". ReadWriteWeb stesso ha chiuso nel 2012 — il link ora punta alla Wayback Machine.
+{{< /retrospective >}}
+
 Esattamente le parole che mi girano per la testa in questi giorni:
 
 [http://www.readwriteweb.com/archives/the_end_of_online_anonymity.php](https://web.archive.org/web/20090212172116/http://www.readwriteweb.com/archives/the_end_of_online_anonymity.php)
