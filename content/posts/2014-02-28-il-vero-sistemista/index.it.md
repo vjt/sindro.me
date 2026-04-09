@@ -1,6 +1,7 @@
 ---
 date: 2014-02-28T04:00:00
 title: Il vero sistemista
+hideVintage: true
 ---
 
 ![Un meccanico che con amore mette a punto un rack server vintage nel suo garage di notte, luce ambra calda, stelle dalla porta aperta](/posts/2014-02-28-il-vero-sistemista/cover.jpg)
