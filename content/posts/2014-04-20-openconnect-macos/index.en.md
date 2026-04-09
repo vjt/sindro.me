@@ -7,6 +7,10 @@ featuredImage: cover.jpg
 description: "Cisco AnyConnect hijacks your entire network stack. Here is how I replaced it with OpenConnect, split tunneling, and split DNS on macOS."
 ---
 
+{{< retrospective year="2026" >}}
+Twelve years later, AnyConnect rebranded to "Cisco Secure Client" but the philosophy is identical: total control, zero transparency. The industry has largely moved on — Tailscale, WireGuard, and Cloudflare WARP have made split tunneling the default. macOS replaced kexts with the NetworkExtension framework, and `scutil` tricks require more care. But OpenConnect still works, the protocol hasn't changed, and the [scripts are still on GitHub](https://github.com/vjt/openconnect-macos).
+{{< /retrospective >}}
+
 Cisco AnyConnect is the kind of software that makes you question whether the
 people who wrote it have ever actually used a computer outside of a corporate
 cubicle. You install it, you connect to the VPN, and suddenly *all* your traffic
@@ -71,14 +75,6 @@ your rules.
 
 It works on Linux too, with a slightly different network script.
 
-## 2026 retrospective
+**Fair warning:** employers force full-tunnel VPNs for a reason — it's part of their security posture. By bypassing it, you may be violating your company's security policy, your employment contract, or both. You are responsible for your own actions. I am absolutely, categorically not responsible if you get fired, audited, or escorted out of the building by IT security. You've been warned.
 
-Twelve years later, AnyConnect is still awful. It rebranded to "Cisco Secure
-Client" but the philosophy is identical: total control, zero transparency. On
-the bright side, the industry has largely moved on -- Tailscale, WireGuard, and
-Cloudflare WARP have made split tunneling the default rather than the exception.
-macOS itself has changed significantly: the NetworkExtension framework replaced
-kexts, and `scutil` tricks require more care now. But OpenConnect still works,
-the protocol hasn't changed, and if your employer still forces the Cisco client
-on you, the
-[scripts are on GitHub](https://github.com/vjt/openconnect-macos).
+The code: [github.com/vjt/openconnect-macos](https://github.com/vjt/openconnect-macos)

@@ -7,6 +7,10 @@ featuredImage: cover.jpg
 description: "Cisco AnyConnect sequestra l'intero stack di rete. Ecco come l'ho sostituito con OpenConnect, split tunneling e split DNS su macOS."
 ---
 
+{{< retrospective year="2026" >}}
+Dodici anni dopo, AnyConnect si è rinominato "Cisco Secure Client" ma la filosofia è identica: controllo totale, trasparenza zero. L'industria è andata avanti — Tailscale, WireGuard e Cloudflare WARP hanno reso lo split tunneling il default. macOS ha rimpiazzato i kext con il framework NetworkExtension, e i trucchi con `scutil` richiedono più attenzione. Ma OpenConnect funziona ancora, il protocollo non è cambiato, e gli [script sono ancora su GitHub](https://github.com/vjt/openconnect-macos).
+{{< /retrospective >}}
+
 Cisco AnyConnect è il tipo di software che ti fa dubitare che chi l'ha scritto
 abbia mai usato un computer fuori da un cubicolo aziendale. Lo installi, ti
 connetti alla VPN, e improvvisamente *tutto* il tuo traffico viene incanalato
@@ -73,14 +77,6 @@ attive. I tuoi pacchetti, le tue regole.
 
 Funziona anche su Linux, con uno script di rete leggermente diverso.
 
-## Retrospettiva 2026
+**Avvertenza:** i datori di lavoro impongono VPN full-tunnel per un motivo — fa parte della loro postura di sicurezza. Bypassandola, potresti violare la policy di sicurezza aziendale, il tuo contratto di lavoro, o entrambi. Sei responsabile delle tue azioni. Io non sono assolutamente, categoricamente responsabile se ti licenziano, ti auditano, o ti scortano fuori dall'edificio la sicurezza IT. Sei stato avvisato.
 
-Dodici anni dopo, AnyConnect fa ancora schifo. Si è rinominato "Cisco Secure
-Client" ma la filosofia è identica: controllo totale, trasparenza zero. Il lato
-positivo è che l'industria è andata avanti -- Tailscale, WireGuard e Cloudflare
-WARP hanno reso lo split tunneling il default invece dell'eccezione. macOS
-stesso è cambiato parecchio: il framework NetworkExtension ha rimpiazzato i
-kext, e i trucchi con `scutil` richiedono più attenzione ora. Ma OpenConnect
-funziona ancora, il protocollo non è cambiato, e se il tuo datore di lavoro ti
-impone ancora il client Cisco, gli
-[script sono su GitHub](https://github.com/vjt/openconnect-macos).
+Il codice: [github.com/vjt/openconnect-macos](https://github.com/vjt/openconnect-macos)
