@@ -2,9 +2,9 @@
 title: 'MetalOS talk at All Systems Go! 2025'
 date: 2025-10-09
 tags: [linux, sysadmin, meta]
+image: vjt-dubros-on-stage.jpg
+featuredImage: vjt-dubros-on-stage.jpg
 ---
-
-![Two speakers on stage at a Linux conference, a giant screen behind them showing Tux on a fleet of servers](/posts/2025-10-09-all-systems-go/cover.jpg)
 
 <img src="/posts/2025-10-09-all-systems-go/metalos-logo.png" alt="MetalOS logo" style="float:right;max-width:150px;margin:0 0 1rem 1rem">
 
@@ -12,11 +12,11 @@ I presented a talk at [All Systems Go 2025](https://all-systems-go.io/), the fou
 
 This year's theme has mostly been "containers, containers, containers" with many new features in systemd to support containerisation as well as practical experiences from people working in the field on how they're using systemd and collateral software to build container infrastructures.
 
-![Me and Serge on stage](/posts/2025-10-09-all-systems-go/vjt-dubros-on-stage.jpg)
-
 I presented together with my colleague [Serge Dubrouski](https://www.linkedin.com/in/serge-dubrouski-2902638/) our work in building an Operating System at Meta scale. We run an image-based operating system, but the company comes from two decades of updating the OS online, so we had to design a suitable migration strategy and set the foundation for the future.
 
-We describe how we cut CentOS releases from upstream, the [OSS tools](https://github.com/metaincubator/antlir) we've built to create OS images, and the internal technology (MetalOS) that we came up with to build an OS that runs on millions of Linux servers.
+We describe how we cut CentOS releases from upstream, the [OSS tools](https://github.com/facebookincubator/antlir) we've built to create OS images, and the internal technology (MetalOS) that we came up with to build an OS that runs on millions of Linux servers.
+
+About the logo: it's metal because MetalOS runs on bare metal, and the antlers are a nod to [Antlir](https://facebookincubator.github.io/antlir/docs/intro) — **AN**o**T**her **L**inux **I**mage builde**R** — the open-source build system we use to produce the OS images.
 
 {{< youtube PpDDdLMiPCs >}}
 

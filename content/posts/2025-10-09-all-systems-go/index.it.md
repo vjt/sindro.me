@@ -2,9 +2,9 @@
 title: 'Talk su MetalOS ad All Systems Go! 2025'
 date: 2025-10-09
 tags: [linux, sysadmin, meta]
+image: vjt-dubros-on-stage.jpg
+featuredImage: vjt-dubros-on-stage.jpg
 ---
-
-![Due speaker sul palco a una conferenza Linux, un gigantesco schermo dietro di loro con Tux su una flotta di server](/posts/2025-10-09-all-systems-go/cover.jpg)
 
 <img src="/posts/2025-10-09-all-systems-go/metalos-logo.png" alt="Logo MetalOS" style="float:right;max-width:150px;margin:0 0 1rem 1rem">
 
@@ -12,11 +12,11 @@ Ho presentato un talk ad [All Systems Go 2025](https://all-systems-go.io/), la c
 
 Il tema di quest'anno è stato prevalentemente "container, container, container", con molte nuove funzionalità in systemd per supportare la containerizzazione e anche esperienze pratiche da persone che lavorano sul campo su come usano systemd e software collaterali per costruire infrastrutture a container.
 
-![Io e Serge sul palco](/posts/2025-10-09-all-systems-go/vjt-dubros-on-stage.jpg)
-
 Ho presentato insieme al mio collega [Serge Dubrouski](https://www.linkedin.com/in/serge-dubrouski-2902638/) il nostro lavoro nella costruzione di un sistema operativo alla scala di Meta. Gestiamo un sistema operativo basato su immagini, ma l'azienda viene da due decenni di aggiornamenti del SO online, quindi abbiamo dovuto progettare una strategia di migrazione adeguata e gettare le fondamenta per il futuro.
 
-Descriviamo come prepariamo le release CentOS dall'upstream, gli [strumenti OSS](https://github.com/metaincubator/antlir) che abbiamo costruito per creare le immagini del SO, e la tecnologia interna (MetalOS) che abbiamo ideato per costruire un SO che gira su milioni di server Linux.
+Descriviamo come prepariamo le release CentOS dall'upstream, gli [strumenti OSS](https://github.com/facebookincubator/antlir) che abbiamo costruito per creare le immagini del SO, e la tecnologia interna (MetalOS) che abbiamo ideato per costruire un SO che gira su milioni di server Linux.
+
+Il logo: è metal perché MetalOS gira su bare metal, e le corna sono un riferimento ad [Antlir](https://facebookincubator.github.io/antlir/docs/intro) — **AN**o**T**her **L**inux **I**mage builde**R** — il build system open-source che usiamo per produrre le immagini del SO.
 
 {{< youtube PpDDdLMiPCs >}}
 
