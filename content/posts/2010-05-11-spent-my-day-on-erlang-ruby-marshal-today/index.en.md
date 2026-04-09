@@ -2,8 +2,11 @@
 date: 2010-05-11T19:00:00Z
 title: "Spent my day on Erlang-Ruby-Marshal today ;-)"
 tags: [erlang, projects, ruby]
-hideVintage: true
 ---
+
+{{< retrospective year="2026" >}}
+Ruby 1.9 reached end-of-life in 2015 and Ruby 3.x changed the marshal format further. The `erlang-ruby-marshal` repo on GitHub is archived and unmaintained. If you need Erlang-Ruby interop today, consider using JSON, MessagePack, or Protocol Buffers instead.
+{{< /retrospective >}}
 
 ![Erlang logo](/posts/2010-05-11-spent-my-day-on-erlang-ruby-marshal-today/erlang.png)
 

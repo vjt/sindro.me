@@ -5,7 +5,7 @@ tags: [open-source, projects, rails, ruby]
 ---
 
 {{< retrospective year="2026" >}}
-Panmind non esiste più, e tutte le repo GitHub (ssl_helper, bigbro, recaptcha, zendesk, jquery-ajax-nav) sono link morti. L'ecosistema di plugin Rails descritto qui è stato sostituito da gem e engine. SlideShare ha ammazzato i vecchi embed, ma il PDF della presentazione sopravvive qui sotto.
+Panmind non esiste più, e tutte le repo GitHub (ssl_helper, bigbro, recaptcha, zendesk, jquery-ajax-nav) sono link morti. L'ecosistema di plugin Rails descritto qui è stato sostituito da gem e engine.
 {{< /retrospective >}}
 
 Il 22 luglio 2010, [Mikamai](http://mikamai.com/) ha ospitato un [Ruby Social
