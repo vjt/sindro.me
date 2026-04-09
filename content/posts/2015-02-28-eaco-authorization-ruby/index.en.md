@@ -8,7 +8,7 @@ featuredImage: cover.jpg
 ---
 
 {{< retrospective year="2026" >}}
-Eaco reached [v1.0.0](https://github.com/ifad/eaco/tree/v1.0.0) on May 5, 2016 — commit message: "This is v1.0.0. Two years in production." It grew to 54 stars, 8 forks, 240 commits, and ran authorization at IFAD for five more years after that. The ABAC-with-hash-ACLs pattern turned out to be exactly right for an organization where access is determined by position, department, and working group — not just "admin or not." The [repo](https://github.com/ifad/eaco) is still online, and the [YARD documentation](http://www.rubydoc.info/github/ifad/eaco/master) is still some of the most thorough I've ever written for a gem.
+Eaco reached [v1.0.0](https://github.com/ifad/eaco/tree/v1.0.0) on May 5, 2016 — commit message: "This is v1.0.0. Two years in production." It grew to 54 stars, 8 forks, 240 commits, and ran authorization at IFAD for five more years after that. The ABAC-with-hash-ACLs pattern turned out to be exactly right for an organization where access is determined by position, department, and working group — not just "admin or not." The [repo](https://github.com/ifad/eaco) is still online, and the [YARD documentation](https://vjt.github.io/eaco/) is still some of the most thorough I've ever written for a gem.
 {{< /retrospective >}}
 
 [Scriptoria](https://github.com/ifad/scriptoria) is an internal workflow application at [IFAD](http://www.ifad.org/) — a UN specialized agency in Rome — and its authorization layer has been annoying me for months. The code works, but it's tangled into the app. Every time we need to add a new role or change who can access what, we're editing application code that shouldn't care about authorization semantics.
