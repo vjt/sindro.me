@@ -2,7 +2,6 @@
 title: "Il barattolo di maionese e due bicchieri di vino"
 date: "2008-10-20T16:00:00Z"
 tags: [life]
-hideVintage: true
 ---
 
 ![Il barattolo di maionese e due bicchieri di vino](mayonnaise-jar.jpg)

@@ -4,6 +4,10 @@ title: The conceptual foundations and the economics network neutrality [Part 2] 
 tags: [politics, networking]
 ---
 
+{{< retrospective year="2026" >}}
+Much has changed since 2009. The Caio Report's promise of 99% broadband by 2011 never materialized — Italy still struggles with digital divide issues in 2026. Fastweb was acquired by Swisscom. Tre and Wind merged into WindTre. Tele2 exited the Italian market entirely. The P4P protocol never took off. Deep Packet Inspection became far more widespread than anyone feared, now standard kit for surveillance states worldwide. Paolo Gentiloni became PM of Italy and later EU Commissioner.
+{{< /retrospective >}}
+
 <p>This is the second part of my recap of the <a
 href="http://www.nnsquad.it/">nnsquad.it</a> convention held in Rome on May 14,
 2009, and hosted by the <span class="caps">ICT</span> consultants foundation <a

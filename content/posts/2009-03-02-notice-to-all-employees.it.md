@@ -2,7 +2,6 @@
 title: Avviso a tutti i dipendenti
 date: 2009-02-24T13:06:14-05:00
 tags: [politics, funny, weird]
-hideVintage: true
 ---
 
 (Letto su [full-disclosure](http://lists.grok.org.uk/pipermail/full-disclosure/2009-February/068153.html))

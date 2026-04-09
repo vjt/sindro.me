@@ -2,7 +2,6 @@
 date: 2009-05-31T10:00:00Z
 title: Basta una sola persona per far partire la festa
 tags: [social, video, web2.0]
-hideVintage: true
 ---
 
 {{< youtube Frd0CPYuZgU >}}

@@ -4,7 +4,11 @@ title: Le basi concettuali e l'economia della neutralita' della rete [Parte 1] -
 tags: [politics, networking]
 ---
 
-<p><a
+{{< retrospective year="2026" >}}
+L'UE ha adottato regole solide sulla net neutrality nel 2015 (Regolamento 2015/2120), dando ragione ai principi sostenuti qui da Quintarelli. Negli USA, l'Open Internet Order della FCC del 2015 è stato abrogato nel 2017 sotto Ajit Pai, e il dibattito infuria ancora. La maggior parte dei link in questo post sono morti. Stefano Quintarelli è poi diventato parlamentare. Paolo Gentiloni è diventato Presidente del Consiglio (2016–2018) e Commissario europeo per l'Economia.
+{{< /retrospective >}}
+
+<p><
 href="http://www.fub.it/events/seminari/neutralitadellareteeaspettisocioeconomici">http://www.fub.it/events/seminari/neutralitadellareteeaspettisocioeconomici</a></p>
 
 

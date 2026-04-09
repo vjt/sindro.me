@@ -4,7 +4,11 @@ title: The conceptual foundations and the economics network neutrality [Part 1] 
 tags: [politics, networking]
 ---
 
-<p><a
+{{< retrospective year="2026" >}}
+The EU adopted strong net neutrality rules in 2015 (Regulation 2015/2120), largely vindicating the principles Quintarelli advocated here. In the US, the FCC's 2015 Open Internet Order was repealed in 2017 under Ajit Pai, and the debate still rages. Most of the links in this post are dead. Stefano Quintarelli went on to serve in the Italian Parliament. Paolo Gentiloni became Prime Minister of Italy (2016–2018) and EU Commissioner for Economy.
+{{< /retrospective >}}
+
+<p><
 href="http://www.fub.it/events/seminari/neutralitadellareteeaspettisocioeconomici">http://www.fub.it/events/seminari/neutralitadellareteeaspettisocioeconomici</a></p>
 
 

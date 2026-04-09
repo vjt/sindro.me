@@ -2,7 +2,6 @@
 title: Google Maps (parte I de "Il Googling")
 date: 2008-02-14
 tags: [funny, video]
-hideVintage: true
 ---
 
 Ti sei mai preoccupato di Google Maps e di quanto quell'app riesca a vedere

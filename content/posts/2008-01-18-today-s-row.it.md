@@ -2,7 +2,6 @@
 title: La riga del giorno
 date: 2008-01-18
 tags: [bash, geek, ruby]
-hideVintage: true
 ---
 
 ```bash
