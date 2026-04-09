@@ -4,6 +4,7 @@ author: Marcello Barnaba
 date: 2007-11-21
 tags: [geek, networking]
 image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 A really, really, really **NERD** novel by [Cory Doctorow](https://craphound.com/)
@@ -24,6 +25,8 @@ needed to read it completely.
 ---
 
 *Illustrated by Rob Dumuhosky*
+
+![The CN Tower collapses over Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-opening.jpg)
 
 When Felix's special phone rang at two in the morning, Kelly rolled over and punched him in the shoulder and hissed, "Why didn't you turn that fucking thing off before bed?"
 

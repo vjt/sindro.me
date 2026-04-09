@@ -4,6 +4,7 @@ author: Marcello Barnaba
 date: 2007-11-21
 tags: [geek, networking]
 image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 Un romanzo davvero, davvero, davvero **NERD** di [Cory Doctorow](https://craphound.com/)
@@ -24,6 +25,8 @@ necessaria per leggerlo tutto.
 ---
 
 *Illustrazioni di Rob Dumuhosky*
+
+![La CN Tower crolla su Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-opening.jpg)
 
 Quando il telefono speciale di Felix suonò alle due di notte, Kelly si girò dall'altra parte e gli mollò un pugno sulla spalla sibilando: «Perché cazzo non l'hai spento prima di andare a letto?»
 
