@@ -6,6 +6,8 @@ tags: [linux, sysadmin, meta]
 
 ![Two speakers on stage at a Linux conference, a giant screen behind them showing Tux on a fleet of servers](/posts/2025-10-09-all-systems-go/cover.jpg)
 
+<img src="/posts/2025-10-09-all-systems-go/metalos-logo.png" alt="MetalOS logo" style="float:right;max-width:150px;margin:0 0 1rem 1rem">
+
 I presented a talk at [All Systems Go 2025](https://all-systems-go.io/), the foundational Linux userspace conference. The conference is organised mostly by the systemd team, and it's a yearly meeting for all people working on Linux systems software.
 
 This year's theme has mostly been "containers, containers, containers" with many new features in systemd to support containerisation as well as practical experiences from people working in the field on how they're using systemd and collateral software to build container infrastructures.
