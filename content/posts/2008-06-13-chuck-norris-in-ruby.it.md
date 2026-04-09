@@ -2,6 +2,7 @@
 title: Chuck Norris in Ruby
 date: 2008-06-13T12:00:00Z
 tags: [funny, ruby]
+hideVintage: true
 ---
 
 {{< retrospective year="2026" >}}
