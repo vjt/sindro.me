@@ -86,9 +86,9 @@ The test suite runs against multiple Rails versions via [Appraisal](https://gith
 
 The final push is a weekend sprint. [Rails 5.0 through 5.2 support](https://github.com/ifad/chronomodel/commit/f2bbdb3) lands in the afternoon, [Rails 4.2 gets dropped](https://github.com/ifad/chronomodel/commit/ab10280), specs get [added](https://github.com/ifad/chronomodel/commit/f043ef7), deprecation warnings get fixed. Then three releases in under an hour:
 
-- **20:25** — [v0.13.1](https://github.com/ifad/chronomodel/tree/v0.13.1): "the last version to support Rails 4.2"
-- **20:54** — [v1.0.0](https://github.com/ifad/chronomodel/tree/v1.0.0): `:gem: this is v1.0.0`
-- **21:17** — [v1.0.1](https://github.com/ifad/chronomodel/tree/v1.0.1), because of course there's a v1.0.1
+- **20:25** — [v0.13.1](https://github.com/ifad/chronomodel/compare/v0.13.0...v0.13.1): "the last version to support Rails 4.2"
+- **20:54** — [v1.0.0](https://github.com/ifad/chronomodel/compare/v0.13.1...v1.0.0): `:gem: this is v1.0.0`
+- **21:17** — [v1.0.1](https://github.com/ifad/chronomodel/compare/v1.0.0...v1.0.1), because of course there's a v1.0.1
 
 Then the refactoring runs until 5 AM — [extracting the adapter into clean modules](https://github.com/ifad/chronomodel/commit/45f4db0), [rewriting `on_schema`](https://github.com/ifad/chronomodel/commit/aa8a5c5) to use thread-local storage, fixing CodeClimate smells, increasing coverage. Because tagging 1.0 doesn't mean you stop. It means you finally have permission to clean up properly.
 
