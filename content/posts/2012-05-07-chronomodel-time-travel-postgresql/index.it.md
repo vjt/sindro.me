@@ -11,15 +11,23 @@ featuredImage: cover.jpg
 ChronoModel e' ancora vivo — 14 anni, 41 release, 201 stelle. Le regole sono state sostituite da trigger INSTEAD OF nella [v0.6](https://github.com/ifad/chronomodel/tree/v0.6.0) (2014), l'hack `box()`/`point()` da colonne `tsrange` native, e il monkey-patching da una corretta registrazione dell'adapter. [Geremia Taglialatela](https://github.com/tagliala) ha preso in mano la manutenzione nel 2020 e l'ha portato alla [v5.0.0](https://rubygems.org/gems/chrono_model/versions/5.0.0) con supporto per Rails 8.1 e Ruby 4.0. L'idea di base — viste aggiornabili su `public`, dati correnti su `temporal`, storico su `history` con table inheritance — non e' mai cambiata. Il [repo](https://github.com/ifad/chronomodel) e' attivo e mantenuto.
 {{< /retrospective >}}
 
-Cinque giorni fa avevo un'idea. Oggi rilascio [ChronoModel](https://github.com/ifad/chronomodel), una gem Ruby che offre ai modelli ActiveRecord capacita' temporali complete su PostgreSQL. Quello che Oracle ti vende come [Flashback Queries](http://docs.oracle.com/cd/B28359_01/appdev.111/b28424/adfns_flashback.htm) facendoti pagare fior di quattrini, noi lo facciamo con SQL standard su Postgres 9.0+.
+Stiamo costruendo un CRM all'[IFAD](http://www.ifad.org/) — un'agenzia specializzata delle Nazioni Unite a Roma — e uno dei requisiti chiave sono i dati temporali. Dobbiamo sapere come appariva un record in qualsiasi momento del passato. Qual era il budget di questo progetto il 15 marzo? Quando e' cambiato l'indirizzo di questo beneficiario? Chi ha approvato cosa, e come appariva il record in quel momento?
+
+Stavo prototipando un approccio basato sullo schema di PostgreSQL — viste, regole, table inheritance — e funzionava. Poi [Amedeo](https://github.com/amedeo), il mio capo, ci ha dato un'occhiata e ha detto: "Questa roba non deve vivere dentro il CRM. Fanne un framework riusabile."
+
+Aveva ragione. Il pattern temporale non ha niente a che fare con la logica del CRM. Va in una gem.
+
+Cosi' ho avuto cinque giorni di concentrazione totale, e oggi rilascio [ChronoModel](https://github.com/ifad/chronomodel) — un'estensione ActiveRecord che da' ai tuoi modelli capacita' temporali complete su PostgreSQL. Quello che Oracle ti vende come [Flashback Queries](http://docs.oracle.com/cd/B28359_01/appdev.111/b28424/adfns_flashback.htm) facendoti pagare fior di quattrini, noi lo facciamo con SQL standard su Postgres 9.0+.
 
 <!--more-->
 
-## Il problema
+## L'idea
 
-All'[IFAD](http://www.ifad.org/) abbiamo un bisogno ricorrente: sapere come apparivano i dati in qualsiasi momento del passato. Qual era il budget di questo progetto il 15 marzo? Quando e' cambiato l'indirizzo di questo beneficiario? Chi ha approvato cosa, e come appariva il record in quel momento?
+La risposta da manuale per i dati temporali e' una [Slowly Changing Dimension Type 2](http://en.wikipedia.org/wiki/Slowly_changing_dimension#Type_2) — mantieni uno storico di ogni riga con timestamp di validita', e interroghi quelli. Ogni vendor di database enterprise ha una soluzione proprietaria. PostgreSQL no. Ma PostgreSQL ti da' tutti i mattoncini — viste, regole, table inheritance, indici GiST — e nessuno li aveva ancora assemblati in un pacchetto Rails-friendly. Fino ad oggi.
 
-La risposta da manuale e' una [Slowly Changing Dimension Type 2](http://en.wikipedia.org/wiki/Slowly_changing_dimension#Type_2) — mantieni uno storico di ogni riga con timestamp di validita', e interroghi quelli. Ogni vendor di database enterprise ha una soluzione proprietaria per questo. PostgreSQL no. O meglio, PostgreSQL ti da' tutti i mattoncini, e nessuno li aveva ancora assemblati in un pacchetto Rails-friendly. Fino ad oggi.
+La mia scommessa e' stata renderlo **completamente trasparente** per l'applicazione. Nessun cambiamento di schema nei modelli, nessun metodo di salvataggio speciale, nessuna tabella di storico da gestire a mano. Aggiungi `temporal: true` nella migration e `include ChronoModel::TimeMachine` nel modello, e tutto il resto succede dietro le quinte. Il codice esistente non cambia — acquisisce semplicemente la capacita' di guardare nel passato.
+
+Quella trasparenza e' anche la parte piu' rischiosa del design, perche' renderlo invisibile ad ActiveRecord significa entrare *molto* in intimita' con gli internals di ActiveRecord. Ma ci arriviamo dopo.
 
 ## L'architettura
 

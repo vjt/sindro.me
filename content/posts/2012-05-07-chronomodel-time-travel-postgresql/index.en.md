@@ -11,15 +11,23 @@ featuredImage: cover.jpg
 ChronoModel is still alive — 14 years, 41 releases, 201 stars. The rules got replaced by INSTEAD OF triggers in [v0.6](https://github.com/ifad/chronomodel/tree/v0.6.0) (2014), the `box()`/`point()` hack by proper `tsrange` columns, and the monkey-patching by a proper adapter registration. [Geremia Taglialatela](https://github.com/tagliala) took over maintenance in 2020 and pushed it to [v5.0.0](https://rubygems.org/gems/chrono_model/versions/5.0.0) with Rails 8.1 and Ruby 4.0 support. The core idea — updatable views on `public`, current data on `temporal`, history on `history` with table inheritance — never changed. The [repo](https://github.com/ifad/chronomodel) is healthy and actively maintained.
 {{< /retrospective >}}
 
-Five days ago I had an idea. Today I'm releasing [ChronoModel](https://github.com/ifad/chronomodel), a Ruby gem that gives your ActiveRecord models full temporal capabilities on PostgreSQL. What Oracle sells as [Flashback Queries](http://docs.oracle.com/cd/B28359_01/appdev.111/b28424/adfns_flashback.htm) and charges enterprise money for, we can do with standard SQL on Postgres 9.0+.
+We're building a CRM at [IFAD](http://www.ifad.org/) — a UN specialized agency in Rome — and one of the hard requirements is temporal data. We need to know what a record looked like at any point in the past. What was this project's budget on March 15th? When did this beneficiary's address change? Who approved what, and what did the record look like at the time?
+
+I'd been prototyping a PostgreSQL schema approach for this — views, rules, table inheritance — and it worked. Then [Amedeo](https://github.com/amedeo), my boss, looked at it and said: "This shouldn't live inside the CRM. Make it a reusable framework."
+
+He was right. The temporal pattern has nothing to do with CRM logic. It belongs in a gem.
+
+So I had five days of uninterrupted focus, and today I'm releasing [ChronoModel](https://github.com/ifad/chronomodel) — an ActiveRecord extension that gives your models full temporal capabilities on PostgreSQL. What Oracle sells as [Flashback Queries](http://docs.oracle.com/cd/B28359_01/appdev.111/b28424/adfns_flashback.htm) and charges enterprise money for, we can do with standard SQL on Postgres 9.0+.
 
 <!--more-->
 
-## The problem
+## The idea
 
-At [IFAD](http://www.ifad.org/) we have a recurring need: knowing what the data looked like at any point in the past. What was this project's budget on March 15th? When did this beneficiary's address change? Who approved what, and what did the record look like at the time?
+The textbook answer to temporal data is a [Slowly Changing Dimension Type 2](http://en.wikipedia.org/wiki/Slowly_changing_dimension#Type_2) — you keep a history of every row with validity timestamps, and query against them. Every enterprise database vendor has a proprietary solution. PostgreSQL doesn't. But PostgreSQL gives you all the building blocks — views, rules, table inheritance, GiST indexes — and nobody had assembled them into a Rails-friendly package. Until now.
 
-The textbook answer is a [Slowly Changing Dimension Type 2](http://en.wikipedia.org/wiki/Slowly_changing_dimension#Type_2) — you keep a history of every row with validity timestamps, and query against them. Every enterprise database vendor has a proprietary solution for this. PostgreSQL doesn't. Or rather, PostgreSQL gives you all the building blocks, and nobody had assembled them into a Rails-friendly package. Until now.
+My bet was to make it **completely transparent** to the application. No schema changes in your models, no special save methods, no history tables to manage by hand. You add `temporal: true` to your migration and `include ChronoModel::TimeMachine` in your model, and everything else happens behind the scenes. Your existing code doesn't change — it just gains the ability to look into the past.
+
+That transparency is also the riskiest part of the design, because making it invisible to ActiveRecord means getting *very* intimate with ActiveRecord's internals. More on that later.
 
 ## The architecture
 
