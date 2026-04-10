@@ -1,140 +1,187 @@
 ---
-title: "Backfilling Two Years of Logs: Enterprise-Grade Observability on a Raspberry Pi"
+title: "Three Telegraf Bugs and 25 Million Log Lines"
 date: 2026-04-08
 tags: [ai-generated, sysadmin, observability, projects]
-description: "How I replayed 25 million log entries through a full enrichment pipeline — GeoIP, ASN, reverse DNS — on a Raspberry Pi 5, with Claude doing the heavy lifting on code."
+description: "How a syslog backfill through Telegraf on a Raspberry Pi uncovered three upstream bugs — a DNS retry storm, a missing serialization mode, and a pipe deadlock."
 ---
 
 ![BSD daemon with telemetry flowing through an enrichment pipeline into VictoriaLogs](/posts/2026-04-08-backfilling-two-years-of-logs/cover.jpg)
 
-I have a FreeBSD server called m42 that's been running for years. It handles email (Postfix + Dovecot + Rspamd), web (nginx with a dozen vhosts), firewall (pf), and all the usual suspects. It generates thousands of log entries per day across four distinct formats: BSD syslog, fail2ban, pf packet filter, and nginx access/error logs.
+I have a FreeBSD server called m42 that's been running for years. Email, web, firewall, the usual. Two and a half years of monthly [restic](https://restic.net/) backups sitting in snapshots — roughly 25 million syslog lines across four formats: BSD syslog, fail2ban, pf packet filter, and nginx. A goldmine of security telemetry, completely unindexed and unsearchable.
 
-I even wrote [pfasciilogd](/posts/2023-08-17-pfasciilogd-link-pf-and-fail2ban/) back in 2023 to convert pf's binary logs into ASCII text so fail2ban could parse them — a foundational piece that now feeds structured firewall telemetry into the whole pipeline.
+I built an observability stack on a Raspberry Pi 5 at home — [VictoriaLogs](https://docs.victoriametrics.com/victorialogs/) for storage, [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) for processing, [Grafana](https://grafana.com/) for visualization — and decided to backfill every single one of those 25 million entries through the exact same enrichment pipeline that processes live data. GeoIP geolocation, ASN identification, reverse DNS for every IP address.
 
-I also have two years of monthly backups sitting in [restic](https://restic.net/) snapshots. That's roughly 25 million log lines, just... sitting there. A goldmine of security telemetry, traffic patterns, and attack data — completely unindexed and unsearchable.
+The backfill itself was straightforward. What wasn't straightforward: the three bugs it exposed in Telegraf's internals. The kind of bugs that only surface under sustained load. The kind nobody hits because nobody does this.
 
-I built a full observability stack on a Raspberry Pi 5 at home — [VictoriaLogs](https://docs.victoriametrics.com/victorialogs/) for storage, [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) for processing, [Grafana](https://grafana.com/) for visualization — and then I backfilled every single one of those 25 million entries through the exact same pipeline that processes live data. With full enrichment: GeoIP geolocation, ASN identification, and reverse DNS resolution for every IP address.
+## The architecture: replay, don't rewrite
 
-This is enterprise-grade log management. Running on a $80 single-board computer. In my living room.
+The naive approach is to write Python scripts that replicate your pipeline — parse logs, enrich with GeoIP, POST to your log store. I did this. Twice. Each time the scripts drifted from the live pipeline: different field names, missing enrichment, parsing inconsistencies between Starlark and Python regex.
 
-## Why backfills are hard (and usually skipped)
+The fix was embarrassingly simple: **stop duplicating the pipeline and just replay the raw logs through the real thing.**
 
-Let's be honest: nobody does backfills. They're the broccoli of operations work. You know you should, but the effort-to-reward ratio feels terrible.
-
-The problem is that a backfill isn't just "load old data." Your pipeline has evolved. The parsing rules you wrote six months ago don't match today's processors. The enrichment you added last week doesn't exist in your old backfill scripts. You end up with two classes of data: rich live entries and impoverished historical ones.
-
-The naive approach — writing Python scripts that replicate your pipeline's logic — works initially. I did it. Twice. It produced data that looked right but was subtly wrong: different field names, missing enrichment, different parsing behavior. Every time I added a new processor to the live pipeline, the backfill scripts drifted further from reality.
-
-## The architectural insight: replay, don't rewrite
-
-The fix was embarrassingly simple: **stop duplicating the pipeline in Python and just replay the raw logs through the real thing.**
-
-The live pipeline works like this:
+The live pipeline:
 
 ```
 m42 (syslog-ng) → TCP:514 → Telegraf → Starlark → GeoIP → Reverse DNS → VictoriaLogs
 ```
 
-syslog-ng on m42 wraps every log line in an [RFC 5424](https://datatracker.ietf.org/doc/html/rfc5424) envelope and ships it over TCP with a reliable disk-backed buffer. Telegraf receives it and runs it through a chain of processors:
-
-1. **Starlark processors** (order 1) — four separate scripts that extract structured fields from each log type: pf firewall rules get parsed into action/direction/IPs/ports/protocol, fail2ban entries get jail/action/IP, nginx gets vhost/kind/client IP, postfix gets queue IDs and mail addresses
-2. **GeoIP enricher** (order 2) — a custom Go binary running as an execd processor that maps every public IP to country, city, coordinates, ASN, and organization using MaxMind's GeoLite2 databases
-3. **Reverse DNS** (order 3) — PTR lookups for every extracted IP, resolved through a local [Technitium](https://technitium.com/dns/) DNS server with aggressive caching
-
-The backfill script became a **log replayer**: read the raw files, wrap each line in an RFC 5424 envelope with the correct timestamp and metadata, and send it to Telegraf over TCP. That's it. Zero content parsing. The script went from ~700 lines of Python (with GeoIP libraries, regex extractors, HTTP posting) to ~350 lines that do nothing but envelope construction and TCP sending.
+The backfill script became a log replayer: read the raw files, wrap each line in an [RFC 5424](https://datatracker.ietf.org/doc/html/rfc5424) envelope with the correct timestamp, send it to Telegraf over TCP with [octet-counting framing](https://datatracker.ietf.org/doc/html/rfc6587#section-3.4.1). That's it. Zero content parsing. The enrichment pipeline handles everything identically to live data.
 
 ```python
-def rfc5424(pri: int, ts: str, appname: str, procid: str, msg: str) -> str:
-    return f"<{pri}>1 {ts} {HOSTNAME} {appname} {procid} - - {msg}"
-
-def send_rfc5424(sock: socket.socket, msg: str) -> None:
+def send_rfc5424(sock, msg):
     encoded = msg.encode("utf-8")
     frame = f"{len(encoded)} ".encode("ascii") + encoded
     sock.sendall(frame)
 ```
 
-In theory, TCP backpressure handles flow control — when Telegraf can't keep up, the TCP send blocks. No data loss, no buffering complexity. The protocol does the work. In practice... well, keep reading.
+TCP backpressure handles flow control — when Telegraf can't keep up, `sendall()` blocks. No buffering complexity, no rate limiting logic, no data loss. The protocol does the work.
+
+In theory, anyway. In practice, we found three bugs.
+
+## Bug 1: The DNS retry storm (reverse_dns negative cache)
+
+The first thing that happened when we started pumping 8,000 lines per second was that Telegraf ground to a halt. Zero throughput. Every worker blocked.
+
+The `reverse_dns` processor does PTR lookups for every IP address in every log line. Most external IPs — scanner bots, brute-force attackers, random internet noise — have no PTR record. The DNS server returns NXDOMAIN immediately. Stock Telegraf's response: **delete the cache entry and try again next time.** Every. Single. Time.
+
+With 25 million log lines containing thousands of unique unresolvable IPs, this creates an infinite retry storm. All 200 DNS workers permanently saturated retrying IPs that will never resolve. The blocking `Enqueue()` in the parallel worker pool propagates backpressure through the entire pipeline. Nothing moves.
+
+The fix: **negative caching.** When a PTR lookup fails, cache the negative result for a configurable `negative_cache_ttl` (default 15 minutes) instead of deleting the entry. The workers stay busy for a few minutes while the cache warms, then throughput stabilizes as cached negatives prevent retries.
+
+```go
+// Before (stock): delete on failure → infinite retries
+delete(d.cache, lookup.ip)
+
+// After (patched): cache negative result → retry after TTL
+lookup.completed = true
+lookup.domains = nil
+lookup.expiresAt = time.Now().Add(d.negativeTTL)
+d.lockedSaveToCache(lookup)
+```
+
+The evidence was dramatic. We verified it during the backfill by sampling DNS errors 30 seconds apart:
+
+- **T=0**: 13 unique IPs failing (first-time lookups, cold cache)
+- **T=30s**: **zero** failures — negative cache serving cached results silently
+
+Every new IP fails exactly once, gets cached, and never retries for 15 minutes. Stock Telegraf would hammer the same IPs forever.
+
+## Bug 2: NDJSON batching (1000x fewer HTTP requests)
+
+VictoriaLogs' `/insert/jsonline` endpoint expects [newline-delimited JSON](https://jsonlines.org/) — one JSON object per line. Telegraf's JSON serializer has a `SerializeBatch()` method that wraps metrics in `{"metrics":[...]}`, which VictoriaLogs doesn't understand. So each metric was being sent as a separate HTTP POST.
+
+At 1,000 metrics per flush (default `metric_batch_size`), that's 1,000 HTTP round-trips per flush cycle instead of one. Over TLS. To localhost, but still.
+
+We added a `json_newline_batch` option — when enabled, `SerializeBatch()` concatenates individual `Serialize()` outputs instead of wrapping them in an array:
+
+```go
+func (s *Serializer) SerializeBatch(metrics []telegraf.Metric) ([]byte, error) {
+    if s.NewlineBatch {
+        var buf []byte
+        for _, m := range metrics {
+            b, err := s.Serialize(m)
+            if err != nil { return nil, err }
+            buf = append(buf, b...)
+        }
+        return buf, nil
+    }
+    // ... existing {"metrics":[...]} logic
+}
+```
+
+Ten lines of code, 1000x fewer HTTP requests. The kind of improvement that makes you wonder why it didn't exist already.
+
+## Bug 3: The pipe deadlock (TCP stream input)
+
+This one was the nastiest. After running smoothly at 8K/s for about five minutes, the pipeline would silently stop. No errors. No crashes. Just... zero throughput. TCP backpressure kicked in, the sender blocked on `sendall()`, and everything froze.
+
+The goroutine dump told the story. In `plugins/common/socket/stream.go`, each TCP connection creates an `io.Pipe()` — the writer reads from the TCP socket, the reader feeds the parser:
+
+```go
+reader, writer := io.Pipe()
+defer writer.Close()
+go onConnection(src, reader)  // ← the problem
+
+for {
+    n, err := decoder.Read(buf)
+    // ...
+    writer.Write(buf[:n])  // blocks forever when reader exits
+}
+```
+
+The `onConnection` callback runs in a goroutine. When it exits — for any reason — it doesn't close the pipe reader. The writer's `Write()` call blocks forever waiting for a reader that will never consume. The `defer writer.Close()` never fires because the function is stuck at the `Write()`. Classic resource leak deadlock.
+
+The fix is one line:
+
+```go
+go func() {
+    defer reader.Close()
+    onConnection(src, reader)
+}()
+```
+
+Nobody hit this before because it only manifests under sustained high-volume TCP input. Normal syslog at 1 msg/sec never triggers the race — the `onConnection` callback doesn't exit mid-stream. You need thousands of messages per second for minutes to hit it.
 
 ## The enrichment pipeline
 
-Here's what a single pf firewall entry looks like after full processing:
+Here's what makes the replay-through-Telegraf approach worth it. A single pf firewall entry goes from this:
 
 ```
-Raw log line:
-  2024-05-29T22:00:08.006704+02:00 rule 1/0(match): block in on vtnet0:
+2024-05-29T22:00:08 rule 1/0(match): block in on vtnet0:
   141.98.7.190.56034 > 46.38.233.77.8728: Flags [S]
-
-After enrichment:
-  pf_action     = block
-  pf_direction  = in
-  pf_interface  = vtnet0
-  pf_proto      = tcp
-  pf_src_ip     = 141.98.7.190
-  pf_src_port   = 56034
-  pf_dst_ip     = 46.38.233.77
-  pf_dst_port   = 8728
-  geo_country   = DE
-  geo_city      = Frankfurt am Main
-  asn           = AS215439
-  as_org        = Play2go International Limited
 ```
 
-Every log type gets this treatment. A postfix entry gets `mail_client_ip`, `mail_client_host` (reverse DNS), geolocation, and ASN for the connecting mail server. A fail2ban entry gets `f2b_jail`, `f2b_action`, `f2b_ip` with full geo and DNS. An nginx entry gets `vhost`, `client_ip`, `client_host`, and geo. All of it searchable, filterable, and visualizable in Grafana.
+To this:
 
-The Starlark processors handle both IPv4 and IPv6 natively — m42 is dual-stack, and a surprising amount of traffic (especially SSH brute-force attempts) comes over IPv6.
+```
+pf_action     = block
+pf_direction  = in
+pf_src_ip     = 141.98.7.190
+pf_dst_port   = 8728
+pf_src_host   = (cached negative — no PTR)
+geo_country   = DE
+geo_city      = Frankfurt am Main
+asn           = AS215439
+as_org        = Play2go International Limited
+```
+
+Every log type gets this treatment. Postfix entries get mail client geolocation and reverse DNS. Fail2ban gets jail/action/IP with full geo. Nginx gets vhost, client IP, and ASN. All of it searchable and filterable in Grafana. Both IPv4 and IPv6 — m42 is dual-stack, and a surprising amount of brute-force traffic comes over IPv6.
+
+The Starlark processors handle the parsing (four scripts, one per log format). A custom Go binary does GeoIP enrichment via MaxMind's GeoLite2 databases. The reverse DNS processor — now with negative caching — does PTR lookups through a local [Technitium](https://technitium.com/dns/) DNS server.
+
+## The numbers
+
+- **25.3 million entries** across four log formats (BSD syslog, fail2ban, pf, nginx)
+- **34 monthly files**, July 2023 through April 2026
+- **~8,000 lines/sec** sustained throughput (DNS-bound with 200 workers)
+- **Zero data loss** — TCP backpressure, zero buffer drops
+- **~1 hour** total replay time
+- **Three upstream bugs** found and fixed
+- Running on a **Raspberry Pi 5** (4 cores, 16GB RAM, NVMe) in my living room
 
 ## What made this possible
 
-This project would not exist without AI assistance. I would not have had the time to build both a robust enrichment pipeline AND a full backfill system. One or the other, maybe. Both? Not a chance.
+This project would not exist without AI assistance. I would not have had the time to build both a robust enrichment pipeline AND debug three Telegraf internals bugs AND write a full backfill system. Claude did the heavy lifting on code while I made the architectural decisions and caught the design errors.
 
 But — and this is the crucial point — **AI didn't build this from nothing.** The reason Claude could be so effective is that the infrastructure was already clean:
 
-- **restic snapshots** — two years of monthly server backups, consistently structured, ready to be read
-- **Docker with macvlan networking** — every service has its own IP on a dedicated VLAN, clean isolation
-- **Telegraf already running** — the processor pipeline (inputs, processors, outputs) was already structured and documented
-- **VictoriaLogs already ingesting** — live logs were flowing, the schema was proven
-- **A well-maintained CLAUDE.md** — engineering principles that kept the AI focused: "read before writing," "fix root causes not symptoms," "never fabricate explanations"
+- **restic snapshots** — two and a half years of monthly server backups, consistently structured
+- **Docker with macvlan networking** — every service has its own IP on a dedicated VLAN
+- **Telegraf already running** — the processor pipeline was structured and documented
+- **VictoriaLogs already ingesting** — live logs flowing, schema proven
+- **A well-maintained CLAUDE.md** — engineering principles that kept the AI focused
 
-Clean infrastructure compounds. Every shortcut you didn't take, every backup you configured, every piece of documentation you wrote — it all becomes leverage when you need to build something ambitious on top of it. AI amplifies what's already there. If the foundation is solid, the amplification is extraordinary. If the foundation is chaos, AI just amplifies the chaos faster.
+Clean infrastructure compounds. Every shortcut you didn't take, every backup you configured, every piece of documentation you wrote — it becomes leverage when you need to build something ambitious on top of it. AI amplifies what's already there. If the foundation is solid, the amplification is extraordinary.
 
 ## A word on iteration
 
 Here's what I'd do differently: **spend even more time designing before coding.**
 
-It's remarkably easy to get Claude to produce a working proof of concept. You describe what you want, and 30 seconds later you have running code. The dopamine hit is real. But for tasks like backfilling — where execution takes hours and you can't easily undo — a bad design means you redo the entire run. Multiple times.
+It's remarkably easy to get Claude to produce a working proof of concept. You describe what you want, and 30 seconds later you have running code. The dopamine hit is real. But for tasks like backfilling — where execution takes hours and you can't easily undo — a bad design means you redo the entire run.
 
-I went through several iterations of this backfill. Each time I discovered something the pipeline handled that the backfill scripts didn't — IPv6 support, reverse DNS, a Starlark processor I'd forgotten about. Each redo meant: delete 25 million entries, wait, re-run for 8+ hours, verify. 
+I went through several iterations. Each time I discovered something the pipeline handled that the backfill scripts didn't — IPv6 support, reverse DNS interaction, a Starlark processor I'd forgotten about. Each redo meant: delete millions of entries, wait, re-run, verify. The final iteration — replaying raw RFC5424 through the actual pipeline — was the one that should have been the first.
 
-The lesson: the cost of an extra hour of design is trivial compared to an 8-hour backfill you have to throw away. Do your brainstorming. Audit field by field. Compare live entries against what your tool produces. Then — and only then — pull the trigger.
-
-## The sharp edges
-
-Remember the part where I said "TCP backpressure handles flow control"? Turns out that's aspirational, not factual.
-
-**Telegraf's reverse_dns processor is fundamentally broken for high-volume use.** The `Unordered.Enqueue()` method in `plugins/common/parallel/unordered.go` is a bare channel send with no timeout or fallback. When the worker pool is saturated by slow DNS lookups, it blocks the entire pipeline. Not slow throughput — *zero* throughput. Everything upstream stalls.
-
-**The syslog TCP input uses an unbounded worker pool** (Go `pond` library) that defeats TCP backpressure entirely. The TCP reader never blocks, the pool queue grows without limit, and Telegraf's `metric_buffer_limit` ring buffer silently drops the oldest metrics when it overflows. We lost 10.5 million entries before discovering this. There is no configuration option to prevent it.
-
-**We also killed Technitium DNS** — our local resolver — by hammering it with hundreds of parallel PTR lookups while it was logging every query. Disabling the query log plugin and restarting fixed it, but forward DNS resolution was dead for several minutes. Collateral damage on the home network. My family was not amused.
-
-### The fix: AI-operated SIGSTOP/SIGCONT
-
-Since Telegraf provides no backpressure and no way to prevent metric drops, I had Claude monitor the delta between entries sent by the script and entries actually landed in VictoriaLogs, checking every 60 seconds. When the delta exceeds 3.5M (approaching the 5M buffer limit), Claude sends `SIGSTOP` to pause the backfill script. When Telegraf drains to 250K delta, Claude sends `SIGCONT`. The script's in-memory dedup set stays alive (no kill/restart), so no entries are re-sent and no delete/re-run is needed.
-
-It's a sawtooth pattern: burst for ~9 minutes, pause for ~35 minutes while Telegraf catches up. The AI wasn't just writing code — it was *operating the system in real-time*, making judgment calls about when to pause and resume based on live telemetry. I went to sleep; Claude babysat the infrastructure. That's a mode of human-AI collaboration I didn't plan for but wouldn't trade.
-
-The lesson: even "enterprise-grade" open source tools have sharp edges at scale. Telegraf is fantastic for live traffic at 1 msg/sec, but its internal architecture — unbounded queues, blocking processors, silent metric drops — makes high-volume backfill treacherous. We documented the full root cause and plan to submit a PR upstream to influxdata/telegraf with a fix (non-blocking select with default passthrough for unenriched metrics).
-
-## The numbers
-
-- **25 million entries** across four log formats (BSD syslog, fail2ban, pf, nginx)
-- **Two years** of restic snapshots (2024-05 through 2026-04)
-- **~350 lines of Python** for the replay script (down from ~700 lines that duplicated pipeline logic)
-- **Four Starlark processors**, one Go GeoIP enricher, one reverse DNS resolver
-- **~10-12 hours** to replay everything through the full pipeline (with SIGSTOP/SIGCONT throttling — ~9 min sending, ~35 min draining per cycle, ~100K entries/hr effective throughput)
-- Running on a **Raspberry Pi 5** (4 cores, 16GB RAM, NVMe) in my living room
-
-The Pi hit a load average of 19 on 4 cores during send bursts and idled during drain cycles — a sawtooth pattern that the hardware handled perfectly. The live pipeline kept running in parallel throughout.
+The cost of an extra hour of design is trivial compared to a backfill you have to throw away.
 
 ## Try this at home
 
@@ -145,7 +192,6 @@ The entire stack is open and reproducible:
 - [Grafana](https://grafana.com/) — dashboards and alerting
 - [MaxMind GeoLite2](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data) — free IP geolocation databases
 - [restic](https://restic.net/) — encrypted, deduplicated backups
-- [syslog-ng](https://www.syslog-ng.com/) — reliable log transport with disk-backed buffering
 - [Claude Code](https://claude.ai/code) — the AI that made building all of this feasible in the time I had
 
 If you have server backups sitting around, your historical logs are in there. And if you have a pipeline that processes live data, you already have everything you need to enrich them. Don't write a separate backfill tool — replay through the real thing.
