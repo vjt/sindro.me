@@ -9,7 +9,7 @@
 ## Status
 
 - [x] Dead CSS / legacy cleanup (shipped 2026-04-10)
-- [ ] Resume layout duplicates baseof.html
+- [x] Resume layout duplicates baseof.html (shipped 2026-04-10)
 - [ ] Hugo deprecations (.Scratch, Pager .URL)
 - [ ] HTML deprecations (align, a name, language attr)
 - [ ] Theme reusability (hardcoded sindro.me values)
@@ -25,7 +25,7 @@
 
 | # | Area | File | Issue | Status |
 |---|------|------|-------|--------|
-| 1 | Layouts | `resume/resume.html` | **Duplicates entire `baseof.html` scaffold** instead of using `{{ define "main" }}`. Any change to baseof requires a parallel change here. | |
+| 1 | Layouts | `resume/resume.html` | **Duplicates entire `baseof.html` scaffold** instead of using `{{ define "main" }}`. Any change to baseof requires a parallel change here. | FIXED |
 | 2 | CSS | `assets/css/legacy/` | **1145 lines of dead CSS** -- poole.css, hyde.css, poison.css, custom.css not loaded by `stylesheets.html`. | FIXED |
 | 3 | CSS | `components.css` vs templates | **Class name mismatch between new CSS and old HTML.** CSS targets `.sidebar-nav-heading`, `.sidebar-nav-item`, `.sidebar-socials`, `.newsletter-form`, `.resume-buttons` -- but templates use `.heading`, `.bullet`, `.social`, `.newsletters`, `.resume-download`. Investigation showed elements look fine via generic/inherited styles; dead CSS removed. | FIXED |
 | 4 | Pagefind | `head/scripts.html:24-35` | **Legacy Pagefind UI** (`pagefind-ui.js` / `PagefindUI` constructor) deprecated since v1.5.0. Should migrate to Component UI (`pagefind-modular-ui.js`). | |
