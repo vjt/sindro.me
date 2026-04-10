@@ -14,7 +14,7 @@ featuredImage: cover.jpg
 
 ---
 
-### Profile
+# Profile
 
 Tech Lead with {{< years-since "1999-12-01" >}}+ years of experience delivering resilient distributed systems, leading cross-functional teams, and architecting critical infrastructure at scale. Passionate generalist, mentor, and open source contributor.
 
@@ -22,9 +22,9 @@ Tech Lead with {{< years-since "1999-12-01" >}}+ years of experience delivering 
 
 ---
 
-### Experience
+# Experience
 
-#### Meta Platforms — Production Engineer
+## Meta Platforms — Production Engineer
 *December 2021 – Present · {{< years-since "2021-12-01" >}}+ years*
 
 **Bootstrap / MetalOS** (2023–present) — bare-metal OS powering millions of servers globally. Part of the Datacenter Automation org; EMEA team owns the net-booting infrastructure.
@@ -42,7 +42,7 @@ Tech Lead with {{< years-since "1999-12-01" >}}+ years of experience delivering 
 - Worked cross-functionally with DC ops to ensure secure erasure and physical destruction
 - Mentored junior engineers across multiple time zones
 
-#### IFAD (United Nations) — Tech Lead
+## IFAD (United Nations) — Tech Lead
 *February 2016 – November 2021 · 5 years*
 
 Led the technical side of a critical financial system implementing electronic disbursement of IFAD financings to borrower countries.
@@ -52,7 +52,7 @@ Led the technical side of a critical financial system implementing electronic di
 - Led full infrastructure automation, persuaded its re-use across existing line-of-business applications
 - Oversaw security design, delegated vulnerability assessments and hardening
 
-#### IFAD (United Nations) — Software Engineer & Sysadmin
+## IFAD (United Nations) — Software Engineer & Sysadmin
 *January 2011 – January 2016 · 5 years*
 
 - Architected and developed multiple LOB applications: DMS, CRMs, BPM workflows, IAM, webcasting
@@ -60,24 +60,24 @@ Led the technical side of a critical financial system implementing electronic di
 - Established shared framework libraries, releasing as open source where possible
 - Set up DNS, routing, software distribution, monitoring and alerting infrastructure
 
-#### Mind2Mind — Web Developer & Sysadmin
+## Mind2Mind — Web Developer & Sysadmin
 *September 2009 – December 2010*
 
 Refactored and architected front-end and back-end of [panmind.com](http://panmind.com), built with Ruby, Javascript and Erlang. Designed and secured the production environment. Evangelised open source through component extraction and [conference presentations](http://www.slideshare.net/panmind).
 
-#### Lime5 — Web Developer & Sysadmin
+## Lime5 — Web Developer & Sysadmin
 *February 2008 – November 2009*
 
 Designed and implemented multiple projects: tourism platform (Visita CSA), social music platform (Myousica) with audio streaming on Engine Yard, enterprise knowledge-sharing system (Agorà).
 
-#### Softmedia — Web Developer & Sysadmin
+## Softmedia — Web Developer & Sysadmin
 *December 1999 – December 2007 · 8 years*
 
 First professional role. Built and maintained UNIX/Windows server infrastructure, site-to-site VPNs, mail systems (Exchange, Zimbra, Postfix), and web applications in PHP and Ruby on Rails.
 
 ---
 
-### Open Source & Community
+# Open Source & Community
 
 **Recent projects** — [github.com/vjt](https://github.com/vjt)
 
@@ -93,7 +93,7 @@ First professional role. Built and maintained UNIX/Windows server infrastructure
 
 ---
 
-### Quotes I Live By
+# Quotes I Live By
 
 - *Keep looking up* — Neil DeGrasse Tyson
 - *Computer science is no more about computers than astronomy is about telescopes* — Dijkstra

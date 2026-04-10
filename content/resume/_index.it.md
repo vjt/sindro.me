@@ -14,7 +14,7 @@ featuredImage: cover.jpg
 
 ---
 
-### Profilo
+# Profilo
 
 Tech Lead con {{< years-since "1999-12-01" >}}+ anni di esperienza nella realizzazione di sistemi distribuiti resilienti, nella guida di team cross-funzionali e nella progettazione di infrastrutture critiche su larga scala. Generalista appassionato, mentor e contributore open source.
 
@@ -22,9 +22,9 @@ Tech Lead con {{< years-since "1999-12-01" >}}+ anni di esperienza nella realizz
 
 ---
 
-### Esperienza
+# Esperienza
 
-#### Meta Platforms — Production Engineer
+## Meta Platforms — Production Engineer
 *Dicembre 2021 – Presente · {{< years-since "2021-12-01" >}}+ anni*
 
 **Bootstrap / MetalOS** (2023–presente) — sistema operativo bare-metal che alimenta milioni di server a livello globale. Parte dell'organizzazione Datacenter Automation; il team EMEA gestisce l'infrastruttura di net-booting.
@@ -42,7 +42,7 @@ Tech Lead con {{< years-since "1999-12-01" >}}+ anni di esperienza nella realizz
 - Collaborato con i team DC ops per garantire la cancellazione sicura e la distruzione fisica
 - Fatto da mentor a ingegneri junior su più fusi orari
 
-#### IFAD (Nazioni Unite) — Tech Lead
+## IFAD (Nazioni Unite) — Tech Lead
 *Febbraio 2016 – Novembre 2021 · 5 anni*
 
 Guidato il lato tecnico di un sistema finanziario critico per l'erogazione elettronica dei finanziamenti IFAD ai paesi mutuatari.
@@ -52,7 +52,7 @@ Guidato il lato tecnico di un sistema finanziario critico per l'erogazione elett
 - Guidato l'automazione completa dell'infrastruttura, convincendo al suo riutilizzo nelle applicazioni line-of-business esistenti
 - Supervisionato il design della sicurezza, delegando vulnerability assessment e hardening
 
-#### IFAD (Nazioni Unite) — Software Engineer & Sysadmin
+## IFAD (Nazioni Unite) — Software Engineer & Sysadmin
 *Gennaio 2011 – Gennaio 2016 · 5 anni*
 
 - Progettato e sviluppato molteplici applicazioni LOB: DMS, CRM, workflow BPM, IAM, webcasting
@@ -60,24 +60,24 @@ Guidato il lato tecnico di un sistema finanziario critico per l'erogazione elett
 - Creato librerie di framework condivise, rilasciate come open source dove possibile
 - Configurato DNS, routing, distribuzione software, monitoraggio e infrastruttura di alerting
 
-#### Mind2Mind — Web Developer & Sysadmin
+## Mind2Mind — Web Developer & Sysadmin
 *Settembre 2009 – Dicembre 2010*
 
 Refactoring e architettura del front-end e back-end di [panmind.com](http://panmind.com), costruito con Ruby, Javascript ed Erlang. Progettato e messo in sicurezza l'ambiente di produzione. Evangelizzato l'open source attraverso l'estrazione di componenti e [presentazioni a conferenze](http://www.slideshare.net/panmind).
 
-#### Lime5 — Web Developer & Sysadmin
+## Lime5 — Web Developer & Sysadmin
 *Febbraio 2008 – Novembre 2009*
 
 Progettato e implementato diversi progetti: piattaforma turistica (Visita CSA), piattaforma social musicale (Myousica) con streaming audio su Engine Yard, sistema enterprise di knowledge-sharing (Agorà).
 
-#### Softmedia — Web Developer & Sysadmin
+## Softmedia — Web Developer & Sysadmin
 *Dicembre 1999 – Dicembre 2007 · 8 anni*
 
 Primo ruolo professionale. Costruito e mantenuto infrastrutture server UNIX/Windows, VPN site-to-site, sistemi di posta (Exchange, Zimbra, Postfix) e applicazioni web in PHP e Ruby on Rails.
 
 ---
 
-### Open Source & Community
+# Open Source & Community
 
 **Progetti recenti** — [github.com/vjt](https://github.com/vjt)
 
@@ -93,7 +93,7 @@ Primo ruolo professionale. Costruito e mantenuto infrastrutture server UNIX/Wind
 
 ---
 
-### Quotes I Live By
+# Quotes I Live By
 
 - *Keep looking up* — Neil DeGrasse Tyson
 - *Computer science is no more about computers than astronomy is about telescopes* — Dijkstra

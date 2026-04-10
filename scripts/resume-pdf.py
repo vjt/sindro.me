@@ -31,14 +31,14 @@ body {
     max-width: 180mm;
     margin: 0 auto;
 }
-h2:first-of-type {
+h1:first-of-type {
     font-size: 22pt;
     margin-top: 0;
     margin-bottom: 0.2rem;
 }
-h3 { font-size: 12pt; border-bottom: 2px solid #268bd2; padding-bottom: 3pt; }
-h4 { color: #268bd2; font-size: 10.5pt; margin-bottom: 2pt; }
-h4 + p em { color: #555; font-size: 9pt; }
+h1 { font-size: 12pt; border-bottom: 2px solid #268bd2; padding-bottom: 3pt; }
+h2 { color: #268bd2; font-size: 10.5pt; margin-bottom: 2pt; }
+h2 + p em { color: #555; font-size: 9pt; }
 hr { border: none; border-top: 1px solid #ddd; margin: 0.8rem 0; }
 a { color: #268bd2; text-decoration: none; }
 ul { padding-left: 1.2rem; margin: 0.3rem 0; }
