@@ -3,7 +3,7 @@ title: "How banIP Nuked My WireGuard Throughput Since February"
 date: 2026-04-07
 tags: [openwrt, wireguard, networking, debugging, mwan3, banip]
 description: "A firewall ICMP rate limit was dropping mwan3 health check replies, making the fiber link look flaky, forcing WireGuard traffic onto a 2 Mbps 5G backup. For two months."
-featuredImage: "/posts/2026-04-07-banip-icmp-mwan3/cover.jpg"
+featuredImage: cover.jpg
 ---
 
 **TL;DR:** If you run OpenWrt with mwan3 (multi-WAN failover) and a **split-tunnel** WireGuard VPN (i.e., you're NOT routing all traffic through it), add `nohostroute=1` to your WireGuard interface. Without it, netifd creates a static route for the WireGuard endpoint at interface-up time, pinned to whatever uplink happens to be active at that moment. By the first corollary of Murphy's Law, anything that can go wrong will go wrong *at the worst possible moment* — so your primary link will be down precisely when WireGuard starts, and the endpoint route gets permanently stuck on the backup. Your VPN will be stuck on the slow backup while your primary link sits there doing nothing. You won't notice until you need to transfer something big.

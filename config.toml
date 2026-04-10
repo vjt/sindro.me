@@ -37,8 +37,7 @@ defaultContentLanguageInSubdir = false
   remark42_url = "https://sindro.me"
 
 [taxonomies]
-  category = 'categories'
-  tags = 'tags'
+  tag = 'tags'
 
 [languages]
   [languages.en]
@@ -66,7 +65,7 @@ defaultContentLanguageInSubdir = false
     languageName = 'Italiano'
     weight = 2
     [languages.it.params]
-      description = "feeling bold on the internet"
+      description = "audaci su internet"
       blurb = "Questo è sindro.me, un blog di Marcello Barnaba (@vjt) su tecnologia, sviluppo, software, internet, intrattenimento, politica, sociologia e la risposta alla Vita, all'Universo e a Tutto Quanto (42)."
       menu = [
         { Name = "Home", URL = "/it/" },
