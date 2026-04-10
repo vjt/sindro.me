@@ -17,6 +17,14 @@ from weasyprint import HTML
 ROOT = Path(__file__).resolve().parent.parent
 PUBLIC = ROOT / "public"
 
+# Read baseURL from config.toml (fallback to sindro.me)
+_base_url = "https://sindro.me/"
+for line in (ROOT / "config.toml").read_text().splitlines():
+    if line.startswith("baseURL"):
+        _base_url = line.split("=", 1)[1].strip().strip("'\"")
+        break
+BASE_URL = _base_url.rstrip("/")
+
 PRINT_CSS = """
 @page {
     size: A4;
@@ -134,7 +142,7 @@ def build_pdf(lang, output_name):
         if lang == "it"
         else 'The real sysadmin — and his cars are servers.'
     )
-    sysadmin_url = f'https://sindro.me/{"it/" if lang == "it" else ""}posts/2014-02-28-il-vero-sistemista/'
+    sysadmin_url = f'{BASE_URL}/{"it/" if lang == "it" else ""}posts/2014-02-28-il-vero-sistemista/'
 
     full_html = f"""<!DOCTYPE html>
 <html lang="{lang}">
@@ -144,7 +152,7 @@ def build_pdf(lang, output_name):
 {html_body}
 <div class="footer-img">{nebula}<p>M27 (Dumbbell) Planetary Nebula · {nebula_caption}</p></div>
 <div class="footer"><a href="{sysadmin_url}"><em>{sysadmin_quote}</em></a></div>
-<div class="footer">sindro.me · {today_str(lang)}</div>
+<div class="footer">{BASE_URL.removeprefix("https://").removeprefix("http://")} · {today_str(lang)}</div>
 </body>
 </html>"""
 

@@ -5,9 +5,6 @@ description: Session start protocol — pending work, git status, review gate
 
 Session start skill. Run the checklist and produce a status report.
 
-**Open with a freshly generated 4-word Italian profanity/blasphemy.**
-Different every time. Creative. Vulgar. Sets the tone.
-
 ## Steps
 
 ### 1. Review gate
