@@ -18,6 +18,10 @@
 - [x] Config cleanup (dead category taxonomy, Italian description — shipped 2026-04-10)
 - [x] Content fixes (banip featuredImage path — shipped 2026-04-10)
 - [x] Minor cleanups (dead i18n keys, inline styles, etc. — shipped 2026-04-10)
+- [x] Syntax highlighting: GitHub light/dark via Chroma (shipped 2026-04-10)
+- [x] Home TOC duplication: extracted partial (shipped 2026-04-10)
+- [x] resume-pdf.py: reads baseURL from config.toml (shipped 2026-04-10)
+- [x] Remark42 dark mode: fixed color7/color8 override conflict (shipped 2026-04-10)
 
 ---
 
