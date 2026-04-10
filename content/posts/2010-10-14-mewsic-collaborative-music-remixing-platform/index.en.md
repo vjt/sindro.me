@@ -3,6 +3,7 @@ title: "Myousica: a collaborative music remixing platform"
 date: 2010-10-14
 tags: ["rails", "ruby", "myousica", "mewsic", "open-source", "music"]
 description: "Open-sourcing Myousica (now Mewsic), the collaborative music platform we built between 2007 and 2010 — a Rails app where musicians upload tracks, remix each other's songs, and mix everything in the browser."
+image: cover.jpg
 ---
 
 Today we're releasing the source code of Myousica — the collaborative music remixing platform we've been building since late 2007. The project has been rebranded to [Mewsic](https://github.com/mewsic) along the way, but the idea is the same. The project reached a hiatus, and rather than letting the code rot on a private server, we're putting it all on GitHub. Full history preserved, warts and all.
