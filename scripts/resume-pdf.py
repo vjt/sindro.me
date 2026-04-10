@@ -128,14 +128,13 @@ def build_pdf(lang, output_name):
     static = ROOT / "static"
     photo = f'<img src="file://{static}/vjt.jpg" class="photo" alt="">'
     nebula = f'<img src="file://{static}/m27-nebula.jpg" class="nebula" alt="M27 Dumbbell Nebula">'
-    sysadmin = f'<img src="file://{ROOT}/content/posts/2014-02-28-il-vero-sistemista/car.repair.hands.jpg" class="nebula" alt="">'
-
     nebula_caption = "Foto mia" if lang == "it" else "Photo by me"
     sysadmin_quote = (
-        "Il vero sistemista — e le sue auto sono i server."
+        'Il vero sistemista — e le sue auto sono i server.'
         if lang == "it"
-        else "The real sysadmin — and his cars are servers."
+        else 'The real sysadmin — and his cars are servers.'
     )
+    sysadmin_url = f'https://sindro.me/{"it/" if lang == "it" else ""}posts/2014-02-28-il-vero-sistemista/'
 
     full_html = f"""<!DOCTYPE html>
 <html lang="{lang}">
@@ -144,7 +143,7 @@ def build_pdf(lang, output_name):
 {photo}
 {html_body}
 <div class="footer-img">{nebula}<p>M27 (Dumbbell) Planetary Nebula · {nebula_caption}</p></div>
-<div class="footer-img">{sysadmin}<p><em>{sysadmin_quote}</em></p></div>
+<div class="footer"><a href="{sysadmin_url}"><em>{sysadmin_quote}</em></a></div>
 <div class="footer">sindro.me · {today_str(lang)}</div>
 </body>
 </html>"""
