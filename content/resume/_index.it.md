@@ -3,6 +3,7 @@ title: "Curriculum Vitae"
 type: resume
 layout: resume
 noComments: true
+featuredImage: cover.jpg
 ---
 
 # Marcello Barnaba
