@@ -4,6 +4,7 @@ date: 2025-06-03
 type: about
 layout: about
 noComments: true
+featuredImage: cover.jpg
 ---
 
 Hello! I'm Marcello Barnaba, an Italian computer nerd, born on April, 11th

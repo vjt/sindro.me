@@ -4,6 +4,7 @@ date: 2025-06-03
 type: about
 layout: about
 noComments: true
+featuredImage: cover.jpg
 ---
 
 Ciao! Sono Marcello Barnaba, un nerd informatico italiano, nato l'11 aprile
