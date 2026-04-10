@@ -2,7 +2,7 @@
 date: 2014-02-28T04:00:00
 title: The real sysadmin
 hideVintage: true
-tags: [sysadmin]
+tags: [sysadmin, life]
 ---
 
 ![A mechanic lovingly tuning a vintage server rack in his garage at night, warm amber light, stars through the open door](/posts/2014-02-28-il-vero-sistemista/cover.jpg)
