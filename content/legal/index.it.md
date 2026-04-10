@@ -2,6 +2,7 @@
 title: "Le Scritte in Piccolo"
 date: 2023-08-12
 noComments: true
+featuredImage: cover.jpg
 ---
 
 Lo so, lo so. Ogni sito ha il suo mucchio di pagine legali che nessuno legge

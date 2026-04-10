@@ -2,6 +2,7 @@
 title: "The Fine Print"
 date: 2023-08-12
 noComments: true
+featuredImage: cover.jpg
 ---
 
 You know the drill. Every website has a stack of legal pages that nobody reads
