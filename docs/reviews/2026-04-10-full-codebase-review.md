@@ -10,7 +10,7 @@
 
 - [x] Dead CSS / legacy cleanup (shipped 2026-04-10)
 - [x] Resume layout duplicates baseof.html (shipped 2026-04-10)
-- [ ] Hugo deprecations (.Scratch, Pager .URL)
+- [x] Hugo deprecations (.Scratch, .Page.Store — shipped 2026-04-10; Pager .URL not available in v0.154)
 - [ ] HTML deprecations (align, a name, language attr)
 - [ ] Theme reusability (hardcoded sindro.me values)
 - [ ] Pagefind migration to Component UI
