@@ -4,6 +4,12 @@ type: resume
 layout: resume
 noComments: true
 featuredImage: cover.jpg
+downloads:
+  - { label: "🇬🇧 PDF", url: "/resume.pdf" }
+  - { label: "🇮🇹 PDF", url: "/resume-it.pdf" }
+footer_images:
+  - { src: "/m27-nebula.jpg", alt: "M27 Dumbbell Nebula", caption: "M27 (Dumbbell) Planetary Nebula · Foto mia" }
+  - { src: "/posts/2014-02-28-il-vero-sistemista/cover.jpg", alt: "Hands repairing a car engine", link: "/it/posts/2014-02-28-il-vero-sistemista/", caption: "Il vero sistemista — e le sue auto sono i server." }
 ---
 
 # Marcello Barnaba

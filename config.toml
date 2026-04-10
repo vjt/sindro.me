@@ -36,6 +36,9 @@ defaultContentLanguageInSubdir = false
   remark42_site_id = "remark.sindro.me"
   remark42_url = "https://sindro.me"
 
+  console_tagline = "You found the console. You're one of us."
+  source_url = "https://github.com/vjt/sindro.me"
+
 [taxonomies]
   tag = 'tags'
 
@@ -45,6 +48,7 @@ defaultContentLanguageInSubdir = false
     languageName = 'English'
     weight = 1
     [languages.en.params]
+      flag = "🇬🇧"
       description = "feeling bold on the internet"
       blurb = "This is sindro.me, a weblog by Marcello Barnaba (@vjt) about technology, development, software, the internet, entertainment, politics, sociology, and the answer to Life, Universe, and Everything (42)."
       menu = [
@@ -65,6 +69,7 @@ defaultContentLanguageInSubdir = false
     languageName = 'Italiano'
     weight = 2
     [languages.it.params]
+      flag = "🇮🇹"
       description = "audaci su internet"
       blurb = "Questo è sindro.me, un blog di Marcello Barnaba (@vjt) su tecnologia, sviluppo, software, internet, intrattenimento, politica, sociologia e la risposta alla Vita, all'Universo e a Tutto Quanto (42)."
       menu = [
