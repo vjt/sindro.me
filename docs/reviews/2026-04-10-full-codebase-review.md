@@ -11,12 +11,12 @@
 - [x] Dead CSS / legacy cleanup (shipped 2026-04-10)
 - [x] Resume layout duplicates baseof.html (shipped 2026-04-10)
 - [x] Hugo deprecations (.Scratch, .Page.Store — shipped 2026-04-10; Pager .URL not available in v0.154)
-- [ ] HTML deprecations (align, a name, language attr)
+- [x] HTML deprecations (align, a name, language attr — shipped 2026-04-10)
 - [ ] Theme reusability (hardcoded sindro.me values)
 - [ ] Pagefind migration to Component UI
-- [ ] JS fixes (toc.js globals, boot-splash storage mismatch)
-- [ ] Config cleanup (dead category taxonomy, Italian description)
-- [ ] Content fixes (banip featuredImage path)
+- [x] JS fixes (toc.js globals, boot-splash storage mismatch — shipped 2026-04-10)
+- [x] Config cleanup (dead category taxonomy, Italian description — shipped 2026-04-10)
+- [x] Content fixes (banip featuredImage path — shipped 2026-04-10)
 - [ ] Minor cleanups (dead i18n keys, inline styles, etc.)
 
 ---
