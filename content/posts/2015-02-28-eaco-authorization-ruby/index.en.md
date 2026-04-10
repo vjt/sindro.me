@@ -1,7 +1,7 @@
 ---
 title: "Eaco: The Holder of the Keys of Hades"
 date: 2015-02-28
-tags: [ruby, rails, postgresql, open-source]
+tags: [ruby, rails, postgresql, open-source, security]
 description: "I just extracted an ABAC authorization framework from our internal IFAD app in an 8-day sprint. ACLs are plain hashes, PostgreSQL jsonb does the heavy lifting, and I hit 100% test coverage at 1:33 PM on a Saturday."
 image: cover.jpg
 featuredImage: cover.jpg

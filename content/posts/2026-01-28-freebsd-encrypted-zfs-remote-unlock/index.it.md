@@ -1,7 +1,7 @@
 ---
 title: Sblocco remoto via SSH di ZFS cifrato su FreeBSD
 date: 2026-01-28
-tags: [ai-generated, freebsd, sysadmin]
+tags: [ai-generated, freebsd, sysadmin, security]
 ---
 
 ![Un rack server bloccato in un data center buio, un fascio di connessione SSH che raggiunge un lucchetto di cifratura luminoso](/posts/2026-01-28-freebsd-encrypted-zfs-remote-unlock/cover.jpg)

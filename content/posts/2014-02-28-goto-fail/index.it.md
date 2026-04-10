@@ -1,7 +1,7 @@
 ---
 date: 2014-02-28T03:00:00
 title: goto fail;
-tags: [apple, funny]
+tags: [apple, funny, security]
 hideVintage: true
 ---
 

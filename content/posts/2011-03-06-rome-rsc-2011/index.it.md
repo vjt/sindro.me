@@ -1,7 +1,7 @@
 ---
 date: 2011-03-06T18:00:00Z
 title: Roma RSC 2011
-tags: [social, rails, ruby]
+tags: [social, rails, ruby, events]
 ---
 
 {{< retrospective year="2026" >}}

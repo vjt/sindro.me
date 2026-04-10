@@ -1,7 +1,7 @@
 ---
 title: Root cifrata su ZFS con FreeBSD
 date: 2023-08-13
-tags: [freebsd, sysadmin]
+tags: [freebsd, sysadmin, security]
 ---
 
 ![Un server FreeBSD cifrato avvolto in scudi traslucidi, il cloud AWS che si sgretola sullo sfondo](/posts/2023-08-13-freebsd-encrypted-root-on-zfs/cover.jpg)

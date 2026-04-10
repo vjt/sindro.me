@@ -1,7 +1,7 @@
 ---
 title: Workshop Girl Geek Dinners @Apple Store, 16 maggio 2009, Roma
 date: 2009-05-18T15:00:00
-tags: [apple, geek, networking, social, web2.0]
+tags: [apple, geek, networking, social, web2.0, events]
 ---
 
 <p>&laquo;<cite>Donne! E' arrivato l'<a href="http://www.flickr.com/photos/matteorocchi/3401964231/">arrotino</a>!</cite>&raquo; &#8211; A parte gli scherzi ;) l'<a href="http://www.apple.com/it/retail/romaest/">Apple Store</a> italiano insieme a <a href="http://www.girlgeekdinnersroma.com/">Girl Geek Dinners Roma</a> ha organizzato il 16 maggio 2009 un workshop sul mobile lifestyle (incentrato sull'<a href="http://www.apple.com/iphone">iPhone</a>, ovviamente).</p>

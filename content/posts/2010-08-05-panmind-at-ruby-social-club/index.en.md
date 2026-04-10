@@ -1,7 +1,7 @@
 ---
 date: 2010-08-05T16:00:00Z
 title: Panmind spin-offs presented at Ruby Social Club Milan
-tags: [open-source, projects, rails, ruby]
+tags: [open-source, projects, rails, ruby, events]
 ---
 
 {{< retrospective year="2026" >}}
