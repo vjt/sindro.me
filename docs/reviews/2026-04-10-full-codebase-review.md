@@ -13,7 +13,7 @@
 - [x] Hugo deprecations (.Scratch, .Page.Store — shipped 2026-04-10; Pager .URL not available in v0.154)
 - [x] HTML deprecations (align, a name, language attr — shipped 2026-04-10)
 - [x] Theme reusability (hardcoded sindro.me values — shipped 2026-04-10)
-- [ ] Pagefind migration to Component UI (see notes below)
+- [x] Pagefind migration to Component UI (shipped 2026-04-10)
 - [x] JS fixes (toc.js globals, boot-splash storage mismatch — shipped 2026-04-10)
 - [x] Config cleanup (dead category taxonomy, Italian description — shipped 2026-04-10)
 - [x] Content fixes (banip featuredImage path — shipped 2026-04-10)
