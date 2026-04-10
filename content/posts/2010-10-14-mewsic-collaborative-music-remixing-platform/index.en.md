@@ -15,7 +15,9 @@ This is the first of three posts walking through the codebase. This one covers t
 
 The pitch is simple: I upload a bass track for *Let It Be*, you upload your voice, someone else adds guitar and drums. Through Myousica, there's a multitrack editor running in your browser where you can mix everything together, adjust volumes, and publish the result. Other people can then take your remix, add their own tracks, and remix the remix.
 
-Collaborative music creation, entirely in the browser.
+Collaborative music creation, entirely in the browser. No software to install, no files to email around. You sign up, you pick up your instrument, you record, and you're jamming with people across the world.
+
+The platform supports 35 instruments across multiple categories — from electric guitar and bass to vocals, drums, keyboards, strings, brass, and more exotic things. Every track is tagged with its instrument, so you can search for "a bass line in E minor at 120 BPM" and find something to remix. The idea is that the platform builds a library of reusable musical parts that anyone can recombine.
 
 ## The architecture
 
@@ -118,6 +120,36 @@ validates_length_of :tracks, :minimum => 1, :if => :published?
 
 This is a pattern I'm quite happy with. Temporary songs are cheap scratchpads. The multitrack creates one the moment you enter the editor, so there's always something to save tracks against. A weekly cron job cleans up temporary songs older than a week.
 
+The full `MultipleStatuses` module is [in the repo](https://github.com/mewsic/mewsic/blob/master/lib/statuses.rb) — it's ~60 lines of metaprogramming that uses `define_method` to generate the query methods and `write_inheritable_attribute` to store the status mapping on the class. I released it under MIT and I've used variations of this pattern in every Rails project since.
+
+## The Playable module
+
+Every Song and Track has an associated MP3 stream and a waveform PNG. The `Playable` module handles the file lifecycle — filenames, paths, cleanup on destroy:
+
+```ruby
+module Playable
+  module InstanceMethods
+    def public_filename(kind = :stream)
+      [APPLICATION[:audio_url], filename_of(kind)].join('/') rescue nil
+    end
+
+    def absolute_filename(kind = :stream)
+      File.join APPLICATION[:media_path], filename_of(kind) rescue nil
+    end
+
+    private
+      def filename_of(kind)
+        case kind
+        when :stream   then self.filename
+        when :waveform then self.filename.sub /\.mp3$/, '.png'
+        end
+      end
+  end
+end
+```
+
+The convention is simple: for every `track_42.mp3` there's a `track_42.png` with the waveform image. The waveform is generated server-side by the uploader service using [wav2png](http://github.com/beschulz/wav2png) and loaded by the Flash multitrack editor to show a visual representation of the audio. The width is proportional to the track length — roughly 10 pixels per second — so a 3-minute track gets a ~1800px wide waveform.
+
 ## Search
 
 Myousica uses [Sphinx](http://sphinxsearch.com/) via the [thinking-sphinx](https://github.com/pat/thinking-sphinx) plugin for full-text search. The multitrack editor consumes the search API via XML to let you find tracks to add to your mix — filtered by instrument, genre, BPM, key signature, country, or just free text:
@@ -189,7 +221,42 @@ When encoding finishes, the uploader calls back to update the song or track with
 
 ## Social features
 
-Beyond the core music functionality, Myousica is a full social platform: friend requests, private messaging, virtual bands (M-Bands) with token-based invitations, 5-star ratings on songs and tracks, polymorphic comments, content flagging, user profiles with avatars, gear lists, musical influences, and the usual Web 2.0 accoutrements.
+Beyond the core music functionality, Myousica is a full social platform. The codebase has 36 models and 82 migrations — there's a lot in there.
+
+**Friendships** follow the admirer/friend pattern: user A requests, user B accepts. If B breaks the friendship, A goes back to "admirer" status rather than losing the connection entirely. If A breaks it, the whole thing is destroyed. The `create_or_accept` class method handles both cases in a single call:
+
+```ruby
+def self.create_or_accept(user, friend)
+  friendship = Friendship.find_by_user_id_and_friend_id(friend.id, user.id)
+  if friendship
+    returning(friendship) do |f|
+      f.established = true
+      f.update_attribute(:accepted_at, Time.now)
+    end
+  else
+    user.request_friendship_with(friend)
+  end
+end
+```
+
+**M-Bands** are virtual bands — groups of users who play together. Every M-Band has a leader who sends token-based invitations. The band has its own profile, avatar, and songs. The band's online status aggregates its members' statuses — if anyone is recording, the band shows as "recording":
+
+```ruby
+def status
+  statuses = members.map(&:status).uniq
+  if statuses.include? 'rec'
+    'rec'
+  elsif statuses.include? 'on'
+    'on'
+  else
+    'off'
+  end
+end
+```
+
+M-Bands can publish songs under the band's name, rated separately from individual members. An M-Band is only searchable and visible once it has more than one member — a one-person band doesn't make much sense for a collaboration platform.
+
+There's also private messaging, 5-star ratings (via [acts_as_rated](https://github.com/mewsic/mewsic/tree/master/vendor/plugins/medlar_acts_as_rated)), polymorphic comments on songs/tracks/answers/bands, content flagging for moderation, user gear lists, musical influences, and all the usual Web 2.0 accoutrements.
 
 The User model has fields for MySpace URL and MSN Messenger. That should give you a sense of the era.
 

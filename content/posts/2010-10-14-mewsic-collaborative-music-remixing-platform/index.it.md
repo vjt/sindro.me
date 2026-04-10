@@ -15,7 +15,9 @@ Questo è il primo di tre post che esplorano il codice. Questo copre l'applicazi
 
 Il pitch è semplice: io carico una traccia di basso di *Let It Be*, tu carichi la tua voce, qualcun altro aggiunge chitarra e batteria. Attraverso Myousica, c'è un editor multitraccia che gira nel browser dove puoi mixare tutto insieme, regolare i volumi e pubblicare il risultato. Altre persone possono poi prendere il tuo remix, aggiungere le proprie tracce e remixare il remix.
 
-Creazione musicale collaborativa, interamente nel browser.
+Creazione musicale collaborativa, interamente nel browser. Nessun software da installare, nessun file da mandare via email. Ti iscrivi, prendi il tuo strumento, registri, e stai suonando con gente dall'altra parte del mondo.
+
+La piattaforma supporta 35 strumenti divisi in categorie — dalla chitarra elettrica e il basso alla voce, batteria, tastiere, archi, ottoni e strumenti più esotici. Ogni traccia è taggata con il suo strumento, così puoi cercare "una linea di basso in Mi minore a 120 BPM" e trovare qualcosa da remixare. L'idea è che la piattaforma costruisca una libreria di parti musicali riutilizzabili che chiunque può ricombinare.
 
 ## L'architettura
 
@@ -118,6 +120,36 @@ validates_length_of :tracks, :minimum => 1, :if => :published?
 
 È un pattern di cui sono piuttosto soddisfatto. Le canzoni temporanee sono blocchetti usa e getta. Il multitraccia ne crea una nel momento in cui entri nell'editor, così c'è sempre qualcosa contro cui salvare le tracce. Un cron job settimanale pulisce le canzoni temporanee più vecchie di una settimana.
 
+Il modulo `MultipleStatuses` completo è [nel repo](https://github.com/mewsic/mewsic/blob/master/lib/statuses.rb) — sono ~60 righe di metaprogrammazione che usano `define_method` per generare i metodi di interrogazione e `write_inheritable_attribute` per memorizzare la mappatura degli stati sulla classe. L'ho rilasciato sotto licenza MIT e ho usato variazioni di questo pattern in ogni progetto Rails da allora.
+
+## Il modulo Playable
+
+Ogni Song e Track ha uno stream MP3 associato e un PNG con la forma d'onda. Il modulo `Playable` gestisce il ciclo di vita dei file — nomi, percorsi, pulizia alla distruzione:
+
+```ruby
+module Playable
+  module InstanceMethods
+    def public_filename(kind = :stream)
+      [APPLICATION[:audio_url], filename_of(kind)].join('/') rescue nil
+    end
+
+    def absolute_filename(kind = :stream)
+      File.join APPLICATION[:media_path], filename_of(kind) rescue nil
+    end
+
+    private
+      def filename_of(kind)
+        case kind
+        when :stream   then self.filename
+        when :waveform then self.filename.sub /\.mp3$/, '.png'
+        end
+      end
+  end
+end
+```
+
+La convenzione è semplice: per ogni `track_42.mp3` c'è un `track_42.png` con l'immagine della forma d'onda. La waveform viene generata lato server dal servizio uploader usando [wav2png](http://github.com/beschulz/wav2png) e caricata dall'editor multitraccia Flash per mostrare una rappresentazione visiva dell'audio. La larghezza è proporzionale alla durata della traccia — circa 10 pixel al secondo — quindi una traccia di 3 minuti produce una waveform larga ~1800px.
+
 ## La ricerca
 
 Myousica usa [Sphinx](http://sphinxsearch.com/) tramite il plugin [thinking-sphinx](https://github.com/pat/thinking-sphinx) per la ricerca full-text. L'editor multitraccia consuma l'API di ricerca via XML per permetterti di trovare tracce da aggiungere al tuo mix — filtrate per strumento, genere, BPM, tonalità, paese o semplicemente testo libero:
@@ -189,7 +221,42 @@ Quando l'encoding finisce, l'uploader chiama la callback per aggiornare la canzo
 
 ## Funzionalità social
 
-Oltre alla funzionalità musicale di base, Myousica è una piattaforma social completa: richieste di amicizia, messaggistica privata, band virtuali (M-Band) con inviti basati su token, valutazioni a 5 stelle su canzoni e tracce, commenti polimorfici, segnalazione contenuti, profili utente con avatar, lista strumenti, influenze musicali e tutti gli orpelli Web 2.0 del caso.
+Oltre alla funzionalità musicale di base, Myousica è una piattaforma social completa. Il codebase ha 36 modelli e 82 migration — c'è parecchia roba.
+
+**Le amicizie** seguono il pattern ammiratore/amico: l'utente A chiede, l'utente B accetta. Se B rompe l'amicizia, A torna allo stato di "ammiratore" anziché perdere del tutto la connessione. Se A la rompe, viene distrutta completamente. Il metodo di classe `create_or_accept` gestisce entrambi i casi in una singola chiamata:
+
+```ruby
+def self.create_or_accept(user, friend)
+  friendship = Friendship.find_by_user_id_and_friend_id(friend.id, user.id)
+  if friendship
+    returning(friendship) do |f|
+      f.established = true
+      f.update_attribute(:accepted_at, Time.now)
+    end
+  else
+    user.request_friendship_with(friend)
+  end
+end
+```
+
+**Le M-Band** sono band virtuali — gruppi di utenti che suonano insieme. Ogni M-Band ha un leader che invia inviti basati su token. La band ha il suo profilo, avatar e canzoni. Lo stato online della band aggrega gli stati dei suoi membri — se qualcuno sta registrando, la band appare come "in registrazione":
+
+```ruby
+def status
+  statuses = members.map(&:status).uniq
+  if statuses.include? 'rec'
+    'rec'
+  elsif statuses.include? 'on'
+    'on'
+  else
+    'off'
+  end
+end
+```
+
+Le M-Band possono pubblicare canzoni sotto il nome della band, valutate separatamente dai singoli membri. Una M-Band è ricercabile e visibile solo quando ha più di un membro — una band di una sola persona non ha molto senso per una piattaforma collaborativa.
+
+Ci sono anche la messaggistica privata, le valutazioni a 5 stelle (via [acts_as_rated](https://github.com/mewsic/mewsic/tree/master/vendor/plugins/medlar_acts_as_rated)), i commenti polimorfici su canzoni/tracce/risposte/band, la segnalazione contenuti per la moderazione, le liste di strumenti degli utenti, le influenze musicali e tutti gli orpelli Web 2.0 del caso.
 
 Il modello User ha campi per l'URL di MySpace e MSN Messenger. Questo dovrebbe dare l'idea dell'era in cui ci troviamo.
 
