@@ -18,8 +18,9 @@ Here's the complete flow from microphone to playable track:
 ```mermaid
 graph TD
     MIC["Microphone"] -->|RTMP| RED5["Red5 Media Server"]
-    RED5 -->|raw stream| DISK["Disk (spool)"]
-    UPLOAD["Flash upload"] -->|HTTP POST| UC["UploadController"]
+    RED5 -->|FLV| DISK["Disk (spool)"]
+    DISK -->|HTTP POST| UC["UploadController"]
+    UPLOAD["Flash MP3 upload"] -->|HTTP POST| UC
     UC --> BG["BackgrounDRb Worker"]
     BG --> FLV{"FLV input?"}
     FLV -->|yes| WAV1["ffmpeg: FLV → WAV"]
