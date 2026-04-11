@@ -45,7 +45,7 @@ We built the same thing six years earlier, and we had to build half the browser 
 
 The code is on [GitHub](https://github.com/mewsic). Five repositories, from the [Rails app](https://github.com/mewsic/mewsic) to the [ActionScript multitrack](https://github.com/mewsic/mewsic-multitrack) to the [Red5 configuration](https://github.com/mewsic/mewsic-red5). Not as a product — as a time capsule. A record of what it took to do browser-based collaborative audio in 2008, before any of the APIs existed to make it reasonable.
 
-I'm proud of what we built. [Vaclav Vancura](https://vancura.design/) designed an [extraordinary multitrack editor](https://github.com/mewsic/mewsic-multitrack) in ActionScript — 7,000 lines of impeccable code that I never once had to debug. [Andrea Franz](https://github.com/pilu) built the uploader foundation. And the five of us, across ~2,000 commits, shipped a collaborative music platform that actually worked. You could open a browser, record a track, and jam with someone on the other side of the planet. In 2008.
+I'm proud of what we built. [Vaclav Vancura](https://vancura.design/) designed an [extraordinary multitrack editor](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) in ActionScript — 7,000 lines of impeccable code that I never once had to debug. [Andrea Franz](https://github.com/pilu) built the uploader foundation. And the five of us, across ~2,000 commits, shipped a collaborative music platform that actually worked. You could open a browser, record a track, and jam with someone on the other side of the planet. In 2008.
 
 Was Myousica a commercial success? No. Was the idea right? Sixty million BandLab users say so.
 
