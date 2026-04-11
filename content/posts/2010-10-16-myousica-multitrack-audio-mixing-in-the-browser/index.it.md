@@ -199,9 +199,9 @@ Il progetto è stato costruito con FDT (FlashDevelop Tools) e Flex SDK 3.2, con 
 
 La storia di git mostra due fasi distinte:
 
-**Le fondamenta di Vaclav (settembre – novembre 2008)**: commit iniziale con l'intera architettura dei componenti, la libreria dei controlli, l'UI di ricerca e la riproduzione base. 22 commit di lavoro attento e deliberato.
+**Le fondamenta di Vaclav (settembre – novembre 2008)**: [commit iniziale](https://github.com/mewsic/mewsic-multitrack/commit/fd6ac90) con l'intera architettura dei componenti, la libreria dei controlli, l'UI di ricerca e la riproduzione base. 22 commit di lavoro attento e deliberato, fino alle [scorciatoie da tastiera](https://github.com/mewsic/mewsic-multitrack/commit/e095a32).
 
-**Lo sprint di integrazione (marzo – aprile 2009)**: sono entrato io e ho ricablato gli internals in due settimane intense. 96 commit. Rimossi i vecchi servizi di ricerca e canzoni, ricostruita la macchina a stati, aggiunta l'integrazione di registrazione e upload, corretta la sincronizzazione della riproduzione e rifinita l'UI. Il giorno più intenso è stato il 21 marzo con 14 commit. La [svolta della registrazione](https://github.com/mewsic/mewsic-multitrack/commit/cce23f8) è avvenuta il 28 marzo.
+**Lo sprint di integrazione ([marzo](https://github.com/mewsic/mewsic-multitrack/commits/master/?since=2009-03-06&until=2009-04-03) 2009)**: sono entrato io e ho ricablato gli internals in due settimane intense. 96 commit. Rimossi i vecchi servizi di ricerca e canzoni, ricostruita la macchina a stati, aggiunta l'integrazione di registrazione e upload, corretta la sincronizzazione della riproduzione e rifinita l'UI. Il giorno più intenso è stato il [21 marzo](https://github.com/mewsic/mewsic-multitrack/commits/master/?since=2009-03-21&until=2009-03-22) con 14 commit. La [svolta della registrazione](https://github.com/mewsic/mewsic-multitrack/commit/cce23f8) è avvenuta il 28 marzo, l'[upload](https://github.com/mewsic/mewsic-multitrack/commit/e401ac2) il giorno dopo, e il [2 aprile](https://github.com/mewsic/mewsic-multitrack/commits/master/?since=2009-04-02&until=2009-04-03) stavo rifinendo l'UI e combattendo memory leak alle 5 di mattina.
 
 Zero revert in tutto il repo. L'architettura di Vaclav era abbastanza solida da permettermi di riscrivere gli internals senza rompere la struttura.
 

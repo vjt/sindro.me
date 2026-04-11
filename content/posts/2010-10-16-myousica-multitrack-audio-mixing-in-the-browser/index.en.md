@@ -199,9 +199,9 @@ The project was built with FDT (FlashDevelop Tools) and Flex SDK 3.2, targeting 
 
 The git history shows two distinct phases:
 
-**Vaclav's foundation (September – November 2008)**: initial commit with the full component architecture, controls library, search UI, and basic playback. 22 commits of careful, deliberate work.
+**Vaclav's foundation (September – November 2008)**: [initial commit](https://github.com/mewsic/mewsic-multitrack/commit/fd6ac90) with the full component architecture, controls library, search UI, and basic playback. 22 commits of careful, deliberate work, ending with [keyboard shortcuts](https://github.com/mewsic/mewsic-multitrack/commit/e095a32).
 
-**The integration sprint (March – April 2009)**: I came in and rewired the internals over two intense weeks. 96 commits. Ripped out the old search and song services, rebuilt the state machine, added recording and upload integration, fixed the playback synchronization, and polished the UI. The busiest day was March 21 with 14 commits. The [recording breakthrough](https://github.com/mewsic/mewsic-multitrack/commit/cce23f8) happened on March 28.
+**The integration sprint ([March](https://github.com/mewsic/mewsic-multitrack/commits/master/?since=2009-03-06&until=2009-04-03) 2009)**: I came in and rewired the internals over two intense weeks. 96 commits. Ripped out the old search and song services, rebuilt the state machine, added recording and upload integration, fixed the playback synchronization, and polished the UI. The busiest day was [March 21](https://github.com/mewsic/mewsic-multitrack/commits/master/?since=2009-03-21&until=2009-03-22) with 14 commits. The [recording breakthrough](https://github.com/mewsic/mewsic-multitrack/commit/cce23f8) happened on March 28, [upload](https://github.com/mewsic/mewsic-multitrack/commit/e401ac2) the day after, and by [April 2](https://github.com/mewsic/mewsic-multitrack/commits/master/?since=2009-04-02&until=2009-04-03) I was polishing the UI and fighting memory leaks at 5am.
 
 Zero reverts across the entire repo. Vaclav's architecture was solid enough that I could rewrite the internals without breaking the structure.
 
