@@ -3,6 +3,8 @@ title: "ansible-wsadmin: Automatizzare WebSphere Ignorando i Wrapper di IBM"
 date: 2021-05-26
 tags: [websphere, ibm, ansible, jython, automation, open-source]
 description: "Un ORM Jython e un daemon persistente per IBM WebSphere che bypassa la famigerata API a stringhe di AdminConfig e si aggancia direttamente a ConfigService — il layer Java ben progettato che IBM ha seppellito sotto 18 anni di wrapper sbagliati."
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 {{< retrospective year="2026" >}}
