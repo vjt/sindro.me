@@ -55,7 +55,7 @@ Led the technical side of a critical financial system implementing electronic di
 
 - Reviewed technical proposals, authored documentation, interviewed and hired engineers
 - Acted as liaison between internal stakeholders, external vendors, and suppliers
-- Led full infrastructure automation, persuaded its re-use across existing line-of-business applications
+- Led full infrastructure automation ([example](/posts/2026-04-11-ansible-wsadmin/)), persuaded its re-use across existing line-of-business applications
 - Oversaw security design, delegated vulnerability assessments and hardening
 
 ## IFAD (United Nations) — Software Engineer & Sysadmin

@@ -9,7 +9,7 @@ featuredImage: cover.jpg
 
 ***tl;dr** — IBM WebSphere ha un'API di configurazione pulita (ConfigService) sepolta sotto un wrapper a stringhe rotto (AdminConfig). Ho costruito un layer Jython ad oggetti che si aggancia a ConfigService direttamente via JMX — semplificando la configurazione e garantendo la correttezza dei tipi tramite introspezione dei metadati — più un daemon persistente che elimina l'overhead di boot della JVM, e 55 script idempotenti che si integrano col rilevamento di cambiamenti di Ansible. [github.com/vjt/ansible-wsadmin](https://github.com/vjt/ansible-wsadmin)*
 
-Nel 2021 ho passato tre mesi ad automatizzare l'infrastruttura WebSphere dell'[IFAD](https://www.ifad.org/) con Ansible. Lo stack era IBM WebSphere Application Server (WAS), WebSphere Portal Server (WPS) e Business Automation Workflow (BAW) — un deployment clusterizzato con Deployment Manager, nodi multipli, LDAP federato, messaging SIB, tutto quanto.
+Nel 2021 ho passato sei mesi ad automatizzare l'infrastruttura WebSphere dell'[IFAD](https://www.ifad.org/) con Ansible. Lo stack era IBM WebSphere Application Server (WAS), WebSphere Portal Server (WPS) e Business Automation Workflow (BAW) — un deployment clusterizzato con Deployment Manager, nodi multipli, LDAP federato, messaging SIB, tutto quanto.
 
 L'approccio standard per automatizzare WAS è scrivere script Jython usando `AdminConfig`, `AdminTask` e `AdminApp` — i quattro oggetti globali di scripting che IBM fornisce dentro [wsadmin](https://en.wikipedia.org/wiki/Wsadmin). Ho provato. È durato un giorno prima di iniziare a guardare cosa c'è sotto.
 

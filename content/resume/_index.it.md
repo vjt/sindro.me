@@ -55,7 +55,7 @@ Guidato il lato tecnico di un sistema finanziario critico per l'erogazione elett
 
 - Revisionato proposte tecniche, scritto documentazione, condotto colloqui e assunzioni
 - Fatto da collegamento tra stakeholder interni, fornitori esterni e supplier
-- Guidato l'automazione completa dell'infrastruttura, convincendo al suo riutilizzo nelle applicazioni line-of-business esistenti
+- Guidato l'automazione completa dell'infrastruttura ([esempio](/it/posts/2026-04-11-ansible-wsadmin/)), convincendo al suo riutilizzo nelle applicazioni line-of-business esistenti
 - Supervisionato il design della sicurezza, delegando vulnerability assessment e hardening
 
 ## IFAD (Nazioni Unite) — Software Engineer & Sysadmin
