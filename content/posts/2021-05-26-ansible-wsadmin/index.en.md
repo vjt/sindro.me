@@ -1,5 +1,5 @@
 ---
-title: "ansible-wsadmin: Automating WebSphere by Skipping IBM's Own Wrappers"
+title: "ansible-wsadmin: Bypassing AdminConfig to Automate WebSphere via JMX"
 date: 2021-05-26
 tags: [websphere, ibm, ansible, jython, automation, open-source]
 description: "A Jython ORM and persistent daemon for IBM WebSphere that bypasses the infamous AdminConfig string API and hooks directly into ConfigService — the well-designed Java layer that IBM buried under 18 years of bad wrappers."
@@ -10,6 +10,8 @@ featuredImage: cover.jpg
 {{< retrospective year="2026" >}}
 Five years later, I'm open-sourcing this as [ansible-wsadmin](https://github.com/vjt/ansible-wsadmin). It spent all this time in my drive — nobody at IFAD used it after I left, and it's too useful to rot. The repo contains the full history from the development sprint documented below, with internal references scrubbed.
 {{< /retrospective >}}
+
+**tl;dr** — IBM WebSphere has a clean configuration API (ConfigService) buried under a broken string-based wrapper (AdminConfig). I built an object-oriented Jython layer that hooks into ConfigService directly via JMX — easing configuration and ensuring type correctness through metadata introspection — plus a persistent daemon that eliminates JVM boot overhead, and 55 idempotent scripts that integrate with Ansible's change detection. [github.com/vjt/ansible-wsadmin](https://github.com/vjt/ansible-wsadmin)
 
 I'm automating the [IFAD](https://www.ifad.org/) WebSphere infrastructure with Ansible. The stack is IBM WebSphere Application Server (WAS), WebSphere Portal Server (WPS), and Business Automation Workflow (BAW) — a clustered deployment with a Deployment Manager, multiple nodes, federated LDAP, SIB messaging, the works.
 

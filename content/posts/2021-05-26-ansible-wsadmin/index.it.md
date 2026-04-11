@@ -1,5 +1,5 @@
 ---
-title: "ansible-wsadmin: Automatizzare WebSphere Ignorando i Wrapper di IBM"
+title: "ansible-wsadmin: Bypassare AdminConfig per Automatizzare WebSphere via JMX"
 date: 2021-05-26
 tags: [websphere, ibm, ansible, jython, automation, open-source]
 description: "Un ORM Jython e un daemon persistente per IBM WebSphere che bypassa la famigerata API a stringhe di AdminConfig e si aggancia direttamente a ConfigService — il layer Java ben progettato che IBM ha seppellito sotto 18 anni di wrapper sbagliati."
@@ -10,6 +10,8 @@ featuredImage: cover.jpg
 {{< retrospective year="2026" >}}
 Cinque anni dopo, rilascio questo progetto come [ansible-wsadmin](https://github.com/vjt/ansible-wsadmin). È rimasto nel mio drive per tutto questo tempo — nessuno all'IFAD l'ha usato dopo che me ne sono andato, ed è troppo utile per marcire. Il repo contiene la storia completa dello sprint di sviluppo documentato qui sotto, con i riferimenti interni rimossi.
 {{< /retrospective >}}
+
+**tl;dr** — IBM WebSphere ha un'API di configurazione pulita (ConfigService) sepolta sotto un wrapper a stringhe rotto (AdminConfig). Ho costruito un layer Jython ad oggetti che si aggancia a ConfigService direttamente via JMX — semplificando la configurazione e garantendo la correttezza dei tipi tramite introspezione dei metadati — più un daemon persistente che elimina l'overhead di boot della JVM, e 55 script idempotenti che si integrano col rilevamento di cambiamenti di Ansible. [github.com/vjt/ansible-wsadmin](https://github.com/vjt/ansible-wsadmin)
 
 Sto automatizzando l'infrastruttura WebSphere dell'[IFAD](https://www.ifad.org/) con Ansible. Lo stack è IBM WebSphere Application Server (WAS), WebSphere Portal Server (WPS) e Business Automation Workflow (BAW) — un deployment clusterizzato con Deployment Manager, nodi multipli, LDAP federato, messaging SIB, tutto quanto.
 
