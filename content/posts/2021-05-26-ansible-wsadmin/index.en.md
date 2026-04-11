@@ -90,7 +90,7 @@ The daemon has no authentication — it's meant to run on the DMGR host on an ai
 
 ## The Ansible integration
 
-Each of the [55 management scripts](https://github.com/vjt/ansible-wsadmin) follows one rule: **print output only when something changes**. This maps directly to Ansible's idempotency model:
+Each of the [55 management scripts](https://github.com/vjt/ansible-wsadmin#management-scripts) follows one rule: **print output only when something changes**. This maps directly to Ansible's idempotency model:
 
 ```yaml
 - name: Ensure TLS 1.2 HIGH is configured
@@ -131,7 +131,7 @@ The rest of this post is context. If you work with WebSphere — or if you just 
 
 **2006 — WAS 6.1: AdminTask arrives.** A fourth scripting object, designed to provide "[task-oriented](https://www.ibm.com/docs/en/was/8.5.5?topic=wsadmin-using-scripting-admintask-object-scripted-administration)" convenience commands. Instead of making things simpler, it adds another layer of indirection with its own argument syntax: `AdminTask.createSIBJMSQueue('...(cells/...)', '[-name Queue -jndiName jms/Queue -busName Bus]')`. That's a string containing key-value pairs inside brackets inside a string. IBM's documentation for AdminTask is hundreds of pages of incantations like [configuring session management](https://www.ibm.com/docs/en/was/8.5.5?topic=caus-configuring-applications-session-management-in-web-modules-using-scripting). The admin console gains "Command Assistance" — showing the wsadmin equivalent of console actions — which only highlights how convoluted the commands are.
 
-**2008 — WAS 7.0: Script Libraries.** IBM ships [pre-built Jython functions](https://www.ibm.com/docs/en/was/8.5.5?topic=scripting-script-library) organized by category. A step in the right direction, but still built on the string-parsing AdminConfig layer underneath.
+**2008 — WAS 7.0: Script Libraries.** IBM ships [pre-built Jython functions](https://www.ibm.com/docs/en/was/8.5.5?topic=reference-jython-script-library) organized by category. A step in the right direction, but still built on the string-parsing AdminConfig layer underneath. A taste of the naming: IBM's [application update scripts](https://www.ibm.com/docs/en/was/8.5.5?topic=scripting-application-update-scripts) include `addSingleModuleFileToAnAppWithUpdateCommand`, `updateApplicationWithUpdateIgnoreOldOption`, and `addUpdateSingleModuleFileToAnAppWithUpdateCommand`. My equivalent is [app-deploy.py](https://github.com/vjt/ansible-wsadmin/blob/master/lib/wsadmin/bin/app-deploy.py) — 80 lines, handles both install and update, compares versions, provides sensible defaults.
 
 ### The community response
 

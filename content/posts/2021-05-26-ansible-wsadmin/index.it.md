@@ -90,7 +90,7 @@ Il daemon non ha autenticazione — è pensato per girare sull'host DMGR su una 
 
 ## L'integrazione con Ansible
 
-Ognuno dei [55 script di gestione](https://github.com/vjt/ansible-wsadmin) segue una regola: **stampa output solo quando qualcosa cambia**. Questo si mappa direttamente al modello di idempotenza di Ansible:
+Ognuno dei [55 script di gestione](https://github.com/vjt/ansible-wsadmin#management-scripts) segue una regola: **stampa output solo quando qualcosa cambia**. Questo si mappa direttamente al modello di idempotenza di Ansible:
 
 ```yaml
 - name: Ensure TLS 1.2 HIGH is configured
@@ -131,7 +131,7 @@ Il resto di questo post è contesto. Se lavori con WebSphere — o se sempliceme
 
 **2006 — WAS 6.1: Arriva AdminTask.** Un quarto oggetto di scripting, progettato per fornire comandi "[task-oriented](https://www.ibm.com/docs/en/was/8.5.5?topic=wsadmin-using-scripting-admintask-object-scripted-administration)" di convenienza. Invece di semplificare le cose, aggiunge un altro livello di indirezione con la sua propria sintassi per gli argomenti: `AdminTask.createSIBJMSQueue('...(cells/...)', '[-name Queue -jndiName jms/Queue -busName Bus]')`. È una stringa contenente coppie chiave-valore dentro parentesi dentro una stringa. La documentazione IBM per AdminTask è centinaia di pagine di formule magiche tipo la [configurazione del session management](https://www.ibm.com/docs/en/was/8.5.5?topic=caus-configuring-applications-session-management-in-web-modules-using-scripting). La console di admin guadagna "Command Assistance" — mostra l'equivalente wsadmin delle azioni della console — il che evidenzia solo quanto siano contorti i comandi.
 
-**2008 — WAS 7.0: Script Libraries.** IBM distribuisce [funzioni Jython pre-costruite](https://www.ibm.com/docs/en/was/8.5.5?topic=scripting-script-library) organizzate per categoria. Un passo nella direzione giusta, ma costruite sempre sul layer AdminConfig a stringhe.
+**2008 — WAS 7.0: Script Libraries.** IBM distribuisce [funzioni Jython pre-costruite](https://www.ibm.com/docs/en/was/8.5.5?topic=reference-jython-script-library) organizzate per categoria. Un passo nella direzione giusta, ma costruite sempre sul layer AdminConfig a stringhe. Un assaggio della nomenclatura: gli [script di aggiornamento applicazioni](https://www.ibm.com/docs/en/was/8.5.5?topic=scripting-application-update-scripts) di IBM includono `addSingleModuleFileToAnAppWithUpdateCommand`, `updateApplicationWithUpdateIgnoreOldOption`, e `addUpdateSingleModuleFileToAnAppWithUpdateCommand`. Il mio equivalente è [app-deploy.py](https://github.com/vjt/ansible-wsadmin/blob/master/lib/wsadmin/bin/app-deploy.py) — 80 righe, gestisce sia install che update, confronta le versioni, fornisce default sensati.
 
 ### La risposta della community
 
