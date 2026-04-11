@@ -15,6 +15,10 @@ Questo è il secondo post della [serie Myousica](/it/posts/2010-10-14-myousica-c
 
 Il multitraccia è stato inizialmente sviluppato da [Vaclav Vancura](https://vancura.design/), che ha costruito l'architettura originale, la libreria di componenti UI e il motore di riproduzione audio. Poi ho preso in mano io e l'ho ricablato pesantemente — integrando la registrazione, l'upload, i servizi backend e la macchina a stati che tiene tutto insieme. 81 file ActionScript, ~7.300 righe di codice, [129 commit](https://github.com/mewsic/mewsic-multitrack).
 
+Ecco lo [screenshot originale di Vaclav](https://dribbble.com/shots/192454-Myousica-remix) che mostra la vista remix — dove le canzoni si collegano e si ramificano in nuovi remix:
+
+![Vista remix di Myousica — canzoni che si ramificano in remix](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/myousica-remix-dribbble.png)
+
 ## Cosa fa
 
 L'editor si carica nel browser come SWF Flash. Si può:

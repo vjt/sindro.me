@@ -15,6 +15,10 @@ This is the second post in the [Myousica series](/posts/2010-10-14-myousica-coll
 
 The multitrack was initially developed by [Vaclav Vancura](https://vancura.design/), who built the original architecture, the UI component library, and the audio playback engine. I then took over and rewired it heavily — integrating recording, upload, the backend services, and the state machine that holds it all together. 81 ActionScript files, ~7,300 lines of code, [129 commits](https://github.com/mewsic/mewsic-multitrack).
 
+Here's [Vaclav's original screenshot](https://dribbble.com/shots/192454-Myousica-remix) showing the remix view — where songs connect and branch into new remixes:
+
+![Myousica remix view — songs branching into remixes](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/myousica-remix-dribbble.png)
+
 ## What it does
 
 The editor loads in the browser as a Flash SWF. You can:
