@@ -11,7 +11,7 @@ featuredImage: cover.jpg
 Five years later, I'm open-sourcing this as [ansible-wsadmin](https://github.com/vjt/ansible-wsadmin). It spent all this time in my drive — nobody at IFAD used it after I left, and it's too useful to rot. The repo contains the full history from the development sprint documented below, with internal references scrubbed.
 {{< /retrospective >}}
 
-**tl;dr** — IBM WebSphere has a clean configuration API (ConfigService) buried under a broken string-based wrapper (AdminConfig). I built an object-oriented Jython layer that hooks into ConfigService directly via JMX — easing configuration and ensuring type correctness through metadata introspection — plus a persistent daemon that eliminates JVM boot overhead, and 55 idempotent scripts that integrate with Ansible's change detection. [github.com/vjt/ansible-wsadmin](https://github.com/vjt/ansible-wsadmin)
+***tl;dr** — IBM WebSphere has a clean configuration API (ConfigService) buried under a broken string-based wrapper (AdminConfig). I built an object-oriented Jython layer that hooks into ConfigService directly via JMX — easing configuration and ensuring type correctness through metadata introspection — plus a persistent daemon that eliminates JVM boot overhead, and 55 idempotent scripts that integrate with Ansible's change detection. [github.com/vjt/ansible-wsadmin](https://github.com/vjt/ansible-wsadmin)*
 
 I'm automating the [IFAD](https://www.ifad.org/) WebSphere infrastructure with Ansible. The stack is IBM WebSphere Application Server (WAS), WebSphere Portal Server (WPS), and Business Automation Workflow (BAW) — a clustered deployment with a Deployment Manager, multiple nodes, federated LDAP, SIB messaging, the works.
 
