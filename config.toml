@@ -75,7 +75,7 @@ defaultContentLanguageInSubdir = false
     weight = 2
     [languages.it.params]
       flag = "🇮🇹"
-      description = "audaci su internet"
+      description = "feeling bold on the internet"
       blurb = "Questo è sindro.me, un blog di Marcello Barnaba (@vjt) su tecnologia, sviluppo, software, internet, intrattenimento, politica, sociologia e la risposta alla Vita, all'Universo e a Tutto Quanto (42)."
       menu = [
         { Name = "Home", URL = "/it/" },
