@@ -19,9 +19,10 @@ Here's the complete flow from microphone to playable track:
 graph TD
     MIC["Microphone"] -->|RTMP| RED5["Red5 Media Server"]
     RED5 -->|FLV| DISK["Disk (spool)"]
-    DISK -->|HTTP POST| UC["UploadController"]
-    UPLOAD["Flash MP3 upload"] -->|HTTP POST| UC
+    FLASH["Flash client"] -->|"stop recording"| UC["UploadController"]
+    FLASH -->|"MP3 upload"| UC
     UC --> BG["BackgrounDRb Worker"]
+    BG -.->|reads FLV| DISK
     BG --> FLV{"FLV input?"}
     FLV -->|yes| WAV1["ffmpeg: FLV → WAV"]
     FLV -->|no| ANALYZE

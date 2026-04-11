@@ -19,9 +19,10 @@ Ecco il flusso completo dal microfono alla traccia riproducibile:
 graph TD
     MIC["Microfono"] -->|RTMP| RED5["Red5 Media Server"]
     RED5 -->|FLV| DISK["Disco (spool)"]
-    DISK -->|HTTP POST| UC["UploadController"]
-    UPLOAD["Upload MP3 Flash"] -->|HTTP POST| UC
+    FLASH["Client Flash"] -->|"stop registrazione"| UC["UploadController"]
+    FLASH -->|"upload MP3"| UC
     UC --> BG["Worker BackgrounDRb"]
+    BG -.->|legge FLV| DISK
     BG --> FLV{"Input FLV?"}
     FLV -->|sì| WAV1["ffmpeg: FLV → WAV"]
     FLV -->|no| ANALYZE
