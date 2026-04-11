@@ -258,14 +258,6 @@ Width is `length * 10` — roughly 10 pixels per second of audio. A 3-minute tra
 
 The uploader runs on the same server as the main app, deployed via [Capistrano](https://github.com/mewsic/mewsic-uploader/blob/master/config/deploy.rb). The BackgrounDRb daemon starts via `nohup script/backgroundrb start` and listens on `127.0.0.1:22222`. The audio spool directory is symlinked from `shared/audio` into the Rails public path.
 
-Environment-specific URLs connect the services:
-
-| | Main app | Upload server | Media server |
-|---|---|---|---|
-| **Production** | `mewsic.com` | `upload.mewsic.com` | `rtmp://upload.mewsic.com/` |
-| **Staging** | `mewsic.stage.lime5.it` | same host | same host |
-| **Development** | `localhost:3000` | `localhost:3001` | `rtmp://192.168.78.1/` |
-
 ## The git story
 
 The [uploader repo](https://github.com/mewsic/mewsic-uploader) has [120 commits](https://github.com/mewsic/mewsic-uploader/commits/master/) from April 2008 to October 2010. Andrea Franz built the [initial skeleton](https://github.com/mewsic/mewsic-uploader/commit/1c7389f) — the controller structure, Capistrano deployment, basic BackgrounDRb integration. I came in a month later and built the encoding pipeline, the sox integration, the normalization logic, and the service callbacks.
