@@ -46,6 +46,8 @@ The `invoke` variant of `AdminControl` has the same problem: it converts everyth
 
 So the escape hatch exists. IBM just doesn't point you at it.
 
+![Breaking through the AdminConfig layer to find ConfigService — the clean API buried underneath](/posts/2026-04-11-ansible-wsadmin/miner-gem.jpg)
+
 ## How I got there
 
 The [commit history](https://github.com/vjt/ansible-wsadmin/commits/master/) tells the story better than I can.
@@ -130,6 +132,8 @@ The scripts cover everything I need: [JDBC providers and data sources](https://g
 The [README](https://github.com/vjt/ansible-wsadmin#readme) has full documentation: which IBM APIs are called and where, the ORM architecture, the daemon protocol, all 55 scripts with links, Ansible examples, and Mermaid architecture diagrams.
 
 ---
+
+![Twenty years of enterprise API layers — each one more cracked than the last](/posts/2026-04-11-ansible-wsadmin/layer-cake.jpg)
 
 ## The wsadmin problem: a history
 

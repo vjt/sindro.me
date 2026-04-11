@@ -46,6 +46,8 @@ La variante `invoke` di `AdminControl` ha lo stesso problema: converte tutto da 
 
 Quindi la via di fuga esiste. IBM semplicemente non te la indica.
 
+![Sfondare il layer AdminConfig per trovare ConfigService — l'API pulita sepolta sotto](/posts/2026-04-11-ansible-wsadmin/miner-gem.jpg)
+
 ## Come ci sono arrivato
 
 La [storia dei commit](https://github.com/vjt/ansible-wsadmin/commits/master/) racconta la storia meglio di me.
@@ -130,6 +132,8 @@ Gli script coprono tutto quello che mi serve: [provider JDBC e data source](http
 Il [README](https://github.com/vjt/ansible-wsadmin#readme) ha la documentazione completa: quali API IBM vengono chiamate e dove, l'architettura dell'ORM, il protocollo del daemon, tutti i 55 script con link, esempi Ansible, e diagrammi architetturali Mermaid.
 
 ---
+
+![Vent'anni di layer di API enterprise — ognuno più crepato del precedente](/posts/2026-04-11-ansible-wsadmin/layer-cake.jpg)
 
 ## Il problema wsadmin: una storia
 
