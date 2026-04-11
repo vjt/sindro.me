@@ -266,7 +266,7 @@ M-Bands can publish songs under the band's name, rated separately from individua
 
 There's also private messaging, 5-star ratings (via [acts_as_rated](https://github.com/mewsic/mewsic/tree/master/vendor/plugins/medlar_acts_as_rated)), polymorphic comments on songs/tracks/answers/bands, content flagging for moderation, user gear lists, musical influences, and all the usual Web 2.0 accoutrements.
 
-The User model has fields for MySpace URL and MSN Messenger. That should give you a sense of the era.
+The User model has fields for MySpace URL and MSN Messenger — the full social stack.
 
 ## The team
 

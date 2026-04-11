@@ -266,7 +266,7 @@ Le M-Band possono pubblicare canzoni sotto il nome della band, valutate separata
 
 Ci sono anche la messaggistica privata, le valutazioni a 5 stelle (via [acts_as_rated](https://github.com/mewsic/mewsic/tree/master/vendor/plugins/medlar_acts_as_rated)), i commenti polimorfici su canzoni/tracce/risposte/band, la segnalazione contenuti per la moderazione, le liste di strumenti degli utenti, le influenze musicali e tutti gli orpelli Web 2.0 del caso.
 
-Il modello User ha campi per l'URL di MySpace e MSN Messenger. Questo dovrebbe dare l'idea dell'era in cui ci troviamo.
+Il modello User ha campi per l'URL di MySpace e MSN Messenger — lo stack social completo.
 
 ## Il team
 

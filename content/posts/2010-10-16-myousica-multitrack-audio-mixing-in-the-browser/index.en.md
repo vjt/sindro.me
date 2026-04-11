@@ -185,7 +185,7 @@ The encode polling is worth noting: after uploading a recorded track, the client
 
 ## The tools
 
-The codebase uses several Flash-era libraries:
+The codebase uses several third-party ActionScript libraries:
 
 - **[Tweener](https://github.com/zeh/tweener)** (caurina.transitions) — animation engine for UI transitions
 - **[BulkLoader](https://github.com/nickyp/bulk-loader)** — concurrent asset loading with ID-based management

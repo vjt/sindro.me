@@ -185,7 +185,7 @@ Il polling dell'encoding merita una nota: dopo aver caricato una traccia registr
 
 ## Gli strumenti
 
-Il codebase usa diverse librerie dell'era Flash:
+Il codebase usa diverse librerie ActionScript di terze parti:
 
 - **[Tweener](https://github.com/zeh/tweener)** (caurina.transitions) — motore di animazione per le transizioni UI
 - **[BulkLoader](https://github.com/nickyp/bulk-loader)** — caricamento concorrente di asset con gestione basata su ID
