@@ -80,6 +80,10 @@ def create_remix_by(user)
 end
 ```
 
+Here's what the remix tree looks like in the UI — [Vaclav's original screenshot](https://dribbble.com/shots/192454-Myousica-remix) showing how songs connect through remixes:
+
+![The Myousica remix tree — songs branching into remixes](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-remix-dribbble.png)
+
 This means tracks flow through the system. My bass track can end up in dozens of remixes. The `find_most_collaborated` method finds songs that share tracks with the most other songs — the most remixed material in the system:
 
 ```ruby

@@ -80,6 +80,10 @@ def create_remix_by(user)
 end
 ```
 
+Ecco come appare l'albero dei remix nella UI — lo [screenshot originale di Vaclav](https://dribbble.com/shots/192454-Myousica-remix) che mostra come le canzoni si collegano attraverso i remix:
+
+![L'albero dei remix di Myousica — canzoni che si ramificano in remix](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-remix-dribbble.png)
+
 Questo significa che le tracce fluiscono attraverso il sistema. La mia traccia di basso può finire in dozzine di remix. Il metodo `find_most_collaborated` trova le canzoni che condividono tracce con il maggior numero di altre canzoni — il materiale più remixato nel sistema:
 
 ```ruby
