@@ -3,6 +3,8 @@ title: "Myousica, sixteen years later"
 date: 2024-09-11
 tags: ["myousica", "mewsic", "retrospective", "music", "open-source"]
 description: "Sixteen years after launching Myousica, the collaborative music platform that was too early for its own good — a look back at what we built, why it didn't work, and who's doing it now."
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 Sixteen years ago today, we launched [Myousica](/posts/2008-09-11-myousica-com-was-born-today/) — a platform for collaborative music creation in the browser. Record from your microphone, upload tracks, remix other people's music, build songs together with strangers across the internet. In 2008.
