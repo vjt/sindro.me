@@ -13,7 +13,7 @@ Nel 2021 ho passato tre mesi ad automatizzare l'infrastruttura WebSphere dell'[I
 
 L'approccio standard per automatizzare WAS è scrivere script Jython usando `AdminConfig`, `AdminTask` e `AdminApp` — i quattro oggetti globali di scripting che IBM fornisce dentro [wsadmin](https://en.wikipedia.org/wiki/Wsadmin). Ho provato. È durato un giorno prima di iniziare a guardare cosa c'è sotto.
 
-Quello che ho trovato ha cambiato il mio approccio all'intero progetto. Ha anche prodotto una libreria che è rimasta nel mio drive per cinque anni — perché nessuno all'IFAD l'ha usata dopo che me ne sono andato. L'ho resa open source come [ansible-wsadmin](https://github.com/vjt/ansible-wsadmin) un po' di tempo fa, ma solo ora ho finalmente trovato il tempo di descriverla come si deve — con un piccolo aiuto da [Claude](https://claude.ai).
+Quello che ho trovato ha cambiato il mio approccio all'intero progetto. Ha anche prodotto una libreria piena di idee che non ho mai avuto modo di descrivere come si deve — fino ad ora, con un piccolo aiuto da [Claude](https://claude.ai).
 
 <!--more-->
 

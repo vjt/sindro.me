@@ -13,7 +13,7 @@ In 2021, I spent three months automating the [IFAD](https://www.ifad.org/) WebSp
 
 The standard approach to automating WAS is to write Jython scripts using `AdminConfig`, `AdminTask`, and `AdminApp` — the four global scripting objects that IBM provides inside [wsadmin](https://en.wikipedia.org/wiki/Wsadmin). I tried that. It lasted about a day before I started looking at what's underneath.
 
-What I found changed how I approached the entire project. It also produced a library that has been sitting in my drive for five years — because nobody at IFAD used it after I left. I open-sourced it as [ansible-wsadmin](https://github.com/vjt/ansible-wsadmin) a while back, but only now I've finally found the time to describe it properly — with a little help from [Claude](https://claude.ai).
+What I found changed how I approached the entire project. It also produced a library full of ideas I never had a chance to describe properly — until now, with a little help from [Claude](https://claude.ai).
 
 <!--more-->
 
