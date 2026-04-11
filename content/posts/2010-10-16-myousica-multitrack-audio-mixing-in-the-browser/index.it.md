@@ -1,7 +1,7 @@
 ---
 title: "Il multitrack Myousica: mixing audio nel browser"
 date: 2010-10-16
-tags: ["myousica", "mewsic", "music", "flash", "actionscript", "audio", "open-source"]
+tags: ["myousica", "music", "flash", "actionscript", "audio", "open-source"]
 description: "Dentro l'editor audio multitraccia Flash/Flex che alimenta Myousica — riproduzione sincronizzata di 16 tracce, registrazione in tempo reale via RTMP, visualizzazione delle forme d'onda e una macchina a stati per tenere tutto insieme."
 image: cover.jpg
 featuredImage: cover.jpg

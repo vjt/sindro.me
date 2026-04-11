@@ -1,7 +1,7 @@
 ---
 title: "Dal microfono all'MP3: la pipeline audio di Myousica"
 date: 2010-10-18
-tags: ["myousica", "mewsic", "music", "ruby", "rails", "audio", "open-source"]
+tags: ["myousica", "music", "ruby", "rails", "audio", "open-source"]
 description: "Come l'audio fluisce attraverso Myousica — dal microfono dell'utente attraverso RTMP, Red5, ffmpeg, sox e worker BackgrounDRb fino a un MP3 riproducibile con waveform PNG."
 image: cover.jpg
 featuredImage: cover.jpg
