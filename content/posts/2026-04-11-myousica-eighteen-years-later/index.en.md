@@ -1,13 +1,13 @@
 ---
-title: "Myousica, sixteen years later"
-date: 2024-09-11
+title: "Myousica, eighteen years later"
+date: 2026-04-11
 tags: ["myousica", "mewsic", "retrospective", "music", "open-source"]
-description: "Sixteen years after launching Myousica, the collaborative music platform that was too early for its own good — a look back at what we built, why it didn't work, and who's doing it now."
+description: "Eighteen years after we started building Myousica, the collaborative music platform that was too early for its own good — a look back at what we built, why it didn't work, and who's doing it now."
 image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-Sixteen years ago today, we launched [Myousica](/posts/2008-09-11-myousica-com-was-born-today/) — a platform for collaborative music creation in the browser. Record from your microphone, upload tracks, remix other people's music, build songs together with strangers across the internet. In 2008.
+Eighteen years ago, we started building [Myousica](/posts/2008-09-11-myousica-com-was-born-today/) — a platform for collaborative music creation in the browser. Record from your microphone, upload tracks, remix other people's music, build songs together with strangers across the internet. We [launched in September 2008](/posts/2008-09-11-myousica-com-was-born-today/) after nine months of development.
 
 It was a startup. It ran for about five months before being paused, and the source code was eventually [released on GitHub](https://github.com/mewsic) under the name Mewsic. I wrote about the technical details in a three-part series: the [Rails platform](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/), the [Flash multitrack editor](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/), and the [audio pipeline](/posts/2010-10-18-myousica-from-microphone-to-mp3/). Those posts cover the engineering. This one is about the bigger picture.
 
@@ -39,7 +39,7 @@ Open [BandLab](https://www.bandlab.com/) in your browser right now. You'll find 
 
 They all do what Myousica did. Record in the browser. Layer tracks. Collaborate with other musicians. Build songs together. The difference is that they launched when the technology was ready: the Web Audio API for native audio processing, WebRTC for real-time streaming, the MediaRecorder API for microphone access, Web Workers for multithreading, and the kind of bandwidth that doesn't make you choose between streaming audio and loading a webpage.
 
-We built the same thing six years earlier, and we had to build half the browser to do it.
+We built the same thing eight years earlier, and we had to build half the browser to do it.
 
 ## What remains
 

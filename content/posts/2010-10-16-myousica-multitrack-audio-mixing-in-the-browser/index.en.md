@@ -7,8 +7,8 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-{{< retrospective year="2024" >}}
-For the big picture — why Myousica was ahead of its time and who does it today — see the [2024 retrospective](/posts/2024-09-11-myousica-sixteen-years-later/).
+{{< retrospective year="2026" >}}
+For the big picture — why Myousica was ahead of its time and who does it today — see the [2026 retrospective](/posts/2026-04-11-myousica-eighteen-years-later/).
 {{< /retrospective >}}
 
 This is the second post in the [Myousica series](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/). The [first one](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) covered the Rails platform. This one dives into the multitrack editor — the Flash/Flex component where users actually mix music in the browser.

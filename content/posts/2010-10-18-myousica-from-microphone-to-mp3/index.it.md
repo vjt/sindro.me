@@ -7,8 +7,8 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-{{< retrospective year="2024" >}}
-Per il quadro generale — perché Myousica era in anticipo sui tempi e chi lo fa oggi — vedi la [retrospettiva del 2024](/it/posts/2024-09-11-myousica-sixteen-years-later/).
+{{< retrospective year="2026" >}}
+Per il quadro generale — perché Myousica era in anticipo sui tempi e chi lo fa oggi — vedi la [retrospettiva del 2026](/it/posts/2026-04-11-myousica-eighteen-years-later/).
 {{< /retrospective >}}
 
 Questo è il terzo e ultimo post della [serie Myousica](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/). Il [primo](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) copriva la piattaforma Rails, il [secondo](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) l'editor multitraccia Flash. Questo copre come l'audio arriva effettivamente dal microfono dell'utente a un MP3 riproducibile — la pipeline che collega tutti i servizi insieme.

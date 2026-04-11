@@ -74,7 +74,7 @@ Refactored and architected front-end and back-end of [panmind.com](http://panmin
 ## Lime5 — Web Developer & Sysadmin
 *February 2008 – November 2009*
 
-Designed and implemented multiple projects: tourism platform (Visita CSA), social music platform ([Myousica](/posts/2024-09-11-myousica-sixteen-years-later/)) with audio streaming on Engine Yard, enterprise knowledge-sharing system (Agorà).
+Designed and implemented multiple projects: tourism platform (Visita CSA), social music platform ([Myousica](/posts/2026-04-11-myousica-eighteen-years-later/)) with audio streaming on Engine Yard, enterprise knowledge-sharing system (Agorà).
 
 ## Softmedia — Web Developer & Sysadmin
 *December 1999 – December 2007 · 8 years*
