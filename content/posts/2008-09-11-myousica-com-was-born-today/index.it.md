@@ -1,7 +1,7 @@
 ---
 title: "myousica.com è nato oggi"
 date: 2008-09-11
-tags: ["myousica", "mewsic", "music", "ruby", "rails"]
+tags: ["myousica", "mewsic", "music", "ruby", "rails", "open-source"]
 description: "Oggi abbiamo rilasciato il risultato di 9 mesi di duro lavoro: myousica.com, un social network per musicisti."
 ---
 

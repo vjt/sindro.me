@@ -1,7 +1,7 @@
 ---
 title: "Canvas Speedometer: un tachimetro HTML5 in un mondo Flash"
 date: 2009-08-09
-tags: [javascript, html5, open-source]
+tags: [javascript, html, open-source]
 image: cover.jpg
 featuredImage: cover.jpg
 ---

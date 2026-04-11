@@ -2,6 +2,7 @@
 title: The best blog post I've ever written
 date: 2008-07-08T16:00:00Z
 hideVintage: true
+tags: ["funny", "weird", "geek"]
 ---
 
 ```
