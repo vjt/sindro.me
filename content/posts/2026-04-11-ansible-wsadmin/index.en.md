@@ -90,6 +90,8 @@ The dynamic model loading in [`__init__.py`](https://github.com/vjt/ansible-wsad
 
 ## The daemon
 
+![The persistent daemon — boots the JVM once, handles everything after](/posts/2026-04-11-ansible-wsadmin/daemon.jpg)
+
 Every wsadmin script invocation boots a fresh JVM. That's 2-3 seconds of startup before a single line of your script runs. When you're applying 30 configuration changes from Ansible, that's a minute and a half of staring at JVM boot messages.
 
 [`server.py`](https://github.com/vjt/ansible-wsadmin/blob/master/lib/wsadmin/bin/server.py) solves this. It's a `SocketServer.TCPServer` that boots the JVM once, imports the entire activeconfig library, and then listens for script execution requests on a TCP port. The protocol is trivial: send `script_name arg1 arg2\n`, get the output back, connection closes.
