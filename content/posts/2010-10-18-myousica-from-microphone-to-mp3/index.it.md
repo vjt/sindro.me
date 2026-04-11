@@ -3,6 +3,8 @@ title: "Dal microfono all'MP3: la pipeline audio di Myousica"
 date: 2010-10-18
 tags: ["myousica", "mewsic", "ruby", "rails", "audio", "ffmpeg", "open-source"]
 description: "Come l'audio fluisce attraverso Myousica — dal microfono dell'utente attraverso RTMP, Red5, ffmpeg, sox e worker BackgrounDRb fino a un MP3 riproducibile con waveform PNG."
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 Questo è il terzo e ultimo post della [serie Myousica](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/). Il [primo](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) copriva la piattaforma Rails, il [secondo](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) l'editor multitraccia Flash. Questo copre come l'audio arriva effettivamente dal microfono dell'utente a un MP3 riproducibile — la pipeline che collega tutti i servizi insieme.
