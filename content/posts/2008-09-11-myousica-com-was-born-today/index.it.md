@@ -13,4 +13,4 @@ Oggi abbiamo rilasciato il risultato di 9 mesi di duro lavoro: [myousica.com](ht
 
 **UPDATE 2009/02/23**: Il sito è ora in pausa.
 
-**UPDATE 2010/10**: Il codice sorgente è stato [rilasciato su GitHub](/it/posts/2010-10-14-mewsic-collaborative-music-remixing-platform/) con il nome Mewsic.
+**UPDATE 2010/10**: Il codice sorgente è stato [rilasciato su GitHub](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) con il nome Mewsic.
