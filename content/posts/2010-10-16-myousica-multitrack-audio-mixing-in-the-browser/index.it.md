@@ -35,6 +35,8 @@ Tutto questo avviene lato client in Flash Player 9, con il lavoro pesante (encod
 
 ## Le dimensioni
 
+![L'area tracce — icone strumenti, BPM, knob di volume e pan per traccia](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/multitrack-tracks.png)
+
 Tutto è preciso al pixel. L'editor gira in uno stage largo 690px con proporzioni fisse:
 
 ```actionscript
@@ -147,6 +149,8 @@ La registrazione è sincronizzata: durante `WAIT_REC`, il precount riproduce qua
 Il getter `recordLevel` espone l'`activityLevel` del microfono — questo alimenta il VU meter durante la registrazione così l'utente può vedere i livelli di input.
 
 ## Le forme d'onda
+
+![La regione delle waveform — due tracce con il playhead rosso a 0:05](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/multitrack-waveforms.png)
 
 Ogni traccia visualizza il suo audio come immagine della forma d'onda. Sono PNG pre-renderizzati generati lato server dal [servizio uploader](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/) — la larghezza è proporzionale alla durata della traccia (~10px al secondo). Il client Flash li carica via `BulkLoader` e li visualizza in un'area mascherata scrollabile.
 

@@ -166,6 +166,8 @@ Getting the audio encoding pipeline right took some iteration. The uploader's gi
 
 ## Search
 
+![The search and instruments UI — 35 instruments, genre filtering, song ratings](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-search.png)
+
 Myousica uses [Sphinx](http://sphinxsearch.com/) via the [thinking-sphinx](https://github.com/pat/thinking-sphinx) plugin for full-text search. The multitrack editor consumes the search API via XML to let you find tracks to add to your mix — filtered by instrument, genre, BPM, key signature, country, or just free text:
 
 ```ruby
@@ -236,6 +238,8 @@ When encoding finishes, the uploader calls back to update the song or track with
 Getting all four services to talk to each other was not trivial. The git log for the day recording [finally worked end to end](https://github.com/mewsic/mewsic-multitrack/commit/cce23f8) reads: *"Holy cow! Recording actually works!"* — followed the next day by *"Holy crap! Upload works! :D"*. Those two commits represent months of wiring.
 
 ## Social features
+
+![Most active users and the friends leaderboard](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-community.png)
 
 Beyond the core music functionality, Myousica is a full social platform. The codebase has 36 models and 82 migrations — there's a lot in there.
 

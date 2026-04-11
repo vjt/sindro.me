@@ -35,6 +35,8 @@ All of this happens client-side in Flash Player 9, with the heavy lifting (encod
 
 ## The dimensions
 
+![The track area — instrument icons, BPM, per-track volume and pan knobs](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/multitrack-tracks.png)
+
 Everything is pixel-precise. The editor runs in a 690px wide stage with fixed proportions:
 
 ```actionscript
@@ -147,6 +149,8 @@ The recording is synchronized: during `WAIT_REC`, the precount plays four ticks 
 The `recordLevel` getter exposes the microphone's `activityLevel` — this feeds the VU meter during recording so the user can see their input levels.
 
 ## Waveforms
+
+![The waveform region — two tracks with the red playhead at 0:05](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/multitrack-waveforms.png)
 
 Each track displays its audio as a waveform image. These are pre-rendered PNGs generated server-side by the [uploader service](/posts/2010-10-18-myousica-from-microphone-to-mp3/) — the width is proportional to the track duration (~10px per second). The Flash client loads them via `BulkLoader` and displays them in a scrollable masked area.
 

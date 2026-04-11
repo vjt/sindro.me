@@ -166,6 +166,8 @@ Far funzionare la pipeline di encoding audio ha richiesto un po' di iterazione. 
 
 ## La ricerca
 
+![La UI di ricerca e strumenti — 35 strumenti, filtro per genere, valutazioni](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-search.png)
+
 Myousica usa [Sphinx](http://sphinxsearch.com/) tramite il plugin [thinking-sphinx](https://github.com/pat/thinking-sphinx) per la ricerca full-text. L'editor multitraccia consuma l'API di ricerca via XML per permetterti di trovare tracce da aggiungere al tuo mix — filtrate per strumento, genere, BPM, tonalità, paese o semplicemente testo libero:
 
 ```ruby
@@ -236,6 +238,8 @@ Quando l'encoding finisce, l'uploader chiama la callback per aggiornare la canzo
 Far parlare tutti e quattro i servizi tra loro non è stato banale. Il git log del giorno in cui la registrazione [ha finalmente funzionato end to end](https://github.com/mewsic/mewsic-multitrack/commit/cce23f8) recita: *"Holy cow! Recording actually works!"* — seguito il giorno dopo da *"Holy crap! Upload works! :D"*. Quei due commit rappresentano mesi di lavoro.
 
 ## Funzionalità social
+
+![Gli utenti più attivi e la classifica amicizie](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-community.png)
 
 Oltre alla funzionalità musicale di base, Myousica è una piattaforma social completa. Il codebase ha 36 modelli e 82 migration — c'è parecchia roba.
 
