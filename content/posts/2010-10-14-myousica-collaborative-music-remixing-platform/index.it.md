@@ -11,7 +11,7 @@ featuredImage: cover.jpg
 
 Oggi rilasciamo il codice sorgente di Myousica — la piattaforma collaborativa per il remixaggio musicale che stiamo costruendo dalla fine del 2007. Abbiamo [lanciato a settembre 2008](/it/posts/2008-09-11-myousica-com-was-born-today/) dopo 9 mesi di sviluppo, l'abbiamo tenuta in piedi per circa 5 mesi, e abbiamo messo il sito in pausa a febbraio 2009. Il progetto è stato ribattezzato [Mewsic](https://github.com/mewsic) lungo il percorso, ma l'idea è la stessa. Piuttosto che lasciare il codice a marcire su un server privato, lo mettiamo tutto su GitHub. Cronologia completa, difetti inclusi.
 
-Questo è il primo di tre post che esplorano il codice. Questo copre l'applicazione Rails principale — la piattaforma vera e propria. I prossimi due copriranno l'[editor multitraccia Flash](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) e la [pipeline di elaborazione audio](/it/posts/2010-10-18-mewsic-from-microphone-to-mp3/).
+Questo è il primo di tre post che esplorano il codice. Questo copre l'applicazione Rails principale — la piattaforma vera e propria. I prossimi due copriranno l'[editor multitraccia Flash](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) e la [pipeline di elaborazione audio](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/).
 
 ## L'idea
 

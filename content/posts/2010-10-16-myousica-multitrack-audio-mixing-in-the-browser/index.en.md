@@ -140,7 +140,7 @@ The `recordLevel` getter exposes the microphone's `activityLevel` — this feeds
 
 ## Waveforms
 
-Each track displays its audio as a waveform image. These are pre-rendered PNGs generated server-side by the [uploader service](/posts/2010-10-18-mewsic-from-microphone-to-mp3/) — the width is proportional to the track duration (~10px per second). The Flash client loads them via `BulkLoader` and displays them in a scrollable masked area.
+Each track displays its audio as a waveform image. These are pre-rendered PNGs generated server-side by the [uploader service](/posts/2010-10-18-myousica-from-microphone-to-mp3/) — the width is proportional to the track duration (~10px per second). The Flash client loads them via `BulkLoader` and displays them in a scrollable masked area.
 
 The waveform component handles:
 - Loading the PNG bitmap from the server
@@ -179,7 +179,7 @@ The multitrack communicates with the backend through a set of service classes th
 - **StreamService** — manages the RTMP connection to Red5 for recording
 - **TrackFetchService** / **SongFetchService** — loads track and song metadata from the Rails API
 - **TrackCreateService** — creates new tracks on the server (needed before uploading)
-- **TrackEncodeService** — triggers encoding on the [uploader service](/posts/2010-10-18-mewsic-from-microphone-to-mp3/) and polls for completion
+- **TrackEncodeService** — triggers encoding on the [uploader service](/posts/2010-10-18-myousica-from-microphone-to-mp3/) and polls for completion
 
 The encode polling is worth noting: after uploading a recorded track, the client polls `/upload/status/{worker_key}` every 3 seconds (configurable via `Settings.WORKER_INTERVAL`) until the server reports the encoding is done. Only then does the waveform load and the track become playable.
 
@@ -207,6 +207,6 @@ Zero reverts across the entire repo. Vaclav's architecture was solid enough that
 
 ## What's next
 
-The [third and final post](/posts/2010-10-18-mewsic-from-microphone-to-mp3/) covers the audio processing pipeline — how audio gets from the user's microphone to a playable MP3 with a waveform, through Red5, ffmpeg, and sox.
+The [third and final post](/posts/2010-10-18-myousica-from-microphone-to-mp3/) covers the audio processing pipeline — how audio gets from the user's microphone to a playable MP3 with a waveform, through Red5, ffmpeg, and sox.
 
 **Repository:** [mewsic/mewsic-multitrack](https://github.com/mewsic/mewsic-multitrack)

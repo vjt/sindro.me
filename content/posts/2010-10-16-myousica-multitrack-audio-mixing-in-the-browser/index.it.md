@@ -140,7 +140,7 @@ Il getter `recordLevel` espone l'`activityLevel` del microfono — questo alimen
 
 ## Le forme d'onda
 
-Ogni traccia visualizza il suo audio come immagine della forma d'onda. Sono PNG pre-renderizzati generati lato server dal [servizio uploader](/it/posts/2010-10-18-mewsic-from-microphone-to-mp3/) — la larghezza è proporzionale alla durata della traccia (~10px al secondo). Il client Flash li carica via `BulkLoader` e li visualizza in un'area mascherata scrollabile.
+Ogni traccia visualizza il suo audio come immagine della forma d'onda. Sono PNG pre-renderizzati generati lato server dal [servizio uploader](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/) — la larghezza è proporzionale alla durata della traccia (~10px al secondo). Il client Flash li carica via `BulkLoader` e li visualizza in un'area mascherata scrollabile.
 
 Il componente waveform gestisce:
 - Caricamento del bitmap PNG dal server
@@ -179,7 +179,7 @@ Il multitraccia comunica con il backend attraverso un set di classi service che 
 - **StreamService** — gestisce la connessione RTMP a Red5 per la registrazione
 - **TrackFetchService** / **SongFetchService** — carica i metadati di tracce e canzoni dalla API Rails
 - **TrackCreateService** — crea nuove tracce sul server (necessario prima dell'upload)
-- **TrackEncodeService** — attiva l'encoding sul [servizio uploader](/it/posts/2010-10-18-mewsic-from-microphone-to-mp3/) e fa polling per il completamento
+- **TrackEncodeService** — attiva l'encoding sul [servizio uploader](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/) e fa polling per il completamento
 
 Il polling dell'encoding merita una nota: dopo aver caricato una traccia registrata, il client fa polling su `/upload/status/{worker_key}` ogni 3 secondi (configurabile via `Settings.WORKER_INTERVAL`) finché il server non riporta che l'encoding è completo. Solo allora la waveform si carica e la traccia diventa riproducibile.
 
@@ -207,6 +207,6 @@ Zero revert in tutto il repo. L'architettura di Vaclav era abbastanza solida da 
 
 ## Cosa viene dopo
 
-Il [terzo e ultimo post](/it/posts/2010-10-18-mewsic-from-microphone-to-mp3/) copre la pipeline di elaborazione audio — come l'audio arriva dal microfono dell'utente a un MP3 riproducibile con forma d'onda, passando attraverso Red5, ffmpeg e sox.
+Il [terzo e ultimo post](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/) copre la pipeline di elaborazione audio — come l'audio arriva dal microfono dell'utente a un MP3 riproducibile con forma d'onda, passando attraverso Red5, ffmpeg e sox.
 
 **Repository:** [mewsic/mewsic-multitrack](https://github.com/mewsic/mewsic-multitrack)
