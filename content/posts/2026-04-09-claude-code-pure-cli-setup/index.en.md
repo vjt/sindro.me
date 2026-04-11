@@ -24,7 +24,7 @@ ssh nowhere
 tmux -u at
 ```
 
-That's it. Two commands and I'm back exactly where I left off. The `-u` flag enables Unicode support (emoji in status lines, box-drawing characters), and `at` is short for `attach -t 0`. The session persists across disconnects, reboots of my client devices, network switches — everything. I can start a task on my laptop, pick it up on my phone while walking the dog, and finish it on the tablet from the couch.
+That's it. Two commands and I'm back exactly where I left off. The `-u` flag enables Unicode support (emoji in status lines, box-drawing characters), and `at` is short for `attach -t 0`. The session persists across disconnects, reboots of my client devices, network switches — everything. I can start a task on my laptop, pick it up on my phone while out for a walk, and finish it on the tablet from the couch.
 
 Total session roaming across devices. Zero state lost. Ever.
 
