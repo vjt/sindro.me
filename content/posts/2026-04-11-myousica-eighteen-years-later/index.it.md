@@ -7,6 +7,8 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+Oggi è il mio compleanno, e ho deciso di aprire una capsula del tempo.
+
 Diciotto anni fa, abbiamo iniziato a costruire [Myousica](/it/posts/2008-09-11-myousica-com-was-born-today/) — una piattaforma per creare musica collaborativamente nel browser. Registra dal microfono, carica tracce, remixa la musica degli altri, costruisci canzoni insieme a sconosciuti dall'altra parte del mondo. Abbiamo [lanciato a settembre 2008](/it/posts/2008-09-11-myousica-com-was-born-today/) dopo nove mesi di sviluppo.
 
 Era una startup. Ha funzionato per circa cinque mesi prima di essere messa in pausa, e il codice sorgente è stato poi [rilasciato su GitHub](https://github.com/mewsic) con il nome Mewsic. Ho scritto dei dettagli tecnici in una serie di tre post: la [piattaforma Rails](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/), l'[editor multitraccia Flash](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) e la [pipeline audio](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/). Quei post coprono l'ingegneria. Questo è sul quadro più ampio.
