@@ -11,8 +11,6 @@ featuredImage: cover.jpg
 The top competitor we identified in our application --- [Aardvark](https://en.wikipedia.org/wiki/Aardvark_(search_engine)) --- was acquired by Google for $50 million in February 2010, then shut down a year later. [Quora](https://www.quora.com/) launched two months after our rejection and grew to 300 million monthly users. Most of the other competitors we listed --- Yahoo Answers, Google Knol, Mosio --- are dead. And the problem we were trying to solve --- "ask a question, get a satisfying answer from someone who actually knows" --- is now handled by large language models. We wanted humans to be the neurons of a collective mind. Turns out, the neurons would be artificial.
 {{< /retrospective >}}
 
-![A glowing neural network in the shape of a brain with a question mark at its center, three silhouettes at laptops below](/posts/2009-04-07-bioniqa-applying-to-y-combinator/cover.jpg)
-
 Back in 2007, [Antonio Orlando](http://digilander.libero.it/odnalro) came to me with an idea for a semantic question-and-answer platform. We called it **Bioniqa** --- bionic Q&A. Not a search engine --- search engines crawl existing pages and rank them. This would be a system where people generate the content themselves. You ask a question, the system routes it to the right person, and over time it learns who knows what, where, and in which language.
 
 We called users "Neurons" and the collective knowledge "the Mind." Each user is specialized --- a Neuron in a particular domain, language, and geography. When connected, information flows between them and the system adapts. The software would borrow concepts from nature: diversity, adaptation, neuroplasticity. Geography and language would be first-class attributes, not afterthoughts.
