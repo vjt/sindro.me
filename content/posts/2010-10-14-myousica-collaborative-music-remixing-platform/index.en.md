@@ -11,7 +11,7 @@ featuredImage: cover.jpg
 
 Today we're releasing the source code of Myousica — the collaborative music remixing platform we've been building since late 2007. We [launched in September 2008](/posts/2008-09-11-myousica-com-was-born-today/) after 9 months of development, ran it for about 5 months, and paused the site in February 2009. The project has been rebranded to [Mewsic](https://github.com/mewsic) along the way, but the idea is the same. Rather than letting the code rot on a private server, we're putting it all on GitHub. Full history preserved, warts and all.
 
-This is the first of three posts walking through the codebase. This one covers the main Rails application — the platform itself. The next two will cover the [Flash multitrack editor](/posts/2010-10-16-mewsic-multitrack-audio-mixing-in-the-browser/) and the [audio processing pipeline](/posts/2010-10-18-mewsic-from-microphone-to-mp3/).
+This is the first of three posts walking through the codebase. This one covers the main Rails application — the platform itself. The next two will cover the [Flash multitrack editor](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) and the [audio processing pipeline](/posts/2010-10-18-mewsic-from-microphone-to-mp3/).
 
 ## The idea
 
@@ -288,7 +288,7 @@ The multitrack editor has zero reverts across 129 commits — Vaclav's architect
 
 The code is out there. The README has setup instructions if you want to run it — you'll need Ruby 1.8, Rails 2.2.2, MySQL, Sphinx, ffmpeg, sox, and a Red5 instance. Or you can just read the source.
 
-Next up: the [multitrack editor](/posts/2010-10-16-mewsic-multitrack-audio-mixing-in-the-browser/) — how Vaclav Vancura built a 16-track audio mixer in Flash, and how we wired it to the backend. That's where the real engineering magic lives.
+Next up: the [multitrack editor](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) — how Vaclav Vancura built a 16-track audio mixer in Flash, and how we wired it to the backend. That's where the real engineering magic lives.
 
 **Repositories:**
 - [mewsic/mewsic](https://github.com/mewsic/mewsic) — main Rails application

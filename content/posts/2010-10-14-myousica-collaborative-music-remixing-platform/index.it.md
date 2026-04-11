@@ -11,7 +11,7 @@ featuredImage: cover.jpg
 
 Oggi rilasciamo il codice sorgente di Myousica — la piattaforma collaborativa per il remixaggio musicale che stiamo costruendo dalla fine del 2007. Abbiamo [lanciato a settembre 2008](/it/posts/2008-09-11-myousica-com-was-born-today/) dopo 9 mesi di sviluppo, l'abbiamo tenuta in piedi per circa 5 mesi, e abbiamo messo il sito in pausa a febbraio 2009. Il progetto è stato ribattezzato [Mewsic](https://github.com/mewsic) lungo il percorso, ma l'idea è la stessa. Piuttosto che lasciare il codice a marcire su un server privato, lo mettiamo tutto su GitHub. Cronologia completa, difetti inclusi.
 
-Questo è il primo di tre post che esplorano il codice. Questo copre l'applicazione Rails principale — la piattaforma vera e propria. I prossimi due copriranno l'[editor multitraccia Flash](/it/posts/2010-10-16-mewsic-multitrack-audio-mixing-in-the-browser/) e la [pipeline di elaborazione audio](/it/posts/2010-10-18-mewsic-from-microphone-to-mp3/).
+Questo è il primo di tre post che esplorano il codice. Questo copre l'applicazione Rails principale — la piattaforma vera e propria. I prossimi due copriranno l'[editor multitraccia Flash](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) e la [pipeline di elaborazione audio](/it/posts/2010-10-18-mewsic-from-microphone-to-mp3/).
 
 ## L'idea
 
@@ -288,7 +288,7 @@ L'editor multitraccia ha zero revert su 129 commit — l'architettura di Vaclav 
 
 Il codice è là fuori. Il README ha le istruzioni per farlo girare — servono Ruby 1.8, Rails 2.2.2, MySQL, Sphinx, ffmpeg, sox e un'istanza Red5. Oppure si può semplicemente leggere il sorgente.
 
-Prossimamente: l'[editor multitraccia](/it/posts/2010-10-16-mewsic-multitrack-audio-mixing-in-the-browser/) — come Vaclav Vancura ha costruito un mixer audio a 16 tracce in Flash, e come lo abbiamo collegato al backend. È lì che vive la vera magia ingegneristica.
+Prossimamente: l'[editor multitraccia](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) — come Vaclav Vancura ha costruito un mixer audio a 16 tracce in Flash, e come lo abbiamo collegato al backend. È lì che vive la vera magia ingegneristica.
 
 **Repository:**
 - [mewsic/mewsic](https://github.com/mewsic/mewsic) — applicazione Rails principale

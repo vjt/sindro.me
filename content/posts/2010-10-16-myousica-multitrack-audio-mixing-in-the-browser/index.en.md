@@ -1,8 +1,10 @@
 ---
-title: "The Mewsic multitrack: audio mixing in the browser"
+title: "The Myousica multitrack: audio mixing in the browser"
 date: 2010-10-16
 tags: ["myousica", "mewsic", "flash", "actionscript", "audio", "open-source"]
 description: "Inside the Flash/Flex multitrack audio editor that powers Myousica — 16-track synchronized playback, real-time recording via RTMP, waveform visualization, and a state machine to keep it all together."
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 This is the second post in the [Myousica series](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/). The [first one](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) covered the Rails platform. This one dives into the multitrack editor — the Flash/Flex component where users actually mix music in the browser.
