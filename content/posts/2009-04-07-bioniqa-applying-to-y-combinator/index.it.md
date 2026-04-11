@@ -1,8 +1,8 @@
 ---
-title: "Bioniqa: ci siamo applicati al round Y Combinator"
+title: "Bioniqa: abbiamo applicato al round Y Combinator"
 date: 2009-04-07
 tags: [startup, y-combinator]
-description: "A inizio 2009, tre sviluppatori italiani si sono applicati al round Y Combinator con Bioniqa, una piattaforma di Q&A semantico. Non ci hanno preso."
+description: "A inizio 2009, tre sviluppatori italiani hanno applicato al round Y Combinator con Bioniqa, una piattaforma di Q&A semantico. Non ci hanno preso."
 image: cover.jpg
 featuredImage: cover.jpg
 ---
