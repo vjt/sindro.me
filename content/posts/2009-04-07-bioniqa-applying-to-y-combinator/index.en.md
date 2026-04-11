@@ -1,28 +1,32 @@
 ---
-title: "We Applied to Y Combinator"
+title: "Bioniqa: We Applied to Y Combinator"
 date: 2009-04-07
 tags: [startup, y-combinator]
-description: "In early 2009, three Italian developers applied to Y Combinator with a semantic Q&A platform. We didn't get in."
+description: "In early 2009, three Italian developers applied to Y Combinator with a semantic Q&A platform called Bioniqa. We didn't get in."
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 {{< retrospective year="2026" >}}
 The top competitor we identified in our application --- [Aardvark](https://en.wikipedia.org/wiki/Aardvark_(search_engine)) --- was acquired by Google for $50 million in February 2010, then shut down a year later. [Quora](https://www.quora.com/) launched two months after our rejection and grew to 300 million monthly users. Most of the other competitors we listed --- Yahoo Answers, Google Knol, Mosio --- are dead. And the problem we were trying to solve --- "ask a question, get a satisfying answer from someone who actually knows" --- is now handled by large language models. We wanted humans to be the neurons of a collective mind. Turns out, the neurons would be artificial.
 {{< /retrospective >}}
 
-Back in 2007, [Antonio Orlando](http://digilander.libero.it/odnalro) came to me with an idea for a semantic question-and-answer platform. Not a search engine --- search engines crawl existing pages and rank them. This would be a system where people generate the content themselves. You ask a question, the system routes it to the right person, and over time it learns who knows what, where, and in which language.
+![A glowing neural network in the shape of a brain with a question mark at its center, three silhouettes at laptops below](/posts/2009-04-07-bioniqa-applying-to-y-combinator/cover.jpg)
+
+Back in 2007, [Antonio Orlando](http://digilander.libero.it/odnalro) came to me with an idea for a semantic question-and-answer platform. We called it **Bioniqa** --- bionic Q&A. Not a search engine --- search engines crawl existing pages and rank them. This would be a system where people generate the content themselves. You ask a question, the system routes it to the right person, and over time it learns who knows what, where, and in which language.
 
 We called users "Neurons" and the collective knowledge "the Mind." Each user is specialized --- a Neuron in a particular domain, language, and geography. When connected, information flows between them and the system adapts. The software would borrow concepts from nature: diversity, adaptation, neuroplasticity. Geography and language would be first-class attributes, not afterthoughts.
 
 The core insight was that search engines are terrible at contextual, hyperlocal questions. "What's the mineral water with the lowest residue currently on sale in Bari?" No amount of PageRank helps with that. You need an actual person who lives in Bari and buys mineral water. Our system would find that person for you.
 
-The idea floated for a couple of years. Then in early 2009 I pulled in [Michele Frettoli](mailto:vosinh@gmail.com) from Milan, and the three of us decided to take a shot: we applied to [Y Combinator](https://www.ycombinator.com/) for the Summer 2009 batch.
+The idea floated for a couple of years. Then in early 2009 I pulled in [Michele Frettoli](https://www.linkedin.com/in/9a56814/) from Milan, and the three of us decided to take a shot: we applied to [Y Combinator](https://www.ycombinator.com/) for the Summer 2009 batch.
 
 We put together a specification document, filled out the application, and identified our competitors --- [Aardvark](http://vark.com/) at the top (closest to our vision, but taking "bad" directions in our view), plus Yedda, Mosio, [Yahoo Answers](http://answers.yahoo.com/), [MetaFilter](http://ask.metafilter.com/), TxtEagle, Google's [Knol](http://knol.google.com/), and [Wolfram|Alpha](https://www.wolframalpha.com/) as a potential complement rather than competitor.
 
 Part of the application was a video --- YC wants to see the founders. Here's mine, all 24 seconds of it:
 
 <video controls preload="metadata" width="100%">
-  <source src="/posts/2009-04-07-applying-to-y-combinator/yc-application.mp4" type="video/mp4">
+  <source src="/posts/2009-04-07-bioniqa-applying-to-y-combinator/yc-application.mp4" type="video/mp4">
 </video>
 
 Today, [pg announced](https://news.ycombinator.com/item?id=550389) that all applicants have been emailed. Ours was a rejection:
