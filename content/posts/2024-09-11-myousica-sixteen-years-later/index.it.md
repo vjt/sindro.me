@@ -43,7 +43,7 @@ Noi abbiamo costruito la stessa cosa sei anni prima, e abbiamo dovuto costruirci
 
 ## Cosa resta
 
-Il codice è su [GitHub](https://github.com/mewsic). Cinque repository, dall'[app Rails](https://github.com/mewsic/mewsic) al [multitraccia ActionScript](https://github.com/mewsic/mewsic-multitrack) alla [configurazione Red5](https://github.com/mewsic/mewsic-red5). Non come prodotto — come capsula del tempo. Un documento di cosa serviva per fare audio collaborativo nel browser nel 2008, prima che esistesse qualsiasi API per renderlo ragionevole.
+Il codice è su [GitHub](https://github.com/mewsic). Cinque repository, dall'[app Rails](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) al [multitraccia ActionScript](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) alla [pipeline audio](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/). Non come prodotto — come capsula del tempo. Un documento di cosa serviva per fare audio collaborativo nel browser nel 2008, prima che esistesse qualsiasi API per renderlo ragionevole.
 
 Sono orgoglioso di quello che abbiamo costruito. [Vaclav Vancura](https://vancura.design/) ha progettato un [multitraccia straordinario](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) in ActionScript — 7.000 righe di codice impeccabile che non ho mai dovuto debuggare una volta. [Andrea Franz](https://github.com/pilu) ha costruito le fondamenta dell'uploader. E noi cinque, in ~2.000 commit, abbiamo consegnato una piattaforma musicale collaborativa che funzionava davvero. Potevi aprire un browser, registrare una traccia, e suonare con qualcuno dall'altra parte del pianeta. Nel 2008.
 
