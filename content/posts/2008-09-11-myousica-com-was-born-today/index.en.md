@@ -13,7 +13,9 @@ Eighteen years later, I wrote a [retrospective](/posts/2026-04-11-myousica-eight
 
 Today we released the output of 9 months of hard work: [myousica.com](http://myousica.com/), a social networking site for musicians. Have a look at the promo video and check out the [site](http://myousica.com/). Have fun! :)
 
-{{< youtube hIsyCEqafUQ >}}
+<video controls preload="metadata" width="100%">
+  <source src="/posts/2008-09-11-myousica-com-was-born-today/myousica-promo.mp4" type="video/mp4">
+</video>
 
 **UPDATE 2009/02/23**: The site is now paused.
 

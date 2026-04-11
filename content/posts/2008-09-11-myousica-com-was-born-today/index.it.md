@@ -13,7 +13,9 @@ Diciotto anni dopo, ho scritto una [retrospettiva](/it/posts/2026-04-11-myousica
 
 Oggi abbiamo rilasciato il risultato di 9 mesi di duro lavoro: [myousica.com](http://myousica.com/), un social network per musicisti. Date un'occhiata al video promozionale e provate il [sito](http://myousica.com/). Divertitevi! :)
 
-{{< youtube hIsyCEqafUQ >}}
+<video controls preload="metadata" width="100%">
+  <source src="/posts/2008-09-11-myousica-com-was-born-today/myousica-promo.mp4" type="video/mp4">
+</video>
 
 **UPDATE 2009/02/23**: Il sito è ora in pausa.
 

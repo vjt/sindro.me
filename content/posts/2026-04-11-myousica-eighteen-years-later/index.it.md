@@ -47,7 +47,11 @@ Noi abbiamo costruito la stessa cosa otto anni prima, e abbiamo dovuto costruirc
 
 Il codice è su [GitHub](https://github.com/mewsic). Cinque repository, dall'[app Rails](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) al [multitraccia ActionScript](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) alla [pipeline audio](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/). Non come prodotto — come capsula del tempo. Un documento di cosa serviva per fare audio collaborativo nel browser nel 2008, prima che esistesse qualsiasi API per renderlo ragionevole.
 
+![Pisolino da hackathon — lo stato naturale di uno sviluppatore durante il crunch](/posts/2026-04-11-myousica-eighteen-years-later/hackathon-nap.jpg)
+
 Sono orgoglioso di quello che abbiamo costruito. [Vaclav Vancura](https://vancura.design/) ha progettato un [multitraccia straordinario](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) in ActionScript — 7.000 righe di codice splendidamente architettato. [Andrea Franz](https://github.com/pilu) e [Giovanni Intini](https://github.com/intinig) hanno costruito le fondamenta sia dell'app principale che dell'uploader. [Fabio Grande](https://www.fabiogrande.com/) ha disegnato l'identità visiva — la UI, il logo, tutto il look and feel. E noi cinque, in ~2.000 commit, abbiamo consegnato una piattaforma musicale collaborativa che funzionava davvero. Potevi aprire un browser, registrare una traccia, e suonare con qualcuno dall'altra parte del pianeta. Nel 2008.
+
+![La chitarra rosa di Fabio con il logo Myousica — durante le sessioni di registrazione dei contenuti audio per il sito](/posts/2026-04-11-myousica-eighteen-years-later/myousica-guitar.jpg)
 
 Myousica è stato un successo commerciale? No. L'idea era giusta? Sessanta milioni di utenti BandLab dicono di sì.
 
