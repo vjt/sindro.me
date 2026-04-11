@@ -7,6 +7,10 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+{{< retrospective year="2024" >}}
+Per il quadro generale — perché Myousica era in anticipo sui tempi e chi lo fa oggi — vedi la [retrospettiva del 2024](/it/posts/2024-09-11-myousica-sixteen-years-later/).
+{{< /retrospective >}}
+
 Questo è il secondo post della [serie Myousica](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/). Il [primo](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) copriva la piattaforma Rails. Questo si immerge nell'editor multitraccia — il componente Flash/Flex dove gli utenti mixano effettivamente la musica nel browser.
 
 Il multitraccia è stato inizialmente sviluppato da [Vaclav Vancura](https://vancura.design/), che ha costruito l'architettura originale, la libreria di componenti UI e il motore di riproduzione audio. Poi ho preso in mano io e l'ho ricablato pesantemente — integrando la registrazione, l'upload, i servizi backend e la macchina a stati che tiene tutto insieme. 81 file ActionScript, ~7.300 righe di codice, [129 commit](https://github.com/mewsic/mewsic-multitrack).

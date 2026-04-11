@@ -7,6 +7,10 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+{{< retrospective year="2024" >}}
+Per il quadro generale — perché Myousica era in anticipo sui tempi e chi lo fa oggi — vedi la [retrospettiva del 2024](/it/posts/2024-09-11-myousica-sixteen-years-later/).
+{{< /retrospective >}}
+
 ![Mewsic](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/logo.jpg)
 
 Oggi rilasciamo il codice sorgente di Myousica — la piattaforma collaborativa per il remixaggio musicale che stiamo costruendo dalla fine del 2007. Abbiamo [lanciato a settembre 2008](/it/posts/2008-09-11-myousica-com-was-born-today/) dopo 9 mesi di sviluppo, l'abbiamo tenuta in piedi per circa 5 mesi, e abbiamo messo il sito in pausa a febbraio 2009. Il progetto è stato ribattezzato [Mewsic](https://github.com/mewsic) lungo il percorso, ma l'idea è la stessa. Piuttosto che lasciare il codice a marcire su un server privato, lo mettiamo tutto su GitHub. Cronologia completa, difetti inclusi.

@@ -7,6 +7,10 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+{{< retrospective year="2024" >}}
+For the big picture — why Myousica was ahead of its time and who does it today — see the [2024 retrospective](/posts/2024-09-11-myousica-sixteen-years-later/).
+{{< /retrospective >}}
+
 This is the second post in the [Myousica series](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/). The [first one](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) covered the Rails platform. This one dives into the multitrack editor — the Flash/Flex component where users actually mix music in the browser.
 
 The multitrack was initially developed by [Vaclav Vancura](https://vancura.design/), who built the original architecture, the UI component library, and the audio playback engine. I then took over and rewired it heavily — integrating recording, upload, the backend services, and the state machine that holds it all together. 81 ActionScript files, ~7,300 lines of code, [129 commits](https://github.com/mewsic/mewsic-multitrack).

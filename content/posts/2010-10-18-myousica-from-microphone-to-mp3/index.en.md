@@ -7,6 +7,10 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+{{< retrospective year="2024" >}}
+For the big picture — why Myousica was ahead of its time and who does it today — see the [2024 retrospective](/posts/2024-09-11-myousica-sixteen-years-later/).
+{{< /retrospective >}}
+
 This is the third and final post in the [Myousica series](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/). The [first](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) covered the Rails platform, the [second](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) the Flash multitrack editor. This one covers how audio actually gets from the user's microphone to a playable MP3 — the pipeline that connects all the services together.
 
 The uploader is a separate Rails 2.2 application — headless, no database, no ActiveRecord. Just controllers, background workers, and audio processing tools. [Andrea Franz](https://github.com/pilu) built the initial version in April 2008, I took over from May 2008 onwards. [120 commits](https://github.com/mewsic/mewsic-uploader), originally called `multitrack_server` before being renamed to `mewsic-uploader` in [March 2009](https://github.com/mewsic/mewsic-uploader/commits/master/?since=2009-03-06&until=2009-03-07).
