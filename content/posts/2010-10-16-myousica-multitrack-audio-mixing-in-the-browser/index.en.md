@@ -9,7 +9,7 @@ featuredImage: cover.jpg
 
 This is the second post in the [Myousica series](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/). The [first one](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) covered the Rails platform. This one dives into the multitrack editor — the Flash/Flex component where users actually mix music in the browser.
 
-The multitrack was initially developed by [Vaclav Vancura](http://vaclav.vancura.org), who built the original architecture, the UI component library, and the audio playback engine. I then took over and rewired it heavily — integrating recording, upload, the backend services, and the state machine that holds it all together. 81 ActionScript files, ~7,300 lines of code, [129 commits](https://github.com/mewsic/mewsic-multitrack).
+The multitrack was initially developed by [Vaclav Vancura](https://vancura.design/), who built the original architecture, the UI component library, and the audio playback engine. I then took over and rewired it heavily — integrating recording, upload, the backend services, and the state machine that holds it all together. 81 ActionScript files, ~7,300 lines of code, [129 commits](https://github.com/mewsic/mewsic-multitrack).
 
 ## What it does
 
@@ -154,17 +154,17 @@ The playhead is a separate sprite that sits on top of all tracks and moves at a 
 
 Vaclav designed a clean component hierarchy:
 
-```
-PanelCommon (base class)
-└── Editor
-    ├── StandardContainer (holds playback tracks)
-    │   └── StandardTrack → Sampler + Waveform + controls
-    ├── RecordContainer (holds recording track)
-    │   └── RecordTrack → StreamService + Waveform + controls
-    ├── AddtrackContainer (search + upload UI)
-    ├── Playhead
-    ├── Toolbar (play/pause/record/search/upload buttons)
-    └── VUMeter
+```mermaid
+graph TD
+    PC[PanelCommon] --> E[Editor]
+    E --> SC["StandardContainer<br/><small>playback tracks</small>"]
+    E --> RC["RecordContainer<br/><small>recording track</small>"]
+    E --> AC["AddtrackContainer<br/><small>search + upload UI</small>"]
+    E --> PH[Playhead]
+    E --> TB["Toolbar<br/><small>play / pause / record / search / upload</small>"]
+    E --> VU[VUMeter]
+    SC --> ST["StandardTrack<br/><small>Sampler + Waveform + controls</small>"]
+    RC --> RT["RecordTrack<br/><small>StreamService + Waveform + controls</small>"]
 ```
 
 Each track type extends `TrackCommon`, which provides the shared UI: instrument thumbnail, volume knob, kill button, waveform display. `StandardTrack` adds the `Sampler` for audio playback. `RecordTrack` adds the `StreamService` for RTMP recording.
