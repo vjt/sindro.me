@@ -19,6 +19,8 @@ Creazione musicale collaborativa, interamente nel browser. Nessun software da in
 
 La piattaforma supporta 35 strumenti divisi in categorie — dalla chitarra elettrica e il basso alla voce, batteria, tastiere, archi, ottoni e strumenti più esotici. Ogni traccia è taggata con il suo strumento, così puoi cercare "una linea di basso in Mi minore a 120 BPM" e trovare qualcosa da remixare. L'idea è che la piattaforma costruisca una libreria di parti musicali riutilizzabili che chiunque può ricombinare.
 
+Tre anni di sviluppo, ~1.700 commit solo sull'app principale. Il giorno più intenso ha visto [43 commit](https://github.com/mewsic/mewsic/commits/master/?since=2008-05-16&until=2008-05-17) in un solo giorno. Il file `style.css` è stato toccato 254 volte. È stata dura.
+
 ## L'architettura
 
 Myousica non è un'applicazione singola — sono quattro servizi che lavorano insieme:
@@ -150,6 +152,8 @@ end
 
 La convenzione è semplice: per ogni `track_42.mp3` c'è un `track_42.png` con l'immagine della forma d'onda. La waveform viene generata lato server dal servizio uploader usando [wav2png](http://github.com/beschulz/wav2png) e caricata dall'editor multitraccia Flash per mostrare una rappresentazione visiva dell'audio. La larghezza è proporzionale alla durata della traccia — circa 10 pixel al secondo — quindi una traccia di 3 minuti produce una waveform larga ~1800px.
 
+Far funzionare la pipeline di encoding audio ha richiesto un po' di iterazione. La cronologia git dell'uploader di maggio 2008 ha una catena di commit che recitano "whoops.", "whoops. [2]", "whoops²" — il tipo di debugging compulsivo che fai quando ffmpeg e sox non si comportano come ti aspetti.
+
 ## La ricerca
 
 Myousica usa [Sphinx](http://sphinxsearch.com/) tramite il plugin [thinking-sphinx](https://github.com/pat/thinking-sphinx) per la ricerca full-text. L'editor multitraccia consuma l'API di ricerca via XML per permetterti di trovare tracce da aggiungere al tuo mix — filtrate per strumento, genere, BPM, tonalità, paese o semplicemente testo libero:
@@ -219,6 +223,8 @@ end
 
 Quando l'encoding finisce, l'uploader chiama la callback per aggiornare la canzone o la traccia con il filename finale e la durata. Il tutto è asincrono — l'utente non aspetta il completamento dell'encoding.
 
+Far parlare tutti e quattro i servizi tra loro non è stato banale. Il git log del giorno in cui la registrazione [ha finalmente funzionato end to end](https://github.com/mewsic/mewsic-multitrack/commit/cce23f8) recita: *"Holy cow! Recording actually works!"* — seguito il giorno dopo da *"Holy crap! Upload works! :D"*. Quei due commit rappresentano mesi di lavoro.
+
 ## Funzionalità social
 
 Oltre alla funzionalità musicale di base, Myousica è una piattaforma social completa. Il codebase ha 36 modelli e 82 migration — c'è parecchia roba.
@@ -272,7 +278,9 @@ La storia di git racconta tutto:
 | Aleksandr Kreynin | 40 | Feature work (2009) |
 | Fabio Grande | 21 | UI e frontend |
 
-Lo sviluppo è iniziato il 25 ottobre 2007 (migrato da Subversion) e l'ultimo commit funzionale è stato a giugno 2009. I commit di ottobre 2010 sono solo pulizia per questo rilascio open-source.
+Lo sviluppo è iniziato il 25 ottobre 2007 (migrato da Subversion — si vedono ancora i marker `git-svn-id` nei commit più vecchi) e l'ultimo commit funzionale è stato a giugno 2009. I commit di ottobre 2010 sono solo pulizia per questo rilascio open-source.
+
+L'editor multitraccia ha zero revert su 129 commit — l'architettura di Vaclav ha retto. L'app principale ne ha 7. Il repo dell'uploader ha un discreto numero di commit alle 3 di notte, incluso uno alle 4:14 che recita *"Memory handling fixes, still lots of leaks present :("*. Ecco com'era costruire una piattaforma audio.
 
 ## Cosa viene dopo
 
