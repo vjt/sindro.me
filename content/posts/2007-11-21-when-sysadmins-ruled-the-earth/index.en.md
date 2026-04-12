@@ -8,6 +8,15 @@ featuredImage: cover.jpg
 hideVintage: true
 ---
 
+<style>
+/* Chat/IRC/Usenet messages — wrap long lines, generous spacing */
+.highlight pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.8;
+}
+</style>
+
 A really, really, really **NERD** novel by [Cory Doctorow](https://craphound.com/)
 that tells about a bunch of sysadmins that strive to keep the good ol' Net
 online after a catastrophic event that brought the entire world to its knees.
@@ -237,13 +246,12 @@ They ran upstairs to the big cage. Felix opened the door and then let it hiss sh
 
 They did. Van had Mayor McCheese and Felix used Smurfette. They skipped around the chat channels until they found one with some familiar handles.
 
+```text
 > pentagons gone/white house too
-
 > MY NEIGHBORS BARFING BLOOD OFF HIS BALCONY IN SAN DIEGO
-
 > Someone knocked over the Gherkin. Bankers are fleeing the City like rats.
-
 > I heard that the Ginza's on fire
+```
 
 Felix typed: I'm in Toronto. We just saw the CN Tower fall. I've heard reports of bioweapons, something very fast.
 
@@ -251,17 +259,18 @@ Van read this and said, "You don't know how fast it is, Felix. Maybe we were all
 
 Felix closed his eyes. "If that were so we'd be feeling some symptoms, I think."
 
+```text
 > Looks like an EMP took out Hong Kong and maybe Paris—realtime sat footage shows them completely dark, and all netblocks there aren't routing
-
 > You're in Toronto?
+```
 
 It was an unfamiliar handle.
 
+```text
 > Yes—on Front Street
-
 > my sisters at UofT and i cnt reach her—can you call her?
-
 > No phone service
+```
 
 Felix typed, staring at NETWORK PROBLEMS.
 
@@ -269,7 +278,9 @@ Felix typed, staring at NETWORK PROBLEMS.
 
 Felix took the laptop from him and punched in his home number. It rang once, then there was a flat, blatting sound like an ambulance siren in an Italian movie.
 
+```text
 > No phone service
+```
 
 Felix typed again.
 
@@ -297,29 +308,32 @@ There was one other user logged in, "scaredy," and he checked the proccess monit
 
 He opened a chat:
 
+```text
 > Stop probing my server
+```
 
 He expected bluster, guilt, denial. He was surprised.
 
+```text
 > Are you in the Front Street data-center?
-
 > Yes
-
 > Christ I thought I was the last one alive. I'm on the fourth floor. I think there's a bioweapon attack outside. I don't want to leave the clean room.
+```
 
 Felix whooshed out a breath.
 
+```text
 > You were probing me to get me to trace back to you?
-
 > Yeah
-
 > That was smart
+```
 
 Clever bastard.
 
+```text
 > I'm on the sixth floor, I've got one more with me.
-
 > What do you know?
+```
 
 Felix pasted in the IRC log and waited while the other guy digested it. Van stood up and paced. His eyes were glazed over.
 
@@ -331,9 +345,10 @@ Felix pasted in the IRC log and waited while the other guy digested it. Van stoo
 
 "Right," Van said. He walked like a zombie to the trash can and pulled out the empty magnum. He turned his back.
 
+```text
 > I'm Felix
-
 > Will
+```
 
 Felix's stomach did a slow somersault as he thought about 2.0.
 
@@ -351,13 +366,12 @@ It was freezing. Felix's arms were broken out in gooseflesh and his feet felt li
 
 "Sit against the servers, by the vents. Get the exhaust heat." He found a rack and nestled up against it.
 
+```text
 > Are you there?
-
 > Still here—sorting out some logistics
-
 > How long until we can go out?
-
 > I have no idea
+```
 
 No one typed anything for quite some time then.
 
@@ -493,15 +507,17 @@ Wikipedia was up, but limping under load. The spam poured in as though nothing h
 
 .recovery.logistics was where most of the action was.
 
+```text
 > We can use the newsgroup voting mechanism to hold regional
-
 > elections
+```
 
 Felix knew that this would work. Usenet newsgroup votes had been running for more than twenty years without a substantial hitch.
 
+```text
 > We'll elect regional representatives and they'll pick a Prime
-
 > Minister.
+```
 
 The Americans insisted on President, which Felix didn't like. Seemed too partisan. His future wouldn't be the American future. The American future had gone up with the White House. He was building a bigger tent than that.
 
@@ -511,21 +527,20 @@ They spoke polyglot English in .recovery.logistics, and Felix had momentum on hi
 
 Surprisingly few thought that Felix was off his rocker.
 
+```text
 > I think we should hold elections as soon as possible. Tomorrow
-
 > at the latest. We can't rule justly without the consent of the
-
 > governed.
+```
 
 Within seconds the reply landed in his inbox.
 
+```text
 > You can't be serious. Consent of the governed? Unless I miss my
-
 > guess, most of the people you're proposing to govern are puking
-
 > their guts out, hiding under their desks, or wandering
-
 > shell-shocked through the city streets. When do THEY get a vote?
+```
 
 Felix had to admit she had a point. Queen Kong was sharp. Not many woman sysadmins, and that was a genuine tragedy. Women like Queen Kong were too good to exclude from the field. He'd have to hack a solution to get women balanced out in his new government. Require each region to elect one woman and one man?
 
@@ -585,59 +600,75 @@ Felix stood and paced, stopping to stare out the grubby windows. The fires still
 
 Election day. Time to face the music.
 
+```text
 > Are you nervous?
-
 > Nope,
+```
 
 Felix typed.
 
+```text
 > I don't much care if I win, to be honest. I'm just glad we're doing this. The alternative was sitting around with our thumbs up our ass, waiting for someone to crack up and open the door.
+```
 
 The cursor hung. Queen Kong was very high latency as she bossed her gang of Googloids around the Googleplex, doing everything she could to keep her data center online. Three of the offshore cages had gone offline and two of their six redundant network links were smoked. Lucky for her, queries-per-second were way down.
 
+```text
 > There's still China
+```
 
 she typed. Queen Kong had a big board with a map of the world colored in Google-queries-per-second, and could do magic with it, showing the drop-off over time in colorful charts. She'd uploaded lots of video clips showing how the plague and the bombs had swept the world: the initial upswell of queries from people wanting to find out what was going on, then the grim, precipitous shelving off as the plagues took hold.
 
+```text
 > China's still running about ninety percent nominal.
+```
 
 Felix shook his head.
 
+```text
 > You can't think that they're responsible
-
 > No
+```
 
 she typed, but then she started to key something and then stopped.
 
+```text
 > No of course not. I believe the Popovich Hypothesis. Every asshole in the world is using the other assholes for cover. But China put them down harder and faster than anyone else. Maybe we've finally found a use for totalitarian states.
+```
 
 Felix couldn't resist. He typed:
 
+```text
 > You're lucky your boss can't see you type that. You guys were pretty enthusiastic participants in the Great Firewall of China.
-
 > Wasn't my idea
+```
 
 she typed.
 
+```text
 > And my boss is dead. They're probably all dead. The whole Bay Area got hit hard, and then there was the quake.
+```
 
 They'd watched the USGS's automated data-stream from the 6.9 that trashed northern Cal from Gilroy to Sebastapol. Soma webcams revealed the scope of the damage—gas main explosions, seismically retrofitted buildings crumpling like piles of children's blocks after a good kicking. The Googleplex, floating on a series of gigantic steel springs, had shook like a plateful of jello, but the racks had stayed in place and the worst injury they'd had was a badly bruised eye on a sysadmin who'd caught a flying cable-crimper in the face.
 
+```text
 > Sorry. I forgot.
-
 > It's OK. We all lost people, right?
-
 > Yeah. Yeah. Anyway, I'm not worried about the election. Whoever wins, at least we're doing SOMETHING
-
 > Not if they vote for one of the fuckrags
+```
 
 Fuckrag was the epithet that some of the sysadmins were using to describe the contingent that wanted to shut down the Internet. Queen Kong had coined it—apparently it had started life as a catch-all term to describe clueless IT managers that she'd chewed up through her career.
 
+```text
 > They won't. They're just tired and sad is all. Your endorsement will carry the day
+```
 
 The Googloids were one of the largest and most powerful blocs left behind, along with the satellite uplink crews and the remaining transoceanic crews. Queen Kong's endorsement had come as a surprise and he'd sent her an email that she'd replied to tersely: "can't have the fuckrags in charge."
 
+```text
 > gtg
+```
 
 she typed and then her connection dropped. He fired up a browser and called up google.com. The browser timed out. He hit reload, and then again, and then the Google front-page came back up. Whatever had hit Queen Kong's workplace—power failure, worms, another quake—she had fixed it. He snorted when he saw that they'd replaced the O's in the Google logo with little planet Earths with mushroom clouds rising from them.
 
@@ -747,11 +778,15 @@ That had been pre-ordained by the fuel-supply, but who wanted to wait for the fu
 
 ![Rack servers powering down one by one, a fuel gauge on empty, one last green LED blinking](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-last-packet.jpg)
 
+```text
 > half my crew split this morning
+```
 
 Queen Kong typed. Google was holding up pretty good anyway, of course. The load on the servers was a lot lighter than it had been since the days when Google fit on a bunch of hand-built PCs under a desk at Stanford.
 
+```text
 > we're down to a quarter
+```
 
 Felix typed back. It was only a day since Popovich and Rosenbaum left, but the traffic on the newsgroups had fallen down to near zero. He and Van hadn't had much time to play Republic of Cyberspace. They'd been too busy learning the systems that Popovich had turned over to them, the big, big routers that had went on acting as the major interchange for all the network backbones in Canada.
 
@@ -759,11 +794,11 @@ Still, someone posted to the newsgroups every now and again, generally to say go
 
 He reloaded the newsgroup. There was a typical message.
 
+```text
 > Runaway processes on Solaris TK
-
 >
-
 > Uh, hi. I'm just a lightweight MSCE but I'm the only one awake here and four of the DSLAMs just went down. Looks like there's some custom accounting code that's trying to figure out how much to bill our corporate customers and it's spawned ten thousand threads and its eating all the swap. I just want to kill it but I can't seem to do that. Is there some magic invocation I need to do to get this goddamned weenix box to kill this shit? I mean, it's not as if any of our customers are ever going to pay us again. I'd ask the guy who wrote this code, but he's pretty much dead as far as anyone can work out.
+```
 
 He reloaded. There was a response. It was short, authoritative, and helpful—just the sort of thing you almost never saw in a high-caliber newsgroup when a noob posted a dumb question. The apocalypse had awoken the spirit of patient helpfulness in the world's sysop community.
 
@@ -773,31 +808,34 @@ He looked at the message again. It was from Will Sario.
 
 He dropped into his chat window.
 
+```text
 > sario i thought you wanted the network dead why are you helping msces fix their boxen?
-
 >  Gee Mr PM, maybe I just can't bear to watch a computer suffer at the hands of an amateur.
+```
 
 He flipped to the channel with Queen Kong in it.
 
+```text
 > How long?
-
 > Since I slept? Two days. Until we run out of fuel? Three days. Since we ran out of food? Two days.
-
 > Jeez. I didn't sleep last night either. We're a little short handed around here.
-
 > asl? Im monica and I live in pasadena and Im bored with my homework. WOuld you like to download my pic???
+```
 
 The trojan bots were all over IRC these days, jumping to every channel that had any traffic on it. Sometimes you caught five or six flirting with each other. It was pretty weird to watch a piece of malware try to con another instance of itself into downloading a trojan.
 
 They both kicked the bot off the channel simultaneously. He had a script for it now. The spam hadn't even tailed off a little.
 
+```text
 > How come the spam isn't reducing? Half the goddamned data-centers have gone dark
+```
 
 Queen Kong paused a long time before typing. As had become automatic when she went high-latency, he reloaded the Google homepage. Sure enough, it was down.
 
+```text
 > Sario, you got any food?
-
 > You won't miss a couple more meals, Your Excellency
+```
 
 Van had gone back to Mayor McCheese but he was in the same channel.
 
@@ -805,9 +843,10 @@ Van had gone back to Mayor McCheese but he was in the same channel.
 
 Van didn't look so good. He looked like you could knock him over with a stiff breeze and he had a phlegmy, weak quality to his speech.
 
+```text
 > hey kong everything ok?
-
 > everything's fine just had to go kick some ass
+```
 
 "How's the traffic, Van?"
 
@@ -815,9 +854,10 @@ Van didn't look so good. He looked like you could knock him over with a stiff br
 
 Every once in a while, Felix would wiretap the connections to see if he could find a person who had news of the wide world. Almost all of it was automated traffic, though: network backups, status updates. Spam. Lots of spam.
 
+```text
 > Spam's still up because the services that stop spam are failing faster than the services that create it. All the anti-worm stuff is centralized in a couple places. The bad stuff is on a million zombie computers. If only the lusers had had the good sense to turn off their home PCs before keeling over or taking off
-
 > at the rate were going well be routing nothing but spam by dinnertime
+```
 
 Van cleared his throat, a painful sound. "About that," he said. "I think it's going to hit sooner than that. Felix, I don't think anyone would notice if we just walked away from here."
 
@@ -857,21 +897,16 @@ He scrubbed away a clean spot with his sleeve and began to write out long, compl
 
 ****
 
+```text
 > Were going, kong. Fuels almost out anyway
-
 > yeah well thats right then. it was an honor, mr prime minister
-
 > you going to be ok?
-
 > ive commandeered a young sysadmin to see to my feminine needs and weve found another cache of food thatll last us a coupel weeks now that were down to fifteen admins—im in hog heaven pal
-
 > youre amazing, Queen Kong, seriously. Dont be a hero though. When you need to go go. Theres got to be something out there
-
 > be safe felix, seriously—btw did i tell you queries are up in Romania? maybe theyre getting back on their feet
-
 > really?
-
 > yeah, really. we're hard to kill—like fucking roaches
+```
 
 Her connection died. He dropped to Firefox and reloaded Google and it was down. He hit reload and hit reload and hit reload, but it didn't come up. He closed his eyes and listened to Van scratch his legs and then heard Van type a little.
 
@@ -1069,21 +1104,21 @@ But Felix liked his data-center. There in the humming of the racks, he never fel
 
 ![A sysadmin walks out of a small data center into the night, a harvest moon rising over an overgrown landscape](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-harvest-moon.jpg)
 
+```text
 > go to bed, felix
-
 > soon, kong, soon—almost got this backup running
-
 > youre a junkie, dude.
-
 > look whos talking
+```
 
 He reloaded the Google homepage. Queen Kong had had it online for a couple years now. The Os in Google changed all the time, whenever she got the urge. Today they were little cartoon globes, one smiling the other frowning.
 
 He looked at it for a long time and dropped back into a terminal to check his backup. It was running clean, for a change. The little government's records were safe.
 
+```text
 > ok night night
-
 > take care
+```
 
 Van waved at him as he creaked to the door, stretching out his back with a long series of pops.
 
