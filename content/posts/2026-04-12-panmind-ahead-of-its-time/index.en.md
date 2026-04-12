@@ -463,6 +463,8 @@ And the transport itself — XHR long-polling — is what WebSockets replaced, a
 
 ## Being Early Isn't Being Wrong
 
+![Seeds planted in 2010 growing into a forest of modern technology in the 2020s — luminous roots connecting old ideas to new growth, code-shaped leaves, golden hour](/posts/2026-04-12-panmind-ahead-of-its-time/being-early.jpg)
+
 In 2009-2011, Panmind was running:
 
 - A **single-page app framework** with lifecycle events, progressive enhancement, and form hijacking — a pattern that Turbolinks, React, and eventually Turbo and HTMX would each reinvent
@@ -473,9 +475,7 @@ Same ideas. Different era. Built with jQuery and EventMachine and Erlang pattern
 
 That's the thing about being early: you don't know you're early. You're just solving problems with the tools you have. The hash-polling loop, the UDP fire-and-forget, the Erlang Marshal parser — none of these felt *visionary* at the time. They felt like the obvious thing to do. It's only later, when the industry converges on the same patterns with proper standards and dedicated teams and better documentation, that you realize the ideas were right. They just needed the ecosystem to catch up.
 
-And by the time it did, Panmind was gone.
-
-None of this was a solo effort. Fabrizio Regini, Paolo Zaccagnini, and Christian Wörner wrote code alongside me. Edoardo Batini kept the servers running. Emanuele Bertolini, Ferdinando de Meo, and Chiara Santoro designed the interface that made the AJAX navigation worth building. Simona Forti created the content that users came for. Francesca Antinori figured out what to build in the first place. And Emanuele Caronia had the vision to put it all together. The stack was a team effort, even if the repos only show commit hashes.
+None of this was a solo effort. [Fabrizio Regini](https://github.com/freegenie), [Paolo Zaccagnini](https://github.com/paozac), and [Christian Wörner](https://github.com/christianwoerner) wrote code alongside me. [Edoardo Batini](https://github.com/eolo999) kept the servers running. [Emanuele Bertolini](https://github.com/trikkia), [Ferdinando de Meo](https://github.com/burzuk), and [Chiara Santoro](https://www.linkedin.com/in/maria-chiara-santoro-4b1b2b13) designed the interface that made the AJAX navigation worth building. [Simona Forti](https://nhaima.org/) created the content that users came for. [Francesca Antinori](https://www.linkedin.com/in/francescaantinori) figured out what to build in the first place. And [Emanuele Caronia](https://www.linkedin.com/in/emanuelecaronia) had the vision to put it all together. The stack was a team effort, even if the repos only show commit hashes.
 
 Thanks for reading!
 

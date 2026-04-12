@@ -463,6 +463,8 @@ E il trasporto stesso — XHR long-polling — è quello che i WebSocket hanno s
 
 ## Essere in Anticipo Non Vuol Dire Sbagliare
 
+![Semi piantati nel 2010 che crescono in una foresta di tecnologia moderna negli anni 2020 — radici luminose che collegano vecchie idee a nuova crescita, foglie a forma di codice, ora dorata](/posts/2026-04-12-panmind-ahead-of-its-time/being-early.jpg)
+
 Nel 2009-2011, Panmind stava facendo girare:
 
 - Un **framework single-page app** con eventi del ciclo di vita, progressive enhancement e hijacking dei form — un pattern che Turbolinks, React, e infine Turbo e HTMX avrebbero ciascuno reinventato
@@ -473,9 +475,7 @@ Stesse idee. Era diversa. Costruite con jQuery ed EventMachine e pattern matchin
 
 È questo il punto dell'essere in anticipo: non sai di esserlo. Stai solo risolvendo problemi con gli strumenti che hai. Il loop di hash-polling, l'UDP fire-and-forget, il parser Marshal in Erlang — nessuno di questi sembrava *visionario* al momento. Sembravano la cosa ovvia da fare. È solo dopo, quando l'industria converge sugli stessi pattern con standard appropriati e team dedicati e documentazione migliore, che realizzi che le idee erano giuste. Avevano solo bisogno che l'ecosistema le raggiungesse.
 
-E quando l'ha fatto, Panmind non c'era più.
-
-Niente di tutto questo è stato un lavoro solitario. Fabrizio Regini, Paolo Zaccagnini e Christian Wörner scrivevano codice al mio fianco. Edoardo Batini teneva in piedi i server. Emanuele Bertolini, Ferdinando de Meo e Chiara Santoro hanno disegnato l'interfaccia che rendeva la navigazione AJAX degna di essere costruita. Simona Forti creava i contenuti per cui gli utenti venivano. Francesca Antinori capiva cosa costruire. E Emanuele Caronia ha avuto la visione di mettere tutto insieme. Lo stack è stato un lavoro di squadra, anche se i repo mostrano solo hash di commit.
+Niente di tutto questo è stato un lavoro solitario. [Fabrizio Regini](https://github.com/freegenie), [Paolo Zaccagnini](https://github.com/paozac) e [Christian Wörner](https://github.com/christianwoerner) scrivevano codice al mio fianco. [Edoardo Batini](https://github.com/eolo999) teneva in piedi i server. [Emanuele Bertolini](https://github.com/trikkia), [Ferdinando de Meo](https://github.com/burzuk) e [Chiara Santoro](https://www.linkedin.com/in/maria-chiara-santoro-4b1b2b13) hanno disegnato l'interfaccia che rendeva la navigazione AJAX degna di essere costruita. [Simona Forti](https://nhaima.org/) creava i contenuti per cui gli utenti venivano. [Francesca Antinori](https://www.linkedin.com/in/francescaantinori) capiva cosa costruire. E [Emanuele Caronia](https://www.linkedin.com/in/emanuelecaronia) ha avuto la visione di mettere tutto insieme. Lo stack è stato un lavoro di squadra, anche se i repo mostrano solo hash di commit.
 
 Grazie per aver letto!
 
