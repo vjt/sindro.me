@@ -6,7 +6,7 @@ description: "Come una piccola startup italiana ha costruito un framework SPA, u
 image: cover.jpg
 ---
 
-Nel 2009, un piccolo team a Milano iniziava a costruire [Panmind](https://github.com/Panmind), una piattaforma collaborativa per condividere e organizzare la conoscenza. L'azienda era [Mind2Mind S.r.L.](http://mind2mind.is/), fondata da Emanuele Caronia. Il team: io, Fabrizio Regini, Paolo Zaccagnini e Christian Wörner allo sviluppo, Edoardo Batini come sysadmin, Emanuele Bertolini al design, Simona Forti ai contenuti e Francesca Antinori come business analyst.
+Nel 2009, un piccolo team a Roma iniziava a costruire [Panmind](https://github.com/Panmind), una piattaforma collaborativa per condividere e organizzare la conoscenza. L'azienda era [Mind2Mind S.r.L.](http://mind2mind.is/), fondata da Emanuele Caronia.
 
 Panmind di per sé non è sopravvissuto. Ma lo stack che abbiamo costruito ha fatto qualcosa di interessante: ha anticipato pattern architetturali che non sarebbero diventati mainstream per cinque o dieci anni. Stavamo costruendo single-page application prima che esistesse il termine, streaming analytics prima di Segment, e condividendo sessioni tra linguaggi diversi prima dei JWT.
 
@@ -158,7 +158,7 @@ $.fn.navLink = function (options) {
 };
 ```
 
-I form ricevevano lo stesso trattamento con `.navForm()` — i form GET venivano serializzati in query string, i POST inviavano i dati nel body. E c'era una convenzione astuta per i redirect AJAX: il server rispondeva HTTP 202 (Accepted) con il path del redirect nel body della risposta, e il client lo seguiva automaticamente:
+I form ricevevano lo stesso trattamento con `.navForm()` — i form GET venivano serializzati in query string, i POST inviavano i dati nel body. E c'era una convenzione astuta — qualcuno direbbe abusiva — per i redirect AJAX. Non potevamo usare nessun codice 3xx perché IE seguiva ciecamente i redirect sulle richieste XHR, ingoiando la risposta prima che il nostro JavaScript potesse intercettarla. Quindi abbiamo dirottato HTTP 202 (Accepted): il server rispondeva 202 con il path del redirect nel body, e il nostro codice client lo seguiva manualmente:
 
 ```javascript
 // HTTP 202 = redirect AJAX: il body della risposta contiene il path da seguire
@@ -191,8 +191,7 @@ Uno dei miei trick preferiti nella codebase. Quando il framework hijackava un UR
 
 ```javascript
 // Imposta un cookie per dire al backend di renderizzare uno spinner
-// ("nha" sta per NavHijAck — ma è anche il nick della persona
-// amata ;-)
+// ("nha" sta per NavHijAck)
 $.navHijackRedirect = function (base, anchor) {
   var expire = new Date((+new Date) + 1000).toGMTString ();
   document.cookie = 'nha=1; path="' + base + '"; expires=' + expire;
@@ -201,6 +200,28 @@ $.navHijackRedirect = function (base, anchor) {
 ```
 
 Il backend Rails controllava questo cookie e, se presente, renderizzava solo uno spinner di caricamento invece della pagina completa — perché il JavaScript avrebbe immediatamente lanciato una richiesta AJAX per il contenuto reale. Un'ottimizzazione artigianale che risparmiava un intero render lato server ad ogni navigazione hijackata. Oggi i framework gestiscono questo automaticamente con skeleton screen e streaming HTML.
+
+### Comportamenti dichiarativi via attributi HTML
+
+Oltre al framework di navigazione, abbiamo costruito un'intera [libreria di behaviour](https://github.com/vjt/jquery-ajax-nav/blob/master/jquery.behaviours.js) che collegava le interazioni UI in modo dichiarativo tramite attributi HTML — nello specifico, abusando dell'attributo `rel`. Un toggler, un tabber, un cycler, un deleter, un rollover — ciascuno era una classe CSS che attivava un handler jQuery `.live()`, e l'attributo `rel` puntava all'elemento target:
+
+```html
+<!-- Toggler: click per mostrare/nascondere #milestone_42 -->
+<a class="toggler slider" rel="#milestone_42">Edit</a>
+
+<!-- Tabber: ogni tab punta al suo pannello di contenuto -->
+<ul class="tabber fader" rel=".newElement">
+  <li class="active"><a href="#" rel="#newPost">New Post</a></li>
+  <li><a href="#" rel="#newLink">New Link</a></li>
+</ul>
+
+<!-- Cycler: slide auto-rotanti, intervallo del timer in rev(!) -->
+<div class="cycler timer" rel="#slides" rev="5000"></div>
+```
+
+Avevamo persino `hierarchyFind()`, una funzione custom di attraversamento del DOM che parsava un mini-linguaggio dentro `rel`. La sintassi `>#todo .uploader` significava "trova un genitore il cui ID inizia con 'todo', poi cerca al suo interno un elemento con classe 'uploader'" — essenzialmente `element.closest('[id^="todo"]').querySelector('.uploader')`, solo che `closest()` non sarebbe esistito nei browser fino al 2015-2016.
+
+Il pattern — dichiarare comportamenti e target negli attributi HTML invece di scrivere JavaScript — è esattamente quello che fa HTMX oggi con `hx-target`, `hx-swap` e `hx-trigger`. È quello che fa Stimulus con `data-controller` e `data-target`. È quello che fa Alpine.js con `@click` e `x-show`. Noi scrivevamo `rel="#milestone_42"` nel 2009; oggi scriveresti `hx-target="#milestone_42"`. La semantica si è spostata da `rel` agli attributi `data-*` (che HTML5 ha formalizzato esattamente per questo scopo), ma l'idea — l'HTML come fonte di verità per il comportamento della UI — è la stessa.
 
 ### I paralleli
 
@@ -221,7 +242,7 @@ L'ultima riga è quella che conta. jquery-ajax-nav era costruito sopra HTML puro
 
 ![Una pipeline dati steampunk — server rack Ruby con gemme luminose, una turbina EventMachine che cattura pacchetti UDP, e pile di documenti CouchDB ordinati da braccia robotiche](/posts/2026-04-12-panmind-ahead-of-its-time/act2-usage-tracker.jpg)
 
-Con la navigazione AJAX in piedi, le analytics tradizionali erano cieche. I log del server mostravano un page load iniziale seguito da un flusso di richieste XHR, senza modo di ricostruire il percorso di navigazione effettivo dell'utente. Google Analytics era progettato per page load completi — non poteva tracciare le sostituzioni di contenuto dentro una SPA con routing basato su hash. Ci serviva la nostra pipeline di analytics, una che capisse la differenza tra un page load e una navigazione AJAX.
+Con la navigazione AJAX in piedi, le analytics tradizionali non bastavano più. I log del server mostravano un page load iniziale seguito da un flusso di richieste XHR, senza modo di ricostruire il percorso di navigazione effettivo dell'utente. Google Analytics *poteva* tracciare le navigazioni AJAX se chiamavi manualmente `_trackPageview()` dopo ogni swap di contenuto — e lo facevamo, tramite il nostro plugin [bigbro](https://github.com/vjt/bigbro). Ma il modello a pageview di GA non poteva darci quello che ci serviva davvero: durate delle richieste, XHR vs page load completi, pattern di traffico per area, comportamento per utente. Ci serviva la nostra pipeline di analytics.
 
 Così abbiamo costruito [usage_tracker](https://github.com/vjt/usage_tracker): un sistema di analytics a tre componenti che catturava ogni richiesta, la trasportava in modo asincrono, la memorizzava in un database documentale e calcolava aggregazioni via map-reduce. Nel 2010.
 
@@ -272,7 +293,7 @@ rescue Timeout::Error, Errno::EWOULDBLOCK, Errno::EAGAIN, Errno::EINTR
 end
 ```
 
-Non-blocking, timeout di 1 secondo, errori loggati silenziosamente. La pipeline di analytics non rallentava *mai* una richiesta utente. Meglio perdere un data point che aggiungere latenza. È esattamente la filosofia dietro [StatsD](https://github.com/statsd/statsd), che Etsy avrebbe rilasciato in open source un anno dopo nel 2011, e che è diventato la base della telemetria applicativa moderna.
+Non-blocking, timeout di 1 secondo, errori loggati silenziosamente. Il `write_nonblock` di per sé non blocca, ma `UDPSocket.open` e `connect` *potrebbero* — risoluzione DNS, allocazione socket, buffer del kernel. Il `Timeout.timeout(1)` avvolge l'intera operazione come rete di sicurezza: se qualcosa nella macchina dei socket a livello OS si blocca, usciamo dopo un secondo invece di bloccare la richiesta Rails. Codice difensivo. La pipeline di analytics non rallentava *mai* una richiesta utente. Meglio perdere un data point che aggiungere latenza. È esattamente la filosofia dietro [StatsD](https://github.com/statsd/statsd), che Etsy avrebbe rilasciato in open source un anno dopo nel 2011, e che è diventato la base della telemetria applicativa moderna.
 
 ### Il reactor EventMachine
 
@@ -382,7 +403,7 @@ E il flag XHR — quel singolo booleano per richiesta — è quello che Google A
 
 ![Due Stele di Rosetta — Ruby incandescente in rosso, Erlang luminoso in blu — con un fiume di dati binari che scorre tra loro e un cookie HTTP spezzato sopra](/posts/2026-04-12-panmind-ahead-of-its-time/act3-erlang-marshal.jpg)
 
-Panmind aveva un sistema di chat web. Era scritto in Erlang, costruito su [misultin](https://github.com/vjt/misultin) — un server HTTP Erlang leggero che fu tra i primi a supportare i WebSocket (anche se noi non usavamo quella parte). Il trasporto era XHR long-polling puro: il browser apriva una richiesta HTTP, il server Erlang la teneva aperta fino all'arrivo di un messaggio o al timeout della connessione, poi il browser si riconnetteva immediatamente. Nessun framework Comet, nessun Socket.IO, nessun livello di astrazione. Solo una richiesta che resta appesa per 30 secondi in attesa di dati.
+Panmind aveva un sistema di chat web. Era scritto in Erlang, costruito su [misultin](https://github.com/vjt/misultin) — un server HTTP Erlang leggero. I WebSocket non sarebbero stati standardizzati fino all'RFC 6455 di dicembre 2011, e il supporto nei browser sarebbe rimasto frammentario fino al 2013. Quindi il trasporto era XHR long-polling puro: il browser apriva una richiesta HTTP, il server Erlang la teneva aperta fino all'arrivo di un messaggio o al timeout della connessione, poi il browser si riconnetteva immediatamente. Nessun framework Comet, nessun Socket.IO, nessun livello di astrazione. Solo una richiesta che resta appesa per 30 secondi in attesa di dati.
 
 Ma il server di chat aveva un problema: doveva sapere chi era loggato. L'applicazione Rails gestiva l'autenticazione e memorizzava le sessioni nei cookie. Le sessioni Rails sono serializzate usando il formato [Marshal](https://ruby-doc.org/core/Marshal.html) di Ruby — un protocollo binario che solo Ruby sa leggere. Non c'era un session store basato su JSON, niente JWT, niente token di autenticazione condivisi. Se volevi che un altro linguaggio leggesse una sessione Rails, dovevi insegnare a quel linguaggio a parsare la serializzazione binaria di Ruby.
 
@@ -441,12 +462,14 @@ Nel 2009-2011, Panmind stava facendo girare:
 - Una **pipeline di analytics asincrona event-driven** su UDP con aggregazioni map-reduce — l'architettura che StatsD, Segment e OpenTelemetry avrebbero standardizzato
 - Un **server di chat Erlang** che condivideva sessioni con Rails tramite parsing di protocollo binario — il problema di autenticazione cross-service per cui i JWT sono stati progettati
 
-Stesse idee. Era diversa. Costruite con jQuery ed EventMachine e pattern matching Erlang invece che con React e Kafka e OAuth2. Costruite da un piccolo team a Milano che cercava di rendere un prodotto veloce, capire i suoi utenti e supportare funzionalità real-time — non di essere avanti rispetto a qualcosa.
+Stesse idee. Era diversa. Costruite con jQuery ed EventMachine e pattern matching Erlang invece che con React e Kafka e OAuth2. Costruite da un piccolo team a Roma che cercava di rendere un prodotto veloce, capire i suoi utenti e supportare funzionalità real-time — non di essere avanti rispetto a qualcosa.
 
 È questo il punto dell'essere in anticipo: non sai di esserlo. Stai solo risolvendo problemi con gli strumenti che hai. Il loop di hash-polling, l'UDP fire-and-forget, il parser Marshal in Erlang — nessuno di questi sembrava *visionario* al momento. Sembravano la cosa ovvia da fare. È solo dopo, quando l'industria converge sugli stessi pattern con standard appropriati e team dedicati e documentazione migliore, che realizzi che le idee erano giuste. Avevano solo bisogno che l'ecosistema le raggiungesse.
 
 E quando l'ha fatto, Panmind non c'era più.
 
-Niente di tutto questo è stato un lavoro solitario. Fabrizio Regini, Paolo Zaccagnini e Christian Wörner scrivevano codice al mio fianco. Edoardo Batini teneva in piedi i server. Emanuele Bertolini ha disegnato l'interfaccia che rendeva la navigazione AJAX degna di essere costruita. Simona Forti creava i contenuti per cui gli utenti venivano. Francesca Antinori capiva cosa costruire. E Emanuele Caronia ha avuto la visione di mettere tutto insieme. Lo stack è stato un lavoro di squadra, anche se i repo mostrano solo hash di commit.
+Niente di tutto questo è stato un lavoro solitario. Fabrizio Regini, Paolo Zaccagnini e Christian Wörner scrivevano codice al mio fianco. Edoardo Batini teneva in piedi i server. Emanuele Bertolini, Ferdinando de Meo e Chiara Santoro hanno disegnato l'interfaccia che rendeva la navigazione AJAX degna di essere costruita. Simona Forti creava i contenuti per cui gli utenti venivano. Francesca Antinori capiva cosa costruire. E Emanuele Caronia ha avuto la visione di mettere tutto insieme. Lo stack è stato un lavoro di squadra, anche se i repo mostrano solo hash di commit.
+
+Grazie per aver letto!
 
 **I repo:** [jquery-ajax-nav](https://github.com/vjt/jquery-ajax-nav) | [usage_tracker](https://github.com/vjt/usage_tracker) | [erlang-ruby-marshal](https://github.com/vjt/erlang-ruby-marshal) | [misultin](https://github.com/vjt/misultin) | [Tutti i repo Panmind](https://github.com/Panmind)
