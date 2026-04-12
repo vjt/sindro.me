@@ -8,6 +8,16 @@ featuredImage: cover.jpg
 hideVintage: true
 ---
 
+<style>
+/* Chat/IRC/Usenet messages — wrap long lines, generous spacing */
+.highlight pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.8;
+  font-size: 1.05em;
+}
+</style>
+
 Un romanzo davvero, davvero, davvero **NERD** di [Cory Doctorow](https://craphound.com/)
 che racconta di un gruppo di sysadmin che lottano per tenere in piedi la cara
 vecchia Rete dopo un evento catastrofico che ha messo il mondo intero in
@@ -21,13 +31,12 @@ necessaria per leggerlo tutto.
 
 ---
 
-> **Nota:** Questo racconto è una traduzione italiana di ["When Sysadmins Ruled the Earth"](/posts/2007-11-21-when-sysadmins-ruled-the-earth/) di Cory Doctorow, riprodotto in conformità alla licenza [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/). Era originariamente pubblicato su [Jim Baen's Universe, Vol 1 Num 2, agosto 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) e il testo originale è disponibile sul sito dell'autore su [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). È uno dei migliori racconti di narrativa geek mai scritti — ho aggiunto illustrazioni e suddivisione in capitoli per rendere la lettura più scorrevole, e questa traduzione italiana per condividerlo con un pubblico più ampio.
+> **Nota:** Questo racconto è una traduzione italiana di ["When Sysadmins Ruled the Earth"](/posts/2007-11-21-when-sysadmins-ruled-the-earth/) di Cory Doctorow, riprodotto in conformità alla licenza [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/). Era originariamente pubblicato su [Jim Baen's Universe, Vol 1 Num 2, agosto 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) e il testo originale è disponibile sul sito dell'autore su [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). È uno dei migliori racconti di narrativa geek mai scritti — ho aggiunto suddivisioni in capitoli e illustrazioni aggiuntive (generate con Gemini) per rendere la lettura più scorrevole, affiancandole alle illustrazioni originali di [Rob Dumuhosky](https://www.robdumuhosky.com/), e questa traduzione italiana per condividerlo con un pubblico più ampio.
 
 ---
 
-*Illustrazioni di [Rob Dumuhosky](https://www.robdumuhosky.com/)*
-
 ![La CN Tower crolla su Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-opening.jpg)
+*Illustrazione di [Rob Dumuhosky](https://www.robdumuhosky.com/)*
 
 ## I. La Chiamata
 
@@ -121,7 +130,7 @@ Felix era un admin di tipo uno, con una settantina o ottantina di chili extra tu
 
 «No, è colpa di Microsoft» disse Felix. «Ogni volta che mi trovo al lavoro alle 2 di notte, o è un PEBKAC o è Microsloth.»
 
-****
+### Combattere il Worm
 
 ![Un telefono che brilla sul comodino nel buio — la chiamata d'emergenza delle 2 di notte](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-the-call.jpg)
 
@@ -215,6 +224,8 @@ Felix era così preso dal rapporto — apparentemente inoltrato da Health Canada
 
 ****
 
+![Le luci di emergenza si accendono in un corridoio buio, sagome che si precipitano verso le scale](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-blackout.jpg)
+
 I generatori si attivarono un minuto dopo. I sysadmin si precipitarono in massa verso le scale. Felix afferrò Van per il braccio, tirandolo indietro.
 
 «Forse dovremmo aspettare qui nella gabbia» disse.
@@ -235,13 +246,12 @@ Corsero di sopra alla gabbia grande. Felix aprì la porta e poi la lasciò sigil
 
 Lo fecero. Van aveva Mayor McCheese e Felix usò Smurfette. Saltarono tra i canali di chat finché non ne trovarono uno con qualche nick familiare.
 
+```text
 > il pentagono non c'è più/la casa bianca anche
-
 > IL MIO VICINO VOMITA SANGUE DAL BALCONE A SAN DIEGO
-
 > Qualcuno ha buttato giù il Gherkin. I banchieri fuggono dalla City come topi.
-
 > Ho sentito che il Ginza è in fiamme
+```
 
 Felix digitò: Sono a Toronto. Abbiamo appena visto cadere la CN Tower. Ho sentito di armi biologiche, qualcosa di molto rapido.
 
@@ -249,17 +259,18 @@ Van lesse e disse: «Non sai quanto sia rapido, Felix. Magari siamo stati tutti 
 
 Felix chiuse gli occhi. «Se fosse così, credo che avremmo già dei sintomi.»
 
+```text
 > Sembra che un EMP abbia messo fuori uso Hong Kong e forse Parigi—le immagini satellitari in tempo reale le mostrano completamente buie, e tutti i netblock là non stanno routando
-
 > Sei a Toronto?
+```
 
 Era un nick sconosciuto.
 
+```text
 > Sì—su Front Street
-
 > mia sorella è alla UofT e nn riesco a raggiungerla—puoi chiamarla?
-
 > Niente servizio telefonico
+```
 
 Felix digitò, fissando PROBLEMI DI RETE.
 
@@ -267,7 +278,9 @@ Felix digitò, fissando PROBLEMI DI RETE.
 
 Felix prese il laptop e compose il numero di casa. Squillò una volta, poi ci fu un suono piatto e stridulo come una sirena dell'ambulanza in un film italiano.
 
+```text
 > Niente servizio telefonico
+```
 
 Felix digitò di nuovo.
 
@@ -295,29 +308,32 @@ C'era un altro utente connesso, "scaredy", e controllò il monitor dei processi 
 
 Aprì una chat:
 
+```text
 > Smettila di sondare il mio server
+```
 
 Si aspettava spavalderia, sensi di colpa, negazione. Rimase sorpreso.
 
+```text
 > Sei nel data center di Front Street?
-
 > Sì
-
 > Cristo credevo di essere l'ultimo vivo. Sono al quarto piano. Credo ci sia un attacco con armi biologiche fuori. Non voglio uscire dalla clean room.
+```
 
 Felix soffiò fuori un respiro.
 
+```text
 > Mi stavi sondando per farmi risalire a te?
-
 > Sì
-
 > È stato intelligente
+```
 
 Bastardo furbo.
 
+```text
 > Sono al sesto piano, con me ce n'è un altro.
-
 > Cosa sai?
+```
 
 Felix incollò il log IRC e aspettò che l'altro tizio lo digerisse. Van si alzò e cominciò a camminare avanti e indietro. Aveva gli occhi vitrei.
 
@@ -329,9 +345,10 @@ Felix incollò il log IRC e aspettò che l'altro tizio lo digerisse. Van si alz�
 
 «Giusto» disse Van. Camminò come uno zombie fino al cestino e tirò fuori il bottiglione vuoto. Si girò di spalle.
 
+```text
 > Sono Felix
-
 > Will
+```
 
 Lo stomaco di Felix fece una lenta capriola mentre pensava a 2.0.
 
@@ -349,13 +366,12 @@ Si gelava. Le braccia di Felix avevano la pelle d'oca e i suoi piedi sembravano 
 
 «Siediti contro i server, vicino alle ventole. Prendi il calore dello scarico.» Trovò un rack e si accoccolò contro.
 
+```text
 > Ci sei?
-
 > Ancora qui—sto risolvendo un po' di logistica
-
 > Quanto tempo prima di poter uscire?
-
 > Non ne ho idea
+```
 
 Nessuno scrisse più niente per un bel po'.
 
@@ -437,6 +453,8 @@ Ci fu una risata di buon umore generale.
 
 Ci fu un brusio di conversazione che si trasformò rapidamente in un boato.
 
+![Un newsreader Usenet pieno di thread sul disaster recovery, una mappa del mondo con delle X sulla parete](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-newsgroups.jpg)
+
 «ZITTI!» urlò Popovich. La conversazione calò di un Watt. Popovich urlò di nuovo, battendo il piede sul bancone. Alla fine ci fu una parvenza di ordine. «Uno alla volta» disse. Era rosso in faccia, con le mani in tasca.
 
 Un sysadmin era per restare. Un altro per andarsene. Dovevano nascondersi nelle gabbie. Dovevano inventariare le scorte e nominare un furiere. Dovevano uscire e trovare la polizia, o fare volontariato negli ospedali. Dovevano nominare dei difensori per tenere sicuro l'ingresso.
@@ -473,7 +491,7 @@ C'erano lacrime negli occhi di Van. Non era l'unico. Non lo applaudirono, ma fec
 
 «Come lo facciamo?» disse Popovich, senza una traccia di sarcasmo.
 
-****
+### alt.november5-disaster.recovery
 
 I newsgroup si stavano riempiendo velocemente. Li avevano annunciati su news.admin.net-abuse.email, dove bazzicavano tutti i combattenti anti-spam, e dove c'era una cultura stretta di cameratismo di fronte all'attacco totale.
 
@@ -485,17 +503,21 @@ Gli stream di foto su Flickr erano orribili. Felix dovette disiscriversi dopo av
 
 Wikipedia era su, ma zoppicava sotto il carico. Lo spam continuava a riversarsi come se niente fosse cambiato. I worm vagavano per la rete.
 
+![Una mano che si allunga per chiudere un laptop con foto di disastri, un caffè freddo accanto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-flickr-horror.jpg)
+
 .recovery.logistics era dove si concentrava la maggior parte dell'azione.
 
+```text
 > Possiamo usare il meccanismo di voto dei newsgroup per tenere
-
 > elezioni regionali
+```
 
 Felix sapeva che avrebbe funzionato. I voti dei newsgroup Usenet funzionavano da più di vent'anni senza intoppi sostanziali.
 
+```text
 > Eleggeremo rappresentanti regionali e loro sceglieranno un Primo
-
 > Ministro.
+```
 
 Gli americani insistevano per Presidente, cosa che a Felix non piaceva. Sembrava troppo di parte. Il suo futuro non sarebbe stato il futuro americano. Il futuro americano era saltato in aria con la Casa Bianca. Lui stava costruendo una tenda più grande di così.
 
@@ -505,21 +527,20 @@ Parlavano un inglese poliglotta in .recovery.logistics, e Felix aveva lo slancio
 
 Sorprendentemente pochi pensavano che Felix fosse fuori di testa.
 
+```text
 > Penso che dovremmo tenere le elezioni il prima possibile. Domani
-
 > al massimo. Non possiamo governare con giustizia senza il consenso
-
 > dei governati.
+```
 
 In pochi secondi la risposta atterrò nella sua casella.
 
+```text
 > Non puoi essere serio. Consenso dei governati? Se non mi sbaglio,
-
 > la maggior parte delle persone che proponi di governare sta vomitando
-
 > le budella, nascosta sotto la scrivania, o vagando in stato di shock
-
 > per le strade della città. Quando votano LORO?
+```
 
 Felix dovette ammettere che aveva un punto. Queen Kong era acuta. Poche donne sysadmin, e questa era una vera tragedia. Donne come Queen Kong erano troppo brave per essere escluse dal campo. Avrebbe dovuto trovare una soluzione per bilanciare le donne nel suo nuovo governo. Richiedere che ogni regione eleggesse una donna e un uomo?
 
@@ -573,67 +594,85 @@ Van si alzò e quando la sua faccia entrò nella luce, Felix vide quanto aveva g
 
 Van si allontanò barcollando. «Buona fortuna per le elezioni» disse, dando una pacca sulla spalla a Felix.
 
+![Felix a una finestra sporca, che guarda le colonne di fumo salire dalla città](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-election-day.jpg)
+
 Felix si alzò e camminò avanti e indietro, fermandosi a guardare attraverso le finestre sporche. Gli incendi bruciavano ancora a Toronto, più di prima. Aveva provato a cercare mailing list o blog su cui i torontoniani stavano postando, ma gli unici che aveva trovato erano gestiti da altri geek in altri data center. Era possibile — anzi probabile — che ci fossero sopravvissuti là fuori che avevano priorità più urgenti che postare su Internet. Il telefono di casa funzionava ancora circa metà delle volte ma aveva smesso di chiamarlo dopo il secondo giorno, quando sentire la voce di Kelly sulla segreteria per la cinquantesima volta lo aveva fatto piangere nel mezzo di una riunione di pianificazione. Non era l'unico.
 
 Giorno delle elezioni. Tempo di affrontare la musica.
 
+```text
 > Sei nervoso?
-
 > No,
+```
 
 digitò Felix.
 
+```text
 > Non mi importa granché se vinco, a essere onesto. Sono solo contento che lo stiamo facendo. L'alternativa era stare seduti con le dita nel culo, aspettando che qualcuno desse di matto e aprisse la porta.
+```
 
 Il cursore restò fermo. Queen Kong aveva una latenza molto alta mentre dirigeva la sua banda di Googloidi per il Googleplex, facendo tutto il possibile per tenere online il suo data center. Tre delle gabbie offshore erano andate offline e due dei sei link di rete ridondanti erano bruciati. Per fortuna le query al secondo erano molto calate.
 
+```text
 > C'è ancora la Cina
+```
 
 scrisse. Queen Kong aveva una grande lavagna con una mappa del mondo colorata in query-Google-al-secondo, e ci sapeva fare, mostrando il calo nel tempo con grafici colorati. Aveva caricato un sacco di video che mostravano come la peste e le bombe avevano spazzato il mondo: l'impennata iniziale di query di persone che volevano sapere cosa stava succedendo, poi il cupo e precipitoso crollo quando le piaghe avevano preso il sopravvento.
 
+```text
 > La Cina è ancora al novanta percento circa del nominale.
+```
 
 Felix scosse la testa.
 
+```text
 > Non puoi pensare che siano responsabili loro
-
 > No
+```
 
 scrisse, ma poi cominciò a digitare qualcosa e si fermò.
 
+```text
 > No certo che no. Credo all'Ipotesi Popovich. Ogni stronzo nel mondo usa gli altri stronzi come copertura. Ma la Cina li ha messi a tacere più duramente e velocemente di chiunque altro. Forse abbiamo finalmente trovato un uso per gli stati totalitari.
+```
 
 Felix non poté resistere. Scrisse:
 
+```text
 > Sei fortunata che il tuo capo non possa vederti scrivere questo. Voi eravate partecipanti piuttosto entusiasti del Grande Firewall della Cina.
-
 > Non è stata un'idea mia
+```
 
 scrisse.
 
+```text
 > E il mio capo è morto. Sono probabilmente tutti morti. Tutta la Bay Area è stata colpita duramente, e poi c'è stato il terremoto.
+```
 
 Avevano guardato il flusso dati automatico dell'USGS dal 6.9 che aveva devastato la California settentrionale da Gilroy a Sebastopol. Le webcam del SoMa rivelavano la portata dei danni — esplosioni di condutture del gas, edifici retrofittati sismicamente che si accartocciavano come pile di costruzioni di bambini dopo un bel calcio. Il Googleplex, che galleggiava su una serie di gigantesche molle d'acciaio, aveva tremato come un piatto di gelatina, ma i rack erano rimasti al loro posto e il danno peggiore era stato un brutto livido all'occhio di un sysadmin che si era preso in faccia una crimpatrice volante.
 
+```text
 > Scusa. Me n'ero dimenticato.
-
 > Va bene. Abbiamo perso tutti qualcuno, no?
-
 > Sì. Sì. Comunque, non sono preoccupato per le elezioni. Chiunque vinca, almeno stiamo FACENDO qualcosa
-
 > Non se votano per uno dei fottistronzi
+```
 
 Fottistronzo era l'epiteto che alcuni sysadmin usavano per descrivere la fazione che voleva spegnere Internet. Queen Kong l'aveva coniato — apparentemente era nato come termine generico per descrivere i manager IT incompetenti che aveva masticato e sputato durante la sua carriera.
 
+```text
 > Non lo faranno. Sono solo stanchi e tristi. Il tuo endorsement farà la differenza
+```
 
 I Googloidi erano uno dei blocchi più grandi e potenti rimasti, insieme agli equipaggi dei link satellitari e ai rimanenti equipaggi dei cavi transoceanici. L'endorsement di Queen Kong era stato una sorpresa e lui le aveva mandato un'email a cui lei aveva risposto laconicamente: "non possono comandare i fottistronzi."
 
+```text
 > gtg
+```
 
 scrisse e poi la sua connessione cadde. Aprì un browser e caricò google.com. Il browser andò in timeout. Ricaricò, e poi ancora, e poi la pagina di Google tornò su. Qualunque cosa avesse colpito il posto di Queen Kong — mancanza di corrente, worm, un altro terremoto — l'aveva sistemata. Sbuffò una risata quando vide che avevano sostituito le O nel logo di Google con piccoli pianeti Terra con funghi atomici che si levavano da essi.
 
-****
+### A Secco
 
 «Hai qualcosa da mangiare?» gli disse Van. Era metà pomeriggio, non che il tempo passasse particolarmente nel data center. Felix si frugò le tasche. Avevano messo un furiere al comando, ma non prima che tutti avessero arraffato del cibo dalle macchinette. Lui aveva avuto una dozzina di barrette energetiche e qualche mela. Aveva preso un paio di panini ma aveva saggiamente mangiato quelli per primi prima che diventassero stantii.
 
@@ -670,8 +709,9 @@ Sario scoppiò a ridere. «Oh, sei impagabile. Scommetto che tre quarti di quest
 «Fottistronzo» disse Felix, «vaffanculo.»
 
 ![Felix e Sario faccia a faccia](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-spot.jpg)
+*Illustrazione di [Rob Dumuhosky](https://www.robdumuhosky.com/)*
 
-****
+### Il Voto
 
 ![Un distributore automatico sfondato, completamente vuoto — solo briciole rimaste](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-supplies.jpg)
 
@@ -737,11 +777,15 @@ Era stato predeterminato dalla scorta di combustibile, ma chi voleva aspettare c
 
 ![Server rack che si spengono uno dopo l'altro, un indicatore di carburante quasi a zero, un ultimo LED verde che lampeggia](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-last-packet.jpg)
 
+```text
 > stamattina metà dei miei se ne sono andati
+```
 
 scrisse Queen Kong. Google reggeva piuttosto bene comunque, ovviamente. Il carico sui server era molto più leggero di quanto fosse dai tempi in cui Google stava su un mucchio di PC assemblati a mano sotto una scrivania a Stanford.
 
+```text
 > noi siamo scesi a un quarto
+```
 
 scrisse Felix. Era passato solo un giorno da quando Popovich e Rosenbaum se n'erano andati, ma il traffico sui newsgroup era calato quasi a zero. Lui e Van non avevano avuto molto tempo per giocare alla Repubblica del Cyberspazio. Erano stati troppo occupati a imparare i sistemi che Popovich gli aveva passato, i router grossi grossi che continuavano a funzionare come principale punto di interscambio per tutte le dorsali di rete del Canada.
 
@@ -749,11 +793,11 @@ Comunque, ogni tanto qualcuno postava ancora sui newsgroup, generalmente per dir
 
 Ricaricò il newsgroup. C'era un messaggio tipico.
 
+```text
 > Processi impazziti su Solaris TK
-
 >
-
 > Ehm, ciao. Sono solo un MCSE leggero ma sono l'unico sveglio qui e quattro dei DSLAM sono appena andati giù. Sembra che ci sia del codice di fatturazione custom che sta cercando di calcolare quanto addebitare ai nostri clienti aziendali e ha generato diecimila thread e sta mangiando tutto lo swap. Vorrei solo killarlo ma non ci riesco. C'è qualche invocazione magica che devo fare per far fuori questa roba dalla maledetta scatola weenix? Cioè, non è che qualcuno dei nostri clienti ci pagherà mai più. Chiederei al tizio che ha scritto questo codice, ma è praticamente morto per quanto ne sappiamo.
+```
 
 Ricaricò. C'era una risposta. Era breve, autorevole e utile — esattamente il tipo di cosa che non vedevi quasi mai in un newsgroup di alto livello quando un novellino postava una domanda stupida. L'apocalisse aveva risvegliato lo spirito di paziente disponibilità nella comunità mondiale dei sysop.
 
@@ -763,31 +807,34 @@ Guardò il messaggio di nuovo. Era di Will Sario.
 
 Passò alla sua finestra di chat.
 
+```text
 > sario pensavo che volessi la rete morta perché stai aiutando gli mcse a sistemare i loro box?
-
 >  Beh Signor PM, forse non sopporto di vedere un computer soffrire nelle mani di un dilettante.
+```
 
 Passò al canale con Queen Kong.
 
+```text
 > Quanto?
-
 > Da quando ho dormito? Due giorni. Prima che finiamo il combustibile? Tre giorni. Da quando abbiamo finito il cibo? Due giorni.
-
 > Gesù. Non ho dormito neanch'io la scorsa notte. Siamo un po' a corto di personale qui.
-
 > asl? Sono monica e vivo a pasadena e sono annoiata coi compiti. Vuoi scaricare la mia foto???
+```
 
 I bot trojan erano ovunque su IRC in quei giorni, saltando su ogni canale che avesse un po' di traffico. A volte ne beccavi cinque o sei che flirtavano tra di loro. Era piuttosto surreale guardare un malware che cercava di convincere un'altra istanza di se stesso a scaricare un trojan.
 
 Kickarono entrambi il bot dal canale contemporaneamente. Ormai aveva uno script per quello. Lo spam non era calato nemmeno un po'.
 
+```text
 > Come mai lo spam non cala? Metà dei maledetti data center sono andati al buio
+```
 
 Queen Kong fece una lunga pausa prima di scrivere. Come era diventato automatico quando aveva latenza alta, lui ricaricò la homepage di Google. Effettivamente, era giù.
 
+```text
 > Sario, hai qualcosa da mangiare?
-
 > Non ti mancheranno un paio di pasti in più, Vostra Eccellenza
+```
 
 Van era tornato su Mayor McCheese ma era nello stesso canale.
 
@@ -795,9 +842,10 @@ Van era tornato su Mayor McCheese ma era nello stesso canale.
 
 Van non aveva un bell'aspetto. Sembrava che lo potessi buttare giù con un soffio e aveva un tono catarroso e debole nel parlare.
 
+```text
 > hey kong tutto ok?
-
 > tutto bene ho solo dovuto andare a prendere a calci qualcuno
+```
 
 «Come va il traffico, Van?»
 
@@ -805,9 +853,10 @@ Van non aveva un bell'aspetto. Sembrava che lo potessi buttare giù con un soffi
 
 Ogni tanto, Felix intercettava le connessioni per vedere se riusciva a trovare qualcuno con notizie dal mondo esterno. Quasi tutto era traffico automatizzato, però: backup di rete, aggiornamenti di stato. Spam. Un sacco di spam.
 
+```text
 > Lo spam è ancora su perché i servizi che bloccano lo spam stanno cedendo più velocemente dei servizi che lo creano. Tutta la roba anti-worm è centralizzata in un paio di posti. La roba cattiva è su un milione di computer zombie. Se solo gli utenti decerebrati avessero avuto il buon senso di spegnere i loro PC prima di stramazzare o fuggire
-
 > al ritmo a cui andiamo entro cena routeremo solo spam
+```
 
 Van si schiarì la gola, un suono doloroso. «A proposito» disse. «Credo che succederà prima. Felix, non credo che qualcuno si accorgerebbe se ce ne andassimo via da qui.»
 
@@ -819,7 +868,7 @@ Van annuì. «Tutto il fottuto giorno, ogni dieci secondi. Qualunque cosa per te
 
 «Facciamo una riunione» disse.
 
-****
+### Quindici
 
 ![L'ultima riunione — quindici sysadmin esausti attorno a un tavolo, uno solo ancora in piedi](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-final-meeting.jpg)
 
@@ -845,23 +894,18 @@ Van si grattò le guance, poi Felix vide che si stava asciugando le lacrime.
 
 Pulì una zona con la manica e cominciò a scrivere password lunghe e complicate, alfanumeriche e condite di punteggiatura. Felix aveva il dono di ricordare quel tipo di password. Dubitava che gli sarebbe mai più servito granché.
 
-****
+### Andarsene
 
+```text
 > ce ne andiamo, kong. Il combustibile è quasi finito comunque
-
 > già beh è giusto allora. è stato un onore, signor primo ministro
-
 > starai bene?
-
 > ho requisito un giovane sysadmin per soddisfare le mie esigenze femminili e abbiamo trovato un'altra scorta di cibo che ci basterà un paio di settimane ora che siamo scesi a quindici admin—sto alla grande amico
-
 > sei incredibile, Queen Kong, davvero. Però non fare l'eroina. Quando devi andare vai. Deve esserci qualcosa là fuori
-
 > stai attento felix, davvero—ah ti ho detto che le query sono aumentate in Romania? forse si stanno rimettendo in piedi
-
 > davvero?
-
 > sì, davvero. siamo duri a morire—come gli scarafaggi del cazzo
+```
 
 La sua connessione cadde. Passò a Firefox e ricaricò Google e era giù. Ricaricò e ricaricò e ricaricò, ma non tornò su. Chiuse gli occhi e ascoltò Van grattarsi le gambe e poi lo sentì digitare qualcosa.
 
@@ -902,6 +946,7 @@ Aspettarono che le porte interne si chiudessero dietro di loro e poi Felix aprì
 ## VI. Quello Che Faceva
 
 ![Felix e Van camminano per le strade devastate di Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-end.jpg)
+*Illustrazione di [Rob Dumuhosky](https://www.robdumuhosky.com/)*
 
 Non videro un'anima viva nei quindici minuti di cammino. Non si sentiva un solo suono a parte qualche verso di uccelli e qualche gemito lontano, e il vento nei cavi elettrici sopra le loro teste. Era come camminare sulla superficie della luna.
 
@@ -960,6 +1005,8 @@ Felix alzò le mani. «Seriamente, è un medico? Una farmacista?»
 «È ancora su» disse. «Più o meno. È quello che abbiamo fatto tutta la settimana. Tenerla online. Potrebbe non durare molto più a lungo, però.»
 
 «No» disse lei. «Immagino di no.» Posò l'ascia. «Hai qualcosa da scambiare? Non mi serve molto, ma ho cercato di tenermi su il morale barattando con i vicini. È come giocare a Civilization.»
+
+![Una farmacia con scaffali semi-vuoti, una donna con un'ascia antincendio sulla porta, un cartello COMMERCIO BENVENUTO](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-pharmacy.jpg)
 
 «Ha dei vicini?»
 
@@ -1053,21 +1100,23 @@ Non era una bella vita, la maggior parte del tempo. Le ferite di Felix non guari
 
 Ma a Felix piaceva il suo data center. Lì nel ronzio dei rack, non si sentiva mai come se fossero i primi giorni di una nazione migliore, ma non si sentiva mai nemmeno come se fossero gli ultimi.
 
+![Un sysadmin esce da un piccolo data center nella notte, una luna del raccolto che sorge su un paesaggio incolto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-harvest-moon.jpg)
+
+```text
 > vai a letto, felix
-
 > presto, kong, presto—ho quasi fatto partire questo backup
-
 > sei un tossico, amico.
-
 > senti chi parla
+```
 
 Ricaricò la homepage di Google. Queen Kong la teneva online da un paio d'anni ormai. Le O in Google cambiavano continuamente, ogni volta che le veniva l'ispirazione. Oggi erano piccoli globi a fumetti, uno sorridente e l'altro accigliato.
 
 La guardò a lungo e tornò in un terminale a controllare il suo backup. Girava pulito, per una volta. I registri del piccolo governo erano al sicuro.
 
+```text
 > ok buonanotte
-
 > stammi bene
+```
 
 Van lo salutò con la mano mentre si trascinava verso la porta, stirandosi la schiena con una lunga serie di scrocchi.
 
@@ -1085,4 +1134,4 @@ Era quello che faceva. Era un sysadmin.
 
 [![Licenza Creative Commons](https://i.creativecommons.org/l/by-nc-sa/2.5/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/2.5/)
 
-"When Sysadmins Ruled the Earth" di [Cory Doctorow](https://craphound.com/) è distribuito con licenza [Creative Commons Attribuzione-NonCommerciale-CondividiAlloStessoModo 2.5 Generico](https://creativecommons.org/licenses/by-nc-sa/2.5/). Pubblicato originariamente su *Jim Baen's Universe*, agosto 2006. [Testo originale su craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). Traduzione italiana e illustrazioni di sezione sono opere derivate ai sensi della stessa licenza.
+"When Sysadmins Ruled the Earth" di [Cory Doctorow](https://craphound.com/) è distribuito con licenza [Creative Commons Attribuzione-NonCommerciale-CondividiAlloStessoModo 2.5 Generico](https://creativecommons.org/licenses/by-nc-sa/2.5/). Pubblicato originariamente su *Jim Baen's Universe*, agosto 2006. [Testo originale su craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). Traduzione italiana, illustrazioni delle sezioni generate con Gemini e suddivisione in capitoli sono opere derivate ai sensi della stessa licenza.
