@@ -489,6 +489,8 @@ The Flickr photostreams were horrific. Felix had to unsubscribe from them after 
 
 Wikipedia was up, but limping under load. The spam poured in as though nothing had changed. Worms roamed the network.
 
+![A hand reaching to close a laptop showing horrific disaster photos, a cold coffee beside it](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-flickr-horror.jpg)
+
 .recovery.logistics was where most of the action was.
 
 > We can use the newsgroup voting mechanism to hold regional
@@ -576,6 +578,8 @@ Van examined his arms. "I have excema," he said.
 Van got up and when his face hove into the light, Felix saw how puffed his eyes were. "I'll post to the mailing-list for some antihistamine," Felix said. There had been four mailing lists and three wikis for the survivors in the building within hours of the first meeting's close, and in the intervening days they'd settled on just one. Felix was still on a little mailing list with five of his most trusted friends, two of whom were trapped in cages in other countries. He suspected that the rest of the sysadmins were doing the same.
 
 Van stumbled off. "Good luck on the elections," he said, patting Felix on the shoulder.
+
+![Felix at a grimy window, staring out at smoke columns rising from the city](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-election-day.jpg)
 
 Felix stood and paced, stopping to stare out the grubby windows. The fires still burned in Toronto, more than before. He'd tried to find mailing lists or blogs that Torontonians were posting to, but the only ones he'd found were being run by other geeks in other data-centers. It was possible—likely, even—that there were survivors out there who had more pressing priorities than posting to the Internet. His home phone still worked about half the time but he'd stopped calling it after the second day, when hearing Kelly's voice on the voicemail for the fiftieth time had made him cry in the middle of a planning meeting. He wasn't the only one.
 
@@ -964,6 +968,8 @@ Felix held his hands up. "Seriously, are you a doctor? A pharmacist?"
 "It's still up," he said. "Kind of. That's what we've been doing all week. Keeping it online. It might not last much longer, though."
 
 "No," she said. "I don't suppose it would." She set the axe down. "Have you got anything to trade? I don't need much, but I've been trying to keep my spirits up by trading with the neighbors. It's like playing civilization."
+
+![A pharmacy with half-empty shelves, a woman with a fire axe in the doorway, TRADE WELCOME sign](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-pharmacy.jpg)
 
 "You have neighbors?"
 
