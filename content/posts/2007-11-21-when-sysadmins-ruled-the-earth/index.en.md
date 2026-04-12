@@ -215,6 +215,8 @@ Felix was so engrossed in the reportâ€”purportedly forwarded from Health Canadaâ
 
 ****
 
+![Emergency lights flicker on in a dark hallway, silhouettes stampeding for the stairs](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-blackout.jpg)
+
 The generators kicked in a minute later. Sysadmins stampeded for the stairs. Felix grabbed Van by the arm, pulled him back.
 
 "Maybe we should wait this out in the cage," he said.
@@ -475,6 +477,8 @@ There were tears in Van's eyes. He wasn't the only one. They didn't applaud him,
 
 ****
 
+![A Usenet newsreader filled with disaster recovery threads, a world map with X marks on the wall](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-newsgroups.jpg)
+
 The newsgroups were filling up fast. They'd announced them in news.admin.net-abuse.email, where all the spamfighters hung out, and where there was a tight culture of camaraderie in the face of full-out attack.
 
 The new group was alt.november5-disaster.recovery, with .recovery.goverance, .recovery.finance, .recovery.logistics and .recovery.defense hanging off of it. Bless the wooly alt. hierarchy and all those who sail in her.
@@ -635,6 +639,8 @@ she typed and then her connection dropped. He fired up a browser and called up g
 
 ****
 
+![Felix and Sario face off](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-spot.jpg)
+
 "Got anything to eat?" Van said to him. It was mid-afternoon, not that time particularly passed in the data-center. Felix patted his pockets. They'd put a quartermaster in charge, but not before everyone had snagged some chow out of the machines. He'd had a dozen power-bars and some apples. He'd taken a couple sandwiches but had wisely eaten them first before they got stale.
 
 "One power-bar left," he said. He'd noticed a certain looseness in his waistline that morning and had briefly relished it. Then he'd remembered Kelly's teasing about his weight and he'd cried some. Then he'd eaten two power bars, leaving him with just one left.
@@ -668,8 +674,6 @@ Van scratched some more. "I'm sorry," he said. "I didn't know."
 Sario cracked up. "Oh, you are priceless. I'd bet that three quarters of this bunch is borderline autistic. Me, I'm just an asshole. But I'm one who isn't afraid to tell the truth, and that makes me better than you, dickweed."
 
 "Fuckrag," Felix said, "fuck off."
-
-![Felix and Sario face off](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-spot.jpg)
 
 ****
 
