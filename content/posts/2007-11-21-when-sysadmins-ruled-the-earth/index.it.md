@@ -25,7 +25,7 @@ necessaria per leggerlo tutto.
 
 ---
 
-*Illustrazioni di Rob Dumuhosky*
+*Illustrazioni di [Rob Dumuhosky](https://www.robdumuhosky.com/)*
 
 ![La CN Tower crolla su Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-opening.jpg)
 
@@ -361,6 +361,8 @@ Nessuno scrisse più niente per un bel po'.
 
 ****
 
+![Felix accasciato contro i rack dei server, solo con il suo dolore](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-grief.jpg)
+
 Felix dovette usare la bottiglia di Mountain Dew due volte. Poi Van la usò di nuovo. Felix provò a chiamare Kelly ancora una volta. Il sito della Polizia Metropolitana era giù.
 
 Alla fine, si lasciò scivolare contro i server e avvolse le braccia intorno alle ginocchia e pianse come un bambino.
@@ -434,8 +436,6 @@ Ci fu una risata di buon umore generale.
 «È logico» disse Sario. «Molta gente non riesce a gestire la logica quando detta decisioni difficili. È un problema della gente, non della logica.»
 
 Ci fu un brusio di conversazione che si trasformò rapidamente in un boato.
-
-![Illustrazione](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-spot.jpg)
 
 «ZITTI!» urlò Popovich. La conversazione calò di un Watt. Popovich urlò di nuovo, battendo il piede sul bancone. Alla fine ci fu una parvenza di ordine. «Uno alla volta» disse. Era rosso in faccia, con le mani in tasca.
 
@@ -669,7 +669,11 @@ Sario scoppiò a ridere. «Oh, sei impagabile. Scommetto che tre quarti di quest
 
 «Fottistronzo» disse Felix, «vaffanculo.»
 
+![Felix e Sario faccia a faccia](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-spot.jpg)
+
 ****
+
+![Un distributore automatico sfondato, completamente vuoto — solo briciole rimaste](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-supplies.jpg)
 
 Avevano meno di un giorno di combustibile quando Felix fu eletto primo Primo Ministro del Cyberspazio. Il primo scrutinio fu invalidato da un bot che aveva spammato il processo di voto e persero un giorno cruciale mentre contavano i voti una seconda volta.
 

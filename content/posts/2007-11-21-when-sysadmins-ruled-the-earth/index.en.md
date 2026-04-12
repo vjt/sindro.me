@@ -25,7 +25,7 @@ needed to read it completely.
 
 ---
 
-*Illustrated by Rob Dumuhosky*
+*Illustrated by [Rob Dumuhosky](https://www.robdumuhosky.com/)*
 
 ![The CN Tower collapses over Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-opening.jpg)
 
@@ -361,6 +361,8 @@ No one typed anything for quite some time then.
 
 ****
 
+![Felix slumped against the server racks, alone with his grief](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-grief.jpg)
+
 Felix had to use the Mountain Dew bottle twice. Then Van used it again. Felix tried calling Kelly again. The Metro Police site was down.
 
 Finally, he slid back against the servers and wrapped his arms around his knees and wept like a baby.
@@ -434,8 +436,6 @@ There was a round of good-natured chuckling.
 "It's logical," Sario said. "Lots of people don't like coping with logic when it dictates hard decisions. That's a problem with people, not logic."
 
 There was a buzz of conversation that quickly turned into a roar.
-
-![Illustration](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-spot.jpg)
 
 "Shut UP!" Popovich hollered. The conversation dimmed by one Watt. Popovich yelled again, stamping his foot on the countertop. Finally there was a semblance of order. "One at a time," he said. He was flushed red, his hands in his pockets.
 
@@ -669,7 +669,11 @@ Sario cracked up. "Oh, you are priceless. I'd bet that three quarters of this bu
 
 "Fuckrag," Felix said, "fuck off."
 
+![Felix and Sario face off](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-spot.jpg)
+
 ****
+
+![An empty vending machine, smashed open — only crumbs left](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-supplies.jpg)
 
 They had less than a day's worth of fuel when Felix was elected the first ever Prime Minister of Cyberspace. The first count was spoiled by a bot that spammed the voting process and they lost a critical day while they added up the votes a second time.
 
