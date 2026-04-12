@@ -21,13 +21,13 @@ needed to read it completely.
 
 ---
 
-> **Note:** The full text of this story is reproduced below under the terms of its [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/) license. It was originally published in [Jim Baen's Universe, Vol 1 Num 2, August 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) and the original text is available on the author's website at [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). This is one of the best pieces of geek fiction ever written — I added chapter illustrations and section headings to enhance the reading experience, and an [Italian translation](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/) to share it with a wider audience.
+> **Note:** The full text of this story is reproduced below under the terms of its [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/) license. It was originally published in [Jim Baen's Universe, Vol 1 Num 2, August 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) and the original text is available on the author's website at [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). This is one of the best pieces of geek fiction ever written — I added section headings and additional illustrations (generated with Gemini) to enhance the reading experience, alongside the original artwork by [Rob Dumuhosky](https://www.robdumuhosky.com/), and an [Italian translation](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/) to share it with a wider audience.
 
 ---
 
-*Illustrated by [Rob Dumuhosky](https://www.robdumuhosky.com/)*
-
 ![The CN Tower collapses over Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-opening.jpg)
+
+*Illustration by [Rob Dumuhosky](https://www.robdumuhosky.com/)*
 
 ## I. The Call
 
@@ -681,6 +681,8 @@ Sario cracked up. "Oh, you are priceless. I'd bet that three quarters of this bu
 
 ![Felix and Sario face off](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-spot.jpg)
 
+*Illustration by [Rob Dumuhosky](https://www.robdumuhosky.com/)*
+
 ****
 
 They had less than a day's worth of fuel when Felix was elected the first ever Prime Minister of Cyberspace. The first count was spoiled by a bot that spammed the voting process and they lost a critical day while they added up the votes a second time.
@@ -910,6 +912,8 @@ They waited for the interior doors to close behind them and then Felix opened th
 ## VI. What He Did
 
 ![Felix and Van walking through devastated Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-end.jpg)
+
+*Illustration by [Rob Dumuhosky](https://www.robdumuhosky.com/)*
 
 They didn't see a single soul on the fifteen minute walk. There wasn't a single sound except for some bird noises and some distant groans, and the wind in the electric cables overhead. It was like walking on the surface of the moon.
 
