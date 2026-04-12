@@ -29,6 +29,10 @@ necessaria per leggerlo tutto.
 
 ![La CN Tower crolla su Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-opening.jpg)
 
+## I. La Chiamata
+
+![Un telefono che brilla sul comodino nel buio — la chiamata d'emergenza delle 2 di notte](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-the-call.jpg)
+
 Quando il telefono speciale di Felix suonò alle due di notte, Kelly si girò dall'altra parte e gli mollò un pugno sulla spalla sibilando: «Perché cazzo non l'hai spento prima di andare a letto?»
 
 «Perché sono di reperibilità» disse lui.
@@ -140,6 +144,10 @@ Felix e Van rimisero online i box Ardent uno alla volta. Venivano bombardati da 
 «Affare fatto» disse Van. «Amico, sei troppo buono con noi sottoposti. Dovresti tenerci in una fossa e picchiarci come tutti gli altri capi. È tutto quello che meritiamo.»
 
 ****
+
+## II. Le Luci Si Spengono
+
+![Una sala server illuminata solo dai LED lampeggianti, lo skyline della città che si spegne dalla finestra](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-lights-out.jpg)
 
 «È il tuo telefono» disse Van. Felix si estrasse dalle viscere del 486, che aveva rifiutato categoricamente di accendersi. Aveva rimediato un alimentatore di scorta da dei tizi che gestivano un'operazione di spam e stava cercando di montarlo. Si fece passare il telefono da Van, che gli era caduto dalla cintura mentre si contorceva per raggiungere il retro della macchina.
 
@@ -266,6 +274,10 @@ Felix digitò di nuovo.
 Alzò lo sguardo verso Van, e vide che le sue spalle magre tremavano. Van disse: «Porco dio. Il mondo sta finendo.»
 
 ****
+
+## III. Quarantatré Sysadmin
+
+![Una mensa trasformata in sala operativa — laptop sui tavoli pieghevoli, cavi ovunque, volti stanchi illuminati dagli schermi](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-forty-three.jpg)
 
 Felix si staccò da IRC un'ora dopo. Atlanta era bruciata. Manhattan era calda — abbastanza radioattiva da mandare in tilt le webcam che guardavano su Lincoln Plaza. Tutti davano la colpa all'Islam finché non divenne chiaro che la Mecca era un cratere fumante e la famiglia reale saudita era stata impiccata davanti ai propri palazzi.
 
@@ -515,6 +527,10 @@ Si gettò felicemente nella discussione con lei. Le elezioni sarebbero state il 
 
 ****
 
+## IV. Primo Ministro del Cyberspazio
+
+![Un terminale IRC con messaggi che scorrono, un'urna elettorale improvvisata accanto alla tastiera](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-prime-minister.jpg)
+
 «Primo Ministro del Cyberspazio? Perché non chiamarti il Gran Puffo della Rete Dati Globale? È più dignitoso, suona più figo e ti porterà altrettanto lontano.» Will aveva il posto letto accanto a lui, su nella mensa, con Van dall'altro lato. La stanza puzzava come un cesso: venticinque sysadmin che non si lavavano da almeno un giorno tutti ammassati nella stessa stanza. Per alcuni di loro, era passato molto, molto più di un giorno.
 
 «Stai zitto, Will» disse Van. «Tu volevi provare a buttare giù Internet.»
@@ -713,6 +729,10 @@ Era stato predeterminato dalla scorta di combustibile, ma chi voleva aspettare c
 
 ****
 
+## V. L'Ultimo Pacchetto
+
+![Server rack che si spengono uno dopo l'altro, un indicatore di carburante quasi a zero, un ultimo LED verde che lampeggia](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-last-packet.jpg)
+
 > stamattina metà dei miei se ne sono andati
 
 scrisse Queen Kong. Google reggeva piuttosto bene comunque, ovviamente. Il carico sui server era molto più leggero di quanto fosse dai tempi in cui Google stava su un mucchio di PC assemblati a mano sotto una scrivania a Stanford.
@@ -872,6 +892,10 @@ Aspettarono che le porte interne si chiudessero dietro di loro e poi Felix aprì
 «Tu sei il Primo Ministro» disse Van. «Fai strada.»
 
 ****
+
+## VI. Quello Che Faceva
+
+![Una figura solitaria che cammina sotto una luna del raccolto, un piccolo data center illuminato alle sue spalle](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-what-he-did.jpg)
 
 ![Illustrazione](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-end.jpg)
 

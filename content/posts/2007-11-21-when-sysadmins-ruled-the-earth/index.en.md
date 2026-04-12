@@ -29,6 +29,10 @@ needed to read it completely.
 
 ![The CN Tower collapses over Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-opening.jpg)
 
+## I. The Call
+
+![A phone glowing on a nightstand in the dark — the 2AM emergency call](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-the-call.jpg)
+
 When Felix's special phone rang at two in the morning, Kelly rolled over and punched him in the shoulder and hissed, "Why didn't you turn that fucking thing off before bed?"
 
 "Because I'm on call," he said.
@@ -140,6 +144,10 @@ Felix and Van got the Ardent boxes back online one at a time. They were being po
 "You're on," Van said. "Man, you're too good to us grunts. You should keep us in a pit and beat us like all the other bosses. It's all we deserve."
 
 ****
+
+## II. The Lights Go Out
+
+![A server room lit only by blinking LEDs, a city skyline going dark through the window](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-lights-out.jpg)
 
 "It's your phone," Van said. Felix extracted himself from the guts of the 486, which had refused to power up at all. He had cadged a spare power-supply from some guys who ran a spam operation and was trying to get it fitted. He let Van hand him the phone, which had fallen off his belt while he was twisting to get at the back of the machine.
 
@@ -266,6 +274,10 @@ Felix typed again.
 He looked up at Van, and saw that his skinny shoulders were shaking. Van said, "Holy motherfucking shit. The world is ending."
 
 ****
+
+## III. Forty-Three Sysadmins
+
+![A cafeteria turned war room — laptops on folding tables, cables everywhere, tired faces lit by screens](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-forty-three.jpg)
 
 Felix pried himself off of IRC an hour later. Atlanta had burned. Manhattan was hot—radioactive enough to screw up the webcams looking out over Lincoln Plaza. Everyone blamed Islam until it became clear that Mecca was a smoking pit and the Saudi Royals had been hanged before their palaces.
 
@@ -515,6 +527,10 @@ He happily clattered into argument with her. The elections would be the next day
 
 ****
 
+## IV. Prime Minister of Cyberspace
+
+![An IRC terminal with scrolling messages, a makeshift ballot box beside the keyboard](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-prime-minister.jpg)
+
 "Prime Minister of Cyberspace? Why not call yourself the Grand Poobah of the Global Data Network? It's more dignified, sounds cooler and it'll get you just as far." Will had the sleeping spot next to him, up in the cafeteria, with Van on the other side. The room smelled like a dingleberry: twenty-five sysadmins who hadn't washed in at least a day all crammed into the same room. For some of them, it had been much, much longer than a day.
 
 "Shut up, Will," Van said. "You wanted to try to knock the Internet offline."
@@ -713,6 +729,10 @@ That had been pre-ordained by the fuel-supply, but who wanted to wait for the fu
 
 ****
 
+## V. The Last Packet
+
+![Rack servers powering down one by one, a fuel gauge on empty, one last green LED blinking](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-last-packet.jpg)
+
 > half my crew split this morning
 
 Queen Kong typed. Google was holding up pretty good anyway, of course. The load on the servers was a lot lighter than it had been since the days when Google fit on a bunch of hand-built PCs under a desk at Stanford.
@@ -872,6 +892,10 @@ They waited for the interior doors to close behind them and then Felix opened th
 "You're the Prime Minister," Van said. "Lead on."
 
 ****
+
+## VI. What He Did
+
+![A lone figure walking under a harvest moon, a small data center glowing behind him](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-what-he-did.jpg)
 
 ![Illustration](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-end.jpg)
 
