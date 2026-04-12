@@ -24,6 +24,7 @@ defaultContentLanguageInSubdir = false
   dark_mode = true
   foot_image = "/glider.png"
   foot_link = "http://catb.org/jargon"
+  foot_alt = "Hacker Emblem — The Glider from Conway's Game of Life"
 
   github_url = "https://github.com/vjt"
   linkedin_url = "https://linkedin.com/in/marcellobarnaba"
