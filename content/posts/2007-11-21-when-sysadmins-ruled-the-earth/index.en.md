@@ -1063,6 +1063,8 @@ It wasn't a good life, most of the time. Felix's wounds never healed, and neithe
 
 But Felix liked his data-center. There in the humming of the racks, he never felt like it was the first days of a better nation, but he never felt like it was the last days of one, either.
 
+![A sysadmin walks out of a small data center into the night, a harvest moon rising over an overgrown landscape](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-harvest-moon.jpg)
+
 > go to bed, felix
 
 > soon, kong, soon—almost got this backup running
