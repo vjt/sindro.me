@@ -1,6 +1,7 @@
 baseURL = 'https://sindro.me/'
 title = "Marcello Barnaba"
 theme = "sindrome"
+timeout = "5m"
 summaryLength = 250
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
