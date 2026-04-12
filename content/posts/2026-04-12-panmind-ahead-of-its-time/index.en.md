@@ -14,6 +14,8 @@ I [presented some of our open-source spin-offs](/posts/2010-08-05-panmind-at-rub
 
 ## Act 1: jquery-ajax-nav — SPA Before SPAs
 
+![Hash-based routing in a vintage browser — polling for changes, hidden iframes for IE, the URL fragment as the only programmable piece of the address bar](/posts/2026-04-12-panmind-ahead-of-its-time/act1-ajax-nav.jpg)
+
 Panmind needed to feel fast. Clicking a link shouldn't reload the entire page — it should swap just the content area, instantly. In 2023 you'd reach for React, or Turbo, or HTMX. In 2009, none of those existed. There was no History API. There was no `pushState`. The URL hash fragment — the bit after `#` — was the only part of the URL you could change without triggering a page reload. So that's what we used.
 
 [jquery-ajax-nav](https://github.com/vjt/jquery-ajax-nav) was a 14-plugin jQuery framework that turned a traditional server-rendered Rails app into something that behaved like a single-page application. 206 commits, extracted from the Panmind production codebase, battle-tested across IE6 through Chrome.
@@ -217,6 +219,8 @@ That last row is the kicker. jquery-ajax-nav was built on top of plain HTML. Eve
 
 ## Act 2: usage_tracker — Event-Driven Analytics Before Segment
 
+![A steampunk data pipeline — Ruby server rack with glowing gems, an EventMachine turbine catching UDP packets, and CouchDB document stacks being sorted by robotic arms](/posts/2026-04-12-panmind-ahead-of-its-time/act2-usage-tracker.jpg)
+
 With AJAX navigation in place, traditional analytics were blind. Server logs showed one initial page load followed by a stream of XHR requests, with no way to reconstruct the user's actual navigation path. Google Analytics was designed for full page loads — it couldn't track content swaps inside a hash-routed SPA. We needed our own analytics pipeline, one that understood the difference between a page load and an AJAX navigation.
 
 So we built [usage_tracker](https://github.com/vjt/usage_tracker): a three-component analytics system that captured every request, transported it asynchronously, stored it in a document database, and computed aggregations via map-reduce. In 2010.
@@ -375,6 +379,8 @@ Sound familiar? This is essentially:
 And the XHR flag — that one boolean per request — is what Google Analytics 4 calls "single page application mode." We built it because we had to. We had a SPA (Act 1), and the analytics needed to understand it. Today we call this "Real User Monitoring" and pay Datadog or New Relic for it.
 
 ## Act 3: erlang-ruby-marshal — Cross-Language Sessions Before JWTs
+
+![Two Rosetta Stones — Ruby glowing red, Erlang glowing blue — with a river of binary data flowing between them and a cracked HTTP cookie above](/posts/2026-04-12-panmind-ahead-of-its-time/act3-erlang-marshal.jpg)
 
 Panmind had a web-based chat system. It was written in Erlang, built on [misultin](https://github.com/vjt/misultin) — a lightweight Erlang HTTP server that was one of the first to support WebSockets (though we didn't use that part). The transport was raw XHR long-polling: the browser opened an HTTP request, the Erlang server held it open until a message arrived or the connection timed out, then the browser immediately reconnected. No Comet framework, no Socket.IO, no abstraction layer. Just a request that hangs for 30 seconds waiting for data.
 

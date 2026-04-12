@@ -14,6 +14,8 @@ Ho [presentato alcuni dei nostri spin-off open source](/it/posts/2010-08-05-panm
 
 ## Atto 1: jquery-ajax-nav — SPA Prima delle SPA
 
+![Routing basato su hash in un browser vintage — polling dei cambiamenti, iframe nascosti per IE, il fragment URL come unica parte programmabile della barra degli indirizzi](/posts/2026-04-12-panmind-ahead-of-its-time/act1-ajax-nav.jpg)
+
 Panmind doveva essere veloce. Cliccare un link non doveva ricaricare l'intera pagina — doveva sostituire solo l'area dei contenuti, istantaneamente. Nel 2023 avresti usato React, o Turbo, o HTMX. Nel 2009, nessuno di questi esisteva. Non c'era la History API. Non c'era `pushState`. Il fragment dell'URL — la parte dopo `#` — era l'unica porzione dell'URL che potevi modificare senza innescare un reload della pagina. Quindi abbiamo usato quello.
 
 [jquery-ajax-nav](https://github.com/vjt/jquery-ajax-nav) era un framework jQuery da 14 plugin che trasformava una tradizionale app Rails server-rendered in qualcosa che si comportava come una single-page application. 206 commit, estratto dalla codebase di produzione di Panmind, testato su tutto, da IE6 a Chrome.
@@ -217,6 +219,8 @@ L'ultima riga è quella che conta. jquery-ajax-nav era costruito sopra HTML puro
 
 ## Atto 2: usage_tracker — Analytics Event-Driven Prima di Segment
 
+![Una pipeline dati steampunk — server rack Ruby con gemme luminose, una turbina EventMachine che cattura pacchetti UDP, e pile di documenti CouchDB ordinati da braccia robotiche](/posts/2026-04-12-panmind-ahead-of-its-time/act2-usage-tracker.jpg)
+
 Con la navigazione AJAX in piedi, le analytics tradizionali erano cieche. I log del server mostravano un page load iniziale seguito da un flusso di richieste XHR, senza modo di ricostruire il percorso di navigazione effettivo dell'utente. Google Analytics era progettato per page load completi — non poteva tracciare le sostituzioni di contenuto dentro una SPA con routing basato su hash. Ci serviva la nostra pipeline di analytics, una che capisse la differenza tra un page load e una navigazione AJAX.
 
 Così abbiamo costruito [usage_tracker](https://github.com/vjt/usage_tracker): un sistema di analytics a tre componenti che catturava ogni richiesta, la trasportava in modo asincrono, la memorizzava in un database documentale e calcolava aggregazioni via map-reduce. Nel 2010.
@@ -375,6 +379,8 @@ Ti suona familiare? È essenzialmente:
 E il flag XHR — quel singolo booleano per richiesta — è quello che Google Analytics 4 chiama "single page application mode." L'abbiamo costruito perché dovevamo. Avevamo una SPA (Atto 1), e le analytics dovevano capirla. Oggi lo chiamiamo "Real User Monitoring" e paghiamo Datadog o New Relic per averlo.
 
 ## Atto 3: erlang-ruby-marshal — Sessioni Cross-Language Prima dei JWT
+
+![Due Stele di Rosetta — Ruby incandescente in rosso, Erlang luminoso in blu — con un fiume di dati binari che scorre tra loro e un cookie HTTP spezzato sopra](/posts/2026-04-12-panmind-ahead-of-its-time/act3-erlang-marshal.jpg)
 
 Panmind aveva un sistema di chat web. Era scritto in Erlang, costruito su [misultin](https://github.com/vjt/misultin) — un server HTTP Erlang leggero che fu tra i primi a supportare i WebSocket (anche se noi non usavamo quella parte). Il trasporto era XHR long-polling puro: il browser apriva una richiesta HTTP, il server Erlang la teneva aperta fino all'arrivo di un messaggio o al timeout della connessione, poi il browser si riconnetteva immediatamente. Nessun framework Comet, nessun Socket.IO, nessun livello di astrazione. Solo una richiesta che resta appesa per 30 secondi in attesa di dati.
 
