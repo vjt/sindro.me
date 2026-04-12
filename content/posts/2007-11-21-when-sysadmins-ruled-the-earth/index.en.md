@@ -639,7 +639,7 @@ she typed and then her connection dropped. He fired up a browser and called up g
 
 ****
 
-![Felix and Sario face off](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-spot.jpg)
+![An empty vending machine, smashed open — only crumbs left](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-supplies.jpg)
 
 "Got anything to eat?" Van said to him. It was mid-afternoon, not that time particularly passed in the data-center. Felix patted his pockets. They'd put a quartermaster in charge, but not before everyone had snagged some chow out of the machines. He'd had a dozen power-bars and some apples. He'd taken a couple sandwiches but had wisely eaten them first before they got stale.
 
@@ -675,9 +675,9 @@ Sario cracked up. "Oh, you are priceless. I'd bet that three quarters of this bu
 
 "Fuckrag," Felix said, "fuck off."
 
-****
+![Felix and Sario face off](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-spot.jpg)
 
-![An empty vending machine, smashed open — only crumbs left](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-supplies.jpg)
+****
 
 They had less than a day's worth of fuel when Felix was elected the first ever Prime Minister of Cyberspace. The first count was spoiled by a bot that spammed the voting process and they lost a critical day while they added up the votes a second time.
 
