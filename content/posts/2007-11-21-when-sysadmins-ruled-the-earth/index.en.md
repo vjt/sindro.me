@@ -21,7 +21,7 @@ needed to read it completely.
 
 ---
 
-> **Note:** The full text of this story is reproduced below. It was originally published in [Jim Baen's Universe, Vol 1 Num 2, August 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth). The magazine is long gone — only the Web Archive copy survives. I wanted to preserve it here because it's one of the best pieces of geek fiction ever written. All rights belong to [Cory Doctorow](https://craphound.com/); the story is released under a [Creative Commons BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/2.5/) license.
+> **Note:** The full text of this story is reproduced below under the terms of its [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/) license. It was originally published in [Jim Baen's Universe, Vol 1 Num 2, August 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) and is available on the author's website at [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). The magazine is long gone — only the Web Archive copy survives. I wanted to preserve it here because it's one of the best pieces of geek fiction ever written.
 
 ---
 
@@ -1074,3 +1074,9 @@ Van waved at him as he creaked to the door, stretching out his back with a long 
 Felix went to the door and walked out into the night. Behind him, the biodiesel generator hummed and made its acrid fumes. The harvest moon was up, which he loved. Tomorrow, he'd go back and fix another computer and fight off entropy again. And why not?
 
 It was what he did. He was a sysadmin.
+
+---
+
+[![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/2.5/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/2.5/)
+
+"When Sysadmins Ruled the Earth" by [Cory Doctorow](https://craphound.com/) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 2.5 Generic License](https://creativecommons.org/licenses/by-nc-sa/2.5/). Originally published in *Jim Baen's Universe*, August 2006. [Original text on craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). Section illustrations generated with Gemini.

@@ -21,7 +21,7 @@ necessaria per leggerlo tutto.
 
 ---
 
-> **Nota:** Il testo completo di questo racconto è riprodotto qui sotto, tradotto in italiano dall'[originale inglese](/posts/2007-11-21-when-sysadmins-ruled-the-earth/). Era originariamente pubblicato su [Jim Baen's Universe, Vol 1 Num 2, agosto 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth). La rivista non esiste più — sopravvive solo la copia del Web Archive. Ho voluto preservarlo qui perché è uno dei migliori racconti di narrativa geek mai scritti. Tutti i diritti appartengono a [Cory Doctorow](https://craphound.com/); il racconto è rilasciato sotto licenza [Creative Commons BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/2.5/).
+> **Nota:** Il testo completo di questo racconto è riprodotto qui sotto, tradotto in italiano dall'[originale inglese](/posts/2007-11-21-when-sysadmins-ruled-the-earth/), in conformità alla licenza [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/). Era originariamente pubblicato su [Jim Baen's Universe, Vol 1 Num 2, agosto 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) ed è disponibile sul sito dell'autore su [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). La rivista non esiste più — sopravvive solo la copia del Web Archive. Ho voluto preservarlo qui perché è uno dei migliori racconti di narrativa geek mai scritti.
 
 ---
 
@@ -1074,3 +1074,9 @@ Van lo salutò con la mano mentre si trascinava verso la porta, stirandosi la sc
 Felix andò alla porta e uscì nella notte. Dietro di lui, il generatore a biodiesel ronzava e produceva i suoi fumi acri. C'era la luna del raccolto, che lui adorava. Domani sarebbe tornato a riparare un altro computer e a combattere l'entropia ancora una volta. E perché no?
 
 Era quello che faceva. Era un sysadmin.
+
+---
+
+[![Licenza Creative Commons](https://i.creativecommons.org/l/by-nc-sa/2.5/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/2.5/)
+
+"When Sysadmins Ruled the Earth" di [Cory Doctorow](https://craphound.com/) è distribuito con licenza [Creative Commons Attribuzione-NonCommerciale-CondividiAlloStessoModo 2.5 Generico](https://creativecommons.org/licenses/by-nc-sa/2.5/). Pubblicato originariamente su *Jim Baen's Universe*, agosto 2006. [Testo originale su craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). Traduzione italiana e illustrazioni di sezione sono opere derivate ai sensi della stessa licenza.
