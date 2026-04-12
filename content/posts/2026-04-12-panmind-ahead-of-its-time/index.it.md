@@ -3,6 +3,7 @@ title: "Lo Stack Panmind: Architettura da 2020 Costruita nel 2010"
 date: 2026-04-12
 tags: [panmind, javascript, erlang, ruby, rails, architecture, open-source]
 description: "Come una piccola startup italiana ha costruito un framework SPA, una pipeline di analytics event-driven e la condivisione di sessioni tra linguaggi diversi — anni prima che diventassero mainstream."
+image: cover.jpg
 ---
 
 Nel 2009, un piccolo team a Milano iniziava a costruire [Panmind](https://github.com/Panmind), una piattaforma collaborativa per condividere e organizzare la conoscenza. L'azienda era [Mind2Mind S.r.L.](http://mind2mind.is/), fondata da Emanuele Caronia. Il team: io, Fabrizio Regini, Paolo Zaccagnini e Christian Wörner allo sviluppo, Edoardo Batini come sysadmin, Emanuele Bertolini al design, Simona Forti ai contenuti e Francesca Antinori come business analyst.
