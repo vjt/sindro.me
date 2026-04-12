@@ -14,6 +14,7 @@ hideVintage: true
   white-space: pre-wrap;
   word-wrap: break-word;
   line-height: 1.8;
+  font-size: 1.05em;
 }
 </style>
 
