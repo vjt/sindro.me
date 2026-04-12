@@ -439,6 +439,8 @@ There was a round of good-natured chuckling.
 
 There was a buzz of conversation that quickly turned into a roar.
 
+![A Usenet newsreader filled with disaster recovery threads, a world map with X marks on the wall](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-newsgroups.jpg)
+
 "Shut UP!" Popovich hollered. The conversation dimmed by one Watt. Popovich yelled again, stamping his foot on the countertop. Finally there was a semblance of order. "One at a time," he said. He was flushed red, his hands in his pockets.
 
 One sysadmin was for staying. Another for going. They should hide in the cages. They should inventory their supplies and appoint a quartermaster. They should go outside and find the police, or volunteer at hospitals. They should appoint defenders to keep the front door secure.
@@ -476,8 +478,6 @@ There were tears in Van's eyes. He wasn't the only one. They didn't applaud him,
 "How do we do it?" Popovich said, without a trace of sarcasm.
 
 ****
-
-![A Usenet newsreader filled with disaster recovery threads, a world map with X marks on the wall](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-newsgroups.jpg)
 
 The newsgroups were filling up fast. They'd announced them in news.admin.net-abuse.email, where all the spamfighters hung out, and where there was a tight culture of camaraderie in the face of full-out attack.
 
