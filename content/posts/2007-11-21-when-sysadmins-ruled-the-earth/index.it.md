@@ -31,8 +31,6 @@ necessaria per leggerlo tutto.
 
 ## I. La Chiamata
 
-![Un telefono che brilla sul comodino nel buio — la chiamata d'emergenza delle 2 di notte](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-the-call.jpg)
-
 Quando il telefono speciale di Felix suonò alle due di notte, Kelly si girò dall'altra parte e gli mollò un pugno sulla spalla sibilando: «Perché cazzo non l'hai spento prima di andare a letto?»
 
 «Perché sono di reperibilità» disse lui.
@@ -899,9 +897,7 @@ Aspettarono che le porte interne si chiudessero dietro di loro e poi Felix aprì
 
 ## VI. Quello Che Faceva
 
-![Una figura solitaria che cammina sotto una luna del raccolto, un piccolo data center illuminato alle sue spalle](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-what-he-did.jpg)
-
-![Illustrazione](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-end.jpg)
+![Felix e Van camminano per le strade devastate di Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-end.jpg)
 
 Non videro un'anima viva nei quindici minuti di cammino. Non si sentiva un solo suono a parte qualche verso di uccelli e qualche gemito lontano, e il vento nei cavi elettrici sopra le loro teste. Era come camminare sulla superficie della luna.
 

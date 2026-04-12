@@ -31,8 +31,6 @@ needed to read it completely.
 
 ## I. The Call
 
-![A phone glowing on a nightstand in the dark — the 2AM emergency call](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-the-call.jpg)
-
 When Felix's special phone rang at two in the morning, Kelly rolled over and punched him in the shoulder and hissed, "Why didn't you turn that fucking thing off before bed?"
 
 "Because I'm on call," he said.
@@ -899,9 +897,7 @@ They waited for the interior doors to close behind them and then Felix opened th
 
 ## VI. What He Did
 
-![A lone figure walking under a harvest moon, a small data center glowing behind him](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-what-he-did.jpg)
-
-![Illustration](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-end.jpg)
+![Felix and Van walking through devastated Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-end.jpg)
 
 They didn't see a single soul on the fifteen minute walk. There wasn't a single sound except for some bird noises and some distant groans, and the wind in the electric cables overhead. It was like walking on the surface of the moon.
 
