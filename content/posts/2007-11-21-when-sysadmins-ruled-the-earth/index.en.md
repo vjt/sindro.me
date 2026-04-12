@@ -21,7 +21,7 @@ needed to read it completely.
 
 ---
 
-> **Note:** The full text of this story is reproduced below under the terms of its [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/) license. It was originally published in [Jim Baen's Universe, Vol 1 Num 2, August 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) and is available on the author's website at [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). The magazine is long gone — only the Web Archive copy survives. I wanted to preserve it here because it's one of the best pieces of geek fiction ever written.
+> **Note:** The full text of this story is reproduced below under the terms of its [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/) license. It was originally published in [Jim Baen's Universe, Vol 1 Num 2, August 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) and the original text is available on the author's website at [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). This is one of the best pieces of geek fiction ever written — I added chapter illustrations and section headings to enhance the reading experience, and an [Italian translation](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/) to share it with a wider audience.
 
 ---
 

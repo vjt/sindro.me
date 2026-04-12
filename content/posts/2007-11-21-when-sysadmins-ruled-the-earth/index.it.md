@@ -21,7 +21,7 @@ necessaria per leggerlo tutto.
 
 ---
 
-> **Nota:** Il testo completo di questo racconto è riprodotto qui sotto, tradotto in italiano dall'[originale inglese](/posts/2007-11-21-when-sysadmins-ruled-the-earth/), in conformità alla licenza [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/). Era originariamente pubblicato su [Jim Baen's Universe, Vol 1 Num 2, agosto 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) ed è disponibile sul sito dell'autore su [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). La rivista non esiste più — sopravvive solo la copia del Web Archive. Ho voluto preservarlo qui perché è uno dei migliori racconti di narrativa geek mai scritti.
+> **Nota:** Questo racconto è una traduzione italiana di ["When Sysadmins Ruled the Earth"](/posts/2007-11-21-when-sysadmins-ruled-the-earth/) di Cory Doctorow, riprodotto in conformità alla licenza [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/). Era originariamente pubblicato su [Jim Baen's Universe, Vol 1 Num 2, agosto 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) e il testo originale è disponibile sul sito dell'autore su [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). È uno dei migliori racconti di narrativa geek mai scritti — ho aggiunto illustrazioni e suddivisione in capitoli per rendere la lettura più scorrevole, e questa traduzione italiana per condividerlo con un pubblico più ampio.
 
 ---
 
