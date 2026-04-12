@@ -123,6 +123,8 @@ Felix was a type-one admin, with an extra seventy or eighty pounds all around th
 
 ****
 
+![A phone glowing on a nightstand in the dark — the 2AM emergency call](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-the-call.jpg)
+
 They ended up just unplugging the frigging routers from the Internet. Not Felix, of course, though he was itching to do it and get them rebooted after shutting down their IPv6 interfaces. It was done by a couple bull-goose Bastard Operators From Hell who had to turn two keys at once to get access to their cage—like guards in a Minuteman silo. 95 percent of the long distance traffic in Canada went through this building. It had better security than most Minuteman silos.
 
 Felix and Van got the Ardent boxes back online one at a time. They were being pounded by worm-probes—putting the routers back online just exposed the downstream cages to the attack. Every box on the Internet was drowning in worms, or creating worm-attacks, or both. Felix managed to get through to NIST and Bugtraq after about a hundred timeouts, and download some kernel patches that should reduce the load the worms put on the machines in his care. It was 10AM, and he was hungry enough to eat the ass out of a dead bear, but he recompiled his kernels and brought the machines back online. Van's long fingers flew over the administrative keyboard, his tongue protruding as he ran load-stats on each one.
@@ -819,6 +821,8 @@ Van nodded. "All frigging day, every ten seconds. Anything to keep my belly full
 
 ****
 
+![The final meeting — fifteen exhausted sysadmins around a table, one still standing](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-final-meeting.jpg)
+
 There had been forty-three of them on D-Day. Now there were fifteen. Six had responded to the call for a meeting by simply leaving. Everyone knew without having to be told what the meeting was about.
 
 "So that's it, you're going to let it all fall apart?" Sario was the only one with the energy left to get properly angry. He'd go angry to his grave. The veins on his throat and forehead stood out angrily. His fists shook angrily. All the other geeks went lids-down at the site of him, looking up in unison for once at the discussion, not keeping one eye on a chat-log or a tailed service log.
@@ -1018,6 +1022,8 @@ They raised their glasses. "To the world," Felix said. "To humanity." He thought
 "To everything," Rosa said.
 
 They drank. He wanted to go see the house—see Kelly and 2.0, though his stomach churned at the thought of what he might find there. But the next day, they started to rebuild. And months later, they started over again, when disagreements drove apart the fragile little group they'd pulled together. And a year after that, they started over again. And five years later, they started again.
+
+![A lone figure walking under a harvest moon, a small data center glowing behind him](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-what-he-did.jpg)
 
 It was nearly six months before he went home. Van helped him along, riding cover behind him on the bicycles they used to get around town. The further north they rode, the stronger the smell of burnt wood became. There were lots of burnt-out houses. Sometimes marauders burnt the houses they'd looted, but more often it was just nature, the kinds of fires you got in forests and on mountains. There were six choking, burnt blocks where every house was burnt before they reached home.
 

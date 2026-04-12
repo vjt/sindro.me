@@ -123,6 +123,8 @@ Felix era un admin di tipo uno, con una settantina o ottantina di chili extra tu
 
 ****
 
+![Un telefono che brilla sul comodino nel buio — la chiamata d'emergenza delle 2 di notte](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-the-call.jpg)
+
 Finirono per staccare quei maledetti router da Internet. Non Felix, ovviamente, anche se gli prudevano le mani di farlo e riavviarli dopo aver disabilitato le interfacce IPv6. Lo fecero un paio di Bastard Operator From Hell con i controcazzi che dovevano girare due chiavi contemporaneamente per accedere alla loro gabbia — come le guardie in un silo Minuteman. Il 95 percento del traffico a lunga distanza del Canada passava da questo edificio. Aveva una sicurezza migliore della maggior parte dei silo Minuteman.
 
 Felix e Van rimisero online i box Ardent uno alla volta. Venivano bombardati da probe del worm — rimettere i router online esponeva le gabbie a valle all'attacco. Ogni box su Internet stava affogando nei worm, o generava attacchi worm, o entrambe le cose. Felix riuscì a raggiungere il NIST e Bugtraq dopo un centinaio di timeout, e a scaricare alcune patch del kernel che avrebbero dovuto ridurre il carico che i worm mettevano sulle macchine a lui affidate. Erano le 10 del mattino, e aveva una fame da sbranare un orso morto dal culo, ma ricompilò i kernel e rimise le macchine online. Le dita lunghe di Van volavano sulla tastiera amministrativa, la lingua di fuori mentre controllava le statistiche di carico su ciascuna.
@@ -819,6 +821,8 @@ Van annuì. «Tutto il fottuto giorno, ogni dieci secondi. Qualunque cosa per te
 
 ****
 
+![L'ultima riunione — quindici sysadmin esausti attorno a un tavolo, uno solo ancora in piedi](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-final-meeting.jpg)
+
 Erano stati quarantatré il Giorno D. Adesso erano quindici. Sei avevano risposto alla convocazione della riunione semplicemente andando via. Tutti sapevano senza bisogno che glielo dicessero di cosa trattava la riunione.
 
 «Quindi è così, lasciate che vada tutto a pezzi?» Sario era l'unico con l'energia sufficiente per arrabbiarsi come si deve. Sarebbe andato alla tomba arrabbiato. Le vene del collo e della fronte gli pulsavano di rabbia. I pugni gli tremavano di rabbia. Tutti gli altri geek abbassarono lo sguardo sui loro schermi alla sua vista, alzando gli occhi all'unisono per una volta sulla discussione, senza tenere un occhio su un log di chat o un log di servizio.
@@ -1018,6 +1022,8 @@ Alzarono i bicchieri. «Al mondo» disse Felix. «All'umanità.» Ci pensò un a
 «A tutto» disse Rosa.
 
 Bevvero. Voleva andare a vedere la casa — vedere Kelly e 2.0, anche se lo stomaco gli si rivoltava al pensiero di cosa avrebbe potuto trovare. Ma il giorno dopo, cominciarono a ricostruire. E mesi dopo, ricominciarono da capo, quando i disaccordi frantumarono il fragile gruppetto che avevano messo insieme. E un anno dopo, ricominciarono da capo ancora. E cinque anni dopo, ricominciarono di nuovo.
+
+![Una figura solitaria che cammina sotto una luna del raccolto, un piccolo data center illuminato alle sue spalle](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-what-he-did.jpg)
 
 Passarono quasi sei mesi prima che tornasse a casa. Van lo accompagnò, pedalando dietro di lui sulle biciclette che usavano per spostarsi in città. Più andavano a nord, più si faceva forte l'odore di legno bruciato. C'erano un sacco di case bruciate. A volte i saccheggiatori bruciavano le case che avevano depredato, ma più spesso era solo la natura, il tipo di incendi che si verificano nelle foreste e sulle montagne. C'erano sei isolati soffocanti e bruciati dove ogni casa era bruciata prima di arrivare a casa.
 
