@@ -133,7 +133,7 @@ Felix was a type-one admin, with an extra seventy or eighty pounds all around th
 
 "No, it's Microsoft's fault," Felix said. "Any time I'm at work at 2AM, it's either PEBKAC or Microsloth."
 
-****
+### Fighting the Worm
 
 They ended up just unplugging the frigging routers from the Internet. Not Felix, of course, though he was itching to do it and get them rebooted after shutting down their IPv6 interfaces. It was done by a couple bull-goose Bastard Operators From Hell who had to turn two keys at once to get access to their cage—like guards in a Minuteman silo. 95 percent of the long distance traffic in Canada went through this building. It had better security than most Minuteman silos.
 
@@ -492,7 +492,7 @@ There were tears in Van's eyes. He wasn't the only one. They didn't applaud him,
 
 "How do we do it?" Popovich said, without a trace of sarcasm.
 
-****
+### alt.november5-disaster.recovery
 
 The newsgroups were filling up fast. They'd announced them in news.admin.net-abuse.email, where all the spamfighters hung out, and where there was a tight culture of camaraderie in the face of full-out attack.
 
@@ -673,7 +673,7 @@ The Googloids were one of the largest and most powerful blocs left behind, along
 
 she typed and then her connection dropped. He fired up a browser and called up google.com. The browser timed out. He hit reload, and then again, and then the Google front-page came back up. Whatever had hit Queen Kong's workplace—power failure, worms, another quake—she had fixed it. He snorted when he saw that they'd replaced the O's in the Google logo with little planet Earths with mushroom clouds rising from them.
 
-****
+### Running on Fumes
 
 ![An empty vending machine, smashed open — only crumbs left](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-supplies.jpg)
 
@@ -715,7 +715,7 @@ Sario cracked up. "Oh, you are priceless. I'd bet that three quarters of this bu
 
 *Illustration by [Rob Dumuhosky](https://www.robdumuhosky.com/)*
 
-****
+### The Vote
 
 They had less than a day's worth of fuel when Felix was elected the first ever Prime Minister of Cyberspace. The first count was spoiled by a bot that spammed the voting process and they lost a critical day while they added up the votes a second time.
 
@@ -870,7 +870,7 @@ Van nodded. "All frigging day, every ten seconds. Anything to keep my belly full
 
 "Let's have a meeting," he said.
 
-****
+### Fifteen
 
 ![The final meeting — fifteen exhausted sysadmins around a table, one still standing](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-final-meeting.jpg)
 
@@ -896,7 +896,7 @@ Van scratched his cheeks, then Felix saw that he was wiping away tears.
 
 He scrubbed away a clean spot with his sleeve and began to write out long, complicated alphanumeric passwords salted with punctuation. Felix had a gift for remembering that kind of password. He doubted it would do him much good, ever again.
 
-****
+### Walking Out
 
 ```text
 > Were going, kong. Fuels almost out anyway
