@@ -20,3 +20,4 @@ vintage_disclaimer: "This post was written in {{ .Year }}. It's preserved here f
 retrospective_title: "{{ .Year }} retrospective"
 posts_in_page: "On this page"
 contents: "Contents"
+link_to_section: "Link to this section"

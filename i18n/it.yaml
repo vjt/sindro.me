@@ -20,3 +20,4 @@ vintage_disclaimer: "Questo articolo è stato scritto nel {{ .Year }}. È qui pe
 retrospective_title: "Retrospettiva {{ .Year }}"
 posts_in_page: "In questa pagina"
 contents: "Indice"
+link_to_section: "Link a questa sezione"
