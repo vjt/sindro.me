@@ -91,6 +91,8 @@ She laughed. "Sysadmins don't take holidays."
 
 "That's my boy," he said.
 
+![A phone glowing on a nightstand in the dark — the 2AM emergency call](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-the-call.jpg)
+
 "Oh that he is," she said. She hung up, and he piloted the car into the data-center lot, badging in and peeling up a bleary eyelid to let the retinal scanner get a good look at his sleep-depped eyeball.
 
 He stopped at the machine to get himself a guarana/medafonil power-bar and a cup of lethal robot-coffee in a spill-proof clean-room sippy-cup. He wolfed down the bar and sipped the coffee, then let the inner door read his hand-geometry and size him up for a moment. It sighed open and gusted the airlock's load of positively pressurized air over him as he passed finally to the inner sanctum.
@@ -122,8 +124,6 @@ Felix was a type-one admin, with an extra seventy or eighty pounds all around th
 "No, it's Microsoft's fault," Felix said. "Any time I'm at work at 2AM, it's either PEBKAC or Microsloth."
 
 ****
-
-![A phone glowing on a nightstand in the dark — the 2AM emergency call](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-the-call.jpg)
 
 They ended up just unplugging the frigging routers from the Internet. Not Felix, of course, though he was itching to do it and get them rebooted after shutting down their IPv6 interfaces. It was done by a couple bull-goose Bastard Operators From Hell who had to turn two keys at once to get access to their cage—like guards in a Minuteman silo. 95 percent of the long distance traffic in Canada went through this building. It had better security than most Minuteman silos.
 
