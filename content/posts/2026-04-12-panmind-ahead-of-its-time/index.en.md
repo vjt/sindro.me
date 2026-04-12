@@ -4,6 +4,7 @@ date: 2026-04-12
 tags: [panmind, javascript, erlang, ruby, rails, architecture, open-source]
 description: "How a small Italian startup built a single-page app framework, an event-driven analytics pipeline, and cross-language session sharing — years before any of it was mainstream."
 image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 In 2009, a small team in Rome started building [Panmind](https://github.com/Panmind), a collaborative platform for sharing and organizing knowledge. The company was [Mind2Mind S.r.L.](http://mind2mind.is/), founded by Emanuele Caronia.
@@ -106,6 +107,8 @@ You read that right. We were writing `<html><body>#search:q=hello</body></html>`
 
 ### Lifecycle events
 
+![The page lifecycle as a theatrical stage — old content being torn down on the left, new content assembled on the right, a conductor orchestrating the transition](/posts/2026-04-12-panmind-ahead-of-its-time/lifecycle-events.jpg)
+
 The navigation framework had a proper event lifecycle. When content was about to be swapped, a `nav:unloading` event fired — so you could tear down timers, unbind event handlers, clean up. When new content arrived, `nav:loaded` fired — so you could initialize widgets, bind events, set up the new page.
 
 ```javascript
@@ -202,6 +205,8 @@ $.navHijackRedirect = function (base, anchor) {
 The Rails backend checked this cookie and, if set, rendered just a loading spinner instead of the full page — because the JavaScript would immediately fire an AJAX request for the actual content. A hand-rolled loading optimization that saved a full server-side render on every hijacked navigation. Today, frameworks handle this automatically with skeleton screens and streaming HTML.
 
 ### Declarative behaviors via HTML attributes
+
+![HTML as puppeteer — attribute tags on strings controlling Web 2.0 UI elements below](/posts/2026-04-12-panmind-ahead-of-its-time/declarative-html.jpg)
 
 Beyond the navigation framework, we built an entire [behaviours library](https://github.com/vjt/jquery-ajax-nav/blob/master/jquery.behaviours.js) that wired up UI interactions declaratively through HTML attributes — specifically, by abusing the `rel` attribute. A toggler, a tabber, a cycler, a deleter, a rollover — each one was a CSS class that activated a jQuery `.live()` handler, and the `rel` attribute pointed at the target element:
 
@@ -342,6 +347,8 @@ end
 The timestamp-based document IDs were clever — CouchDB sorts by `_id` by default, so documents were automatically in chronological order. The random digit at the end handled the edge case of multiple application servers generating events at the same millisecond.
 
 ### CouchDB map-reduce views
+
+![A craftsman's workshop — documents spread across a desk, magnifying glasses on articulated arms extracting patterns, sorted stacks of results](/posts/2026-04-12-panmind-ahead-of-its-time/map-reduce.jpg)
 
 The analytics queries were defined as CouchDB map-reduce views in a YAML file — with ERB templating to DRY up the JavaScript:
 
