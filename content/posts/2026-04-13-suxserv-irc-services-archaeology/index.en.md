@@ -85,7 +85,7 @@ The [first commit](https://github.com/vjt/suxserv/commit/eb8087d) landed on Sept
 
 The code was messy. I was learning C systems programming in real-time, making every classic mistake: [broken realloc patterns](https://github.com/vjt/suxserv/commit/f3c7e25), [forgotten mutex unlocks](https://github.com/vjt/suxserv/commit/cfed09b), [buffer overflows](https://github.com/vjt/suxserv/commit/7bd4e4b) I'd discover at [3am](https://github.com/vjt/suxserv/commit/ea08f32). But the architecture was taking shape.
 
-By January 2003, I had a working skeleton: [server-to-server protocol negotiation](https://github.com/vjt/suxserv/blob/80116c5/src/dispatch.c#L94), SJOIN parsing, user/channel tracking, basic PING/PONG handling, and a [multithreaded core](https://github.com/vjt/suxserv/blob/80116c5/src/main.c#L98) with a network thread, a parser thread, and a signal handler thread.
+By January 2003, I had a working skeleton: [server-to-server protocol negotiation](https://github.com/vjt/suxserv/blob/80116c5/src/dispatch.c#L94), [SJOIN parsing](https://github.com/vjt/suxserv/blob/80116c5/src/dispatch.c#L806), [user/channel tracking](https://github.com/vjt/suxserv/blob/80116c5/src/table.c#L149), basic [PING/PONG handling](https://github.com/vjt/suxserv/blob/80116c5/src/dispatch.c#L154), and a [multithreaded core](https://github.com/vjt/suxserv/blob/80116c5/src/main.c#L98) with a network thread, a parser thread, and a signal handler thread.
 
 ## 0.2: the real thing
 
