@@ -9,9 +9,11 @@ featuredImage: cover.jpg
 
 One of the things I'm enjoying most about working with [Claude](/tags/ai-generated/) is digital archaeology. I've spent twenty years accumulating old projects on backup disks, SourceForge, forgotten servers — code I wrote and never looked at again. Now I can just point Claude at a tarball and say "convert this to git" or "explain what 21-year-old me was thinking here" and get an actual conversation going with my own past.
 
-Today's dig: I went to SourceForge and downloaded the CVS repository for [a project of mine from 2003](/posts/2003-01-05-suxserv-wip/) — **Sux Services**, my attempt at writing IRC services from scratch, in C, for the [Azzurra IRC Network](https://www.azzurra.org/). I said "Claude, convert this CVS repo to git" and a few minutes later I had a clean Git repository with 954 commits, three authors, and a continuous history from September 2002 to November 2005.
+Today's dig: I went to SourceForge and downloaded the CVS repository for [a project of mine from 2003](/posts/2003-03-16-suxserv-wip/) — **Sux Services**, my attempt at writing IRC services from scratch, in C, for the [Azzurra IRC Network](https://www.azzurra.org/). I said "Claude, convert this CVS repo to git" and a few minutes later I had a clean Git repository with 954 commits, three authors, and a continuous history from September 2002 to November 2005.
 
 I never finished this project. I left the network before it was ready for production. A Latvian developer picked it up, wrote 192 commits, and then the trail goes cold.
+
+I [wrote about it at the time](/posts/2003-03-16-suxserv-wip/) — a WIP post from March 2003, when NickServ and ChanServ were working and I was stress testing with 100 bots.
 
 Looking at this code now is — I don't know the right word. Moving, maybe. There's something about reading your own commit messages from twenty years ago, seeing the excitement and the frustration, recognizing the patterns you'd use for the next two decades but couldn't name yet. It's like hearing your own voice on a recording from when you were young — familiar and alien at the same time.
 
