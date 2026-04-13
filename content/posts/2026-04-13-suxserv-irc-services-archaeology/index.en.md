@@ -27,9 +27,20 @@ But IRC was a jungle. The [original protocol](https://www.rfc-editor.org/rfc/rfc
 
 It got worse. IRC networks were [federations of servers](https://daniel.haxx.se/irchistory.html), and servers sometimes lost contact with each other — a [*netsplit*](https://en.wikipedia.org/wiki/Netsplit). During a split, the network broke into islands. You could connect to one island and grab someone's nickname, and when the servers rejoined, both users held the same nick. The protocol handled this with scorched earth: every instance of the colliding nickname was [killed](https://en.wikipedia.org/wiki/IRC_takeover) — *both* users disconnected. The attacker, ready for it, would reconnect immediately. The victim would come back to find their nick stolen.
 
+![A netsplit visualized: two clusters of servers tearing apart, ghost figures appearing on both sides — the same nickname, owned by two different users, a collision waiting to happen.](netsplit.jpg)
+
 The Timestamp protocol — an [Undernet](https://en.wikipedia.org/wiki/Undernet) innovation by Carlo Wood — fixed the collision problem: servers recorded when a user took a nickname or joined a channel, and on rejoin after a netsplit, the older timestamp won. The squatter lost. But TS only prevented abuse during splits — it didn't solve the fundamental problem that without persistent identity, your nickname was yours only as long as your connection held.
 
-[DALnet](https://docs.dal.net/docs/history.html) pioneered the clean solution in 1995: **IRC services**. Register your nickname with NickServ, identify with a password, and the services — running with server-level authority — would protect it for you. If someone tried to squat a registered nickname, NickServ would message them: *identify with the nickname password within 60 seconds, or your nick gets changed to Guest12345*. ChanServ did the same for channels — register, set up access lists, and the service would maintain order even when you weren't online. This gave normal users a way to keep their identity safe without needing a machine permanently connected to the internet.
+[DALnet](https://docs.dal.net/docs/history.html) pioneered the clean solution in 1995: **IRC services**. Register your nickname with NickServ, identify with a password, and the services — running with server-level authority — would protect it for you. If someone tried to squat a registered nickname, NickServ would let them know:
+
+```
+-NickServ- This nickname is registered and protected. If it is your
+-NickServ- nick, type /msg NickServ IDENTIFY password. Otherwise,
+-NickServ- please choose a different nick.
+-NickServ- If you do not change within 60 seconds, I will change your nick.
+```
+
+ChanServ did the same for channels — register, set up access lists, and the service would maintain order even when you weren't online. This gave normal users a way to keep their identity safe without needing a machine permanently connected to the internet.
 
 Not all networks followed suit. DALnet was the most protective; [Azzurra](https://www.azzurra.org/) followed DALnet's model closely. [IRCnet](https://en.wikipedia.org/wiki/IRCnet) stayed true to the original jungle — no registration services, ever. [Undernet](https://en.wikipedia.org/wiki/Undernet) had channel services but no NickServ, using a separate username-based auth system instead. [EFnet](https://en.wikipedia.org/wiki/EFnet) ran without services entirely after killing off an early advisory NickServ in 1994, eventually adding only [CHANFIX](https://en.wikipedia.org/wiki/EFnet#CHANFIX) — an automated channel-healing tool, not real services. It was fun.
 
@@ -186,6 +197,8 @@ The [schema](https://github.com/vjt/suxserv/blob/master/doc/sux-db.mysql) was ge
 
 ### The threading model
 
+![Four parallel pipelines — network, parser, signal, master — synchronized through locks and condition variables. This is what the code below does.](threading.jpg)
+
 [Four threads](https://github.com/vjt/suxserv/blob/master/src/threads.c#L60-L63), each with a specific role:
 
 ```c
@@ -244,6 +257,8 @@ Same for the [hash functions](https://github.com/vjt/suxserv/blob/master/src/has
 This was open source culture before GitHub. There was no `npm install`, no crate registry, no package manager. You found code you needed, read it, understood it, adapted it, and credited where it came from. The attribution was informal — a comment, not a LICENSE file — but it was there.
 
 ### The stress tester
+
+![A hundred bots swarming a server, firing commands from all directions. Some have already crashed. This is netxplode.](netxplode.jpg)
 
 In the `tools/` directory sits [`netxplode.pl`](https://github.com/vjt/suxserv/blob/master/tools/netxplode.pl) — "The Network Daemon Exploder" by Daniel Dent. A Perl script that spawns 100 IRC clients and hammers the services with random commands:
 
