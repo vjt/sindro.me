@@ -295,6 +295,8 @@ Looking at this code with 23 years of experience, a few things stand out:
 
 **The patterns are timeless.** The vtable-based SQL driver is the same pattern as Go interfaces. The gperf dispatch tables are the same idea as compile-time routing in modern web frameworks. The macro-based generics anticipate what Rust does with monomorphization — generating specialized code for each type at compile time.
 
+![A monument to error reporting: a server toppling silently in a museum, no alarms, no warnings, a blank plaque. The comedy of software that fails without telling you why.](error-monument.jpg)
+
 **But the error reporting is nonexistent.** Look at the [thread initialization](https://github.com/vjt/suxserv/blob/master/src/threads.c#L230-L251):
 
 ```c
