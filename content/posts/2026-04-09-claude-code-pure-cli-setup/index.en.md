@@ -50,7 +50,9 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/openssh_agent"
 
 This means Claude Code — running inside tmux, inside a shell — automatically has access to my SSH keys. It can `git push`, `ssh` into my servers, deploy to staging and prod, all without agent forwarding. The keys live on the Pi, the agent is always running, and every shell (including Claude's) inherits the socket path.
 
-No `-A` flag needed from the client side. No agent forwarding security concerns. The Pi _is_ the agent.
+No `-A` flag needed from the client side. The Pi _is_ the agent.
+
+**A word of caution** (thanks to [Yaroslav](https://www.linkedin.com/feed/update/urn:li:activity:7449434435218956288?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7449434435218956288%2C7449576125476827136%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287449576125476827136%2Curn%3Ali%3Aactivity%3A7449434435218956288%29) for pointing this out)**:** this is a convenience trade-off. Having the keys live on the Pi means that if the box is ever compromised, the attacker gets access to everything those keys unlock. A more secure approach is to forward the agent from your terminal session (with `ssh -A`) and load the keys on demand from a password-protected store on a device you physically control. I'm considering switching to forwarded-only keys — the current setup works because the Pi isn't exposed to the internet and can't receive commands from any internet-connected service, but defense in depth is always the better call.
 
 ### tmux: the real IDE
 

@@ -50,7 +50,9 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/openssh_agent"
 
 Questo significa che Claude Code — che gira dentro tmux, dentro una shell — ha automaticamente accesso alle mie chiavi SSH. Può fare `git push`, `ssh` sui miei server, deploy su staging e produzione, tutto senza agent forwarding. Le chiavi stanno sul Pi, l'agent è sempre in esecuzione, e ogni shell (inclusa quella di Claude) eredita il path del socket.
 
-Nessun flag `-A` necessario dal lato client. Nessun rischio di sicurezza da agent forwarding. Il Pi _è_ l'agent.
+Nessun flag `-A` necessario dal lato client. Il Pi _è_ l'agent.
+
+**Una nota di cautela** (grazie a [Yaroslav](https://www.linkedin.com/feed/update/urn:li:activity:7449434435218956288?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7449434435218956288%2C7449576125476827136%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287449576125476827136%2Curn%3Ali%3Aactivity%3A7449434435218956288%29) per la segnalazione)**:** questa è una scelta di comodità che sacrifica un po' di sicurezza. Avere le chiavi direttamente sul Pi significa che se la scatoletta viene compromessa, l'attaccante ha accesso a tutto quello che quelle chiavi aprono. L'approccio più sicuro è fare forwarding dell'agent dalla sessione terminale (con `ssh -A`) e caricare le chiavi on-demand da uno store protetto da password su un dispositivo sotto il vostro controllo fisico. Sto valutando di passare a chiavi solo in forwarding — il setup attuale regge perché il Pi non è esposto a internet e non può ricevere comandi da nessun servizio connesso alla rete, ma la defense in depth è sempre la scelta migliore.
 
 ### tmux: il vero IDE
 
