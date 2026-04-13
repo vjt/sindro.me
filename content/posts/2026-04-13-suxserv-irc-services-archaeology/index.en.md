@@ -19,7 +19,7 @@ Looking at this code now is — I don't know the right word. Moving, maybe. Ther
 
 ## What IRC services are
 
-If you've never used IRC, here's the quick version: [IRC](https://en.wikipedia.org/wiki/Internet_Relay_Chat) (Internet Relay Chat) was the real-time chat protocol of the internet before Slack, Discord, and everything else. Networks of servers, channels you could join, nicknames you could claim. Millions of people used it daily through the late 90s and 2000s.
+If you've never used IRC, here's the quick version: [IRC](https://en.wikipedia.org/wiki/Internet_Relay_Chat) (Internet Relay Chat) was the real-time chat protocol of the internet before Slack, Discord, and everything else. Networks of servers, channels you could join, nicknames you could claim. At its peak around 2005, [roughly a million people](https://netsplit.de/networks/top10.php?year=2005) were connected simultaneously across all networks.
 
 ![irssi on Azzurra, January 2004 — an actual screenshot from the machine where this code was written. Blue terminal, Italian IRC chatter, the status bar at the bottom. This was the world.](irc-2004.png)
 
