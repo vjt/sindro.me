@@ -91,9 +91,9 @@ By January 2003, I had a working skeleton: [server-to-server protocol negotiatio
 
 [let\`s go 0.2](https://github.com/vjt/suxserv/tree/76d1351) — January 5, 2003. Same codebase, but I restructured the core and started building the actual services on top. Over the next year and a half, this grew into a proper IRC services implementation:
 
-- **Five service agents**: [NickServ](https://github.com/vjt/suxserv/blob/master/src/nickserv.c), [ChanServ](https://github.com/vjt/suxserv/blob/master/src/chanserv.c), [MemoServ](https://github.com/vjt/suxserv/blob/master/src/memoserv.c), [OperServ](https://github.com/vjt/suxserv/blob/master/src/operserv.c), [RootServ](https://github.com/vjt/suxserv/blob/master/src/rootserv.c)
-- **[MySQL backend](https://github.com/vjt/suxserv/blob/master/src/mysql.c)**: raw `mysql_real_query()` calls — the SQL abstraction came later, with Oleg
-- **[Dynamic module loading](https://github.com/vjt/suxserv/blob/master/src/modules.c#L133)**: Services compiled as shared objects, loaded at runtime via GLib's `GModule`
+- **Five service agents**: [NickServ](https://github.com/vjt/suxserv/blob/c04df67/src/nickserv.c), [ChanServ](https://github.com/vjt/suxserv/blob/c04df67/src/chanserv.c), [MemoServ](https://github.com/vjt/suxserv/blob/c04df67/src/memoserv.c), [OperServ](https://github.com/vjt/suxserv/blob/c04df67/src/operserv.c), [RootServ](https://github.com/vjt/suxserv/blob/c04df67/src/rootserv.c)
+- **[MySQL backend](https://github.com/vjt/suxserv/blob/c04df67/src/sql.c)**: MySQL calls baked into `sql.c` — the driver abstraction came later, with Oleg
+- **[Dynamic module loading](https://github.com/vjt/suxserv/blob/c04df67/src/modules.c#L129)**: Services compiled as shared objects, loaded at runtime via GLib's `GModule`
 - **[Multiple IRCd support](https://github.com/vjt/suxserv/blob/master/src/unreal32.c)**: Bahamut and UnrealIRCd 3.2 — the latter entirely Oleg's work
 - **The whole nine yards**: nick registration, channel access lists, memos, AKILLs, vhosts, nick linking, channel modes, kill protection
 

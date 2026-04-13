@@ -91,9 +91,9 @@ Per gennaio 2003, avevo uno scheletro funzionante: [negoziazione del protocollo 
 
 [let\`s go 0.2](https://github.com/vjt/suxserv/tree/76d1351) — 5 gennaio 2003. Stessa codebase, ma ho ristrutturato il core e ho iniziato a costruire i veri services sopra. Nell'anno e mezzo successivo, questo è cresciuto fino a diventare un'implementazione di IRC services vera e propria:
 
-- **Cinque agenti di servizio**: [NickServ](https://github.com/vjt/suxserv/blob/master/src/nickserv.c), [ChanServ](https://github.com/vjt/suxserv/blob/master/src/chanserv.c), [MemoServ](https://github.com/vjt/suxserv/blob/master/src/memoserv.c), [OperServ](https://github.com/vjt/suxserv/blob/master/src/operserv.c), [RootServ](https://github.com/vjt/suxserv/blob/master/src/rootserv.c)
-- **[Backend MySQL](https://github.com/vjt/suxserv/blob/master/src/mysql.c)**: chiamate `mysql_real_query()` dirette — l'astrazione SQL è arrivata dopo, con Oleg
-- **[Caricamento dinamico dei moduli](https://github.com/vjt/suxserv/blob/master/src/modules.c#L133)**: i services compilati come shared object, caricati a runtime via `GModule` di GLib
+- **Cinque agenti di servizio**: [NickServ](https://github.com/vjt/suxserv/blob/c04df67/src/nickserv.c), [ChanServ](https://github.com/vjt/suxserv/blob/c04df67/src/chanserv.c), [MemoServ](https://github.com/vjt/suxserv/blob/c04df67/src/memoserv.c), [OperServ](https://github.com/vjt/suxserv/blob/c04df67/src/operserv.c), [RootServ](https://github.com/vjt/suxserv/blob/c04df67/src/rootserv.c)
+- **[Backend MySQL](https://github.com/vjt/suxserv/blob/c04df67/src/sql.c)**: chiamate MySQL integrate in `sql.c` — l'astrazione driver è arrivata dopo, con Oleg
+- **[Caricamento dinamico dei moduli](https://github.com/vjt/suxserv/blob/c04df67/src/modules.c#L129)**: i services compilati come shared object, caricati a runtime via `GModule` di GLib
 - **[Supporto IRCd multiplo](https://github.com/vjt/suxserv/blob/master/src/unreal32.c)**: Bahamut e UnrealIRCd 3.2 — quest'ultimo interamente opera di Oleg
 - **Tutto il pacchetto completo**: registrazione nick, access list dei canali, memo, AKILL, vhost, nick linking, channel mode, kill protection
 
