@@ -52,6 +52,8 @@ In 2002, the main options were [Anope](https://www.anope.org/), [Epona](https://
 
 I was 21 and an IRCop on Azzurra, Italy's largest IRC network. Of course I thought I could do better.
 
+![The author, circa 2002. Barefoot, CRT monitors, a Linux penguin plushie, and the confidence of a 21-year-old who thought he could write better IRC services than the ones that already existed.](vjt-2002.jpg)
+
 ## The context: Azzurra, 2002
 
 Azzurra was — and [still is](https://azzurra.chat) — the Italian IRC network. At its peak it had tens of thousands of concurrent users — Italians chatting, flirting, fighting, trading MP3s, running trivia bots, and doing all the things people did online before social media ate the world. I had joined as a user, become an IRCop, and eventually found myself deep in the infrastructure.
@@ -264,7 +266,11 @@ The parser was adapted from Bahamut's source code, and the [comments say so](htt
 
 Same for the [hash functions](https://github.com/vjt/suxserv/blob/master/src/hash.c#L70) (`stolen from bahamut/src/hash.c`) and the [pattern matching code](https://github.com/vjt/suxserv/blob/master/src/match.c#L45) (`stolen from bahamut/src/match.c`). Every borrowed piece was credited in a comment.
 
-This was open source culture before GitHub. There was no `npm install`, no crate registry, no package manager. You found code you needed, read it, understood it, adapted it, and credited where it came from. The attribution was informal — a comment, not a LICENSE file — but it was there.
+This was open source culture before GitHub. There was no `npm install`, no crate registry, no package manager. There were no source browsers. You downloaded a tarball, extracted it, and read the code in vim. That was the entire workflow. The barrier to understanding someone else's code was brutally high — no syntax highlighting on the web, no inline annotations, no "jump to definition." Just monospace characters glowing on a black terminal, and you, reading.
+
+But when you found what you needed — when the function you'd been hunting for materialized on your screen and you understood how it worked — there was a sense of accomplishment that's hard to describe. Something visceral and alive. You'd earned that knowledge by sitting with the code, line by line, in silence.
+
+The attribution was informal — a comment, not a LICENSE file — but it was there. You credited where the code came from because you remembered what it felt like to find it.
 
 ### The stress tester
 
