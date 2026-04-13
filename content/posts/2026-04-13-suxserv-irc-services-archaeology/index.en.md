@@ -53,6 +53,7 @@ In 2002, the main options were [Anope](https://www.anope.org/), [Epona](https://
 I was 21 and an IRCop on Azzurra, Italy's largest IRC network. Of course I thought I could do better.
 
 ![Yes, that's me, circa 2004. Barefoot, CRT monitors, a Linux penguin plushie, and the confidence of a 21-year-old who thought he could write better IRC services than the ones that already existed.](vjt-2002.jpg)
+*Yes, that's me, circa 2004.*
 
 ## The context: Azzurra, 2002
 

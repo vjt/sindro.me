@@ -53,6 +53,7 @@ Nel 2002, le opzioni principali erano [Anope](https://www.anope.org/), [Epona](h
 Avevo 21 anni ed ero IRCop su Azzurra, la più grande rete IRC italiana. Ovvio che pensavo di poter fare meglio.
 
 ![Sì, sono io, circa 2004. Scalzo, monitor CRT, un peluche del pinguino Linux, e la sicurezza di un ventunenne che pensava di poter scrivere IRC services migliori di quelli che già esistevano.](vjt-2002.jpg)
+*Sì, sono io, circa 2004.*
 
 ## Il contesto: Azzurra, 2002
 
