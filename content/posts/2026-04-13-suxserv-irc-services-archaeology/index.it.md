@@ -2,7 +2,7 @@
 title: "Sux Services: archeologia digitale dal 2002"
 date: 2026-04-13
 tags: [irc, c, azzurra, retrospective, open-source, archaeology]
-description: "Ho trovato un repository CVS del 2002 su un disco di backup. Dentro: 954 commit, tre autori, e gli IRC services che scrissi a 21 anni — senza mai finirli."
+description: "Ho trovato un repository CVS del 2002 su SourceForge. Dentro: 954 commit, tre autori, e gli IRC services che scrissi a 21 anni — senza mai finirli."
 image: cover.jpg
 featuredImage: cover.jpg
 ---
@@ -25,13 +25,13 @@ Se non avete mai usato IRC, ecco la versione breve: [IRC](https://en.wikipedia.o
 
 Ma IRC era una giungla. Il [protocollo originale](https://www.rfc-editor.org/rfc/rfc1459) non aveva il concetto di identità persistente — [niente registrazione di nickname, niente proprietà dei canali](https://www.irchelp.org/networks/noserv.html). Chi si connetteva per primo e sceglieva un nickname lo possedeva, finché restava online. Disconnettersi un secondo e qualcun altro poteva prenderselo. Oggi la tua identità su WhatsApp è il tuo numero di telefono, su Discord è il tuo account — chiudi l'app, torni, sei ancora tu. Su IRC, chiudevi il client e smettevi di esistere. `-!- vjt [vjt@casa.mia] has quit [Ping timeout: 180 seconds]` — e il tuo nickname era a disposizione di chiunque.
 
-La gente usava BNC — bouncer, processi proxy su server permanentemente connessi — solo per tenere il proprio nickname mentre dormiva. Era furto d'identità in piena regola, e la tua unica difesa era una macchina che probabilmente non potevi permetterti di tenere online 24/7.
+La gente usava [BNC](https://psybnc.org/) — bouncer, processi proxy su server permanentemente connessi — solo per tenere il proprio nickname mentre dormiva. Era furto d'identità in piena regola, e la tua unica difesa era una macchina che probabilmente non potevi permetterti di tenere online 24/7.
 
 Ma c'era di peggio. Le reti IRC erano [federazioni di server](https://daniel.haxx.se/irchistory.html), e i server a volte perdevano il contatto tra loro — un [*netsplit*](https://en.wikipedia.org/wiki/Netsplit). Durante uno split, la rete si spezzava in isole. Immaginate un gruppo WhatsApp che si spacca in due — due copie che funzionano indipendentemente, persone diverse che parlano in ognuna, e quando le due metà si riconnettono, l'app deve capire quale versione è quella vera. La risposta di IRC era più semplice: disconnettere tutti i coinvolti e lasciarli risolvere da soli. Potevi connetterti a un'isola e prendere il nickname di qualcuno, e quando i server si riunivano, entrambi gli utenti avevano lo stesso nick. Il protocollo gestiva la cosa con terra bruciata: ogni istanza del nickname in collisione veniva [disconnessa forzatamente](https://en.wikipedia.org/wiki/IRC_takeover) — *entrambi* gli utenti buttati fuori. L'attaccante, pronto all'evento, si riconnetteva immediatamente. La vittima tornava e trovava il suo nick rubato.
 
 ![Un netsplit visualizzato: due cluster di server che si strappano, figure fantasma che appaiono su entrambi i lati — lo stesso nickname, posseduto da due utenti diversi, una collisione in attesa di accadere.](netsplit.jpg)
 
-Il protocollo Timestamp — un'innovazione di [Undernet](https://en.wikipedia.org/wiki/Undernet), opera di Carlo Wood — risolveva il problema delle collisioni: i server registravano quando un utente aveva preso un nickname o era entrato in un canale, e al rejoin dopo un netsplit, il timestamp più vecchio vinceva. Lo squatter perdeva. Ma il TS preveniva gli abusi solo durante gli split — non risolveva il problema fondamentale che senza identità persistente, il tuo nickname era tuo solo finché la tua connessione reggeva.
+Il [protocollo Timestamp](https://github.com/grawity/irc-docs/blob/master/server/espel-tsora/Undernet-TS.txt) — un'innovazione di [Undernet](https://en.wikipedia.org/wiki/Undernet), opera di [Carlo Wood](https://www.undernet.org/docs/interview-with-carlo-wood) — risolveva il problema delle collisioni: i server registravano quando un utente aveva preso un nickname o era entrato in un canale, e al rejoin dopo un netsplit, il timestamp più vecchio vinceva. Lo squatter perdeva. Ma il TS preveniva gli abusi solo durante gli split — non risolveva il problema fondamentale che senza identità persistente, il tuo nickname era tuo solo finché la tua connessione reggeva.
 
 [DALnet](https://docs.dal.net/docs/history.html) ha introdotto la soluzione pulita nel 1995: gli **IRC services**. Registri il tuo nickname con NickServ, ti identifichi con una password, e i services — che girano con autorità a livello server — lo proteggono per te. Se qualcuno provava a squattare un nickname registrato, NickServ glielo faceva sapere:
 
@@ -77,24 +77,24 @@ Il [primo commit](https://github.com/vjt/suxserv/commit/eb8087d) è arrivato il 
 - [pff ... O3 ..](https://github.com/vjt/suxserv/commit/87b4362)
 - [i will be happy when all this debug shit will be gone.](https://github.com/vjt/suxserv/commit/ca7df24)
 - [services are now multithreaded](https://github.com/vjt/suxserv/commit/12c4438)
-- [we are now 0.1 =)](https://github.com/vjt/suxserv/tree/80116c5)
+- [we are now 0.1 =)](https://github.com/vjt/suxserv/commits/80116c5)
 
 ![Sessione di coding notturna, circa 2002: monitor CRT, segfault, libri O'Reilly, e la frustrazione determinata di chi impara la programmazione di sistema nel modo più duro.](prototype.jpg)
 
-[243 commit](https://github.com/vjt/suxserv/tree/80116c5) in tre mesi, tutti miei. Un prototipo grezzo — un demone IRC services multithreaded costruito su [GLib 2.x](https://docs.gtk.org/glib/), che si connetteva a un server Bahamut e tracciava utenti e canali. Niente database, niente logica di servizio vera e propria — solo il parser di protocollo, le hash table, e l'infrastruttura di threading.
+[243 commit](https://github.com/vjt/suxserv/commits/80116c5) in tre mesi, tutti miei. Un prototipo grezzo — un demone IRC services [multithreaded](https://github.com/vjt/suxserv/blob/master/src/threads.c#L228) costruito su [GLib 2.x](https://docs.gtk.org/glib/), che si connetteva a un server Bahamut e tracciava utenti e canali. Niente database, niente logica di servizio vera e propria — solo il parser di protocollo, le hash table, e l'infrastruttura di threading.
 
-Il codice era un casino. Stavo imparando la programmazione C di sistema in tempo reale, commettendo ogni errore classico: pattern di realloc sbagliati, mutex unlock dimenticati, buffer overflow scoperti alle 3 di notte. Ma l'architettura prendeva forma.
+Il codice era un casino. Stavo imparando la programmazione C di sistema in tempo reale, commettendo ogni errore classico: pattern di realloc sbagliati, mutex unlock dimenticati, buffer overflow scoperti alle [3 di notte](https://github.com/vjt/suxserv/commit/ea08f32). Ma l'architettura prendeva forma.
 
-Per gennaio 2003, avevo uno scheletro funzionante: negoziazione del protocollo server-to-server, parsing di SJOIN, tracking di utenti e canali, gestione base di PING/PONG, e un core multithreaded con un thread di rete, un thread parser, e un thread per la gestione dei segnali.
+Per gennaio 2003, avevo uno scheletro funzionante: [negoziazione del protocollo server-to-server](https://github.com/vjt/suxserv/blob/master/src/bahamut.c#L13), parsing di SJOIN, tracking di utenti e canali, gestione base di PING/PONG, e un [core multithreaded](https://github.com/vjt/suxserv/blob/master/src/threads.c#L228) con un thread di rete, un thread parser, e un thread per la gestione dei segnali.
 
 ## 0.2: la cosa vera
 
 [let\`s go 0.2](https://github.com/vjt/suxserv/tree/76d1351) — 5 gennaio 2003. Stessa codebase, ma ho ristrutturato il core e ho iniziato a costruire i veri services sopra. Nell'anno e mezzo successivo, questo è cresciuto fino a diventare un'implementazione di IRC services vera e propria:
 
-- **Cinque agenti di servizio**: NickServ, ChanServ, MemoServ, OperServ, RootServ
-- **Backend SQL pluggable**: MySQL prima, PostgreSQL aggiunto dopo
-- **Caricamento dinamico dei moduli**: i services compilati come shared object, caricati a runtime via `GModule` di GLib
-- **Supporto IRCd multiplo**: Bahamut e UnrealIRCd 3.2
+- **Cinque agenti di servizio**: [NickServ](https://github.com/vjt/suxserv/blob/master/src/nickserv.c), [ChanServ](https://github.com/vjt/suxserv/blob/master/src/chanserv.c), [MemoServ](https://github.com/vjt/suxserv/blob/master/src/memoserv.c), [OperServ](https://github.com/vjt/suxserv/blob/master/src/operserv.c), [RootServ](https://github.com/vjt/suxserv/blob/master/src/rootserv.c)
+- **[Backend MySQL](https://github.com/vjt/suxserv/blob/master/src/mysql.c)**: chiamate `mysql_real_query()` dirette — l'astrazione SQL è arrivata dopo, con Oleg
+- **[Caricamento dinamico dei moduli](https://github.com/vjt/suxserv/blob/master/src/modules.c#L133)**: i services compilati come shared object, caricati a runtime via `GModule` di GLib
+- **[Supporto IRCd multiplo](https://github.com/vjt/suxserv/blob/master/src/unreal32.c)**: Bahamut e UnrealIRCd 3.2 — quest'ultimo interamente opera di Oleg
 - **Tutto il pacchetto completo**: registrazione nick, access list dei canali, memo, AKILL, vhost, nick linking, channel mode, kill protection
 
 Vediamo le parti interessanti.
@@ -124,7 +124,7 @@ SJOIN, m_sjoin
 %%
 ```
 
-Gperf prende questa tabella e genera una **funzione di hash perfetta** — zero collisioni, lookup O(1). Un comando IRC in arrivo viene hashato al suo function pointer handler in tempo costante. Nessuna ricerca, nessun branching.
+Gperf prende questa tabella e genera una **[funzione di hash perfetta](https://en.wikipedia.org/wiki/Perfect_hash_function)** — zero collisioni, lookup O(1). Un comando IRC in arrivo viene hashato al suo function pointer handler in tempo costante. Nessuna ricerca, nessun branching.
 
 Lo stesso pattern si ripete per ogni service. [Comandi di NickServ](https://github.com/vjt/suxserv/blob/master/src/nickserv-cmd.gperf):
 
@@ -142,7 +142,7 @@ FORBID, ns_forbid, 1
 %%
 ```
 
-Dieci file gperf in tutta la codebase. Ogni singolo lookup di comando era O(1). Nel 2003, con migliaia di utenti che martellavano NickServ simultaneamente, questo contava. Oggi probabilmente useresti una hash map senza pensarci due volte. Ma c'è qualcosa di bello nell'hashing perfetto a compile-time — zero overhead a runtime, zero memoria sprecata, zero collisioni, garantito.
+[Dieci file gperf](https://github.com/search?q=repo%3Avjt%2Fsuxserv+path%3A*.gperf&type=code) in tutta la codebase. Ogni singolo lookup di comando era O(1). Nel 2003, con migliaia di utenti che martellavano NickServ simultaneamente, questo contava. Oggi probabilmente useresti una hash map senza pensarci due volte. Ma c'è qualcosa di bello nell'hashing perfetto a compile-time — zero overhead a runtime, zero memoria sprecata, zero collisioni, garantito.
 
 ### Programmazione generica con le macro
 
@@ -267,7 +267,7 @@ Il parser era adattato dal codice sorgente di Bahamut, e i [commenti lo dicono](
  */
 ```
 
-Idem per le [funzioni di hash](https://github.com/vjt/suxserv/blob/master/src/hash.c#L70) (`stolen from bahamut/src/hash.c`) e il [codice di pattern matching](https://github.com/vjt/suxserv/blob/master/src/match.c#L45) (`stolen from bahamut/src/match.c`). Ogni pezzo preso in prestito era creditato in un commento.
+Idem per le [funzioni di hash](https://github.com/vjt/suxserv/blob/master/src/hash.c#L70) (`stolen from bahamut/src/hash.c`), il [codice di pattern matching](https://github.com/vjt/suxserv/blob/master/src/match.c#L45) (`stolen from bahamut/src/match.c`), le [risposte di errore IRC](https://github.com/vjt/suxserv/blob/master/src/irc-replies.c#L20) (`stolen from bahamut/src/s_err.c`), [`ircsprintf`](https://github.com/vjt/suxserv/blob/master/src/sux-printf.c#L2) (`taken from bahamut/src/ircsprintf.c`), perfino [`setproctitle`](https://github.com/vjt/suxserv/blob/master/src/setproctitle.c#L2) (`stolen from cvs.kerneli.org util-linux`, con un pizzico di `borrowed from sendmail`). Ogni pezzo preso in prestito era creditato in un commento.
 
 Questa era la cultura open source prima di GitHub. Non c'era `npm install`, niente crate registry, nessun package manager. Non c'erano source browser. Scaricavi un tarball, lo estraevi, e leggevi il codice con vim. Quello era l'intero workflow. La barriera per capire il codice di qualcun altro era brutalmente alta — nessun syntax highlighting sul web, nessuna annotazione inline, nessun "jump to definition." Solo caratteri monospace che brillavano su un terminale nero, e tu, che leggevi.
 
@@ -279,7 +279,7 @@ L'attribuzione era informale — un commento, non un file LICENSE — ma c'era. 
 
 ![Cento bot che assaltano un server, sparando comandi da tutte le direzioni. Alcuni sono già crashati. Questo è netxplode.](netxplode.jpg)
 
-Nella directory `tools/` c'è [`netxplode.pl`](https://github.com/vjt/suxserv/blob/master/tools/netxplode.pl) — "The Network Daemon Exploder" di Daniel Dent. Uno script Perl che spawna 100 client IRC e martella i services con comandi random:
+Nella directory `tools/` c'è [`netxplode.pl`](https://github.com/vjt/suxserv/blob/master/tools/netxplode.pl) — "The Network Daemon Exploder" di Daniel Dent, preso dal suo [progetto su SourceForge](https://sourceforge.net/projects/netxplode/). Uno script Perl che spawna 100 client IRC e martella i services con comandi random:
 
 ```perl
 my @actions = (
@@ -306,7 +306,7 @@ Guardando questo codice con 23 anni di esperienza, alcune cose saltano all'occhi
 
 ![Un monumento all'error reporting: un server che cade silenziosamente in un museo, nessun allarme, nessun avviso, una targa vuota. La comicità del software che fallisce senza dirti perché.](error-monument.jpg)
 
-**Ma l'error reporting è inesistente.** Guardate l'[inizializzazione dei thread](https://github.com/vjt/suxserv/blob/master/src/threads.c#L230-L251):
+**Ma l'error reporting ha dei buchi.** La codebase ha logging decente in molti punti — `g_message()`, `g_warning()`, integrazione syslog. Ma in alcuni percorsi critici, il `exit(EXIT_FAILURE)` originale del prototipo è rimasto lì, mai sostituito. Guardate l'[inizializzazione dei thread](https://github.com/vjt/suxserv/blob/master/src/threads.c#L230-L251):
 
 ```c
 signal_thread_ptr = g_thread_create_full((GThreadFunc)signal_thread,
@@ -333,7 +333,7 @@ if(parser_thread_ptr == NULL)
 
 Ogni chiamata passa `&err` — un puntatore GError che GLib popola accuratamente con *esattamente cosa è andato storto*. E il codice non ci fa niente. Un thread non parte? `exit(EXIT_FAILURE)` silenzioso. Nessun messaggio di log, nessun syslog, nessuna indicazione di quale thread è fallito o perché. L'informazione sull'errore è lì, che aspetta di essere letta, e il codice se ne va. Un mio amico — [Enrico Perla](https://www.enricoperla.com/), che è poi andato a scrivere un [libro sull'exploitation del kernel Linux](https://www.amazon.com/Guide-Kernel-Exploitation-Attacking-Core/dp/1597494860) — ha guardato questo codice una volta e mi ha detto che era "un monumento all'error reporting." Me lo ricordo ancora. Non aveva torto.
 
-**L'SQL è iniettabile.** Ho introdotto [`sql_sprintf()`](https://github.com/vjt/suxserv/commit/9f97119) a febbraio 2003 — adattata dalla `ircsprintf()` di Bahamut, con escaping per virgolette e backslash — ma non l'ho applicata sistematicamente. Un mese dopo trovavo ancora punti che avevo dimenticato: [`SQL Injection problems.`](https://github.com/vjt/suxserv/commit/96b8493) — un `%s` senza quoting nella ricerca AKILL di OperServ. La [`sql_quote()`](https://github.com/vjt/suxserv/commit/be5ea22) di Oleg è arrivata dopo come soluzione corretta a livello driver. Altri tempi.
+**L'SQL non ha un framework di escaping decente.** Ho introdotto [`sql_sprintf()`](https://github.com/vjt/suxserv/commit/9f97119) a febbraio 2003 — adattata dalla `ircsprintf()` di Bahamut, con escaping per virgolette e backslash — ma era una cosa semplificata, e non l'ho applicata ovunque. Un mese dopo trovavo ancora punti che avevo dimenticato: [`SQL Injection problems.`](https://github.com/vjt/suxserv/commit/96b8493) — un `%s` senza quoting nella ricerca AKILL di OperServ. Se ti dimenticavi di usare `sql_sprintf()`, avevi una potenziale injection. La [`sql_quote()`](https://github.com/vjt/suxserv/commit/be5ea22) di Oleg è arrivata dopo come soluzione corretta a livello driver, che ha risolto il problema in modo sistematico.
 
 **I commit message sono un diario.** `going mad with those dbufs ...`, `pff ... O3 ..`, `sux`, `explanation of life`, `added authism concatenation with girls`. Committavo pensieri, non cambiamenti. La storia CVS si legge come un flusso di coscienza di un ventunenne che stava imparando a fare il programmatore di sistema.
 
@@ -357,11 +357,11 @@ Pointer signedness corrections to pass stricter type checks of GCC 4.0.
 
 Dove i miei commit erano esplosioni di frustrazione ed entusiasmo, quelli di Oleg si leggono come ingegneria. Ha preso il mio prototipo caotico e lo ha trasformato in qualcosa che si avvicinava alla qualità di produzione. Poi la traccia si perde. 4 novembre 2005 — il suo ultimo commit. Il progetto non è mai andato in produzione su Azzurra.
 
-Gli ho mandato una mail la settimana scorsa. Vent'anni di silenzio. Vedremo.
-
 ## La conversione
 
-Il repository CVS originale è sopravvissuto su un disco di backup — il repo lato server, non una semplice working copy. CVSROOT e tutto il resto. L'ho convertito in Git usando `git cvsimport`:
+Il repository CVS originale è stato preservato da SourceForge. Hanno ritirato l'hosting CVS nel 2017, ma hanno tenuto i backup — i repo lato server, non semplici tarball. CVSROOT e tutto il resto. Nessuno aveva scaricato questo repo probabilmente da un decennio, ma era ancora lì, pronto per l'export. Questo è lo spirito de [il vero sistemista](/posts/2014-02-28-il-vero-sistemista/) — [tenere internet viva](/posts/2007-11-21-when-sysadmins-ruled-the-earth/) anche quando nessuno guarda. Grazie, SourceForge.
+
+L'ho convertito in Git usando `git cvsimport`:
 
 - Due moduli CVS (`suxserv-old` e `suxserv`) sono diventati un'unica storia lineare
 - Tre autori mappati alle identità reali

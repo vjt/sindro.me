@@ -2,7 +2,7 @@
 title: "Sux Services: Digging Up IRC Code from 2002"
 date: 2026-04-13
 tags: [irc, c, azzurra, retrospective, open-source, archaeology]
-description: "I found a CVS repository from 2002 on a backup drive. Inside it: 954 commits, three authors, and the IRC services I wrote when I was 21 — before finishing them."
+description: "I found a CVS repository from 2002 on SourceForge. Inside it: 954 commits, three authors, and the IRC services I wrote when I was 21 — before finishing them."
 image: cover.jpg
 featuredImage: cover.jpg
 ---
@@ -25,13 +25,13 @@ If you've never used IRC, here's the quick version: [IRC](https://en.wikipedia.o
 
 But IRC was a jungle. The [original protocol](https://www.rfc-editor.org/rfc/rfc1459) had no concept of persistent identity — [no nickname registration, no channel ownership](https://www.irchelp.org/networks/noserv.html). Whoever connected first and picked a nickname owned it, for as long as they stayed online. Disconnect for a second and someone else could take it. Today your identity on WhatsApp is your phone number, on Discord it's your account — you close the app, come back, you're still you. On IRC, you closed the client and you stopped existing. `-!- vjt [vjt@casa.mia] has quit [Ping timeout: 180 seconds]` — and your nickname was up for grabs.
 
-People ran BNCs — bouncers, proxy processes on permanently connected servers — just to hold their nicknames while they slept. It was full-on identity theft, and your only defense was a machine you probably couldn't afford to keep online 24/7.
+People ran [BNCs](https://psybnc.org/) — bouncers, proxy processes on permanently connected servers — just to hold their nicknames while they slept. It was full-on identity theft, and your only defense was a machine you probably couldn't afford to keep online 24/7.
 
 It got worse. IRC networks were [federations of servers](https://daniel.haxx.se/irchistory.html), and servers sometimes lost contact with each other — a [*netsplit*](https://en.wikipedia.org/wiki/Netsplit). During a split, the network broke into islands. Imagine your WhatsApp group splitting in half — two copies running independently, different people talking in each, and when the halves reconnect, the app has to figure out which version is real. Except IRC's answer was simpler: disconnect everyone involved and let them sort it out. You could connect to one island and grab someone's nickname, and when the servers rejoined, both users held the same nick. The protocol handled this with scorched earth: every instance of the colliding nickname was [forcibly disconnected](https://en.wikipedia.org/wiki/IRC_takeover) — *both* users dropped. The attacker, ready for it, would reconnect immediately. The victim would come back to find their nick stolen.
 
 ![A netsplit visualized: two clusters of servers tearing apart, ghost figures appearing on both sides — the same nickname, owned by two different users, a collision waiting to happen.](netsplit.jpg)
 
-The Timestamp protocol — an [Undernet](https://en.wikipedia.org/wiki/Undernet) innovation by Carlo Wood — fixed the collision problem: servers recorded when a user took a nickname or joined a channel, and on rejoin after a netsplit, the older timestamp won. The squatter lost. But TS only prevented abuse during splits — it didn't solve the fundamental problem that without persistent identity, your nickname was yours only as long as your connection held.
+The [Timestamp protocol](https://github.com/grawity/irc-docs/blob/master/server/espel-tsora/Undernet-TS.txt) — an [Undernet](https://en.wikipedia.org/wiki/Undernet) innovation by [Carlo Wood](https://www.undernet.org/docs/interview-with-carlo-wood) — fixed the collision problem: servers recorded when a user took a nickname or joined a channel, and on rejoin after a netsplit, the older timestamp won. The squatter lost. But TS only prevented abuse during splits — it didn't solve the fundamental problem that without persistent identity, your nickname was yours only as long as your connection held.
 
 [DALnet](https://docs.dal.net/docs/history.html) pioneered the clean solution in 1995: **IRC services**. Register your nickname with NickServ, identify with a password, and the services — running with server-level authority — would protect it for you. If someone tried to squat a registered nickname, NickServ would let them know:
 
@@ -77,24 +77,24 @@ The [first commit](https://github.com/vjt/suxserv/commit/eb8087d) landed on Sept
 - [pff ... O3 ..](https://github.com/vjt/suxserv/commit/87b4362)
 - [i will be happy when all this debug shit will be gone.](https://github.com/vjt/suxserv/commit/ca7df24)
 - [services are now multithreaded](https://github.com/vjt/suxserv/commit/12c4438)
-- [we are now 0.1 =)](https://github.com/vjt/suxserv/tree/80116c5)
+- [we are now 0.1 =)](https://github.com/vjt/suxserv/commits/80116c5)
 
 ![Late-night coding session, circa 2002: CRT monitor, segfaults, O'Reilly books, and the determined frustration of learning systems programming the hard way.](prototype.jpg)
 
-[243 commits](https://github.com/vjt/suxserv/tree/80116c5) in three months, all mine. A raw prototype — a multithreaded IRC services daemon built on [GLib 2.x](https://docs.gtk.org/glib/), connecting to a Bahamut server and tracking users and channels. No database, no actual services logic — just the protocol parser, the hash tables, and the threading infrastructure.
+[243 commits](https://github.com/vjt/suxserv/commits/80116c5) in three months, all mine. A raw prototype — a [multithreaded](https://github.com/vjt/suxserv/blob/master/src/threads.c#L228) IRC services daemon built on [GLib 2.x](https://docs.gtk.org/glib/), connecting to a Bahamut server and tracking users and channels. No database, no actual services logic — just the protocol parser, the hash tables, and the threading infrastructure.
 
-The code was messy. I was learning C systems programming in real-time, making every classic mistake: broken realloc patterns, forgotten mutex unlocks, buffer overflows I'd discover at 3am. But the architecture was taking shape.
+The code was messy. I was learning C systems programming in real-time, making every classic mistake: broken realloc patterns, forgotten mutex unlocks, buffer overflows I'd discover at [3am](https://github.com/vjt/suxserv/commit/ea08f32). But the architecture was taking shape.
 
-By January 2003, I had a working skeleton: server-to-server protocol negotiation, SJOIN parsing, user/channel tracking, basic PING/PONG handling, and a multithreaded core with a network thread, a parser thread, and a signal handler thread.
+By January 2003, I had a working skeleton: [server-to-server protocol negotiation](https://github.com/vjt/suxserv/blob/master/src/bahamut.c#L13), SJOIN parsing, user/channel tracking, basic PING/PONG handling, and a [multithreaded core](https://github.com/vjt/suxserv/blob/master/src/threads.c#L228) with a network thread, a parser thread, and a signal handler thread.
 
 ## 0.2: the real thing
 
 [let\`s go 0.2](https://github.com/vjt/suxserv/tree/76d1351) — January 5, 2003. Same codebase, but I restructured the core and started building the actual services on top. Over the next year and a half, this grew into a proper IRC services implementation:
 
-- **Five service agents**: NickServ, ChanServ, MemoServ, OperServ, RootServ
-- **Pluggable SQL backend**: MySQL first, PostgreSQL added later
-- **Dynamic module loading**: Services compiled as shared objects, loaded at runtime via GLib's `GModule`
-- **Multiple IRCd support**: Bahamut and UnrealIRCd 3.2
+- **Five service agents**: [NickServ](https://github.com/vjt/suxserv/blob/master/src/nickserv.c), [ChanServ](https://github.com/vjt/suxserv/blob/master/src/chanserv.c), [MemoServ](https://github.com/vjt/suxserv/blob/master/src/memoserv.c), [OperServ](https://github.com/vjt/suxserv/blob/master/src/operserv.c), [RootServ](https://github.com/vjt/suxserv/blob/master/src/rootserv.c)
+- **[MySQL backend](https://github.com/vjt/suxserv/blob/master/src/mysql.c)**: raw `mysql_real_query()` calls — the SQL abstraction came later, with Oleg
+- **[Dynamic module loading](https://github.com/vjt/suxserv/blob/master/src/modules.c#L133)**: Services compiled as shared objects, loaded at runtime via GLib's `GModule`
+- **[Multiple IRCd support](https://github.com/vjt/suxserv/blob/master/src/unreal32.c)**: Bahamut and UnrealIRCd 3.2 — the latter entirely Oleg's work
 - **The whole nine yards**: nick registration, channel access lists, memos, AKILLs, vhosts, nick linking, channel modes, kill protection
 
 Let me show you the interesting parts.
@@ -124,7 +124,7 @@ SJOIN, m_sjoin
 %%
 ```
 
-Gperf takes this table and generates a **perfect hash function** — zero collisions, O(1) lookup. An incoming IRC command gets hashed to its handler function pointer in constant time. No searching, no branching.
+Gperf takes this table and generates a **[perfect hash function](https://en.wikipedia.org/wiki/Perfect_hash_function)** — zero collisions, O(1) lookup. An incoming IRC command gets hashed to its handler function pointer in constant time. No searching, no branching.
 
 The same pattern repeats for every service. [NickServ commands](https://github.com/vjt/suxserv/blob/master/src/nickserv-cmd.gperf):
 
@@ -142,7 +142,7 @@ FORBID, ns_forbid, 1
 %%
 ```
 
-Ten gperf files across the codebase. Every single command lookup was O(1). In 2003, with thousands of users hammering NickServ simultaneously, this mattered. Today you'd probably use a hash map and not think twice. But there's something beautiful about compile-time perfect hashing — zero runtime overhead, zero wasted memory, zero collisions, guaranteed.
+[Ten gperf files](https://github.com/search?q=repo%3Avjt%2Fsuxserv+path%3A*.gperf&type=code) across the codebase. Every single command lookup was O(1). In 2003, with thousands of users hammering NickServ simultaneously, this mattered. Today you'd probably use a hash map and not think twice. But there's something beautiful about compile-time perfect hashing — zero runtime overhead, zero wasted memory, zero collisions, guaranteed.
 
 ### Macro-based generic programming
 
@@ -267,7 +267,7 @@ The parser was adapted from Bahamut's source code, and the [comments say so](htt
  */
 ```
 
-Same for the [hash functions](https://github.com/vjt/suxserv/blob/master/src/hash.c#L70) (`stolen from bahamut/src/hash.c`) and the [pattern matching code](https://github.com/vjt/suxserv/blob/master/src/match.c#L45) (`stolen from bahamut/src/match.c`). Every borrowed piece was credited in a comment.
+Same for the [hash functions](https://github.com/vjt/suxserv/blob/master/src/hash.c#L70) (`stolen from bahamut/src/hash.c`), the [pattern matching code](https://github.com/vjt/suxserv/blob/master/src/match.c#L45) (`stolen from bahamut/src/match.c`), the [IRC error replies](https://github.com/vjt/suxserv/blob/master/src/irc-replies.c#L20) (`stolen from bahamut/src/s_err.c`), the [`ircsprintf`](https://github.com/vjt/suxserv/blob/master/src/sux-printf.c#L2) (`taken from bahamut/src/ircsprintf.c`), even [`setproctitle`](https://github.com/vjt/suxserv/blob/master/src/setproctitle.c#L2) (`stolen from cvs.kerneli.org util-linux`, with a dash of `borrowed from sendmail`). Every borrowed piece was credited in a comment.
 
 This was open source culture before GitHub. There was no `npm install`, no crate registry, no package manager. There were no source browsers. You downloaded a tarball, extracted it, and read the code in vim. That was the entire workflow. The barrier to understanding someone else's code was brutally high — no syntax highlighting on the web, no inline annotations, no "jump to definition." Just monospace characters glowing on a black terminal, and you, reading.
 
@@ -279,7 +279,7 @@ The attribution was informal — a comment, not a LICENSE file — but it was th
 
 ![A hundred bots swarming a server, firing commands from all directions. Some have already crashed. This is netxplode.](netxplode.jpg)
 
-In the `tools/` directory sits [`netxplode.pl`](https://github.com/vjt/suxserv/blob/master/tools/netxplode.pl) — "The Network Daemon Exploder" by Daniel Dent. A Perl script that spawns 100 IRC clients and hammers the services with random commands:
+In the `tools/` directory sits [`netxplode.pl`](https://github.com/vjt/suxserv/blob/master/tools/netxplode.pl) — "The Network Daemon Exploder" by Daniel Dent, borrowed from his [SourceForge project](https://sourceforge.net/projects/netxplode/). A Perl script that spawns 100 IRC clients and hammers the services with random commands:
 
 ```perl
 my @actions = (
@@ -306,7 +306,7 @@ Looking at this code with 23 years of experience, a few things stand out:
 
 ![A monument to error reporting: a server toppling silently in a museum, no alarms, no warnings, a blank plaque. The comedy of software that fails without telling you why.](error-monument.jpg)
 
-**But the error reporting is nonexistent.** Look at the [thread initialization](https://github.com/vjt/suxserv/blob/master/src/threads.c#L230-L251):
+**But the error reporting has holes.** The codebase has proper logging in many places — `g_message()`, `g_warning()`, syslog integration. But in some critical paths, the original prototype's `exit(EXIT_FAILURE)` stuck around, never replaced. Look at the [thread initialization](https://github.com/vjt/suxserv/blob/master/src/threads.c#L230-L251):
 
 ```c
 signal_thread_ptr = g_thread_create_full((GThreadFunc)signal_thread,
@@ -333,7 +333,7 @@ if(parser_thread_ptr == NULL)
 
 Each call passes `&err` — a GError pointer that GLib carefully populates with *exactly what went wrong*. And the code does nothing with it. Thread failed to start? Silent `exit(EXIT_FAILURE)`. No log message, no syslog entry, no indication of which thread failed or why. The error information is right there, waiting to be read, and the code just walks away. A friend of mine — [Enrico Perla](https://www.enricoperla.com/), who went on to write a [book on Linux kernel exploitation](https://www.amazon.com/Guide-Kernel-Exploitation-Attacking-Core/dp/1597494860) — looked at this code once and told me it was "a monument to error reporting." I still remember it. He wasn't wrong.
 
-**The SQL is injectable.** I introduced [`sql_sprintf()`](https://github.com/vjt/suxserv/commit/9f97119) in February 2003 — adapted from Bahamut's `ircsprintf()`, with escaping for quotes and backslashes — but I didn't apply it systematically. A month later I was still finding spots I'd missed: [`SQL Injection problems.`](https://github.com/vjt/suxserv/commit/96b8493) — an unquoted `%s` in OperServ's AKILL lookup. Oleg's [`sql_quote()`](https://github.com/vjt/suxserv/commit/be5ea22) came later as a proper, driver-level solution. Different times.
+**The SQL has no proper escaping framework.** I introduced [`sql_sprintf()`](https://github.com/vjt/suxserv/commit/9f97119) in February 2003 — adapted from Bahamut's `ircsprintf()`, with escaping for quotes and backslashes — but it was a simplified thing, and I didn't apply it everywhere. A month later I was still finding spots I'd missed: [`SQL Injection problems.`](https://github.com/vjt/suxserv/commit/96b8493) — an unquoted `%s` in OperServ's AKILL lookup. If you forgot to use `sql_sprintf()`, you had a potential injection. Oleg's [`sql_quote()`](https://github.com/vjt/suxserv/commit/be5ea22) came later as a proper, driver-level solution that fixed this systematically.
 
 **The commit messages are a diary.** `going mad with those dbufs ...`, `pff ... O3 ..`, `sux`, `explanation of life`, `added authism concatenation with girls`. I was committing thoughts, not changes. The CVS history reads like a stream of consciousness from a 21-year-old learning to be a systems programmer.
 
@@ -357,11 +357,11 @@ Pointer signedness corrections to pass stricter type checks of GCC 4.0.
 
 Where my commits were bursts of frustration and excitement, Oleg's read like engineering. He took my chaotic prototype and turned it into something approaching production quality. Then the trail goes cold. November 4, 2005 — his last commit. The project never ran in production on Azzurra.
 
-I sent him an email last week. Twenty years of silence. We'll see.
-
 ## The conversion
 
-The original CVS repository survived on a backup disk — the server-side repo, not just a working copy. CVSROOT and all. I converted it to Git using `git cvsimport`:
+The original CVS repository was preserved by SourceForge. They retired CVS hosting in 2017, but they kept the backups — the server-side repos, not just tarballs. CVSROOT and all. Nobody had downloaded this repo in probably a decade, but it was still there, ready to be exported. That's [the real sysadmin](/posts/2014-02-28-il-vero-sistemista/) spirit — [keeping the internet alive](/posts/2007-11-21-when-sysadmins-ruled-the-earth/) even when no one's looking. Thank you, SourceForge.
+
+I converted it to Git using `git cvsimport`:
 
 - Two CVS modules (`suxserv-old` and `suxserv`) became one linear history
 - Three authors mapped to real identities
