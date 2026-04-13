@@ -56,7 +56,7 @@ I was 21 and an IRCop on Azzurra, Italy's largest IRC network. Of course I thoug
 
 Azzurra was — and [still is](https://azzurra.chat) — the Italian IRC network. At its peak it had tens of thousands of concurrent users — Italians chatting, flirting, fighting, trading MP3s, running trivia bots, and doing all the things people did online before social media ate the world. I had joined as a user, become an IRCop, and eventually found myself deep in the infrastructure.
 
-![The Italian IRC scene, circa 2002: CRT monitors glowing with IRC clients, late nights online, espresso and MP3s. This was the world before social media.](azzurra.jpg)
+![Azzurra IRC Network, circa 2002: green-on-black IRC terminal, azure blue glow, espresso and Nokia phones. Thousands of Italians connected at 2am — chatting, flirting, arguing, sharing MP3s.](azzurra.jpg)
 
 The network was migrating from [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — a commercial IRC server — to [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), an open-source IRCd. Not vanilla Bahamut, but a fork with IPv6 and SSL support that we maintained. I was part of the team making that transition happen: patching the server, adding hostname cloaking, wiring up SSL. That migration is a story for [another post](/posts/2026-04-13-bahamut-inet6-patching-ircd/).
 
@@ -72,11 +72,11 @@ The [first commit](https://github.com/vjt/suxserv/commit/eb8087d) landed on Sept
 - [pff ... O3 ..](https://github.com/vjt/suxserv/commit/87b4362)
 - [i will be happy when all this debug shit will be gone.](https://github.com/vjt/suxserv/commit/ca7df24)
 - [services are now multithreaded](https://github.com/vjt/suxserv/commit/12c4438)
-- [we are now 0.1 =)](https://github.com/vjt/suxserv/commit/80116c5)
+- [we are now 0.1 =)](https://github.com/vjt/suxserv/tree/80116c5)
 
 ![Late-night coding session, circa 2002: CRT monitor, segfaults, O'Reilly books, and the determined frustration of learning systems programming the hard way.](prototype.jpg)
 
-243 commits in three months, all mine. A raw prototype — a multithreaded IRC services daemon built on [GLib 2.x](https://docs.gtk.org/glib/), connecting to a Bahamut server and tracking users and channels. No database, no actual services logic — just the protocol parser, the hash tables, and the threading infrastructure.
+[243 commits](https://github.com/vjt/suxserv/tree/80116c5) in three months, all mine. A raw prototype — a multithreaded IRC services daemon built on [GLib 2.x](https://docs.gtk.org/glib/), connecting to a Bahamut server and tracking users and channels. No database, no actual services logic — just the protocol parser, the hash tables, and the threading infrastructure.
 
 The code was messy. I was learning C systems programming in real-time, making every classic mistake: broken realloc patterns, forgotten mutex unlocks, buffer overflows I'd discover at 3am. But the architecture was taking shape.
 
@@ -84,7 +84,7 @@ By January 2003, I had a working skeleton: server-to-server protocol negotiation
 
 ## 0.2: the real thing
 
-[let\`s go 0.2](https://github.com/vjt/suxserv/commit/76d1351) — January 5, 2003. Same codebase, but I restructured the core and started building the actual services on top. Over the next year and a half, this grew into a proper IRC services implementation:
+[let\`s go 0.2](https://github.com/vjt/suxserv/tree/76d1351) — January 5, 2003. Same codebase, but I restructured the core and started building the actual services on top. Over the next year and a half, this grew into a proper IRC services implementation:
 
 - **Five service agents**: NickServ, ChanServ, MemoServ, OperServ, RootServ
 - **Pluggable SQL backend**: MySQL first, PostgreSQL added later
