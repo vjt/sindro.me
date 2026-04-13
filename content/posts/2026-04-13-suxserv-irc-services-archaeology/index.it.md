@@ -81,11 +81,11 @@ Il [primo commit](https://github.com/vjt/suxserv/commit/eb8087d) è arrivato il 
 
 ![Sessione di coding notturna, circa 2002: monitor CRT, segfault, libri O'Reilly, e la frustrazione determinata di chi impara la programmazione di sistema nel modo più duro.](prototype.jpg)
 
-[243 commit](https://github.com/vjt/suxserv/commits/80116c5) in tre mesi, tutti miei. Un prototipo grezzo — un demone IRC services [multithreaded](https://github.com/vjt/suxserv/blob/master/src/threads.c#L228) costruito su [GLib 2.x](https://docs.gtk.org/glib/), che si connetteva a un server Bahamut e tracciava utenti e canali. Niente database, niente logica di servizio vera e propria — solo il parser di protocollo, le hash table, e l'infrastruttura di threading.
+[243 commit](https://github.com/vjt/suxserv/commits/80116c5) in tre mesi, tutti miei. Un prototipo grezzo — un demone IRC services [multithreaded](https://github.com/vjt/suxserv/blob/80116c5/src/main.c#L98) costruito su [GLib 2.x](https://docs.gtk.org/glib/), che si connetteva a un server Bahamut e tracciava utenti e canali. Niente database, niente logica di servizio vera e propria — solo il parser di protocollo, le hash table, e l'infrastruttura di threading.
 
-Il codice era un casino. Stavo imparando la programmazione C di sistema in tempo reale, commettendo ogni errore classico: pattern di realloc sbagliati, mutex unlock dimenticati, buffer overflow scoperti alle [3 di notte](https://github.com/vjt/suxserv/commit/ea08f32). Ma l'architettura prendeva forma.
+Il codice era un casino. Stavo imparando la programmazione C di sistema in tempo reale, commettendo ogni errore classico: [pattern di realloc sbagliati](https://github.com/vjt/suxserv/commit/f3c7e25), [mutex unlock dimenticati](https://github.com/vjt/suxserv/commit/cfed09b), [buffer overflow](https://github.com/vjt/suxserv/commit/7bd4e4b) scoperti alle [3 di notte](https://github.com/vjt/suxserv/commit/ea08f32). Ma l'architettura prendeva forma.
 
-Per gennaio 2003, avevo uno scheletro funzionante: [negoziazione del protocollo server-to-server](https://github.com/vjt/suxserv/blob/master/src/bahamut.c#L13), parsing di SJOIN, tracking di utenti e canali, gestione base di PING/PONG, e un [core multithreaded](https://github.com/vjt/suxserv/blob/master/src/threads.c#L228) con un thread di rete, un thread parser, e un thread per la gestione dei segnali.
+Per gennaio 2003, avevo uno scheletro funzionante: [negoziazione del protocollo server-to-server](https://github.com/vjt/suxserv/blob/80116c5/src/dispatch.c#L94), parsing di SJOIN, tracking di utenti e canali, gestione base di PING/PONG, e un [core multithreaded](https://github.com/vjt/suxserv/blob/80116c5/src/main.c#L98) con un thread di rete, un thread parser, e un thread per la gestione dei segnali.
 
 ## 0.2: la cosa vera
 
