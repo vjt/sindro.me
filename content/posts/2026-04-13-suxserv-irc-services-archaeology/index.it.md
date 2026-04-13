@@ -94,7 +94,7 @@ Per gennaio 2003, avevo uno scheletro funzionante: [negoziazione del protocollo 
 - **Cinque agenti di servizio**: [NickServ](https://github.com/vjt/suxserv/blob/c04df67/src/nickserv.c), [ChanServ](https://github.com/vjt/suxserv/blob/c04df67/src/chanserv.c), [MemoServ](https://github.com/vjt/suxserv/blob/c04df67/src/memoserv.c), [OperServ](https://github.com/vjt/suxserv/blob/c04df67/src/operserv.c), [RootServ](https://github.com/vjt/suxserv/blob/c04df67/src/rootserv.c)
 - **[Backend MySQL](https://github.com/vjt/suxserv/blob/c04df67/src/sql.c)**: chiamate MySQL integrate in `sql.c` — l'astrazione driver è arrivata dopo, con Oleg
 - **[Caricamento dinamico dei moduli](https://github.com/vjt/suxserv/blob/c04df67/src/modules.c#L129)**: i services compilati come shared object, caricati a runtime via `GModule` di GLib
-- **[Supporto IRCd multiplo](https://github.com/vjt/suxserv/blob/master/src/unreal32.c)**: Bahamut e UnrealIRCd 3.2 — quest'ultimo interamente opera di Oleg
+- **[Supporto IRCd multiplo](https://github.com/vjt/suxserv/blob/d1e20ed/src/unreal32.c)**: Bahamut e UnrealIRCd 3.2 — quest'ultimo interamente opera di Oleg
 - **Tutto il pacchetto completo**: registrazione nick, access list dei canali, memo, AKILL, vhost, nick linking, channel mode, kill protection
 
 Vediamo le parti interessanti.
@@ -107,7 +107,7 @@ Vediamo le parti interessanti.
 
 Il pezzo più elegante dell'architettura era il dispatch dei comandi. Invece di catene di `if/else` o chiamate a `strcmp`, ogni tabella di comandi era generata da [gperf](https://www.gnu.org/software/gperf/) — il generatore GNU di funzioni di hash perfette.
 
-Ecco la tabella dei comandi del protocollo IRC ([`parse.gperf`](https://github.com/vjt/suxserv/blob/master/src/parse.gperf)):
+Ecco la tabella dei comandi del protocollo IRC ([`parse.gperf`](https://github.com/vjt/suxserv/blob/d1e20ed/src/parse.gperf)):
 
 ```c
 struct Message { gchar *cmd; void (*func)(User *, gint, gchar **); };
@@ -126,7 +126,7 @@ SJOIN, m_sjoin
 
 Gperf prende questa tabella e genera una **[funzione di hash perfetta](https://en.wikipedia.org/wiki/Perfect_hash_function)** — zero collisioni, lookup O(1). Un comando IRC in arrivo viene hashato al suo function pointer handler in tempo costante. Nessuna ricerca, nessun branching.
 
-Lo stesso pattern si ripete per ogni service. [Comandi di NickServ](https://github.com/vjt/suxserv/blob/master/src/nickserv-cmd.gperf):
+Lo stesso pattern si ripete per ogni service. [Comandi di NickServ](https://github.com/vjt/suxserv/blob/d1e20ed/src/nickserv-cmd.gperf):
 
 ```c
 struct ns_cmd { gchar *name; void (*func)(User *, gint, gchar **); guint para; };
@@ -150,7 +150,7 @@ FORBID, ns_forbid, 1
 
 Il C non ha i generici. Nel 2003, i template C++ erano un'opzione ma io scrivevo C — in parte per preferenza, in parte perché GLib era una libreria C, e in parte perché avevo 21 anni e avevo opinioni sul C++.
 
-Quindi ho costruito i generici con le macro. L'header [`table.h`](https://github.com/vjt/suxserv/blame/master/include/table.h) è un sistema completo di hash table basato su macro con operazioni thread-safe:
+Quindi ho costruito i generici con le macro. L'header [`table.h`](https://github.com/vjt/suxserv/blame/d1e20ed/include/table.h) è un sistema completo di hash table basato su macro con operazioni thread-safe:
 
 ```c
 #define TABLE_DECLARE(NAME, DATA_TYPE, HASH_FUNC, KEY_NAME, KEY_TYPE)  \
@@ -183,7 +183,7 @@ Guardando questo codice adesso, è essenzialmente una vtable — una struct di f
 
 ![Un livello di astrazione database: un'unica interfaccia universale che traduce tra MySQL e PostgreSQL — le stesse query, motori diversi.](sql.jpg)
 
-Questo è lavoro di Oleg, non mio. Il mio codice originale aveva chiamate MySQL sparse ovunque. Quando Oleg ha [convertito il backend SQL in un modulo caricabile](https://github.com/vjt/suxserv/commit/3363bd8d), ha progettato una vera [interfaccia driver](https://github.com/vjt/suxserv/blob/master/include/sql.h#L49-L75) — una struct di function pointer che astraeva il motore database:
+Questo è lavoro di Oleg, non mio. Il mio codice originale aveva chiamate MySQL sparse ovunque. Quando Oleg ha [convertito il backend SQL in un modulo caricabile](https://github.com/vjt/suxserv/commit/3363bd8d), ha progettato una vera [interfaccia driver](https://github.com/vjt/suxserv/blob/d1e20ed/include/sql.h#L49-L75) — una struct di function pointer che astraeva il motore database:
 
 ```c
 typedef struct {
@@ -204,17 +204,17 @@ typedef struct {
 } SqlDriver;
 ```
 
-[MySQL](https://github.com/vjt/suxserv/blob/master/src/mysql.c) e [PostgreSQL](https://github.com/vjt/suxserv/blob/master/src/pgsql.c) implementavano ciascuno questa interfaccia. Il resto della codebase usava macro come `sql_query()`, `sql_begin()`, `sql_commit()` — completamente database-agnostico. Transazioni, iterazione sui risultati, accesso tipizzato alle colonne, quoting corretto.
+[MySQL](https://github.com/vjt/suxserv/blob/d1e20ed/src/mysql.c) e [PostgreSQL](https://github.com/vjt/suxserv/blob/d1e20ed/src/pgsql.c) implementavano ciascuno questa interfaccia. Il resto della codebase usava macro come `sql_query()`, `sql_begin()`, `sql_commit()` — completamente database-agnostico. Transazioni, iterazione sui risultati, accesso tipizzato alle colonne, quoting corretto.
 
 Quello che mi fa sorridere adesso è quanta cerimonia servisse. Nel 2005, questo era un *design*. Lo schizzavi, pensavi alle firme delle funzioni, scrivevi le macro, implementavi entrambi i driver. Oggi installeresti un ORM e andresti avanti. Ma la simpatia meccanica che sviluppi scrivendo queste cose — capire esattamente quanto costa una query al database, cosa significa un confine di transazione, dove vanno le tue allocazioni — è qualcosa che ti resta addosso.
 
-Lo [schema](https://github.com/vjt/suxserv/blob/master/doc/sux-db.mysql) era generato da phpMyAdmin e usava `TYPE=MyISAM` (nemmeno InnoDB). MySQL 3.23. Le password erano MD5. I timestamp erano `timestamp(14)`. Era il 2003.
+Lo [schema](https://github.com/vjt/suxserv/blob/d1e20ed/doc/sux-db.mysql) era generato da phpMyAdmin e usava `TYPE=MyISAM` (nemmeno InnoDB). MySQL 3.23. Le password erano MD5. I timestamp erano `timestamp(14)`. Era il 2003.
 
 ### Il modello di threading
 
 ![Quattro pipeline parallele — rete, parser, segnali, master — sincronizzate tramite lock e condition variable. Questo è quello che fa il codice qui sotto.](threading.jpg)
 
-[Quattro thread](https://github.com/vjt/suxserv/blob/master/src/threads.c#L60-L63), ciascuno con un ruolo specifico:
+[Quattro thread](https://github.com/vjt/suxserv/blob/d1e20ed/src/threads.c#L60-L63), ciascuno con un ruolo specifico:
 
 ```c
 static void network_thread(void);   // I/O asincrono via GLib main loop
@@ -244,7 +244,7 @@ while(THREAD_IS_RUNNING())
 }
 ```
 
-Condition variable, buffer condivisi protetti da mutex, separazione pulita dei thread. Il [thread dei segnali](https://github.com/vjt/suxserv/blob/master/src/threads.c#L355-L392) bloccava tutti i segnali globalmente, poi usava `sigwait()` per gestirli in serie — evitando la trappola classica di fare lavoro complesso dentro i signal handler. Quando arrivava un [segnale fatale](https://github.com/vjt/suxserv/blob/master/src/threads.c#L151-L158):
+Condition variable, buffer condivisi protetti da mutex, separazione pulita dei thread. Il [thread dei segnali](https://github.com/vjt/suxserv/blob/d1e20ed/src/threads.c#L355-L392) bloccava tutti i segnali globalmente, poi usava `sigwait()` per gestirli in serie — evitando la trappola classica di fare lavoro complesso dentro i signal handler. Quando arrivava un [segnale fatale](https://github.com/vjt/suxserv/blob/d1e20ed/src/threads.c#L151-L158):
 
 ```c
 static void fatal_termination(gint sig)
@@ -259,7 +259,7 @@ Avevo 21 anni.
 
 ### Codice rubato, attribuito onestamente
 
-Il parser era adattato dal codice sorgente di Bahamut, e i [commenti lo dicono](https://github.com/vjt/suxserv/blob/master/src/parse.gperf#L98):
+Il parser era adattato dal codice sorgente di Bahamut, e i [commenti lo dicono](https://github.com/vjt/suxserv/blob/d1e20ed/src/parse.gperf#L98):
 
 ```c
 /*
@@ -267,7 +267,7 @@ Il parser era adattato dal codice sorgente di Bahamut, e i [commenti lo dicono](
  */
 ```
 
-Idem per le [funzioni di hash](https://github.com/vjt/suxserv/blob/master/src/hash.c#L70) (`stolen from bahamut/src/hash.c`), il [codice di pattern matching](https://github.com/vjt/suxserv/blob/master/src/match.c#L45) (`stolen from bahamut/src/match.c`), le [risposte di errore IRC](https://github.com/vjt/suxserv/blob/master/src/irc-replies.c#L20) (`stolen from bahamut/src/s_err.c`), [`ircsprintf`](https://github.com/vjt/suxserv/blob/master/src/sux-printf.c#L2) (`taken from bahamut/src/ircsprintf.c`), perfino [`setproctitle`](https://github.com/vjt/suxserv/blob/master/src/setproctitle.c#L2) (`stolen from cvs.kerneli.org util-linux`, con un pizzico di `borrowed from sendmail`). Ogni pezzo preso in prestito era creditato in un commento.
+Idem per le [funzioni di hash](https://github.com/vjt/suxserv/blob/d1e20ed/src/hash.c#L70) (`stolen from bahamut/src/hash.c`), il [codice di pattern matching](https://github.com/vjt/suxserv/blob/d1e20ed/src/match.c#L45) (`stolen from bahamut/src/match.c`), le [risposte di errore IRC](https://github.com/vjt/suxserv/blob/d1e20ed/src/irc-replies.c#L20) (`stolen from bahamut/src/s_err.c`), [`ircsprintf`](https://github.com/vjt/suxserv/blob/d1e20ed/src/sux-printf.c#L2) (`taken from bahamut/src/ircsprintf.c`), perfino [`setproctitle`](https://github.com/vjt/suxserv/blob/d1e20ed/src/setproctitle.c#L2) (`stolen from cvs.kerneli.org util-linux`, con un pizzico di `borrowed from sendmail`). Ogni pezzo preso in prestito era creditato in un commento.
 
 Questa era la cultura open source prima di GitHub. Non c'era `npm install`, niente crate registry, nessun package manager. Non c'erano source browser. Scaricavi un tarball, lo estraevi, e leggevi il codice con vim. Quello era l'intero workflow. La barriera per capire il codice di qualcun altro era brutalmente alta — nessun syntax highlighting sul web, nessuna annotazione inline, nessun "jump to definition." Solo caratteri monospace che brillavano su un terminale nero, e tu, che leggevi.
 
@@ -279,7 +279,7 @@ L'attribuzione era informale — un commento, non un file LICENSE — ma c'era. 
 
 ![Cento bot che assaltano un server, sparando comandi da tutte le direzioni. Alcuni sono già crashati. Questo è netxplode.](netxplode.jpg)
 
-Nella directory `tools/` c'è [`netxplode.pl`](https://github.com/vjt/suxserv/blob/master/tools/netxplode.pl) — "The Network Daemon Exploder" di Daniel Dent, preso dal suo [progetto su SourceForge](https://sourceforge.net/projects/netxplode/). Uno script Perl che spawna 100 client IRC e martella i services con comandi random:
+Nella directory `tools/` c'è [`netxplode.pl`](https://github.com/vjt/suxserv/blob/d1e20ed/tools/netxplode.pl) — "The Network Daemon Exploder" di Daniel Dent, preso dal suo [progetto su SourceForge](https://sourceforge.net/projects/netxplode/). Uno script Perl che spawna 100 client IRC e martella i services con comandi random:
 
 ```perl
 my @actions = (
@@ -294,7 +294,7 @@ my @actions = (
 );
 ```
 
-Sostituisci `RAND` con numeri random, spara tutto in una volta, vedi cosa va in segfault. Questo era il nostro framework di load testing. Puntava a [`homes.vejnet.org:6667`](https://github.com/vjt/suxserv/blob/master/tools/netxplode.pl#L30) — vejnet, la mia rete di casa. Il [file di configurazione](https://github.com/vjt/suxserv/blob/master/doc/example.conf#L49) aveva `my_pass = "codio"` — che, in italiano, beh. Diciamo che non è una parola da contesto professionale.
+Sostituisci `RAND` con numeri random, spara tutto in una volta, vedi cosa va in segfault. Questo era il nostro framework di load testing. Puntava a [`homes.vejnet.org:6667`](https://github.com/vjt/suxserv/blob/d1e20ed/tools/netxplode.pl#L30) — vejnet, la mia rete di casa. Il [file di configurazione](https://github.com/vjt/suxserv/blob/d1e20ed/doc/example.conf#L49) aveva `my_pass = "codio"` — che, in italiano, beh. Diciamo che non è una parola da contesto professionale.
 
 ## Quello che non vedevo allora
 
@@ -306,7 +306,7 @@ Guardando questo codice con 23 anni di esperienza, alcune cose saltano all'occhi
 
 ![Un monumento all'error reporting: un server che cade silenziosamente in un museo, nessun allarme, nessun avviso, una targa vuota. La comicità del software che fallisce senza dirti perché.](error-monument.jpg)
 
-**Ma l'error reporting ha dei buchi.** La codebase ha logging decente in molti punti — `g_message()`, `g_warning()`, integrazione syslog. Ma in alcuni percorsi critici, il `exit(EXIT_FAILURE)` originale del prototipo è rimasto lì, mai sostituito. Guardate l'[inizializzazione dei thread](https://github.com/vjt/suxserv/blob/master/src/threads.c#L230-L251):
+**Ma l'error reporting ha dei buchi.** La codebase ha logging decente in molti punti — `g_message()`, `g_warning()`, integrazione syslog. Ma in alcuni percorsi critici, il `exit(EXIT_FAILURE)` originale del prototipo è rimasto lì, mai sostituito. Guardate l'[inizializzazione dei thread](https://github.com/vjt/suxserv/blob/d1e20ed/src/threads.c#L230-L251):
 
 ```c
 signal_thread_ptr = g_thread_create_full((GThreadFunc)signal_thread,
@@ -341,19 +341,17 @@ Ogni chiamata passa `&err` — un puntatore GError che GLib popola accuratamente
 
 All'inizio del 2005, [Oleg Girko](https://github.com/OlegGirko) si è fatto vivo. Era uno sviluppatore dalla Lettonia, e voleva il supporto PostgreSQL per i services. Gli ho dato accesso in commit.
 
-Quello che è successo dopo è notevole. Tra gennaio e novembre 2005, Oleg ha scritto **192 commit** — quasi un quarto dell'intero progetto. Non ha solo aggiunto il supporto PostgreSQL. Ha reso il backend SQL modulare, aggiunto il supporto per UnrealIRCd 3.2, implementato il nick linking, i flag dei canali, la gestione dei vhost, la sincronizzazione a due fasi, il rate limiting, l'integrazione con syslog, e decine di bug fix.
+Quello che è successo dopo è notevole. Tra gennaio e novembre 2005, Oleg ha scritto [**192 commit**](https://github.com/vjt/suxserv/commits/master?author=OlegGirko) — quasi un quarto dell'intero progetto. Non ha solo [aggiunto il supporto PostgreSQL](https://github.com/vjt/suxserv/commit/a279e16). Ha [reso il backend SQL modulare](https://github.com/vjt/suxserv/commit/3363bd8), aggiunto il [supporto per UnrealIRCd 3.2](https://github.com/vjt/suxserv/commit/9eeebd3), implementato il [nick linking](https://github.com/vjt/suxserv/commit/a229f54), i [flag dei canali](https://github.com/vjt/suxserv/commit/99a56fb), la [gestione dei vhost](https://github.com/vjt/suxserv/commit/d5254c1), la [sincronizzazione a due fasi](https://github.com/vjt/suxserv/commit/9944bfb), il [rate limiting](https://github.com/vjt/suxserv/commit/abb21d4), l'[integrazione con syslog](https://github.com/vjt/suxserv/commit/08dc3d3), e decine di bug fix.
 
 I suoi commit message sono metodici e precisi:
 
-```
-Preliminary support for modular IRC server frontend.
-Converted SQL backend into loadable module.
-Added PostgreSQL database driver.
-Significantly simplified channel access management.
-Introduced two-phase synchronisation.
-Fixed coredump when applying "WHOIS" command to services name.
-Pointer signedness corrections to pass stricter type checks of GCC 4.0.
-```
+- [Preliminary support for modular IRC server frontend.](https://github.com/vjt/suxserv/commit/9eeebd3)
+- [Converted SQL backend into loadable module.](https://github.com/vjt/suxserv/commit/3363bd8)
+- [Added PostgreSQL database driver.](https://github.com/vjt/suxserv/commit/a279e16)
+- [Significantly simplified channel access management.](https://github.com/vjt/suxserv/commit/cd59485)
+- [Introduced two-phase synchronisation.](https://github.com/vjt/suxserv/commit/9944bfb)
+- [Fixed coredump when applying "WHOIS" command to services name.](https://github.com/vjt/suxserv/commit/5870e9a)
+- [Pointer signedness corrections to pass stricter type checks of GCC 4.0.](https://github.com/vjt/suxserv/commit/d1e20ed)
 
 Dove i miei commit erano esplosioni di frustrazione ed entusiasmo, quelli di Oleg si leggono come ingegneria. Ha preso il mio prototipo caotico e lo ha trasformato in qualcosa che si avvicinava alla qualità di produzione. Poi la traccia si perde. 4 novembre 2005 — il suo ultimo commit. Il progetto non è mai andato in produzione su Azzurra.
 
