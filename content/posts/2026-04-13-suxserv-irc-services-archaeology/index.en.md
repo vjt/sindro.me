@@ -56,6 +56,8 @@ I was 21 and an IRCop on Azzurra, Italy's largest IRC network. Of course I thoug
 
 Azzurra was — and [still is](https://azzurra.chat) — the Italian IRC network. At its peak it had tens of thousands of concurrent users — Italians chatting, flirting, fighting, trading MP3s, running trivia bots, and doing all the things people did online before social media ate the world. I had joined as a user, become an IRCop, and eventually found myself deep in the infrastructure.
 
+![The Italian IRC scene, circa 2002: CRT monitors glowing with IRC clients, late nights online, espresso and MP3s. This was the world before social media.](azzurra.jpg)
+
 The network was migrating from [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — a commercial IRC server — to [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), an open-source IRCd. Not vanilla Bahamut, but a fork with IPv6 and SSL support that we maintained. I was part of the team making that transition happen: patching the server, adding hostname cloaking, wiring up SSL. That migration is a story for [another post](/posts/2026-04-13-bahamut-inet6-patching-ircd/).
 
 Once the server side was sorted, I turned my attention to services. The existing ones weren't cutting it. I wanted something modular, threaded, with a real database backend. So I started writing.
@@ -287,13 +289,38 @@ Looking at this code with 23 years of experience, a few things stand out:
 
 **The patterns are timeless.** The vtable-based SQL driver is the same pattern as Go interfaces. The gperf dispatch tables are the same idea as compile-time routing in modern web frameworks. The macro-based generics anticipate what Rust does with monomorphization — generating specialized code for each type at compile time.
 
-**But there is no error recovery.** If the [database goes away](https://github.com/vjt/suxserv/blob/master/src/main.c#L171), the services crash. If the [IRC server sends malformed data](https://github.com/vjt/suxserv/blob/master/src/main.c#L174), the services crash. If an [allocation fails](https://github.com/vjt/suxserv/blob/master/src/main.c#L139), the services crash. Every error path ends in `g_critical()`, which is `exit(1)`. There's no reconnection logic, no graceful degradation, no circuit breaking. A friend of mine — [Enrico Perla](https://www.enricoperla.com/), who went on to write a [book on Linux kernel exploitation](https://www.amazon.com/Guide-Kernel-Exploitation-Attacking-Core/dp/1597494860) — looked at this code once and told me it was "a monument to error handling." I still remember it. He wasn't wrong. I was writing software for a network of teenagers chatting about anime — the failure mode was "restart the process and fix it later."
+**But the error reporting is nonexistent.** Look at the [thread initialization](https://github.com/vjt/suxserv/blob/master/src/threads.c#L230-L251):
 
-**The SQL is injectable.** I even found my own commit fixing it: `SQL Injection problems.` — March 31, 2003. The `sql_quote()` function was added later by Oleg. For months, anyone who could send a crafted nickname to NickServ could have dropped the database. Nobody did, because nobody was trying. Different times.
+```c
+signal_thread_ptr = g_thread_create_full((GThreadFunc)signal_thread,
+    NULL, 0, FALSE, TRUE, G_THREAD_PRIORITY_NORMAL, &err);
+if(signal_thread_ptr == NULL)
+{
+    exit(EXIT_FAILURE);
+}
+
+network_thread_ptr = g_thread_create_full((GThreadFunc)network_thread,
+    NULL, 0, TRUE, TRUE, G_THREAD_PRIORITY_NORMAL, &err);
+if(network_thread_ptr == NULL)
+{
+    exit(EXIT_FAILURE);
+}
+
+parser_thread_ptr = g_thread_create_full((GThreadFunc)parser_thread,
+    NULL, 0, TRUE, TRUE, G_THREAD_PRIORITY_NORMAL, &err);
+if(parser_thread_ptr == NULL)
+{
+    exit(EXIT_FAILURE);
+}
+```
+
+Each call passes `&err` — a GError pointer that GLib carefully populates with *exactly what went wrong*. And the code does nothing with it. Thread failed to start? Silent `exit(EXIT_FAILURE)`. No log message, no syslog entry, no indication of which thread failed or why. The error information is right there, waiting to be read, and the code just walks away. A friend of mine — [Enrico Perla](https://www.enricoperla.com/), who went on to write a [book on Linux kernel exploitation](https://www.amazon.com/Guide-Kernel-Exploitation-Attacking-Core/dp/1597494860) — looked at this code once and told me it was "a monument to error reporting." I still remember it. He wasn't wrong.
+
+**The SQL is injectable.** I introduced [`sql_sprintf()`](https://github.com/vjt/suxserv/commit/9f97119) in February 2003 — adapted from Bahamut's `ircsprintf()`, with escaping for quotes and backslashes — but I didn't apply it systematically. A month later I was still finding spots I'd missed: [`SQL Injection problems.`](https://github.com/vjt/suxserv/commit/96b8493) — an unquoted `%s` in OperServ's AKILL lookup. Oleg's [`sql_quote()`](https://github.com/vjt/suxserv/commit/be5ea22) came later as a proper, driver-level solution. Different times.
 
 **The commit messages are a diary.** `going mad with those dbufs ...`, `pff ... O3 ..`, `sux`, `explanation of life`, `added authism concatenation with girls`. I was committing thoughts, not changes. The CVS history reads like a stream of consciousness from a 21-year-old learning to be a systems programmer.
 
-## Oleg
+## Oleg aka `@luarvic`
 
 In early 2005, [Oleg Girko](https://github.com/OlegGirko) got in touch. He was a developer from Latvia, and he wanted PostgreSQL support for the services. I gave him commit access.
 
@@ -330,7 +357,7 @@ And the [SourceForge project page](https://suxserv.sourceforge.net/)? Still up. 
 
 ![The Sux Services home page on SourceForge — still online in 2026, unchanged since 2003](sourceforge.png)
 
-## Coda
+## Twenty-three years later
 
 In 2002, I wrote IRC services because I needed them. The network was real, the users were real, the problems were real. The code is rough in places, naive in others, but it solved real problems with real constraints: concurrency, performance, protocol compatibility, database portability.
 
