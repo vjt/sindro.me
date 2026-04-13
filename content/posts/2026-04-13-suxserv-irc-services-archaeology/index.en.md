@@ -39,35 +39,27 @@ The network was migrating from [ConferenceRoom](https://en.wikipedia.org/wiki/Co
 
 Once the server side was sorted, I turned my attention to services. The existing ones weren't cutting it. I wanted something modular, threaded, with a real database backend. So I started writing.
 
-## The initial prototype: suxserv-old
+## 0.1: the prototype
 
-The first version started on September 30, 2002. The commit messages tell you exactly what it was like:
+The [first commit](https://github.com/vjt/suxserv/commit/eb8087d) landed on September 30, 2002. The commit messages tell the story better than I could:
 
-```
-initial import
-realloc() stuff is BROKEN, fix it :\
-going mad with those dbufs ...
-debug ...
-pff ... O3 ..
-i will be happy when all this debug shit will be gone.
-services are now multithreaded
-we are now 0.1 =)
-let`s go 0.2
-```
+- [realloc() stuff is BROKEN, fix it :\\](https://github.com/vjt/suxserv/commit/f3c7e25)
+- [going mad with those dbufs ...](https://github.com/vjt/suxserv/commit/7043666)
+- [debug ...](https://github.com/vjt/suxserv/commit/9ad6773)
+- [pff ... O3 ..](https://github.com/vjt/suxserv/commit/87b4362)
+- [i will be happy when all this debug shit will be gone.](https://github.com/vjt/suxserv/commit/ca7df24)
+- [services are now multithreaded](https://github.com/vjt/suxserv/commit/12c4438)
+- [we are now 0.1 =)](https://github.com/vjt/suxserv/commit/80116c5)
 
-243 commits in three months, all mine. It was a raw prototype — a multithreaded IRC services daemon built on [GLib 2.x](https://docs.gtk.org/glib/), connecting to a Bahamut server and tracking users and channels. No database, no actual services logic — just the protocol parser, the hash tables, and the threading infrastructure.
+243 commits in three months, all mine. A raw prototype — a multithreaded IRC services daemon built on [GLib 2.x](https://docs.gtk.org/glib/), connecting to a Bahamut server and tracking users and channels. No database, no actual services logic — just the protocol parser, the hash tables, and the threading infrastructure.
 
 The code was messy. I was learning C systems programming in real-time, making every classic mistake: broken realloc patterns, forgotten mutex unlocks, buffer overflows I'd discover at 3am. But the architecture was taking shape.
 
-By January 7, 2003, I had a working skeleton: server-to-server protocol negotiation, SJOIN parsing, user/channel tracking, basic PING/PONG handling, and a multithreaded core with a network thread, a parser thread, and a signal handler thread.
+By January 2003, I had a working skeleton: server-to-server protocol negotiation, SJOIN parsing, user/channel tracking, basic PING/PONG handling, and a multithreaded core with a network thread, a parser thread, and a signal handler thread.
 
-Then I threw it all away and started over.
+## 0.2: the real thing
 
-## The rewrite: Sux Services 0.2
-
-Same day — January 7, 2003, six minutes after the last commit to the prototype — I imported the code into a new CVS module and began the rewrite. This time I knew what I was doing. Or at least I thought I did.
-
-The rewrite kept the threading model and the GLib foundation but rebuilt everything else. Over the next year and a half, this grew into a proper IRC services implementation:
+[let\`s go 0.2](https://github.com/vjt/suxserv/commit/76d1351) — January 5, 2003. Same codebase, but I restructured the core and started building the actual services on top. Over the next year and a half, this grew into a proper IRC services implementation:
 
 - **Five service agents**: NickServ, ChanServ, MemoServ, OperServ, RootServ
 - **Pluggable SQL backend**: MySQL first, PostgreSQL added later
@@ -75,7 +67,7 @@ The rewrite kept the threading model and the GLib foundation but rebuilt everyth
 - **Multiple IRCd support**: Bahamut and UnrealIRCd 3.2
 - **The whole nine yards**: nick registration, channel access lists, memos, AKILLs, vhosts, nick linking, channel modes, kill protection
 
-711 commits in the rewrite. Let me show you the interesting parts.
+Let me show you the interesting parts.
 
 ## The code tour
 
