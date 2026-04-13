@@ -74,6 +74,8 @@ The [first commit](https://github.com/vjt/suxserv/commit/eb8087d) landed on Sept
 - [services are now multithreaded](https://github.com/vjt/suxserv/commit/12c4438)
 - [we are now 0.1 =)](https://github.com/vjt/suxserv/commit/80116c5)
 
+![Late-night coding session, circa 2002: CRT monitor, segfaults, O'Reilly books, and the determined frustration of learning systems programming the hard way.](prototype.jpg)
+
 243 commits in three months, all mine. A raw prototype — a multithreaded IRC services daemon built on [GLib 2.x](https://docs.gtk.org/glib/), connecting to a Bahamut server and tracking users and channels. No database, no actual services logic — just the protocol parser, the hash tables, and the threading infrastructure.
 
 The code was messy. I was learning C systems programming in real-time, making every classic mistake: broken realloc patterns, forgotten mutex unlocks, buffer overflows I'd discover at 3am. But the architecture was taking shape.
@@ -139,6 +141,8 @@ Ten gperf files across the codebase. Every single command lookup was O(1). In 20
 
 ### Macro-based generic programming
 
+![The C preprocessor as a factory: one template goes in, specialized type-safe hash tables come out — red for users, blue for channels, green for servers.](macros.jpg)
+
 C doesn't have generics. In 2003, C++ templates were an option but I was writing C — partly out of preference, partly because GLib was a C library, and partly because I was 21 and had opinions about C++.
 
 So I built generics out of macros. The [`table.h`](https://github.com/vjt/suxserv/blame/master/include/table.h) header is a complete macro-based hash table system with thread-safe operations:
@@ -171,6 +175,8 @@ _TBL(channel).count();        // how many channels?
 Looking at this now, it's essentially a vtable — a struct of function pointers, populated at initialization. The same pattern that Go uses for interfaces, that Rust uses for trait objects. I was reinventing polymorphism with the C preprocessor, one macro at a time. It worked. The error messages when something went wrong were, predictably, incomprehensible.
 
 ### The SQL abstraction layer
+
+![A database abstraction layer: one universal interface translating between MySQL and PostgreSQL — the same queries, different engines.](sql.jpg)
 
 This one is Oleg's work, not mine. My original code had MySQL calls scattered everywhere. When Oleg [converted the SQL backend into a loadable module](https://github.com/vjt/suxserv/commit/3363bd8d), he designed a proper [driver interface](https://github.com/vjt/suxserv/blob/master/include/sql.h#L49-L75) — a struct of function pointers that abstracted away the database engine:
 
