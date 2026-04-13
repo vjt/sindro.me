@@ -9,7 +9,7 @@ featuredImage: sourceforge.png
 
 So I just tagged 0.2.8 and I think this thing is getting close to usable.
 
-Quick recap for those who don't know: [Sux Services](https://suxserv.sourceforge.net/) are IRC services I'm writing from scratch in C for the [Azzurra IRC Network](https://www.azzurra.org/). The idea is: multithreaded, modular, SQL backend instead of flat files, and not a complete mess to maintain. We'll see about that last part.
+Quick recap for those who don't know: [Sux Services](https://suxserv.sourceforge.net/) are IRC services I'm writing from scratch in C for the [Azzurra IRC Network](https://azzurra.chat). The idea is: multithreaded, modular, SQL backend instead of flat files, and not a complete mess to maintain. We'll see about that last part.
 
 What works right now: NickServ does registration, identification, password change, ghost kill. ChanServ has channel registration, access lists (CF/SOP/AOP/VOP/AKICK) with masks support, and it actually enforces access on join. MemoServ sends and reads memos, notifies you on connect if you have new ones. OperServ has AKILL, server MAP, STATS. There's even a RootServ for the really scary stuff.
 

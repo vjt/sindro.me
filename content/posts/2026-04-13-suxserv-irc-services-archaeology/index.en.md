@@ -9,7 +9,7 @@ featuredImage: cover.jpg
 
 One of the things I'm enjoying most about working with [Claude](/tags/ai-generated/) is digital archaeology. I've spent twenty years accumulating old projects on backup disks, SourceForge, forgotten servers — code I wrote and never looked at again. Now I can just point Claude at a tarball and say "convert this to git" or "explain what 21-year-old me was thinking here" and get an actual conversation going with my own past.
 
-Today's dig: I went to SourceForge and downloaded the CVS repository for [a project of mine from 2003](/posts/2003-03-16-suxserv-wip/) — **Sux Services**, my attempt at writing IRC services from scratch, in C, for the [Azzurra IRC Network](https://www.azzurra.org/). I said "Claude, convert this CVS repo to git" and a few minutes later I had a clean [Git repository](https://github.com/vjt/suxserv) with 954 commits, three authors, and a continuous history from September 2002 to November 2005.
+Today's dig: I went to SourceForge and downloaded the CVS repository for [a project of mine from 2003](/posts/2003-03-16-suxserv-wip/) — **Sux Services**, my attempt at writing IRC services from scratch, in C, for the [Azzurra IRC Network](https://azzurra.chat). I said "Claude, convert this CVS repo to git" and a few minutes later I had a clean [Git repository](https://github.com/vjt/suxserv) with 954 commits, three authors, and a continuous history from September 2002 to November 2005.
 
 I never finished this project. I left the network before it was ready for production. A Latvian developer picked it up, wrote 192 commits, and then the trail goes cold.
 
@@ -42,7 +42,7 @@ The Timestamp protocol — an [Undernet](https://en.wikipedia.org/wiki/Undernet)
 
 ChanServ did the same for channels — register, set up access lists, and the service would maintain order even when you weren't online. This gave normal users a way to keep their identity safe without needing a machine permanently connected to the internet.
 
-Not all networks followed suit. DALnet was the most protective; [Azzurra](https://www.azzurra.org/) followed DALnet's model closely. [IRCnet](https://en.wikipedia.org/wiki/IRCnet) stayed true to the original jungle — no registration services, ever. [Undernet](https://en.wikipedia.org/wiki/Undernet) had channel services but no NickServ, using a separate username-based auth system instead. [EFnet](https://en.wikipedia.org/wiki/EFnet) ran without services entirely after killing off an early advisory NickServ in 1994, eventually adding only [CHANFIX](https://en.wikipedia.org/wiki/EFnet#CHANFIX) — an automated channel-healing tool, not real services. It was fun.
+Not all networks followed suit. DALnet was the most protective; [Azzurra](https://azzurra.chat) followed DALnet's model closely. [IRCnet](https://en.wikipedia.org/wiki/IRCnet) stayed true to the original jungle — no registration services, ever. [Undernet](https://en.wikipedia.org/wiki/Undernet) had channel services but no NickServ, using a separate username-based auth system instead. [EFnet](https://en.wikipedia.org/wiki/EFnet) ran without services entirely after killing off an early advisory NickServ in 1994, eventually adding only [CHANFIX](https://en.wikipedia.org/wiki/EFnet#CHANFIX) — an automated channel-healing tool, not real services. It was fun.
 
 So: what are services, technically? The pseudo-users that handle the bureaucracy of an IRC network: **NickServ** registers and protects nicknames, **ChanServ** manages channel ownership and access lists, **MemoServ** delivers offline messages, **OperServ** gives network operators administrative tools, and **RootServ** handles the god-mode stuff.
 
@@ -54,7 +54,7 @@ I was 21 and an IRCop on Azzurra, Italy's largest IRC network. Of course I thoug
 
 ## The context: Azzurra, 2002
 
-Azzurra was the Italian IRC network. At its peak it had tens of thousands of concurrent users — Italians chatting, flirting, fighting, trading MP3s, running trivia bots, and doing all the things people did online before social media ate the world. I had joined as a user, become an IRCop, and eventually found myself deep in the infrastructure.
+Azzurra was — and [still is](https://azzurra.chat) — the Italian IRC network. At its peak it had tens of thousands of concurrent users — Italians chatting, flirting, fighting, trading MP3s, running trivia bots, and doing all the things people did online before social media ate the world. I had joined as a user, become an IRCop, and eventually found myself deep in the infrastructure.
 
 The network was migrating from [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — a commercial IRC server — to [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), an open-source IRCd. Not vanilla Bahamut, but a fork with IPv6 and SSL support that we maintained. I was part of the team making that transition happen: patching the server, adding hostname cloaking, wiring up SSL. That migration is a story for [another post](/posts/2026-04-13-bahamut-inet6-patching-ircd/).
 
@@ -93,6 +93,8 @@ Let me show you the interesting parts.
 ## The code tour
 
 ### Perfect hashing with gperf
+
+![A perfect hash function visualized: commands enter a crystalline prism and refract into exactly one slot each — no collisions, no searching.](gperf.jpg)
 
 The most elegant piece of the architecture was the command dispatch. Instead of chains of `if/else` or `strcmp` calls, every command table was generated by [gperf](https://www.gnu.org/software/gperf/) — the GNU perfect hash function generator.
 
