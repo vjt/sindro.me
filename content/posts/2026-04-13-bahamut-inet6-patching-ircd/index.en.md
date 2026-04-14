@@ -9,7 +9,7 @@ featuredImage: cover.jpg
 
 This is the prequel to [Sux Services: Digging Up IRC Code from 2002](/posts/2026-04-13-suxserv-irc-services-archaeology/). Before I started writing IRC services from scratch, I spent the better part of a year doing something arguably crazier: patching an IRC server to support IPv6 and SSL. I was twenty-one.
 
-The project lived in a CVS repository on SourceForge — it's still there, a digital fossil. Claude converted it to Git — [171 commits](https://github.com/vjt/bahamut-inet6/commits/master/), three authors, continuous history from February 2002 to January 2006. I wrote it. Let me tell you about it. A fork of [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), the IRC daemon that powered [DALnet](https://en.wikipedia.org/wiki/DALnet), one of the largest IRC networks of its era.
+The project lived in a CVS repository on SourceForge — it's [still there](https://bahamut-inet6.sf.net/), a digital fossil. Claude converted it to Git — [171 commits](https://github.com/vjt/bahamut-inet6/commits/master/), three authors, continuous history from February 2002 to January 2006. I wrote it. Let me tell you about it. A fork of [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), the IRC daemon that powered [DALnet](https://en.wikipedia.org/wiki/DALnet), one of the largest IRC networks of its era.
 
 ## How I got here
 
@@ -82,7 +82,7 @@ IRC channels — chatrooms, in today's parlance — were run by operators who co
 
 So we had two problems: everyone could see your real IP and attack you, and bans needed hostnames to work. IP cloaking solved the first by replacing the visible portion of your hostname with a keyed hash. But why a hash and not a random string? Because the hash was deterministic — the same IP always produced the same cloaked hostname. If we'd used random strings, users could just reconnect to get a new identity and dodge every ban. With a hash, as long as your IP stayed the same, your cloaked hostname stayed the same, and the ban held. Of course, dialup users could still disconnect and redial their modem to get a new IP and a new hash... but that was a limitation of 2002 internet, not the cloaking system.
 
-The implementation used [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) with a server-side key, producing hostnames like `Azzurra-1A2B3C4D.example.com` for FQDNs or `192.168.Azzurra-1A2B3C4D` for IPv4 addresses. The separator was `-` for positive checksums and `=` for negative ones — a minor detail that made cloaked hostnames instantly recognizable:
+The implementation used [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) with a server-side key, producing hostnames like `Azzurra-1A2B3C4D.example.com` for FQDNs or `192.168.Azzurra-1A2B3C4D` for IPv4 addresses. The separator was `-` for positive checksums and `=` for negative ones:
 
 ```c
 #define CLOAK_HOST "Azzurra"
@@ -168,7 +168,7 @@ From the [commit message](https://github.com/vjt/bahamut-inet6/commit/170830e):
 
 > made /connect work: now s_auth.c skips the auth check when connecting to servers whose addresses are ipv4 mapped in ipv6 structures. to specify an outbound connection, you must type ::ffff:i.p.v.4 into the host part of the C/N lines.
 
-The IP hashing had to change too — you can't just hash 128 bits the same way you hash 32 bits. The [hash_ip bug](https://github.com/vjt/bahamut-inet6/commit/d5638af) that monas found was exactly this problem. And [`ip6_expand()`](https://github.com/vjt/bahamut-inet6/commit/3b5f598) was needed to handle addresses starting with `::`, because the parser treated `:` as a delimiter (yes, that problem again).
+The IP hashing had to change too — you can't just hash 128 bits the same way you hash 32 bits. The [hash_ip bug](https://github.com/vjt/bahamut-inet6/commit/d5638af) was found by an IRCop at `irc.vub.lt` — the Vilnius University dormitories server. They had a situation similar to Fastweb: all dorm users were NAT'd behind a single IP on a `10.0.building.user` schema, which meant `hash_ip()` put them all in the same hash slot. Every operation on that slot degenerated into a linear search through a linked list of all connected dorm users. Their server crawled while monas's server at Kaunas University — with more users but public IPs — ran fine. They `gdb`'d the live server and found the problem. And [`ip6_expand()`](https://github.com/vjt/bahamut-inet6/commit/3b5f598) was needed to handle addresses starting with `::`, because the parser treated `:` as a delimiter (yes, that problem again).
 
 ### Portability
 
@@ -189,6 +189,8 @@ Version 0.9.1 was [tagged for release](https://github.com/vjt/bahamut-inet6/comm
 On [March 10, 2002](https://github.com/vjt/bahamut-inet6/commit/d44dca9), I added SSL support. By [March 13](https://github.com/vjt/bahamut-inet6/commit/6492043), it was done: *"fixed all the SSL-related problems. ready for release."*
 
 Three days. The entire [`ssl.c`](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/ssl.c) is 291 lines. Copyright `Barnaba Marcello <vjt@azzurra.org>`. It's the most complete file I wrote for this project — initialization, shutdown, non-blocking read/write wrappers, error handling, and certificate reload.
+
+Naturally, I was using [irssi](https://irssi.org/) as my IRC client, and irssi didn't have SSL support either — so I [contributed that too](https://github.com/irssi/irssi/commit/1539cf81f3642c5afd1267b3adc4fc2d46308ceb). It shipped in [irssi 0.8.6](https://irssi.org/NEWS/#news-v0-8-6) and was subsequently rewritten from scratch, of course.
 
 ### The integration trick
 
@@ -303,9 +305,9 @@ This one deserves a section because it's peak early-2000s Italian internet infra
 
 On IRC, this was a disaster. You couldn't distinguish Fastweb users from each other — they all appeared to come from the same address. As [this Usenet thread from September 2002](https://groups.google.com/g/it.tlc.gestori.fastweb/c/p1V7Uj0Y9ys) documents, Fastweb users were getting K-lined (banned) from IRC networks left and right — not because of anything they did, but because spammers on the same shared IPs had triggered network-wide bans that affected every Fastweb subscriber. Users were furious, some considering switching from Fastweb's fiber to slower ADSL just to get a public IP.
 
-Our solution was creative: [nextime](https://nexlab.it/) had a server *inside* the Fastweb network that could see the internal IPs. Fastweb users connected to Azzurra through that server, which relayed their internal addresses to the rest of the network using the `fastweb.fw` pseudo-domain. We explicitly blocked connections from Fastweb's residential NAT egress nodes to our other servers — if you were on Fastweb, you *had* to connect through the internal server. The Azzurra codebase had a dedicated [`FASTWEB` compile-time flag](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L425) with custom handling:
+Our solution was creative: [nextime](https://nexlab.it/) had a server *inside* the Fastweb network that could see the internal IPs. Fastweb users connected to Azzurra through that server, which relayed their internal addresses to the rest of the network. We explicitly blocked connections from Fastweb's residential NAT egress nodes to our other servers — if you were on Fastweb, you *had* to connect through the internal server.
 
-The [`FASTWEB` compile-time flag](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L425) was a dedicated build for these internal servers. It did quite a few things:
+The [`FASTWEB` compile-time flag](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L425) was a dedicated build for these servers. It did quite a few things:
 
 ```c
 #ifdef FASTWEB /* AZZURRA */
@@ -314,7 +316,7 @@ The [`FASTWEB` compile-time flag](https://github.com/azzurra/bahamut/blob/master
     ircsprintf(sptr->user->host, "%d-%d.%d-%d.%s", ip[3], ip[2], ip[1], ip[0], FAST_RES);
 ```
 
-The server took Fastweb's internal IPs (which had no reverse DNS) and synthesized a hostname by reversing the octets under the `fastweb.fw` pseudo-TLD — so `10.1.2.3` became `3-2.1-10.fastweb.fw`. It also hid the pseudo-TLD from the user's own `RPL_WELCOME` (showing their real IP instead, so their client wouldn't get confused), changed the "server full" error page to a [dedicated Fastweb page](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L514), and I-line passwords in the config were prefixed with `fastweb.` to tag a port as Fastweb-only.
+The server took Fastweb's internal IPs (which had no reverse DNS) and [synthesized a hostname](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L825) by reversing the octets under the `fastweb.fw` pseudo-TLD — so `10.1.2.3` became `3-2.1-10.fastweb.fw`. It hid the pseudo-TLD from the user's own [`RPL_WELCOME`](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L971) (showing their real IP instead, so their client wouldn't get confused), changed the "server full" error page to a [dedicated Fastweb page](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L514), and [I-line passwords](https://github.com/azzurra/bahamut/blob/master/src/s_conf.c#L1602) in the config were prefixed with `fastweb.` to tag a port as Fastweb-only.
 
 The [2005 server list](azzurra-help.pdf) shows four entries labeled "Azzurra Fastweb, Rete Interna." The `:D` in the comment says it all.
 
@@ -423,4 +425,4 @@ The version string itself was a thing of beauty. From [`patchlevel.h`](https://g
 
 ---
 
-Meanwhile, I had also started building IRC services from scratch. That's the [next story](/posts/2026-04-13-suxserv-irc-services-archaeology/) — 954 commits, a multithreaded C daemon, and the project I never finished. Read on.
+But patching someone else's IRC server wasn't enough. I also started building IRC services from scratch. That's the [next story](/posts/2026-04-13-suxserv-irc-services-archaeology/) — 954 commits, a multithreaded C daemon, and the project I never finished. Read on.
