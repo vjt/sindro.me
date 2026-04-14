@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-Questo è il sequel di [Forkare un IRCd: IPv6 e SSL per Bahamut nel 2002](/it/posts/2026-04-13-bahamut-inet6-forking-ircd/). Dopo aver forkato il server IRC, ho iniziato a scrivere services da zero.
+Questo è il sequel di [Forkare Bahamut per Azzurra IRC: IPv6 e SSL nel 2002](/it/posts/2026-04-13-bahamut-inet6-forking-ircd/). Dopo aver forkato il server IRC, ho iniziato a scrivere services da zero.
 
 Una delle cose che mi piace di più del lavorare con [Claude](/tags/ai-generated/) è l'archeologia digitale. Ho passato vent'anni ad accumulare vecchi progetti su dischi di backup, SourceForge, server dimenticati — codice che ho scritto e non ho mai più guardato. Adesso posso puntare Claude su un tarball e dire "converti questo in git" o "spiegami cosa pensava il me ventunenne qui" e avere una conversazione vera e propria col mio passato.
 
