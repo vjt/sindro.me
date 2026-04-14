@@ -425,4 +425,4 @@ The version string itself was a thing of beauty. From [`patchlevel.h`](https://g
 
 ---
 
-But patching someone else's IRC server wasn't enough. I also started building IRC services from scratch. That's the [next story](/posts/2026-04-13-suxserv-irc-services-archaeology/) — 954 commits, a multithreaded C daemon, and the project I never finished. Read on.
+But forking and extending someone else's IRC server wasn't enough. I also started building IRC services from scratch. That's the [next story](/posts/2026-04-13-suxserv-irc-services-archaeology/) — 954 commits, a multithreaded C daemon, and the project I never finished. Read on.
