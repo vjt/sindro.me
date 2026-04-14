@@ -354,6 +354,16 @@ Nel 2020, una rinascita: [Paolo Iannelli](https://github.com/azzurra/bahamut/com
 
 Stanno anche costruendo infrastruttura moderna intorno al vecchio demone: una [API server live](https://liveinfo.azzurra.chat/servers), un bridge Telegram-IRC. La codebase stessa, come mi ha detto Hypnotize oggi, "andrebbe ricostruita da zero" — e onestamente, guardando il codice nel 2026, è difficile non essere d'accordo. Le password degli oper sono salvate in chiaro di default (`#undef CRYPT_OPER_PASSWORD`), i tentativi falliti di `/oper` broadcastano la password digitata al canale di sicurezza, e l'identificazione a NickServ manda la tua password come `PRIVMSG` attraverso i link tra server. Un prodotto della sua epoca. Ma la rete è viva, le luci sono accese, e qualcuno ci tiene ancora abbastanza da tenerle accese. Conta qualcosa.
 
+## Non si accettano carote
+
+Un'ultima cosa. Mentre scrivevo questo post, mi sono riconnesso con la vecchia crew su IRC — morpheus, Sonic, Hypnotize — e ho scoperto qualcosa che non avevo mai capito in ventisei anni.
+
+Azzurra è nata da un litigio. Uno scazzo violento su `#roxybar` — un canale IRC italiano — che portò all'espulsione dei futuri fondatori. Se ne andarono, fondarono la loro rete, e il resto è storia. Ma i primi MOTD dei server portavano il rancore: *"non si accettano carote."*
+
+Me lo ricordavo, quel messaggio nel MOTD. Non l'avevo mai capito. Pensavo fosse umorismo IRC italiano a caso. Ventisei anni dopo, morpheus mi ha spiegato: le carote erano una presa in giro per qualcuno coi capelli rossi — [Red Ronnie](https://it.wikipedia.org/wiki/Red_Ronnie), il conduttore televisivo, che era apparentemente coinvolto nel dramma di `#roxybar`. Il mito fondativo della più grande rete IRC italiana, immortalato come una battuta sulle verdure nel banner di login.
+
+Certe cose le capisci solo se resti connesso abbastanza a lungo.
+
 ## Questo bahamut ha i Super Cow Powers
 
 Le [informazioni di versione](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/version.c.SH#L119) che apparivano quando digitavi `/info` su un server compilato con INET6 o SSL:

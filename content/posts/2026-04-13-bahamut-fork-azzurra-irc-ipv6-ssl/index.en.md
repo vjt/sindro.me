@@ -354,6 +354,16 @@ In 2020, a revival: [Paolo Iannelli](https://github.com/azzurra/bahamut/commits?
 
 They're also building modern infrastructure around the old daemon: a [live server API](https://liveinfo.azzurra.chat/servers), a Telegram-to-IRC bridge. The codebase itself, as Hypnotize told me today, "should be rebuilt from scratch" — and honestly, looking at the code in 2026, it's hard to disagree. Oper passwords are stored in cleartext by default (`#undef CRYPT_OPER_PASSWORD`), failed `/oper` attempts broadcast the typed password to the security channel, and NickServ identification sends your password as a `PRIVMSG` across server links. A product of its era. But the network is alive, the lights are on, and someone still cares enough to keep them on. That counts for something.
 
+## Non si accettano carote
+
+One last thing. While writing this post, I reconnected with the old crew on IRC — morpheus, Sonic, Hypnotize — and learned something I'd never understood in twenty-six years.
+
+Azzurra was born from a fight. A violent argument on `#roxybar` — an Italian chat channel — that got the future founders kicked out. They left, started their own network, and the rest is history. But the early server MOTDs carried a grudge: *"non si accettano carote"* — "no carrots accepted."
+
+I remembered seeing that line in the MOTD. I never understood it. I thought it was just random Italian IRC humor. Twenty-six years later, morpheus explained: the carrots were a dig at someone with red hair — [Red Ronnie](https://en.wikipedia.org/wiki/Red_Ronnie), the Italian TV host, who was apparently involved in the `#roxybar` drama. The founding myth of Italy's largest IRC network, immortalized as a vegetable joke in the login banner.
+
+Some things you only learn by staying connected long enough.
+
 ## This bahamut has Super Cow Powers
 
 The [version info](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/version.c.SH#L119) that you got when you typed `/info` on a server compiled with INET6 or SSL:
