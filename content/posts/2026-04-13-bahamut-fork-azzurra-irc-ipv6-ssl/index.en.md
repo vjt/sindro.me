@@ -438,9 +438,9 @@ One last thing. While working on this post, I got back in touch with some of the
 
 Azzurra was born from a fight. A violent argument on `#roxybar` — an Italian chat channel — that got the future founders kicked out. They left, started their own network, and the rest is history. But the early server MOTDs carried a grudge: *"non si accettano carote"* — "no carrots accepted."
 
-I remembered seeing that line in the MOTD, in orange mIRC letters. I never understood it. I thought it was just random Italian IRC humor. Twenty-six years later, the explanation: the carrots were a dig at someone with red hair — [Red Ronnie](https://en.wikipedia.org/wiki/Red_Ronnie), the Italian TV host, who was apparently involved in the `#roxybar` drama. The founding myth of Italy's largest IRC network, immortalized as a vegetable joke in the login banner.
+I remembered seeing that line in the MOTD, in orange mIRC letters. I never understood it. I thought it was just random Italian IRC humor. Twenty-six years later, the explanation: the carrots were a dig at [Red Ronnie](https://en.wikipedia.org/wiki/Red_Ronnie) — the Italian TV host with the red hair, who was involved in the `#roxybar` drama. The same Red Ronnie who had introduced many Italian teenagers to IRC in the first place, showing a server address and channel name on screen overlay during his show on [Telemontecarlo](https://en.wikipedia.org/wiki/LA7): *"if you have a computer, come join us on IRC."* Some of those teenagers had 1200 bps modems and couldn't do much else online anyway.
 
-Some things you only learn by staying connected long enough.
+The founding myth of Italy's largest IRC network, immortalized as a vegetable joke in the login banner. Some things you only learn by staying connected long enough.
 
 ---
 

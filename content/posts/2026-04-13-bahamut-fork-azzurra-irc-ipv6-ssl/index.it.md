@@ -438,9 +438,9 @@ Un'ultima cosa. Mentre lavoravo a questo post, mi sono rimesso in contatto con u
 
 Azzurra è nata da un litigio. Uno scazzo violento su `#roxybar` — un canale IRC italiano — che portò all'espulsione dei futuri fondatori. Se ne andarono, fondarono la loro rete, e il resto è storia. Ma i primi MOTD dei server portavano il rancore: *"non si accettano carote."*
 
-Me lo ricordavo, quel messaggio nel MOTD, in lettere arancioni su mIRC. Non l'avevo mai capito. Pensavo fosse umorismo IRC italiano a caso. Ventisei anni dopo, la spiegazione: le carote erano una presa in giro per qualcuno coi capelli rossi — [Red Ronnie](https://it.wikipedia.org/wiki/Red_Ronnie), il conduttore televisivo, che era apparentemente coinvolto nel dramma di `#roxybar`. Il mito fondativo della più grande rete IRC italiana, immortalato come una battuta sulle verdure nel banner di login.
+Me lo ricordavo, quel messaggio nel MOTD, in lettere arancioni su mIRC. Non l'avevo mai capito. Pensavo fosse umorismo IRC italiano a caso. Ventisei anni dopo, la spiegazione: le carote erano una presa in giro per [Red Ronnie](https://it.wikipedia.org/wiki/Red_Ronnie) — il conduttore televisivo coi capelli rossi, coinvolto nel dramma di `#roxybar`. Lo stesso Red Ronnie che aveva fatto scoprire IRC a tanti adolescenti italiani, mostrando in sovraimpressione indirizzo del server e nome del canale durante il suo programma su [Telemontecarlo](https://it.wikipedia.org/wiki/LA7): *"se avete un computer, venite qui su IRC."* Alcuni di quegli adolescenti avevano un modem a 1200 bps e non potevano fare molto altro online.
 
-Certe cose le capisci solo se resti connesso abbastanza a lungo.
+Il mito fondativo della più grande rete IRC italiana, immortalato come una battuta sulle verdure nel banner di login. Certe cose le capisci solo se resti connesso abbastanza a lungo.
 
 ---
 
