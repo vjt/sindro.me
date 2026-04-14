@@ -356,11 +356,11 @@ Stanno anche costruendo infrastruttura moderna intorno al vecchio demone: una [A
 
 ## Non si accettano carote
 
-Un'ultima cosa. Mentre scrivevo questo post, mi sono riconnesso con la vecchia crew su IRC — morpheus, Sonic, Hypnotize — e ho scoperto qualcosa che non avevo mai capito in ventisei anni.
+Un'ultima cosa. Mentre lavoravo a questo post, mi sono rimesso in contatto con un po' della vecchia crew. Ci siamo ritrovati su `#it-opers` dopo mezzanotte a ricordare vecchie storie, e questa è saltata fuori.
 
 Azzurra è nata da un litigio. Uno scazzo violento su `#roxybar` — un canale IRC italiano — che portò all'espulsione dei futuri fondatori. Se ne andarono, fondarono la loro rete, e il resto è storia. Ma i primi MOTD dei server portavano il rancore: *"non si accettano carote."*
 
-Me lo ricordavo, quel messaggio nel MOTD. Non l'avevo mai capito. Pensavo fosse umorismo IRC italiano a caso. Ventisei anni dopo, morpheus mi ha spiegato: le carote erano una presa in giro per qualcuno coi capelli rossi — [Red Ronnie](https://it.wikipedia.org/wiki/Red_Ronnie), il conduttore televisivo, che era apparentemente coinvolto nel dramma di `#roxybar`. Il mito fondativo della più grande rete IRC italiana, immortalato come una battuta sulle verdure nel banner di login.
+Me lo ricordavo, quel messaggio nel MOTD. Non l'avevo mai capito. Pensavo fosse umorismo IRC italiano a caso. Ventisei anni dopo, la spiegazione: le carote erano una presa in giro per qualcuno coi capelli rossi — [Red Ronnie](https://it.wikipedia.org/wiki/Red_Ronnie), il conduttore televisivo, che era apparentemente coinvolto nel dramma di `#roxybar`. Il mito fondativo della più grande rete IRC italiana, immortalato come una battuta sulle verdure nel banner di login.
 
 Certe cose le capisci solo se resti connesso abbastanza a lungo.
 
