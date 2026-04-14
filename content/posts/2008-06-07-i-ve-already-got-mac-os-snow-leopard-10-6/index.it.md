@@ -11,6 +11,6 @@ La battuta: Apple aveva appena annunciato Snow Leopard (Mac OS X 10.6) al WWDC 2
 
 E questa è la prova:
 
-![Snow Leopard](/posts/2008-06-07-i-ve-already-got-mac-os-snow-leopard-10-6/os_x_10.6.png)
+![Snow Leopard](/it/posts/2008-06-07-i-ve-already-got-mac-os-snow-leopard-10-6/os_x_10.6.png)
 
 (Ovviamente, se conosci `SystemVersion.plist`, salta pure questo post ;)

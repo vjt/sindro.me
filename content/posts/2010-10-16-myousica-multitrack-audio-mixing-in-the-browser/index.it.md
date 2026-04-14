@@ -17,7 +17,7 @@ Il multitraccia è stato inizialmente sviluppato da [Vaclav Vancura](https://van
 
 Ecco lo [screenshot originale di Vaclav](https://dribbble.com/shots/192454-Myousica-remix) che mostra la vista remix — dove le canzoni si collegano e si ramificano in nuovi remix:
 
-![Vista remix di Myousica — canzoni che si ramificano in remix](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/myousica-remix-dribbble.png)
+![Vista remix di Myousica — canzoni che si ramificano in remix](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/myousica-remix-dribbble.png)
 
 ## Cosa fa
 
@@ -35,7 +35,7 @@ Tutto questo avviene lato client in Flash Player 9, con il lavoro pesante (encod
 
 ## Le dimensioni
 
-![L'area tracce — icone strumenti, BPM, knob di volume e pan per traccia](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/multitrack-tracks.png)
+![L'area tracce — icone strumenti, BPM, knob di volume e pan per traccia](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/multitrack-tracks.png)
 
 Tutto è preciso al pixel. L'editor gira in uno stage largo 690px con proporzioni fisse:
 
@@ -150,7 +150,7 @@ Il getter `recordLevel` espone l'`activityLevel` del microfono — questo alimen
 
 ## Le forme d'onda
 
-![La regione delle waveform — due tracce con il playhead rosso a 0:05](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/multitrack-waveforms.png)
+![La regione delle waveform — due tracce con il playhead rosso a 0:05](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/multitrack-waveforms.png)
 
 Ogni traccia visualizza il suo audio come immagine della forma d'onda. Sono PNG pre-renderizzati generati lato server dal [servizio uploader](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/) — la larghezza è proporzionale alla durata della traccia (~10px al secondo). Il client Flash li carica via `BulkLoader` e li visualizza in un'area mascherata scrollabile.
 

@@ -8,7 +8,7 @@ tags: [erlang, projects]
 CouchDB 0.11 è preistoria — CouchDB 3.x è la linea corrente dal 2020, e il layout delle librerie Erlang è cambiato completamente. Questa fix specifica difficilmente si applica a qualsiasi installazione moderna.
 {{< /retrospective >}}
 
-![CouchDB logo](/posts/2010-04-03-couchdb-invalid-utf8-json/couchdb.png)
+![CouchDB logo](/it/posts/2010-04-03-couchdb-invalid-utf8-json/couchdb.png)
 
 Se il tuo CouchDB 0.11 ti spara l'errore "Invalid UTF-8 JSON" ad **ogni** POST
 o PUT che gli mandi, assicurati che nella tua

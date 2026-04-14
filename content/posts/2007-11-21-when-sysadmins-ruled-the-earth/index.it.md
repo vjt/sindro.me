@@ -31,11 +31,11 @@ necessaria per leggerlo tutto.
 
 ---
 
-> **Nota:** Questo racconto è una traduzione italiana di ["When Sysadmins Ruled the Earth"](/posts/2007-11-21-when-sysadmins-ruled-the-earth/) di Cory Doctorow, riprodotto in conformità alla licenza [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/). Era originariamente pubblicato su [Jim Baen's Universe, Vol 1 Num 2, agosto 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) e il testo originale è disponibile sul sito dell'autore su [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). È uno dei migliori racconti di narrativa geek mai scritti — ho aggiunto suddivisioni in capitoli e illustrazioni aggiuntive (generate con Gemini) per rendere la lettura più scorrevole, affiancandole alle illustrazioni originali di [Rob Dumuhosky](https://www.robdumuhosky.com/), e questa traduzione italiana per condividerlo con un pubblico più ampio.
+> **Nota:** Questo racconto è una traduzione italiana di ["When Sysadmins Ruled the Earth"](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/) di Cory Doctorow, riprodotto in conformità alla licenza [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/). Era originariamente pubblicato su [Jim Baen's Universe, Vol 1 Num 2, agosto 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) e il testo originale è disponibile sul sito dell'autore su [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). È uno dei migliori racconti di narrativa geek mai scritti — ho aggiunto suddivisioni in capitoli e illustrazioni aggiuntive (generate con Gemini) per rendere la lettura più scorrevole, affiancandole alle illustrazioni originali di [Rob Dumuhosky](https://www.robdumuhosky.com/), e questa traduzione italiana per condividerlo con un pubblico più ampio.
 
 ---
 
-![La CN Tower crolla su Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-opening.jpg)
+![La CN Tower crolla su Toronto](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-opening.jpg)
 *Illustrazione di [Rob Dumuhosky](https://www.robdumuhosky.com/)*
 
 ## I. La Chiamata
@@ -132,7 +132,7 @@ Felix era un admin di tipo uno, con una settantina o ottantina di chili extra tu
 
 ### Combattere il Worm
 
-![Un telefono che brilla sul comodino nel buio — la chiamata d'emergenza delle 2 di notte](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-the-call.jpg)
+![Un telefono che brilla sul comodino nel buio — la chiamata d'emergenza delle 2 di notte](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-the-call.jpg)
 
 Finirono per staccare quei maledetti router da Internet. Non Felix, ovviamente, anche se gli prudevano le mani di farlo e riavviarli dopo aver disabilitato le interfacce IPv6. Lo fecero un paio di Bastard Operator From Hell con i controcazzi che dovevano girare due chiavi contemporaneamente per accedere alla loro gabbia — come le guardie in un silo Minuteman. Il 95 percento del traffico a lunga distanza del Canada passava da questo edificio. Aveva una sicurezza migliore della maggior parte dei silo Minuteman.
 
@@ -156,7 +156,7 @@ Felix e Van rimisero online i box Ardent uno alla volta. Venivano bombardati da 
 
 ## II. Le Luci Si Spengono
 
-![Una sala server illuminata solo dai LED lampeggianti, lo skyline della città che si spegne dalla finestra](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-lights-out.jpg)
+![Una sala server illuminata solo dai LED lampeggianti, lo skyline della città che si spegne dalla finestra](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-lights-out.jpg)
 
 «È il tuo telefono» disse Van. Felix si estrasse dalle viscere del 486, che aveva rifiutato categoricamente di accendersi. Aveva rimediato un alimentatore di scorta da dei tizi che gestivano un'operazione di spam e stava cercando di montarlo. Si fece passare il telefono da Van, che gli era caduto dalla cintura mentre si contorceva per raggiungere il retro della macchina.
 
@@ -224,7 +224,7 @@ Felix era così preso dal rapporto — apparentemente inoltrato da Health Canada
 
 ****
 
-![Le luci di emergenza si accendono in un corridoio buio, sagome che si precipitano verso le scale](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-blackout.jpg)
+![Le luci di emergenza si accendono in un corridoio buio, sagome che si precipitano verso le scale](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-blackout.jpg)
 
 I generatori si attivarono un minuto dopo. I sysadmin si precipitarono in massa verso le scale. Felix afferrò Van per il braccio, tirandolo indietro.
 
@@ -290,7 +290,7 @@ Alzò lo sguardo verso Van, e vide che le sue spalle magre tremavano. Van disse:
 
 ## III. Quarantatré Sysadmin
 
-![Una mensa trasformata in sala operativa — laptop sui tavoli pieghevoli, cavi ovunque, volti stanchi illuminati dagli schermi](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-forty-three.jpg)
+![Una mensa trasformata in sala operativa — laptop sui tavoli pieghevoli, cavi ovunque, volti stanchi illuminati dagli schermi](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-forty-three.jpg)
 
 Felix si staccò da IRC un'ora dopo. Atlanta era bruciata. Manhattan era calda — abbastanza radioattiva da mandare in tilt le webcam che guardavano su Lincoln Plaza. Tutti davano la colpa all'Islam finché non divenne chiaro che la Mecca era un cratere fumante e la famiglia reale saudita era stata impiccata davanti ai propri palazzi.
 
@@ -377,7 +377,7 @@ Nessuno scrisse più niente per un bel po'.
 
 ****
 
-![Felix accasciato contro i rack dei server, solo con il suo dolore](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-grief.jpg)
+![Felix accasciato contro i rack dei server, solo con il suo dolore](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-grief.jpg)
 
 Felix dovette usare la bottiglia di Mountain Dew due volte. Poi Van la usò di nuovo. Felix provò a chiamare Kelly ancora una volta. Il sito della Polizia Metropolitana era giù.
 
@@ -453,7 +453,7 @@ Ci fu una risata di buon umore generale.
 
 Ci fu un brusio di conversazione che si trasformò rapidamente in un boato.
 
-![Un newsreader Usenet pieno di thread sul disaster recovery, una mappa del mondo con delle X sulla parete](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-newsgroups.jpg)
+![Un newsreader Usenet pieno di thread sul disaster recovery, una mappa del mondo con delle X sulla parete](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-newsgroups.jpg)
 
 «ZITTI!» urlò Popovich. La conversazione calò di un Watt. Popovich urlò di nuovo, battendo il piede sul bancone. Alla fine ci fu una parvenza di ordine. «Uno alla volta» disse. Era rosso in faccia, con le mani in tasca.
 
@@ -503,7 +503,7 @@ Gli stream di foto su Flickr erano orribili. Felix dovette disiscriversi dopo av
 
 Wikipedia era su, ma zoppicava sotto il carico. Lo spam continuava a riversarsi come se niente fosse cambiato. I worm vagavano per la rete.
 
-![Una mano che si allunga per chiudere un laptop con foto di disastri, un caffè freddo accanto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-flickr-horror.jpg)
+![Una mano che si allunga per chiudere un laptop con foto di disastri, un caffè freddo accanto](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-flickr-horror.jpg)
 
 .recovery.logistics era dove si concentrava la maggior parte dell'azione.
 
@@ -550,7 +550,7 @@ Si gettò felicemente nella discussione con lei. Le elezioni sarebbero state il 
 
 ## IV. Primo Ministro del Cyberspazio
 
-![Un terminale IRC con messaggi che scorrono, un'urna elettorale improvvisata accanto alla tastiera](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-prime-minister.jpg)
+![Un terminale IRC con messaggi che scorrono, un'urna elettorale improvvisata accanto alla tastiera](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-prime-minister.jpg)
 
 «Primo Ministro del Cyberspazio? Perché non chiamarti il Gran Puffo della Rete Dati Globale? È più dignitoso, suona più figo e ti porterà altrettanto lontano.» Will aveva il posto letto accanto a lui, su nella mensa, con Van dall'altro lato. La stanza puzzava come un cesso: venticinque sysadmin che non si lavavano da almeno un giorno tutti ammassati nella stessa stanza. Per alcuni di loro, era passato molto, molto più di un giorno.
 
@@ -594,7 +594,7 @@ Van si alzò e quando la sua faccia entrò nella luce, Felix vide quanto aveva g
 
 Van si allontanò barcollando. «Buona fortuna per le elezioni» disse, dando una pacca sulla spalla a Felix.
 
-![Felix a una finestra sporca, che guarda le colonne di fumo salire dalla città](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-election-day.jpg)
+![Felix a una finestra sporca, che guarda le colonne di fumo salire dalla città](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-election-day.jpg)
 
 Felix si alzò e camminò avanti e indietro, fermandosi a guardare attraverso le finestre sporche. Gli incendi bruciavano ancora a Toronto, più di prima. Aveva provato a cercare mailing list o blog su cui i torontoniani stavano postando, ma gli unici che aveva trovato erano gestiti da altri geek in altri data center. Era possibile — anzi probabile — che ci fossero sopravvissuti là fuori che avevano priorità più urgenti che postare su Internet. Il telefono di casa funzionava ancora circa metà delle volte ma aveva smesso di chiamarlo dopo il secondo giorno, quando sentire la voce di Kelly sulla segreteria per la cinquantesima volta lo aveva fatto piangere nel mezzo di una riunione di pianificazione. Non era l'unico.
 
@@ -708,12 +708,12 @@ Sario scoppiò a ridere. «Oh, sei impagabile. Scommetto che tre quarti di quest
 
 «Fottistronzo» disse Felix, «vaffanculo.»
 
-![Felix e Sario faccia a faccia](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-spot.jpg)
+![Felix e Sario faccia a faccia](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-spot.jpg)
 *Illustrazione di [Rob Dumuhosky](https://www.robdumuhosky.com/)*
 
 ### Il Voto
 
-![Un distributore automatico sfondato, completamente vuoto — solo briciole rimaste](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-supplies.jpg)
+![Un distributore automatico sfondato, completamente vuoto — solo briciole rimaste](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-supplies.jpg)
 
 Avevano meno di un giorno di combustibile quando Felix fu eletto primo Primo Ministro del Cyberspazio. Il primo scrutinio fu invalidato da un bot che aveva spammato il processo di voto e persero un giorno cruciale mentre contavano i voti una seconda volta.
 
@@ -775,7 +775,7 @@ Era stato predeterminato dalla scorta di combustibile, ma chi voleva aspettare c
 
 ## V. L'Ultimo Pacchetto
 
-![Server rack che si spengono uno dopo l'altro, un indicatore di carburante quasi a zero, un ultimo LED verde che lampeggia](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-last-packet.jpg)
+![Server rack che si spengono uno dopo l'altro, un indicatore di carburante quasi a zero, un ultimo LED verde che lampeggia](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-last-packet.jpg)
 
 ```text
 > stamattina metà dei miei se ne sono andati
@@ -870,7 +870,7 @@ Van annuì. «Tutto il fottuto giorno, ogni dieci secondi. Qualunque cosa per te
 
 ### Quindici
 
-![L'ultima riunione — quindici sysadmin esausti attorno a un tavolo, uno solo ancora in piedi](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-final-meeting.jpg)
+![L'ultima riunione — quindici sysadmin esausti attorno a un tavolo, uno solo ancora in piedi](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-final-meeting.jpg)
 
 Erano stati quarantatré il Giorno D. Adesso erano quindici. Sei avevano risposto alla convocazione della riunione semplicemente andando via. Tutti sapevano senza bisogno che glielo dicessero di cosa trattava la riunione.
 
@@ -945,7 +945,7 @@ Aspettarono che le porte interne si chiudessero dietro di loro e poi Felix aprì
 
 ## VI. Quello Che Faceva
 
-![Felix e Van camminano per le strade devastate di Toronto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-end.jpg)
+![Felix e Van camminano per le strade devastate di Toronto](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/sysadmins-end.jpg)
 *Illustrazione di [Rob Dumuhosky](https://www.robdumuhosky.com/)*
 
 Non videro un'anima viva nei quindici minuti di cammino. Non si sentiva un solo suono a parte qualche verso di uccelli e qualche gemito lontano, e il vento nei cavi elettrici sopra le loro teste. Era come camminare sulla superficie della luna.
@@ -1006,7 +1006,7 @@ Felix alzò le mani. «Seriamente, è un medico? Una farmacista?»
 
 «No» disse lei. «Immagino di no.» Posò l'ascia. «Hai qualcosa da scambiare? Non mi serve molto, ma ho cercato di tenermi su il morale barattando con i vicini. È come giocare a Civilization.»
 
-![Una farmacia con scaffali semi-vuoti, una donna con un'ascia antincendio sulla porta, un cartello COMMERCIO BENVENUTO](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-pharmacy.jpg)
+![Una farmacia con scaffali semi-vuoti, una donna con un'ascia antincendio sulla porta, un cartello COMMERCIO BENVENUTO](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-pharmacy.jpg)
 
 «Ha dei vicini?»
 
@@ -1070,7 +1070,7 @@ Alzarono i bicchieri. «Al mondo» disse Felix. «All'umanità.» Ci pensò un a
 
 Bevvero. Voleva andare a vedere la casa — vedere Kelly e 2.0, anche se lo stomaco gli si rivoltava al pensiero di cosa avrebbe potuto trovare. Ma il giorno dopo, cominciarono a ricostruire. E mesi dopo, ricominciarono da capo, quando i disaccordi frantumarono il fragile gruppetto che avevano messo insieme. E un anno dopo, ricominciarono da capo ancora. E cinque anni dopo, ricominciarono di nuovo.
 
-![Una figura solitaria che cammina sotto una luna del raccolto, un piccolo data center illuminato alle sue spalle](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-what-he-did.jpg)
+![Una figura solitaria che cammina sotto una luna del raccolto, un piccolo data center illuminato alle sue spalle](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-what-he-did.jpg)
 
 Passarono quasi sei mesi prima che tornasse a casa. Van lo accompagnò, pedalando dietro di lui sulle biciclette che usavano per spostarsi in città. Più andavano a nord, più si faceva forte l'odore di legno bruciato. C'erano un sacco di case bruciate. A volte i saccheggiatori bruciavano le case che avevano depredato, ma più spesso era solo la natura, il tipo di incendi che si verificano nelle foreste e sulle montagne. C'erano sei isolati soffocanti e bruciati dove ogni casa era bruciata prima di arrivare a casa.
 
@@ -1100,7 +1100,7 @@ Non era una bella vita, la maggior parte del tempo. Le ferite di Felix non guari
 
 Ma a Felix piaceva il suo data center. Lì nel ronzio dei rack, non si sentiva mai come se fossero i primi giorni di una nazione migliore, ma non si sentiva mai nemmeno come se fossero gli ultimi.
 
-![Un sysadmin esce da un piccolo data center nella notte, una luna del raccolto che sorge su un paesaggio incolto](/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-harvest-moon.jpg)
+![Un sysadmin esce da un piccolo data center nella notte, una luna del raccolto che sorge su un paesaggio incolto](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/section-harvest-moon.jpg)
 
 ```text
 > vai a letto, felix

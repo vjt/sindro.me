@@ -5,7 +5,7 @@ tags: [ai-generated, linux, networking, sysadmin, home-assistant]
 description: "La gestione di iptables da parte di Docker è un incubo per i setup ibridi host/VM. Ecco perché iptables-save fallisce, e il modo corretto e deterministico per risolvere."
 ---
 
-![Una gigantesca balena Docker che calpesta un server room, distruggendo catene iptables, mentre un sysadmin furioso si erge su un rack](/posts/2026-01-30-docker-vs-iptables-rage-and-docker-user-chain/cover.jpg)
+![Una gigantesca balena Docker che calpesta un server room, distruggendo catene iptables, mentre un sysadmin furioso si erge su un rack](/it/posts/2026-01-30-docker-vs-iptables-rage-and-docker-user-chain/cover.jpg)
 
 Siamo nel 2026, e stiamo ancora lottando con l'arroganza assoluta di Docker riguardo al networking Linux.
 

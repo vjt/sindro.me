@@ -66,21 +66,21 @@ drwxr-xr-x  2 vjt  8 2007-11-02 16:02 .AppleDesktop/
 
 Funziona:
 
-![Time Machine in fase di backup](/posts/2007-11-02-how-to-backup-with-time-machine-on-a-network-share/tm-backing-up.png)
+![Time Machine in fase di backup](/it/posts/2007-11-02-how-to-backup-with-time-machine-on-a-network-share/tm-backing-up.png)
 
 
 Ovviamente con un po' di cache trashing:
 
-![Cache Trashing](/posts/2007-11-02-how-to-backup-with-time-machine-on-a-network-share/tm-fscache-destroy-after-backup.png)
+![Cache Trashing](/it/posts/2007-11-02-how-to-backup-with-time-machine-on-a-network-share/tm-fscache-destroy-after-backup.png)
 
 Divertitevi!
 
 PS: Si possono usare anche condivisioni SMB, dato che la storia degli hard link alle directory è contenuta in un file .sparsebundle creato sulla condivisione di rete. Una condivisione AFP ha il vantaggio aggiuntivo di essere indicizzabile da Spotlight, per non parlare del fatto che il tuo server Linux apparirà nel Finder come un fiammante Mac:
 
-![fiammante mac](/posts/2007-11-02-how-to-backup-with-time-machine-on-a-network-share/shiny-mac-icon.png)
+![fiammante mac](/it/posts/2007-11-02-how-to-backup-with-time-machine-on-a-network-share/shiny-mac-icon.png)
 
 e non come un PC Windows crashato:
 
-![pc crashato](/posts/2007-11-02-how-to-backup-with-time-machine-on-a-network-share/crashed-pc-icon.png)
+![pc crashato](/it/posts/2007-11-02-how-to-backup-with-time-machine-on-a-network-share/crashed-pc-icon.png)
 
 :)

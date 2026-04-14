@@ -46,7 +46,7 @@ La variante `invoke` di `AdminControl` ha lo stesso problema: converte tutto da 
 
 Quindi la via di fuga esiste. IBM semplicemente non te la indica.
 
-![Sfondare il layer AdminConfig per trovare ConfigService — l'API pulita sepolta sotto](/posts/2026-04-11-ansible-wsadmin/miner-gem.jpg)
+![Sfondare il layer AdminConfig per trovare ConfigService — l'API pulita sepolta sotto](/it/posts/2026-04-11-ansible-wsadmin/miner-gem.jpg)
 
 ## Come ci sono arrivato
 
@@ -90,7 +90,7 @@ Il caricamento dinamico dei modelli in [`__init__.py`](https://github.com/vjt/an
 
 ## Il daemon
 
-![Il daemon persistente — avvia la JVM una volta, gestisce tutto il resto](/posts/2026-04-11-ansible-wsadmin/daemon.jpg)
+![Il daemon persistente — avvia la JVM una volta, gestisce tutto il resto](/it/posts/2026-04-11-ansible-wsadmin/daemon.jpg)
 
 Ogni invocazione di uno script wsadmin avvia una nuova JVM. Sono 2-3 secondi di startup prima che una singola riga del tuo script venga eseguita. Quando applichi 30 modifiche di configurazione da Ansible, è un minuto e mezzo passato a fissare messaggi di boot della JVM.
 
@@ -135,7 +135,7 @@ Il [README](https://github.com/vjt/ansible-wsadmin#readme) ha la documentazione 
 
 ---
 
-![Vent'anni di layer di API enterprise — ognuno più crepato del precedente](/posts/2026-04-11-ansible-wsadmin/layer-cake.jpg)
+![Vent'anni di layer di API enterprise — ognuno più crepato del precedente](/it/posts/2026-04-11-ansible-wsadmin/layer-cake.jpg)
 
 ## Il problema wsadmin: una storia
 

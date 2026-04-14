@@ -4,7 +4,7 @@ date: 2023-08-13
 tags: [freebsd, sysadmin, security]
 ---
 
-![Un server FreeBSD cifrato avvolto in scudi traslucidi, il cloud AWS che si sgretola sullo sfondo](/posts/2023-08-13-freebsd-encrypted-root-on-zfs/cover.jpg)
+![Un server FreeBSD cifrato avvolto in scudi traslucidi, il cloud AWS che si sgretola sullo sfondo](/it/posts/2023-08-13-freebsd-encrypted-root-on-zfs/cover.jpg)
 
 ## Premessa
 

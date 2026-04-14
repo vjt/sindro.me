@@ -7,15 +7,15 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-Questo è il sequel di [Forkare un IRCd: IPv6 e SSL per Bahamut nel 2002](/posts/2026-04-13-bahamut-inet6-forking-ircd/). Dopo aver forkato il server IRC, ho iniziato a scrivere services da zero.
+Questo è il sequel di [Forkare un IRCd: IPv6 e SSL per Bahamut nel 2002](/it/posts/2026-04-13-bahamut-inet6-forking-ircd/). Dopo aver forkato il server IRC, ho iniziato a scrivere services da zero.
 
 Una delle cose che mi piace di più del lavorare con [Claude](/tags/ai-generated/) è l'archeologia digitale. Ho passato vent'anni ad accumulare vecchi progetti su dischi di backup, SourceForge, server dimenticati — codice che ho scritto e non ho mai più guardato. Adesso posso puntare Claude su un tarball e dire "converti questo in git" o "spiegami cosa pensava il me ventunenne qui" e avere una conversazione vera e propria col mio passato.
 
-Lo scavo di oggi: sono andato su SourceForge e ho scaricato il repository CVS di [un progetto del 2003](/posts/2003-03-16-suxserv-wip/) — **Sux Services**, il mio tentativo di scrivere IRC services da zero, in C, per la [rete IRC Azzurra](https://azzurra.chat). Ho detto "Claude, converti questo repo CVS in git" e pochi minuti dopo avevo un [repository Git](https://github.com/vjt/suxserv) pulito con 954 commit, tre autori, e una storia continua da settembre 2002 a novembre 2005.
+Lo scavo di oggi: sono andato su SourceForge e ho scaricato il repository CVS di [un progetto del 2003](/it/posts/2003-03-16-suxserv-wip/) — **Sux Services**, il mio tentativo di scrivere IRC services da zero, in C, per la [rete IRC Azzurra](https://azzurra.chat). Ho detto "Claude, converti questo repo CVS in git" e pochi minuti dopo avevo un [repository Git](https://github.com/vjt/suxserv) pulito con 954 commit, tre autori, e una storia continua da settembre 2002 a novembre 2005.
 
 Non ho mai finito questo progetto. Ho lasciato la rete prima che fosse pronto per la produzione. Uno sviluppatore lettone l'ha preso in mano, ha scritto 192 commit, e poi la traccia si perde.
 
-Ne [avevo scritto all'epoca](/posts/2003-03-16-suxserv-wip/) — un post WIP del marzo 2003, quando NickServ e ChanServ funzionavano e stavo facendo stress test con 100 bot.
+Ne [avevo scritto all'epoca](/it/posts/2003-03-16-suxserv-wip/) — un post WIP del marzo 2003, quando NickServ e ChanServ funzionavano e stavo facendo stress test con 100 bot.
 
 Guardare questo codice adesso è — non so quale sia la parola giusta. Commovente, forse. C'è qualcosa nel leggere i propri commit message di vent'anni fa, vedere l'entusiasmo e la frustrazione, riconoscere pattern che avresti usato per i due decenni successivi ma che non sapevi ancora nominare. È come sentire la propria voce in una registrazione di quando eri giovane — familiare e aliena allo stesso tempo.
 
@@ -65,7 +65,7 @@ Azzurra era — e [lo è ancora](https://azzurra.chat) — la rete IRC italiana.
 
 ![Azzurra IRC Network, circa 2002: terminale IRC verde-su-nero, bagliore blu azzurro, caffè espresso e Nokia. Migliaia di italiani connessi alle 2 di notte — chattando, flirtando, litigando, condividendo MP3.](azzurra.jpg)
 
-La rete stava migrando da [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — un server IRC commerciale — a [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), un IRCd open-source. Non Bahamut vanilla, ma un fork con supporto IPv6 e SSL che mantenevamo noi. Io facevo parte del team che gestiva quella transizione: forkare il server, aggiungere l'hostname cloaking, collegare SSL. Quella migrazione è una storia per [un altro post](/posts/2026-04-13-bahamut-inet6-forking-ircd/).
+La rete stava migrando da [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — un server IRC commerciale — a [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), un IRCd open-source. Non Bahamut vanilla, ma un fork con supporto IPv6 e SSL che mantenevamo noi. Io facevo parte del team che gestiva quella transizione: forkare il server, aggiungere l'hostname cloaking, collegare SSL. Quella migrazione è una storia per [un altro post](/it/posts/2026-04-13-bahamut-inet6-forking-ircd/).
 
 Una volta che il lato server era a posto, ho puntato l'attenzione sui services. Quelli esistenti non bastavano. Volevo qualcosa di modulare, threaded, con un vero database backend. Così ho iniziato a scrivere.
 
@@ -363,7 +363,7 @@ Dove i miei commit erano esplosioni di frustrazione ed entusiasmo, quelli di Ole
 
 ![Una vecchia sala server, in penombra, server rack vintage con LED verdi tutti accesi. Pulviscolo nella luce ambrata. Tutto ancora in funzione. La dignità silenziosa di chi tiene internet viva anche quando nessuno guarda.](preservation.jpg)
 
-Il repository CVS originale è stato preservato da SourceForge. Hanno ritirato l'hosting CVS nel 2017, ma hanno tenuto i backup — i repo lato server, non semplici tarball. CVSROOT e tutto il resto. Nessuno aveva scaricato questo repo probabilmente da un decennio, ma era ancora lì, pronto per l'export. Questo è lo spirito de [il vero sistemista](/posts/2014-02-28-il-vero-sistemista/) — [tenere internet viva](/posts/2007-11-21-when-sysadmins-ruled-the-earth/) anche quando nessuno guarda. Grazie, SourceForge.
+Il repository CVS originale è stato preservato da SourceForge. Hanno ritirato l'hosting CVS nel 2017, ma hanno tenuto i backup — i repo lato server, non semplici tarball. CVSROOT e tutto il resto. Nessuno aveva scaricato questo repo probabilmente da un decennio, ma era ancora lì, pronto per l'export. Questo è lo spirito de [il vero sistemista](/it/posts/2014-02-28-il-vero-sistemista/) — [tenere internet viva](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/) anche quando nessuno guarda. Grazie, SourceForge.
 
 L'ho convertito in Git usando `git cvsimport`:
 

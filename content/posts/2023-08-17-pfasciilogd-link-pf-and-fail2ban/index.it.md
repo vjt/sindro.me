@@ -4,7 +4,7 @@ date: 2023-08-17
 tags: [freebsd, sysadmin, security]
 ---
 
-![Una fortezza di regole firewall luminose con Beastie di guardia, che respinge i port scanner con un martello del ban](/posts/2023-08-17-pfasciilogd-link-pf-and-fail2ban/cover.jpg)
+![Una fortezza di regole firewall luminose con Beastie di guardia, che respinge i port scanner con un martello del ban](/it/posts/2023-08-17-pfasciilogd-link-pf-and-fail2ban/cover.jpg)
 
 ## TL;DR
 

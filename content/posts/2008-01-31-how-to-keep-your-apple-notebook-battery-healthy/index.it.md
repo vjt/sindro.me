@@ -18,5 +18,5 @@ Questi consigli sono ormai l'opposto di quel che Apple raccomanda. Le batterie a
 [CoconutBattery.app](http://www.coconut-flavour.com/coconutbattery/) e System
 Profiler.app)
 
-![Salute della batteria](/posts/2008-01-31-how-to-keep-your-apple-notebook-battery-healthy/healthy_battery_2.png)
-![Cicli della batteria](/posts/2008-01-31-how-to-keep-your-apple-notebook-battery-healthy/healthy_battery_cycle_count.png)
+![Salute della batteria](/it/posts/2008-01-31-how-to-keep-your-apple-notebook-battery-healthy/healthy_battery_2.png)
+![Cicli della batteria](/it/posts/2008-01-31-how-to-keep-your-apple-notebook-battery-healthy/healthy_battery_cycle_count.png)

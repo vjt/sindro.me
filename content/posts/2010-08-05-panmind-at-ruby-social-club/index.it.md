@@ -49,7 +49,7 @@ codice boilerplate per la navigazione AJAX ultra-veloce dei
 [progetti](http://panmind.org/tour/collaborate) di Panmind.
 
 La presentazione segue: puoi scaricarla in PDF (nessun [exploit, lo
-giuro!](/posts/2010-08-04-on-the-iphone-pdf-and-kernel-exploit)) [da questo
+giuro!](/it/posts/2010-08-04-on-the-iphone-pdf-and-kernel-exploit)) [da questo
 link](/posts/2010-08-05-panmind-at-ruby-social-club/Panmind_at_Ruby_Social_Club_Milano.pdf)
 Ultime parole: dai un'occhiata al [post sul blog di Mikamai sul Ruby Social
 Club](https://blog.mikamai.com/post/129408154293/la-notte-del-ruby-social-club)

@@ -5,7 +5,7 @@ updated: 2026-03-14
 tags: [linux, sysadmin, security]
 ---
 
-![Un Raspberry Pi 5 su una scrivania con un SSD raffigurato come una cassaforte luminosa, un lucchetto che fluttua sopra](/posts/2026-01-20-raspberry-pi-luks-encrypted-root/cover.jpg)
+![Un Raspberry Pi 5 su una scrivania con un SSD raffigurato come una cassaforte luminosa, un lucchetto che fluttua sopra](/it/posts/2026-01-20-raspberry-pi-luks-encrypted-root/cover.jpg)
 
 ## Premessa
 

@@ -15,7 +15,7 @@ Ho [presentato alcuni dei nostri spin-off open source](/it/posts/2010-08-05-panm
 
 ## Atto 1: jquery-ajax-nav — SPA Prima delle SPA
 
-![Routing basato su hash in un browser vintage — polling dei cambiamenti, iframe nascosti per IE, il fragment URL come unica parte programmabile della barra degli indirizzi](/posts/2026-04-12-panmind-ahead-of-its-time/act1-ajax-nav.jpg)
+![Routing basato su hash in un browser vintage — polling dei cambiamenti, iframe nascosti per IE, il fragment URL come unica parte programmabile della barra degli indirizzi](/it/posts/2026-04-12-panmind-ahead-of-its-time/act1-ajax-nav.jpg)
 
 Panmind doveva essere veloce. Cliccare un link non doveva ricaricare l'intera pagina — doveva sostituire solo l'area dei contenuti, istantaneamente. Nel 2023 avresti usato React, o Turbo, o HTMX. Nel 2009, nessuno di questi esisteva. Non c'era la History API. Non c'era `pushState`. Il fragment dell'URL — la parte dopo `#` — era l'unica porzione dell'URL che potevi modificare senza innescare un reload della pagina. Quindi abbiamo usato quello.
 
@@ -107,7 +107,7 @@ Hai letto bene. Scrivevamo `<html><body>#search:q=hello</body></html>` in un ifr
 
 ### Eventi del ciclo di vita
 
-![Il ciclo di vita della pagina come palcoscenico teatrale — vecchi contenuti smontati a sinistra, nuovi contenuti assemblati a destra, un direttore d'orchestra che guida la transizione](/posts/2026-04-12-panmind-ahead-of-its-time/lifecycle-events.jpg)
+![Il ciclo di vita della pagina come palcoscenico teatrale — vecchi contenuti smontati a sinistra, nuovi contenuti assemblati a destra, un direttore d'orchestra che guida la transizione](/it/posts/2026-04-12-panmind-ahead-of-its-time/lifecycle-events.jpg)
 
 Il framework di navigazione aveva un ciclo di vita degli eventi completo. Quando il contenuto stava per essere sostituito, un evento `nav:unloading` scattava — così potevi disattivare timer, rimuovere event handler, fare pulizia. Quando arrivava nuovo contenuto, `nav:loaded` scattava — così potevi inizializzare widget, agganciare eventi, preparare la nuova pagina.
 
@@ -206,7 +206,7 @@ Il backend Rails controllava questo cookie e, se presente, renderizzava solo uno
 
 ### Comportamenti dichiarativi via attributi HTML
 
-![L'HTML come burattinaio — tag di attributi su fili che controllano elementi UI Web 2.0 sottostanti](/posts/2026-04-12-panmind-ahead-of-its-time/declarative-html.jpg)
+![L'HTML come burattinaio — tag di attributi su fili che controllano elementi UI Web 2.0 sottostanti](/it/posts/2026-04-12-panmind-ahead-of-its-time/declarative-html.jpg)
 
 Oltre al framework di navigazione, abbiamo costruito un'intera [libreria di behaviour](https://github.com/vjt/jquery-ajax-nav/blob/master/jquery.behaviours.js) che collegava le interazioni UI in modo dichiarativo tramite attributi HTML — nello specifico, abusando dell'attributo `rel`. Un toggler, un tabber, un cycler, un deleter, un rollover — ciascuno era una classe CSS che attivava un handler jQuery `.live()`, e l'attributo `rel` puntava all'elemento target:
 
@@ -245,7 +245,7 @@ L'ultima riga è quella che conta. jquery-ajax-nav era costruito sopra HTML puro
 
 ## Atto 2: usage_tracker — Analytics Event-Driven Prima di Segment
 
-![Una pipeline dati steampunk — server rack Ruby con gemme luminose, una turbina EventMachine che cattura pacchetti UDP, e pile di documenti CouchDB ordinati da braccia robotiche](/posts/2026-04-12-panmind-ahead-of-its-time/act2-usage-tracker.jpg)
+![Una pipeline dati steampunk — server rack Ruby con gemme luminose, una turbina EventMachine che cattura pacchetti UDP, e pile di documenti CouchDB ordinati da braccia robotiche](/it/posts/2026-04-12-panmind-ahead-of-its-time/act2-usage-tracker.jpg)
 
 Con la navigazione AJAX in piedi, le analytics tradizionali non bastavano più. I log del server mostravano un page load iniziale seguito da un flusso di richieste XHR, senza modo di ricostruire il percorso di navigazione effettivo dell'utente. Google Analytics *poteva* tracciare le navigazioni AJAX se chiamavi manualmente `_trackPageview()` dopo ogni swap di contenuto — e lo facevamo, tramite il nostro plugin [bigbro](https://github.com/vjt/bigbro). Ma il modello a pageview di GA non poteva darci quello che ci serviva davvero: durate delle richieste, XHR vs page load completi, pattern di traffico per area, comportamento per utente. Ci serviva la nostra pipeline di analytics.
 
@@ -348,7 +348,7 @@ I document ID basati su timestamp erano furbi — CouchDB ordina per `_id` di de
 
 ### Le view map-reduce di CouchDB
 
-![Un laboratorio artigiano — documenti sparsi su un tavolo, lenti d'ingrandimento su bracci articolati che estraggono pattern, pile ordinate di risultati](/posts/2026-04-12-panmind-ahead-of-its-time/map-reduce.jpg)
+![Un laboratorio artigiano — documenti sparsi su un tavolo, lenti d'ingrandimento su bracci articolati che estraggono pattern, pile ordinate di risultati](/it/posts/2026-04-12-panmind-ahead-of-its-time/map-reduce.jpg)
 
 Le query di analytics erano definite come view map-reduce CouchDB in un file YAML — con templating ERB per evitare duplicazioni nel JavaScript:
 
@@ -408,7 +408,7 @@ E il flag XHR — quel singolo booleano per richiesta — è quello che Google A
 
 ## Atto 3: erlang-ruby-marshal — Sessioni Cross-Language Prima dei JWT
 
-![Due Stele di Rosetta — Ruby incandescente in rosso, Erlang luminoso in blu — con un fiume di dati binari che scorre tra loro e un cookie HTTP spezzato sopra](/posts/2026-04-12-panmind-ahead-of-its-time/act3-erlang-marshal.jpg)
+![Due Stele di Rosetta — Ruby incandescente in rosso, Erlang luminoso in blu — con un fiume di dati binari che scorre tra loro e un cookie HTTP spezzato sopra](/it/posts/2026-04-12-panmind-ahead-of-its-time/act3-erlang-marshal.jpg)
 
 Panmind aveva un sistema di chat web. Era scritto in Erlang, costruito su [misultin](https://github.com/vjt/misultin) — un server HTTP Erlang leggero. I WebSocket non sarebbero stati standardizzati fino all'RFC 6455 di dicembre 2011, e il supporto nei browser sarebbe rimasto frammentario fino al 2013. Quindi il trasporto era XHR long-polling puro: il browser apriva una richiesta HTTP, il server Erlang la teneva aperta fino all'arrivo di un messaggio o al timeout della connessione, poi il browser si riconnetteva immediatamente. Nessun framework Comet, nessun Socket.IO, nessun livello di astrazione. Solo una richiesta che resta appesa per 30 secondi in attesa di dati.
 
@@ -463,7 +463,7 @@ E il trasporto stesso — XHR long-polling — è quello che i WebSocket hanno s
 
 ## Essere in Anticipo Non Vuol Dire Sbagliare
 
-![Semi piantati nel 2010 che crescono in una foresta di tecnologia moderna negli anni 2020 — radici luminose che collegano vecchie idee a nuova crescita, foglie a forma di codice, ora dorata](/posts/2026-04-12-panmind-ahead-of-its-time/being-early.jpg)
+![Semi piantati nel 2010 che crescono in una foresta di tecnologia moderna negli anni 2020 — radici luminose che collegano vecchie idee a nuova crescita, foglie a forma di codice, ora dorata](/it/posts/2026-04-12-panmind-ahead-of-its-time/being-early.jpg)
 
 Nel 2009-2011, Panmind stava facendo girare:
 

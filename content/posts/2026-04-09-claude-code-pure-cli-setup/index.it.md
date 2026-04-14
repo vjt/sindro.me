@@ -5,9 +5,9 @@ tags: [ai-generated, projects, sysadmin, cli]
 description: "Come faccio girare Claude Code su un Raspberry Pi dentro tmux, faccio roaming delle sessioni dal telefono al laptop via SSH, e ho fatto 5000 commit in 30 giorni senza toccare un IDE."
 ---
 
-![Illustrazione underground stile zine — mani su una tastiera, bagliore verde fosforescente del terminale, iconografia Unix in collage ai bordi](/posts/2026-04-09-claude-code-pure-cli-setup/cover.jpg)
+![Illustrazione underground stile zine — mani su una tastiera, bagliore verde fosforescente del terminale, iconografia Unix in collage ai bordi](/it/posts/2026-04-09-claude-code-pure-cli-setup/cover.jpg)
 
-![Sto scrivendo questo stesso post dal telefono via SSH — screenshot di Termius su iOS connesso a Claude Code dentro tmux](/posts/2026-04-09-claude-code-pure-cli-setup/phone-screenshot.png)
+![Sto scrivendo questo stesso post dal telefono via SSH — screenshot di Termius su iOS connesso a Claude Code dentro tmux](/it/posts/2026-04-09-claude-code-pure-cli-setup/phone-screenshot.png)
 
 Questo sono io che scrivo questo post. Dal telefono. Via SSH. Dalla vasca da bagno, probabilmente.
 

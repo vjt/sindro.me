@@ -5,7 +5,7 @@ hideVintage: true
 tags: [sysadmin, life]
 ---
 
-![Un meccanico che con amore mette a punto un rack server vintage nel suo garage di notte, luce ambra calda, stelle dalla porta aperta](/posts/2014-02-28-il-vero-sistemista/cover.jpg)
+![Un meccanico che con amore mette a punto un rack server vintage nel suo garage di notte, luce ambra calda, stelle dalla porta aperta](/it/posts/2014-02-28-il-vero-sistemista/cover.jpg)
 
 Il vero sistemista e' un po' come il meccanico di una volta, quello che se gli
 portavi la macchina per rifare la convergenza e quando arrivavi sentiva che il
