@@ -432,6 +432,8 @@ The version string itself was a thing of beauty. From [`patchlevel.h`](https://g
 
 ## Non si accettano carote
 
+![A server rack bouncer in a black suit and sunglasses, turning away a line of dejected carrots at a nightclub entrance. The carrots have droopy leaf tops and little jackets. Azure lights glow inside the club. "Non si accettano carote" — the founding myth of Italy's largest IRC network, told as a bouncer scene.](no-carrots.jpg)
+
 One last thing. While working on this post, I got back in touch with some of the old crew. We found ourselves on `#it-opers` past midnight, recollecting old memories, and this came out.
 
 Azzurra was born from a fight. A violent argument on `#roxybar` — an Italian chat channel — that got the future founders kicked out. They left, started their own network, and the rest is history. But the early server MOTDs carried a grudge: *"non si accettano carote"* — "no carrots accepted."

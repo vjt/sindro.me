@@ -432,6 +432,8 @@ La stringa di versione stessa era una cosa bella. Da [`patchlevel.h`](https://gi
 
 ## Non si accettano carote
 
+![Un buttafuori server rack in abito nero e occhiali da sole, che respinge una fila di carote tristi all'ingresso di un locale notturno. Le carote hanno le foglie afflosciate e i giubbottini. Luci azzurre brillano dentro il locale. "Non si accettano carote" — il mito fondativo della più grande rete IRC italiana, raccontato come una scena da buttafuori.](no-carrots.jpg)
+
 Un'ultima cosa. Mentre lavoravo a questo post, mi sono rimesso in contatto con un po' della vecchia crew. Ci siamo ritrovati su `#it-opers` dopo mezzanotte a ricordare vecchie storie, e questa è saltata fuori.
 
 Azzurra è nata da un litigio. Uno scazzo violento su `#roxybar` — un canale IRC italiano — che portò all'espulsione dei futuri fondatori. Se ne andarono, fondarono la loro rete, e il resto è storia. Ma i primi MOTD dei server portavano il rancore: *"non si accettano carote."*
