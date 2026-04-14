@@ -101,6 +101,32 @@ And yes, there's an Italian comment buried in the [FQDN handling logic](https://
 
 *"Checking return values wouldn't be a bad idea..."* — we knew.
 
+## The Fastweb problem
+
+This one deserves a section because it's peak early-2000s Italian internet infrastructure.
+
+[Fastweb](https://en.wikipedia.org/wiki/Fastweb) was — and still is — an Italian ISP, but in 2002 they were genuinely ahead of their time. They were the first in Italy to deploy fiber-to-the-home, installing Cisco Catalysts in building basements in Milan and hooking residential users to fiber when the rest of the country was on ADSL. Impressive, except for one architectural detail: their entire Metropolitan Area Network was behind carrier-grade NAT. Thousands of users sharing the same public IP addresses.
+
+On IRC, this was a disaster. You couldn't distinguish Fastweb users from each other — they all appeared to come from the same address. As [this Usenet thread from September 2002](https://groups.google.com/g/it.tlc.gestori.fastweb/c/p1V7Uj0Y9ys) documents, Fastweb users were getting K-lined (banned) from IRC networks left and right — not because of anything they did, but because spammers on the same shared IPs had triggered network-wide bans that affected every Fastweb subscriber. Users were furious, some considering switching from Fastweb's fiber to slower ADSL just to get a public IP.
+
+Our solution was creative: [nextime](https://nexlab.it/) had a server *inside* the Fastweb network that could see the internal IPs. Fastweb users connected to Azzurra through that server, which relayed their internal addresses to the rest of the network. We explicitly blocked connections from Fastweb's residential NAT egress nodes to our other servers — if you were on Fastweb, you *had* to connect through the internal server.
+
+The [`FASTWEB` compile-time flag](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L425) was a dedicated build for these servers. It did quite a few things:
+
+```c
+#ifdef FASTWEB /* AZZURRA */
+    /* workaround for fastweb`s MAN`s lame addressing :D */
+    sscanf(sptr->user->host, "%d.%d.%d.%d", &ip[0], &ip[1], &ip[2], &ip[3]);
+    ircsprintf(sptr->user->host, "%d-%d.%d-%d.%s", ip[3], ip[2], ip[1], ip[0], FAST_RES);
+```
+
+The server took Fastweb's internal IPs (which had no reverse DNS) and [synthesized a hostname](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L825) by reversing the octets under the `fastweb.fw` pseudo-TLD — so `10.1.2.3` became `3-2.1-10.fastweb.fw`. It hid the pseudo-TLD from the user's own [`RPL_WELCOME`](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L971) (showing their real IP instead, so their client wouldn't get confused), changed the "server full" error page to a [dedicated Fastweb page](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L514), and [I-line passwords](https://github.com/azzurra/bahamut/blob/master/src/s_conf.c#L1602) in the config were prefixed with `fastweb.` to tag a port as Fastweb-only.
+
+The [2005 server list](azzurra-help.pdf) shows four entries labeled "Azzurra Fastweb, Rete Interna." The `:D` in the comment says it all.
+
+![Alk's workstation — two CRT monitors, two keyboards, cables everywhere. This is what a "power user" setup looked like before ultrawide displays and Thunderbolt docks. The second monitor was a luxury.](alk-workstations.jpg)
+*Alk's workstation. Two CRT monitors, two keyboards, eight boxes in this corner alone — there were more in the other corner.*
+
 ## The open-source release
 
 The cloaking code and the ConferenceRoom emulation were Azzurra's competitive advantage — they stayed private. But the IPv6 and SSL work was different. That was infrastructure code, useful to anyone running Bahamut, and I pushed hard to release it as open source. This wasn't universally popular. But eventually, a stripped-down version went out on SourceForge as [bahamut-inet6](https://bahamut-inet6.sf.net/) (the [project page](https://sourceforge.net/projects/bahamut-inet6/) is still alive), and the code now lives in a [Git repository](https://github.com/vjt/bahamut-inet6) converted from the original CVS. Everything below comes from that release.
@@ -168,7 +194,7 @@ From the [commit message](https://github.com/vjt/bahamut-inet6/commit/170830e):
 
 > made /connect work: now s_auth.c skips the auth check when connecting to servers whose addresses are ipv4 mapped in ipv6 structures. to specify an outbound connection, you must type ::ffff:i.p.v.4 into the host part of the C/N lines.
 
-The IP hashing had to change too — you can't just hash 128 bits the same way you hash 32 bits. The [hash_ip bug](https://github.com/vjt/bahamut-inet6/commit/d5638af) was found by an IRCop at `irc.vub.lt` — the Vilnius University dormitories server. They had a situation similar to Fastweb: all dorm users were NAT'd behind a single IP on a `10.0.building.user` schema, which meant `hash_ip()` put them all in the same hash slot. Every operation on that slot degenerated into a linear search through a linked list of all connected dorm users. Their server crawled while monas's server at Kaunas University — with more users but public IPs — ran fine. They `gdb`'d the live server and found the problem. And [`ip6_expand()`](https://github.com/vjt/bahamut-inet6/commit/3b5f598) was needed to handle addresses starting with `::`, because the parser treated `:` as a delimiter (yes, that problem again).
+[`ip6_expand()`](https://github.com/vjt/bahamut-inet6/commit/3b5f598) was needed to handle addresses starting with `::`, because the parser treated `:` as a delimiter (yes, that problem again).
 
 ### Portability
 
@@ -287,7 +313,6 @@ What followed:
 - A complete [userban framework](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/userban.c) rewrite, replacing the old kline/akill/zline system with CIDR support and a [hash table](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/userban.c#L34) for fast lookups
 - [Regex bans](https://github.com/vjt/bahamut-inet6/commit/4a19ee5) — POSIX regular expressions for ban matching
 - A [loadable drone detection module](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/drone.c) — `drone.so` loaded via `dlopen()` at runtime, reloadable with `/rehash drones`. The interface was [three function pointers](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/drone.c#L55): init, rehash, and is_a_drone. A plugin system before we called things plugin systems.
-- [Squelching](https://github.com/vjt/bahamut-inet6/blob/1618b3a/include/struct.h#L300) — user mode `+x` that silently prevented users from sending messages, meant to be set by services on suspected bots
 - The ["infamous crashing bug"](https://github.com/vjt/bahamut-inet6/commit/a2e0925), fixed thanks to `nix@suhs.nu`
 
 And of course, [tsk's immortal commit message](https://github.com/vjt/bahamut-inet6/commit/a928032) from early in the project:
@@ -297,37 +322,13 @@ And of course, [tsk's immortal commit message](https://github.com/vjt/bahamut-in
 ![Me and tsk (Fabrizio Lanotte), exchanging data via a parallel cable (laplink) between two laptops. Shirtless, because it was summer in Southern Italy and air conditioning was for rich people. The parallel cable was faster than our internet connection.](vjt-tsk-laplink.JPG)
 *Me and tsk (Fabrizio Lanotte), exchanging data via a parallel cable between two laptops. Shirtless, because it was summer in Southern Italy and air conditioning was for rich people.*
 
-## The Fastweb problem
-
-This one deserves a section because it's peak early-2000s Italian internet infrastructure.
-
-[Fastweb](https://en.wikipedia.org/wiki/Fastweb) was — and still is — an Italian ISP, but in 2002 they were genuinely ahead of their time. They were the first in Italy to deploy fiber-to-the-home, installing Cisco Catalysts in building basements in Milan and hooking residential users to fiber when the rest of the country was on ADSL. Impressive, except for one architectural detail: their entire Metropolitan Area Network was behind carrier-grade NAT. Thousands of users sharing the same public IP addresses.
-
-On IRC, this was a disaster. You couldn't distinguish Fastweb users from each other — they all appeared to come from the same address. As [this Usenet thread from September 2002](https://groups.google.com/g/it.tlc.gestori.fastweb/c/p1V7Uj0Y9ys) documents, Fastweb users were getting K-lined (banned) from IRC networks left and right — not because of anything they did, but because spammers on the same shared IPs had triggered network-wide bans that affected every Fastweb subscriber. Users were furious, some considering switching from Fastweb's fiber to slower ADSL just to get a public IP.
-
-Our solution was creative: [nextime](https://nexlab.it/) had a server *inside* the Fastweb network that could see the internal IPs. Fastweb users connected to Azzurra through that server, which relayed their internal addresses to the rest of the network. We explicitly blocked connections from Fastweb's residential NAT egress nodes to our other servers — if you were on Fastweb, you *had* to connect through the internal server.
-
-The [`FASTWEB` compile-time flag](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L425) was a dedicated build for these servers. It did quite a few things:
-
-```c
-#ifdef FASTWEB /* AZZURRA */
-    /* workaround for fastweb`s MAN`s lame addressing :D */
-    sscanf(sptr->user->host, "%d.%d.%d.%d", &ip[0], &ip[1], &ip[2], &ip[3]);
-    ircsprintf(sptr->user->host, "%d-%d.%d-%d.%s", ip[3], ip[2], ip[1], ip[0], FAST_RES);
-```
-
-The server took Fastweb's internal IPs (which had no reverse DNS) and [synthesized a hostname](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L825) by reversing the octets under the `fastweb.fw` pseudo-TLD — so `10.1.2.3` became `3-2.1-10.fastweb.fw`. It hid the pseudo-TLD from the user's own [`RPL_WELCOME`](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L971) (showing their real IP instead, so their client wouldn't get confused), changed the "server full" error page to a [dedicated Fastweb page](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L514), and [I-line passwords](https://github.com/azzurra/bahamut/blob/master/src/s_conf.c#L1602) in the config were prefixed with `fastweb.` to tag a port as Fastweb-only.
-
-The [2005 server list](azzurra-help.pdf) shows four entries labeled "Azzurra Fastweb, Rete Interna." The `:D` in the comment says it all.
-
-![Alk's workstation — two CRT monitors, two keyboards, cables everywhere. This is what a "power user" setup looked like before ultrawide displays and Thunderbolt docks. The second monitor was a luxury.](alk-workstations.jpg)
-*Alk's workstation. Two CRT monitors, two keyboards, eight boxes in this corner alone — there were more in the other corner.*
-
 ## monas returns
 
 After my [last commit](https://github.com/vjt/bahamut-inet6/commit/bab2033) on December 5, 2002, the repository went silent for three years. I had moved on to [writing services](/posts/2026-04-13-suxserv-irc-services-archaeology/), then life happened — work, the slow drift away from the network.
 
 Then in December 2005, [Aidas Kasparas](https://github.com/vjt/bahamut-inet6/commit/5c8c1d4) showed up. He had been there from the very beginning — in February 2002, a flurry of commits credit him: [*"fixed hash_ip bug. thanx to monas"*](https://github.com/vjt/bahamut-inet6/commit/d5638af), [*"restored original in6_is_loopback [...] thx monas ! :)"*](https://github.com/vjt/bahamut-inet6/commit/96c0777), [*"fixed (un)*[kz]line problem with '%'. thx monas"*](https://github.com/vjt/bahamut-inet6/commit/a5f2479), [*"typo in NICKIP. thanx monas."*](https://github.com/vjt/bahamut-inet6/commit/56541dc) He was running the [Aitvaras](https://en.wikipedia.org/wiki/Aitvaras) IRC network in Lithuania and had adopted bahamut-inet6.
+
+That [hash_ip bug](https://github.com/vjt/bahamut-inet6/commit/d5638af) deserves its own story. It was found by an IRCop at `irc.vub.lt` — the Vilnius University dormitories server. They had a situation similar to [Fastweb](#the-fastweb-problem): all dorm users were NAT'd behind a single IP on a `10.0.building.user` schema, which meant `hash_ip()` put them all in the same hash slot. Every operation on that slot degenerated into a linear search through a linked list of all connected dorm users. Their server crawled while monas's server at Kaunas University — with more users but public IPs — ran fine. They `gdb`'d the live server and found the problem.
 
 Three years later, he came back with twelve commits that [synchronized the codebase with Bahamut 1.4.36](https://github.com/vjt/bahamut-inet6/commit/5c8c1d4), [unbundled the ancient zlib copy](https://github.com/vjt/bahamut-inet6/commit/56fe43e), [implemented proper IPv6 IP-banning](https://github.com/vjt/bahamut-inet6/commit/17787bc) (before, you could only ban by hostname — if the reverse DNS failed, the IPv6 user was unbanned), fixed [AKILL race conditions](https://github.com/vjt/bahamut-inet6/commit/ddfb89b), and [prepared a release](https://github.com/vjt/bahamut-inet6/commit/1618b3a).
 
