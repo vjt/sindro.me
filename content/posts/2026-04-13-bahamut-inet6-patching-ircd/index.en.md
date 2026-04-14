@@ -1,0 +1,359 @@
+---
+title: "Patching an IRCd: IPv6 and SSL for Bahamut in 2002"
+date: 2026-04-13T08:00:00+02:00
+tags: [irc, c, azzurra, retrospective, open-source, archaeology]
+description: "I found a CVS repository from 2002 on SourceForge. Inside it: 171 commits, three authors, and the IPv6 and SSL patches I wrote for the Bahamut IRC server when I was 17."
+image: cover.jpg
+featuredImage: cover.jpg
+---
+
+This is the prequel to [Sux Services: Digging Up IRC Code from 2002](/posts/2026-04-13-suxserv-irc-services-archaeology/). Before I started writing IRC services from scratch, I spent the better part of a year doing something arguably crazier: patching an IRC server to support IPv6 and SSL. I was seventeen.
+
+The project lived in a CVS repository on SourceForge. Claude converted it to Git — [171 commits](https://github.com/vjt/bahamut-azzurra/commits/master/), three authors, continuous history from February 2002 to January 2006. A fork of [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), the IRC daemon that powered [DALnet](https://en.wikipedia.org/wiki/DALnet), one of the largest IRC networks of its era.
+
+## How I got here
+
+I discovered IRC the same way I discovered Linux — through [linux&c](https://en.wikipedia.org/wiki/Linux_%26_C.), an Italian magazine that was one of the few entry points to the open-source world for Italian teenagers in the late '90s. An article mentioned [Azzurra](https://azzurra.chat), the Italian IRC network. I connected, founded a channel with friends — [#sniffo](https://sniffo.org) (inline skating and funny faces, nothing pharmaceutical) — and a Monopoli/Milan/Bologna axis of *smanettoni* was born.
+
+![Ska from Milan, me in Bari, and Alk from Bologna, circa 2001 — three smanettoni who met on IRC and converged physically to do nerd things together. Open PC case, CRT monitors, ASUS boxes on the shelves. The natural habitat.](ska-vjt-alk.jpg)
+
+Eventually I got in touch with the people developing the network's infrastructure, and from there the path was inevitable: from user to IRCop to developer.
+
+## ConferenceRoom, and why we had to leave
+
+Azzurra was running [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — a commercial IRC server whose main selling point was a Java applet for web chat. In 2001, a Java applet was cutting-edge technology for getting non-technical users onto IRC without installing a client. The problem was that CR couldn't handle the load, and it didn't have the features we needed.
+
+But we couldn't just drop the Java applet — it was how a significant chunk of users connected. So we did what any self-respecting group of teenagers with too much free time would do: we reverse-engineered the protocol handshake.
+
+The "protection" was laughably simple. The Java applet sent a [`GUEST` command](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L4812) on connect and expected specific [IRC numerics](https://modern.ircdocs.horse/#rplwelcome-001) in response. So we taught Bahamut to [fake being ConferenceRoom](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L952) when it detected the applet:
+
+```c
+if (IsJava(sptr))
+{
+    sendto_one(sptr,
+        ":%s 002 %s :Your host is %s, "
+        "running version 1.8.4-SEC",
+        me.name, nick, me.name);
+    // ...
+    sendto_one(sptr,
+        ":%s 004 %s %s CR1.8.4-SEC oiwsabjgrchytxkmnpeAEGFSLMRTX",
+        me.name, nick, me.name);
+    sendto_one(sptr,
+        ":%s 005 %s WATCH=128 SAFELIST TUNL FLG=s,5 "
+        ":ConferenceRoom by WebMaster",
+        me.name, nick);
+}
+```
+
+`CR1.8.4-SEC`. `ConferenceRoom by WebMaster`. The Java applet saw the version strings it expected and happily connected to what was actually a completely different server. We even had a custom [RPL_WHOISJAVA (339)](https://github.com/azzurra/bahamut/blob/master/include/numeric.h#L254) numeric so operators could tell who was using the web chat.
+
+![The web chat experience, circa 2001 — a Java applet running inside Internet Explorer on a Windows 98 desktop, a 56k modem blinking away, and the whole internet at the other end of a phone cable. This was cutting-edge technology for getting non-technical users onto IRC.](java-applet-era.jpg)
+
+## Why Bahamut
+
+There were several open-source IRC daemons in 2002. [UnrealIRCd](https://www.unrealircd.org/) was the most feature-rich — and that was exactly the problem. It was bloated, it was what every small network used, and we were not a small network. Azzurra was *the* Italian IRC network, aiming for tens of thousands of concurrent users. We needed something built for scale.
+
+[DALnet](https://en.wikipedia.org/wiki/DALnet) was the largest IRC network at the time — before the [massive DDoS attacks of 2002-2003](https://en.wikipedia.org/wiki/DALnet#DDoS_attacks) that nearly took it offline for months. Their IRCd was [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)): a fork of [Hybrid](https://ircd-hybrid.org/), stripped down, optimized for heavy loads, battle-tested at a scale no other server could match. If it could handle DALnet's hundreds of thousands of users, it could handle ours.
+
+We forked it and started adding what we needed.
+
+## Mode +x: why IP cloaking was existential
+
+The first thing we added — before IPv6, before SSL, before anything else — was [IP cloaking](https://github.com/azzurra/bahamut/blob/master/src/cloak.c). Mode `+x`.
+
+To understand why, you need to understand what the internet was like in 2002. Most Italian users were on Windows 98 or ME. [WinNuke](https://en.wikipedia.org/wiki/WinNuke) could crash their computer by sending a single out-of-band packet. [Ping of death](https://en.wikipedia.org/wiki/Ping_of_death) was still a thing. And if someone knew your IP address, they could browse your `C$` administrative share and read your documents — because nobody had a firewall and Windows file sharing was on by default.
+
+On IRC, everyone's IP address was visible to everyone else in the `/whois` reply. This wasn't a privacy problem — it was a *safety* problem.
+
+IRC banning worked by matching `user@host` patterns — if you banned `*@192.168.1.100`, that user was blocked from the channel. But they could just reconnect from a different IP (disconnect and redial their modem) and rejoin. IP cloaking solved both problems at once: it replaced the visible portion of your hostname with a keyed hash, so other users couldn't see your real IP, but the hash was deterministic — reconnecting from the same IP produced the same cloaked hostname, so bans still worked.
+
+The implementation used [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) with a server-side key, producing hostnames like `Azzurra-1A2B3C4D.example.com` for FQDNs or `192.168.Azzurra-1A2B3C4D` for IPv4 addresses:
+
+```c
+#define CLOAK_HOST "Azzurra"
+
+snprintf(virt, HOSTLEN, "%s%c%X.%s",
+         cloak_host,
+         (csum < 0 ? '=' : '-'),
+         (csum < 0 ? -csum : csum), p + 1);
+```
+
+And yes, there's an Italian comment buried in the [FQDN handling logic](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L218):
+
+```c
+/* controllare i return value non sarebbe una cattiva idea... */
+```
+
+*"Checking return values wouldn't be a bad idea..."* — we knew.
+
+![The late-night IRC session, circa 2002 — a CRT monitor glowing in a dark room, an IRC client with its nickname list, a Nokia phone, a modem blinking, and a printout of IP addresses with some highlighted in marker. This is what it looked like when knowing someone's IP meant you could crash their computer.](dial-up-irc.jpg)
+
+## The open-source release
+
+The cloaking code and the ConferenceRoom emulation were Azzurra's competitive advantage. They stayed private. But I pushed hard to release the rest — the IPv6 and SSL patches — as open source. This wasn't universally popular. But eventually, a stripped-down version went out on SourceForge as [bahamut-inet6](https://sourceforge.net/projects/bahamut-inet6/), the code that lives in the [Git repository](https://github.com/vjt/bahamut-azzurra) today. Everything below comes from that release.
+
+## IPv6: because "IPv4 was about to be deprecated"
+
+Yes. In 2002 we genuinely believed IPv4 was on its way out. [RFC 2460](https://www.rfc-editor.org/rfc/rfc2460) had been published in 1998, the hype was real, and we were going to be ready. Twenty-three years later, I'm typing this on a network that still runs on IPv4. But the code was solid and the exercise was formative — and looking at it now, the engineering problems were legitimately interesting.
+
+### The colon problem
+
+Bahamut's configuration file used `:` as a field delimiter. This is a tradition going back to the [original IRC server](https://www.rfc-editor.org/rfc/rfc1459):
+
+```
+C:192.168.1.1:password:server.name:7325:10
+```
+
+IPv6 addresses contain colons. `2001:db8::1` in a colon-delimited config line is chaos.
+
+The [solution](https://github.com/vjt/bahamut-azzurra/blob/cc081d0/config#L356) was a configurable delimiter character. If you compiled with `INET6`, the [`./config` script](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/config#L356) forced you to pick something other than `:` — defaulting to `%`:
+
+```sh
+if [ -n "$INET6" ] ; then
+    if [ "$IRCDCONF_DELIMITER" = ":" ] ; then
+        IRCDCONF_DELIMITER='%';
+    fi
+    # ...
+    echo "':' is not allowed as a delimiter in an ipv6 server."
+```
+
+Simple. Ugly. It worked.
+
+### Socket abstraction
+
+The core of the IPv6 support was a set of [compile-time macros](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/include/struct.h#L563) that abstracted the socket structures:
+
+```c
+#ifdef INET6
+# define AFINET       AF_INET6
+# define SOCKADDR_IN  sockaddr_in6
+# define SIN_FAMILY   sin6_family
+# define SIN_PORT     sin6_port
+# define SIN_ADDR     sin6_addr
+# define S_ADDR       s6_addr
+# define IN_ADDR      in6_addr
+#else
+# define AFINET       AF_INET
+# define SOCKADDR_IN  sockaddr_in
+# define SIN_FAMILY   sin_family
+# define SIN_PORT     sin_port
+# define SIN_ADDR     sin_addr
+# define S_ADDR       s_addr
+# define IN_ADDR      in_addr
+#endif
+```
+
+This was the approach in 2002: not a runtime abstraction, not a compatibility layer — just `#define`. The entire codebase used `AFINET` and `SOCKADDR_IN` instead of the native types, and the preprocessor did the rest. It's crude by modern standards, but it meant zero runtime overhead and the changes touched as few lines as possible. You `#define INET6`, recompile, and your IRC server speaks IPv6.
+
+### IPv4-mapped addresses
+
+But you can't just flip a switch. The [real problem](https://github.com/vjt/bahamut-azzurra/commit/170830e) was backward compatibility. An IPv6 server needs to talk to IPv4 servers, and the only way to do that in 2002 was [IPv4-mapped IPv6 addresses](https://en.wikipedia.org/wiki/IPv6#IPv4-mapped_IPv6_addresses) — encoding `192.168.1.1` as `::ffff:192.168.1.1`.
+
+From the [commit message](https://github.com/vjt/bahamut-azzurra/commit/170830e):
+
+> made /connect work: now s_auth.c skips the auth check when connecting to servers whose addresses are ipv4 mapped in ipv6 structures. to specify an outbound connection, you must type ::ffff:i.p.v.4 into the host part of the C/N lines.
+
+The IP hashing had to change too — you can't just hash 128 bits the same way you hash 32 bits. The [hash_ip bug](https://github.com/vjt/bahamut-azzurra/commit/d5638af) that monas found was exactly this problem. And [`ip6_expand()`](https://github.com/vjt/bahamut-azzurra/commit/3b5f598) was needed to handle addresses starting with `::`, because the parser treated `:` as a delimiter (yes, that problem again).
+
+### Portability
+
+IPv6 support in 2002 was wildly inconsistent across operating systems. The commits tell the story:
+
+- [`added file va_copy.h`](https://github.com/vjt/bahamut-azzurra/commit/1f31678) — PPC (Mac) needed `va_copy` hooks in variadic functions
+- [`added MacOSX support !`](https://github.com/vjt/bahamut-azzurra/commit/9bd60ec) — macOS didn't have `inet_pton`, so I [borrowed it from FreeBSD's libc](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/src/inet_pton.c)
+- [`fixed the solaris u_int32_t problem`](https://github.com/vjt/bahamut-azzurra/commit/d3351f5) — Solaris used different type names
+- [`removed some openbsd (leet) warnings`](https://github.com/vjt/bahamut-azzurra/commit/e83e83c) — tsk's contribution, OpenBSD was strict about warnings
+
+Version 0.9.1 was [tagged for release](https://github.com/vjt/bahamut-azzurra/commit/4ae2489) on February 17, 2002 — sixteen days after the initial import. By May, we were at [inet6 1.0a](https://github.com/vjt/bahamut-azzurra/commit/a24a1ba).
+
+![My workstation, circa 2001 — a beige PC with CRT monitor, red desk lamp, Italian recycling signs on the wall (RACCOLTA LATTINE, RACCOLTA VETRO), and a face that says "it compiles." This is where the IPv6 patches were written.](vjt-coding.jpg)
+
+## SSL in three days
+
+On [March 10, 2002](https://github.com/vjt/bahamut-azzurra/commit/d44dca9), I added SSL support. By [March 13](https://github.com/vjt/bahamut-azzurra/commit/6492043), it was done: *"fixed all the SSL-related problems. ready for release."*
+
+Three days. The entire [`ssl.c`](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/src/ssl.c) is 291 lines. Copyright `Barnaba Marcello <vjt@azzurra.org>`. It's the most complete file I wrote for this project — initialization, shutdown, non-blocking read/write wrappers, error handling, and certificate reload.
+
+### The integration trick
+
+The clever part wasn't `ssl.c` itself — it was how the SSL calls got wired into the existing I/O path. Bahamut used `send()` and `recv()` everywhere. Rather than hunting down every call site, I added macros that the [config script generated](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/config#L1341) into `options.h`:
+
+```c
+#define RECV_CHECK_SSL(from, buf, len) (IsSSL(from) && from->ssl) ? \
+                                       safe_SSL_read(from, buf, len) : \
+                                       RECV(from->fd, buf, len)
+#define SEND_CHECK_SSL(to, buf, len) (IsSSL(to) && to->ssl) ? \
+                                       safe_SSL_write(to, buf, len) : \
+                                       SEND(to->fd, buf, len)
+```
+
+If the client has SSL, use `safe_SSL_read()`/`safe_SSL_write()`. Otherwise, fall through to regular `recv()`/`send()`. The I/O layer didn't need to know or care — it just called `RECV_CHECK_SSL` and `SEND_CHECK_SSL` and the preprocessor made the right thing happen. The macros lived in the *generated* `options.h`, not in any header file — because the [`./config` script](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/config) was a 1400-line shell script that `echo`'d C preprocessor directives.
+
+When a new SSL client connected, the [acceptance code](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/src/s_bsd.c#L1481) created a new `SSL` object and attached it to the client structure:
+
+```c
+#ifdef USE_SSL /*AZZURRANET*/
+    if (IsSSL(cptr))
+    {
+        extern SSL_CTX *ircdssl_ctx;
+
+        acptr->ssl = NULL;
+        
+        /*SSL client init.*/
+        if((acptr->ssl = SSL_new(ircdssl_ctx)) == NULL)
+        {
+            sendto_realops_lev(DEBUG_LEV, "SSL creation of "
+                "new SSL object failed [client %s]",
+                acptr->sockhost);
+```
+
+Every SSL-related addition is marked with `/*AZZURRANET*/` — scattered throughout the codebase like a tag: [struct.h](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/include/struct.h#L822), [s_bsd.c](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/src/s_bsd.c#L429), [config.h](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/include/config.h#L233). Eighteen years old me, putting his flag on every line.
+
+### The error handler
+
+The [`fatal_ssl_error()`](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/src/ssl.c#L218) function is where you can see I was learning as I went. It's thorough — every SSL error code gets a human-readable string, the error is both sent to opers and syslogged — but there's a comment that reveals the fundamental tension:
+
+```c
+/* if we reply() something here, we might just trigger another
+ * fatal_ssl_error() call and loop until a stack overflow... 
+ * the client won`t get the ERROR : ... string, but this is
+ * the only way to do it.
+ * IRC protocol wasn`t SSL enabled .. --vjt
+ */
+```
+
+*"IRC protocol wasn't SSL enabled."* I was bolting encryption onto a protocol designed in 1988. The protocol had no concept of a TLS handshake, no way to signal that a connection was encrypted. You just... connected to a different port and hoped.
+
+And in the default error handler:
+
+```c
+default:
+    ssl_func = "undefined SSL func [this is a bug] report to vjt@azzurra.org";
+```
+
+My email address, hardcoded into the binary, telling the world who to blame.
+
+### The bugs
+
+SSL ghosts were the first real problem — clients that disconnected during the SSL handshake but whose connection wasn't properly cleaned up, leaving phantom entries in the user list. [Fixed April 6, 2002](https://github.com/vjt/bahamut-azzurra/commit/ddbdf7b): *"fixed the ghosts problem with ssl [sorry]."* The `[sorry]` is doing a lot of work there.
+
+Same day: [SEGV when rehashing SSL P:lines](https://github.com/vjt/bahamut-azzurra/commit/3debac2). When you changed the SSL listening port configuration and sent `SIGHUP` to reload, the server crashed. Because of course it did.
+
+December 2002 brought [`/rehash ssl`](https://github.com/vjt/bahamut-azzurra/commit/299f321) — the ability to reload SSL certificates without restarting the server. Along with a proper [certificate generation script](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/tools/ssl-cert.sh) and a [separate SSL detection script](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/tools/ssl-search.sh) for the build system.
+
+## The security fix you write at seventeen
+
+Buried in the commit history, February 21, 2002:
+
+[`format string exploit patch [syslog(DEBUG_LEV, debugbuf)]`](https://github.com/vjt/bahamut-azzurra/commit/510ad12)
+
+The diff is one line:
+
+```diff
+-    syslog(LOG_ERR, debugbuf);
++    syslog(LOG_ERR, "%s", debugbuf);
+```
+
+If `debugbuf` contained format specifiers — `%s`, `%x`, `%n` — `syslog()` would interpret them, potentially allowing arbitrary code execution. This was a [classic format string vulnerability](https://owasp.org/www-community/attacks/Format_string_attack), the kind that gave remote root shells in the early 2000s. The fix is trivial. Finding it is the hard part.
+
+## December 2002: the big rework
+
+My [last burst of commits](https://github.com/vjt/bahamut-azzurra/commits/master/?after=bab2033fd309bc2f7a74c9f580dd62480af12a65+0) came in December 2002 — a massive rework over four days. The [opening commit](https://github.com/vjt/bahamut-azzurra/commit/d7782b3) rewrote the protocol numerics, added new user modes, updated the TS (timestamp) protocol version, removed `&` local channels, and touched almost every header file. In one commit.
+
+What followed:
+
+- A complete [userban framework](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/src/userban.c) rewrite, replacing the old kline/akill/zline system with CIDR support and a [hash table](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/src/userban.c#L34) for fast lookups
+- [Regex bans](https://github.com/vjt/bahamut-azzurra/commit/4a19ee5) — POSIX regular expressions for ban matching
+- A [loadable drone detection module](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/src/drone.c) — `drone.so` loaded via `dlopen()` at runtime, reloadable with `/rehash drones`. The interface was [three function pointers](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/src/drone.c#L55): init, rehash, and is_a_drone. A plugin system before we called things plugin systems.
+- [Squelching](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/include/struct.h#L300) — user mode `+x` that silently prevented users from sending messages, meant to be set by services on suspected bots
+- The ["infamous crashing bug"](https://github.com/vjt/bahamut-azzurra/commit/a2e0925), fixed thanks to `nix@suhs.nu`
+
+And of course, [tsk's immortal commit message](https://github.com/vjt/bahamut-azzurra/commit/a928032) from early in the project:
+
+> Fixed some s_bsd.c shits. (s_misc.c line 726 sux) --tsk
+
+![Me and tsk (Fabrizio Lanotte), exchanging data via a parallel cable (laplink) between two laptops. Shirtless, because it was summer in Southern Italy and air conditioning was for rich people. The parallel cable was faster than our internet connection.](vjt-tsk-laplink.JPG)
+
+## The Fastweb problem
+
+This one deserves a mention because it's peak early-2000s Italian internet infrastructure.
+
+[Fastweb](https://en.wikipedia.org/wiki/Fastweb) was an Italian ISP that deployed fiber-to-the-home before almost anyone else in Europe. Impressive, except for one detail: their entire Metropolitan Area Network was behind carrier-grade NAT. Thousands of users sharing the same public IP addresses.
+
+On IRC, this meant you couldn't distinguish Fastweb users from each other — they all appeared to come from the same address. The Azzurra codebase had a dedicated [`FASTWEB` compile-time flag](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L425) with custom handling:
+
+```c
+#ifdef FASTWEB /* AZZURRA */
+    /* workaround for fastweb`s MAN`s lame addressing :D */
+```
+
+The comment says it all. `:D` included.
+
+![Alk's workstation — two CRT monitors, two keyboards, cables everywhere. This is what a "power user" setup looked like before ultrawide displays and Thunderbolt docks. The second monitor was a luxury.](alk-workstations.jpg)
+
+## monas returns
+
+After my [last commit](https://github.com/vjt/bahamut-azzurra/commit/bab2033) on December 5, 2002, the repository went silent for three years. I had moved on to [writing services](/posts/2026-04-13-suxserv-irc-services-archaeology/), then life happened — work, the slow drift away from the network.
+
+Then in December 2005, [Aidas Kasparas](https://github.com/vjt/bahamut-azzurra/commit/5c8c1d4) showed up. He had been there from the very beginning — in February 2002, a flurry of commits credit him: *"fixed hash_ip bug. thanx to monas"*, *"restored original in6_is_loopback [...] thx monas ! :)"*, *"fixed (un)*[kz]line problem with '%'. thx monas"*, *"typo in NICKIP. thanx monas."* He was running the [Aitvaras](https://en.wikipedia.org/wiki/Aitvaras) IRC network in Lithuania and had adopted bahamut-inet6.
+
+Three years later, he came back with twelve commits that [synchronized the codebase with Bahamut 1.4.36](https://github.com/vjt/bahamut-azzurra/commit/5c8c1d4), [unbundled the ancient zlib copy](https://github.com/vjt/bahamut-azzurra/commit/56fe43e), [implemented proper IPv6 IP-banning](https://github.com/vjt/bahamut-azzurra/commit/17787bc) (before, you could only ban by hostname — if the reverse DNS failed, the IPv6 user was unbanned), fixed [AKILL race conditions](https://github.com/vjt/bahamut-azzurra/commit/ddfb89b), and [prepared a release](https://github.com/vjt/bahamut-azzurra/commit/1618b3a).
+
+This is the part of open-sourcing that justified pushing for it. Someone on a different continent, running a different network, took the code, used it, and gave back improvements that made it better for everyone. The private cloaking code and CR emulation? They stayed useful only to us. The open IPv6 and SSL code? It helped someone in Lithuania run a better IRC network. That's the deal.
+
+## This bahamut has Super Cow Powers
+
+The [version info](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/src/version.c.SH#L119) that you got when you typed `/info` on a server compiled with INET6 or SSL:
+
+```c
+#ifdef INET6
+     "INET6 code: vjt <vjt@azzurra.org> & tsk <azzurra.org>",
+     "Thanks: Aidas Kasparas <monas@users.sourceforge.net>",
+     "Thanks: awgn, you will rock forever",
+     "",
+#endif
+#ifdef USE_SSL
+     "SSL code: vjt <vjt@azzurra.org>",
+     "SSL testing: C|ty_Hunter, Intel, PaDrino, Progeny, tsk [thanks !]",
+     "This server uses the OpenSSL library (http://www.openssl.org)",
+     "",
+#endif
+#if defined( INET6 ) || defined( USE_SSL )
+     " ___________________________________ ",
+     "< This bahamut has Super Cow Powers >",
+     " ----------------------------------- ",
+     "        \\\\   ^__^",
+     "         \\\\  (oo)\\\\_______",
+     "            (__)\\\\       )\\\\/\\\\",
+     "                ||----w |",
+     "                ||     ||",
+     "",
+#endif
+```
+
+A parody of [`apt-get moo`](https://wiki.debian.org/Aptitude#Easter_Eggs)'s *"This APT has Super Cow Powers"* — because when you're seventeen and you've just added IPv6 and SSL to a production IRC server, you put an ASCII cow in the credits.
+
+The version string itself was a thing of beauty. From [`patchlevel.h`](https://github.com/vjt/bahamut-azzurra/blob/1618b3a/include/patchlevel.h):
+
+```c
+#define BASENAME "bahamut"
+#define MAJOR 1
+#define MINOR 4
+#define PATCH 36
+#ifndef INET6
+#define PATCH1 ""
+#else
+#define PATCH1 "+inet6(1.1)"
+#endif
+#ifndef USE_SSL
+#define PATCH2 ""
+#else
+#define PATCH2 "+ssl(1.1hr)"
+#endif
+```
+
+`bahamut(RELEASE)-1.4.36+inet6(1.1)+ssl(1.1hr)`. That version string connected to real IRC networks and served real users.
+
+---
+
+Meanwhile, I had also started building IRC services from scratch. That's the [next story](/posts/2026-04-13-suxserv-irc-services-archaeology/) — 954 commits, a multithreaded C daemon, and the project I never finished.
