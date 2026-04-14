@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-This is the sequel to [Forking Bahamut for Azzurra IRC: IPv6 and SSL in 2002](/posts/2026-04-13-bahamut-inet6-forking-ircd/). After forking the IRC server, I started writing services from scratch.
+This is the sequel to [Forking Bahamut for Azzurra IRC: IPv6 and SSL in 2002](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/). After forking the IRC server, I started writing services from scratch.
 
 One of the things I'm enjoying most about working with [Claude](/tags/ai-generated/) is digital archaeology. I've spent twenty years accumulating old projects on backup disks, SourceForge, forgotten servers — code I wrote and never looked at again. Now I can just point Claude at a tarball and say "convert this to git" or "explain what 21-year-old me was thinking here" and get an actual conversation going with my own past.
 
@@ -65,7 +65,7 @@ Azzurra was — and [still is](https://azzurra.chat) — the Italian IRC network
 
 ![Azzurra IRC Network, circa 2002: green-on-black IRC terminal, azure blue glow, espresso and Nokia phones. Thousands of Italians connected at 2am — chatting, flirting, arguing, sharing MP3s.](azzurra.jpg)
 
-The network was migrating from [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — a commercial IRC server — to [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), an open-source IRCd. Not vanilla Bahamut, but a fork with IPv6 and SSL support that we maintained. I was part of the team making that transition happen: forking the server, adding hostname cloaking, wiring up SSL. That migration is a story for [another post](/posts/2026-04-13-bahamut-inet6-forking-ircd/).
+The network was migrating from [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — a commercial IRC server — to [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), an open-source IRCd. Not vanilla Bahamut, but a fork with IPv6 and SSL support that we maintained. I was part of the team making that transition happen: forking the server, adding hostname cloaking, wiring up SSL. That migration is a story for [another post](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/).
 
 Once the server side was sorted, I turned my attention to services. The existing ones weren't cutting it. I wanted something modular, threaded, with a real database backend. So I started writing.
 

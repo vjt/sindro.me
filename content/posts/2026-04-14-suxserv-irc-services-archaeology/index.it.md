@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-Questo è il sequel di [Forkare Bahamut per Azzurra IRC: IPv6 e SSL nel 2002](/it/posts/2026-04-13-bahamut-inet6-forking-ircd/). Dopo aver forkato il server IRC, ho iniziato a scrivere services da zero.
+Questo è il sequel di [Forkare Bahamut per Azzurra IRC: IPv6 e SSL nel 2002](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/). Dopo aver forkato il server IRC, ho iniziato a scrivere services da zero.
 
 Una delle cose che mi piace di più del lavorare con [Claude](/tags/ai-generated/) è l'archeologia digitale. Ho passato vent'anni ad accumulare vecchi progetti su dischi di backup, SourceForge, server dimenticati — codice che ho scritto e non ho mai più guardato. Adesso posso puntare Claude su un tarball e dire "converti questo in git" o "spiegami cosa pensava il me ventunenne qui" e avere una conversazione vera e propria col mio passato.
 
@@ -65,7 +65,7 @@ Azzurra era — e [lo è ancora](https://azzurra.chat) — la rete IRC italiana.
 
 ![Azzurra IRC Network, circa 2002: terminale IRC verde-su-nero, bagliore blu azzurro, caffè espresso e Nokia. Migliaia di italiani connessi alle 2 di notte — chattando, flirtando, litigando, condividendo MP3.](azzurra.jpg)
 
-La rete stava migrando da [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — un server IRC commerciale — a [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), un IRCd open-source. Non Bahamut vanilla, ma un fork con supporto IPv6 e SSL che mantenevamo noi. Io facevo parte del team che gestiva quella transizione: forkare il server, aggiungere l'hostname cloaking, collegare SSL. Quella migrazione è una storia per [un altro post](/it/posts/2026-04-13-bahamut-inet6-forking-ircd/).
+La rete stava migrando da [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — un server IRC commerciale — a [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), un IRCd open-source. Non Bahamut vanilla, ma un fork con supporto IPv6 e SSL che mantenevamo noi. Io facevo parte del team che gestiva quella transizione: forkare il server, aggiungere l'hostname cloaking, collegare SSL. Quella migrazione è una storia per [un altro post](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/).
 
 Una volta che il lato server era a posto, ho puntato l'attenzione sui services. Quelli esistenti non bastavano. Volevo qualcosa di modulare, threaded, con un vero database backend. Così ho iniziato a scrivere.
 

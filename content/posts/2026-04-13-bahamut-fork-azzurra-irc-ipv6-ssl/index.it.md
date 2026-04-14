@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-Questo è il prequel di [Sux Services: archeologia digitale dal 2002](/it/posts/2026-04-14-suxserv-irc-services-archaeology/). Prima di iniziare a scrivere IRC services da zero, ho passato la parte migliore di un anno a fare qualcosa di probabilmente ancora più folle: forkare un server IRC per aggiungere IPv6 e SSL. Avevo ventun anni.
+Questo è il prequel di [Sux Services: archeologia digitale dal 2002](/it/posts/2026-04-14-suxserv-irc-services-archaeology/). Prima di iniziare a scrivere IRC services da zero, ho passato la parte migliore di un anno a fare qualcosa di probabilmente ancora più folle: forkare un server IRC per aggiungere IPv6 e SSL (oggi noto come TLS). Avevo ventun anni.
 
 Il progetto viveva in un repository CVS su SourceForge — è [ancora lì](https://bahamut-inet6.sf.net/), un fossile digitale. Claude l'ha convertito in Git — [171 commit](https://github.com/vjt/bahamut-inet6/commits/master/), tre autori, storia continua da febbraio 2002 a gennaio 2006. L'ho scritto io. Ve lo racconto. Un fork di [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), il demone IRC che faceva girare [DALnet](https://en.wikipedia.org/wiki/DALnet), una delle più grandi reti IRC della sua era.
 
