@@ -1,13 +1,13 @@
 ---
 title: "Forkare un IRCd: IPv6 e SSL per Bahamut nel 2002"
-date: 2026-04-14T08:00:00+02:00
+date: 2026-04-13T08:00:00+02:00
 tags: [irc, c, azzurra, retrospettiva, open-source, archeologia]
 description: "Ho trovato un repository CVS del 2002 su SourceForge. Dentro: 171 commit, tre autori, e le patch IPv6 e SSL che ho scritto per il server IRC Bahamut a 21 anni."
 image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-Questo è il prequel di [Sux Services: archeologia digitale dal 2002](/posts/2026-04-13-suxserv-irc-services-archaeology/). Prima di iniziare a scrivere IRC services da zero, ho passato la parte migliore di un anno a fare qualcosa di probabilmente ancora più folle: forkare un server IRC per aggiungere IPv6 e SSL. Avevo ventun anni.
+Questo è il prequel di [Sux Services: archeologia digitale dal 2002](/posts/2026-04-14-suxserv-irc-services-archaeology/). Prima di iniziare a scrivere IRC services da zero, ho passato la parte migliore di un anno a fare qualcosa di probabilmente ancora più folle: forkare un server IRC per aggiungere IPv6 e SSL. Avevo ventun anni.
 
 Il progetto viveva in un repository CVS su SourceForge — è [ancora lì](https://bahamut-inet6.sf.net/), un fossile digitale. Claude l'ha convertito in Git — [171 commit](https://github.com/vjt/bahamut-inet6/commits/master/), tre autori, storia continua da febbraio 2002 a gennaio 2006. L'ho scritto io. Ve lo racconto. Un fork di [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), il demone IRC che faceva girare [DALnet](https://en.wikipedia.org/wiki/DALnet), una delle più grandi reti IRC della sua era.
 
@@ -328,7 +328,7 @@ Il rilascio open-source stava già dando frutti. Fin dai primissimi mesi, [Aidas
 
 Quel [bug di hash_ip](https://github.com/vjt/bahamut-inet6/commit/d5638af) merita la sua storia. Fu trovato da un IRCop a `irc.vub.lt` — il server dei dormitori dell'Università di Vilnius. Avevano una situazione simile a [Fastweb](#il-problema-fastweb): tutti gli utenti del dormitorio erano dietro NAT con un singolo IP su uno schema `10.0.edificio.utente`, il che significava che `hash_ip()` li metteva tutti nello stesso slot della hash. Ogni operazione su quello slot degenerava in una ricerca lineare attraverso una linked list di tutti gli utenti connessi dal dormitorio. Il loro server arrancava mentre il server di monas all'Università di Kaunas — con più utenti ma IP pubblici — girava liscio. Fecero `gdb` sul server live e trovarono il problema.
 
-Dopo il mio [ultimo commit](https://github.com/vjt/bahamut-inet6/commit/bab2033) del 5 dicembre 2002, il repository rimase silenzioso per tre anni. Io ero passato a [scrivere services](/posts/2026-04-13-suxserv-irc-services-archaeology/), poi la vita è successa — il lavoro, la lenta deriva dalla rete.
+Dopo il mio [ultimo commit](https://github.com/vjt/bahamut-inet6/commit/bab2033) del 5 dicembre 2002, il repository rimase silenzioso per tre anni. Io ero passato a [scrivere services](/posts/2026-04-14-suxserv-irc-services-archaeology/), poi la vita è successa — il lavoro, la lenta deriva dalla rete.
 
 Poi a dicembre 2005, monas è tornato con dodici commit che hanno [sincronizzato la codebase con Bahamut 1.4.36](https://github.com/vjt/bahamut-inet6/commit/5c8c1d4), [sganciato la copia antica di zlib](https://github.com/vjt/bahamut-inet6/commit/56fe43e), [implementato un vero ban IPv6 per IP](https://github.com/vjt/bahamut-inet6/commit/17787bc) (prima, si poteva bannare solo per hostname — se il reverse DNS falliva, l'utente IPv6 era senza ban), fixato [race condition sugli AKILL](https://github.com/vjt/bahamut-inet6/commit/ddfb89b), e [preparato un rilascio](https://github.com/vjt/bahamut-inet6/commit/1618b3a).
 
@@ -426,4 +426,4 @@ La stringa di versione stessa era una cosa bella. Da [`patchlevel.h`](https://gi
 
 ---
 
-Ma forkare e estendere il server IRC di qualcun altro non bastava. Ho anche iniziato a costruire IRC services da zero. Quella è la [prossima storia](/posts/2026-04-13-suxserv-irc-services-archaeology/) — 954 commit, un demone C multithreaded, e il progetto che non ho mai finito. Continuate a leggere.
+Ma forkare e estendere il server IRC di qualcun altro non bastava. Ho anche iniziato a costruire IRC services da zero. Quella è la [prossima storia](/posts/2026-04-14-suxserv-irc-services-archaeology/) — 954 commit, un demone C multithreaded, e il progetto che non ho mai finito. Continuate a leggere.

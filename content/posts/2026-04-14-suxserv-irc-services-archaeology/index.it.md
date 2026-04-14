@@ -1,6 +1,6 @@
 ---
 title: "Sux Services: archeologia digitale dal 2002"
-date: 2026-04-13
+date: 2026-04-14
 tags: [irc, c, azzurra, retrospective, open-source, archaeology]
 description: "Ho trovato un repository CVS del 2002 su SourceForge. Dentro: 954 commit, tre autori, e gli IRC services che scrissi a 21 anni — senza mai finirli."
 image: cover.jpg
@@ -63,7 +63,7 @@ Azzurra era — e [lo è ancora](https://azzurra.chat) — la rete IRC italiana.
 
 ![Azzurra IRC Network, circa 2002: terminale IRC verde-su-nero, bagliore blu azzurro, caffè espresso e Nokia. Migliaia di italiani connessi alle 2 di notte — chattando, flirtando, litigando, condividendo MP3.](azzurra.jpg)
 
-La rete stava migrando da [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — un server IRC commerciale — a [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), un IRCd open-source. Non Bahamut vanilla, ma un fork con supporto IPv6 e SSL che mantenevamo noi. Io facevo parte del team che gestiva quella transizione: forkare il server, aggiungere l'hostname cloaking, collegare SSL. Quella migrazione è una storia per [un altro post](/posts/2026-04-14-bahamut-inet6-forking-ircd/).
+La rete stava migrando da [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — un server IRC commerciale — a [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), un IRCd open-source. Non Bahamut vanilla, ma un fork con supporto IPv6 e SSL che mantenevamo noi. Io facevo parte del team che gestiva quella transizione: forkare il server, aggiungere l'hostname cloaking, collegare SSL. Quella migrazione è una storia per [un altro post](/posts/2026-04-13-bahamut-inet6-forking-ircd/).
 
 Una volta che il lato server era a posto, ho puntato l'attenzione sui services. Quelli esistenti non bastavano. Volevo qualcosa di modulare, threaded, con un vero database backend. Così ho iniziato a scrivere.
 
