@@ -16,6 +16,7 @@ The project lived in a CVS repository on SourceForge. Claude converted it to Git
 I discovered IRC the same way I discovered Linux — through [linux&c](https://it.wikipedia.org/wiki/Linux_%26_C.), an Italian magazine (there are [scanned copies on Archive.org](https://archive.org/search?query=subject%3A%22Linux+%26+C.+%28rivista%29%22), including [issue #0](https://archive.org/details/LinuxC00) that I bought) that was one of the few entry points to the open-source world for Italian teenagers in the late '90s. An article mentioned [Azzurra](https://azzurra.chat) ([history](https://web.archive.org/web/20200814231133/https://www.azzurra.org/?mod=history)), the Italian IRC network. I connected, founded a channel with friends — [#sniffo](https://sniffo.org) (inline skating and funny faces, nothing pharmaceutical) — and a Monopoli/Milan/Bologna axis of *smanettoni* was born.
 
 ![Ska from Milan, me in Bari, and Alk from Bologna, circa 2001 — three smanettoni who met on IRC and converged physically to do nerd things together. Open PC case, CRT monitors, ASUS boxes on the shelves. The natural habitat.](ska-vjt-alk.jpg)
+*Ska from Milan, me in Bari, and Alk from Bologna, circa 2001. Three smanettoni who met on IRC and converged physically to do nerd things together.*
 
 Eventually I got in touch with the people developing the network's infrastructure, and from there the path was inevitable: from user to contributor to IRCop and services coder.
 
@@ -183,6 +184,7 @@ IPv6 support in 2002 was wildly inconsistent across operating systems. The commi
 Version 0.9.1 was [tagged for release](https://github.com/vjt/bahamut-inet6/commit/4ae2489) on February 17, 2002 — sixteen days after the initial import. By May, we were at [inet6 1.0a](https://github.com/vjt/bahamut-inet6/commit/a24a1ba).
 
 ![My workstation, circa 2001 — a beige PC with CRT monitor, red desk lamp, Italian recycling signs on the wall (RACCOLTA LATTINE, RACCOLTA VETRO), and a face that says "it compiles." This is where the IPv6 patches were written.](vjt-coding.jpg)
+*My workstation, circa 2001. Beige PC, CRT monitor, Italian recycling signs on the wall. This is where the IPv6 patches were written.*
 
 ## SSL in three days
 
@@ -291,6 +293,7 @@ And of course, [tsk's immortal commit message](https://github.com/vjt/bahamut-in
 > Fixed some s_bsd.c shits. (s_misc.c line 726 sux) --tsk
 
 ![Me and tsk (Fabrizio Lanotte), exchanging data via a parallel cable (laplink) between two laptops. Shirtless, because it was summer in Southern Italy and air conditioning was for rich people. The parallel cable was faster than our internet connection.](vjt-tsk-laplink.JPG)
+*Me and tsk (Fabrizio Lanotte), exchanging data via a parallel cable between two laptops. Shirtless, because it was summer in Southern Italy and air conditioning was for rich people.*
 
 ## The Fastweb problem
 
@@ -310,6 +313,7 @@ Our solution was creative: [nextime](https://nexlab.it/) had a server *inside* t
 They even had servers linked to the network — the [2005 server list](azzurra-help.pdf) shows four entries labeled "Azzurra Fastweb, Rete Interna." The comment says it all. `:D` included.
 
 ![Alk's workstation — two CRT monitors, two keyboards, cables everywhere. This is what a "power user" setup looked like before ultrawide displays and Thunderbolt docks. The second monitor was a luxury.](alk-workstations.jpg)
+*Alk's workstation. Two CRT monitors, two keyboards, cables everywhere. The second monitor was a luxury.*
 
 ## monas returns
 
