@@ -337,6 +337,8 @@ Each call passes `&err` — a GError pointer that GLib carefully populates with 
 
 **The commit messages are a diary.** `going mad with those dbufs ...`, `pff ... O3 ..`, `sux`, `explanation of life`, `added authism concatenation with girls`. I was committing thoughts, not changes. The CVS history reads like a stream of consciousness from a 21-year-old learning to be a systems programmer.
 
+![A desk covered in scattered sticky notes bearing commit messages — "going mad with those dbufs", "pff... O3", "sux" — coffee stains, a CRT monitor, warm amber light. Not a professional's workspace. A curious 21-year-old's journal.](commit-diary.jpg)
+
 ## Oleg aka `@luarvic`
 
 In early 2005, [Oleg Girko](https://github.com/OlegGirko) got in touch. He was a developer from Latvia, and he wanted PostgreSQL support for the services. I gave him commit access.
@@ -356,6 +358,8 @@ His commit messages are methodical and precise:
 Where my commits were bursts of frustration and excitement, Oleg's read like engineering. He took my chaotic prototype and turned it into something approaching production quality. Then the trail goes cold. November 4, 2005 — his last commit. The project never ran in production on Azzurra.
 
 ## The conversion
+
+![An old server room, dimly lit, vintage rack-mounted servers with green LEDs all on. Dust motes in warm amber light. Everything still running. The quiet dignity of people who keep the internet alive even when no one is watching.](preservation.jpg)
 
 The original CVS repository was preserved by SourceForge. They retired CVS hosting in 2017, but they kept the backups — the server-side repos, not just tarballs. CVSROOT and all. Nobody had downloaded this repo in probably a decade, but it was still there, ready to be exported. That's [the real sysadmin](/posts/2014-02-28-il-vero-sistemista/) spirit — [keeping the internet alive](/posts/2007-11-21-when-sysadmins-ruled-the-earth/) even when no one's looking. Thank you, SourceForge.
 

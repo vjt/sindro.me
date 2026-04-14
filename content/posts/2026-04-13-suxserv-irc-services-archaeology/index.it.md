@@ -337,6 +337,8 @@ Ogni chiamata passa `&err` — un puntatore GError che GLib popola accuratamente
 
 **I commit message sono un diario.** `going mad with those dbufs ...`, `pff ... O3 ..`, `sux`, `explanation of life`, `added authism concatenation with girls`. Committavo pensieri, non cambiamenti. La storia CVS si legge come un flusso di coscienza di un ventunenne che stava imparando a fare il programmatore di sistema.
 
+![Una scrivania coperta di post-it con commit message — "going mad with those dbufs", "pff... O3", "sux" — macchie di caffè, un monitor CRT, luce ambrata calda. Non il posto di lavoro di un professionista. Il diario di un ventunenne curioso.](commit-diary.jpg)
+
 ## Oleg aka `@luarvic`
 
 All'inizio del 2005, [Oleg Girko](https://github.com/OlegGirko) si è fatto vivo. Era uno sviluppatore dalla Lettonia, e voleva il supporto PostgreSQL per i services. Gli ho dato accesso in commit.
@@ -356,6 +358,8 @@ I suoi commit message sono metodici e precisi:
 Dove i miei commit erano esplosioni di frustrazione ed entusiasmo, quelli di Oleg si leggono come ingegneria. Ha preso il mio prototipo caotico e lo ha trasformato in qualcosa che si avvicinava alla qualità di produzione. Poi la traccia si perde. 4 novembre 2005 — il suo ultimo commit. Il progetto non è mai andato in produzione su Azzurra.
 
 ## La conversione
+
+![Una vecchia sala server, in penombra, server rack vintage con LED verdi tutti accesi. Pulviscolo nella luce ambrata. Tutto ancora in funzione. La dignità silenziosa di chi tiene internet viva anche quando nessuno guarda.](preservation.jpg)
 
 Il repository CVS originale è stato preservato da SourceForge. Hanno ritirato l'hosting CVS nel 2017, ma hanno tenuto i backup — i repo lato server, non semplici tarball. CVSROOT e tutto il resto. Nessuno aveva scaricato questo repo probabilmente da un decennio, ma era ancora lì, pronto per l'export. Questo è lo spirito de [il vero sistemista](/posts/2014-02-28-il-vero-sistemista/) — [tenere internet viva](/posts/2007-11-21-when-sysadmins-ruled-the-earth/) anche quando nessuno guarda. Grazie, SourceForge.
 
