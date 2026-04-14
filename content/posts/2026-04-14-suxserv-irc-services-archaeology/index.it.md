@@ -7,6 +7,8 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+Questo è il sequel di [Forkare un IRCd: IPv6 e SSL per Bahamut nel 2002](/posts/2026-04-13-bahamut-inet6-forking-ircd/). Dopo aver forkato il server IRC, ho iniziato a scrivere services da zero.
+
 Una delle cose che mi piace di più del lavorare con [Claude](/tags/ai-generated/) è l'archeologia digitale. Ho passato vent'anni ad accumulare vecchi progetti su dischi di backup, SourceForge, server dimenticati — codice che ho scritto e non ho mai più guardato. Adesso posso puntare Claude su un tarball e dire "converti questo in git" o "spiegami cosa pensava il me ventunenne qui" e avere una conversazione vera e propria col mio passato.
 
 Lo scavo di oggi: sono andato su SourceForge e ho scaricato il repository CVS di [un progetto del 2003](/posts/2003-03-16-suxserv-wip/) — **Sux Services**, il mio tentativo di scrivere IRC services da zero, in C, per la [rete IRC Azzurra](https://azzurra.chat). Ho detto "Claude, converti questo repo CVS in git" e pochi minuti dopo avevo un [repository Git](https://github.com/vjt/suxserv) pulito con 954 commit, tre autori, e una storia continua da settembre 2002 a novembre 2005.
