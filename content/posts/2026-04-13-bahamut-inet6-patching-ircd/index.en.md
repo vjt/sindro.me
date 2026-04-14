@@ -78,6 +78,8 @@ That `host175-211.pool80118.interbusiness.it` hostname? It resolved to a real pu
 
 IRC channels — chatrooms, in today's parlance — were run by operators who could eject troublemakers with `/kick` and prevent them from rejoining with `/ban`. A `/kb` (kick-ban combo) was what you earned after one too many annoyances, and you deserved it. (If the `/` prefix for commands feels familiar — Slack, Discord, and even Claude's interface all inherited it straight from IRC clients.)
 
+![The late-night IRC session, circa 2002 — a CRT monitor glowing in a dark room, an IRC client with its nickname list, a Nokia phone, a modem blinking, and a printout of IP addresses with some highlighted in marker. This is what it looked like when knowing someone's IP meant you could crash their computer.](dial-up-irc.jpg)
+
 Bans matched `user@host` patterns — if you banned `*@host175-211.pool80118.interbusiness.it`, that user was blocked from the channel. But here was the problem: anyone who could see your hostname could also target you with WinNuke, ping floods, or worse. IP cloaking replaced the visible portion of your hostname with a keyed hash, so other users couldn't see your real IP.
 
 Why a hash and not a random string? Because the hash was deterministic — the same IP always produced the same cloaked hostname. If we'd used random strings, users could just reconnect to get a new identity and dodge every ban. With a hash, as long as your IP stayed the same, your cloaked hostname stayed the same, and the ban held. Of course, dialup users could still disconnect and redial their modem to get a new IP and a new hash... but that was a limitation of 2002 internet, not the cloaking system.
@@ -100,8 +102,6 @@ And yes, there's an Italian comment buried in the [FQDN handling logic](https://
 ```
 
 *"Checking return values wouldn't be a bad idea..."* — we knew.
-
-![The late-night IRC session, circa 2002 — a CRT monitor glowing in a dark room, an IRC client with its nickname list, a Nokia phone, a modem blinking, and a printout of IP addresses with some highlighted in marker. This is what it looked like when knowing someone's IP meant you could crash their computer.](dial-up-irc.jpg)
 
 ## The open-source release
 
