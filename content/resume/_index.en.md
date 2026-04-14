@@ -95,7 +95,7 @@ First professional role. Built and maintained UNIX/Windows server infrastructure
 **Community roots**
 
 - **[Antifork.ORG](https://antifork.org)** (2007–present) — Maintaining the legacy infrastructure and [code](https://github.com/antifork) of this group of hackers/friends from the early 2000s.
-- **Azzurra IRC Network** (2002–2005) — Wrote server patches for Italy's largest IRC network: IPv6, SSL, hostname cloaking. Added SSL to the irssi client.
+- **[Azzurra IRC Network](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/)** (2002–2005) — [Forked the Bahamut IRCd](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) for Italy's largest IRC network: IPv6, SSL, hostname cloaking. Added SSL to the irssi client. [Wrote IRC services from scratch](/posts/2026-04-14-suxserv-irc-services-archaeology/).
 
 ---
 
