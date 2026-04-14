@@ -1,5 +1,5 @@
 ---
-title: "Sux Services: Digging Up IRC Code from 2002"
+title: "Sux Services: Multithreaded, SQL-Backed IRC Services from Scratch, 2002"
 date: 2026-04-14
 tags: [irc, c, azzurra, retrospective, open-source, archaeology]
 description: "I found a CVS repository from 2002 on SourceForge. Inside it: 954 commits, three authors, and the IRC services I wrote when I was 21 — before finishing them."

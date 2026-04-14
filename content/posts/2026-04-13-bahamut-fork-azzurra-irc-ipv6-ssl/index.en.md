@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-This is the prequel to [Sux Services: Digging Up IRC Code from 2002](/posts/2026-04-14-suxserv-irc-services-archaeology/). Before I started writing IRC services from scratch, I spent the better part of a year doing something arguably crazier: forking an IRC server to add IPv6 and SSL (now known as TLS). I was twenty-one.
+This is the prequel to [Sux Services: Multithreaded, SQL-Backed IRC Services from Scratch, 2002](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/). Before I started writing IRC services from scratch, I spent the better part of a year doing something arguably crazier: forking an IRC server to add IPv6 and SSL (now known as TLS). I was twenty-one.
 
 The project lived in a CVS repository on SourceForge — it's [still there](https://bahamut-inet6.sf.net/), a digital fossil. Claude converted it to Git — [171 commits](https://github.com/vjt/bahamut-inet6/commits/master/), three authors, continuous history from February 2002 to January 2006. I wrote it. Let me tell you about it. A fork of [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), the IRC daemon that powered [DALnet](https://en.wikipedia.org/wiki/DALnet), one of the largest IRC networks of its era.
 
@@ -334,7 +334,7 @@ The open-source release was already bearing fruit. From the very first months, [
 
 That [hash_ip bug](https://github.com/vjt/bahamut-inet6/commit/d5638af) deserves its own story. It was found by an IRCop at `irc.vub.lt` — the Vilnius University dormitories server. They had a situation similar to [Fastweb](#the-fastweb-problem): all dorm users were NAT'd behind a single IP on a `10.0.building.user` schema, which meant `hash_ip()` put them all in the same hash slot. Every operation on that slot degenerated into a linear search through a linked list of all connected dorm users. Their server crawled while monas's server at Kaunas University — with more users but public IPs — ran fine. They `gdb`'d the live server and found the problem.
 
-After my [last commit](https://github.com/vjt/bahamut-inet6/commit/bab2033) on December 5, 2002, the repository went silent for three years. I had moved on to [writing services](/posts/2026-04-14-suxserv-irc-services-archaeology/), then life happened — work, the slow drift away from the network.
+After my [last commit](https://github.com/vjt/bahamut-inet6/commit/bab2033) on December 5, 2002, the repository went silent for three years. I had moved on to [writing services](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/), then life happened — work, the slow drift away from the network.
 
 Then in December 2005, monas came back with twelve commits that [synchronized the codebase with Bahamut 1.4.36](https://github.com/vjt/bahamut-inet6/commit/5c8c1d4), [unbundled the ancient zlib copy](https://github.com/vjt/bahamut-inet6/commit/56fe43e), [implemented proper IPv6 IP-banning](https://github.com/vjt/bahamut-inet6/commit/17787bc) (before, you could only ban by hostname — if the reverse DNS failed, the IPv6 user was unbanned), fixed [AKILL race conditions](https://github.com/vjt/bahamut-inet6/commit/ddfb89b), and [prepared a release](https://github.com/vjt/bahamut-inet6/commit/1618b3a).
 
@@ -432,4 +432,4 @@ The version string itself was a thing of beauty. From [`patchlevel.h`](https://g
 
 ---
 
-But forking and extending someone else's IRC server wasn't enough. I also started building IRC services from scratch. That's the [next story](/posts/2026-04-14-suxserv-irc-services-archaeology/) — 954 commits, a multithreaded C daemon, and the project I never finished. Read on.
+But forking and extending someone else's IRC server wasn't enough. I also started building IRC services from scratch. That's the [next story](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) — 954 commits, a multithreaded C daemon, and the project I never finished. Read on.
