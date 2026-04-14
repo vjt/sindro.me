@@ -93,13 +93,19 @@ snprintf(virt, HOSTLEN, "%s%c%X.%s",
          (csum < 0 ? -csum : csum), p + 1);
 ```
 
-And yes, there's an Italian comment buried in the [FQDN handling logic](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L218):
+And yes, there are Italian comments buried in the codebase. In the [FQDN handling logic](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L218):
 
 ```c
 /* controllare i return value non sarebbe una cattiva idea... */
 ```
 
-*"Checking return values wouldn't be a bad idea..."* — we knew.
+*"Checking return values wouldn't be a bad idea..."* — we knew. And in [`s_bsd.c`](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/s_bsd.c#L1232), next to the IP source routing check that gets disabled for IPv6:
+
+```c
+#if defined(IP_OPTIONS) && defined(IPPROTO_IP) && !defined(INET6) /* controlla STRONZONE */
+```
+
+*"Check this, you big piece of..."* — Italian augmentative of a word I'll let you look up.
 
 ## The Fastweb problem
 

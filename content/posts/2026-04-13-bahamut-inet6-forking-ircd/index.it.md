@@ -93,13 +93,19 @@ snprintf(virt, HOSTLEN, "%s%c%X.%s",
          (csum < 0 ? -csum : csum), p + 1);
 ```
 
-E sì, c'è un commento in italiano sepolto nella [logica di gestione degli FQDN](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L218):
+E sì, ci sono commenti in italiano sepolti nella codebase. Nella [logica di gestione degli FQDN](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L218):
 
 ```c
 /* controllare i return value non sarebbe una cattiva idea... */
 ```
 
-*"Controllare i return value non sarebbe una cattiva idea..."* — lo sapevamo.
+*"Controllare i return value non sarebbe una cattiva idea..."* — lo sapevamo. E in [`s_bsd.c`](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/s_bsd.c#L1232), accanto al check del source routing IP che viene disabilitato per IPv6:
+
+```c
+#if defined(IP_OPTIONS) && defined(IPPROTO_IP) && !defined(INET6) /* controlla STRONZONE */
+```
+
+Nessuna traduzione necessaria.
 
 ## Il problema Fastweb
 
