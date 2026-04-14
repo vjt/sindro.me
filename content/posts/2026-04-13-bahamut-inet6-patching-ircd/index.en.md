@@ -272,6 +272,8 @@ The diff is one line:
 
 If `debugbuf` contained format specifiers — `%s`, `%x`, `%n` — `syslog()` would interpret them, potentially allowing arbitrary code execution. This was a [classic format string vulnerability](https://owasp.org/www-community/attacks/Format_string_attack), the kind that gave remote root shells in the early 2000s. The fix is trivial. Finding it is the hard part.
 
+![A one-line diff on a CRT monitor — one line removed in red, one added in green. Next to the keyboard, a printed security advisory and a highlighter. The format string vulnerability class gave remote root shells in the early 2000s, and the fix was always the same: never pass user-controlled data as a format string.](format-string-fix.jpg)
+
 ## December 2002: the big rework
 
 My [last burst of commits](https://github.com/vjt/bahamut-inet6/commits/master/?after=bab2033fd309bc2f7a74c9f580dd62480af12a65+0) came in December 2002 — a massive rework over four days. The [opening commit](https://github.com/vjt/bahamut-inet6/commit/d7782b3) rewrote the protocol numerics, added new user modes, updated the TS (timestamp) protocol version, removed `&` local channels, and touched almost every header file. In one commit.
