@@ -9,7 +9,7 @@ featuredImage: cover.jpg
 
 This is the prequel to [Sux Services: Digging Up IRC Code from 2002](/posts/2026-04-13-suxserv-irc-services-archaeology/). Before I started writing IRC services from scratch, I spent the better part of a year doing something arguably crazier: patching an IRC server to support IPv6 and SSL. I was twenty-one.
 
-The project lived in a CVS repository on SourceForge. Claude converted it to Git — [171 commits](https://github.com/vjt/bahamut-inet6/commits/master/), three authors, continuous history from February 2002 to January 2006. A fork of [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), the IRC daemon that powered [DALnet](https://en.wikipedia.org/wiki/DALnet), one of the largest IRC networks of its era.
+The project lived in a CVS repository on SourceForge — it's still there, a digital fossil. Claude converted it to Git — [171 commits](https://github.com/vjt/bahamut-inet6/commits/master/), three authors, continuous history from February 2002 to January 2006. I wrote it. Let me tell you about it. A fork of [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), the IRC daemon that powered [DALnet](https://en.wikipedia.org/wiki/DALnet), one of the largest IRC networks of its era.
 
 ## How I got here
 
@@ -54,9 +54,9 @@ if (IsJava(sptr))
 
 There were several open-source IRC daemons in 2002. [UnrealIRCd](https://www.unrealircd.org/) was the most feature-rich — and that was exactly the problem. It was bloated, it was what every small network used, and we were not a small network. Azzurra was *the* Italian IRC network, aiming for tens of thousands of concurrent users. We needed something built for scale.
 
-[DALnet](https://en.wikipedia.org/wiki/DALnet) was the largest IRC network at the time — before the [massive DDoS attacks of 2002-2003](https://en.wikipedia.org/wiki/DALnet#DDoS_attacks) that nearly took it offline for months. Their IRCd was [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)): a fork of [Hybrid](https://ircd-hybrid.org/), stripped down, optimized for heavy loads, battle-tested at a scale no other server could match. If it could handle DALnet's hundreds of thousands of users, it could handle ours.
+[DALnet](https://en.wikipedia.org/wiki/DALnet) was the largest IRC network at the time — before the [massive DDoS attacks of 2002-2003](https://web.archive.org/web/20110723073250/http://zine.dal.net/previousissues/issue22/situation.php) that nearly took it offline for months. Their IRCd was [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)): a fork of [Hybrid](https://ircd-hybrid.org/), stripped down, optimized for heavy loads, battle-tested at a scale no other server could match. If it could handle DALnet's hundreds of thousands of users, it could handle ours.
 
-We forked it and started adding what we needed: [IP cloaking](/posts/2026-04-13-bahamut-inet6-patching-ircd/#mode-x-why-ip-cloaking-was-existential) to protect our users, and then the main technical mission — IPv6 support and SSL encryption for the IRC protocol.
+We forked it and started adding what we needed: IP cloaking to protect our users, and then the main technical mission — IPv6 support and SSL encryption for the IRC protocol.
 
 ## Mode +x: why IP cloaking was existential
 
@@ -74,17 +74,15 @@ vjt using irc.azzurra.chat Azzurra IRC Network
 vjt has been idle 0 hours 7 mins 23 secs
 ```
 
-That `host175-211.pool80118.interbusiness.it` hostname? It resolved to a real public IP address. And in 2002, knowing someone's IP wasn't just a privacy concern — it was a *safety* problem.
+That `host175-211.pool80118.interbusiness.it` hostname resolved to a real public IP address — and in 2002, that meant anyone on IRC could WinNuke you, ping-flood you, or browse your Windows shares.
 
-IRC channels — chatrooms, in today's parlance — were run by operators who could eject troublemakers with `/kick` and prevent them from rejoining with `/ban`. A `/kb` (kick-ban combo) was what you earned after one too many annoyances, and you deserved it. (If the `/` prefix for commands feels familiar — Slack, Discord, and even Claude's interface all inherited it straight from IRC clients.)
+IRC channels — chatrooms, in today's parlance — were run by operators who could eject troublemakers with `/kick` and prevent them from rejoining with `/ban`. A `/kb` (kick-ban combo) was what you earned after one too many annoyances, and you deserved it. (If the `/` prefix for commands feels familiar — Slack, Discord, and even Claude's interface all inherited it straight from IRC clients.) Bans matched `user@host` patterns — `*@host175-211.pool80118.interbusiness.it` and you were out.
 
 ![The late-night IRC session, circa 2002 — a CRT monitor glowing in a dark room, an IRC client with its nickname list, a Nokia phone, a modem blinking, and a printout of IP addresses with some highlighted in marker. This is what it looked like when knowing someone's IP meant you could crash their computer.](dial-up-irc.jpg)
 
-Bans matched `user@host` patterns — if you banned `*@host175-211.pool80118.interbusiness.it`, that user was blocked from the channel. But here was the problem: anyone who could see your hostname could also target you with WinNuke, ping floods, or worse. IP cloaking replaced the visible portion of your hostname with a keyed hash, so other users couldn't see your real IP.
+So we had two problems: everyone could see your real IP and attack you, and bans needed hostnames to work. IP cloaking solved the first by replacing the visible portion of your hostname with a keyed hash. But why a hash and not a random string? Because the hash was deterministic — the same IP always produced the same cloaked hostname. If we'd used random strings, users could just reconnect to get a new identity and dodge every ban. With a hash, as long as your IP stayed the same, your cloaked hostname stayed the same, and the ban held. Of course, dialup users could still disconnect and redial their modem to get a new IP and a new hash... but that was a limitation of 2002 internet, not the cloaking system.
 
-Why a hash and not a random string? Because the hash was deterministic — the same IP always produced the same cloaked hostname. If we'd used random strings, users could just reconnect to get a new identity and dodge every ban. With a hash, as long as your IP stayed the same, your cloaked hostname stayed the same, and the ban held. Of course, dialup users could still disconnect and redial their modem to get a new IP and a new hash... but that was a limitation of 2002 internet, not the cloaking system.
-
-The implementation used [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) with a server-side key, producing hostnames like `Azzurra-1A2B3C4D.example.com` for FQDNs or `192.168.Azzurra-1A2B3C4D` for IPv4 addresses:
+The implementation used [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) with a server-side key, producing hostnames like `Azzurra-1A2B3C4D.example.com` for FQDNs or `192.168.Azzurra-1A2B3C4D` for IPv4 addresses. The separator was `-` for positive checksums and `=` for negative ones — a minor detail that made cloaked hostnames instantly recognizable:
 
 ```c
 #define CLOAK_HOST "Azzurra"
@@ -109,7 +107,7 @@ The cloaking code and the ConferenceRoom emulation were Azzurra's competitive ad
 
 ![The bahamut-inet6 SourceForge project page — still alive in 2026. "Unofficial patch for DALnet's Bahamut IRC daemon, which adds complete IPv6 and SSL v2/v3 (using the OpenSSL toolkit) support." The IPv6 logo at the bottom. Peak early-2000s open source.](sourceforge.png)
 
-## IPv6: because "IPv4 was about to be deprecated"
+## IPv6: because IPv4 was "about to be deprecated"
 
 Yes. In 2002 we genuinely believed IPv4 was on its way out. [RFC 2460](https://www.rfc-editor.org/rfc/rfc2460) had been published in 1998, the hype was real, and we were going to be ready. Twenty-three years later, I'm typing this on a network that still runs on IPv4. But the code was solid and the exercise was formative — and looking at it now, the engineering problems were legitimately interesting.
 
@@ -305,12 +303,18 @@ On IRC, this was a disaster. You couldn't distinguish Fastweb users from each ot
 
 Our solution was creative: [nextime](https://nexlab.it/) had a server *inside* the Fastweb network that could see the internal IPs. Fastweb users connected to Azzurra through that server, which relayed their internal addresses to the rest of the network using the `fastweb.fw` pseudo-domain. We explicitly blocked connections from Fastweb's residential NAT egress nodes to our other servers — if you were on Fastweb, you *had* to connect through the internal server. The Azzurra codebase had a dedicated [`FASTWEB` compile-time flag](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L425) with custom handling:
 
+The [`FASTWEB` compile-time flag](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L425) was a dedicated build for these internal servers. It did quite a few things:
+
 ```c
 #ifdef FASTWEB /* AZZURRA */
     /* workaround for fastweb`s MAN`s lame addressing :D */
+    sscanf(sptr->user->host, "%d.%d.%d.%d", &ip[0], &ip[1], &ip[2], &ip[3]);
+    ircsprintf(sptr->user->host, "%d-%d.%d-%d.%s", ip[3], ip[2], ip[1], ip[0], FAST_RES);
 ```
 
-They even had servers linked to the network — the [2005 server list](azzurra-help.pdf) shows four entries labeled "Azzurra Fastweb, Rete Interna." The comment says it all. `:D` included.
+The server took Fastweb's internal IPs (which had no reverse DNS) and synthesized a hostname by reversing the octets under the `fastweb.fw` pseudo-TLD — so `10.1.2.3` became `3-2.1-10.fastweb.fw`. It also hid the pseudo-TLD from the user's own `RPL_WELCOME` (showing their real IP instead, so their client wouldn't get confused), changed the "server full" error page to a [dedicated Fastweb page](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L514), and I-line passwords in the config were prefixed with `fastweb.` to tag a port as Fastweb-only.
+
+The [2005 server list](azzurra-help.pdf) shows four entries labeled "Azzurra Fastweb, Rete Interna." The `:D` in the comment says it all.
 
 ![Alk's workstation — two CRT monitors, two keyboards, cables everywhere. This is what a "power user" setup looked like before ultrawide displays and Thunderbolt docks. The second monitor was a luxury.](alk-workstations.jpg)
 *Alk's workstation. Two CRT monitors, two keyboards, eight boxes in this corner alone — there were more in the other corner.*
@@ -327,7 +331,15 @@ This is the part of open-sourcing that justified pushing for it. Someone in a di
 
 By 2005, Azzurra had [peaked at over 10,000 concurrent users](https://netsplit.de/networks/statistics.php?net=Azzurra) — not bad for a network run by volunteers who'd started as teenagers on IRC.
 
-Today, the network is still running — [four servers, about a hundred users](https://liveinfo.azzurra.chat/servers). The current admins are keeping the old codebase alive, fixing critical bugs, getting it to compile on 64-bit machines, and building modern infrastructure around it: a [live server API](https://liveinfo.azzurra.chat/servers), a Telegram-to-IRC bridge. The codebase itself, as Hypnotize told me today, "should be rebuilt from scratch" — and honestly, looking at the code in 2026, it's hard to disagree. Oper passwords are stored in cleartext by default (`#undef CRYPT_OPER_PASSWORD`), failed `/oper` attempts broadcast the typed password to the security channel, and NickServ identification sends your password as a `PRIVMSG` across server links. A product of its era. But the network is alive, the lights are on, and someone still cares enough to keep them on. That counts for something.
+## Today
+
+The network is still running — [four servers, about a hundred users](https://liveinfo.azzurra.chat/servers). Quiet, but alive.
+
+After monas's contributions, the codebase passed through several hands. [Matteo Panella](https://github.com/azzurra/bahamut/commits?author=rfc1459) (morpheus) carried it from 2008 to 2012 with 104 commits — the heaviest contributor after the original authors. He added halfop mode, HAProxy support, the 4.7 branch, and started fixing the 64-bit assumptions that were baked into the original code. Then the repo went dormant for eight years.
+
+In 2020, a revival: [Paolo Iannelli](https://github.com/azzurra/bahamut/commits?author=piannelli) modernized SSL for Debian 10, [Alessio Bonforti](https://github.com/azzurra/bahamut/commits?author=abonforti) fixed the certificate chain handling, and [Michele "Sonic" Vacca](https://github.com/azzurra/bahamut/commits?author=Essency) updated OpenSSL support past 1.1. Then in March 2026 — weeks before I started writing this post — Sonic pushed a burst of commits to get the codebase compiling natively in 64-bit mode on GCC 13 and OpenSSL 3.x. The `-m32` flag is finally gone.
+
+They're also building modern infrastructure around the old daemon: a [live server API](https://liveinfo.azzurra.chat/servers), a Telegram-to-IRC bridge. The codebase itself, as Hypnotize told me today, "should be rebuilt from scratch" — and honestly, looking at the code in 2026, it's hard to disagree. Oper passwords are stored in cleartext by default (`#undef CRYPT_OPER_PASSWORD`), failed `/oper` attempts broadcast the typed password to the security channel, and NickServ identification sends your password as a `PRIVMSG` across server links. A product of its era. But the network is alive, the lights are on, and someone still cares enough to keep them on. That counts for something.
 
 ## This bahamut has Super Cow Powers
 
@@ -407,4 +419,4 @@ The version string itself was a thing of beauty. From [`patchlevel.h`](https://g
 
 ---
 
-Meanwhile, I had also started building IRC services from scratch. That's the [next story](/posts/2026-04-13-suxserv-irc-services-archaeology/) — 954 commits, a multithreaded C daemon, and the project I never finished.
+Meanwhile, I had also started building IRC services from scratch. That's the [next story](/posts/2026-04-13-suxserv-irc-services-archaeology/) — 954 commits, a multithreaded C daemon, and the project I never finished. Read on.
