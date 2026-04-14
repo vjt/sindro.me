@@ -93,6 +93,8 @@ snprintf(virt, HOSTLEN, "%s%c%X.%s",
          (csum < 0 ? -csum : csum), p + 1);
 ```
 
+Quanto era sicuro? Beh — IPv4 è 2^32 indirizzi. Una rainbow table di tutti i possibili hostname mascherati si fa in secondi con hardware moderno. Alk, leggendo questo post nel 2026, ha immediatamente minacciato di crackare l'intero keyspace con la sua RTX 5090. Nel 2002, col suo Celeron 300, sarebbe stato più complicato. Progresso. Il cloaking IPv6 è arrivato [molto dopo](https://github.com/azzurra/bahamut/commit/ba211d5), per mano di morpheus — il cui commit message recita *"IPv6 host cloaking (ugly, but works)"* e il cui codice contiene il commento `/* FFFFFFFUUUUUUUU */`.
+
 E sì, ci sono commenti in italiano sepolti nella codebase. Nella [logica di gestione degli FQDN](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L218):
 
 ```c
