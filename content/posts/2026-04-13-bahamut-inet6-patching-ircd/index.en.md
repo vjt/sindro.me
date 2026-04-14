@@ -1,5 +1,5 @@
 ---
-title: "Patching an IRCd: IPv6 and SSL for Bahamut in 2002"
+title: "Forking an IRCd: IPv6 and SSL for Bahamut in 2002"
 date: 2026-04-13T08:00:00+02:00
 tags: [irc, c, azzurra, retrospective, open-source, archaeology]
 description: "I found a CVS repository from 2002 on SourceForge. Inside it: 171 commits, three authors, and the IPv6 and SSL patches I wrote for the Bahamut IRC server when I was 21."
@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-This is the prequel to [Sux Services: Digging Up IRC Code from 2002](/posts/2026-04-13-suxserv-irc-services-archaeology/). Before I started writing IRC services from scratch, I spent the better part of a year doing something arguably crazier: patching an IRC server to support IPv6 and SSL. I was twenty-one.
+This is the prequel to [Sux Services: Digging Up IRC Code from 2002](/posts/2026-04-13-suxserv-irc-services-archaeology/). Before I started writing IRC services from scratch, I spent the better part of a year doing something arguably crazier: forking an IRC server to add IPv6 and SSL. I was twenty-one.
 
 The project lived in a CVS repository on SourceForge — it's [still there](https://bahamut-inet6.sf.net/), a digital fossil. Claude converted it to Git — [171 commits](https://github.com/vjt/bahamut-inet6/commits/master/), three authors, continuous history from February 2002 to January 2006. I wrote it. Let me tell you about it. A fork of [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), the IRC daemon that powered [DALnet](https://en.wikipedia.org/wiki/DALnet), one of the largest IRC networks of its era.
 
