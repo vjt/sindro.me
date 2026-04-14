@@ -1,6 +1,6 @@
 ---
 title: "Forking an IRCd: IPv6 and SSL for Bahamut in 2002"
-date: 2026-04-13T08:00:00+02:00
+date: 2026-04-14T08:00:00+02:00
 tags: [irc, c, azzurra, retrospective, open-source, archaeology]
 description: "I found a CVS repository from 2002 on SourceForge. Inside it: 171 commits, three authors, and the IPv6 and SSL patches I wrote for the Bahamut IRC server when I was 21."
 image: cover.jpg

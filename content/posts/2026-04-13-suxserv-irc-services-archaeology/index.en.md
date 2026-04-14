@@ -63,7 +63,7 @@ Azzurra was — and [still is](https://azzurra.chat) — the Italian IRC network
 
 ![Azzurra IRC Network, circa 2002: green-on-black IRC terminal, azure blue glow, espresso and Nokia phones. Thousands of Italians connected at 2am — chatting, flirting, arguing, sharing MP3s.](azzurra.jpg)
 
-The network was migrating from [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — a commercial IRC server — to [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), an open-source IRCd. Not vanilla Bahamut, but a fork with IPv6 and SSL support that we maintained. I was part of the team making that transition happen: forking the server, adding hostname cloaking, wiring up SSL. That migration is a story for [another post](/posts/2026-04-13-bahamut-inet6-forking-ircd/).
+The network was migrating from [ConferenceRoom](https://en.wikipedia.org/wiki/ConferenceRoom) — a commercial IRC server — to [Bahamut](https://sourceforge.net/projects/bahamut-inet6/), an open-source IRCd. Not vanilla Bahamut, but a fork with IPv6 and SSL support that we maintained. I was part of the team making that transition happen: forking the server, adding hostname cloaking, wiring up SSL. That migration is a story for [another post](/posts/2026-04-14-bahamut-inet6-forking-ircd/).
 
 Once the server side was sorted, I turned my attention to services. The existing ones weren't cutting it. I wanted something modular, threaded, with a real database backend. So I started writing.
 
