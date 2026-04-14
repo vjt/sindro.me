@@ -184,7 +184,7 @@ IPv6 support in 2002 was wildly inconsistent across operating systems. The commi
 Version 0.9.1 was [tagged for release](https://github.com/vjt/bahamut-inet6/commit/4ae2489) on February 17, 2002 — sixteen days after the initial import. By May, we were at [inet6 1.0a](https://github.com/vjt/bahamut-inet6/commit/a24a1ba).
 
 ![My workstation, circa 2001 — a beige PC with CRT monitor, red desk lamp, Italian recycling signs on the wall (RACCOLTA LATTINE, RACCOLTA VETRO), and a face that says "it compiles." This is where the IPv6 patches were written.](vjt-coding.jpg)
-*My workstation, circa 2001. Beige PC, CRT monitor, Italian recycling signs on the wall. This is where the IPv6 patches were written.*
+*Two workstations, circa 2001: a PowerMac 7200 running Yellow Dog Linux and a PowerMac 7300 running NetBSD. Two CRTs if you look harder. Italian recycling signs on the wall. This is where the IPv6 patches were written.*
 
 ## SSL in three days
 
@@ -313,7 +313,7 @@ Our solution was creative: [nextime](https://nexlab.it/) had a server *inside* t
 They even had servers linked to the network — the [2005 server list](azzurra-help.pdf) shows four entries labeled "Azzurra Fastweb, Rete Interna." The comment says it all. `:D` included.
 
 ![Alk's workstation — two CRT monitors, two keyboards, cables everywhere. This is what a "power user" setup looked like before ultrawide displays and Thunderbolt docks. The second monitor was a luxury.](alk-workstations.jpg)
-*Alk's workstation. Two CRT monitors, two keyboards, cables everywhere. The second monitor was a luxury.*
+*Alk's workstation. Two CRT monitors, two keyboards, eight boxes in this corner alone — there were more in the other corner.*
 
 ## monas returns
 
