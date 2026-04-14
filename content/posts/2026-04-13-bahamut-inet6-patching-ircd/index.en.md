@@ -225,6 +225,8 @@ When a new SSL client connected, the [acceptance code](https://github.com/vjt/ba
 
 Every SSL-related addition is marked with `/*AZZURRANET*/` — scattered throughout the codebase like a tag: [struct.h](https://github.com/vjt/bahamut-inet6/blob/1618b3a/include/struct.h#L822), [s_bsd.c](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/s_bsd.c#L429), [config.h](https://github.com/vjt/bahamut-inet6/blob/1618b3a/include/config.h#L233). Twenty-one years old me, putting his flag on every line.
 
+![Every SSL-related addition tagged with the same comment — /*AZZURRANET*/ — scattered across header files, socket code, configuration. Like a graffiti artist signing every wall in the neighborhood.](azzurranet-tag.jpg)
+
 ### The error handler
 
 The [`fatal_ssl_error()`](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/ssl.c#L218) function is where you can see I was learning as I went. It's thorough — every SSL error code gets a human-readable string, the error is both sent to opers and syslogged — but there's a comment that reveals the fundamental tension:
@@ -332,6 +334,8 @@ This is the part of open-sourcing that justified pushing for it. Someone in a di
 By 2005, Azzurra had [peaked at over 10,000 concurrent users](https://netsplit.de/networks/statistics.php?net=Azzurra) — not bad for a network run by volunteers who'd started as teenagers on IRC.
 
 ## Today
+
+![Not a data center — just someone keeping old infrastructure alive because they care. Green LEDs blinking, mixed-era hardware, a laptop with a git log open. The feeling of a community project that refuses to die.](still-running.jpg)
 
 The network is still running — [four servers, about a hundred users](https://liveinfo.azzurra.chat/servers). Quiet, but alive.
 
