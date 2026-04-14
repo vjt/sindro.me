@@ -327,6 +327,8 @@ This is the part of open-sourcing that justified pushing for it. Someone in a di
 
 By 2005, Azzurra had [peaked at over 10,000 concurrent users](https://netsplit.de/networks/statistics.php?net=Azzurra) — not bad for a network run by volunteers who'd started as teenagers on IRC.
 
+Today, the network is still running — [four servers, about a hundred users](https://liveinfo.azzurra.chat/servers). The current admins are keeping the old codebase alive, fixing critical bugs, getting it to compile on 64-bit machines, and building modern infrastructure around it: a [live server API](https://liveinfo.azzurra.chat/servers), a Telegram-to-IRC bridge. The codebase itself, as Hypnotize told me today, "should be rebuilt from scratch" — and honestly, looking at the code in 2026, it's hard to disagree. Oper passwords are stored in cleartext by default (`#undef CRYPT_OPER_PASSWORD`), failed `/oper` attempts broadcast the typed password to the security channel, and NickServ identification sends your password as a `PRIVMSG` across server links. A product of its era. But the network is alive, the lights are on, and someone still cares enough to keep them on. That counts for something.
+
 ## This bahamut has Super Cow Powers
 
 The [version info](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/version.c.SH#L119) that you got when you typed `/info` on a server compiled with INET6 or SSL:
