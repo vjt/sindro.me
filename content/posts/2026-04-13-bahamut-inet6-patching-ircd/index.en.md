@@ -184,7 +184,7 @@ IPv6 support in 2002 was wildly inconsistent across operating systems. The commi
 Version 0.9.1 was [tagged for release](https://github.com/vjt/bahamut-inet6/commit/4ae2489) on February 17, 2002 — sixteen days after the initial import. By May, we were at [inet6 1.0a](https://github.com/vjt/bahamut-inet6/commit/a24a1ba).
 
 ![My workstation, circa 2001 — a beige PC with CRT monitor, red desk lamp, Italian recycling signs on the wall (RACCOLTA LATTINE, RACCOLTA VETRO), and a face that says "it compiles." This is where the IPv6 patches were written.](vjt-coding.jpg)
-*Two workstations, circa 2001: a PowerMac 7200 running Yellow Dog Linux and a PowerMac 7300 running NetBSD. Two CRTs if you look harder. Italian recycling signs on the wall. This is where the IPv6 patches were written.*
+*Two workstations, circa 2001: a PowerMac 7200 running Yellow Dog Linux and a PowerMac 7300 running NetBSD, two CRTs. Italian recycling signs on the wall. This is where the IPv6 patches were written.*
 
 ## SSL in three days
 
