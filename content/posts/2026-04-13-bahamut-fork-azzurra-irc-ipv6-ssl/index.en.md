@@ -446,4 +446,4 @@ The founding myth of Italy's largest IRC network, immortalized as a vegetable jo
 
 ---
 
-But forking and extending someone else's IRC server wasn't enough. I also started building IRC services from scratch. That's the [next story](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) — 954 commits, a multithreaded C daemon, and the project I never finished. Read on.
+The fork was shipping. Time to build something from scratch. That's the [next story](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) — 954 commits, a multithreaded C daemon, and the project I never finished. Read on.

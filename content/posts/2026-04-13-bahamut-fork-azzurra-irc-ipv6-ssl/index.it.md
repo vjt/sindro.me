@@ -446,4 +446,4 @@ Il mito fondativo della più grande rete IRC italiana, immortalato come una batt
 
 ---
 
-Ma forkare e estendere il server IRC di qualcun altro non bastava. Ho anche iniziato a costruire IRC services da zero. Quella è la [prossima storia](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) — 954 commit, un demone C multithreaded, e il progetto che non ho mai finito. Continuate a leggere.
+Il fork era in produzione. Era ora di costruire qualcosa da zero. Questa è la [prossima storia](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) — 954 commit, un demone C multithreaded, e il progetto che non ho mai finito. Continuate a leggere.
