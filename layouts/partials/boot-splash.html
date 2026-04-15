@@ -1,0 +1,51 @@
+<div id="boot-splash" aria-hidden="true" data-hostname="{{ .Site.Params.brand | default .Site.Title }}" data-tagline="{{ .Site.Params.description }}"{{ with .Site.Params.boot_splash_lines }} data-lines="{{ . | jsonify | htmlEscape }}"{{ end }}>
+  <div id="boot-log"></div>
+  <div id="boot-brand">{{ .Site.Params.brand | default .Site.Title }}</div>
+</div>
+<style>
+  #boot-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #ccc;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+  }
+  #boot-splash.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+  #boot-log {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+  #boot-log div { white-space: nowrap; overflow: hidden; }
+  #boot-log .ok { color: #0f0; }
+  #boot-log .warn { color: #ff0; }
+  #boot-log .info { color: #0af; }
+  #boot-brand {
+    text-align: center;
+    font-family: 'Abril Fatface', Georgia, serif;
+    font-size: 32px;
+    color: #fff;
+    margin-top: 16px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  #boot-brand.visible { opacity: 1; }
+  @media (max-width: 599px) {
+    #boot-splash { font-size: 10px; padding: 16px; }
+    #boot-brand { font-size: 24px; }
+  }
+</style>
