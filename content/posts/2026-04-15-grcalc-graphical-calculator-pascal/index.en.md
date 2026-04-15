@@ -86,7 +86,7 @@ I was in love with C's [`perror(3)`](https://man7.org/linux/man-pages/man3/perro
 
 I wrote 10 pages of [documentation](grcalc-doc.pdf) with flowcharts drawn in CorelDRAW, plus 26 pages of printed source code — we had to bring it all in printed form. I compiled a 52KB executable that detected the video card and plotted arbitrary math functions in real time. But reading the code now, twenty-four years later, there are real problems:
 
-**No operator precedence.** `2 + 3 * x` evaluates left-to-right as `(2 + 3) * x`. The parser doesn't build an AST with precedence levels — it builds a flat linked list. You need brackets for correct math: `2 + (3 * x)`. I didn't even notice at the time.
+**No operator precedence.** `2 + 3 * x` evaluates left-to-right as `(2 + 3) * x`. The parser doesn't build an AST with precedence levels — it builds a flat linked list. You need brackets for correct math: `2 + (3 * x)`. I knew — I was running late and parentheses worked fine.
 
 **Integers only for constants.** You can't type `3.14 * x` because the parser only handles digit characters. No decimal point support. Want π? Use `atan(1) * 4 * x`. Or don't.
 
@@ -98,7 +98,7 @@ I wrote 10 pages of [documentation](grcalc-doc.pdf) with flowcharts drawn in Cor
 
 In `evaluate_func`, the NUMBER case reads `p^.term_next^.term_value` — that's the *next* node's value, not the current one. It should be `p^.term_value`. This never triggers in practice because you'd have to write something like `sin 5` (a function applied to a literal number without brackets), and nobody does that — you write `sin(5)` or `sin x`. A real bug, hidden by convention. I never caught it in 2002. [Claude](/tags/ai-generated/) found it in 2026.
 
-**`delay(100)` between pixels.** Every pixel gets a 100ms pause so you can watch the curve being drawn. Looked cool on a 386. On anything faster, you're waiting 64 seconds for a 640-pixel-wide plot. There was no way to skip it.
+**`delay(100)` between pixels.** Every pixel gets a 100ms pause so you can watch the curve being drawn. Seconds of forced animation for each plot, no way to skip it.
 
 ## The exam
 

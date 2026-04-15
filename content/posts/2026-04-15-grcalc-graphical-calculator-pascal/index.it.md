@@ -86,7 +86,7 @@ Ero innamorato della [`perror(3)`](https://man7.org/linux/man-pages/man3/perror.
 
 Scrissi 10 pagine di [documentazione](grcalc-doc.pdf) con diagrammi di flusso disegnati in CorelDRAW, più 26 pagine di codice sorgente stampato — bisognava portare tutto in forma cartacea. Compilai un eseguibile da 52KB che rilevava la scheda video e plottava funzioni matematiche arbitrarie in tempo reale. Ma rileggendo il codice oggi, ventiquattro anni dopo, ci sono problemi reali:
 
-**Nessuna precedenza degli operatori.** `2 + 3 * x` si valuta da sinistra a destra come `(2 + 3) * x`. Il parser non costruisce un AST con livelli di precedenza — costruisce una lista collegata piatta. Servono le parentesi per la matematica corretta: `2 + (3 * x)`. Non me ne accorsi nemmeno all'epoca.
+**Nessuna precedenza degli operatori.** `2 + 3 * x` si valuta da sinistra a destra come `(2 + 3) * x`. Il parser non costruisce un AST con livelli di precedenza — costruisce una lista collegata piatta. Servono le parentesi per la matematica corretta: `2 + (3 * x)`. Lo sapevo — ero in ritardo e le parentesi funzionavano.
 
 **Solo interi come costanti.** Non puoi scrivere `3.14 * x` perché il parser gestisce solo cifre. Nessun supporto per il punto decimale. Vuoi π? Usa `atan(1) * 4 * x`. Oppure no.
 
@@ -98,7 +98,7 @@ Scrissi 10 pagine di [documentazione](grcalc-doc.pdf) con diagrammi di flusso di
 
 In `evaluate_func`, il caso NUMBER legge `p^.term_next^.term_value` — cioè il valore del nodo *successivo*, non di quello corrente. Dovrebbe essere `p^.term_value`. Non scatta mai in pratica perché dovresti scrivere qualcosa come `sin 5` (una funzione applicata a un letterale numerico senza parentesi), e nessuno lo fa — scrivi `sin(5)` o `sin x`. Un bug vero, nascosto dalla convenzione. Non lo beccai nel 2002. Lo ha trovato [Claude](/it/tags/ai-generated/) nel 2026.
 
-**`delay(100)` tra un pixel e l'altro.** Ogni pixel ha una pausa di 100ms per guardare la curva che si disegna. Figo su un 386. Su qualsiasi cosa più veloce, aspetti 64 secondi per un grafico largo 640 pixel. Non c'era modo di saltarlo.
+**`delay(100)` tra un pixel e l'altro.** Ogni pixel ha una pausa di 100ms per guardare la curva che si disegna. Secondi di animazione forzata per ogni grafico, senza modo di saltarla.
 
 ## L'esame
 
