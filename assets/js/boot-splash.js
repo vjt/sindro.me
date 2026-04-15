@@ -31,7 +31,7 @@
     { cls: 'ok',   text: '[    0.801445] hugo[1337]: Building sites...' },
     { cls: '',     text: '[    0.823001] hugo[1337]:                    | EN  | IT' },
     { cls: '',     text: '[    0.824100] hugo[1337]:   -------------------+-----+-----' },
-    { cls: '',     text: '[    0.825003] hugo[1337]:   Pages            |  87 |  85' },
+    { cls: '',     text: '[    0.825003] hugo[1337]:   Pages            |  97 |  97' },
     { cls: '',     text: '[    0.825890] hugo[1337]:   Static files     | 142 | 142' },
     { cls: 'ok',   text: '[    0.831002] hugo[1337]: Total in 91 ms' },
     { cls: 'warn', text: '[    0.900000] init: blog ready. ' + tagline },
