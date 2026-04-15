@@ -9,7 +9,7 @@ featuredImage: cover.jpg
 
 This is the prequel to [Sux Services: Multithreaded, SQL-Backed IRC Services from Scratch, 2002](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/). Before I started writing IRC services from scratch, I spent the better part of a year doing something arguably crazier: forking an IRC server to add IPv6 and SSL (now known as TLS). I was twenty-one.
 
-The project lived in a CVS repository on SourceForge — it's [still there](https://bahamut-inet6.sf.net/), a digital fossil. Claude converted it to Git — [171 commits](https://github.com/vjt/bahamut-inet6/commits/master/), three authors, continuous history from February 2002 to January 2006. I wrote it. Let me tell you about it. A fork of [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), the IRC daemon that powered [DALnet](https://en.wikipedia.org/wiki/DALnet), one of the largest IRC networks of its era.
+The project lived in a CVS repository on SourceForge — it's [still there](https://bahamut-inet6.sf.net/), a digital fossil. Claude converted it to Git — [171 commits](https://github.com/vjt/bahamut-inet6/commits/master/), three authors, continuous history from February 2002 to January 2006. I wrote it — a fork of [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), the IRC daemon that powered [DALnet](https://en.wikipedia.org/wiki/DALnet), one of the largest IRC networks of its era. Let me tell you about it.
 
 ## How I got here
 
@@ -64,7 +64,7 @@ The first thing we added — before IPv6, before SSL, before anything else — w
 
 To understand why, you need to understand what the internet was like in 2002. Most Italian users were on Windows 98 or ME. [WinNuke](https://en.wikipedia.org/wiki/WinNuke) could crash their computer by sending a single out-of-band packet. [Ping of death](https://en.wikipedia.org/wiki/Ping_of_death) was still a thing. And if someone knew your IP address, they could browse your `C$` administrative share and read your documents — because nobody had a firewall and Windows file sharing was on by default.
 
-On IRC, typing `/whois nickname` showed you information about any user — including their hostname, which resolved to their IP address. This is what it looked like:
+On IRC, typing `/whois nickname` showed you information about any user — including their hostname, which resolved to their IP address. (If the `/` prefix for commands feels familiar — Slack, Discord, and even Claude's interface all inherited it from IRC.) This is what it looked like:
 
 ```
 vjt is vjt@host175-211.pool80118.interbusiness.it
@@ -76,17 +76,17 @@ vjt has been idle 0 hours 7 mins 23 secs
 
 That `host175-211.pool80118.interbusiness.it` hostname resolved to a real public IP address — and in 2002, that meant anyone on IRC could WinNuke you, ping-flood you, or browse your Windows shares.
 
-IRC channels — chatrooms, in today's parlance — were run by operators who could eject troublemakers with `/kick` and prevent them from rejoining with `/ban`. A `/kb` (kick-ban combo) was what you earned after one too many annoyances, and you deserved it. (If the `/` prefix for commands feels familiar — Slack, Discord, and even Claude's interface all inherited it straight from IRC clients.) Bans matched `user@host` patterns — `*@host175-211.pool80118.interbusiness.it` and you were out.
+IRC channels — chatrooms, in today's parlance — were run by operators who could eject troublemakers with `/kick` and prevent them from rejoining with `/ban`. A `/kb` (kick-ban combo) was what you earned after one too many annoyances, and you deserved it. Bans matched `user@host` patterns — `*@host175-211.pool80118.interbusiness.it` and you were out.
 
 ![The late-night IRC session, circa 2002 — a CRT monitor glowing in a dark room, an IRC client with its nickname list, a Nokia phone, a modem blinking, and a printout of IP addresses with some highlighted in marker. This is what it looked like when knowing someone's IP meant you could crash their computer.](dial-up-irc.jpg)
 
-So we had two problems: everyone could see your real IP and attack you, and bans needed hostnames to work. IP cloaking solved the first by replacing the visible portion of your hostname with a keyed hash.
+The problem was simple: everyone could see your real IP and attack you. But bans also needed stable hostnames to work — and IP cloaking had to solve both. It replaced the visible portion of your hostname with a keyed hash.
 
 ### The hash trick
 
 But why a hash and not a random string? Because the hash was deterministic — the same IP always produced the same cloaked hostname. If we'd used random strings, users could just reconnect to get a new identity and dodge every ban. With a hash, as long as your IP stayed the same, your cloaked hostname stayed the same, and the ban held. Of course, dialup users could still disconnect and redial their modem to get a new IP and a new hash... but that was a limitation of 2002 internet, not the cloaking system.
 
-The implementation used [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) with a server-side secret key, producing hostnames like `Azzurra-1A2B3C4D.example.com` for FQDNs or `192.168.Azzurra-1A2B3C4D` for IPv4 addresses. The separator was `-` for positive checksums and `=` for negative ones:
+The implementation used [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) with a server-side key, producing hostnames like `Azzurra-1A2B3C4D.example.com` for FQDNs or `192.168.Azzurra-1A2B3C4D` for IPv4 addresses. The separator was `-` for positive checksums and `=` for negative ones:
 
 ```c
 #define CLOAK_HOST "Azzurra"
@@ -152,7 +152,7 @@ The [`FASTWEB` compile-time flag](https://github.com/azzurra/bahamut/blob/master
     ircsprintf(sptr->user->host, "%d-%d.%d-%d.%s", ip[3], ip[2], ip[1], ip[0], FAST_RES);
 ```
 
-The server took Fastweb's internal IPs (which had no reverse DNS) and [synthesized a hostname](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L825) by reversing the octets under the `fastweb.fw` pseudo-TLD — so `10.1.2.3` became `3-2.1-10.fastweb.fw`. It hid the pseudo-TLD from the user's own [`RPL_WELCOME`](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L971) (showing their real IP instead, so their client wouldn't get confused), changed the "server full" error page to a [dedicated Fastweb page](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L514), and [I-line passwords](https://github.com/azzurra/bahamut/blob/master/src/s_conf.c#L1602) in the config were prefixed with `fastweb.` to tag a port as Fastweb-only.
+The server took Fastweb's internal IPs (which had no reverse DNS) and [synthesized a hostname](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L825) by reversing the octets under the `fastweb.fw` pseudo-TLD — so `10.1.2.3` became `3-2.1-10.fastweb.fw`. It hid the pseudo-TLD from the user's own [`RPL_WELCOME`](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L971), showing their real IP instead so their client wouldn't get confused. The "server full" error page was swapped for a [dedicated Fastweb page](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L514), and [I-line passwords](https://github.com/azzurra/bahamut/blob/master/src/s_conf.c#L1602) in the config were prefixed with `fastweb.` to tag a port as Fastweb-only.
 
 The [2005 server list](azzurra-help.pdf) shows four entries labeled "Azzurra Fastweb, Rete Interna." The `:D` in the comment says it all.
 
@@ -239,7 +239,7 @@ IPv6 support in 2002 was wildly inconsistent across operating systems. The commi
 
 Version 0.9.1 was [tagged for release](https://github.com/vjt/bahamut-inet6/commit/4ae2489) on February 17, 2002 — sixteen days after the initial import. By May, we were at [inet6 1.0a](https://github.com/vjt/bahamut-inet6/commit/a24a1ba).
 
-![My workstation, circa 2001 — a beige PC with CRT monitor, red desk lamp, Italian recycling signs on the wall (RACCOLTA LATTINE, RACCOLTA VETRO), and a face that says "it compiles." This is where the IPv6 patches were written.](vjt-coding.jpg)
+![My workstation, circa 2001 — two PowerMacs (7200 with Yellow Dog Linux, 7300 with NetBSD), two CRT monitors, red desk lamp, Italian recycling signs on the wall (RACCOLTA LATTINE, RACCOLTA VETRO). This is where the IPv6 patches were written.](vjt-coding.jpg)
 *Two workstations, circa 2001: a PowerMac 7200 running Yellow Dog Linux and a PowerMac 7300 running NetBSD, two CRTs. Italian recycling signs on the wall. This is where the IPv6 patches were written.*
 
 ## SSL in three days
@@ -283,7 +283,7 @@ When a new SSL client connected, the [acceptance code](https://github.com/vjt/ba
                 acptr->sockhost);
 ```
 
-Every SSL-related addition is marked with `/*AZZURRANET*/` — scattered throughout the codebase like a tag: [struct.h](https://github.com/vjt/bahamut-inet6/blob/1618b3a/include/struct.h#L822), [s_bsd.c](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/s_bsd.c#L429), [config.h](https://github.com/vjt/bahamut-inet6/blob/1618b3a/include/config.h#L233). Twenty-one years old me, putting his flag on every line.
+Every SSL-related addition is marked with `/*AZZURRANET*/` — scattered throughout the codebase like a tag: [struct.h](https://github.com/vjt/bahamut-inet6/blob/1618b3a/include/struct.h#L822), [s_bsd.c](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/s_bsd.c#L429), [config.h](https://github.com/vjt/bahamut-inet6/blob/1618b3a/include/config.h#L233). Twenty-one-year-old me, putting his flag on every line.
 
 ![Every SSL-related addition tagged with the same comment — /*AZZURRANET*/ — scattered across header files, socket code, configuration. Like a graffiti artist signing every wall in the neighborhood.](azzurranet-tag.jpg)
 
@@ -464,7 +464,9 @@ One last thing. While working on this post, I got back in touch with some of the
 
 Azzurra was born from a fight. A violent argument on `#roxybar` — an Italian chat channel — that got the future founders kicked out. They left, started their own network, and the rest is history. But the early server MOTDs carried a grudge: *"non si accettano carote"* — "no carrots accepted."
 
-I remembered seeing that line in the MOTD, in orange mIRC letters. I never understood it. I thought it was just random Italian IRC humor. Twenty-six years later, the explanation: the carrots were a dig at [Red Ronnie](https://en.wikipedia.org/wiki/Red_Ronnie) — the Italian TV host with the red hair, who was involved in the `#roxybar` drama. The same Red Ronnie who had introduced many Italian teenagers to IRC in the first place, showing a server address and channel name on screen overlay during his show on [Telemontecarlo](https://en.wikipedia.org/wiki/LA7): *"if you have a computer, come join us on IRC."* Some of those teenagers had 1200 bps modems, couldn't do much else online anyway, and became good friends of mine.
+I remembered seeing that line in the MOTD, in orange mIRC letters. I never understood it. I thought it was just random Italian IRC humor. Twenty-six years later, the explanation: the carrots were a dig at [Red Ronnie](https://en.wikipedia.org/wiki/Red_Ronnie) — the Italian TV host with the red hair, who was involved in the `#roxybar` drama. The same Red Ronnie who had introduced many Italian teenagers to IRC in the first place — showing a server address and channel name on screen overlay during his show on [Telemontecarlo](https://en.wikipedia.org/wiki/LA7), inviting viewers: *"if you have a computer, come join us on IRC."*
+
+Some of those teenagers had 1200 bps modems and couldn't do much else online anyway. They became good friends of mine.
 
 The founding myth of Italy's largest IRC network, immortalized as a vegetable joke in the login banner. Some things you only learn by staying connected long enough.
 

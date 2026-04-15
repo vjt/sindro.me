@@ -9,7 +9,7 @@ featuredImage: cover.jpg
 
 Questo è il prequel di [Sux Services: IRC Services Multithreaded e SQL-Backed da Zero, 2002](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/). Prima di iniziare a scrivere IRC services da zero, ho passato la parte migliore di un anno a fare qualcosa di probabilmente ancora più folle: forkare un server IRC per aggiungere IPv6 e SSL (oggi noto come TLS). Avevo ventun anni.
 
-Il progetto viveva in un repository CVS su SourceForge — è [ancora lì](https://bahamut-inet6.sf.net/), un fossile digitale. Claude l'ha convertito in Git — [171 commit](https://github.com/vjt/bahamut-inet6/commits/master/), tre autori, storia continua da febbraio 2002 a gennaio 2006. L'ho scritto io. Ve lo racconto. Un fork di [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), il demone IRC che faceva girare [DALnet](https://en.wikipedia.org/wiki/DALnet), una delle più grandi reti IRC della sua era.
+Il progetto viveva in un repository CVS su SourceForge — è [ancora lì](https://bahamut-inet6.sf.net/), un fossile digitale. Claude l'ha convertito in Git — [171 commit](https://github.com/vjt/bahamut-inet6/commits/master/), tre autori, storia continua da febbraio 2002 a gennaio 2006. L'ho scritto io — un fork di [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), il demone IRC che faceva girare [DALnet](https://en.wikipedia.org/wiki/DALnet), una delle più grandi reti IRC della sua era. Ve lo racconto.
 
 ## Come ci sono arrivato
 
@@ -64,7 +64,7 @@ La prima cosa che abbiamo aggiunto — prima dell'IPv6, prima dell'SSL, prima di
 
 Per capire perché, bisogna capire com'era internet nel 2002. La maggior parte degli utenti italiani era su Windows 98 o ME. [WinNuke](https://en.wikipedia.org/wiki/WinNuke) poteva crashare il loro computer mandando un singolo pacchetto out-of-band. Il [Ping of death](https://en.wikipedia.org/wiki/Ping_of_death) era ancora una cosa reale. E se qualcuno conosceva il tuo indirizzo IP, poteva sfogliare la tua share amministrativa `C$` e leggere i tuoi documenti — perché nessuno aveva un firewall e la condivisione file di Windows era attiva di default.
 
-Su IRC, digitando `/whois nickname` si vedevano le informazioni su qualsiasi utente — compreso il suo hostname, che risolveva al suo indirizzo IP. Ecco come appariva:
+Su IRC, digitando `/whois nickname` si vedevano le informazioni su qualsiasi utente — compreso il suo hostname, che risolveva al suo indirizzo IP. (Se il prefisso `/` per i comandi vi suona familiare — Slack, Discord, e perfino l'interfaccia di Claude l'hanno ereditato da IRC.) Ecco come appariva:
 
 ```
 vjt is vjt@host175-211.pool80118.interbusiness.it
@@ -76,17 +76,17 @@ vjt has been idle 0 hours 7 mins 23 secs
 
 Quell'hostname `host175-211.pool80118.interbusiness.it` risolveva a un vero indirizzo IP pubblico — e nel 2002, questo significava che chiunque su IRC poteva fare WinNuke, ping-flood, o sfogliare le tue share di Windows.
 
-I canali IRC — le chatroom, nel linguaggio di oggi — erano gestiti da operatori che potevano espellere i disturbatori con `/kick` e impedirgli di rientrare con `/ban`. Un `/kb` (combo kick-ban) era quello che ti guadagnavi dopo una scocciatura di troppo, e te lo meritavi. (Se il prefisso `/` per i comandi vi suona familiare — Slack, Discord, e perfino l'interfaccia di Claude l'hanno tutti ereditato dritto dritto dai client IRC.) I ban matchavano pattern `user@host` — `*@host175-211.pool80118.interbusiness.it` e eri fuori.
+I canali IRC — le chatroom, nel linguaggio di oggi — erano gestiti da operatori che potevano espellere i disturbatori con `/kick` e impedirgli di rientrare con `/ban`. Un `/kb` (combo kick-ban) era quello che ti guadagnavi dopo una scocciatura di troppo, e te lo meritavi. I ban matchavano pattern `user@host` — `*@host175-211.pool80118.interbusiness.it` e eri fuori.
 
 ![La sessione IRC notturna, circa 2002 — un monitor CRT che brilla in una stanza buia, un client IRC con la sua lista di nickname, un Nokia, un modem che lampeggia, e un foglio stampato con indirizzi IP evidenziati col pennarello. Questo è come appariva quando conoscere l'IP di qualcuno significava potergli crashare il computer.](dial-up-irc.jpg)
 
-Avevamo quindi due problemi: tutti potevano vedere il tuo IP reale e attaccarti, e i ban avevano bisogno degli hostname per funzionare. L'IP cloaking risolveva il primo sostituendo la porzione visibile dell'hostname con un hash con chiave.
+Il problema era semplice: tutti potevano vedere il tuo IP reale e attaccarti. Ma i ban avevano anche bisogno di hostname stabili per funzionare — e l'IP cloaking doveva risolvere entrambe le cose. Sostituiva la porzione visibile dell'hostname con un hash con chiave.
 
 ### Il trucco dell'hash
 
 Ma perché un hash e non una stringa casuale? Perché l'hash era deterministico — lo stesso IP produceva sempre lo stesso hostname mascherato. Se avessimo usato stringhe casuali, gli utenti avrebbero potuto riconnettersi per ottenere una nuova identità e schivare ogni ban. Con un hash, finché il tuo IP restava lo stesso, il tuo hostname mascherato restava lo stesso, e il ban reggeva. Certo, gli utenti dial-up potevano sempre staccare e rifare il numero per ottenere un nuovo IP e un nuovo hash... ma quello era un limite di internet nel 2002, non del sistema di cloaking.
 
-L'implementazione usava [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) con una chiave segreta lato server, producendo hostname come `Azzurra-1A2B3C4D.example.com` per gli FQDN o `192.168.Azzurra-1A2B3C4D` per gli indirizzi IPv4. Il separatore era `-` per i checksum positivi e `=` per quelli negativi:
+L'implementazione usava [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) con una chiave lato server, producendo hostname come `Azzurra-1A2B3C4D.example.com` per gli FQDN o `192.168.Azzurra-1A2B3C4D` per gli indirizzi IPv4. Il separatore era `-` per i checksum positivi e `=` per quelli negativi:
 
 ```c
 #define CLOAK_HOST "Azzurra"
@@ -152,7 +152,7 @@ Il [flag di compilazione `FASTWEB`](https://github.com/azzurra/bahamut/blob/mast
     ircsprintf(sptr->user->host, "%d-%d.%d-%d.%s", ip[3], ip[2], ip[1], ip[0], FAST_RES);
 ```
 
-Il server prendeva gli IP interni di Fastweb (che non avevano reverse DNS) e [sintetizzava un hostname](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L825) invertendo gli ottetti sotto lo pseudo-TLD `fastweb.fw` — quindi `10.1.2.3` diventava `3-2.1-10.fastweb.fw`. Nascondeva lo pseudo-TLD dal [`RPL_WELCOME`](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L971) dell'utente (mostrando il suo IP reale, così il client non si confondeva), cambiava la pagina di errore "server pieno" in una [pagina dedicata Fastweb](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L514), e le [password delle I-line](https://github.com/azzurra/bahamut/blob/master/src/s_conf.c#L1602) nella configurazione erano prefissate con `fastweb.` per marcare una porta come Fastweb-only.
+Il server prendeva gli IP interni di Fastweb (che non avevano reverse DNS) e [sintetizzava un hostname](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L825) invertendo gli ottetti sotto lo pseudo-TLD `fastweb.fw` — quindi `10.1.2.3` diventava `3-2.1-10.fastweb.fw`. Nascondeva lo pseudo-TLD dal [`RPL_WELCOME`](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L971) dell'utente, mostrando il suo IP reale così il client non si confondeva. La pagina di errore "server pieno" era sostituita da una [pagina dedicata Fastweb](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L514), e le [password delle I-line](https://github.com/azzurra/bahamut/blob/master/src/s_conf.c#L1602) nella configurazione erano prefissate con `fastweb.` per marcare una porta come Fastweb-only.
 
 La [lista server del 2005](azzurra-help.pdf) mostra quattro voci etichettate "Azzurra Fastweb, Rete Interna." Il `:D` nel commento dice tutto.
 
@@ -239,7 +239,7 @@ Il supporto IPv6 nel 2002 era selvaggiamente inconsistente tra sistemi operativi
 
 La versione 0.9.1 è stata [taggata per il rilascio](https://github.com/vjt/bahamut-inet6/commit/4ae2489) il 17 febbraio 2002 — sedici giorni dopo l'import iniziale. A maggio, eravamo a [inet6 1.0a](https://github.com/vjt/bahamut-inet6/commit/a24a1ba).
 
-![La mia postazione, circa 2001 — un PC beige con monitor CRT, lampada da scrivania rossa, cartelli della raccolta differenziata sul muro (RACCOLTA LATTINE, RACCOLTA VETRO), e una faccia che dice "compila". Qui sono state scritte le patch IPv6.](vjt-coding.jpg)
+![La mia postazione, circa 2001 — due PowerMac (7200 con Yellow Dog Linux, 7300 con NetBSD), due monitor CRT, lampada da scrivania rossa, cartelli della raccolta differenziata sul muro (RACCOLTA LATTINE, RACCOLTA VETRO). Qui sono state scritte le patch IPv6.](vjt-coding.jpg)
 *Due postazioni, circa 2001: un PowerMac 7200 con Yellow Dog Linux e un PowerMac 7300 con NetBSD, due CRT. Cartelli della raccolta differenziata sul muro. Qui sono state scritte le patch IPv6.*
 
 ## SSL in tre giorni
@@ -464,7 +464,9 @@ Un'ultima cosa. Mentre lavoravo a questo post, mi sono rimesso in contatto con u
 
 Azzurra è nata da un litigio. Uno scazzo violento su `#roxybar` — un canale IRC italiano — che portò all'espulsione dei futuri fondatori. Se ne andarono, fondarono la loro rete, e il resto è storia. Ma i primi MOTD dei server portavano il rancore: *"non si accettano carote."*
 
-Me lo ricordavo, quel messaggio nel MOTD, in lettere arancioni su mIRC. Non l'avevo mai capito. Pensavo fosse umorismo IRC italiano a caso. Ventisei anni dopo, la spiegazione: le carote erano una presa in giro per [Red Ronnie](https://it.wikipedia.org/wiki/Red_Ronnie) — il conduttore televisivo coi capelli rossi, coinvolto nel dramma di `#roxybar`. Lo stesso Red Ronnie che aveva fatto scoprire IRC a tanti adolescenti italiani, mostrando in sovraimpressione indirizzo del server e nome del canale durante il suo programma su [Telemontecarlo](https://it.wikipedia.org/wiki/LA7): *"se avete un computer, venite qui su IRC."* Alcuni di quegli adolescenti avevano un modem a 1200 bps, non potevano fare molto altro online, e sono diventati buoni amici miei.
+Me lo ricordavo, quel messaggio nel MOTD, in lettere arancioni su mIRC. Non l'avevo mai capito. Pensavo fosse umorismo IRC italiano a caso. Ventisei anni dopo, la spiegazione: le carote erano una presa in giro per [Red Ronnie](https://it.wikipedia.org/wiki/Red_Ronnie) — il conduttore televisivo coi capelli rossi, coinvolto nel dramma di `#roxybar`. Lo stesso Red Ronnie che aveva fatto scoprire IRC a tanti adolescenti italiani, mostrando in sovraimpressione indirizzo del server e nome del canale durante il suo programma su [Telemontecarlo](https://it.wikipedia.org/wiki/LA7), invitando: *"se avete un computer, venite qui su IRC."*
+
+Alcuni di quegli adolescenti avevano un modem a 1200 bps e non potevano fare molto altro online. Sono diventati buoni amici miei.
 
 Il mito fondativo della più grande rete IRC italiana, immortalato come una battuta sulle verdure nel banner di login. Certe cose le capisci solo se resti connesso abbastanza a lungo.
 
