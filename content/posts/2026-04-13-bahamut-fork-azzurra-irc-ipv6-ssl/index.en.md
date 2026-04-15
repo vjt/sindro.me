@@ -250,6 +250,9 @@ Three days. The entire [`ssl.c`](https://github.com/vjt/bahamut-inet6/blob/1618b
 
 Naturally, I was using [irssi](https://irssi.org/) as my IRC client, and irssi didn't have SSL support either — so I [contributed that too](https://github.com/irssi/irssi/commit/1539cf81f3642c5afd1267b3adc4fc2d46308ceb). It shipped in [irssi 0.8.6](https://irssi.org/NEWS/#news-v0-8-6) and was subsequently rewritten from scratch, of course.
 
+![Aleksandr's irssi running the "sux" theme on Azzurra — anime wallpaper, channel activity, Fastweb hostnames in the nick list. This is what the network looked like from the inside.](irssi-sux-theme.png)
+*Aleksandr's irssi with the "sux" theme. Yes, the theme was named after the services.*
+
 ### The integration trick
 
 The clever part wasn't `ssl.c` itself — it was how the SSL calls got wired into the existing I/O path. Bahamut used `send()` and `recv()` everywhere. Rather than hunting down every call site, I added macros that the [config script generated](https://github.com/vjt/bahamut-inet6/blob/1618b3a/config#L1341) into `options.h`:
