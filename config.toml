@@ -23,6 +23,7 @@ defaultContentLanguageInSubdir = false
   brand_image = "/vjt.jpg"
   og_image = "/sindrome.png"
   dark_mode = true
+  boot_splash = true
   foot_image = "/glider.png"
   foot_link = "http://catb.org/jargon"
   foot_alt = "Hacker Emblem — The Glider from Conway's Game of Life"
