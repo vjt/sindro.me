@@ -61,9 +61,10 @@ Guidato il lato tecnico di un sistema finanziario critico per l'erogazione elett
 ## IFAD (Nazioni Unite) — Software Engineer & Sysadmin
 *Gennaio 2011 – Gennaio 2016 · 5 anni*
 
-- Progettato e sviluppato molteplici applicazioni LOB: DMS, CRM, workflow BPM, IAM, webcasting
+- Progettato e sviluppato molteplici applicazioni aziendali: DMS, CRM, workflow BPM, [autorizzazione](/it/posts/2015-02-28-eaco-authorization-ruby/), webcasting
+- Costruito il [versioning temporale](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/) nel data layer, abilitando audit history completo nelle applicazioni finanziarie
 - Costruito, messo in sicurezza e mantenuto ambienti dev/staging/prod per 30+ applicazioni Ruby
-- Creato librerie di framework condivise, rilasciate come open source dove possibile
+- Creato librerie di framework condivise, rilasciate come open source dove possibile ([data-confirm-modal](/it/posts/2013-07-02-data-confirm-modal/), [ChronoModel](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/), [Eaco](/it/posts/2015-02-28-eaco-authorization-ruby/))
 - Configurato DNS, routing, distribuzione software, monitoraggio e infrastruttura di alerting
 
 ## Mind2Mind — Web Developer & Sysadmin
