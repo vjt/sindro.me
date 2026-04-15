@@ -80,9 +80,13 @@ IRC channels — chatrooms, in today's parlance — were run by operators who co
 
 ![The late-night IRC session, circa 2002 — a CRT monitor glowing in a dark room, an IRC client with its nickname list, a Nokia phone, a modem blinking, and a printout of IP addresses with some highlighted in marker. This is what it looked like when knowing someone's IP meant you could crash their computer.](dial-up-irc.jpg)
 
-So we had two problems: everyone could see your real IP and attack you, and bans needed hostnames to work. IP cloaking solved the first by replacing the visible portion of your hostname with a keyed hash. But why a hash and not a random string? Because the hash was deterministic — the same IP always produced the same cloaked hostname. If we'd used random strings, users could just reconnect to get a new identity and dodge every ban. With a hash, as long as your IP stayed the same, your cloaked hostname stayed the same, and the ban held. Of course, dialup users could still disconnect and redial their modem to get a new IP and a new hash... but that was a limitation of 2002 internet, not the cloaking system.
+So we had two problems: everyone could see your real IP and attack you, and bans needed hostnames to work. IP cloaking solved the first by replacing the visible portion of your hostname with a keyed hash.
 
-The implementation used [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) with a server-side key, producing hostnames like `Azzurra-1A2B3C4D.example.com` for FQDNs or `192.168.Azzurra-1A2B3C4D` for IPv4 addresses. The separator was `-` for positive checksums and `=` for negative ones:
+### The hash trick
+
+But why a hash and not a random string? Because the hash was deterministic — the same IP always produced the same cloaked hostname. If we'd used random strings, users could just reconnect to get a new identity and dodge every ban. With a hash, as long as your IP stayed the same, your cloaked hostname stayed the same, and the ban held. Of course, dialup users could still disconnect and redial their modem to get a new IP and a new hash... but that was a limitation of 2002 internet, not the cloaking system.
+
+The implementation used [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) with a server-side secret key, producing hostnames like `Azzurra-1A2B3C4D.example.com` for FQDNs or `192.168.Azzurra-1A2B3C4D` for IPv4 addresses. The separator was `-` for positive checksums and `=` for negative ones:
 
 ```c
 #define CLOAK_HOST "Azzurra"
@@ -93,9 +97,29 @@ snprintf(virt, HOSTLEN, "%s%c%X.%s",
          (csum < 0 ? -csum : csum), p + 1);
 ```
 
-How secure was this? Well — IPv4 is 2^32 addresses. A rainbow table of every possible cloaked hostname takes seconds on modern hardware. Alk, reading this post in 2026, immediately threatened to crack the entire keyspace with his RTX 5090. In 2002, on his Celeron 300, it would have been harder. Progress. IPv6 cloaking came [much later](https://github.com/azzurra/bahamut/commit/ba211d5), courtesy of morph — whose commit message reads *"IPv6 host cloaking (ugly, but works)"* and whose code contains the comment `/* FFFFFFFUUUUUUUU */`.
+### How secure was it?
 
-And yes, there are Italian comments buried in the codebase. In the [FQDN handling logic](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L218):
+Actually, yes — as long as the key stays secret. The hash feeds both the hostname *and* a secret key into SHA1 before running FNV on the output:
+
+```c
+SHA1Update(&digest, (unsigned char *) s, size);
+SHA1Update(&digest, (unsigned char *) cloak_key, cloak_key_len);
+```
+
+Without the key, you can't precompute anything. But *with* the key — say, from a compromised server — the entire IPv4 address space is just 2^32 inputs. Alk, reading this post in 2026, promptly demonstrated the point with his RTX 5090:
+
+```
+ipv4-hash-build: [gpu] done — rows 4294967296 / 4294967296  124.20 Mrows/s  34.6s elapsed
+ipv4-hash-build: done — wrote table.raw
+```
+
+34 seconds. Every possible cloaked IPv4 hostname, enumerated. In 2002, his Celeron 300 would have taken maybe 14 minutes — not exactly a deterrent either. The secret key was always the real protection, not the computational cost.
+
+IPv6 cloaking came [much later](https://github.com/azzurra/bahamut/commit/ba211d5), courtesy of morph — whose commit message reads *"IPv6 host cloaking (ugly, but works)"* and whose code contains the comment `/* FFFFFFFUUUUUUUU */`. With 2^128 addresses, at least the rainbow table is a harder sell.
+
+## Italian in the codebase
+
+And yes, there are Italian comments buried in the code. In the [FQDN handling logic](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L218) of the cloaking code:
 
 ```c
 /* controllare i return value non sarebbe una cattiva idea... */

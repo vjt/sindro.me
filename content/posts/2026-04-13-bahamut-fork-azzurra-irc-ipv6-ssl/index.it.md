@@ -80,9 +80,13 @@ I canali IRC — le chatroom, nel linguaggio di oggi — erano gestiti da operat
 
 ![La sessione IRC notturna, circa 2002 — un monitor CRT che brilla in una stanza buia, un client IRC con la sua lista di nickname, un Nokia, un modem che lampeggia, e un foglio stampato con indirizzi IP evidenziati col pennarello. Questo è come appariva quando conoscere l'IP di qualcuno significava potergli crashare il computer.](dial-up-irc.jpg)
 
-Avevamo quindi due problemi: tutti potevano vedere il tuo IP reale e attaccarti, e i ban avevano bisogno degli hostname per funzionare. L'IP cloaking risolveva il primo sostituendo la porzione visibile dell'hostname con un hash con chiave. Ma perché un hash e non una stringa casuale? Perché l'hash era deterministico — lo stesso IP produceva sempre lo stesso hostname mascherato. Se avessimo usato stringhe casuali, gli utenti avrebbero potuto riconnettersi per ottenere una nuova identità e schivare ogni ban. Con un hash, finché il tuo IP restava lo stesso, il tuo hostname mascherato restava lo stesso, e il ban reggeva. Certo, gli utenti dial-up potevano sempre staccare e rifare il numero per ottenere un nuovo IP e un nuovo hash... ma quello era un limite di internet nel 2002, non del sistema di cloaking.
+Avevamo quindi due problemi: tutti potevano vedere il tuo IP reale e attaccarti, e i ban avevano bisogno degli hostname per funzionare. L'IP cloaking risolveva il primo sostituendo la porzione visibile dell'hostname con un hash con chiave.
 
-L'implementazione usava [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) con una chiave lato server, producendo hostname come `Azzurra-1A2B3C4D.example.com` per gli FQDN o `192.168.Azzurra-1A2B3C4D` per gli indirizzi IPv4. Il separatore era `-` per i checksum positivi e `=` per quelli negativi:
+### Il trucco dell'hash
+
+Ma perché un hash e non una stringa casuale? Perché l'hash era deterministico — lo stesso IP produceva sempre lo stesso hostname mascherato. Se avessimo usato stringhe casuali, gli utenti avrebbero potuto riconnettersi per ottenere una nuova identità e schivare ogni ban. Con un hash, finché il tuo IP restava lo stesso, il tuo hostname mascherato restava lo stesso, e il ban reggeva. Certo, gli utenti dial-up potevano sempre staccare e rifare il numero per ottenere un nuovo IP e un nuovo hash... ma quello era un limite di internet nel 2002, non del sistema di cloaking.
+
+L'implementazione usava [SHA1 + FNV hashing](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L145) con una chiave segreta lato server, producendo hostname come `Azzurra-1A2B3C4D.example.com` per gli FQDN o `192.168.Azzurra-1A2B3C4D` per gli indirizzi IPv4. Il separatore era `-` per i checksum positivi e `=` per quelli negativi:
 
 ```c
 #define CLOAK_HOST "Azzurra"
@@ -93,15 +97,35 @@ snprintf(virt, HOSTLEN, "%s%c%X.%s",
          (csum < 0 ? -csum : csum), p + 1);
 ```
 
-Quanto era sicuro? Beh — IPv4 è 2^32 indirizzi. Una rainbow table di tutti i possibili hostname mascherati si fa in secondi con hardware moderno. Alk, leggendo questo post nel 2026, ha immediatamente minacciato di crackare l'intero keyspace con la sua RTX 5090. Nel 2002, col suo Celeron 300, sarebbe stato più complicato. Progresso. Il cloaking IPv6 è arrivato [molto dopo](https://github.com/azzurra/bahamut/commit/ba211d5), per mano di morph — il cui commit message recita *"IPv6 host cloaking (ugly, but works)"* e il cui codice contiene il commento `/* FFFFFFFUUUUUUUU */`.
+### Quanto era sicuro?
 
-E sì, ci sono commenti in italiano sepolti nella codebase. Nella [logica di gestione degli FQDN](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L218):
+In realtà sì — finché la chiave resta segreta. L'hash dà in pasto sia l'hostname *che* una chiave segreta a SHA1 prima di passare l'output a FNV:
+
+```c
+SHA1Update(&digest, (unsigned char *) s, size);
+SHA1Update(&digest, (unsigned char *) cloak_key, cloak_key_len);
+```
+
+Senza la chiave, non puoi precalcolare nulla. Ma *con* la chiave — ad esempio da un server compromesso — l'intero spazio di indirizzi IPv4 è solo 2^32 input. Alk, leggendo questo post nel 2026, ha prontamente dimostrato il punto con la sua RTX 5090:
+
+```
+ipv4-hash-build: [gpu] done — rows 4294967296 / 4294967296  124.20 Mrows/s  34.6s elapsed
+ipv4-hash-build: done — wrote table.raw
+```
+
+34 secondi. Ogni possibile hostname IPv4 mascherato, enumerato. Nel 2002, col suo Celeron 300, ci avrebbe messo forse 14 minuti — non esattamente un deterrente neanche allora. La vera protezione è sempre stata la chiave segreta, non il costo computazionale.
+
+Il cloaking IPv6 è arrivato [molto dopo](https://github.com/azzurra/bahamut/commit/ba211d5), per mano di morph — il cui commit message recita *"IPv6 host cloaking (ugly, but works)"* e il cui codice contiene il commento `/* FFFFFFFUUUUUUUU */`. Con 2^128 indirizzi, almeno la rainbow table è un affare più complicato.
+
+## Italiano nella codebase
+
+E sì, ci sono commenti in italiano sepolti nel codice. Nella [logica di gestione degli FQDN](https://github.com/azzurra/bahamut/blob/master/src/cloak.c#L218) del codice di cloaking:
 
 ```c
 /* controllare i return value non sarebbe una cattiva idea... */
 ```
 
-*"Controllare i return value non sarebbe una cattiva idea..."* — lo sapevamo. E in [`s_bsd.c`](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/s_bsd.c#L1232), accanto al check del source routing IP che viene disabilitato per IPv6:
+Lo sapevamo. E in [`s_bsd.c`](https://github.com/vjt/bahamut-inet6/blob/1618b3a/src/s_bsd.c#L1232), accanto al check del source routing IP che viene disabilitato per IPv6:
 
 ```c
 #if defined(IP_OPTIONS) && defined(IPPROTO_IP) && !defined(INET6) /* controlla STRONZONE */
