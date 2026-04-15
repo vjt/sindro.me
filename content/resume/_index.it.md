@@ -33,7 +33,7 @@ Tech Lead con {{< years-since "1999-12-01" >}}+ anni di esperienza nella realizz
 ## Meta Platforms — Production Engineer
 *Dicembre 2021 – Presente · {{< years-since "2021-12-01" >}}+ anni*
 
-**Bootstrap / MetalOS** (2023–presente) — sistema operativo bare-metal che alimenta milioni di server a livello globale. Parte dell'organizzazione Datacenter Automation; il team EMEA gestisce l'infrastruttura di net-booting.
+**Bootstrap / [MetalOS](/it/posts/2025-10-09-all-systems-go/)** (2023–presente) — sistema operativo bare-metal che alimenta milioni di server a livello globale. Parte dell'organizzazione Datacenter Automation; il team EMEA gestisce l'infrastruttura di net-booting.
 
 - Dimezzato i cicli di re-provisioning dell'intera flotta, riducendo i tempi di inattività e il ricambio hardware
 - Progettato e distribuito meccanismi di identificazione hardware per l'imaging iniziale del sistema operativo
