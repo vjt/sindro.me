@@ -94,7 +94,7 @@ And here's the thing about typing on a phone: I make an _absurd_ number of typos
 
 The deal-breaker: mosh doesn't support scrollback or mouse events. It works by syncing screen state rather than streaming raw bytes — [by design, since 2012](https://github.com/mobile-shell/mosh/issues/122). This means on Termius I lose touch-to-scroll, which is how I read through Claude's output, build logs, and diffs on my phone. The whole point of the mobile workflow is swiping through hundreds of lines of terminal output with my finger, and mosh kills that.
 
-In practice, disconnects are rare — WireGuard handles mobility, and the TCP drop on endpoint switch costs me three seconds and two commands. That's a tax I'll happily pay to keep full touch scrollback working.
+In practice, disconnects are rare — WireGuard is very efficient at keeping the VPN link up, which lets background Termius keep sending TCP keepalives and hold the SSH connection alive. The only time it drops is on endpoint switch (LAN ↔ VPN), and that costs me three seconds and two commands. A tax I'll happily pay to keep full touch scrollback working.
 
 ## The results
 
