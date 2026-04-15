@@ -84,7 +84,7 @@ Ero innamorato della [`perror(3)`](https://man7.org/linux/man-pages/man3/perror.
 
 ## Cosa c'è di oggettivamente sbagliato
 
-Scrissi 24 pagine di [documentazione](grcalc-doc.pdf) con diagrammi di flusso disegnati in CorelDRAW. Compilai un eseguibile da 52KB che rilevava la scheda video e plottava funzioni matematiche arbitrarie in tempo reale. Ma rileggendo il codice oggi, ventiquattro anni dopo, ci sono problemi reali:
+Scrissi 10 pagine di [documentazione](grcalc-doc.pdf) con diagrammi di flusso disegnati in CorelDRAW, più 26 pagine di codice sorgente stampato — bisognava portare tutto in forma cartacea. Compilai un eseguibile da 52KB che rilevava la scheda video e plottava funzioni matematiche arbitrarie in tempo reale. Ma rileggendo il codice oggi, ventiquattro anni dopo, ci sono problemi reali:
 
 **Nessuna precedenza degli operatori.** `2 + 3 * x` si valuta da sinistra a destra come `(2 + 3) * x`. Il parser non costruisce un AST con livelli di precedenza — costruisce una lista collegata piatta. Servono le parentesi per la matematica corretta: `2 + (3 * x)`. Non me ne accorsi nemmeno all'epoca.
 
@@ -102,7 +102,7 @@ In `evaluate_func`, il caso NUMBER legge `p^.term_next^.term_value` — cioè il
 
 ## L'esame
 
-Portai tutto questo all'esame il 20 febbraio 2002. Ventiquattro pagine di documentazione, diagrammi di flusso, un eseguibile funzionante. La professoressa lo guardò. Si aspettava `type TLibro = record`. Si aspettava `BlockWrite` e `BlockRead` e un menu testuale che dice `1) Aggiungi libro 2) Cerca libro 3) Esci`.
+Portai tutto questo all'esame il 20 febbraio 2002. Dieci pagine di documentazione e ventisei pagine di codice sorgente stampato, diagrammi di flusso, un eseguibile funzionante. La professoressa lo guardò. Si aspettava `type TLibro = record`. Si aspettava `BlockWrite` e `BlockRead` e un menu testuale che dice `1) Aggiungi libro 2) Cerca libro 3) Esci`.
 
 Ricevette un parser a macchina a stati, dispatch table con puntatori a funzione, valutazione ricorsiva con ricorsione mutua e rendering grafico in tempo reale.
 
