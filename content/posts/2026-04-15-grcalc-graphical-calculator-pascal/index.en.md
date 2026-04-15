@@ -84,7 +84,7 @@ I was in love with C's [`perror(3)`](https://man7.org/linux/man-pages/man3/perro
 
 ## What's honestly wrong with it
 
-I wrote 24 pages of [documentation](https://github.com/vjt/grcalc/blob/master/doc/grcalc-doc.pdf) with flowcharts drawn in CorelDRAW. I compiled a 52KB executable that detected the video card and plotted arbitrary math functions in real time. But reading the code now, twenty-four years later, there are real problems:
+I wrote 24 pages of [documentation](grcalc-doc.pdf) with flowcharts drawn in CorelDRAW. I compiled a 52KB executable that detected the video card and plotted arbitrary math functions in real time. But reading the code now, twenty-four years later, there are real problems:
 
 **No operator precedence.** `2 + 3 * x` evaluates left-to-right as `(2 + 3) * x`. The parser doesn't build an AST with precedence levels — it builds a flat linked list. You need brackets for correct math: `2 + (3 * x)`. I didn't even notice at the time.
 
