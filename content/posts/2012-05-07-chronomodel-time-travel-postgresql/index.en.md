@@ -11,6 +11,8 @@ featuredImage: cover.jpg
 ChronoModel is still alive — 14 years, 41 releases, 201 stars. The rules got replaced by INSTEAD OF triggers in [v0.6](https://github.com/ifad/chronomodel/tree/v0.6.0) (2014), the `box()`/`point()` hack by proper `tsrange` columns, and the monkey-patching by a proper adapter registration. [Geremia Taglialatela](https://github.com/tagliala) took over maintenance in 2020 and pushed it to [v5.0.0](https://rubygems.org/gems/chrono_model/versions/5.0.0) with Rails 8.1 and Ruby 4.0 support. The core idea — updatable views on `public`, current data on `temporal`, history on `history` with table inheritance — never changed. The [repo](https://github.com/ifad/chronomodel) is healthy and actively maintained.
 {{< /retrospective >}}
 
+**Update, April 2019:** [ChronoModel reached 1.0](/posts/2019-04-06-chronomodel-one-dot-zero/) — seven years, 506 commits, and 31 releases later.
+
 We're building a CRM at [IFAD](http://www.ifad.org/) — a UN specialized agency in Rome — and one of the hard requirements is temporal data. We need to know what a record looked like at any point in the past. What was this project's budget on March 15th? When did this beneficiary's address change? Who approved what, and what did the record look like at the time?
 
 I'd been prototyping a PostgreSQL schema approach for this — views, rules, table inheritance — and it worked. Then [Amedeo](https://github.com/amedeo), my boss, looked at it and said: "This shouldn't live inside the CRM. Make it a reusable framework."
