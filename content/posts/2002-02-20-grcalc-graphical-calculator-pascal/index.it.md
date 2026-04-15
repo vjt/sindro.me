@@ -88,7 +88,7 @@ Sono innamorato della [`perror(3)`](https://man7.org/linux/man-pages/man3/perror
 
 ## Cosa c'è di oggettivamente sbagliato
 
-Scrivo 24 pagine di [documentazione](https://github.com/vjt/grcalc/blob/master/doc/grcalc-doc.rtf) con diagrammi di flusso disegnati in CorelDRAW. Compilo un eseguibile da 52KB che rileva la scheda video e plotta funzioni matematiche arbitrarie in tempo reale. Ma il codice ha problemi reali:
+Scrivo 24 pagine di [documentazione](https://github.com/vjt/grcalc/blob/master/doc/grcalc-doc.pdf) con diagrammi di flusso disegnati in CorelDRAW. Compilo un eseguibile da 52KB che rileva la scheda video e plotta funzioni matematiche arbitrarie in tempo reale. Ma il codice ha problemi reali:
 
 **Nessuna precedenza degli operatori.** `2 + 3 * x` si valuta da sinistra a destra come `(2 + 3) * x`. Il parser non costruisce un AST con livelli di precedenza — costruisce una lista collegata piatta. Servono le parentesi per la matematica corretta: `2 + (3 * x)`. Non me ne accorgo nemmeno.
 
