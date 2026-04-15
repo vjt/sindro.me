@@ -99,7 +99,7 @@ snprintf(virt, HOSTLEN, "%s%c%X.%s",
 
 ### How secure was it?
 
-Actually, yes — as long as the key stays secret. The hash feeds both the hostname *and* a secret key into SHA1 before running FNV on the output:
+Secure enough — as long as the key stays secret. The hash feeds both the hostname *and* a secret key into SHA1 before running FNV on the output:
 
 ```c
 SHA1Update(&digest, (unsigned char *) s, size);
