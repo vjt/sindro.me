@@ -251,7 +251,7 @@ Tre giorni. L'intero [`ssl.c`](https://github.com/vjt/bahamut-inet6/blob/1618b3a
 Naturalmente, usavo [irssi](https://irssi.org/) come client IRC, e neanche irssi aveva il supporto SSL — quindi l'ho [contribuito anch'io](https://github.com/irssi/irssi/commit/1539cf81f3642c5afd1267b3adc4fc2d46308ceb). È uscito in [irssi 0.8.6](https://irssi.org/NEWS/#news-v0-8-6) ed è stato successivamente riscritto da zero, naturalmente.
 
 ![L'irssi di Aleksandr con il tema "sux" su Azzurra — wallpaper anime, attività dei canali, hostname Fastweb nella lista nick. Così appariva la rete vista da dentro.](irssi-sux-theme.png)
-*L'irssi di Aleksandr con il tema "sux". Sì, il tema prendeva il nome dai services.*
+*L'irssi di Aleksandr con il tema "sux". Sì, il tema prendeva il nome dai [services](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/).*
 
 ### Il trucco dell'integrazione
 
