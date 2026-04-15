@@ -70,7 +70,7 @@ Led the technical side of a critical financial system implementing electronic di
 ## Mind2Mind — Web Developer & Sysadmin
 *September 2009 – December 2010*
 
-Refactored and architected front-end and back-end of [panmind.com](http://panmind.com), built with Ruby, Javascript and Erlang. Built a [SPA framework, event-driven analytics pipeline, and cross-language session system](/posts/2026-04-12-panmind-ahead-of-its-time/) that anticipated patterns adopted industry-wide years later. Designed and secured the production environment. Evangelised open source through component extraction and [conference presentations](/posts/2010-08-05-panmind-at-ruby-social-club/).
+Panmind was a collaborative platform for sharing and organizing knowledge, built with Ruby, Javascript and Erlang. Refactored and architected both front-end and back-end. Built a [SPA framework, event-driven analytics pipeline, and cross-language session system](/posts/2026-04-12-panmind-ahead-of-its-time/) that anticipated patterns adopted industry-wide years later. Designed and secured the production environment. Evangelised open source through component extraction and [conference presentations](/posts/2010-08-05-panmind-at-ruby-social-club/).
 
 ## Lime5 — Web Developer & Sysadmin
 *February 2008 – November 2009*
