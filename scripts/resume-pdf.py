@@ -5,6 +5,7 @@ Reads content/resume/_index.{en,it}.md, renders markdown to HTML,
 wraps in a print stylesheet, and generates PDF via WeasyPrint.
 """
 
+import os
 import re
 import sys
 from datetime import date
@@ -15,7 +16,7 @@ import markdown
 from weasyprint import HTML
 
 ROOT = Path(__file__).resolve().parent.parent
-PUBLIC = ROOT / "public"
+PUBLIC = Path(os.environ.get("HUGO_PUBLISHDIR", ROOT / "public"))
 
 # Read baseURL from config.toml (fallback to sindro.me)
 _base_url = "https://sindro.me/"
