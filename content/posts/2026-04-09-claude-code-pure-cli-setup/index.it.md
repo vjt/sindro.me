@@ -88,6 +88,14 @@ Il telefono è sorprendentemente usabile per questo workflow. Non _scrivo_ codic
 
 E qui c'è il bello della scrittura da telefono: faccio un numero _assurdo_ di typo. Guardate lo screenshot qui sopra — quel prompt è pieno di errori. Ma non importa. I LLM sono fuzzy matcher per natura. Interpretano l'intento, non i singoli tasti. "stsging" è "staging", "tge" è "the", "donMr" è "don't" — Claude non batte ciglio. Questo trasforma quella che sarebbe normalmente una tortura (tastierina, dita grosse, autocorrect che ti rema contro) in un non-problema. Scrivi veloce, non correggi, e funziona. I typo diventano una _feature_ del workflow, non un bug.
 
+### Perché non mosh?
+
+[Andrei](https://www.linkedin.com/feed/update/urn:li:activity:7449434435218956288?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7449434435218956288%2C7449725165191639040%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287449725165191639040%2Curn%3Ali%3Aactivity%3A7449434435218956288%29) mi ha suggerito di provare [mosh](https://mosh.org/) — una shell mobile basata su UDP che sopravvive ai cambi di IP e alle disconnessioni senza perdere la sessione. Sembra il fit perfetto per questo tipo di workflow nomade, quindi l'ho provato.
+
+Il problema insormontabile: mosh non supporta scrollback né eventi mouse. Funziona sincronizzando lo stato dello schermo invece di trasmettere byte grezzi — [by design, dal 2012](https://github.com/mobile-shell/mosh/issues/122). Questo significa che su Termius perdo il touch-to-scroll, che è come leggo l'output di Claude, i log dei build, e i diff dal telefono. Il senso stesso del workflow mobile è scorrere centinaia di righe di output col dito, e mosh lo ammazza.
+
+In pratica, le disconnessioni sono rare — WireGuard gestisce la mobilità, e il drop TCP al cambio di endpoint mi costa tre secondi e due comandi. Una tassa che pago volentieri per tenermi lo scrollback touch funzionante.
+
 ## I risultati
 
 Negli ultimi 30 giorni, ho fatto più di **5.000 commit** su una dozzina di progetti — tutto da questo setup:

@@ -88,6 +88,14 @@ The phone is surprisingly usable for this workflow. I'm not _writing_ code on it
 
 And here's the thing about typing on a phone: I make an _absurd_ number of typos. Look at the screenshot above — that prompt is riddled with them. But it doesn't matter. LLMs are fuzzy matchers by nature. They parse intent, not keystrokes. "stsging" is "staging", "tge" is "the", "donMr" is "don't" — Claude never even blinks. This turns what would normally be a friction nightmare (tiny keyboard, fat fingers, autocorrect fighting you) into a non-issue. You type fast, you don't correct, and it just works. Typos become a _feature_ of the workflow, not a bug.
 
+### Why not mosh?
+
+[Andrei](https://www.linkedin.com/feed/update/urn:li:activity:7449434435218956288?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7449434435218956288%2C7449725165191639040%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287449725165191639040%2Curn%3Ali%3Aactivity%3A7449434435218956288%29) suggested I try [mosh](https://mosh.org/) — a UDP-based mobile shell that survives IP changes and connection drops without losing the session. It's a natural fit for this kind of roaming workflow, so I gave it a shot.
+
+The deal-breaker: mosh doesn't support scrollback or mouse events. It works by syncing screen state rather than streaming raw bytes — [by design, since 2012](https://github.com/mobile-shell/mosh/issues/122). This means on Termius I lose touch-to-scroll, which is how I read through Claude's output, build logs, and diffs on my phone. The whole point of the mobile workflow is swiping through hundreds of lines of terminal output with my finger, and mosh kills that.
+
+In practice, disconnects are rare — WireGuard handles mobility, and the TCP drop on endpoint switch costs me three seconds and two commands. That's a tax I'll happily pay to keep full touch scrollback working.
+
 ## The results
 
 Over the past 30 days, I've made over **5,000 commits** across a dozen projects — all from this setup:
