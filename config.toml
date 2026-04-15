@@ -18,7 +18,7 @@ defaultContentLanguageInSubdir = false
   guessSyntax = true
 
 [params]
-  favicon = "/favicon.ico"
+  favicon = "/favicon.svg"
   brand = "sindro.me"
   brand_image = "/vjt.jpg"
   og_image = "/sindrome.png"

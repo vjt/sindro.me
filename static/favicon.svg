@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <path id="s" d="M 350 90 H 205 C 115 90 82 135 82 195 C 82 265 155 285 252 285 C 350 285 428 315 428 382 C 428 455 350 478 300 478 H 160"/>
+    <clipPath id="t"><rect width="512" height="225"/></clipPath>
+    <clipPath id="m"><rect y="225" width="512" height="110"/></clipPath>
+    <clipPath id="b"><rect y="335" width="512" height="177"/></clipPath>
+    <filter id="glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="76" fill="#111"/>
+  <g filter="url(#glow)" fill="none" stroke-width="52" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#s" clip-path="url(#t)" stroke="#00e600"/>
+    <use href="#s" clip-path="url(#b)" stroke="#00e600"/>
+  </g>
+  <g fill="none" stroke-width="52" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#s" clip-path="url(#m)" stroke="#e600e6" opacity="0.35"/>
+    <use href="#s" clip-path="url(#m)" stroke="#00e6e6" transform="translate(20,0)"/>
+  </g>
+  <g clip-path="url(#m)" opacity="0.08">
+    <rect y="238" width="512" height="1.5" fill="#fff"/>
+    <rect y="258" width="512" height="1" fill="#fff"/>
+    <rect y="278" width="512" height="1.5" fill="#fff"/>
+    <rect y="298" width="512" height="1" fill="#fff"/>
+    <rect y="322" width="512" height="1.5" fill="#fff"/>
+  </g>
+</svg>
