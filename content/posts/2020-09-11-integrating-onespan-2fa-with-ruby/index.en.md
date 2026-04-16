@@ -29,9 +29,9 @@ A token blob is all that's needed to generate OTPs — the AAL2 SDK [artificiall
 
 The gem bridges the SDK's C struct world and this Ruby hash world, and the bridge is where all the interesting engineering lives.
 
-{{< figure src="c-ruby-bridge.jpg" alt="C struct blocks transforming into Ruby crystals across a bridge" >}}
-
 ### The C-to-Ruby bridge
+
+{{< figure src="c-ruby-bridge.jpg" alt="C struct blocks transforming into Ruby crystals across a bridge" >}}
 
 The central data structure in the AAL2 SDK is `TDigipassBlob` — an opaque struct containing the token's serial number, application name, flags, and a 224-byte `Blob` field that holds encrypted token state. Every SDK call takes a pointer to this struct, mutates it in place, and expects you to persist the changes.
 
@@ -82,9 +82,9 @@ The pattern is: deserialize the Ruby hash into a stack-allocated `TDigipassBlob`
 
 There's also a variant, [`vacman_rbhash_to_digipass_sv`](https://github.com/vjt/vacman_controller/blob/master/ext/vacman_controller/serialize.c#L53), that handles an additional `"sv"` key for the token's static vector — needed for [offline activation code generation](https://github.com/vjt/vacman_controller/blob/master/ext/vacman_controller/dpx.c#L92) via `AAL2GenActivationCodeXErc`. When provisioning a new soft token, the activation code lets the user's device sync with the server without a round-trip. Not every token has a static vector — the `"sv"` key is only present on tokens imported from DPX files that include one.
 
-{{< figure src="dpx-import.jpg" alt="A metal vault opened to reveal glowing amber capsules — encrypted DPX tokens" >}}
-
 ### Importing tokens
+
+{{< figure src="dpx-import.jpg" alt="A metal vault opened to reveal glowing amber capsules — encrypted DPX tokens" >}}
 
 Tokens arrive as `.dpx` files — encrypted containers holding token seeds and initialization parameters. You decrypt them with a transport key that OneSpan provides separately. The import flow in [`dpx.c`](https://github.com/vjt/vacman_controller/blob/master/ext/vacman_controller/dpx.c) opens the DPX, then loops over its contents extracting tokens one at a time:
 
@@ -283,9 +283,9 @@ when 'token_status'
 
 `pin_change_forced` is a one-way flag — you can force a PIN change but you can't un-force it, so the setter raises instead of silently failing. `token_status` maps Ruby symbols to the integer values the SDK expects. `pin_enabled` maps `true` to `1` and `false` to `2` — yes, `2`, not `0`, because OneSpan. Bounded integer properties like `pin_minimum_length` (3–8) and `virtual_token_grace_period` (1–364) get range validation. [Forty-plus properties](https://github.com/vjt/vacman_controller/blob/master/ext/vacman_controller/token.c#L19), each with its own type semantics, all behind a [consistent interface](https://github.com/vjt/vacman_controller/blob/master/lib/vacman_controller/token/properties.rb) that makes OneSpan's integer-obsessed C API feel like a Ruby object.
 
-{{< figure src="binary-patch.jpg" alt="Hex editor view carved into obsidian — a single byte highlighted red, a precision tool hovering over it" >}}
-
 ### The binary patch
+
+{{< figure src="binary-patch.jpg" alt="Hex editor view carved into obsidian — a single byte highlighted red, a precision tool hovering over it" >}}
 
 The AAL2 SDK can verify OTP codes. It can also generate them — but only for a small set of demo tokens that OneSpan ships for development purposes. For real hardware tokens and software tokens, generation is locked out entirely. You hand it a seed, it tells you yes or no on a submitted OTP, but it won't tell you what the OTP *should be*.
 
@@ -299,9 +299,9 @@ This is completely unsupported. It will absolutely void any support contract you
 
 This is also why token blobs must be treated like private keys. With the patched library and a leaked blob, anyone can generate valid OTPs for that token — no hardware device needed. Keep blobs in the datastore, keep them out of logs, and never expose them through an API.
 
-{{< figure src="soap-labyrinth.jpg" alt="A steampunk baroque cathedral of XML pipes, valves, and WSDL blueprints" >}}
-
 ## identikey
+
+{{< figure src="soap-labyrinth.jpg" alt="A steampunk baroque cathedral of XML pipes, valves, and WSDL blueprints" >}}
 
 The [identikey](https://github.com/vjt/identikey) gem is a different beast entirely. Where vacman_controller wrestles with a C SDK and opaque structs, identikey wrestles with SOAP — specifically, with OneSpan's interpretation of what SOAP should look like, which bears the same relationship to the WS-I standard that a fever dream bears to a lucid thought.
 
