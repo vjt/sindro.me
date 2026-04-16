@@ -478,3 +478,8 @@ Il mito fondativo della più grande rete IRC italiana, immortalato come una batt
 ---
 
 Il fork era in produzione. Era ora di costruire qualcosa da zero. Questa è la [prossima storia](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) — 954 commit, un demone C multithreaded, e il progetto che non ho mai finito. Continuate a leggere.
+
+
+---
+
+**Azzurra IRC, 2002–2026:** [Sux Services 0.2.8 (WIP)](/it/posts/2003-03-16-suxserv-wip/) (2003) • **Bahamut fork: IPv6 + SSL (2026)** • [Sux Services retrospettiva](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) (2026)

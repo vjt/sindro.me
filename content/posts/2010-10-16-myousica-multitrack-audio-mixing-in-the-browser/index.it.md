@@ -222,3 +222,8 @@ Zero revert in tutto il repo. L'architettura di Vaclav era abbastanza solida da 
 Il [terzo e ultimo post](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/) copre la pipeline di elaborazione audio — come l'audio arriva dal microfono dell'utente a un MP3 riproducibile con forma d'onda, passando attraverso Red5, ffmpeg e sox.
 
 **Repository:** [mewsic/mewsic-multitrack](https://github.com/mewsic/mewsic-multitrack)
+
+
+---
+
+**Myousica nel tempo:** [Annuncio lancio](/it/posts/2008-09-11-myousica-com-was-born-today/) (2008) • [Open-source dell'app Rails](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) (2010) • **Editor multitraccia (2010)** • [Pipeline audio](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/) (2010) • [Diciotto anni dopo](/it/posts/2026-04-11-myousica-eighteen-years-later/) (2026)

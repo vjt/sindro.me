@@ -7,6 +7,10 @@ image: sourceforge.png
 featuredImage: sourceforge.png
 ---
 
+{{< retrospective year="2026" >}}
+Twenty-three years later, I [recovered the CVS history from SourceForge](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) — 954 commits, three authors, a continuous trail from September 2002 to November 2005. The full retrospective covers what I built, what I never finished, and why. There's a [companion piece on the Bahamut IRC server fork](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) that this depends on.
+{{< /retrospective >}}
+
 So I just tagged 0.2.8 and I think this thing is getting close to usable.
 
 Quick recap for those who don't know: [Sux Services](https://suxserv.sourceforge.net/) are IRC services I'm writing from scratch in C for the [Azzurra IRC Network](https://azzurra.chat). The idea is: multithreaded, modular, SQL backend instead of flat files, and not a complete mess to maintain. We'll see about that last part.
@@ -22,3 +26,8 @@ The threading is solid at this point. Four threads: network I/O on a GLib main l
 If you want to try it or look at the code: [project page](http://sourceforge.net/projects/suxserv), [home page](https://suxserv.sourceforge.net/), or just grab the [download](http://sourceforge.net/project/showfiles.php?group_id=70725). You'll need GLib 2.2+, MySQL, and a Bahamut IRCd. BSD licensed.
 
 Next up: OperServ needs more work, I want to add nick expiry, and the whole help system needs to be loaded from the database instead of being hardcoded. Also someone already filed a [bug](https://sourceforge.net/tracker/index.php?func=detail&aid=705501&group_id=70725&atid=528793) on sourceforge so I guess people are actually trying it =)
+
+
+---
+
+**Azzurra IRC, 2002–2026:** **Sux Services 0.2.8 (WIP) (2003)** • [Bahamut fork: IPv6 + SSL](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) (2026) • [Sux Services retrospective](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) (2026)

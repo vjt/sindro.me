@@ -309,3 +309,8 @@ Next up: the [multitrack editor](/posts/2010-10-16-myousica-multitrack-audio-mix
 - [mewsic/mewsic-multitrack](https://github.com/mewsic/mewsic-multitrack) — Flash multitrack editor
 - [mewsic/mewsic-uploader](https://github.com/mewsic/mewsic-uploader) — audio processing service
 - [mewsic/mewsic-red5](https://github.com/mewsic/mewsic-red5) — Red5 media server instance
+
+
+---
+
+**Myousica timeline:** [Launch announcement](/posts/2008-09-11-myousica-com-was-born-today/) (2008) • **Open-sourcing the Rails app (2010)** • [Multitrack editor](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) (2010) • [Audio pipeline](/posts/2010-10-18-myousica-from-microphone-to-mp3/) (2010) • [Eighteen years later](/posts/2026-04-11-myousica-eighteen-years-later/) (2026)

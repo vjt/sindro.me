@@ -222,3 +222,8 @@ Zero reverts across the entire repo. Vaclav's architecture was solid enough that
 The [third and final post](/posts/2010-10-18-myousica-from-microphone-to-mp3/) covers the audio processing pipeline — how audio gets from the user's microphone to a playable MP3 with a waveform, through Red5, ffmpeg, and sox.
 
 **Repository:** [mewsic/mewsic-multitrack](https://github.com/mewsic/mewsic-multitrack)
+
+
+---
+
+**Myousica timeline:** [Launch announcement](/posts/2008-09-11-myousica-com-was-born-today/) (2008) • [Open-sourcing the Rails app](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) (2010) • **Multitrack editor (2010)** • [Audio pipeline](/posts/2010-10-18-myousica-from-microphone-to-mp3/) (2010) • [Eighteen years later](/posts/2026-04-11-myousica-eighteen-years-later/) (2026)

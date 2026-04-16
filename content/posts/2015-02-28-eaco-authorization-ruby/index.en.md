@@ -185,3 +185,8 @@ The gem is MIT-licensed and [on GitHub](https://github.com/ifad/eaco). The [YARD
 If your authorization needs go beyond "admin or not" — if access depends on *who the user is in relation to the resource* — give Eaco a try. `gem install eaco` and create your `config/authorization.rb`.
 
 The keys of Hades are in good hands.
+
+
+---
+
+**Open source from the IFAD years:** [ChronoModel](/posts/2012-05-07-chronomodel-time-travel-postgresql/) (2012) • [data-confirm-modal](/posts/2013-07-02-data-confirm-modal/) (2013) • [Hermes](/posts/2013-10-20-hermes-rails-rumble-2013/) (2013) • **Eaco (2015)** • [Heathen → Colore](/posts/2016-01-15-document-pipeline-heathen-colore/) (2016) • [TM → Pontoon](/posts/2018-02-14-translation-memory-pontoon/) (2018) • [ChronoModel 1.0](/posts/2019-04-06-chronomodel-one-dot-zero/) (2019) • [OneSpan 2FA](/posts/2020-09-11-integrating-onespan-2fa-with-ruby/) (2020) • [ansible-wsadmin](/posts/2026-04-11-ansible-wsadmin/) (2026)

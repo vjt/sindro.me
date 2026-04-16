@@ -12,6 +12,8 @@ This game used the Facebook Graph API to access your friends list, profile photo
 
 Last weekend we competed in [Rails Rumble](http://railsrumble.com/) 2012 — 48 hours to build a web app from scratch using Ruby on Rails, no preparation allowed. Our team was part of the Italian [48rails](http://48rails.org/) community, and we built **Guess The Friend**: a Facebook game that implements the classic [Guess Who?](https://en.wikipedia.org/wiki/Guess_Who%3F) board game, but using your *real* Facebook friends as characters.
 
+(I'd be back at the Rumble [the following year](/posts/2013-10-20-hermes-rails-rumble-2013/) with a different team, building [Hermes](/posts/2013-10-20-hermes-rails-rumble-2013/).)
+
 <!--more-->
 
 ## The team

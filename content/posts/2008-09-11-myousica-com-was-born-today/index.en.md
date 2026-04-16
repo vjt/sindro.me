@@ -20,3 +20,8 @@ Today we released the output of 9 months of hard work: [myousica.com](http://myo
 **UPDATE 2009/02/23**: The site is now paused.
 
 **UPDATE 2010/10**: The source code has been [released on GitHub](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) under the name Mewsic.
+
+
+---
+
+**Myousica timeline:** **Launch announcement (2008)** • [Open-sourcing the Rails app](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) (2010) • [Multitrack editor](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) (2010) • [Audio pipeline](/posts/2010-10-18-myousica-from-microphone-to-mp3/) (2010) • [Eighteen years later](/posts/2026-04-11-myousica-eighteen-years-later/) (2026)

@@ -385,3 +385,8 @@ Nel 2002, ho scritto IRC services perché mi servivano. La rete era reale, gli u
 Tutto quello che ho imparato scrivendo questo codice — threading, gestione della memoria, parsing di protocollo, astrazione del database, la disciplina della programmazione di sistema — è diventato la base per tutto quello che è venuto dopo. Ruby, Rails, Erlang, sistemi distribuiti, gli anni della startup, il lavoro sull'infrastruttura. È iniziato tutto con un IRCop di 21 anni che pensava di poter scrivere services migliori di quelli che già esistevano.
 
 Non ce l'ha fatta, del tutto. Ma il tentativo è valso più del risultato.
+
+
+---
+
+**Azzurra IRC, 2002–2026:** [Sux Services 0.2.8 (WIP)](/it/posts/2003-03-16-suxserv-wip/) (2003) • [Bahamut fork: IPv6 + SSL](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) (2026) • **Sux Services retrospettiva (2026)**

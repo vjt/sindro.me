@@ -275,3 +275,8 @@ That's the complete Myousica stack — from the [Rails platform](/posts/2010-10-
 **Repositories:**
 - [mewsic/mewsic-uploader](https://github.com/mewsic/mewsic-uploader) — audio processing service
 - [mewsic/mewsic-red5](https://github.com/mewsic/mewsic-red5) — Red5 media server instance
+
+
+---
+
+**Myousica timeline:** [Launch announcement](/posts/2008-09-11-myousica-com-was-born-today/) (2008) • [Open-sourcing the Rails app](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) (2010) • [Multitrack editor](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) (2010) • **Audio pipeline (2010)** • [Eighteen years later](/posts/2026-04-11-myousica-eighteen-years-later/) (2026)

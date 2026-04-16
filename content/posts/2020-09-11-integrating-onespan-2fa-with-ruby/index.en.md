@@ -535,3 +535,8 @@ end
 The hex string feeds into a companion gem that renders the colored dot matrix as a PNG, delivered to users during push notification enrollment. The `01;01;` prefix, the semicolons, the per-character hex encoding — none of this is in the public documentation. The CRONTO format is proprietary, the encoding is proprietary, and the only way to get it right is to match OneSpan's reference implementation byte for byte.
 
 [vacman_controller](https://github.com/vjt/vacman_controller) and [identikey](https://github.com/vjt/identikey) are on GitHub. Hardware 2FA shouldn't require a Java SDK or a fax-machine manual. It still doesn't.
+
+
+---
+
+**Open source from the IFAD years:** [ChronoModel](/posts/2012-05-07-chronomodel-time-travel-postgresql/) (2012) • [data-confirm-modal](/posts/2013-07-02-data-confirm-modal/) (2013) • [Hermes](/posts/2013-10-20-hermes-rails-rumble-2013/) (2013) • [Eaco](/posts/2015-02-28-eaco-authorization-ruby/) (2015) • [Heathen → Colore](/posts/2016-01-15-document-pipeline-heathen-colore/) (2016) • [TM → Pontoon](/posts/2018-02-14-translation-memory-pontoon/) (2018) • [ChronoModel 1.0](/posts/2019-04-06-chronomodel-one-dot-zero/) (2019) • **OneSpan 2FA (2020)** • [ansible-wsadmin](/posts/2026-04-11-ansible-wsadmin/) (2026)

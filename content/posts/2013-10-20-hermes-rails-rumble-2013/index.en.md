@@ -14,6 +14,8 @@ The [Rails Rumble](http://railsrumble.com/) is — was — a 48-hour hackathon w
 
 This year our team — [@amedeo](https://github.com/amedeo), [@liquid1982](https://github.com/liquid1982), [@maisongb](https://github.com/maisongb), and me — built **Hermes: the epic messenger service**, entry #385.
 
+(My [previous Rumble entry](/posts/2012-10-14-guess-the-friend-rails-rumble-2012/) was *Guess The Friend* in 2012, with a different team.)
+
 <!--more-->
 
 ## What Hermes does
@@ -39,3 +41,8 @@ That's what makes Hermes good: the idea is genuinely original, not something we'
 The concept is everywhere now — every SaaS product has onboarding tooltips and contextual help. When we built it, it was genuinely innovative. Sometimes the best hackathon projects come from a visionary who knows the problem cold, even when nobody else sees it yet.
 
 The code: [github.com/vjt/r13-hermes](https://github.com/vjt/r13-hermes)
+
+
+---
+
+**Open source from the IFAD years:** [ChronoModel](/posts/2012-05-07-chronomodel-time-travel-postgresql/) (2012) • [data-confirm-modal](/posts/2013-07-02-data-confirm-modal/) (2013) • **Hermes (2013)** • [Eaco](/posts/2015-02-28-eaco-authorization-ruby/) (2015) • [Heathen → Colore](/posts/2016-01-15-document-pipeline-heathen-colore/) (2016) • [TM → Pontoon](/posts/2018-02-14-translation-memory-pontoon/) (2018) • [ChronoModel 1.0](/posts/2019-04-06-chronomodel-one-dot-zero/) (2019) • [OneSpan 2FA](/posts/2020-09-11-integrating-onespan-2fa-with-ruby/) (2020) • [ansible-wsadmin](/posts/2026-04-11-ansible-wsadmin/) (2026)

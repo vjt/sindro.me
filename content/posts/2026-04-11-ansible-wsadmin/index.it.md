@@ -180,3 +180,8 @@ AdminConfig ha ancora un ruolo — `save()`, `getCurrentSession()` e `reset()` s
 - [Documentazione WDR](https://wdr.github.io/WDR/) — wrapper "Pythonico" su AdminConfig
 - [myarch.com: Getting Started with wsadmin](https://myarch.com/getting-started-wsadmin/) — l'introduzione più onesta all'API che troverai
 - [myarch.com: AdminControl vs AdminConfig](https://myarch.com/admincontrol-vs-adminconfig/) — capire la divisione architetturale
+
+
+---
+
+**Open source dagli anni IFAD:** [ChronoModel](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/) (2012) • [data-confirm-modal](/it/posts/2013-07-02-data-confirm-modal/) (2013) • [Hermes](/it/posts/2013-10-20-hermes-rails-rumble-2013/) (2013) • [Eaco](/it/posts/2015-02-28-eaco-authorization-ruby/) (2015) • [Heathen → Colore](/it/posts/2016-01-15-document-pipeline-heathen-colore/) (2016) • [TM → Pontoon](/it/posts/2018-02-14-translation-memory-pontoon/) (2018) • [ChronoModel 1.0](/it/posts/2019-04-06-chronomodel-one-dot-zero/) (2019) • [OneSpan 2FA](/it/posts/2020-09-11-integrating-onespan-2fa-with-ruby/) (2020) • **ansible-wsadmin (2026)**

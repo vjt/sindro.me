@@ -107,3 +107,8 @@ Country.as_of(1.year.ago).find_by(code: 'IT')
 The [source is on GitHub](https://github.com/ifad/chronomodel), the [API docs](https://vjt.github.io/chronomodel/) cover every public method. `gem 'chrono_model', '~> 1.0'` and you're set.
 
 Time travel shouldn't cost an Oracle license. It still doesn't.
+
+
+---
+
+**Open source from the IFAD years:** [ChronoModel](/posts/2012-05-07-chronomodel-time-travel-postgresql/) (2012) • [data-confirm-modal](/posts/2013-07-02-data-confirm-modal/) (2013) • [Hermes](/posts/2013-10-20-hermes-rails-rumble-2013/) (2013) • [Eaco](/posts/2015-02-28-eaco-authorization-ruby/) (2015) • [Heathen → Colore](/posts/2016-01-15-document-pipeline-heathen-colore/) (2016) • [TM → Pontoon](/posts/2018-02-14-translation-memory-pontoon/) (2018) • **ChronoModel 1.0 (2019)** • [OneSpan 2FA](/posts/2020-09-11-integrating-onespan-2fa-with-ruby/) (2020) • [ansible-wsadmin](/posts/2026-04-11-ansible-wsadmin/) (2026)

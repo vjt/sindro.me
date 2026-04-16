@@ -5,7 +5,7 @@ tags: [open-source, projects, rails, ruby, events, panmind]
 ---
 
 {{< retrospective year="2026" >}}
-Panmind non esiste più. Le repo GitHub esistono ancora come reperti storici, ma l'ecosistema di plugin Rails descritto qui è stato sostituito da gem e engine da un pezzo.
+Panmind non esiste più. Le repo GitHub esistono ancora come reperti storici, ma l'ecosistema di plugin Rails descritto qui è stato sostituito da gem e engine da un pezzo. Per la storia più profonda dell'architettura — il framework SPA, la pipeline di analytics, la condivisione di sessioni cross-linguaggio — vedi la [retrospettiva del 2026](/it/posts/2026-04-12-panmind-ahead-of-its-time/).
 {{< /retrospective >}}
 
 Il 22 luglio 2010, [Mikamai](http://mikamai.com/) ha ospitato un [Ruby Social

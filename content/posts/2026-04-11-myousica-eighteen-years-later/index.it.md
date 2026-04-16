@@ -58,3 +58,8 @@ Sono orgoglioso di quello che abbiamo costruito. [Vaclav Vancura](https://vancur
 Myousica è stato un successo commerciale? No. L'idea era giusta? Sessanta milioni di utenti BandLab dicono di sì.
 
 Eravamo solo troppo in anticipo.
+
+
+---
+
+**Myousica nel tempo:** [Annuncio lancio](/it/posts/2008-09-11-myousica-com-was-born-today/) (2008) • [Open-source dell'app Rails](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) (2010) • [Editor multitraccia](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) (2010) • [Pipeline audio](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/) (2010) • **Diciotto anni dopo (2026)**

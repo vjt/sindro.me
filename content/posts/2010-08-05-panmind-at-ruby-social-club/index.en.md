@@ -5,7 +5,7 @@ tags: [open-source, projects, rails, ruby, events, panmind]
 ---
 
 {{< retrospective year="2026" >}}
-Panmind is long gone. The GitHub repos still exist as historical artifacts, but the Rails plugin ecosystem described here was replaced by gems and engines long ago.
+Panmind is long gone. The GitHub repos still exist as historical artifacts, but the Rails plugin ecosystem described here was replaced by gems and engines long ago. For the deeper architecture story — the SPA framework, the analytics pipeline, the cross-language session sharing — see the [2026 retrospective](/posts/2026-04-12-panmind-ahead-of-its-time/).
 {{< /retrospective >}}
 
 On July 22nd 2010, [Mikamai](http://mikamai.com/) hosted a [Ruby Social Club in

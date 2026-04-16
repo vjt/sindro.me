@@ -222,3 +222,8 @@ What we don't have, and never will, is a dramatic origin story. The pipeline isn
 - **OpenSuSE RPMs**: me, at [build.opensuse.org/project/show/home:vjt:ifad](https://build.opensuse.org/project/show/home:vjt:ifad).
 
 `gem install colore-client` and you can talk to a Colore service. `bundle install carrierwave-colore` and your Rails uploads end up versioned, converted, and served by nginx. The keys to the document kingdom are MIT-licensed.
+
+
+---
+
+**Open source from the IFAD years:** [ChronoModel](/posts/2012-05-07-chronomodel-time-travel-postgresql/) (2012) • [data-confirm-modal](/posts/2013-07-02-data-confirm-modal/) (2013) • [Hermes](/posts/2013-10-20-hermes-rails-rumble-2013/) (2013) • [Eaco](/posts/2015-02-28-eaco-authorization-ruby/) (2015) • **Heathen → Colore (2016)** • [TM → Pontoon](/posts/2018-02-14-translation-memory-pontoon/) (2018) • [ChronoModel 1.0](/posts/2019-04-06-chronomodel-one-dot-zero/) (2019) • [OneSpan 2FA](/posts/2020-09-11-integrating-onespan-2fa-with-ruby/) (2020) • [ansible-wsadmin](/posts/2026-04-11-ansible-wsadmin/) (2026)

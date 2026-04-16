@@ -535,3 +535,8 @@ end
 La stringa esadecimale alimenta una gemma companion che renderizza la matrice di pallini colorati come PNG, consegnata agli utenti durante l'enrollment via notifica push. Il prefisso `01;01;`, i punto e virgola, la codifica esadecimale per-carattere — niente di tutto questo è nella documentazione pubblica. Il formato CRONTO è proprietario, la codifica è proprietaria, e l'unico modo per farla giusta è matchare l'implementazione di riferimento di OneSpan byte per byte.
 
 [vacman_controller](https://github.com/vjt/vacman_controller) e [identikey](https://github.com/vjt/identikey) sono su GitHub. L'autenticazione 2FA hardware non dovrebbe richiedere un SDK Java o un manuale da fax. Continua a non richiederlo.
+
+
+---
+
+**Open source dagli anni IFAD:** [ChronoModel](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/) (2012) • [data-confirm-modal](/it/posts/2013-07-02-data-confirm-modal/) (2013) • [Hermes](/it/posts/2013-10-20-hermes-rails-rumble-2013/) (2013) • [Eaco](/it/posts/2015-02-28-eaco-authorization-ruby/) (2015) • [Heathen → Colore](/it/posts/2016-01-15-document-pipeline-heathen-colore/) (2016) • [TM → Pontoon](/it/posts/2018-02-14-translation-memory-pontoon/) (2018) • [ChronoModel 1.0](/it/posts/2019-04-06-chronomodel-one-dot-zero/) (2019) • **OneSpan 2FA (2020)** • [ansible-wsadmin](/it/posts/2026-04-11-ansible-wsadmin/) (2026)

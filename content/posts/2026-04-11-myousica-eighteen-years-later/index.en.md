@@ -58,3 +58,8 @@ I'm proud of what we built. [Vaclav Vancura](https://vancura.design/) designed a
 Was Myousica a commercial success? No. Was the idea right? Sixty million BandLab users say so.
 
 We were just too early.
+
+
+---
+
+**Myousica timeline:** [Launch announcement](/posts/2008-09-11-myousica-com-was-born-today/) (2008) • [Open-sourcing the Rails app](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/) (2010) • [Multitrack editor](/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) (2010) • [Audio pipeline](/posts/2010-10-18-myousica-from-microphone-to-mp3/) (2010) • **Eighteen years later (2026)**

@@ -84,3 +84,8 @@ L'incidente vero e proprio all'IFAD ha coinvolto un utente che gestiva dati di p
 La fix nella nostra applicazione e' stata immediata: sostituire `confirm()` con un modal che esige attenzione. L'estrazione in una gem ha richiesto tre commit e sei minuti. A volte il miglior open source nasce dai peggiori incidenti in produzione.
 
 [Sorgente su GitHub](https://github.com/ifad/data-confirm-modal). [Provalo su JSFiddle](https://jsfiddle.net/zpu4u6mh/). PR benvenute — specialmente se anche voi siete stati scottati dal `confirm()`.
+
+
+---
+
+**Open source dagli anni IFAD:** [ChronoModel](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/) (2012) • **data-confirm-modal (2013)** • [Hermes](/it/posts/2013-10-20-hermes-rails-rumble-2013/) (2013) • [Eaco](/it/posts/2015-02-28-eaco-authorization-ruby/) (2015) • [Heathen → Colore](/it/posts/2016-01-15-document-pipeline-heathen-colore/) (2016) • [TM → Pontoon](/it/posts/2018-02-14-translation-memory-pontoon/) (2018) • [ChronoModel 1.0](/it/posts/2019-04-06-chronomodel-one-dot-zero/) (2019) • [OneSpan 2FA](/it/posts/2020-09-11-integrating-onespan-2fa-with-ruby/) (2020) • [ansible-wsadmin](/it/posts/2026-04-11-ansible-wsadmin/) (2026)

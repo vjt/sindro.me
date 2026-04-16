@@ -478,3 +478,8 @@ The founding myth of Italy's largest IRC network, immortalized as a vegetable jo
 ---
 
 The fork was shipping. Time to build something from scratch. That's the [next story](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) — 954 commits, a multithreaded C daemon, and the project I never finished. Read on.
+
+
+---
+
+**Azzurra IRC, 2002–2026:** [Sux Services 0.2.8 (WIP)](/posts/2003-03-16-suxserv-wip/) (2003) • **Bahamut fork: IPv6 + SSL (2026)** • [Sux Services retrospective](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) (2026)

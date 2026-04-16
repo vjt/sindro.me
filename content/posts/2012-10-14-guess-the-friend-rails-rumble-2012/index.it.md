@@ -12,6 +12,8 @@ Questo gioco usava le API Facebook Graph per accedere alla lista amici, alle fot
 
 Lo scorso weekend abbiamo partecipato alla [Rails Rumble](http://railsrumble.com/) 2012 — 48 ore per costruire un'app web da zero usando Ruby on Rails, nessuna preparazione consentita. Il nostro team faceva parte della community italiana [48rails](http://48rails.org/) e abbiamo costruito **Guess The Friend**: un gioco Facebook che implementa il classico [Indovina Chi?](https://it.wikipedia.org/wiki/Indovina_chi%3F) da tavolo, ma usando i tuoi *veri* amici di Facebook come personaggi.
 
+(Sarei tornato alla Rumble [l'anno dopo](/it/posts/2013-10-20-hermes-rails-rumble-2013/) con un team diverso, a costruire [Hermes](/it/posts/2013-10-20-hermes-rails-rumble-2013/).)
+
 <!--more-->
 
 ## Il team

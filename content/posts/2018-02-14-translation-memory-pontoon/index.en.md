@@ -236,3 +236,8 @@ ruby import.rb tmx project-slug path/to/file.tmx
 It does one thing. It logs what it did. It writes a CSV you can mail back. When the migration is done you stop running it. The repo stays public, the README never gets written ([sorry](https://github.com/ifad/translation-memory)), and the next Pontoon schema migration eventually breaks the model layer. By then the import has done its job. That is enough for tools like this.
 
 Pontoon, by the way, is excellent. If your team is still emailing each other XML files, [go look at it](https://pontoon.mozilla.org/).
+
+
+---
+
+**Open source from the IFAD years:** [ChronoModel](/posts/2012-05-07-chronomodel-time-travel-postgresql/) (2012) • [data-confirm-modal](/posts/2013-07-02-data-confirm-modal/) (2013) • [Hermes](/posts/2013-10-20-hermes-rails-rumble-2013/) (2013) • [Eaco](/posts/2015-02-28-eaco-authorization-ruby/) (2015) • [Heathen → Colore](/posts/2016-01-15-document-pipeline-heathen-colore/) (2016) • **TM → Pontoon (2018)** • [ChronoModel 1.0](/posts/2019-04-06-chronomodel-one-dot-zero/) (2019) • [OneSpan 2FA](/posts/2020-09-11-integrating-onespan-2fa-with-ruby/) (2020) • [ansible-wsadmin](/posts/2026-04-11-ansible-wsadmin/) (2026)
