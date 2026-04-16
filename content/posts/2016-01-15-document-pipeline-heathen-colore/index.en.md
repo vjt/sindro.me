@@ -8,7 +8,7 @@ featuredImage: cover.jpg
 ---
 
 {{< retrospective year="2026" >}}
-Colore is still alive at [github.com/ifad/colore](https://github.com/ifad/colore) — [Geremia Taglialatela](https://github.com/tagliala) took over after I drifted onto other things and pushed the project forward through Ruby 2.7, 3.0, 3.1, 3.2, sidekiq 6, and modern CI. He sits at [354 commits](https://github.com/ifad/colore/graphs/contributors) — three times mine. The [nginx C module](https://github.com/ifad/colore/tree/master/nginx/ngx_colore_module) Joe wrote in February 2015 is unchanged. Heathen the standalone service was eventually folded directly into Colore as a library; the [original repo](https://github.com/ifad/heathen) is archived but the code lives on inside `lib/heathen/` of Colore. Same idea, fewer moving parts.
+Colore is still alive at [github.com/ifad/colore](https://github.com/ifad/colore) — [Geremia Taglialatela](https://github.com/ifad/colore/commits?author=tagliala) took over after I drifted onto other things and pushed the project forward through Ruby 2.7, 3.0, 3.1, 3.2, sidekiq 6, and modern CI. He sits at [354 commits](https://github.com/ifad/colore/graphs/contributors) — three times mine. The [nginx C module](https://github.com/ifad/colore/tree/master/nginx/ngx_colore_module) Joe wrote in February 2015 is unchanged. Heathen the standalone service was eventually folded directly into Colore as a library; the [original repo](https://github.com/ifad/heathen) is archived but the code lives on inside `lib/heathen/` of Colore. Same idea, fewer moving parts.
 {{< /retrospective >}}
 
 [IFAD](http://www.ifad.org/) is a UN agency that runs on documents. Loan agreements, evaluation reports, country strategy notes, board decisions, project briefs — every web application we build sooner or later needs to take a Word file and give back a PDF, or take a scan and give back something searchable, or take an arbitrary blob and turn it into a thumbnail. Three years ago we decided to stop solving this problem one application at a time and put it behind a single service.
@@ -19,9 +19,9 @@ Today I'm merging [v1.0.0 of Colore](https://github.com/ifad/colore/commit/63d4f
 
 ## Heathen, the first attempt
 
-[Heathen](https://github.com/ifad/heathen) starts on [December 18, 2012](https://github.com/ifad/heathen/commit/f9081b6) with a `README` from [Peter Brindisi](https://github.com/petebrindisi). The repo banner is ASCII art. The tagline is "Convert the heathens." The mission statement is one sentence: *"a service for converting pretty much anything to PDF."*
+[Heathen](https://github.com/ifad/heathen) starts on [December 18, 2012](https://github.com/ifad/heathen/commit/f9081b6) with a `README` from [Peter Brindisi](https://github.com/ifad/heathen/commits?author=npj). The repo banner is ASCII art. The tagline is "Convert the heathens." The mission statement is one sentence: *"a service for converting pretty much anything to PDF."*
 
-Two days later the first working version lands. Peter sketches the architecture, [Lleïr Borràs Metje](https://github.com/lleirborras) wires up the conversion backends, [Joe Blackman](https://github.com/jblackman) joins to extend the API, and I show up roughly a year later to clean up the rough edges. Final tally: [193 commits, four authors](https://github.com/ifad/heathen/graphs/contributors), almost evenly split. None of us is the lead. The project belongs to the codebase.
+Two days later the first working version lands. Peter sketches the architecture, [Lleïr Borràs Metje](https://github.com/ifad/heathen/commits?author=lleirborras) wires up the conversion backends, [Joe Blackman](https://github.com/ifad/heathen/commits?author=jblackman) joins to extend the API, and I show up roughly a year later to clean up the rough edges. Final tally: [193 commits, four authors](https://github.com/ifad/heathen/graphs/contributors), almost evenly split. None of us is the lead. The project belongs to the codebase.
 
 The stack is delightfully 2012:
 
@@ -82,7 +82,7 @@ None of these are bugs. They're the boundary of what the chosen primitives can e
 
 ## Colore
 
-[Joe Blackman](https://github.com/jblackman) starts the rewrite on [January 30, 2015](https://github.com/ifad/colore/commit/422323f) with a commit titled "First cut of storage." The new project is [Colore](https://github.com/ifad/colore) — Italian for "color," named after [the color wheel](https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/BYR_color_wheel.svg/480px-BYR_color_wheel.svg.png) the README sports as its logo, and because it speaks several languages: storage, versioning, conversion.
+[Joe Blackman](https://github.com/ifad/colore/commits?author=jblackman) starts the rewrite on [January 30, 2015](https://github.com/ifad/colore/commit/422323f) with a commit titled "First cut of storage." The new project is [Colore](https://github.com/ifad/colore) — Italian for "color," named after [the color wheel](https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/BYR_color_wheel.svg/480px-BYR_color_wheel.svg.png) the README sports as its logo, and because it speaks several languages: storage, versioning, conversion.
 
 The fundamental decision is in [a refactor commit four days later](https://github.com/ifad/colore/commit/6414de6): *"Refactored document to quit messing around with metadata, instead querying the directory structure."* No database. The filesystem is the database. Documents live at:
 
@@ -176,7 +176,7 @@ The [build dependency](https://github.com/ifad/colore/blob/master/nginx/ngx_colo
 
 ## The Rails side
 
-The application contract is now clean enough that wiring it into Rails is a small piece of glue rather than a project. [Luca Spiller](https://github.com/lucaspiller) writes [carrierwave-colore](https://github.com/ifad/carrierwave-colore) in [October 2015](https://github.com/ifad/carrierwave-colore/commit/3416c0c) — a [CarrierWave](https://github.com/carrierwaveuploader/carrierwave) storage adapter for Colore. You add it to your Gemfile, configure a base URI and an app name, and your existing uploaders write through to Colore:
+The application contract is now clean enough that wiring it into Rails is a small piece of glue rather than a project. [Luca Spiller](https://github.com/ifad/carrierwave-colore/commits?author=lucaspiller) writes [carrierwave-colore](https://github.com/ifad/carrierwave-colore) in [October 2015](https://github.com/ifad/carrierwave-colore/commit/3416c0c) — a [CarrierWave](https://github.com/carrierwaveuploader/carrierwave) storage adapter for Colore. You add it to your Gemfile, configure a base URI and an app name, and your existing uploaders write through to Colore:
 
 ```ruby
 class DocumentUploader < CarrierWave::Uploader::Base
@@ -200,7 +200,7 @@ Underneath, [colore-client](https://github.com/ifad/colore-client) — also Joe'
 
 ## v1.0.0
 
-The [v1.0.0 tag](https://github.com/ifad/colore/commit/63d4fe0) goes in this morning, January 15, 2016 — a year minus two weeks since Joe's first commit. The merge message is unceremonious: *"libreoffice text conversion and specs fixes."* Then the tag. The git log is honest about who built it: Joe and Luca on top, contributions from [Antonio Delfin Martinez](https://github.com/antoniodelfin) and [Danilo Grieco](https://github.com/danilo-g), me on the infrastructure and the bug-fix patrol.
+The [v1.0.0 tag](https://github.com/ifad/colore/commit/63d4fe0) goes in this morning, January 15, 2016 — a year minus two weeks since Joe's first commit. The merge message is unceremonious: *"libreoffice text conversion and specs fixes."* Then the tag. The git log is honest about who built it: Joe and Luca on top, contributions from [Antonio Delfin Martinez](https://github.com/ifad/colore/commits?author=mojarra) and [Danilo Grieco](https://github.com/ifad/colore/commits?author=Danilo-G), me on the infrastructure and the bug-fix patrol.
 
 What we have at v1.0:
 
@@ -214,9 +214,9 @@ What we don't have, and never will, is a dramatic origin story. The pipeline isn
 
 ## Credits
 
-- **Heathen**: [Peter Brindisi](https://github.com/petebrindisi) (initial design and architecture, 54 commits), [Lleïr Borràs Metje](https://github.com/lleirborras) (49), me (53), [Joe Blackman](https://github.com/jblackman) (38). Source at [github.com/ifad/heathen](https://github.com/ifad/heathen).
+- **Heathen**: [Peter Brindisi](https://github.com/ifad/heathen/commits?author=npj) (initial design and architecture, 54 commits), [Lleïr Borràs Metje](https://github.com/ifad/heathen/commits?author=lleirborras) (49), me (53), [Joe Blackman](https://github.com/ifad/heathen/commits?author=jblackman) (38). Source at [github.com/ifad/heathen](https://github.com/ifad/heathen).
 - **Colore**: Joe Blackman (architect and primary author), with everyone else along for the ride. Source at [github.com/ifad/colore](https://github.com/ifad/colore). nginx C module at [`nginx/ngx_colore_module/`](https://github.com/ifad/colore/tree/master/nginx/ngx_colore_module).
-- **carrierwave-colore**: [Luca Spiller](https://github.com/lucaspiller). Source at [github.com/ifad/carrierwave-colore](https://github.com/ifad/carrierwave-colore).
+- **carrierwave-colore**: [Luca Spiller](https://github.com/ifad/carrierwave-colore/commits?author=lucaspiller). Source at [github.com/ifad/carrierwave-colore](https://github.com/ifad/carrierwave-colore).
 - **colore-client**: Joe Blackman. Source at [github.com/ifad/colore-client](https://github.com/ifad/colore-client).
 - **autoheathen**: Joe Blackman, originally in Heathen, ported to Colore.
 - **OpenSuSE RPMs**: me, at [build.opensuse.org/project/show/home:vjt:ifad](https://build.opensuse.org/project/show/home:vjt:ifad).
