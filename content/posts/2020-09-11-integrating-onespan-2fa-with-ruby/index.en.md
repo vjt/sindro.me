@@ -1,5 +1,5 @@
 ---
-title: "Identikey and vacman_controller: Two-Factor Authentication in Ruby"
+title: "Integrating OneSpan Two-Factor Products with Ruby"
 date: 2020-09-11
 tags: [ruby, c, security, open-source, ifad]
 description: "Two Ruby gems for integrating OneSpan hardware token 2FA: a C extension wrapping the proprietary AAL2 SDK and a SOAP client for the Identikey admin server."
@@ -28,6 +28,8 @@ When you manage a token yourself, the core requirement is state persistence: the
 A token blob is all that's needed to generate OTPs — the AAL2 SDK [artificially prevents it](#the-binary-patch), but the seeds are in there. Treat blobs like private keys: never log them, never expose them outside the datastore, never include them in API responses. If a blob leaks, 2FA trust for that token is broken.
 
 The gem bridges the SDK's C struct world and this Ruby hash world, and the bridge is where all the interesting engineering lives.
+
+{{< figure src="c-ruby-bridge.jpg" alt="C struct blocks transforming into Ruby crystals across a bridge" >}}
 
 ### The C-to-Ruby bridge
 
@@ -79,6 +81,8 @@ void vacman_digipass_to_rbhash(TDigipassBlob* dpdata, VALUE hash) {
 The pattern is: deserialize the Ruby hash into a stack-allocated `TDigipassBlob`, call the SDK function (which mutates the struct), then serialize the struct back into the *same* Ruby hash. The hash is the token — it travels from Ruby to C and back, accumulating state changes along the way. Everything is stack-allocated, so no memory management headaches and no thread safety concerns on this side of the fence.
 
 There's also a variant, [`vacman_rbhash_to_digipass_sv`](https://github.com/vjt/vacman_controller/blob/master/ext/vacman_controller/serialize.c#L53), that handles an additional `"sv"` key for the token's static vector — needed for [offline activation code generation](https://github.com/vjt/vacman_controller/blob/master/ext/vacman_controller/dpx.c#L92) via `AAL2GenActivationCodeXErc`. When provisioning a new soft token, the activation code lets the user's device sync with the server without a round-trip. Not every token has a static vector — the `"sv"` key is only present on tokens imported from DPX files that include one.
+
+{{< figure src="dpx-import.jpg" alt="A metal vault opened to reveal glowing amber capsules — encrypted DPX tokens" >}}
 
 ### Importing tokens
 
@@ -279,6 +283,8 @@ when 'token_status'
 
 `pin_change_forced` is a one-way flag — you can force a PIN change but you can't un-force it, so the setter raises instead of silently failing. `token_status` maps Ruby symbols to the integer values the SDK expects. `pin_enabled` maps `true` to `1` and `false` to `2` — yes, `2`, not `0`, because OneSpan. Bounded integer properties like `pin_minimum_length` (3–8) and `virtual_token_grace_period` (1–364) get range validation. [Forty-plus properties](https://github.com/vjt/vacman_controller/blob/master/ext/vacman_controller/token.c#L19), each with its own type semantics, all behind a [consistent interface](https://github.com/vjt/vacman_controller/blob/master/lib/vacman_controller/token/properties.rb) that makes OneSpan's integer-obsessed C API feel like a Ruby object.
 
+{{< figure src="binary-patch.jpg" alt="Hex editor view carved into obsidian — a single byte highlighted red, a precision tool hovering over it" >}}
+
 ### The binary patch
 
 The AAL2 SDK can verify OTP codes. It can also generate them — but only for a small set of demo tokens that OneSpan ships for development purposes. For real hardware tokens and software tokens, generation is locked out entirely. You hand it a seed, it tells you yes or no on a submitted OTP, but it won't tell you what the OTP *should be*.
@@ -292,6 +298,8 @@ What this could unlock in practice: testing and CI. Imagine running a full token
 This is completely unsupported. It will absolutely void any support contract you have with OneSpan. If you know what you're doing, the patch is there. Ship accordingly.
 
 This is also why token blobs must be treated like private keys. With the patched library and a leaked blob, anyone can generate valid OTPs for that token — no hardware device needed. Keep blobs in the datastore, keep them out of logs, and never expose them through an API.
+
+{{< figure src="soap-labyrinth.jpg" alt="A steampunk baroque cathedral of XML pipes, valves, and WSDL blueprints" >}}
 
 ## identikey
 
