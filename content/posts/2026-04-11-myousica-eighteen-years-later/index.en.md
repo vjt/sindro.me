@@ -1,7 +1,7 @@
 ---
 title: "Myousica, eighteen years later"
 date: 2026-04-11
-tags: ["myousica", "panmind", "retrospective", "music", "open-source"]
+tags: ["myousica", "retrospective", "music", "open-source"]
 description: "Eighteen years after we started building Myousica, the collaborative music platform that was too early for its own good — a look back at what we built, why it didn't work, and who's doing it now."
 image: cover.jpg
 featuredImage: cover.jpg

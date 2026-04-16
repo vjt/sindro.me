@@ -1,7 +1,7 @@
 ---
 title: "Lo Stack Panmind: Architettura da 2020 Costruita nel 2010"
 date: 2026-04-12
-tags: [panmind, myousica, javascript, erlang, ruby, rails, architecture, open-source]
+tags: [panmind, javascript, erlang, ruby, rails, architecture, open-source]
 description: "Come una piccola startup italiana ha costruito un framework SPA, una pipeline di analytics event-driven e la condivisione di sessioni tra linguaggi diversi — anni prima che diventassero mainstream."
 image: cover.jpg
 featuredImage: cover.jpg

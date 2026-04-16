@@ -1,7 +1,7 @@
 ---
 title: "The Panmind Stack: Building 2020s Architecture in 2010"
 date: 2026-04-12
-tags: [panmind, myousica, javascript, erlang, ruby, rails, architecture, open-source]
+tags: [panmind, javascript, erlang, ruby, rails, architecture, open-source]
 description: "How a small Italian startup built a single-page app framework, an event-driven analytics pipeline, and cross-language session sharing — years before any of it was mainstream."
 image: cover.jpg
 featuredImage: cover.jpg
