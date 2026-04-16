@@ -155,6 +155,8 @@ The Ruby wrapper then [translates undocumented error codes](https://github.com/v
 
 ### OTP verification
 
+{{< figure src="otp-clockwork.jpg" alt="Ornate brass clockwork mechanism with rolling rings of 6-digit codes" >}}
+
 The core operation — verifying a one-time password — lives in [`token.c`](https://github.com/vjt/vacman_controller/blob/master/ext/vacman_controller/token.c). The C function follows the deserialize-call-serialize pattern:
 
 ```c
@@ -361,6 +363,8 @@ filters: [
 Standard Savon filters and custom XPath filters, coexisting in the same list. The [`process_identikey_filters`](https://github.com/vjt/identikey/blob/master/lib/identikey/base.rb#L46) method splits them apart at initialization and converts the `identikey:` ones into lambda procs. It works. It shouldn't have to exist.
 
 ### When success isn't success
+
+{{< figure src="soap-paradox.jpg" alt="A two-sided theatrical mask, one half green with a checkmark, the other half red with warning symbols" >}}
 
 The Authentication API has a beautiful trap for the unwary. You call `auth_user` with a username and OTP, you get back a status code. `STAT_SUCCESS` means authentication passed, anything else means it didn't. Simple, right?
 
