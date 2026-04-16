@@ -13,6 +13,8 @@ Panmind itself didn't survive. But the stack we built for it did something inter
 
 I [presented some of our open-source spin-offs](/posts/2010-08-05-panmind-at-ruby-social-club/) at the Ruby Social Club in Milan in 2010, but that post only scratched the surface — it was a quick rundown of Rails plugins. This is the deeper story: three technologies, three problems solved too early, and how the same ideas showed up in every major framework that followed.
 
+<!--more-->
+
 ## Act 1: jquery-ajax-nav — SPA Before SPAs
 
 ![Hash-based routing in a vintage browser — polling for changes, hidden iframes for IE, the URL fragment as the only programmable piece of the address bar](/posts/2026-04-12-panmind-ahead-of-its-time/act1-ajax-nav.jpg)
