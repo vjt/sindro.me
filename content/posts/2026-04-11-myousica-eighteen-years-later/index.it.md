@@ -13,6 +13,8 @@ Diciotto anni fa, abbiamo iniziato a costruire [Myousica](/it/posts/2008-09-11-m
 
 Era una startup. Ha funzionato per circa cinque mesi prima di essere messa in pausa, e il codice sorgente è stato poi [rilasciato su GitHub](https://github.com/mewsic) con il nome Mewsic. Ho scritto dei dettagli tecnici in una serie di tre post: la [piattaforma Rails](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/), l'[editor multitraccia Flash](/it/posts/2010-10-16-myousica-multitrack-audio-mixing-in-the-browser/) e la [pipeline audio](/it/posts/2010-10-18-myousica-from-microphone-to-mp3/). Quei post coprono l'ingegneria. Questo è sul quadro più ampio.
 
+<!--more-->
+
 ## L'idea giusta al momento sbagliato
 
 Il concetto di base era solido: permettere a chiunque di fare musica in un browser, in modo collaborativo. Nessun software da installare. Apri il browser, scegli una canzone, aggiungi la tua traccia di chitarra, condividi il risultato. Un musicista a Roma poteva iniziare un beat, qualcuno a Tokyo poteva aggiungere il basso, una cantante a San Paolo poteva metterci la voce sopra. Tutto nel browser.
