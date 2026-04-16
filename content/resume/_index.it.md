@@ -91,7 +91,7 @@ Primo ruolo professionale. Costruito e mantenuto infrastrutture server UNIX/Wind
 - **[ha-verisure-italy](https://github.com/vjt/ha-verisure-italy)** — [Integrazione Home Assistant per Verisure Italia](/it/posts/2026-04-04-verisure-italy-home-assistant/). Client API GraphQL, tipizzato con Pydantic, 165 test, pyright strict.
 - **[openwrt-ha-presence](https://github.com/vjt/openwrt-ha-presence)** — [Rilevamento presenza WiFi per stanza](/it/posts/2026-02-15-wifi-presence-detection-home-assistant/) via OpenWrt e MQTT per Home Assistant; affiancato da un [analizzatore di dethrash mesh](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/).
 - **[quectel-5g-tools](https://github.com/vjt/quectel-5g-tools)** — [Parser e monitor per modem Quectel 5G](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/), informazioni delle celle.
-- **[mfsroot-geli-dropbear](https://github.com/vjt/mfsroot-geli-dropbear)** — RAM disk iniziale FreeBSD per [sblocco remoto ZFS cifrato con GELI](/it/posts/2023-08-13-freebsd-encrypted-root-on-zfs/) via SSH, [rinforzato con protezioni anti-chiavi-vecchie](/it/posts/2026-01-28-freebsd-encrypted-zfs-remote-unlock/).
+- **[mfsroot-geli-dropbear](https://github.com/vjt/mfsroot-geli-dropbear)** — RAM disk iniziale FreeBSD per [sblocco remoto ZFS cifrato con GELI](/it/posts/2023-08-13-freebsd-encrypted-root-on-zfs/) via SSH; [ambiente completo con init/PAM/reroot](/it/posts/2026-01-28-freebsd-encrypted-zfs-remote-unlock/), non uno shell hack.
 
 **Radici nella community**
 
