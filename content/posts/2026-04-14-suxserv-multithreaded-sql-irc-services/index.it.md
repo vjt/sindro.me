@@ -13,6 +13,8 @@ Una delle cose che mi piace di più del lavorare con [Claude](/tags/ai-generated
 
 Lo scavo di oggi: sono andato su SourceForge e ho scaricato il repository CVS di [un progetto del 2003](/it/posts/2003-03-16-suxserv-wip/) — **Sux Services**, il mio tentativo di scrivere IRC services da zero, in C, per la [rete IRC Azzurra](https://azzurra.chat). Ho detto "Claude, converti questo repo CVS in git" e pochi minuti dopo avevo un [repository Git](https://github.com/vjt/suxserv) pulito con 954 commit, tre autori, e una storia continua da settembre 2002 a novembre 2005.
 
+<!--more-->
+
 Non ho mai finito questo progetto. Ho lasciato la rete prima che fosse pronto per la produzione. Uno sviluppatore lettone l'ha preso in mano, ha scritto 192 commit, e poi la traccia si perde.
 
 Ne [avevo scritto all'epoca](/it/posts/2003-03-16-suxserv-wip/) — un post WIP del marzo 2003, quando NickServ e ChanServ funzionavano e stavo facendo stress test con 100 bot.
