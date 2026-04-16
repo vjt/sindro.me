@@ -56,12 +56,12 @@ Led the technical side of a critical financial system implementing electronic di
 - Reviewed technical proposals, authored documentation, interviewed and hired engineers
 - Acted as liaison between internal stakeholders, external vendors, and suppliers
 - Led full infrastructure automation ([example](/posts/2026-04-11-ansible-wsadmin/)), persuaded its re-use across existing line-of-business applications
-- Oversaw security design, delegated vulnerability assessments and hardening
+- Oversaw [security design](/posts/2020-09-11-integrating-onespan-2fa-with-ruby/), delegated vulnerability assessments and hardening
 
 ## IFAD (United Nations) — Software Engineer & Sysadmin
 *January 2011 – January 2016 · 5 years*
 
-- Architected and developed multiple line-of-business applications: DMS, CRMs, BPM workflows, [authorization](/posts/2015-02-28-eaco-authorization-ruby/), webcasting
+- Architected and developed multiple line-of-business applications: [DMS](/posts/2016-01-15-document-pipeline-heathen-colore/), CRMs, BPM workflows, [authorization](/posts/2015-02-28-eaco-authorization-ruby/), webcasting
 - Built [temporal versioning](/posts/2012-05-07-chronomodel-time-travel-postgresql/) into the data layer, enabling full audit history across financial applications
 - Built, secured and maintained dev/staging/prod environments for 30+ Ruby applications
 - Established shared framework libraries, releasing as open source where possible ([data-confirm-modal](/posts/2013-07-02-data-confirm-modal/), [ChronoModel](/posts/2012-05-07-chronomodel-time-travel-postgresql/), [Eaco](/posts/2015-02-28-eaco-authorization-ruby/))
@@ -88,10 +88,10 @@ First professional role. Built and maintained UNIX/Windows server infrastructure
 
 **Recent projects** — [github.com/vjt](https://github.com/vjt)
 
-- **[ha-verisure-italy](https://github.com/vjt/ha-verisure-italy)** — Home Assistant integration for Verisure Italy. GraphQL API client, typed with Pydantic, 165 tests, pyright strict.
-- **[openwrt-ha-presence](https://github.com/vjt/openwrt-ha-presence)** — WiFi-based room presence detection for Home Assistant via OpenWrt and MQTT.
-- **[quectel-5g-tools](https://github.com/vjt/quectel-5g-tools)** — Parser and monitor for Quectel 5G modems cell information.
-- **[mfsroot-geli-dropbear](https://github.com/vjt/mfsroot-geli-dropbear)** — FreeBSD initial RAM disk for remote GELI-encrypted ZFS unlock over SSH.
+- **[ha-verisure-italy](https://github.com/vjt/ha-verisure-italy)** — [Home Assistant integration for Verisure Italy](/posts/2026-04-04-verisure-italy-home-assistant/). GraphQL API client, typed with Pydantic, 165 tests, pyright strict.
+- **[openwrt-ha-presence](https://github.com/vjt/openwrt-ha-presence)** — [WiFi-based room presence detection](/posts/2026-02-15-wifi-presence-detection-home-assistant/) for Home Assistant via OpenWrt and MQTT; paired with a [mesh dethrash analyzer](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/).
+- **[quectel-5g-tools](https://github.com/vjt/quectel-5g-tools)** — [Parser and monitor for Quectel 5G modems](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/) cell information.
+- **[mfsroot-geli-dropbear](https://github.com/vjt/mfsroot-geli-dropbear)** — FreeBSD initial RAM disk for [remote GELI-encrypted ZFS unlock](/posts/2023-08-13-freebsd-encrypted-root-on-zfs/) over SSH, [hardened with stale-key protections](/posts/2026-01-28-freebsd-encrypted-zfs-remote-unlock/).
 
 **Community roots**
 
