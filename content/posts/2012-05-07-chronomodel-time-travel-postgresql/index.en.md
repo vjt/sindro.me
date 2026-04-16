@@ -1,7 +1,7 @@
 ---
 title: "ChronoModel: Time Travel for PostgreSQL"
 date: 2012-05-07
-tags: [ruby, postgresql, rails, open-source]
+tags: [ruby, postgresql, rails, open-source, ifad]
 description: "I just shipped a Ruby gem that implements Oracle's Flashback Queries on PostgreSQL using views, rules, and table inheritance. Five days from first commit to release."
 image: cover.jpg
 featuredImage: cover.jpg

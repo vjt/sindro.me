@@ -1,7 +1,7 @@
 ---
 title: "data-confirm-modal: When a User Did Too Much Damage"
 date: 2013-07-02
-tags: [ruby, rails, javascript, open-source]
+tags: [ruby, rails, javascript, open-source, ifad]
 description: "A user at IFAD did too much damage because the browser's confirm() wasn't explicit enough. So I extracted a Bootstrap modal replacement into a gem. 116 lines of JavaScript."
 image: cover.jpg
 featuredImage: cover.jpg

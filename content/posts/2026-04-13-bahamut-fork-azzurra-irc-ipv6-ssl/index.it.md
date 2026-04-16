@@ -1,7 +1,7 @@
 ---
 title: "Forkare Bahamut per Azzurra IRC: IPv6 e SSL nel 2002"
 date: 2026-04-13T08:00:00+02:00
-tags: [irc, c, azzurra, retrospettiva, open-source, archeologia]
+tags: [irc, c, azzurra, retrospective, open-source, archaeology]
 description: "Ho trovato un repository CVS del 2002 su SourceForge. Dentro: 171 commit, tre autori, e le patch IPv6 e SSL che ho scritto per il server IRC Bahamut a 21 anni."
 image: cover.jpg
 featuredImage: cover.jpg

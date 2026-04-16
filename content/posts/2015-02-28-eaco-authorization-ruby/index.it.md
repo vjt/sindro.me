@@ -1,7 +1,7 @@
 ---
 title: "Eaco: il guardiano delle chiavi dell'Ade"
 date: 2015-02-28
-tags: [ruby, rails, postgresql, open-source, security]
+tags: [ruby, rails, postgresql, open-source, security, ifad]
 description: "Ho appena estratto un framework di autorizzazione ABAC dalla nostra app interna IFAD in uno sprint di 8 giorni. Le ACL sono semplici hash, PostgreSQL jsonb fa il lavoro pesante, e ho raggiunto il 100% di coverage alle 13:33 di un sabato."
 image: cover.jpg
 featuredImage: cover.jpg

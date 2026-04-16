@@ -1,7 +1,7 @@
 ---
 title: "ansible-wsadmin: Bypassare AdminConfig per Automatizzare WebSphere via JMX"
 date: 2026-04-11
-tags: [websphere, ibm, ansible, jython, automation, open-source]
+tags: [websphere, ibm, ansible, jython, automation, open-source, ifad, retrospective]
 description: "Un ORM Jython e un daemon persistente per IBM WebSphere che bypassa la famigerata API a stringhe di AdminConfig e si aggancia direttamente a ConfigService — il layer Java ben progettato che IBM ha seppellito sotto due decenni di wrapper sbagliati."
 image: cover.jpg
 featuredImage: cover.jpg

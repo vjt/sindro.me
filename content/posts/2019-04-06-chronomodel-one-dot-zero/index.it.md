@@ -1,7 +1,7 @@
 ---
 title: "ChronoModel 1.0: sette anni per rilasciare"
 date: 2019-04-06
-tags: [ruby, postgresql, rails, open-source]
+tags: [ruby, postgresql, rails, open-source, ifad]
 description: "ChronoModel raggiunge la 1.0 dopo sette anni, 506 commit e 31 release. L'idea di base non e' mai cambiata — tutto il resto si'."
 image: cover.jpg
 featuredImage: cover.jpg

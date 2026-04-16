@@ -1,7 +1,7 @@
 ---
 title: Active Gibberish
 date: 2008-01-22
-tags: [funny, rails, ruby]
+tags: [funny, rails, ruby, i18n]
 ---
 
 {{< retrospective year="2026" >}}
