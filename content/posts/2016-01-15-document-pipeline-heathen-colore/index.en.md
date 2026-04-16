@@ -42,6 +42,24 @@ The conversion contract is unusual. You `POST /convert` with a file (or a URL) a
 
 Hitting the `converted` URL is what triggers the actual conversion — Dragonfly deserializes the URL into a job description, runs the conversion, and Rack::Cache holds onto the result. Subsequent requests are served from the cache. Same content uploaded twice from anywhere in the organization → same URL → no work duplicated. It's a cute trick. It's also the reason every quirk of the system is downstream of Dragonfly's URL-as-state model.
 
+```mermaid
+graph LR
+  Client([Client app])
+  Heathen[Heathen<br/>Sinatra]
+  Redis[(Redis<br/>sha256 &rarr; job)]
+  Dragonfly[Dragonfly<br/>content store]
+  Converters{{LibreOffice<br/>wkhtmltopdf<br/>ImageMagick<br/>tesseract}}
+  RackCache[(Rack::Cache)]
+
+  Client -->|1 POST /convert| Heathen
+  Heathen -->|2 SHA256 lookup| Redis
+  Heathen -->|3 returns URLs| Client
+  Client -->|4 GET converted URL| Dragonfly
+  Dragonfly -->|5 deserialize &amp; run| Converters
+  Converters --> RackCache
+  RackCache -->|6 cached bytes| Client
+```
+
 The infrastructure side is the part I do contribute to. The whole stack — LibreOffice with PyUNO, ImageMagick with the right delegate libraries, tesseract with the right language packs, the patched pdfbeads — has to live somewhere. I package all of it [as RPMs on the openSUSE Build Service](https://build.opensuse.org/project/show/home:vjt:ifad), so production deployment is `zypper ar` and `zypper install`. Heathen runs under Unicorn behind nginx on openSUSE, and it just works.
 
 In late 2013 I do my one significant code contribution: five days between Christmas Eve and the 28th refactoring the subprocess executioner. The original used backticks. Backticks don't stream stdout, don't expose stderr, and break when wkhtmltopdf decides to vomit a megabyte of warnings before producing the PDF. I [rewrite it on top of `Process.spawn` plus `ProcessBuilder` for jRuby](https://github.com/ifad/heathen/commit/a36a1e0), [switch to `Open3` for large stdout streams](https://github.com/ifad/heathen/commit/44ba0b0), [kill PDFKit](https://github.com/ifad/heathen/commit/7b128d9) in favor of calling wkhtmltopdf directly, and [handle the case](https://github.com/ifad/heathen/commit/cdf44ca) where the Java side melts down on a megabyte of stdout. It's the kind of work nobody notices unless you don't do it.
@@ -96,6 +114,39 @@ The HTTP API gets a verb-noun shape that Heathen never had:
 - `DELETE /document/:app/:doc_id` — burn it down
 
 Conversions go through [Sidekiq](https://sidekiq.org/) and [POST a callback when done](https://github.com/ifad/colore/commit/a3aec71). Apps get to be event-driven. Heathen, the conversion engine itself, is [vendored into Colore as a library](https://github.com/ifad/colore/tree/master/lib/heathen) — same LibreOffice/wkhtmltopdf/ImageMagick/tesseract toolbox, now without the HTTP wrapper. One service instead of two, async by default, callbacks where they belong.
+
+```mermaid
+graph LR
+  subgraph write [Write path]
+    App1([App])
+    Colore[Colore<br/>Sinatra]
+    Storage[(Storage tree<br/>myapp/&lt;md5&gt;/doc_id/)]
+    Sidekiq[Sidekiq<br/>workers]
+    Heathen[Heathen<br/>library]
+    Tools{{LibreOffice<br/>wkhtmltopdf<br/>ImageMagick<br/>tesseract}}
+
+    App1 -->|PUT /document| Colore
+    Colore -->|write version| Storage
+    Colore -->|enqueue| Sidekiq
+    Sidekiq --> Heathen
+    Heathen --> Tools
+    Heathen -->|save output| Storage
+    Sidekiq -.POST callback.-> App1
+  end
+
+  subgraph read [Read path]
+    App2([App])
+    Rails[App server]
+    Nginx[nginx<br/>+ ngx_colore_module]
+    Storage2[(Storage tree)]
+
+    App2 -->|GET /document| Rails
+    Rails -.auth.-> Rails
+    Rails -->|X-Accel-Redirect| Nginx
+    Nginx -->|set_colore_subdir MD5| Storage2
+    Storage2 -->|stream bytes| App2
+  end
+```
 
 `autoheathen` comes along too: Joe [ports it from the old repo](https://github.com/ifad/colore/commit/0ef1fed) on day eight. Wikilex keeps working through the cutover.
 

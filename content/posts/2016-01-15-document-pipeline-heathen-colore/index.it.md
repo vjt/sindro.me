@@ -42,6 +42,24 @@ Il contratto di conversione è insolito. Fai `POST /convert` con un file (o una 
 
 Visitare la URL `converted` è ciò che innesca la conversione vera e propria — Dragonfly deserializza la URL in una descrizione di job, esegue la conversione, e Rack::Cache si tiene il risultato. Le richieste successive vengono servite dalla cache. Stesso contenuto caricato due volte da qualunque parte dell'organizzazione → stessa URL → nessun lavoro duplicato. È un trucco carino. È anche il motivo per cui ogni stranezza del sistema discende dal modello URL-come-stato di Dragonfly.
 
+```mermaid
+graph LR
+  Client([App client])
+  Heathen[Heathen<br/>Sinatra]
+  Redis[(Redis<br/>sha256 &rarr; job)]
+  Dragonfly[Dragonfly<br/>content store]
+  Converters{{LibreOffice<br/>wkhtmltopdf<br/>ImageMagick<br/>tesseract}}
+  RackCache[(Rack::Cache)]
+
+  Client -->|1 POST /convert| Heathen
+  Heathen -->|2 lookup SHA256| Redis
+  Heathen -->|3 risponde con URL| Client
+  Client -->|4 GET URL convertita| Dragonfly
+  Dragonfly -->|5 deserializza ed esegue| Converters
+  Converters --> RackCache
+  RackCache -->|6 byte dalla cache| Client
+```
+
 Il lato infrastruttura è la parte a cui contribuisco davvero. Tutto lo stack — LibreOffice con PyUNO, ImageMagick con le librerie delegate giuste, tesseract con i language pack giusti, il pdfbeads patchato — deve vivere da qualche parte. Lo impacchetto tutto [come RPM sull'OpenSuSE Build Service](https://build.opensuse.org/project/show/home:vjt:ifad), così il deploy in produzione è `zypper ar` e `zypper install`. Heathen gira sotto Unicorn dietro nginx su openSUSE, e funziona.
 
 A fine 2013 faccio il mio unico contributo significativo al codice: cinque giorni tra la vigilia di Natale e il 28 dicembre a riscrivere l'executioner dei sottoprocessi. L'originale usava i backtick. I backtick non fanno streaming dello stdout, non espongono lo stderr, e si rompono quando wkhtmltopdf decide di vomitare un megabyte di warning prima di produrre il PDF. Lo [riscrivo sopra `Process.spawn` con `ProcessBuilder` per jRuby](https://github.com/ifad/heathen/commit/a36a1e0), [passo a `Open3` per stream stdout grandi](https://github.com/ifad/heathen/commit/44ba0b0), [uccido PDFKit](https://github.com/ifad/heathen/commit/7b128d9) in favore di chiamare wkhtmltopdf direttamente, e [gestisco il caso](https://github.com/ifad/heathen/commit/cdf44ca) in cui il lato Java va in tilt su un megabyte di stdout. È il tipo di lavoro che nessuno nota — a meno che tu non lo faccia.
@@ -96,6 +114,39 @@ L'API HTTP prende una forma verbo-sostantivo che Heathen non aveva mai avuto:
 - `DELETE /document/:app/:doc_id` — distruggi tutto
 
 Le conversioni passano per [Sidekiq](https://sidekiq.org/) e [POSTano una callback quando hanno finito](https://github.com/ifad/colore/commit/a3aec71). Le applicazioni possono finalmente essere event-driven. Heathen, il motore di conversione vero e proprio, viene [vendoriato dentro Colore come libreria](https://github.com/ifad/colore/tree/master/lib/heathen) — stessa cassetta degli attrezzi LibreOffice/wkhtmltopdf/ImageMagick/tesseract, adesso senza il wrapper HTTP. Un servizio invece di due, asincrono di default, callback dove devono essere.
+
+```mermaid
+graph LR
+  subgraph write [Percorso di scrittura]
+    App1([App])
+    Colore[Colore<br/>Sinatra]
+    Storage[(Albero di storage<br/>myapp/&lt;md5&gt;/doc_id/)]
+    Sidekiq[Worker<br/>Sidekiq]
+    Heathen[Heathen<br/>libreria]
+    Tools{{LibreOffice<br/>wkhtmltopdf<br/>ImageMagick<br/>tesseract}}
+
+    App1 -->|PUT /document| Colore
+    Colore -->|scrive versione| Storage
+    Colore -->|accoda| Sidekiq
+    Sidekiq --> Heathen
+    Heathen --> Tools
+    Heathen -->|salva output| Storage
+    Sidekiq -.POST callback.-> App1
+  end
+
+  subgraph read [Percorso di lettura]
+    App2([App])
+    Rails[App server]
+    Nginx[nginx<br/>+ ngx_colore_module]
+    Storage2[(Albero di storage)]
+
+    App2 -->|GET /document| Rails
+    Rails -.autorizza.-> Rails
+    Rails -->|X-Accel-Redirect| Nginx
+    Nginx -->|set_colore_subdir MD5| Storage2
+    Storage2 -->|streamma i byte| App2
+  end
+```
 
 `autoheathen` viene anche lui: Joe lo [porta dal vecchio repo](https://github.com/ifad/colore/commit/0ef1fed) all'ottavo giorno. Wikilex continua a funzionare durante il cutover.
 
