@@ -2,12 +2,12 @@
 title: "Integrating OneSpan Two-Factor Products with Ruby"
 date: 2020-09-11
 tags: [ruby, c, security, open-source, ifad]
-description: "Two Ruby gems for integrating OneSpan hardware token 2FA: a C extension wrapping the proprietary AAL2 SDK and a SOAP client for the Identikey admin server."
+description: "Two Ruby gems for integrating OneSpan hardware token 2FA: a C extension wrapping the proprietary AAL2 SDK and a SOAP client for the OneSpan Authentication Server (formerly Identikey)."
 image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-I was tasked with integrating [OneSpan](https://www.onespan.com/) (formerly VASCO) hardware token two-factor authentication into a Ruby stack — wrapping their proprietary VACMAN Controller C SDK for local OTP validation, and building a client for their [Identikey Authentication Server](https://www.onespan.com/products/identikey-authentication-server) SOAP API. Neither had a Ruby library.
+I was tasked with integrating [OneSpan](https://www.onespan.com/) (formerly VASCO) hardware token two-factor authentication into a Ruby stack — wrapping their proprietary VACMAN Controller C SDK for local OTP validation, and building a client for their [OneSpan Authentication Server](https://docs.onespan.com/sec/docs/onespan-authentication-server) (originally named Identikey Authentication Server, and renamed mid-project) SOAP API. Neither had a Ruby library.
 
 For [vacman_controller](https://github.com/vjt/vacman_controller) there was a starting point: [a Ruby C extension](https://github.com/mlankenau/vacman_controller) by Marcus Lankenau wrapping the AAL2 SDK. One commit, no releases, rough around the edges, but a solid foundation — linking, importing tokens and basic wrappers — was there. I [forked it at IFAD](https://github.com/ifad/vacman_controller), fixed it, extended it, and pushed [97 additional commits](https://github.com/vjt/vacman_controller/commits/master) on top. 14 releases, v0.1.0 through v0.9.3.
 
@@ -21,7 +21,7 @@ Both are [on](https://github.com/vjt/vacman_controller) [GitHub](https://github.
 
 The [vacman_controller](https://github.com/vjt/vacman_controller) gem is a Ruby C extension wrapping OneSpan's AAL2 SDK — a proprietary, closed-source C library for managing DIGIPASS hardware tokens. The SDK ships as a static library with a header file, no source, no debug symbols, and documentation that reads like it was translated from Dutch through a fax machine. Your job is to link against it and pray. The [`extconf.rb`](https://github.com/vjt/vacman_controller/blob/master/ext/vacman_controller/extconf.rb) handles the prayer — it auto-discovers the SDK by globbing `/opt/vasco/VACMAN_Controller-*`, picks the latest version, and links with `-rpath` so the shared library resolves at runtime without `LD_LIBRARY_PATH` games.
 
-Identikey manages tokens internally and exposes OTP validation and administration through its API — but we needed to manage tokens directly as well, for a specific use case.
+The Authentication Server manages tokens internally and exposes OTP validation and administration through its API — but we needed to manage tokens directly as well, for a specific use case.
 
 When you manage a token yourself, the core requirement is state persistence: the token blob mutates on every operation and must be saved back after each one. I chose to serialize it as a plain Ruby hash — a flat key-value structure that gives you maximum convenience for serialization and interop with whatever storage or transport you end up using.
 
@@ -305,9 +305,9 @@ This is also why token blobs must be treated like private keys. With the patched
 
 {{< figure src="soap-labyrinth.jpg" alt="A steampunk baroque cathedral of XML pipes, valves, and WSDL blueprints" >}}
 
-The [identikey](https://github.com/vjt/identikey) gem is a different beast entirely. It talks to OneSpan's [Identikey Authentication Server](https://www.onespan.com/products/identikey-authentication-server) — the enterprise 2FA server product, which the gem is named after. Where vacman_controller wrestles with a C SDK and opaque structs, identikey wrestles with SOAP — specifically, with OneSpan's interpretation of what SOAP should look like, which bears the same relationship to the WS-I standard that a fever dream bears to a lucid thought.
+The [identikey](https://github.com/vjt/identikey) gem is a different beast entirely. It talks to the [OneSpan Authentication Server](https://docs.onespan.com/sec/docs/onespan-authentication-server) — the enterprise 2FA server product. When I started this work it was called Identikey Authentication Server; OneSpan renamed it mid-project, but the gem still carries the old name. Where vacman_controller wrestles with a C SDK and opaque structs, identikey wrestles with SOAP — specifically, with OneSpan's interpretation of what SOAP should look like, which bears the same relationship to the WS-I standard that a fever dream bears to a lucid thought.
 
-The Identikey server exposes three separate SOAP endpoints: [Authentication](https://github.com/vjt/identikey/blob/master/lib/identikey/authentication.rb), [Administration](https://github.com/vjt/identikey/blob/master/lib/identikey/administration.rb), and [Provisioning](https://github.com/vjt/identikey/blob/master/lib/identikey/provisioning.rb). Each has its own WSDL, its own response format, its own idea of what "success" means. The gem uses [Savon](https://www.savonrb.com/) to do the heavy lifting and wraps the three endpoints in a shared [`Base`](https://github.com/vjt/identikey/blob/master/lib/identikey/base.rb) class that papers over the inconsistencies.
+The server exposes three separate SOAP endpoints: [Authentication](https://github.com/vjt/identikey/blob/master/lib/identikey/authentication.rb), [Administration](https://github.com/vjt/identikey/blob/master/lib/identikey/administration.rb), and [Provisioning](https://github.com/vjt/identikey/blob/master/lib/identikey/provisioning.rb). Each has its own WSDL, its own response format, its own idea of what "success" means. The gem uses [Savon](https://www.savonrb.com/) to do the heavy lifting and wraps the three endpoints in a shared [`Base`](https://github.com/vjt/identikey/blob/master/lib/identikey/base.rb) class that papers over the inconsistencies.
 
 ### The SOAP labyrinth
 
@@ -370,7 +370,7 @@ The Authentication API has a beautiful trap for the unwary. You call `auth_user`
 
 Not if you're using push OTP.
 
-With push notifications, Identikey sends a challenge to the user's phone. If the user hasn't responded yet — or if the password is wrong — the server returns `STAT_SUCCESS` anyway, but stuffs a "password is wrong" message into the `CREDFLD_STATUS_MESSAGE` attribute. The status code lies. The error is hiding in an optional field that you have to know to look for.
+With push notifications, the server sends a challenge to the user's phone. If the user hasn't responded yet — or if the password is wrong — the server returns `STAT_SUCCESS` anyway, but stuffs a "password is wrong" message into the `CREDFLD_STATUS_MESSAGE` attribute. The status code lies. The error is hiding in an optional field that you have to know to look for.
 
 The [`otp_validated_ok?`](https://github.com/vjt/identikey/blob/master/lib/identikey/authentication.rb#L54) method encodes this hard-won knowledge:
 
@@ -486,7 +486,7 @@ end
 
 The two modes need guard rails. Classic users must logon before doing anything; service users must never call logon (it would fail). The [`require_classic_user!`](https://github.com/vjt/identikey/blob/master/lib/identikey/administration/session.rb#L150) and [`require_logged_on!`](https://github.com/vjt/identikey/blob/master/lib/identikey/administration/session.rb#L144) methods enforce this at the right boundaries.
 
-Then there are privileges. When a classic user logs on, Identikey returns their privileges as a comma-separated string: `"PRIV_REPORT true, PRIV_USER_ADMIN true, PRIV_DIGIPASS_ADMIN false"`. Not XML. Not JSON. Not even key-value pairs in any recognizable format. Just a flat string with commas between privilege entries and spaces between the name and its boolean value.
+Then there are privileges. When a classic user logs on, the server returns their privileges as a comma-separated string: `"PRIV_REPORT true, PRIV_USER_ADMIN true, PRIV_DIGIPASS_ADMIN false"`. Not XML. Not JSON. Not even key-value pairs in any recognizable format. Just a flat string with commas between privilege entries and spaces between the name and its boolean value.
 
 The [parsing](https://github.com/vjt/identikey/blob/master/lib/identikey/administration/session.rb#L156) is grimly straightforward:
 
