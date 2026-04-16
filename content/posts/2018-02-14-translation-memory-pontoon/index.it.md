@@ -8,12 +8,12 @@ featuredImage: cover.jpg
 ---
 
 {{< retrospective year="2026" >}}
-Il repo a [github.com/ifad/translation-memory](https://github.com/ifad/translation-memory) è ancora pubblico. Il fork di Pontoon a cui parla è privato — il deployment dell'IFAD gira internamente — ma [l'upstream di Mozilla](https://github.com/mozilla/pontoon) è aperto e molto vivo. Otto anni dopo, il team che ha adottato Pontoon è rimasto con lui. Il CAT desktop che cercavo di rimpiazzare? Sparito da tempo. La regex *"shameless"* che strippa i caratteri non-word fa ancora il suo lavoro da qualche parte su un Postgres a Roma.
+Il repo a [github.com/ifad/translation-memory](https://github.com/ifad/translation-memory) è ancora pubblico, ancora senza README, e il fork di Pontoon a cui parla resta privato. [L'upstream di Mozilla](https://github.com/mozilla/pontoon) è aperto e molto vivo. Se qualcuno all'IFAD usi ancora Pontoon otto anni dopo, sinceramente non lo so — l'ho costruito per un progetto sulla mia scrivania, non come cambio di workflow aziendale. La regex che strippa i caratteri non-word ha fatto il suo lavoro per i mesi in cui mi serviva. Poi, presumibilmente, la successiva migration dello schema di Pontoon ha rotto qualcosa. È quello che succede alle integrazioni che parlano direttamente con un database.
 {{< /retrospective >}}
 
-L'[IFAD](http://www.ifad.org/) è un'agenzia ONU che opera in [inglese, francese, spagnolo e arabo](https://www.ifad.org/en/web/operations/languages). Ogni stringa visibile delle nostre app Rails deve esistere in quattro lingue, il che significa che abbiamo un team di traduzione, il che significa che abbiamo un workflow di traduzione, che fino ad oggi prevede un [CAT desktop](https://it.wikipedia.org/wiki/Computer_assisted_translation), file allegati alle email, e translation memory che girano in formato XML.
+L'[IFAD](http://www.ifad.org/) è un'agenzia ONU che opera in [inglese, francese, spagnolo e arabo](https://www.ifad.org/en/web/operations/languages). Ogni stringa visibile delle nostre app Rails deve esistere in quattro lingue, il che significa che abbiamo un team di traduzione, il che significa che abbiamo un workflow di traduzione, che sulla maggior parte dei progetti prevede un [CAT desktop](https://it.wikipedia.org/wiki/Computer_assisted_translation), file allegati alle email, e translation memory che girano in formato XML.
 
-Voglio mettere i traduttori sul web. Lo stesso browser che usano i nostri sviluppatori, lo stesso progetto, le stesse stringhe, la stessa coda di review. Voglio che traduttori e sviluppatori guardino la stessa stringa sorgente nello stesso momento e ne discutano. Propongo [Mozilla Pontoon](https://pontoon.mozilla.org/) — open-source, gratis, adattabile, scritto in Django, basato su Postgres. Il team è d'accordo. La fregatura: anni di translation memory accumulate vivono dentro il tool desktop, e nessuna di quelle traduzioni può essere persa.
+Quel workflow non sopravvive a un progetto su cui sto lavorando in questo momento. È un'app web Rails con una scadenza stretta, le stringhe sorgente cambiano ogni settimana, e nel tempo che un traduttore impiega per finire un file TM e rimandarlo via email le stringhe si sono già spostate. Mi servono traduttori e sviluppatori che guardano lo stesso database in tempo reale. Scelgo [Mozilla Pontoon](https://pontoon.mozilla.org/) — open-source, gratis, adattabile, scritto in Django, basato su Postgres — e lo tiro su per il mio progetto. La fregatura: c'è un corpus di traduzioni dal tool precedente che voglio usare per fare il seed di Pontoon dal primo giorno, così i traduttori non partono dal nulla.
 
 Oggi inizio un repo [translation-memory](https://github.com/ifad/translation-memory) e scrivo il primo parser. Il progetto è descritto, con tutta la dovuta umiltà ingegneristica, come ["Parser per file TMX, SDL/XLIFF e TXML e importatore senza vergogna in Mozilla Pontoon"](https://github.com/ifad/translation-memory). Quel "senza vergogna" sta facendo molto lavoro in quella frase.
 
@@ -33,18 +33,18 @@ Stiamo passando dal primo mondo al secondo. Per farlo senza perdere nulla, ogni 
 
 Il modello dati è, fortunatamente, semplice. Un `Project` ha molti `Locale` e molte `Resource` (una per file sorgente). Una `Resource` ha molte righe `Entity` (una per stringa sorgente). Ogni `Entity` ha molte `Translation`, una per locale, con flag `approved` e `rejected` e un `User` che l'ha scritta.
 
-Vogliamo spingere la nostra TM legacy dentro questa forma, locale per locale, mentre un vero processo Pontoon continua a servire lo stesso database a utenti reali. Questo significa transazioni, niente cambi di schema, niente operazioni distruttive.
+Voglio spingere la TM legacy dentro questa forma, locale per locale, mentre un vero processo Pontoon continua a servire lo stesso database ai traduttori sul mio progetto. Questo significa transazioni, niente cambi di schema, niente operazioni distruttive.
 
 ## Lo zoo della TM
 
-La prima cosa che imparo è che *"file di translation memory"* non è una cosa sola. I traduttori hanno file in almeno quattro formati:
+La prima cosa che imparo è che *"file di translation memory"* non è una cosa sola. Il corpus che devo importare vive in almeno quattro formati:
 
 - **[TMX](https://en.wikipedia.org/wiki/Translation_Memory_eXchange)** — il formato XML standard del settore. Translation Memory eXchange. È quello che ogni CAT può leggere e scrivere, e quindi quello che ogni CAT implementa con creative variazioni.
 - **TXML** — un XML stile Wordbee con annidamento `<conceptGrp>` / `<languageGrp>` / `<termGrp>`. Meno standard, più verboso, sempre XML.
 - **[XLIFF](https://en.wikipedia.org/wiki/XLIFF)** — lo standard OASIS per l'interscambio di localizzazione. Ce lo passano in salsa [SDL Trados](https://en.wikipedia.org/wiki/SDL_Trados_Studio) con `urn:oasis:names:tc:xliff:document:1.2` più estensioni `http://sdl.com/FileTypes/SdlXliff/1.0`. Metadati come autore e date vivono in `<sdl:seg-defs>`, il che significa XPath namespace-aware.
 - **TCSV** — un formato CSV custom su cui il team interno si mette d'accordo per le stringhe che non entrano da nessuna parte. Sei colonne. Punto e virgola. Alla fine aggiungiamo una variante *"simple"* quando l'originale è troppo rigido.
 
-Scrivo [un parser Nokogiri per ciascun formato](https://github.com/ifad/translation-memory) e un piccolo value object `Translation` che tutti producono. La forma che condividono è in [`shared.rb`](https://github.com/ifad/translation-memory/blob/master/shared.rb):
+Scrivo un parser Nokogiri per ciascun formato — [`tmx.rb`](https://github.com/ifad/translation-memory/blob/master/tmx.rb), [`txml.rb`](https://github.com/ifad/translation-memory/blob/master/txml.rb), [`xliff.rb`](https://github.com/ifad/translation-memory/blob/master/xliff.rb), [`tcsv.rb`](https://github.com/ifad/translation-memory/blob/master/tcsv.rb) — e un piccolo value object `Translation` che tutti producono. La forma che condividono è in [`shared.rb`](https://github.com/ifad/translation-memory/blob/master/shared.rb):
 
 ```ruby
 class Translation
@@ -82,7 +82,7 @@ Una volta che il parser produce un array `[Translation, Translation, ...]`, la d
 
 ## Un importatore senza vergogna
 
-Pontoon ha un'API JSON perfettamente ragionevole per importare traduzioni. Non la uso. L'API si aspetta che le stringhe combacino esattamente, le processa una alla volta, e mi farebbe scrivere un wrapper in Python, deployarlo accanto al processo Pontoon, e gestire auth e rate-limiting. Ho un cassetto pieno di TM e una deadline. Apro [`pontoon.rb`](https://github.com/ifad/translation-memory/blob/master/pontoon.rb) invece.
+Pontoon ha un'API JSON perfettamente ragionevole per importare traduzioni. Non la uso. L'API si aspetta che le stringhe combacino esattamente, le processa una alla volta, e mi farebbe scrivere un wrapper in Python, deployarlo accanto al processo Pontoon, e gestire auth e rate-limiting. Ho un cassetto pieno di TM e una deadline misurata in giorni. So anche perfettamente cosa sto facendo: questo è un tool di migrazione one-shot con un accoppiamento fragile allo schema Postgres interno di Pontoon, e nel momento in cui Mozilla rilascia una migration del database i miei modelli vanno in fumo e l'import si rompe. Va bene così. L'import deve funzionare *adesso*. Apro [`pontoon.rb`](https://github.com/ifad/translation-memory/blob/master/pontoon.rb) invece.
 
 Il trucco è che Pontoon è Django, Django mette tutto in Postgres, lo schema è pubblicato, e ad ActiveRecord non importa quale framework abbia scritto le tabelle. Dichiaro i modelli che mi servono con i nomi di tabella che Django ha scelto:
 
@@ -158,7 +158,7 @@ scope :by_string, ->(string) {
 
 Questa è la versione che va in produzione. Il match rate salta al 95%+. Il restante 5% sono modifiche genuine alla sorgente dove la stringa Rails è stata editata ma la TM tiene ancora il vecchio wording, e quelle hanno bisogno di un umano comunque.
 
-Sono molto contento della regex maleducata. I traduttori sono contenti che le loro vecchie traduzioni saltino fuori. Postgres sta bene. Tutti stanno bene.
+Sono molto contento della regex maleducata. I traduttori sul progetto si loggano e trovano le loro vecchie traduzioni nel pannello suggerimenti. Postgres sta bene. Tutti su questo specifico progetto stanno bene.
 
 ## bark, hmmm, cheer
 
@@ -178,11 +178,11 @@ def self.cheer(woof)
 end
 ```
 
-Rosso è "non ho trovato un'entity target per questa traduzione", giallo è "ne ho trovata una ma è già tradotta, la lascio stare", verde è "importata". Ogni operazione scrive anche una riga in `IMPORT-2018-02-28.184412.csv` così un umano può rileggere il run più tardi e capire esattamente cosa è successo a ogni stringa. Il CSV è quello che viene mandato via email al team di traduzione dopo ogni import.
+Rosso è "non ho trovato un'entity target per questa traduzione", giallo è "ne ho trovata una ma è già tradotta, la lascio stare", verde è "importata". Ogni operazione scrive anche una riga in `IMPORT-2018-02-28.184412.csv` così un umano può rileggere il run più tardi e capire esattamente cosa è successo a ogni stringa. Il CSV è quello che viene allegato all'email post-import ai traduttori sul progetto.
 
 ## Il giro di andata e ritorno
 
-La migrazione è metà della storia. L'altra metà è permettere ai traduttori offline di restare produttivi mentre facciamo l'onboarding di tutti. Quindi [`export.rb`](https://github.com/ifad/translation-memory/blob/master/export.rb) e [`export-missing.rb`](https://github.com/ifad/translation-memory/blob/master/export-missing.rb) camminano Pontoon all'indietro: dato un progetto e un locale, scrivono fuori le entity mancanti su CSV, opzionalmente collassando le stringhe duplicate in una sola riga con tutte le chiavi unite da punto e virgola.
+La migrazione è metà della storia. L'altra metà è che alcuni traduttori su questo progetto vogliono ancora lavorare nel loro tool desktop in certi giorni — vecchie abitudini, treni offline, internet che va e viene. Quindi [`export.rb`](https://github.com/ifad/translation-memory/blob/master/export.rb) e [`export-missing.rb`](https://github.com/ifad/translation-memory/blob/master/export-missing.rb) camminano Pontoon all'indietro: dato un progetto e un locale, scrivono fuori le entity mancanti su CSV, opzionalmente collassando le stringhe duplicate in una sola riga con tutte le chiavi unite da punto e virgola.
 
 ```ruby
 def self.export_condensed_entities(entities, output)
@@ -202,7 +202,7 @@ def self.export_condensed_entities(entities, output)
 end
 ```
 
-Il "gain" è la percentuale di stringhe duplicate tra resource — che su una vera app Rails è deprimentemente alta, perché chiamiamo i bottoni "Submit" ovunque. Il traduttore traduce *Submit* una volta sola, l'importatore lo riespande in tutte le `n` entity al ritorno. Il giro di ritorno è ciò che fa adottare Pontoon al team di traduzione: possono mantenere il loro workflow offline nei giorni in cui vogliono, e beneficiare comunque della TM condivisa.
+Il "gain" è la percentuale di stringhe duplicate tra resource — che su una vera app Rails è deprimentemente alta, perché chiamiamo i bottoni "Submit" ovunque. Il traduttore traduce *Submit* una volta sola, l'importatore lo riespande in tutte le `n` entity al ritorno. Il giro di ritorno significa che i traduttori sul mio progetto non devono scegliere tra Pontoon e la loro abitudine desktop in un dato giorno.
 
 ## Un lungo sprint di San Valentino
 
@@ -215,7 +215,7 @@ Guardando il [commit log](https://github.com/ifad/translation-memory/commits/mas
 - **5 marzo** — exporter per le traduzioni mancanti e calcolo del gain.
 - **15 marzo** — importer TCSV per il formato interno.
 - **27 marzo** — API `approve!` / `reject!` / `unapprove!`, perché una volta che hai i dati dentro, qualcuno vuole approvarli in massa.
-- **17 ottobre 2018** — ultimo commit. Il tool gira, il team lo usa, la migrazione è fatta.
+- **17 ottobre 2018** — ultimo commit. La migrazione è fatta. Il tool gira ogni volta che ricevo un nuovo file TM da qualcuno sul progetto.
 
 L'intero arco prende tre settimane di lavoro intenso e sette mesi di manutenzione strascicata. Cinquantadue commit in totale. 1.300 righe di Ruby, di cui 688 sono l'importatore senza vergogna [`pontoon.rb`](https://github.com/ifad/translation-memory/blob/master/pontoon.rb).
 
@@ -233,6 +233,6 @@ Tre cose, principalmente.
 ruby import.rb tmx project-slug path/to/file.tmx
 ```
 
-Fa una cosa. Logga cosa ha fatto. Scrive un CSV che puoi mandare via email. Quando la migrazione è finita smetti di farlo girare. Il repo resta pubblico, il README non viene mai scritto ([scusate](https://github.com/ifad/translation-memory)), e otto anni dopo la regex funziona ancora. Per tool del genere, è abbastanza.
+Fa una cosa. Logga cosa ha fatto. Scrive un CSV che puoi mandare via email. Quando la migrazione è finita smetti di farlo girare. Il repo resta pubblico, il README non viene mai scritto ([scusate](https://github.com/ifad/translation-memory)), e la successiva migration dello schema di Pontoon prima o poi rompe il model layer. Per allora l'import ha fatto il suo lavoro. Per tool del genere, è abbastanza.
 
 Pontoon, tra l'altro, è eccellente. Se il tuo team si sta ancora mandando file XML via email, [vai a guardarlo](https://pontoon.mozilla.org/).
