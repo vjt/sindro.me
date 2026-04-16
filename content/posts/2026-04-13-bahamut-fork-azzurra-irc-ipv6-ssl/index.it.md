@@ -11,6 +11,8 @@ Questo è il prequel di [Sux Services: IRC Services Multithreaded e SQL-Backed d
 
 Il progetto viveva in un repository CVS su SourceForge — è [ancora lì](https://bahamut-inet6.sf.net/), un fossile digitale. Claude l'ha convertito in Git — [171 commit](https://github.com/vjt/bahamut-inet6/commits/master/), tre autori, storia continua da febbraio 2002 a gennaio 2006. L'ho scritto io — un fork di [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), il demone IRC che faceva girare [DALnet](https://en.wikipedia.org/wiki/DALnet), una delle più grandi reti IRC della sua era. Ve lo racconto.
 
+<!--more-->
+
 ## Come ci sono arrivato
 
 Ho scoperto IRC nello stesso modo in cui ho scoperto Linux — attraverso [linux&c](https://it.wikipedia.org/wiki/Linux_%26_C.), una rivista italiana (ci sono [copie scansionate su Archive.org](https://archive.org/search?query=subject%3A%22Linux+%26+C.+%28rivista%29%22), compreso il [numero #0](https://archive.org/details/LinuxC00) che comprai) che era uno dei pochi punti d'ingresso al mondo open-source per gli adolescenti italiani alla fine degli anni '90. Un articolo menzionava [Azzurra](https://azzurra.chat) ([storia](https://web.archive.org/web/20200814231133/https://www.azzurra.org/?mod=history)), la rete IRC italiana. Mi sono connesso, ho fondato un canale con gli amici — [#sniffo](https://sniffo.org) (pattinaggio in linea e facce buffe, niente di farmaceutico) — e un asse Monopoli/Milano/Bologna di *smanettoni* era nato.
