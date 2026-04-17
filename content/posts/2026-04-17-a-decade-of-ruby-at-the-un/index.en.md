@@ -95,19 +95,21 @@ What's relevant here is what I built on the consuming side, because it became a 
 
 Hawk is also still missing its documentation. The usage section in the README has been a `TODO` since my first commit. Lesson: if the docs aren't there on day one, they never arrive, and the project drifts toward NIH — the next person who needs what your gem does finds it easier to write their own than to reverse-engineer yours.
 
-## The bus
+## Reticulum: the graph
 
 Hawk and the JSON back-office were, individually, unremarkable pieces of engineering — a client, a server, an API. What made them matter was that Amedeo was already three steps ahead.
 
 His vision, which he had been articulating since before I arrived, was that every system at IFAD holding canonical data should expose it as an HTTP JSON API, and every application that needed that data should consume it over the wire instead of keeping its own copy. Single source of truth per domain. No duplicate country lists, no out-of-sync people databases, no reconciliation scripts that mostly worked. An enterprise service bus, except without the commercial bus product — just HTTP, JSON, and a set of disciplined services.
 
+Internally we called it Reticulum, and it was modeled as a graph — resources linked to other resources, cycles allowed. A country pointed to its Lists; a List pointed back at its members; a meeting pointed at its Governing Body and at the people holding roles in it. Walk the graph in either direction; navigation and dependencies fell out of the same structure.
+
 This sounds ordinary today. In 2012, inside a UN agency, with an enterprise side still wiring systems together through nightly batch files and shared database links, it was ambitious, and it was correct. We built it. Every Rails app on the team eventually spoke the same set of APIs. New apps came up in weeks instead of months, because the hard part — *where is the authoritative list of X* — had been answered once, and the answer was always "call this endpoint."
 
 The agile team didn't replace the enterprise side of IFAD; we weren't trying to. The enterprise side — vendors, procurement, risk frameworks, audit requirements — was solving a different problem on a different clock. What our team did, what Amedeo's model let us do, was run a fast lane beside it. The two lanes spoke JSON to each other when they needed to. Nobody's timeline had to match anybody else's.
 
-## The team
+## Three around a table
 
-By around 2013 the agile side of IFAD's IT had crystallized into a small group. Amedeo led it. [Lleïr Borràs Metje](https://github.com/lleirborras) joined at about that time as a lead engineer, and from then on he, Amedeo, and I were the core. I wouldn't have shipped half of what I shipped without Lleïr. When a feature needed to land fast, we'd run an internal hackathon — the three of us in a room for a day or two — and ship it end-to-end into one of our tools. One visionary, two engineers who trusted each other, and a team small enough to fit around a table. That's the practical shape of everything the bus made possible.
+By around 2013 the agile side of IFAD's IT had crystallized into a small group. Amedeo led it. [Lleïr Borràs Metje](https://github.com/lleirborras) joined at about that time as a lead engineer, and from then on he, Amedeo, and I were the core. I wouldn't have shipped half of what I shipped without Lleïr. When a feature needed to land fast, we'd run an internal hackathon — the three of us in a room for a day or two — and ship it end-to-end into one of our tools. One visionary, two engineers who trusted each other, and a team small enough to fit around a table. That's the practical shape of everything Reticulum made possible.
 
 Not everything the three of us did on the agile team is worth a standalone post. A large chunk of those years was infrastructure work nobody writes conference talks about: Ansible playbooks that rolled out Rails apps, server bootstrap, deployment plumbing, monitoring, backup jobs, the ten thousand small things that sit between a git commit and production.
 
