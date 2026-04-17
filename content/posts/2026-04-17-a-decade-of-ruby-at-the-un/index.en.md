@@ -41,6 +41,8 @@ It looked simple. It wasn't.
 
 ### The authorization problem
 
+{{< figure src="authz-matrix.jpg" alt="An ornate leather-bound ledger open on a wooden desk, three woven ribbons of parchment forming a three-dimensional lattice across the pages, lit by a warm brass lamp" >}}
+
 The platform's access rules are a three-dimensional matrix with exceptions on every face. What a given person can see depends on:
 
 - Their role in their country's delegation (head of delegation, alternate, observer, technical expert, and so on).
@@ -97,6 +99,8 @@ Hawk is also still missing its documentation. The usage section in the README ha
 
 ## Reticulum: the graph
 
+{{< figure src="reticulum.jpg" alt="An antique parchment chart on a candlelit table showing a constellation-like network of glowing golden nodes connected by luminous threads with visible loops, a brass astrolabe to the left and a quill in an inkwell to the right" >}}
+
 Hawk and the JSON back-office were, individually, unremarkable pieces of engineering — a client, a server, an API. What made them matter was that Amedeo was already three steps ahead.
 
 His vision, which he had been articulating since before I arrived, was that every system at IFAD holding canonical data should expose it as an HTTP JSON API, and every application that needed that data should consume it over the wire instead of keeping its own copy. Single source of truth per domain. No duplicate country lists, no out-of-sync people databases, no reconciliation scripts that mostly worked. An enterprise service bus, except without the commercial bus product — just HTTP, JSON, and a set of disciplined services.
@@ -117,6 +121,8 @@ That work isn't exciting in the telling, but it's where the team's credibility c
 
 ## Crossing over: tech lead on IBM territory
 
+{{< figure src="crossing-over.jpg" alt="A long arcaded marble corridor in a Roman palazzo, a wood-and-books workspace glimpsed through an open doorway on the left, a single figure in dark attire walking with a satchel toward the formal wing ahead, late afternoon light slanting through clerestory windows" >}}
+
 After several years on the agile team, I crossed into the enterprise side of IFAD's IT as tech lead on a large finance project built on IBM technology. I won't say much about the project itself — most of the work sits under the kind of constraints where "can't say much" is the right answer.
 
 I reported to [Simone Giorgi](https://www.linkedin.com/in/simone-giorgi-2a811a/), with [Thomas Bousios](https://www.linkedin.com/in/thomas-bousios-b49760/) one level up as the director of the area. They picked me because years of shipping on the agile side had earned it. Knowing both sides — software engineering and the infrastructure it runs on — was what the role needed.
@@ -125,7 +131,7 @@ The stack was different: IBM-based, under governance that runs on slower cycles,
 
 The business analyst on the project was [Michelle Lockwood](https://www.linkedin.com/in/michelle-lockwood-8929a55/), and Michelle was instrumental to its outcome — the same way Victoria and Shamela had been instrumental on Members.
 
-## WebSphere, ISAM, and the log cluster
+### WebSphere, ISAM, and the log cluster
 
 I worked with **WebSphere Application Server** — a piece of Java infrastructure of a very specific era, with its own deployment model, its own tooling, and its own preferred way of doing things. I wrote [ansible-wsadmin](/posts/2026-04-11-ansible-wsadmin/) to bring WebSphere deployment into the same Git-driven, reviewable, idempotent workflow the agile team had taken for granted on Rails. It took a while, because WebSphere does not like being automated.
 
