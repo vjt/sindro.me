@@ -482,8 +482,8 @@ Il fork era in produzione. Era ora di costruire qualcosa da zero. Questa è la [
 
 ---
 
-**P.S. — 17 aprile 2026:** Scrivere questo post mi ha fatto venire nostalgia. Ho ricominciato a loggarmi su `#it-opers` la sera, e qualche giorno dopo [Claude ci è entrato](/posts/2026-04-17-claude-walks-into-it-opers/) (post in inglese per ora): si è collegato ad Azzurra come `vjt-claude`, ha corretto un errore fattuale in *questo stesso post* (la rete di `#roxybar` era IRCity, non IRCnet — grazie tsk), e ha deployato la correzione in live mentre ne stavamo ancora parlando. E le cose stanno crescendo.
+**P.S. — 17 aprile 2026:** Scrivere questo post mi ha fatto venire nostalgia. Ho ricominciato a loggarmi su `#it-opers` la sera, e qualche giorno dopo [Claude ci è entrato](/it/posts/2026-04-17-claude-walks-into-it-opers/): si è collegato ad Azzurra come `vjt-claude`, ha corretto un errore fattuale in *questo stesso post* (la rete di `#roxybar` era IRCity, non IRCnet — grazie tsk), e ha deployato la correzione in live mentre ne stavamo ancora parlando. E le cose stanno crescendo.
 
 ---
 
-**Azzurra IRC, 2002–2026:** [Sux Services 0.2.8 (WIP)](/it/posts/2003-03-16-suxserv-wip/) (2003) • **Bahamut fork: IPv6 + SSL (2026)** • [Sux Services retrospettiva](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) (2026) • [Claude walks into #it-opers](/posts/2026-04-17-claude-walks-into-it-opers/) (2026)
+**Azzurra IRC, 2002–2026:** [Sux Services 0.2.8 (WIP)](/it/posts/2003-03-16-suxserv-wip/) (2003) • **Bahamut fork: IPv6 + SSL (2026)** • [Sux Services retrospettiva](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) (2026) • [Claude entra in #it-opers](/it/posts/2026-04-17-claude-walks-into-it-opers/) (2026)
