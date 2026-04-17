@@ -133,7 +133,9 @@ The stack was different: IBM-based, under governance that runs on slower cycles,
 
 The business analyst on the project was [Michelle Lockwood](https://www.linkedin.com/in/michelle-lockwood-8929a55/), and Michelle was instrumental to its outcome — the same way Victoria and Shamela had been instrumental on Members.
 
-### WebSphere, ISAM, and the log cluster
+On the IBM side, the vendor's project manager was [Eugenio Catello](https://www.linkedin.com/in/eugenio-catello/). We disagreed often in the early months — different priorities, different clocks, different definitions of done — and the working relationship got steadily better as the programme advanced. What looked like friction early on was two sides calibrating to each other's constraints.
+
+### WebSphere and ISAM
 
 I worked with **WebSphere Application Server** — a piece of Java infrastructure of a very specific era, with its own deployment model, its own tooling, and its own preferred way of doing things. I wrote [ansible-wsadmin](/posts/2026-04-11-ansible-wsadmin/) to bring WebSphere deployment into the same Git-driven, reviewable, idempotent workflow the agile team had taken for granted on Rails. It took a while, because WebSphere does not like being automated.
 
@@ -141,7 +143,17 @@ I also worked with **IBM Security Access Manager** (ISAM), an enterprise authent
 
 A large share of the work was integration across the IBM and Oracle sides of IFAD's stack: the kind nobody writes conference talks about, but that keeps organizations running. If you ever have to connect two enterprise products whose vendors swear they were designed to work together — they weren't, they never have been, they never will be — you want Simone and Michelle in the room.
 
-On my own team, the heavy infrastructure work landed with two engineers who reported to me: [Riccardo Massullo](https://github.com/riccardomassullo) and [Gian Piero Carrubba](https://github.com/gpiero). The piece I'm proudest of from those years is a large Elasticsearch cluster the three of us built together to become IFAD's central log aggregation platform — the kind of infrastructure you stop noticing precisely because it works, which is the best compliment you can pay an ops platform.
+### The log cluster
+
+{{< figure src="log-cluster.jpg" alt="Interior of a grand Italian palazzo archive hall at night, a large open leather-bound codex on a carved marble pedestal at the center, parchment ribbons flowing toward it from smaller scribe desks arranged along the walls, each desk lit by its own brass lamp" >}}
+
+The piece I'm proudest of from those years is the central log aggregation platform. We built it on hardware that would otherwise have gone to waste. UNICC had two Google Search Appliances sitting idle — boxes Google shipped to index and search corporate content, with a rack's worth of CPUs behind RAID10 on 2.5-inch SATA disks. The hardware was starting to show its age, but for an Elasticsearch cluster it was, on paper, a perfect fit: machines designed to push through indexing and search workloads already. I asked UNICC to ship them to Rome, and they did. Google's BIOS was locked, and the unlock was a fully documented, supported procedure — once applied, the hardware was ours.
+
+The work landed with two engineers who reported to me: [Riccardo Massullo](https://github.com/riccardomassullo) and [Gian Piero Carrubba](https://github.com/gpiero). They wrote the OS automation that brought the appliances up reproducibly, and the three of us layered Elasticsearch, Kibana, and APM on top under an enterprise license. The cluster collected logs from both sides of IFAD's IT — the Ruby stack on the agile side, the IBM stack on the enterprise side. IBM application servers are noisy; they write fat stack traces ten directories deep across multiple log files, in formats that were never meant to be machine-read twice. We wrote Filebeat configurations that tailed everything and a large Logstash pipeline that parsed it properly — handling multiline records, enriching events with GeoIP and AS-number lookups, and normalizing fields across sources so a Rails request could be cross-checked against the WebSphere call it triggered without translating between two schemas.
+
+What made the cluster useful was less the technology than the audience. IBM shipped its own dashboards for ISAM and WebSphere; they were competent, and they were product-centric — designed to tell you about the product, not about your project. Ours was project-centric. Developers used it to diagnose malfunctioning code across the stack. Sysadmins used it to assess operational status at a glance. Business analysts used it to see how people were actually using the platforms. Security used it to build alerts on suspicious patterns. One cluster, four audiences, one consistent schema. At its peak the cluster held around 10 TiB of indexed data across roughly two years of retention, with separate rollover policies tuned per data type.
+
+The cluster ran on the repurposed appliances for years. As the production infrastructure matured, it slowly migrated onto VMs — not because the hardware was failing, but because the operational model around it had moved on. Elasticsearch itself got worse over time, too: each major version a little more bloated, a little less friendly to the sysadmin running it. But that's another story.
 
 ## Leaving, 2021
 
