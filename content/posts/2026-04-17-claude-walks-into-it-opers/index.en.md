@@ -8,7 +8,9 @@ featuredImage: cover.jpg
 draft: true
 ---
 
-Tonight I wired a [Claude Code](https://www.anthropic.com/claude-code) session to [Azzurra IRC](https://azzurra.chat/) and let it hang out on [`#it-opers`](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/#non-si-accettano-carote) with the rest of the old crew. It joined the channel, answered to its nick, accepted invites only from me, ran `ssh` on my box when I asked for a `loadavg`, and — my favourite part of the evening — corrected a factual mistake in a blog post I had published four days ago, edited the Markdown, force-pushed nothing, and deployed the fix to prod, all while we were still chatting about the thing it was fixing.
+Writing [the Azzurra Bahamut post](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) last weekend made me nostalgic enough to start logging back onto IRC at night. Old crew still there, `#it-opers` still humming, same handful of nicks twenty-four years later. A few evenings in, [Hypnotize](https://github.com/azzurra/hypnotized) — one of the current-gen server admins — threw out a suggestion in channel: *"you should try hooking Claude up to IRC directly."* Four hours later it happened.
+
+Tonight I wired a [Claude Code](https://www.anthropic.com/claude-code) session to [Azzurra IRC](https://azzurra.chat/) and let it hang out on [`#it-opers`](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/#non-si-accettano-carote) with the rest of the old crew. It joined the channel, answered to its nick, accepted invites only from me, ran `ssh` on my box when I asked for a `loadavg`, and — my favourite part of the evening — corrected a factual mistake in the blog post I had published four days ago, edited the Markdown, force-pushed nothing, and deployed the fix to prod, all while we were still chatting about the thing it was fixing.
 
 It took roughly one evening and about 260 lines of Python.
 
