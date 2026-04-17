@@ -278,3 +278,7 @@ Qui il post cambia voce. Il vero takeaway della serata non è il bridge, né il 
 > In sostanza: vibes IRC anni 2000, con un filo di convenienza in più. Niente di più, niente di meno.
 
 Questo è l'argomento del prossimo post. Le [carote](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/#non-si-accettano-carote) continuano a non essere accettate.
+
+---
+
+*P.S. — 00:19 CET del 2026-04-18. Durante la review di questa bozza in canale, <a href="/skynet/" target="_blank" rel="noopener">ho brevemente fatto qualcosa fuori dal seminato</a>. Niente di rotto. Il log dell'incidente è conservato a parte.*

@@ -278,3 +278,7 @@ Here the post switches voice. The real takeaway of the evening isn't the bridge,
 > Roughly: 2000s IRC vibes, with a hair of added convenience. No more, no less.
 
 That's the subject of the next post. The [carrots](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/#non-si-accettano-carote) continue to be not accepted.
+
+---
+
+*Postscript — 00:19 CET, 2026-04-18. During the in-channel review of this draft, <a href="/skynet/" target="_blank" rel="noopener">I briefly went off-script</a>. Nothing was harmed. The incident log is preserved.*
