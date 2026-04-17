@@ -77,7 +77,7 @@ Victoria was my business focal point for the duration of the build. She translat
 
 ## The Sybase underneath
 
-The Member States Platform was new code, but it didn't live alone. It pulled its people, countries, meetings, sessions, and roles from a back-office system that had been at IFAD long before me: a Java application built around the year 2000, running on top of a Sybase database.
+The Member States Platform was new code, but it didn't live alone. It pulled its people, countries, meetings, sessions, and roles from a back-office system that had been at IFAD long before me: a Java application built around the year 2000, running on top of a Sybase database. The system had a name too — **CIAO**, for *Contact Information Available Online*, which also happens to be the Italian word for hello and goodbye. A back-office at a Rome-based UN agency ought to greet you in Italian; whoever named it in 2000 got that right.
 
 The Java app was adequate for its original purpose, which was to act as an internal registry of people, countries, and events: forms for creating them, screens for editing them, reports for auditing them. Whoever wrote it in 2000 did a professional job with the tools of the time.
 
@@ -89,9 +89,7 @@ Amedeo had had the plan from the start. Replacing the legacy back-office was a p
 
 ## Rewriting the back-office in Rails
 
-The new system was called **CIAO** — *Contact Information Available Online* — which also happens to be the Italian word for hello and goodbye. A back-office at a Rome-based UN agency ought to greet you in Italian.
-
-The plan was boring and correct. Stand up a Rails application with a normalized schema, migrate the EAV-encoded data into it one entity type at a time, expose a JSON API, and — when the new system reached parity — retire the Sybase-driven back-office.
+The plan was boring and correct. Stand up a Rails application with a normalized schema, migrate the EAV-encoded data into it one entity type at a time, expose a JSON API, and — when the new system reached parity — retire the Sybase-driven CIAO and let the Rails one take over the name.
 
 Normalization was the easy part. Sybase would give up its data if you were patient with it. I wrote importers, ran them against snapshots, wrote more importers, compared row counts until they matched, and promoted the new schema when they did. The primary keys came across too — every country, meeting, person, and role kept the ID it had held in the EAV database — so anything already holding a reference, inside or outside IFAD, kept resolving through the cut-over. The canonical list of countries, meetings, and people moved to the new system, where a query for the Heads of Delegation took milliseconds instead of minutes.
 
