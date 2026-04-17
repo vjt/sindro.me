@@ -51,7 +51,7 @@ The platform's access rules are a three-dimensional matrix with exceptions on ev
 
 On top of that, every meeting has its own rules. And on top of *those* rules, there are per-meeting overrides for specific delegations — the kind of carve-out that an intergovernmental agency generates naturally, meeting after meeting. That set of rules drove two things: who could see which documents, and who got the e-mail when a new document was published.
 
-The whole thing was implemented inside the database. A base view encoded the full matrix — person × country × meeting × role-in-meeting — and a hierarchy of additional views layered per-meeting overrides on top. Rails queried those views and stayed out of the way. The authorization logic lived where the data lived, which is where it should live. It was fast.
+The whole thing was implemented inside the database. A base view encoded the full matrix — person × country × meeting × role-in-meeting — and a hierarchy of additional views layered per-meeting overrides on top. The override views hard-coded the meeting IDs they applied to; a smell anywhere else, but fine here, because a meeting ID — once assigned to a Governing Council or Executive Board session — never changes. Rails queried the views and stayed out of the way. The authorization logic lived where the data lived, which is where it should live. It was fast.
 
 Whatever Ruby-side checks remained on top, I wrote in-line. [Eaco](/posts/2015-02-28-eaco-authorization-ruby/) would eventually be the right place for them, but in 2011 Eaco didn't exist.
 
@@ -89,9 +89,11 @@ Amedeo had had the plan from the start. Replacing the legacy back-office was a p
 
 ## Rewriting the back-office in Rails
 
+The new system was called **CIAO** — *Contact Information Available Online* — which also happens to be the Italian word for hello and goodbye. A back-office at a Rome-based UN agency ought to greet you in Italian.
+
 The plan was boring and correct. Stand up a Rails application with a normalized schema, migrate the EAV-encoded data into it one entity type at a time, expose a JSON API, and — when the new system reached parity — retire the Sybase-driven back-office.
 
-Normalization was the easy part. Sybase would give up its data if you were patient with it. I wrote importers, ran them against snapshots, wrote more importers, compared row counts until they matched, and promoted the new schema when they did. The canonical list of countries, meetings, and people moved to the new system, where a query for the Heads of Delegation took milliseconds instead of minutes.
+Normalization was the easy part. Sybase would give up its data if you were patient with it. I wrote importers, ran them against snapshots, wrote more importers, compared row counts until they matched, and promoted the new schema when they did. The primary keys came across too — every country, meeting, person, and role kept the ID it had held in the EAV database — so anything already holding a reference, inside or outside IFAD, kept resolving through the cut-over. The canonical list of countries, meetings, and people moved to the new system, where a query for the Heads of Delegation took milliseconds instead of minutes.
 
 The harder part was the API. The Members Platform had to switch from reading Sybase to reading the new JSON endpoints — and it had to keep working throughout. The cut-over, predictably, did not land on the first try. That's a story for a post about migrations; it isn't this post.
 
