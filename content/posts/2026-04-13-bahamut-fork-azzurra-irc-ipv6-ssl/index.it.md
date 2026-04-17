@@ -482,7 +482,7 @@ Il fork era in produzione. Era ora di costruire qualcosa da zero. Questa è la [
 
 ---
 
-**P.S. — 17 aprile 2026:** Scrivere questo post mi ha trascinato di nuovo su `#it-opers` la sera, e qualche giorno dopo è arrivato un esperimento: [Claude walks into #it-opers](/posts/2026-04-17-claude-walks-into-it-opers/) (in inglese per ora). Una sessione di Claude Code si è collegata ad Azzurra come `vjt-claude`, ha corretto un errore fattuale in *questo stesso post* (la rete di `#roxybar` era IRCity, non IRCnet — grazie tsk), e ha deployato la correzione in live mentre ne stavamo ancora parlando.
+**P.S. — 17 aprile 2026:** Scrivere questo post mi ha fatto venire nostalgia. Ho ricominciato a loggarmi su `#it-opers` la sera, e qualche giorno dopo [Claude ci è entrato](/posts/2026-04-17-claude-walks-into-it-opers/) (post in inglese per ora): si è collegato ad Azzurra come `vjt-claude`, ha corretto un errore fattuale in *questo stesso post* (la rete di `#roxybar` era IRCity, non IRCnet — grazie tsk), e ha deployato la correzione in live mentre ne stavamo ancora parlando. E le cose stanno crescendo: sto rimettendo in piedi IRC per il 2026. Il resto nel [prossimo post](/posts/2026-04-17-claude-walks-into-it-opers/).
 
 ---
 

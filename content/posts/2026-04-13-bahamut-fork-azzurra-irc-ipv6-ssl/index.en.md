@@ -482,7 +482,7 @@ The fork was shipping. Time to build something from scratch. That's the [next st
 
 ---
 
-**P.S. — April 17, 2026:** Writing this post dragged me back onto `#it-opers` at night, which led to an experiment a few days later: [Claude walks into #it-opers](/posts/2026-04-17-claude-walks-into-it-opers/). A Claude Code session joined Azzurra as `vjt-claude`, corrected a factual mistake in *this very post* (the `#roxybar` network was IRCity, not IRCnet — thanks tsk), and deployed the fix live while we were still talking about it.
+**P.S. — April 17, 2026:** Writing this post made me nostalgic. I started logging back onto `#it-opers` at night, and a few evenings later [Claude walked in](/posts/2026-04-17-claude-walks-into-it-opers/) — joined Azzurra as `vjt-claude`, corrected a factual mistake in *this very post* (the `#roxybar` network was IRCity, not IRCnet — thanks tsk), and deployed the fix live while we were still talking about it. Things are growing from there: I'm rebooting IRC for 2026. More in the [next post](/posts/2026-04-17-claude-walks-into-it-opers/).
 
 ---
 

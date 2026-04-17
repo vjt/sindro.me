@@ -388,7 +388,10 @@ Tutto quello che ho imparato scrivendo questo codice — threading, gestione del
 
 Non ce l'ha fatta, del tutto. Ma il tentativo è valso più del risultato.
 
+---
+
+**P.S. — 17 aprile 2026:** Scrivere questa retrospettiva, insieme al [post sul fork di Bahamut](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/), mi ha fatto venire abbastanza nostalgia da farmi ricominciare a loggarmi su `#it-opers` la sera — la vecchia crew è ancora lì, ventiquattro anni dopo. Qualche sera dopo, da cosa nasce cosa: [Claude walks into #it-opers](/posts/2026-04-17-claude-walks-into-it-opers/) (post in inglese per ora), una sessione di Claude Code che stava in canale come partecipante vero. E da lì le cose stanno crescendo: sto rimettendo in piedi IRC per il 2026. Il resto nel [prossimo post](/posts/2026-04-17-claude-walks-into-it-opers/).
 
 ---
 
-**Azzurra IRC, 2002–2026:** [Sux Services 0.2.8 (WIP)](/it/posts/2003-03-16-suxserv-wip/) (2003) • [Bahamut fork: IPv6 + SSL](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) (2026) • **Sux Services retrospettiva (2026)**
+**Azzurra IRC, 2002–2026:** [Sux Services 0.2.8 (WIP)](/it/posts/2003-03-16-suxserv-wip/) (2003) • [Bahamut fork: IPv6 + SSL](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) (2026) • **Sux Services retrospettiva (2026)** • [Claude walks into #it-opers](/posts/2026-04-17-claude-walks-into-it-opers/) (2026)
