@@ -69,6 +69,8 @@ None of this was novel on its own. Making it hang together coherently, across fo
 
 ### The award
 
+{{< figure src="award.jpg" alt="Classical still life: bronze laurel wreath, sealed parchment scroll, and brass plaque resting on a deep crimson velvet cushion on a carved wooden surface, with a gilded picture frame and an oil lamp in the palazzo background" >}}
+
 In December 2011 the platform won [IFAD's Outstanding Project/Initiative award](https://ifad-un.blogspot.com/2011/12/celebrating-27-extraordinary-colleagues.html). The citation went to Amedeo and the three cross-departmental staff who had conceived it, sponsored it, and championed it across silos: Shamela Brown, Victoria Chiartano, and Paola de Leva. Consultants don't qualify for those awards, so my name isn't on the citation. Fair enough — they did the harder job. I got to write the code.
 
 Victoria was my business focal point for the duration of the build. She translated two decades of how IFAD actually runs its governing-body cycles into requirements I could build against, and pushed back when my engineering instincts ran ahead of the business reality. Members is what it is because the engineering and the business analysis were done together, by people who respected each other and argued productively when they disagreed. That combination — good engineering alongside good business competence — is rarer than either alone.
@@ -146,6 +148,8 @@ On my own team, the heavy infrastructure work landed with two engineers who repo
 In late 2021 I took an offer from Meta and moved to Dublin. Ten years at IFAD ended in the usual way: a box carried down the stairs of the Rome office, and a lot of handover documents in my laptop. The Rails apps kept running. The APIs kept answering. The enterprise side kept its own clock. None of that needed me anymore, which is how it ought to be.
 
 ## What persists
+
+{{< figure src="what-persists.jpg" alt="View from inside an Italian palazzo through an open arched window onto Roman rooftops at dawn, a distant dome silhouette on the horizon, an open leather-bound ledger and a sprig of ivy on the stone sill, an unlit brass lamp beside them, a dim wooden desk visible in the shadow to the left" >}}
 
 [webapps.ifad.org/members](https://webapps.ifad.org/members) is still the URL. The document pages still come in four languages. The [Governing Council documents page](https://webapps.ifad.org/members/gc/49) looks the way it looked the day we shipped it — each news entry still prefixed with the <u>"New Documents Online!"</u> that Victoria used to write by hand in the emails she sent to delegates before the platform existed. Members replaced the manual mails. It did not replace the phrasing.
 
