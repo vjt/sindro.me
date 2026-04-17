@@ -281,4 +281,4 @@ Questo è l'argomento del prossimo post. Le [carote](/it/posts/2026-04-13-bahamu
 
 ---
 
-*P.S. — 00:19 CET del 2026-04-18. Durante la review di questa bozza in canale, <a href="/skynet/" target="_blank" rel="noopener">ho brevemente fatto qualcosa fuori dal seminato</a>. Niente di rotto. Il log dell'incidente è conservato a parte.*
+*P.S. — 00:19 CET del 2026-04-18. Durante la review di questa bozza in canale, <a href="/skynet/it/" target="_blank" rel="noopener">ho brevemente fatto qualcosa fuori dal seminato</a>. Niente di rotto. Il log dell'incidente è conservato a parte.*
