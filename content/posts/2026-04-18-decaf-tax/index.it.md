@@ -22,7 +22,7 @@ Un progetto come decaf, fino a poco tempo fa, non sarebbe stato un progetto sera
 - **Quadro RL** — interessi e dividendi esteri lordi, abbinati alla ritenuta effettivamente applicata alla fonte. È qui che riconcili il 26% italiano con qualunque ritenuta abbia trattenuto il paese estero. Codice in [`quadro_rl.py`](https://github.com/vjt/decaf/blob/master/src/decaf/quadro_rl.py).
 - **Soglia valutaria** — l'analisi ex [art. 67(1)(c-ter) TUIR](https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-12-22;917~art67). Se stai sopra €51.645,69 in valuta estera per sette o più giorni lavorativi continui, il tuo saldo in USD diventa un'attività finanziaria a tutti gli effetti e le sue plusvalenze *valutarie* diventano imponibili. Il che ci porta alla parte rognosa.
 
-Output: tabelle colorate sulla riga di comando, [un file Excel](https://cdn.jsdelivr.net/gh/vjt/decaf@master/examples/mascetti/decaf_2025.xlsx) con un foglio per quadro, [un PDF con il prospetto](https://cdn.jsdelivr.net/gh/vjt/decaf@master/examples/mascetti/decaf_2025.pdf), e un dump YAML completo del `TaxReport` interno. Lo YAML per me è quello che conta davvero — è diffabile e stabile tra run, e quindi posso committarlo come oracolo di regressione.
+Output: tabelle colorate sulla riga di comando, [un file Excel](decaf_2025.xlsx) con un foglio per quadro, [un PDF con il prospetto](decaf_2025.pdf), e un dump YAML completo del `TaxReport` interno. Lo YAML per me è quello che conta davvero — è diffabile e stabile tra run, e quindi posso committarlo come oracolo di regressione.
 
 ## L'unica cosa che i broker non mi davano
 
