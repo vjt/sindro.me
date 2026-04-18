@@ -15,14 +15,14 @@ Un progetto come decaf, fino a poco tempo fa, non sarebbe stato un progetto sera
 
 ## Cosa fa, in concreto
 
-`decaf` sono due comandi. `decaf load` carica i dati in un database locale — per IBKR li scarica via API HTTPS con un paio di token in `.env`, per Schwab legge i tre file che hai esportato a mano (ci torno sotto). `decaf report --year 2025` rilegge dal database, converte USD in EUR al cambio BCE della data giusta (regolamento per il monitoraggio, operazione per le plusvalenze — sono due date diverse), e produce quattro cose:
+`decaf` sono due comandi. `decaf load` carica i dati in un database locale — per IBKR li scarica direttamente dal broker, per Schwab legge i tre file che hai esportato a mano (ci torno sotto). `decaf report --year 2025` rilegge dal database, converte USD in EUR al cambio BCE della data giusta (regolamento per il monitoraggio, operazione per le plusvalenze — sono due date diverse), e produce quattro cose:
 
 - **Quadro RW** — monitoraggio attività estere più [IVAFE](https://www.agenziaentrate.gov.it/portale/web/guest/schede/pagamenti/ivafe/ivafe-scheda-informativa): 0.2% annuo sul valore di mercato dei titoli e sui saldi cash del broker, pro-rata per giorni di detenzione. Decaf non gestisce conti correnti bancari esteri (Revolut, Wise, N26 e simili): per quelli vale il fisso da €34.20 annui, e te li dichiari a mano. Codice in [`quadro_rw.py`](https://github.com/vjt/decaf/blob/master/src/decaf/quadro_rw.py).
 - **Quadro RT** — plusvalenze al 26% sui titoli. Qui decaf si fida del [FIFO del broker](https://www.investopedia.com/terms/f/fifo.asp); non ha senso reimplementare il cost basis quando IBKR e Schwab lo tracciano già. Codice in [`quadro_rt.py`](https://github.com/vjt/decaf/blob/master/src/decaf/quadro_rt.py).
 - **Quadro RL** — interessi e dividendi esteri lordi, abbinati alla ritenuta effettivamente applicata alla fonte. È qui che riconcili il 26% italiano con qualunque ritenuta abbia trattenuto il paese estero. Codice in [`quadro_rl.py`](https://github.com/vjt/decaf/blob/master/src/decaf/quadro_rl.py).
 - **Soglia valutaria** — l'analisi ex [art. 67(1)(c-ter) TUIR](https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-12-22;917~art67). Se stai sopra €51.645,69 in valuta estera per sette o più giorni lavorativi continui, il tuo saldo in USD diventa un'attività finanziaria a tutti gli effetti e le sue plusvalenze *valutarie* diventano imponibili. Il che ci porta alla parte rognosa.
 
-Output: tabelle colorate sulla riga di comando, [un file Excel](decaf_2025.xlsx) con un foglio per quadro, [un PDF con il prospetto](decaf_2025.pdf), e un dump YAML completo del `TaxReport` interno. Lo YAML per me è quello che conta davvero — è diffabile e stabile tra run, e quindi posso committarlo come oracolo di regressione.
+Output: tabelle colorate sulla riga di comando, [un file Excel](decaf_2025.xlsx) con un foglio per quadro, [un PDF con il prospetto](decaf_2025.pdf), e un file testuale con il report completo. Quest'ultimo per me è quello che conta davvero: è stabile tra un'esecuzione e l'altra, si confronta riga per riga, e lo archivio come riferimento per accorgermi di qualunque cambio inatteso.
 
 ## L'unica cosa che i broker non mi davano
 
