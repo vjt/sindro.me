@@ -50,7 +50,7 @@ Due, per ora, perché sono i due che uso:
 
   Perché tre file e non un'API? Perché mi sono registrato al portale developer di Schwab, ho aspettato l'approvazione dell'account, ho registrato un'app, ho fatto girare l'OAuth2 — tutto liscio — e poi gli endpoint sono tornati vuoti. La [Trader API non supporta i conti EAC](https://github.com/vjt/decaf/blob/master/doc/INTERNALS.md#schwab-integration), e le altre API di Schwab non espongono le informazioni fiscali che servono (cost basis per lotto, FMV ai vest per giurisdizione): quelle vivono solo nei PDF annuali. Quindi, parser PDF. Il lavoro pesante lo fa `poppler-utils`. Orchestratore in [`schwab_parse.py`](https://github.com/vjt/decaf/blob/master/src/decaf/schwab_parse.py).
 
-Fineco no, Directa no, Degiro no, ancora. Aggiungere un broker significa un nuovo modulo parser che costruisca gli stessi `ParsedData` interni; al resto della pipeline non importa da dove arrivano gli eventi. PR benvenute.
+Fineco, Directa e Degiro non ancora. Degiro è il candidato più ovvio: è regime dichiarativo, RW e RT te li fai tu. Fineco e Directa di default fanno da sostituto d'imposta — le tasse te le calcolano loro, l'RW è pure esonerato — quindi decaf ti serve solo se hai scelto tu il regime dichiarativo. Aggiungere un broker significa un nuovo modulo parser che costruisca gli stessi `ParsedData` interni; al resto della pipeline non importa da dove arrivano gli eventi. PR benvenute.
 
 ## Il trittico
 
@@ -60,11 +60,11 @@ Il punto di partenza è stata la mia dichiarazione reale. Quando, per tre anni d
 
 Da quella base validata ho ricavato tre [casi sintetici](https://github.com/vjt/decaf/tree/master/examples): dati finti, costruiti per esercitare le stesse logiche senza esporre i miei numeri reali. Vivono assieme al codice del programma, e ognuno porta con sé il **report atteso** accanto: quando modifico qualcosa e rilancio decaf, il confronto tra il nuovo output e il report atteso è immediato, e qualunque differenza salta subito all'occhio. Oltre a questo, tre controlli automatici girano a ogni esecuzione dei test: il report coincide esattamente con quello atteso, il numero di righe di ogni quadro resta stabile, e per ogni riga del Quadro RL vale `netto = lordo − ritenuta`. Codice in [`tests/test_e2e.py`](https://github.com/vjt/decaf/blob/master/tests/test_e2e.py).
 
-Il flusso di lavoro completo — come sono organizzati i casi, come si aggiunge un anno nuovo — è in [`doc/BACKTEST.md`](https://github.com/vjt/decaf/blob/master/doc/BACKTEST.md).
+Vuoi provarlo sui tuoi numeri? In [`doc/BACKTEST.md`](https://github.com/vjt/decaf/blob/master/doc/BACKTEST.md) spiego come dare in pasto a decaf la tua dichiarazione passata e confrontare l'output con quello che ti ha tornato il commercialista — *try before you buy*, soddisfatto o rimborsato.
 
 I tre casi sintetici pubblici coprono tre livelli di complessità crescente:
 
-- **[`magnotta/`](https://github.com/vjt/decaf/tree/master/examples/magnotta)** — il caso base. Solo IBKR, un anno, IVAFE pro-rata su una posizione parziale, un trade in perdita, un dividendo con ritenuta US.
+- **[`magnotta/`](https://github.com/vjt/decaf/tree/master/examples/magnotta)** — il caso base. Solo IBKR, un anno, IVAFE pro-rata su una posizione parziale, un trade in perdita da 480.000 vecchie lire, un dividendo con ritenuta US.
 - **[`mosconi/`](https://github.com/vjt/decaf/tree/master/examples/mosconi)** — IBKR più Schwab, due anni, stesso ticker su entrambi, vendita FIFO parziale, vesting RSU.
 - **[`mascetti/`](https://github.com/vjt/decaf/tree/master/examples/mascetti)** — lo stress test. Due anni, soglia valutaria superata entrambi, FIFO su lotti USD multipli, RSU che vestano su più anni, quattro ritenute diverse (US 30%, UK 0%, DE 26.375%, IT 26%).
 
