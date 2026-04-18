@@ -1,5 +1,5 @@
 ---
-title: "De-CAF: filing Italian taxes on foreign investments without a commercialista"
+title: "De-CAF: filing Italian taxes on foreign investments, without a commercialista"
 date: 2026-04-18
 tags: [python, taxes, italy, foreign-investments, open-source, finance]
 description: "Why I wrote decaf — a Python tool that takes broker files from Interactive Brokers and Charles Schwab and spits out everything you need to fill the Modello Redditi PF: Quadro RW, RT, RL. With three test fixtures named after three Italian audio-cult saints."
@@ -7,28 +7,36 @@ image: cover.png
 featuredImage: cover.png
 ---
 
-If you hold foreign investments as an Italian tax resident, you know the drill. Every spring you dump screenshots of your broker account into a Google Drive folder, send them to your [commercialista](https://it.wikipedia.org/wiki/Commercialista), and a few weeks later you get back a PDF that costs between three hundred and eight hundred euros and which you have no way of verifying because you don't speak [TUIR](https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-12-22;917) fluently.
+If you hold foreign investments as an Italian tax resident, you know the drill. Every spring you bundle a stack of PDFs and broker exports, send them to your [commercialista](https://it.wikipedia.org/wiki/Commercialista), and a few weeks later you get back a PDF that costs between three hundred and eight hundred euros and which you have no way of verifying because you don't speak [TUIR](https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-12-22;917) fluently.
 
-I got tired of this two years ago and started writing the calculation by hand in a spreadsheet. Last winter I rewrote the spreadsheet in Python. Last week I published it on PyPI as [`decaf-tax`](https://pypi.org/project/decaf-tax/) and on [GitHub](https://github.com/vjt/decaf). The source is MIT, the tests include three synthetic fixtures named after Italian meme saints, and the README has a disclaimer that is not a joke: **this is a tool, not a commercialista** — it automates the arithmetic, it doesn't interpret case law.
+A project like decaf, until recently, wouldn't have been an evenings-and-weekends project: reading the TUIR, Agenzia delle Entrate circolari, and interpello responses isn't my job, and doing it with enough precision to bet a tax filing on it takes months. With an [LLM](https://www.anthropic.com/claude/opus) that chews through the legislation alongside me and keeps me honest, it became feasible. The result is [`decaf-tax`](https://pypi.org/project/decaf-tax/) on PyPI and [github.com/vjt/decaf](https://github.com/vjt/decaf) on GitHub, MIT-licensed. With a test suite built specifically to keep me from fudging numbers: synthetic cases with their expected outputs stored next to them, plus three years of my own real filing — the one validated by the commercialista — used as an ongoing reference. I'll unroll the technical details below.
 
 <!--more-->
 
 ## What it actually does
 
-`decaf` is two commands. `decaf fetch` pulls data from your broker and from the ECB's [daily reference rates](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html), stores it in a local SQLite file, and that's it. `decaf report --year 2025` reads back from SQLite, converts USD to EUR at the ECB rate on the right date (settlement for monitoring, trade for gains — the two are different), and produces four things:
+`decaf` is two commands. `decaf load` pulls data from each of your brokers and normalizes it into a single broker-agnostic shape: trades, dividends, interest, wires, currency conversions, RSU vests — all deposited into a local database as events on a single timeline. That's the piece that makes the rest tractable: once every broker's flows live on the same timeline, the filing becomes an aggregation problem, not a correlate-across-spreadsheets problem — including the things that have to be computed *across* brokers, like forex FIFO. `decaf report --year 2025` reads back from the database, converts USD to EUR at the ECB rate on the right date (settlement for monitoring, trade for gains — those are two different dates), and produces a report.
 
-- **Quadro RW** — foreign asset monitoring plus [IVAFE](https://www.agenziaentrate.gov.it/portale/web/guest/schede/pagamenti/ivafe/ivafe-scheda-informativa): 0.2% per year on the mark-to-market value of your securities, pro-rated by holding days, plus a flat €34.20 for any cash account.
-- **Quadro RT** — capital gains at 26% on stocks. Decaf trusts the broker's [FIFO P/L](https://www.investopedia.com/terms/f/fifo.asp) here; no point re-implementing cost basis when Interactive Brokers and Schwab both already track it.
-- **Quadro RL** — gross interest and foreign dividends, paired with the foreign withholding actually applied. This is where you reconcile the Italian 26% against whatever the source country withheld.
-- **Soglia valutaria** — the forex threshold analysis under [art. 67(1)(c-ter) TUIR](https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-12-22;917~art67). If you sit on more than €51,645.69 in foreign currency for seven or more consecutive working days, your USD balance gets treated as a financial asset and its *currency* gains become taxable. Which brings us to the hard part.
+The report comes out in several formats: colored tables in the terminal, [an Excel file](/posts/2026-04-18-decaf-tax/decaf_2025.xlsx) with one sheet per quadro, [a PDF prospectus](/posts/2026-04-18-decaf-tax/decaf_2025.pdf), and a plain-text file with the full dump. That last one is the one that matters to me: it's the reference I use to be sure that, when I change the code, the numbers don't silently drift — it's how I notice immediately if I've broken some calculation path.
 
-Output: colored tables in the terminal, an Excel file with one sheet per quadro, a PDF prospectus, and a full YAML dump of the internal `TaxReport` object. The YAML is the one that matters for me — it's diff-friendly and stable across runs, which means I can commit it as a regression oracle.
+As for what's in it, decaf produces four things:
 
-## The one thing I had to compute
+- **Quadro RW** — foreign-asset monitoring plus [IVAFE](https://www.agenziaentrate.gov.it/portale/schede/pagamenti/imposta-valore-att-estero-ivafe/base-imponibile-e-aliquote-scheda-ivafe): 0.2% per year on the mark-to-market value of your securities and on broker cash balances, pro-rated by holding days. Decaf does not handle foreign bank accounts (Revolut, Wise, N26 and the like): those carry a flat €34.20 per year, and you declare them by hand. Code in [`quadro_rw.py`](https://github.com/vjt/decaf/blob/master/src/decaf/quadro_rw.py).
+- **Quadro RT** — 26% capital gains on securities. When you've bought the same security multiple times at different prices and sell part of the position, you have to decide *which* lot you sold: the method is **FIFO** (*first-in, first-out* — the lot you bought first is considered the one you sold first). Decaf trusts the FIFO the broker computes and reports in its annual statements: no point reimplementing it when IBKR and Schwab already track it. Code in [`quadro_rt.py`](https://github.com/vjt/decaf/blob/master/src/decaf/quadro_rt.py).
+- **Quadro RL** — gross foreign interest and dividends, paired with the withholding actually applied at source. This is where you reconcile the Italian 26% against whatever the source country withheld. Code in [`quadro_rl.py`](https://github.com/vjt/decaf/blob/master/src/decaf/quadro_rl.py).
+- **Soglia valutaria** — the forex threshold analysis under [art. 67(1)(c-ter) TUIR](https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-12-22;917~art67). If you sit on more than €51,645.69 in foreign currency for seven or more consecutive working days, your USD balance becomes a financial asset in its own right, and its *currency* gains become taxable. Which brings us to the hard part.
 
-Brokers give you the stock FIFO for free. They don't give you the forex FIFO, because from their perspective your dollars are just the settlement currency of your account — there is no "realization event" when you convert back to euro. From the Italian tax office's perspective, on the other hand, every EUR→USD conversion is a purchase of USD lots, and every USD→EUR conversion (or wire out) is a disposal, and if you cross the threshold you owe 26% on the euro-denominated gain computed FIFO across all lots.
+## The one thing brokers weren't giving me
 
-This is where `forex_gains.py` lives. It walks your broker events in chronological order and maintains a FIFO lot tracker for USD: dollars acquired from stock sales, dividends, and interest are purchases; dollars disposed via EUR.USD conversions and wire transfers are sales. The realized gain on each disposal is `(disposal_rate - acquisition_rate) * usd_amount`, in euros, quoted at ECB rates on the respective trade dates. If the seven-day threshold hasn't been breached for that year the tracker runs but `quadro_rt.py` ignores it. If it has, the tracker's output becomes RT lines alongside the stock gains.
+Brokers give you the stock FIFO for free. They don't give you the forex FIFO, because from their perspective your dollars are just the settlement currency of your account — there's no "realization event" when you go back to euros. From the AdE's perspective, on the other hand, every EUR→USD conversion is a purchase of USD lots, every USD→EUR (or outbound wire) is a disposal, and if you've crossed the threshold you owe 26% on the euro-denominated gain, FIFO across every lot.
+
+That's where [`forex_gains.py`](https://github.com/vjt/decaf/blob/master/src/decaf/forex_gains.py) lives. It walks broker events in chronological order and keeps a FIFO tracker for dollars: those acquired from stock sales, dividends and interest are purchases; those disposed via EUR.USD conversions and wires are sales. The realized gain on each disposal is
+
+```
+gain_eur = usd_amount × (1/ecb_rate_disposal − 1/ecb_rate_acquisition)
+```
+
+— the formula lives in [`forex_gains.py#L11`](https://github.com/vjt/decaf/blob/master/src/decaf/forex_gains.py#L11). The rate inversion matters: the ECB publishes the rate as USD per EUR, but what we need here is euros per disposed dollar. If the threshold wasn't crossed for that year the tracker runs but [`quadro_rt.py`](https://github.com/vjt/decaf/blob/master/src/decaf/quadro_rt.py) ignores it. If it was crossed, its output becomes RT lines alongside the stock gains.
 
 I spent more time on this file than on the other nine quadro modules combined. There's no shortcut: you can't trust the broker's currency P/L (they compute it against account base currency at internal rates, which aren't the ECB's), and you can't skip it either, because the AdE does check.
 
@@ -36,28 +44,45 @@ I spent more time on this file than on the other nine quadro modules combined. T
 
 Two, for now, because those are the two I use:
 
-- **Interactive Brokers** (Ireland entity) — [Flex Query](https://www.interactivebrokers.com/en/software/am/am/reports/flex_queries.htm) XML, either fetched via the HTTPS API with a pair of tokens in `.env` or parsed from a downloaded file. Clean, structured, idempotent. If you've never set up a Flex Query before there's a twelve-screenshot walkthrough in [`doc/QUERY_SETUP.md`](https://github.com/vjt/decaf/blob/master/doc/QUERY_SETUP.md) because the IBKR portal is the IBKR portal.
-- **Charles Schwab** (EAC/RSU accounts) — three files, downloaded by hand from `schwab.com`. A JSON export of the transaction history, the Year-End Summary PDF for per-lot gains, and the Annual Withholding Statement PDF for vest FMVs. The Schwab Trader API is [broken for EAC accounts](https://github.com/vjt/decaf/blob/master/doc/INTERNALS.md) — the OAuth2 flow works, the endpoints just don't return the data — so PDF parsing it is. `poppler-utils` does the heavy lifting.
+- **Interactive Brokers** (Ireland entity) — [Flex Query](https://www.ibkrguides.com/orgportal/performanceandstatements/flex.htm) XML, downloaded by hand from the IBKR portal, or pulled automatically if you know how to generate a Flex Query token and drop it in `.env`. Clean, structured, idempotent. If you've never set up a Flex Query, there's a twelve-screenshot walkthrough in [`doc/QUERY_SETUP.md`](https://github.com/vjt/decaf/blob/master/doc/QUERY_SETUP.md), because the IBKR portal is the IBKR portal. Parser in [`parse.py`](https://github.com/vjt/decaf/blob/master/src/decaf/parse.py).
 
-There's no Fineco, no Directa, no Degiro yet. Adding one is a new `parse.py` module that builds the same internal `ParsedData` domain dataclasses; the rest of the pipeline doesn't care where the events came from. PRs welcome.
+- **Charles Schwab** (EAC — *Equity Award Center*, the accounts Schwab assigns to employees who receive RSUs or stock options from their employer) — three files, downloaded by hand from `schwab.com`: a JSON export of the transactions, the Year-End Summary PDF for per-lot gains, and the Annual Withholding Statement PDF for vest fair-market-values.
+
+  Why three files and not an API? Because I registered with Schwab's developer portal, waited for account approval, registered an app, ran the OAuth2 flow — all fine — and then the endpoints came back empty. The [Trader API doesn't support EAC accounts](https://github.com/vjt/decaf/blob/master/doc/INTERNALS.md#schwab-integration), and Schwab's other APIs don't expose the tax information that matters (per-lot cost basis, per-jurisdiction vest FMVs): those only live in the annual PDFs. So, PDF parsing it is. `poppler-utils` does the heavy lifting. Orchestrator in [`schwab_parse.py`](https://github.com/vjt/decaf/blob/master/src/decaf/schwab_parse.py).
+
+Fineco, Directa and Degiro aren't there yet. Degiro is the obvious candidate: it's regime dichiarativo by default, you file RW and RT yourself. Fineco and Directa default to regime amministrato — they act as withholding agent, they compute the taxes for you, and RW is actually exempted — so decaf only helps you there if you've specifically opted into regime dichiarativo. Adding a broker means a new parser module that builds the same internal `ParsedData`; the rest of the pipeline doesn't care where the events came from. PRs welcome.
 
 ## The trio
 
-`tests/reference/` has three synthetic fixtures. The names are not random.
+Tax arithmetic is a domain where getting one number wrong means writing the wrong thing on the Modello Redditi. So decaf has a test infrastructure built to keep me from trusting muscle memory.
 
-- **[`magnotta/`](https://github.com/vjt/decaf/tree/master/examples/magnotta)** — the base case. IBKR only, one year, IVAFE pro-rata on a partial-year position, one losing trade, one dividend with US withholding. Named after [Mario Magnotta](https://it.wikipedia.org/wiki/Mario_Magnotta), the L'Aquila school custodian whose 1987 phone-prank tapes made him the patron saint of Italians being ruined by paperwork they never signed.
-- **[`mosconi/`](https://github.com/vjt/decaf/tree/master/examples/mosconi)** — IBKR plus Schwab, two years, same ticker across both brokers, partial FIFO sale, RSU vest. Named after [Germano Mosconi](https://it.wikipedia.org/wiki/Germano_Mosconi), the Veronese TV journalist whose off-air blasphemy tapes taught an entire generation how to cope with a malfunctioning teleprompter.
-- **[`mascetti/`](https://github.com/vjt/decaf/tree/master/examples/mascetti)** — the stress test. Two years, forex threshold breached both of them, FIFO across multiple USD lots, RSUs vesting across years, four different withholding rates (US 30%, UK 0%, DE 26.375%, IT 26%). Named after [Il Conte Raffaello Mascetti](https://it.wikipedia.org/wiki/Amici_miei) from *Amici Miei* — the inventor of the [supercazzola](https://en.wikipedia.org/wiki/Supercazzola), patron saint of verbal smokescreens deployed against incomprehensible authority.
+The anchor is my own real filing. When, for three years running (2022, 2023, 2024), the numbers decaf produced matched the ones the commercialista signed off on, I considered the software's logic validated in practice. Those three filings aren't public — they stay on my disks — and I re-run them on every code change: if a single number drifts by a cent from what was signed, the change goes back into review.
 
-Three figures who all, in their own register, captured what it feels like to deal with Italian bureaucracy: Mascetti talks his way through it, Mosconi curses his way through it, Magnotta is destroyed by it. Test-case naming is rarely this satisfying.
+From that validated base I derived three [synthetic cases](https://github.com/vjt/decaf/tree/master/examples): fake data, built to exercise the same logic without exposing my real numbers. They live alongside the code, and each one ships with its **expected report** next to it: when I change something and re-run decaf, comparing the new output to the expected report is immediate, and any difference jumps out. On top of that, three automatic checks run on every test pass: the report matches the expected one exactly, each quadro's row count stays stable, and every Quadro RL row satisfies `net = gross − withholding`. Code in [`tests/test_e2e.py`](https://github.com/vjt/decaf/blob/master/tests/test_e2e.py).
+
+Want to try it on your own numbers? [`doc/BACKTEST.md`](https://github.com/vjt/decaf/blob/master/doc/BACKTEST.md) walks you through feeding decaf your past filing and comparing the output against whatever your commercialista came back with — *try before you buy*, satisfaction guaranteed or your money back.
+
+The three public synthetic cases cover three levels of increasing complexity:
+
+- **[`magnotta/`](https://github.com/vjt/decaf/tree/master/examples/magnotta)** — the base case. IBKR only, one year, IVAFE pro-rata on a partial-year position, a losing trade of 480,000 old lire, one dividend with US withholding.
+- **[`mosconi/`](https://github.com/vjt/decaf/tree/master/examples/mosconi)** — IBKR plus Schwab, two years, the same ticker on both, partial FIFO sale, RSU vesting.
+- **[`mascetti/`](https://github.com/vjt/decaf/tree/master/examples/mascetti)** — the stress test. Two years, forex threshold breached in both, FIFO across multiple USD lots, RSUs vesting across years, four different withholding rates (US 30%, UK 0%, DE 26.375%, IT 26%).
+
+The names are not random. In order:
+
+- [Mario Magnotta](https://it.wikipedia.org/wiki/Mario_Magnotta), the L'Aquila school custodian whose 1987 phone-prank tapes made him the patron saint of Italians being ruined by paperwork they never signed.
+- [Germano Mosconi](https://it.wikipedia.org/wiki/Germano_Mosconi), the Veronese TV journalist whose off-air blasphemy tapes taught an entire generation how to cope with a malfunctioning teleprompter.
+- [Il Conte Raffaello Mascetti](https://it.wikipedia.org/wiki/Amici_miei) from *Amici Miei* — the inventor of the [supercazzola](https://youtu.be/9-1T3sTk1Ng), patron saint of verbal smokescreens deployed against incomprehensible authority.
+
+Three figures who, each in their own register, captured what it feels like to deal with Italian bureaucracy: Mascetti talks his way through it, Mosconi curses his way through it, Magnotta is destroyed by it. Test-case naming is rarely this satisfying.
 
 ## Disclaimer that is not a joke
 
-`decaf` computes numbers. A commercialista interprets law. These are different things.
+`decaf` **interprets the law**. The arithmetic is the easy part; the interpretation — which transaction goes into which quadro, which date to use, which FX rate, which threshold — is the work I did together with [Claude Opus 4.6](https://www.anthropic.com/claude/opus), reading TUIR, Agenzia delle Entrate circolari, and interpello responses. The full normative references, with Gazzetta Ufficiale links, live in [`doc/NORMATIVA.md`](https://github.com/vjt/decaf/blob/master/doc/NORMATIVA.md), and the operational filing guide is in [`doc/GUIDA_FISCALE.md`](https://github.com/vjt/decaf/blob/master/doc/GUIDA_FISCALE.md) — both bundled into the [manual PDF](https://cdn.jsdelivr.net/gh/vjt/decaf@v0.1.3/doc/decaf_manual.pdf) if you'd rather download everything in one file. I back-tested it against my own filings from 2022 to 2024, reconciling every number with the commercialista's.
 
-If your situation is simple — one broker, no RSUs, no forex threshold, no unusual withholdings — the numbers that come out of decaf will probably match what a commercialista would charge you to produce. If your situation is complex, or if the law changes (it does, every year), or if you have doubts about whether a specific transaction is a capital gain or a redemption or a distribution, **go to a commercialista**. I do, too, for the weird years. The tool is a starting point, not an oracle, and I disclaim liability in the README, in the CLI banner, and here.
+But: my scenarios aren't that complicated. The software handles cases more complex than anything I've been able to verify against a real signed filing — multi-year RSUs across multiple brokers, forex threshold, FIFO across dozens of lots, four withholding jurisdictions — and those cases have their own dedicated synthetic fixtures, but no back-test against a signed return. One specific caveat worth flagging: for assets held in states with privileged tax regimes (so-called *black-list* countries), the IVAFE rate rises to 0.4% starting in 2024, and decaf doesn't detect that automatically yet — if you have black-list exposure, adjust by hand. Your mileage may vary: if the law changes (and it does, every year), or if you have an edge case outside the synthetic fixtures, **use at your own risk**. For the weird years, go to a commercialista anyway. I do.
 
-The point of writing this, and of open-sourcing it, is that the arithmetic should be commodity. You shouldn't have to pay a professional every spring just to multiply your dividends by the ECB rate on the settlement date. Spend that money on the cases where the professional's *judgement* matters.
+The point of writing this, and of open-sourcing it, is that the arithmetic should be commodity. You shouldn't have to pay a professional every spring just to multiply your dividends by the ECB rate on the settlement date. Save that money for the cases where the professional's *judgement* is what matters.
 
 ## Where to find it
 
@@ -65,4 +90,6 @@ The point of writing this, and of open-sourcing it, is that the arithmetic shoul
 - **Source**: [github.com/vjt/decaf](https://github.com/vjt/decaf) — MIT, 143 tests, pre-commit hook enforcing ruff + pyright + pytest
 - **Manual**: [`doc/decaf_manual.pdf`](https://cdn.jsdelivr.net/gh/vjt/decaf@v0.1.3/doc/decaf_manual.pdf) — guide plus full normative references down to the Gazzetta Ufficiale
 
-Feedback, bug reports, and broker integrations welcome in the [issue tracker](https://github.com/vjt/decaf/issues). Tell me when the numbers don't match your commercialista's — that's the one piece of feedback I cannot get any other way.
+Feedback, bug reports, and new broker integrations welcome in the [issue tracker](https://github.com/vjt/decaf/issues). Tell me when the numbers don't match your commercialista's — that's the one piece of feedback I can't get any other way.
+
+Happy filing — for what little that's worth.
