@@ -41,6 +41,8 @@ gain_eur = usd_amount × (1/ecb_rate_disposal − 1/ecb_rate_acquisition)
 
 I spent more time on this file than on the other nine quadro modules combined. There's no shortcut: you can't trust the broker's currency P/L (they compute it against account base currency at internal rates, which aren't the ECB's), and you can't skip it either, because the AdE does check.
 
+![Long nights counting dollars lot-by-lot against the ECB euro exchange rate](forex-office.png)
+
 ## Supported brokers
 
 Two, for now, because those are the two I use:
@@ -96,3 +98,5 @@ The point of writing this, and of open-sourcing it, is that the arithmetic shoul
 Feedback, bug reports, and new broker integrations welcome in the [issue tracker](https://github.com/vjt/decaf/issues). Tell me when the numbers don't match your commercialista's — that's the one piece of feedback I can't get any other way.
 
 Happy filing — for what little that's worth.
+
+![Magnotta, Mosconi and Mascetti celebrate the filed dichiarazione at the Bar Sport](closing-celebration.png)

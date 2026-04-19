@@ -41,6 +41,8 @@ gain_eur = usd_amount × (1/ecb_rate_disposal − 1/ecb_rate_acquisition)
 
 Su questo file ho speso più tempo che sugli altri nove moduli quadro messi insieme. Non c'è scorciatoia: non ti puoi fidare del P/L valutario del broker (lo calcolano contro la valuta base del conto con tassi interni, che non sono i BCE), e non lo puoi saltare, perché l'AdE controlla.
 
+![Serate lunghe a contare dollari per-lotto davanti al cambio BCE](forex-office.png)
+
 ## Broker supportati
 
 Due, per ora, perché sono i due che uso:
@@ -96,3 +98,5 @@ Il senso di scriverlo, e di liberarne il codice, è che l'aritmetica dovrebbe es
 Feedback, bug report e integrazioni broker nuove sono benvenute negli [issue](https://github.com/vjt/decaf/issues). Scrivimi quando i numeri non tornano con quelli del tuo commercialista — è l'unico feedback che non posso procurarmi in nessun altro modo.
 
 Buone dichiarazioni — per quel poco che possono essere buone.
+
+![Magnotta, Mosconi e Mascetti festeggiano la dichiarazione consegnata al Bar Sport](closing-celebration.png)
