@@ -84,7 +84,7 @@ Tre figure che, ciascuna a suo modo, hanno fissato che cosa si prova davanti all
 
 ## Disclaimer che non è uno scherzo
 
-`decaf` **interpreta la legge**. L'aritmetica è la parte facile; l'interpretazione — quale transazione entra in quale quadro, quale data usare, quale cambio, quale soglia — l'abbiamo fatta io e [Claude Opus 4.7](https://www.anthropic.com/claude/opus), leggendo TUIR, circolari dell'Agenzia delle Entrate, risposte agli interpelli. I riferimenti normativi completi, con link alla Gazzetta Ufficiale, sono in [`doc/NORMATIVA.md`](https://github.com/vjt/decaf/blob/master/doc/NORMATIVA.md), e la guida operativa alla compilazione in [`doc/GUIDA_FISCALE.md`](https://github.com/vjt/decaf/blob/master/doc/GUIDA_FISCALE.md) — entrambi raccolti anche nel [manuale PDF](https://cdn.jsdelivr.net/gh/vjt/decaf@v0.3.2/doc/decaf_manual.pdf) se preferisci scaricare tutto in un file solo. L'ho back-testata sulla mia dichiarazione dal 2022 al 2024, riconciliando ogni numero con quelli del commercialista.
+`decaf` **interpreta la legge**. L'aritmetica è la parte facile; l'interpretazione — quale transazione entra in quale quadro, quale data usare, quale cambio, quale soglia — l'abbiamo fatta io e [Claude Opus 4.7](https://www.anthropic.com/claude/opus), leggendo TUIR, circolari dell'Agenzia delle Entrate, risposte agli interpelli. I riferimenti normativi completi, con link alla Gazzetta Ufficiale, sono in [`doc/NORMATIVA.md`](https://github.com/vjt/decaf/blob/master/doc/NORMATIVA.md), e la guida operativa alla compilazione in [`doc/GUIDA_FISCALE.md`](https://github.com/vjt/decaf/blob/master/doc/GUIDA_FISCALE.md) — entrambi raccolti anche nel [manuale PDF](https://cdn.jsdelivr.net/gh/vjt/decaf@v0.3.3/doc/decaf_manual.pdf) se preferisci scaricare tutto in un file solo. L'ho back-testata sulla mia dichiarazione dal 2022 al 2024, riconciliando ogni numero con quelli del commercialista.
 
 Ma: i miei scenari non sono complicatissimi. Il software gestisce casi anche più complessi di quelli che ho potuto verificare con la mia dichiarazione reale — RSU multi-anno su più broker, soglia valutaria, LIFO valutario per conto su decine di lotti, quattro giurisdizioni di ritenuta — e quei casi hanno i loro casi sintetici dedicati, ma non un backtest contro una dichiarazione firmata. Un caveat specifico vale la pena citarlo: per attività detenute in Stati a regime fiscale privilegiato (i cosiddetti *black-list*) l'aliquota IVAFE sale allo 0.4% dal 2024, e decaf al momento non lo rileva automaticamente — se hai esposizione black-list, rettifichi a mano.
 
@@ -96,7 +96,7 @@ Il senso di scriverlo, e di liberarne il codice, è che l'aritmetica dovrebbe es
 
 - **PyPI**: [`pip install --user decaf-tax`](https://pypi.org/project/decaf-tax/) — il comando è `decaf`
 - **Sorgenti**: [github.com/vjt/decaf](https://github.com/vjt/decaf) — MIT, 156 test, pre-commit hook con ruff + pyright + pytest
-- **Manuale**: [`doc/decaf_manual.pdf`](https://cdn.jsdelivr.net/gh/vjt/decaf@v0.3.2/doc/decaf_manual.pdf) — guida più riferimenti normativi fino alla Gazzetta Ufficiale
+- **Manuale**: [`doc/decaf_manual.pdf`](https://cdn.jsdelivr.net/gh/vjt/decaf@v0.3.3/doc/decaf_manual.pdf) — guida più riferimenti normativi fino alla Gazzetta Ufficiale
 
 Feedback, bug report e integrazioni broker nuove sono benvenute negli [issue](https://github.com/vjt/decaf/issues). Scrivimi quando i numeri non tornano con quelli del tuo commercialista — è l'unico feedback che non posso procurarmi in nessun altro modo.
 
