@@ -5,6 +5,7 @@ tags: [python, tasse, italia, investimenti-esteri, open-source, finanza]
 description: "Perché ho scritto decaf — un tool Python che prende i file di Interactive Brokers e Charles Schwab e sputa fuori tutto quello che serve per compilare il Modello Redditi PF: Quadro RW, RT, RL. Con tre fixture di test intitolate a tre santi patroni dell'audio-cult italiano."
 image: cover.png
 featuredImage: cover.png
+draft: true
 ---
 
 Se sei residente fiscale in Italia e hai investimenti all'estero, la scena la conosci. Ogni primavera prepari un pacco di PDF ed export dei conti del broker, lo mandi al [commercialista](https://it.wikipedia.org/wiki/Commercialista), e un paio di settimane dopo ti torna indietro un PDF che costa tra i trecento e gli ottocento euro e che non hai modo di verificare perché non mastichi il [TUIR](https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-12-22;917) fluentemente.

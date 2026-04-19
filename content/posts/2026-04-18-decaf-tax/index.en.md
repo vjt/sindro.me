@@ -5,6 +5,7 @@ tags: [python, taxes, italy, foreign-investments, open-source, finance]
 description: "Why I wrote decaf — a Python tool that takes broker files from Interactive Brokers and Charles Schwab and spits out everything you need to fill the Modello Redditi PF: Quadro RW, RT, RL. With three test fixtures named after three Italian audio-cult saints."
 image: cover.png
 featuredImage: cover.png
+draft: true
 ---
 
 If you hold foreign investments as an Italian tax resident, you know the drill. Every spring you bundle a stack of PDFs and broker exports, send them to your [commercialista](https://it.wikipedia.org/wiki/Commercialista), and a few weeks later you get back a PDF that costs between three hundred and eight hundred euros and which you have no way of verifying because you don't speak [TUIR](https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-12-22;917) fluently.
