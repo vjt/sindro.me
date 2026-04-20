@@ -8,6 +8,9 @@ VENV="$(dirname "$(realpath "$0")")/../.venv"
 # Source .env for HUGO_BASEURL and other overrides
 [ -f .env ] && . ./.env
 
+echo "Linting Italian post bundle links..."
+./scripts/check-it-links.sh
+
 BUILD_DIR="public_build_$$"
 rm -rf "$BUILD_DIR"
 
