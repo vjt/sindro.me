@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-Ciao a tutti — qualche giorno fa ho rimesso le mani nel [fork di Bahamut che scrissi per Azzurra nel 2002](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/), sono tornato su IRC dopo quindici anni, e mi sono ricordato di quanto fosse meglio di qualsiasi messenger moderno. Così ho iniziato un progetto nuovo: [grappa-irc](https://github.com/vjt/grappa-irc). Ecco il pitch.
+Ciao a tutti — qualche giorno fa ho rimesso le mani nel [fork di Bahamut che scrissi per Azzurra nel 2002](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/), sono tornato su IRC dopo vent'anni, e mi sono ricordato di quanto fosse meglio di qualsiasi messenger moderno. Così ho iniziato un progetto nuovo: [grappa-irc](https://github.com/vjt/grappa-irc). Ecco il pitch.
 
 <!--more-->
 
@@ -15,13 +15,13 @@ Ciao a tutti — qualche giorno fa ho rimesso le mani nel [fork di Bahamut che s
 
 Il testo è la feature, non il limite. IRC è solo testo. Non è mai stato un limite — era il punto. Leggi, scrivi, pensi. Punto e basta.
 
-Pensa ai MUD. Mondi enormi, immersivi, fatti di pura immaginazione — tutto su testo puro sopra TCP. Il cervello del lettore fa il resto. I lampi sullo schermo distraggono; il testo stimola. Più pixel al secondo non è più segnale.
+Pensa ai [MUD](https://it.wikipedia.org/wiki/Multi_user_dungeon). Mondi enormi, immersivi, fatti di pura immaginazione — tutto su testo puro sopra TCP. Il cervello del lettore fa il resto. I lampi sullo schermo distraggono; il testo stimola. Più pixel al secondo non è più segnale.
 
-I messenger moderni intanto continuano ad aggiungere roba. Reazioni, sticker, anteprime dei link, video inline, messaggi vocali, indicatori di scrittura, conferme di lettura, notifiche push con suonetti dedicati. Ognuna di queste è una tassa sull'attenzione venduta come feature. Information overload con UI lucida.
+I messenger moderni intanto continuano ad aggiungere roba. Reazioni, sticker, anteprime dei link, video inline, messaggi vocali, indicatori di scrittura, conferme di lettura, notifiche push con suonetti dedicati. Ognuna di queste è una tassa sull'attenzione venduta come feature.
 
 E l'infrastruttura non è tua. WhatsApp, iMessage, Discord, Slack, Telegram — non possiedi una riga. Non puoi forkarli, non puoi self-hostarli, affitti un posto sul palco di qualcun altro. IRC lo fai girare su una VPS da 5€ con quattro file di config e un ircd. Quell'asimmetria non è un dettaglio decorativo — è tutto il gioco.
 
-E poi, sì — nostalgia. IRC è ancora vivo. [Azzurra](https://azzurra.chat/) è ancora viva. Stessi nick, in larga parte le stesse persone, stesse stanze, venticinque anni dopo. È una feature.
+E poi, sì — nostalgia. IRC è ancora vivo. [Azzurra](https://azzurra.chat/) è ancora viva. Stessi nick, in larga parte le stesse persone, stesse stanze, più di venticinque anni dopo. È una feature.
 
 ## Il pitch
 
@@ -31,13 +31,15 @@ La fregatura: da mobile aggiunge attrito. Con un setup ben fatto — WireGuard v
 
 Quindi: **rifare IRC, tenendolo IRC.** Stesso protocollo. Stesso `PRIVMSG`. Stessi canali, stessi ircd, stessi oper. **Aggiungere solo la comodità.**
 
-Il tuo setup `tmux + irssi + VPS + VPN` continua a girare invariato. grappa non rimpiazza irssi; gli sta accanto. L'ircd non si accorge di nulla.
+Due pezzi. **grappa** è l'intermediario: un bouncer IRC persistente che vive sulla tua VPS, con una API web (REST + eventi) sopra. Resta connesso per te, tiene lo scrollback in sqlite, parla IRC verso l'ircd da un lato e JSON verso il browser dall'altro. Il tuo setup `tmux + irssi + VPS + VPN` continua a girare invariato — grappa non rimpiazza irssi, gli sta accanto. L'ircd non si accorge di nulla.
 
-Sopra a grappa, un client web: **cicchetto**, una PWA che *sembra* irssi. Si installa sulla home di un telefono. Apre veloce. Niente immagini inline, niente vocali, nessun server di notifiche, nessuna anteprima dei link. Di proposito — è proprio il punto.
+**cicchetto** è il client web che consuma quell'API: una PWA che *sembra* irssi. Si installa sulla home di un telefono. Apre veloce. Niente immagini inline, niente vocali, nessun server di notifiche, nessuna anteprima dei link. Di proposito — è proprio il punto.
 
-Il repo: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven development. Non c'è una riga di codice ancora. Il README **è** lo spec.
+Il repo: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven development. Non c'è una riga di codice ancora — il README **è** lo spec, e sto raccogliendo feedback.
 
 ## Architettura
+
+Due componenti. **grappa** — il server. Un bouncer IRC REST-first, un task persistente per utente, login SASL-bridged verso l'upstream. **cicchetto** — il client. Una PWA, installabile sui telefoni, keyboard-first su desktop, con la forma di irssi perché irssi ha già risolto la UI.
 
 ```mermaid
 flowchart LR
@@ -62,9 +64,7 @@ flowchart LR
     rest <-->|"IRC + SASL"| libera
 ```
 
-Due componenti. **grappa** — il server. Un bouncer IRC REST-first, un task persistente per utente, login SASL-bridged verso l'upstream. **cicchetto** — il client. Una PWA, installabile sui telefoni, keyboard-first su desktop, con la forma di irssi perché irssi ha già risolto la UI.
-
-La scelta di design fondamentale: **il client web non parsa IRC. Mai.** IRC termina al server. Il browser vede solo risorse REST e uno stream di eventi SSE. Canali, messaggi, membri arrivano come JSON tipato. Un `PRIVMSG` grezzo non tocca mai il frontend.
+La scelta di design fondamentale: **il client web non parsa IRC. Mai.** IRC termina al server. Il browser vede solo risorse REST e uno stream di eventi SSE. Canali, messaggi, membri arrivano come JSON tipizzato. Un `PRIVMSG` grezzo non tocca mai il frontend.
 
 Lo scrollback è di proprietà del bouncer, in sqlite, paginato via REST. Nessuna dipendenza da `CHATHISTORY` upstream — grappa funziona contro qualsiasi ircd vanilla.
 

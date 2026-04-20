@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-Hi all — a few days ago I dug back into [the Bahamut fork I wrote for Azzurra in 2002](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/), logged back into IRC for the first time in fifteen years, and remembered how much better it was than any modern messenger. So I started a new project: [grappa-irc](https://github.com/vjt/grappa-irc). This is the pitch.
+Hi all — a few days ago I dug back into [the Bahamut fork I wrote for Azzurra in 2002](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/), logged back into IRC for the first time in twenty years, and remembered how much better it was than any modern messenger. So I started a new project: [grappa-irc](https://github.com/vjt/grappa-irc). This is the pitch.
 
 <!--more-->
 
@@ -15,13 +15,13 @@ Hi all — a few days ago I dug back into [the Bahamut fork I wrote for Azzurra 
 
 Text is the feature, not the limit. IRC is text-only. That was never a limitation — it was the whole point. You read, you write, you think. Full stop.
 
-Think of MUDs. Gigantic, consuming, imagination-heavy worlds, all running on plain text over TCP. The reader's brain did the rest. Flashes on a screen distract; text stimulates. More pixels per second is not more signal.
+Think of [MUDs](https://en.wikipedia.org/wiki/Multi-user_dungeon). Gigantic, consuming, imagination-heavy worlds, all running on plain text over TCP. The reader's brain did the rest. Flashes on a screen distract; text stimulates. More pixels per second is not more signal.
 
-Meanwhile, modern messengers keep piling on. Reactions, stickers, link unfurling, inline video, voice notes, typing indicators, read receipts, push notifications with distinct sounds. Every one of those is an attention tax sold as a feature. Information overload with a glossy UI.
+Meanwhile, modern messengers keep piling on. Reactions, stickers, link unfurling, inline video, voice notes, typing indicators, read receipts, push notifications with distinct sounds. Every one of those is an attention tax sold as a feature.
 
 And the infrastructure isn't yours. WhatsApp, iMessage, Discord, Slack, Telegram — you don't own a line of code. You can't fork them, you can't self-host them, you rent a seat on someone else's stage. IRC you can run from a $5 VPS with four config files and an ircd. That asymmetry is not decorative; it's the whole game.
 
-And then, yes — nostalgia. IRC is still alive. [Azzurra](https://azzurra.chat/) is still alive. Same handles, mostly the same people, same chatrooms, twenty-five years on. That's a feature.
+And then, yes — nostalgia. IRC is still alive. [Azzurra](https://azzurra.chat/) is still alive. Same handles, mostly the same people, same chatrooms, more than twenty-five years on. That's a feature.
 
 ## The pitch
 
@@ -31,13 +31,15 @@ The catch: on mobile it adds friction. With a good setup — WireGuard to the VP
 
 So: **reboot IRC, keeping it IRC.** Same protocol. Same `PRIVMSG`. Same channels, same ircds, same ops. **Add only convenience.**
 
-Your existing `tmux + irssi + VPS + VPN` setup keeps working — unchanged. grappa doesn't replace irssi; it sits next to it. The ircd doesn't know anything is different.
+Two pieces. **grappa** is the middleman: a persistent IRC bouncer that lives on your VPS with a web API (REST + events) sitting on top. It stays connected for you, keeps scrollback in sqlite, speaks IRC to the ircd on one side and JSON to the browser on the other. Your existing `tmux + irssi + VPS + VPN` setup keeps working unchanged — grappa doesn't replace irssi, it sits next to it. The ircd doesn't know anything is different.
 
-On top of grappa, a web client: **cicchetto**, a PWA that *looks* like irssi. Installs on a phone's home screen. Loads fast. No inline images, no voice, no notification server, no link unfurling. Deliberately — that's the point.
+**cicchetto** is the web client that consumes that API: a PWA that *looks* like irssi. Installs on a phone's home screen. Loads fast. No inline images, no voice, no notification server, no link unfurling. Deliberately — that's the point.
 
-The repo: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven development. Not a line of code yet. The README **is** the spec.
+The repo: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven development. Not a line of code yet — the README **is** the spec, and I'm gathering feedback first.
 
 ## Architecture
+
+Two components. **grappa** — the server. A REST-first IRC bouncer, one persistent task per user, SASL-bridged login upstream. **cicchetto** — the client. A PWA, installable on phones, keyboard-first on desktop, shaped like irssi because irssi already solved the UI.
 
 ```mermaid
 flowchart LR
@@ -61,8 +63,6 @@ flowchart LR
     rest <-->|"IRC + SASL"| azzurra
     rest <-->|"IRC + SASL"| libera
 ```
-
-Two components. **grappa** — the server. A REST-first IRC bouncer, one persistent task per user, SASL-bridged login upstream. **cicchetto** — the client. A PWA, installable on phones, keyboard-first on desktop, shaped like irssi because irssi already solved the UI.
 
 The critical design choice: **the web client does not parse IRC. Ever.** IRC terminates at the server. The browser sees only REST resources and an SSE event stream. Channels, messages, members arrive as typed JSON. A raw `PRIVMSG` never touches the frontend.
 
