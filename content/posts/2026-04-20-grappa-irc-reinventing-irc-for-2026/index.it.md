@@ -23,9 +23,11 @@ E l'infrastruttura non è tua. WhatsApp, iMessage, Discord, Slack, Telegram — 
 
 E poi, sì — nostalgia. IRC è ancora vivo. [Azzurra](https://azzurra.chat/) è ancora viva. Stessi nick, in larga parte le stesse persone, stesse stanze, più di venticinque anni dopo. È una feature.
 
+![L'irssi di Aleksandr con il tema "sux" su Azzurra — wallpaper anime, attività dei canali, hostname Fastweb nella lista nick. Così appariva la rete vista da dentro.](irssi-sux-theme.png)
+
 ## Il pitch
 
-Qualche giorno fa sono tornato su IRC. `tmux` + `irssi` + VPS + VPN, come ho sempre fatto. Funziona. Lo amo ancora.
+Dopo aver scritto il [post sul Bahamut](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/), mi sono trovato a riaprire IRC. `tmux` + `irssi` + VPS + VPN, come ho sempre fatto. Funziona. Lo amo ancora.
 
 La fregatura: da mobile aggiunge attrito. Con un setup ben fatto — WireGuard verso la VPS, tmux, irssi — funziona bene; lo uso tutti i giorni. Ma scorrere uno scrollback lungo con le gesture touch è scomodo, e lo scrollback è esattamente dove ti serve leggere. Si può fare meglio.
 
