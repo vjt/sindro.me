@@ -21,13 +21,13 @@ Meanwhile, modern messengers keep piling on. Reactions, stickers, link unfurling
 
 And the infrastructure isn't yours. WhatsApp, iMessage, Discord, Slack, Telegram — you don't own a line of code. You can't fork them, you can't self-host them, you rent a seat on someone else's stage. IRC you can run from a $5 VPS with four config files and an ircd. That asymmetry is not decorative; it's the whole game.
 
-And then, yes — nostalgia. `#it-opers` is still alive twenty-five years on. Same handles, mostly the same people, same room. That is not small.
+And then, yes — nostalgia. IRC is still alive. [Azzurra](https://azzurra.chat/) is still alive. Same handles, mostly the same people, same chatrooms, twenty-five years on. That's a feature.
 
 ## The pitch
 
 I went back on IRC a few days ago. `tmux` + `irssi` + VPS + VPN, the way I always did. Worked. Still loved it.
 
-The catch: on mobile it's a pain. SSH into a VPS, attach to a tmux, wait for the scrollback to redraw. Re-entering a busy channel from a phone is brutal — and scrollback is precisely where you need it most.
+The catch: on mobile it adds friction. With a good setup — WireGuard to the VPS, tmux, irssi — it works fine; I use it daily. But scrolling a long backlog with touch gestures is clunky, and scrollback is precisely where you need to read. We can do better.
 
 So: **reboot IRC, keeping it IRC.** Same protocol. Same `PRIVMSG`. Same channels, same ircds, same ops. **Add only convenience.**
 
@@ -86,6 +86,6 @@ So: reinvent the ergonomics, not the protocol. [soju](https://soju.im/) and [gam
 
 ---
 
-Any design feedback welcome. The repo is [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc), the README is the spec, and Phase 1 code is next.
+Any design feedback welcome — **[open an issue on the repo](https://github.com/vjt/grappa-irc/issues) and let's discuss.** The README is the spec, Phase 1 code is next.
 
 P.S. — the naming is what it is. grappa ≈ soju, cicchetto ≈ gamja, a deliberate riff on the soju/gamja pairing. For those who know: [Italian Grappa!](https://italiangrappa.it/) has been the call-sign of the Italian hackers' embassy at European camps since 2001. This repo is not affiliated — it just borrows the spirit in which the name was intended. Italian hackers, showing up somewhere, with a bottle.

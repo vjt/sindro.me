@@ -21,13 +21,13 @@ I messenger moderni intanto continuano ad aggiungere roba. Reazioni, sticker, an
 
 E l'infrastruttura non è tua. WhatsApp, iMessage, Discord, Slack, Telegram — non possiedi una riga. Non puoi forkarli, non puoi self-hostarli, affitti un posto sul palco di qualcun altro. IRC lo fai girare su una VPS da 5€ con quattro file di config e un ircd. Quell'asimmetria non è un dettaglio decorativo — è tutto il gioco.
 
-E poi, sì — nostalgia. `#it-opers` è ancora vivo dopo venticinque anni. Stessi nick, in larga parte le stesse persone, stessa stanza. Non è poco.
+E poi, sì — nostalgia. IRC è ancora vivo. [Azzurra](https://azzurra.chat/) è ancora viva. Stessi nick, in larga parte le stesse persone, stesse stanze, venticinque anni dopo. È una feature.
 
 ## Il pitch
 
 Qualche giorno fa sono tornato su IRC. `tmux` + `irssi` + VPS + VPN, come ho sempre fatto. Funziona. Lo amo ancora.
 
-La fregatura: da mobile è una rottura. SSH su VPS, attach al tmux, aspetti che lo scrollback si ridisegni. Rientrare in un canale affollato da un telefono è brutale — e lo scrollback è esattamente dove ti serve leggere.
+La fregatura: da mobile aggiunge attrito. Con un setup ben fatto — WireGuard verso la VPS, tmux, irssi — funziona bene; lo uso tutti i giorni. Ma scorrere uno scrollback lungo con le gesture touch è scomodo, e lo scrollback è esattamente dove ti serve leggere. Si può fare meglio.
 
 Quindi: **rifare IRC, tenendolo IRC.** Stesso protocollo. Stesso `PRIVMSG`. Stessi canali, stessi ircd, stessi oper. **Aggiungere solo la comodità.**
 
@@ -86,6 +86,6 @@ Quindi: reinventare l'ergonomia, non il protocollo. [soju](https://soju.im/) e [
 
 ---
 
-Qualsiasi feedback è benvenuto. Il repo è [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc), il README è lo spec, e il codice di Phase 1 è il prossimo passo.
+Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone.** Il README è lo spec, il codice di Phase 1 è il prossimo passo.
 
 P.S. — il nome è quello che è. grappa ≈ soju, cicchetto ≈ gamja, un omaggio dichiarato al binomio soju/gamja. Per chi sa: [Italian Grappa!](https://italiangrappa.it/) è il call-sign dell'ambasciata degli hacker italiani ai camp europei dal 2001. Questo repo non è affiliato — prende in prestito lo spirito con cui il nome era stato inteso. Hacker italiani, che arrivano da qualche parte, con una bottiglia.
