@@ -25,7 +25,7 @@ Short, pitch-style announcement post in Italian + English. Explain the project i
 - Page bundle: `content/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/` (English slug per repo convention, matching prior bilingual posts)
 - ~750–900 words each language. Tight. Each section lean. No section padding just because there's room.
 - Cover image reused from repo (`github.com/vjt/grappa-irc/raw/main/assets/cover.jpg`)
-- One inline illustration (generated image attempt; fallback mermaid from README)
+- Architecture diagram inline: **mermaid flowchart** reused from the README. No generated image — AI image generation produces garbled text and misaligned boxes for technical diagrams; mermaid is readable, correct, and already authored.
 
 ## Front matter
 
@@ -57,7 +57,7 @@ featuredImage: cover.jpg
 
 ## Structure
 
-Six sections, in this order.
+Five sections, in this order.
 
 ### 1. Opener — perché IRC (~180 words)
 
@@ -86,23 +86,36 @@ Beats:
 - On top: **cicchetto** — a PWA that *looks* like irssi. Loads fast. No images, no voice, no push server, no unfurling. Deliberately.
 - [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven. Zero code yet — README **is** the spec.
 
-### 3. Inline illustration
+### 3. Architettura (~180 words + mermaid diagram)
 
-Primary plan: attempt a generated image via `/generate-image`.
+Lean prose + mermaid flowchart reused from the README. Diagram goes at the top of the section (visual anchor), prose below.
 
-**Concept brief:** a Venetian *bàcaro* scene at night, warm wood bar counter. On the counter: a bottle of grappa (label: grappa) next to a small wine glass of cicchetto. The glass surface reflects or shows text in an irssi-like terminal aesthetic (visible monospaced lines). Mood: cozy, warm, Italian neighbourhood bar. **No CRT monitors. No cyberpunk neon. No clichéd hacker visuals.**
+Mermaid block (from the README — paste verbatim inside a `` ```mermaid `` code fence):
 
-**Acceptance criteria:**
-- Readable "grappa" / "cicchetto" naming visible or implied
-- Terminal/irssi text motif without a CRT
-- Warm color palette, classic over flashy (per prior feedback)
-- No anachronisms
+```mermaid
+flowchart LR
+    subgraph Clients
+        cicchetto["cicchetto PWA<br/>(irssi-shape UI)"]
+        mobileirc["Mobile IRCv3 client<br/>(phase 2+)"]
+    end
+    subgraph VPS["Self-hosted VPS"]
+        rest["REST + SSE facade"]
+        irclisten["IRCv3 listener<br/>(phase 2+)"]
+        store[("shared scrollback store")]
+        rest --- store
+        irclisten --- store
+    end
+    subgraph Upstream["Upstream IRC"]
+        azzurra["irc.azzurra.chat"]
+        libera["irc.libera.chat"]
+    end
+    cicchetto <-->|"HTTPS REST + SSE"| rest
+    mobileirc <-.->|"IRC + SASL"| irclisten
+    rest <-->|"IRC + SASL"| azzurra
+    rest <-->|"IRC + SASL"| libera
+```
 
-**Fallback if generation fails or is wrong:** use the mermaid flowchart from the README inlined as a Hugo mermaid code fence. (Theme already supports mermaid.)
-
-### 4. Architettura (~150 words)
-
-Lean. No bullet padding. Key points:
+Prose beats:
 
 - Two components: **grappa** (server, REST-first BNC) + **cicchetto** (PWA, irssi-shape).
 - Core choice: **the web client does not parse IRC. Ever.** IRC terminates at the server. Browser sees REST + SSE.
@@ -110,7 +123,7 @@ Lean. No bullet padding. Key points:
 - Two facades, one store: REST+SSE (primary); IRCv3 listener (phase 2+, optional, for Goguma/Quassel).
 - Auth: SASL bridge against upstream NickServ. Self-hostable on any VPS.
 
-### 5. Perché cazzo ci stai spendendo tempo (~200 words)
+### 4. Perché cazzo ci stai spendendo tempo (~200 words)
 
 Meta-section, short. Answers the reader question: *"ok, but why you, in 2026, when soju + gamja exist?"*
 
@@ -123,7 +136,7 @@ Beats, tight:
 
 Tone: blunt title, straight body. Colorful OK; no blasphemy.
 
-### 6. Chiusura (author voice)
+### 5. Chiusura (author voice)
 
 - "Qualsiasi feedback è benvenuto / Any design feedback welcome."
 - Name note: grappa ≈ soju, cicchetto ≈ gamja. And for those who know: [Italian Grappa!](https://italiangrappa.it/) is the Italian hackers' embassy call-sign at European camps since 2001. This repo is not affiliated — it borrows the spirit in which the name was intended.
@@ -154,11 +167,10 @@ Tone: blunt title, straight body. Colorful OK; no blasphemy.
 
 1. Write `index.it.md` and `index.en.md` in the bundle.
 2. Download cover.jpg from repo into the bundle.
-3. Attempt generated inline image via `/generate-image` skill. Review output. If unusable, fall back to mermaid.
-4. Local check (grep for broken link prefixes, verify front matter keys).
-5. Commit and push.
-6. Build on m42 staging (`./build.sh` on m42), review at `https://vjt.sindro.me/`.
-7. On user approval, deploy to prod.
+3. Local check (grep for broken link prefixes, verify front matter keys, mermaid renders).
+4. Commit and push.
+5. Build on m42 staging (`./build.sh` on m42), review at `https://vjt.sindro.me/`.
+6. On user approval, deploy to prod.
 
 ## Out of scope
 
@@ -173,7 +185,6 @@ Tone: blunt title, straight body. Colorful OK; no blasphemy.
 - No CSS hacks or theme changes needed for this post.
 - No JS content patching.
 - No emails in posts; use repo / LinkedIn.
-- No CRT images in generated imagery.
 - Cover needs both `image` and `featuredImage` in front matter.
 - IT idioms, not literal English calques, when translating between versions.
 - No "open-sourcing" framing — describe the engineering.
