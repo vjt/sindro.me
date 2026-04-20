@@ -20,6 +20,6 @@ Il logo: è metal perché MetalOS gira su bare metal, e le corna sono un riferim
 
 {{< youtube PpDDdLMiPCs >}}
 
-Puoi anche [scaricare il video per la visione offline](/posts/2025-10-09-all-systems-go/asg2025-332-eng-OS_as_a_Service_at_Meta_Platforms_hd.mp4).
+Puoi anche [scaricare il video per la visione offline](/posts/2025-10-09-all-systems-go/asg2025-332-eng-OS_as_a_Service_at_Meta_Platforms_hd.mp4), o prendere le [slide (PDF)](/posts/2025-10-09-all-systems-go/slides.pdf).
 
 Domande? Commenti? Sfogate qui sotto! 🤣

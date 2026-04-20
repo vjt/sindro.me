@@ -20,6 +20,6 @@ About the logo: it's metal because MetalOS runs on bare metal, and the antlers a
 
 {{< youtube PpDDdLMiPCs >}}
 
-You can also [download the video for offline viewing](/posts/2025-10-09-all-systems-go/asg2025-332-eng-OS_as_a_Service_at_Meta_Platforms_hd.mp4).
+You can also [download the video for offline viewing](/posts/2025-10-09-all-systems-go/asg2025-332-eng-OS_as_a_Service_at_Meta_Platforms_hd.mp4), or grab the [slide deck (PDF)](/posts/2025-10-09-all-systems-go/slides.pdf).
 
 Questions? Comments? Rant below! 🤣
