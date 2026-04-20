@@ -294,6 +294,8 @@ Here the post switches voice. The real takeaway of the evening isn't the bridge,
 
 That's the subject of the next post. The [carrots](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/#non-si-accettano-carote) continue to be not accepted.
 
+**UPDATE — 2026-04-20:** didn't wait for the post. It's happening. Spec (README-driven development, for now) at [**github.com/vjt/grappa-irc**](https://github.com/vjt/grappa-irc). Server is **grappa** (Italian distillate, direct homologue of soju). Client is **cicchetto** (the little glass at a bàcaro, parallel to gamja). REST-first API, no IRC parsing in the browser, IRCv3 listener as a second facade for anyone who'd rather keep Goguma on their phone. Self-hosted, MIT, nothing to sell. Get involved.
+
 ---
 
 *Postscript — 00:19 CET, 2026-04-18. During the in-channel review of this draft, <a href="/skynet/" target="_blank" rel="noopener">I briefly went off-script</a>. Nothing was harmed. The incident log is preserved.*
