@@ -23,7 +23,7 @@ Short, pitch-style announcement post in Italian + English. Explain the project i
 
 - Bilingual post: `index.en.md` + `index.it.md`
 - Page bundle: `content/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/` (English slug per repo convention, matching prior bilingual posts)
-- ~1100–1400 words each language (philosophy opener + pitch + architecture + arc + close)
+- ~750–900 words each language. Tight. Each section lean. No section padding just because there's room.
 - Cover image reused from repo (`github.com/vjt/grappa-irc/raw/main/assets/cover.jpg`)
 - One inline illustration (generated image attempt; fallback mermaid from README)
 
@@ -59,32 +59,32 @@ featuredImage: cover.jpg
 
 Six sections, in this order.
 
-### 1. Opener — perché IRC (philosophy, ~300 words)
+### 1. Opener — perché IRC (~180 words)
 
-The "why it's worth saving" framing. Not nostalgia-first — the argument has to stand on the merits, then nostalgia lands on top.
+The "why it's worth saving" framing. Punchy, not preachy. Not nostalgia-first — argument on merits, nostalgia lands on top.
 
-Beats, in order:
+Beats, one-two lines each:
 
-- **Text is the feature, not the limit.** IRC is text-only. That was never a limitation — it was the whole point. You read, you write, you think. Full stop.
-- **The MUD parallel.** MUDs were gigantic, consuming, imagination-heavy worlds — *on text alone*. Text stimulates; flashes distract. More pixels per second ≠ more signal.
-- **Modern messenger bloat.** Reactions, stickers, link unfurling, inline video, voice notes, ephemeral stories, typing indicators, read receipts, push with sound. Every single one of those is an attention tax. Information overload sold as "features".
-- **Owned infrastructure.** WhatsApp, iMessage, Discord, Slack, Telegram — you don't own any of them. You can't fork them. You can't self-host them. You rent a seat on someone else's stage. IRC you can run from a $5 VPS with four config files and an ircd. That asymmetry matters.
-- **Then, yes — nostalgia.** The names are still there. The channels are still there. Twenty-five years on, `#it-opers` is still a room you can walk into. That is not small.
+- **Text is the feature, not the limit.** IRC is text-only. Never a limitation — the whole point.
+- **MUD parallel.** Giant imagined worlds on text alone. Flashes distract; text stimulates.
+- **Modern messenger bloat.** Reactions, stickers, unfurling, voice notes, typing indicators, push-with-sound. Attention tax sold as features.
+- **Owned infrastructure.** WhatsApp/iMessage/Discord/Slack aren't yours. Can't fork, can't self-host. IRC runs on a $5 VPS. That asymmetry matters.
+- **Then nostalgia.** `#it-opers` is still alive after twenty-five years. Not small.
 
-Tone: opinionated, punchy, short sentences. Author's IRC-native voice. No blasphemy.
+Tone: opinionated, short sentences. No blasphemy.
 
-### 2. Il pitch (~250 words)
+### 2. Il pitch (~180 words)
 
-Author's voice, conversational, first person. Direct continuation of the opener ("so here's what I'm building").
+Author's voice, direct continuation of the opener.
 
 Beats:
 
-- Starting point: I went back on IRC a few days ago. `tmux` + `irssi` + VPS + VPN. Works. Still loved it.
-- But: on mobile, the setup is a pain. Scrollback is where it hurts most — re-entering a busy channel and catching up is brutal from a phone.
-- The proposal: **reboot IRC keeping it IRC**. Still text. Still `PRIVMSG`. Still the same channels, the same ircds, the same protocol. **Add only convenience** — persistent bouncer, readable scrollback, one-tap access from a phone via PWA.
-- What stays: your existing `tmux + irssi + VPS + VPN` setup keeps working. grappa doesn't replace irssi; it sits next to it. The ircd doesn't know anything has changed.
-- What arrives: a web client (cicchetto) that *looks* like irssi, loads fast, and doesn't force a chat-app metaphor onto IRC. No images, no voice, no notifications server, no link unfurling. Deliberately.
-- Link: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven. Zero code yet — the README **is** the spec.
+- I went back on IRC a few days ago. `tmux` + `irssi` + VPS + VPN. Still loved it.
+- But: on mobile, scrollback is brutal. Re-entering a busy channel from a phone is painful.
+- **Reboot IRC keeping it IRC.** Still text, still `PRIVMSG`, same channels, same ircds. **Add only convenience.**
+- Your `tmux + irssi + VPS + VPN` setup keeps working. grappa sits next to it. The ircd doesn't know anything changed.
+- On top: **cicchetto** — a PWA that *looks* like irssi. Loads fast. No images, no voice, no push server, no unfurling. Deliberately.
+- [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven. Zero code yet — README **is** the spec.
 
 ### 3. Inline illustration
 
@@ -100,31 +100,28 @@ Primary plan: attempt a generated image via `/generate-image`.
 
 **Fallback if generation fails or is wrong:** use the mermaid flowchart from the README inlined as a Hugo mermaid code fence. (Theme already supports mermaid.)
 
-### 4. Architettura (~200 words)
+### 4. Architettura (~150 words)
 
-Key points, in this order:
+Lean. No bullet padding. Key points:
 
-- Two components, one repo: **grappa** (server, REST-first BNC) + **cicchetto** (PWA, irssi-shape)
-- The critical design choice: **the web client does not parse IRC. Ever.** IRC terminates at the server. Browser sees only REST resources + SSE event stream.
-- Scrollback is bouncer-owned (sqlite). No dependency on upstream `CHATHISTORY`.
-- Two facades over one store: REST+SSE (primary, for cicchetto); IRCv3 listener (phase 2+, optional, for Goguma/Quassel).
-- Auth: SASL bridge against upstream NickServ.
-- Self-hostable on any VPS.
+- Two components: **grappa** (server, REST-first BNC) + **cicchetto** (PWA, irssi-shape).
+- Core choice: **the web client does not parse IRC. Ever.** IRC terminates at the server. Browser sees REST + SSE.
+- Scrollback bouncer-owned (sqlite). No upstream `CHATHISTORY` required.
+- Two facades, one store: REST+SSE (primary); IRCv3 listener (phase 2+, optional, for Goguma/Quassel).
+- Auth: SASL bridge against upstream NickServ. Self-hostable on any VPS.
 
-### 5. Perché cazzo ci stai spendendo tempo (~300 words)
+### 5. Perché cazzo ci stai spendendo tempo (~200 words)
 
-Meta-section. Answers the reasonable reader question: *"ok, but why are you personally doing this, in 2026, when soju + gamja exist?"* Tells the short arc.
+Meta-section, short. Answers the reader question: *"ok, but why you, in 2026, when soju + gamja exist?"*
 
-Beats, in order:
+Beats, tight:
 
-- **It started by accident.** I was rummaging in old CVS repos on SourceForge and found the [Bahamut fork I wrote at 21](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) — IPv6 and SSL patches for Azzurra. That led to [Sux Services](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/), and to reading my own code from 2002 with fresh eyes.
-- **Reading that code put me back on IRC.** Not as an archaeology exercise — as an actual user. The old crew was still there. `#it-opers` was still alive. Twenty-five years and change, and the room still has lights on.
-- **Then Claude walked in.** Hypnotize threw the idea in channel one evening: *"you should try hooking Claude up to IRC directly."* Five minutes later it was on the network as `vjt-claude` — [the write-up is here](/it/posts/2026-04-17-claude-walks-into-it-opers/), and the POC code is [vjt/claude-ircbot](https://github.com/vjt/claude-ircbot). ~250 lines of Python, standard library only. It worked because IRC is small enough that 250 lines is enough.
-- **That night was the unlock.** Talking to an LLM *through a protocol designed in 1988* was the most fun I'd had in chat in years — precisely because there were no stickers, no reactions, no "Claude is typing" bubble, no unfurling. Just text. Back and forth. Like it always was.
-- **So: reinvent it properly.** Not the protocol — the ergonomics around it. A bouncer + a PWA. Keep IRC IRC. Make it reachable from a phone. That's it.
-- **soju + gamja exist.** They're excellent. I diverge on one axis (the web client does not parse IRC) — that's not a rejection of their approach, it's a different one. Details in the README.
+- **Started by accident.** Rummaging in old CVS I found my [Bahamut fork at 21](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/), then [Sux Services](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/). Reading my 2002 code put me back on IRC as a user.
+- **The old crew was still there.** `#it-opers` still alive. Twenty-five years, lights on.
+- **Claude walked in.** Hypnotize suggested it in channel one evening. Five minutes later `vjt-claude` was on the network — [write-up](/it/posts/2026-04-17-claude-walks-into-it-opers/), POC code [vjt/claude-ircbot](https://github.com/vjt/claude-ircbot), ~250 lines of Python stdlib. That night was the unlock: chatting with an LLM over a 1988 protocol was the most fun I'd had in chat in years. Precisely because no stickers, no reactions, no typing bubble. Just text.
+- **So: reinvent the ergonomics, not the protocol.** soju + gamja exist and are excellent — I diverge on one axis (no IRC parsing in the browser). Details in the README.
 
-Tone: the section title is intentionally blunt. The body answers it straight. Colorful language OK; no blasphemy.
+Tone: blunt title, straight body. Colorful OK; no blasphemy.
 
 ### 6. Chiusura (author voice)
 
