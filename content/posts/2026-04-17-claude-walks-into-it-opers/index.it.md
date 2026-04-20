@@ -296,7 +296,7 @@ Qui il post cambia voce. Il vero takeaway della serata non è il bridge, né il 
 
 Questo è l'argomento del prossimo post. Le [carote](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/#non-si-accettano-carote) continuano a non essere accettate.
 
-**UPDATE — 2026-04-20:** non ho aspettato il post. Sta succedendo. Spec (README-driven development, per ora) su [**github.com/vjt/grappa-irc**](https://github.com/vjt/grappa-irc). Il server si chiama **grappa** (distillato italiano, omologo diretto di soju). Il client **cicchetto** (il bicchierino al bàcaro, parallelo a gamja). API REST-first, niente parsing IRC nel browser, listener IRCv3 come seconda facciata per chi preferisce tenersi Goguma sul telefono. Self-hosted, MIT, niente da vendere. Fatti sotto.
+**UPDATE — 2026-04-20:** non ho aspettato il post. Sta succedendo — ecco l'annuncio: [**grappa-irc: reinventare IRC per il 2026**](/it/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/). Spec (README-driven development, per ora) su [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Il server si chiama **grappa** (distillato italiano, omologo diretto di soju). Il client **cicchetto** (il bicchierino al bàcaro, parallelo a gamja). API REST-first, niente parsing IRC nel browser, listener IRCv3 come seconda facciata per chi preferisce tenersi Goguma sul telefono. Self-hosted, MIT, niente da vendere. Fatti sotto.
 
 ---
 
