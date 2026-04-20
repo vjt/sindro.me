@@ -18,8 +18,18 @@ We describe how we cut CentOS releases from upstream, the [OSS tools](https://gi
 
 About the logo: it's metal because MetalOS runs on bare metal, and the antlers are a nod to [Antlir](https://facebookincubator.github.io/antlir/docs/intro) — **AN**o**T**her **L**inux **I**mage builde**R** — the open-source build system we use to produce the OS images.
 
+## Slides
+
+<a href="/posts/2025-10-09-all-systems-go/slides.pdf" class="pdf-download" style="display:inline-block;padding:0.75rem 1.25rem;border:2px solid currentColor;border-radius:4px;text-decoration:none;font-weight:bold;margin:0.5rem 0">📄 Download the slide deck (PDF, 482KB)</a>
+
+<object data="/posts/2025-10-09-all-systems-go/slides.pdf" type="application/pdf" width="100%" height="600" style="margin:1rem 0;border:1px solid #ccc">
+  <p>Your browser can't display embedded PDFs. <a href="/posts/2025-10-09-all-systems-go/slides.pdf">Download the slides here</a>.</p>
+</object>
+
+## Video
+
 {{< youtube PpDDdLMiPCs >}}
 
-You can also [download the video for offline viewing](/posts/2025-10-09-all-systems-go/asg2025-332-eng-OS_as_a_Service_at_Meta_Platforms_hd.mp4), or grab the [slide deck (PDF)](/posts/2025-10-09-all-systems-go/slides.pdf).
+You can also [download the video for offline viewing](/posts/2025-10-09-all-systems-go/asg2025-332-eng-OS_as_a_Service_at_Meta_Platforms_hd.mp4).
 
 Questions? Comments? Rant below! 🤣
