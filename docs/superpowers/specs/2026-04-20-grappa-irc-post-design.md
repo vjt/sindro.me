@@ -23,7 +23,7 @@ Short, pitch-style announcement post in Italian + English. Explain the project i
 
 - Bilingual post: `index.en.md` + `index.it.md`
 - Page bundle: `content/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/` (English slug per repo convention, matching prior bilingual posts)
-- ~800–1000 words each language
+- ~1100–1400 words each language (philosophy opener + pitch + architecture + arc + close)
 - Cover image reused from repo (`github.com/vjt/grappa-irc/raw/main/assets/cover.jpg`)
 - One inline illustration (generated image attempt; fallback mermaid from README)
 
@@ -57,22 +57,36 @@ featuredImage: cover.jpg
 
 ## Structure
 
-Five sections, in this order.
+Six sections, in this order.
 
-### 1. Pitch narrativo (opener)
+### 1. Opener — perché IRC (philosophy, ~300 words)
 
-Author's voice, conversational, first person. Hooks:
+The "why it's worth saving" framing. Not nostalgia-first — the argument has to stand on the merits, then nostalgia lands on top.
 
-- Rimesso le mani sul Bahamut → link to bahamut post
-- Ri-entrato su IRC dopo 15 anni, riscoperta
-- Scomodità attuale: VPS + VPN + tmux + irssi; punto debole = history/scrollback su mobile
-- Serata con Claude in canale → link to claude-walks post ("inclusa fine SKYNET")
-- Idea: reinventare IRC per il 2026 → [repo link](https://github.com/vjt/grappa-irc)
-- One-line pitch: BNC + PWA che sembra *letteralmente* irssi. Niente immagini/video/vocali/notifiche aggressive. PWA, scrollback leggibile.
+Beats, in order:
 
-**Target length:** ~250 words.
+- **Text is the feature, not the limit.** IRC is text-only. That was never a limitation — it was the whole point. You read, you write, you think. Full stop.
+- **The MUD parallel.** MUDs were gigantic, consuming, imagination-heavy worlds — *on text alone*. Text stimulates; flashes distract. More pixels per second ≠ more signal.
+- **Modern messenger bloat.** Reactions, stickers, link unfurling, inline video, voice notes, ephemeral stories, typing indicators, read receipts, push with sound. Every single one of those is an attention tax. Information overload sold as "features".
+- **Owned infrastructure.** WhatsApp, iMessage, Discord, Slack, Telegram — you don't own any of them. You can't fork them. You can't self-host them. You rent a seat on someone else's stage. IRC you can run from a $5 VPS with four config files and an ircd. That asymmetry matters.
+- **Then, yes — nostalgia.** The names are still there. The channels are still there. Twenty-five years on, `#it-opers` is still a room you can walk into. That is not small.
 
-### 2. Inline illustration
+Tone: opinionated, punchy, short sentences. Author's IRC-native voice. No blasphemy.
+
+### 2. Il pitch (~250 words)
+
+Author's voice, conversational, first person. Direct continuation of the opener ("so here's what I'm building").
+
+Beats:
+
+- Starting point: I went back on IRC a few days ago. `tmux` + `irssi` + VPS + VPN. Works. Still loved it.
+- But: on mobile, the setup is a pain. Scrollback is where it hurts most — re-entering a busy channel and catching up is brutal from a phone.
+- The proposal: **reboot IRC keeping it IRC**. Still text. Still `PRIVMSG`. Still the same channels, the same ircds, the same protocol. **Add only convenience** — persistent bouncer, readable scrollback, one-tap access from a phone via PWA.
+- What stays: your existing `tmux + irssi + VPS + VPN` setup keeps working. grappa doesn't replace irssi; it sits next to it. The ircd doesn't know anything has changed.
+- What arrives: a web client (cicchetto) that *looks* like irssi, loads fast, and doesn't force a chat-app metaphor onto IRC. No images, no voice, no notifications server, no link unfurling. Deliberately.
+- Link: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven. Zero code yet — the README **is** the spec.
+
+### 3. Inline illustration
 
 Primary plan: attempt a generated image via `/generate-image`.
 
@@ -86,7 +100,7 @@ Primary plan: attempt a generated image via `/generate-image`.
 
 **Fallback if generation fails or is wrong:** use the mermaid flowchart from the README inlined as a Hugo mermaid code fence. (Theme already supports mermaid.)
 
-### 3. Architettura (~200 words)
+### 4. Architettura (~200 words)
 
 Key points, in this order:
 
@@ -97,15 +111,22 @@ Key points, in this order:
 - Auth: SASL bridge against upstream NickServ.
 - Self-hostable on any VPS.
 
-### 4. Perché reinventare la ruota (~250 words)
+### 5. Perché cazzo ci stai spendendo tempo (~300 words)
 
-- soju + gamja already exist and are excellent. Divergence is on **one** deliberate axis: gamja re-implements IRC in the browser; cicchetto does not.
-- The payoff: works against any vanilla ircd (no upstream `CHATHISTORY` required), browser stays IRC-protocol-ignorant (smaller, more testable).
-- Negative space: **not** a chat-app. No link unfurling, no inline images, no voice, no file sharing, no push notification servers. *It's IRC.*
-- Desktop target: visually irssi. Mobile target: same visual grammar + touch-ergonomic helpers, not a different shape.
-- README-driven: zero code yet. The README **is** the spec. Design feedback welcome; code PRs deferred to phase 1.
+Meta-section. Answers the reasonable reader question: *"ok, but why are you personally doing this, in 2026, when soju + gamja exist?"* Tells the short arc.
 
-### 5. Chiusura (author voice)
+Beats, in order:
+
+- **It started by accident.** I was rummaging in old CVS repos on SourceForge and found the [Bahamut fork I wrote at 21](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) — IPv6 and SSL patches for Azzurra. That led to [Sux Services](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/), and to reading my own code from 2002 with fresh eyes.
+- **Reading that code put me back on IRC.** Not as an archaeology exercise — as an actual user. The old crew was still there. `#it-opers` was still alive. Twenty-five years and change, and the room still has lights on.
+- **Then Claude walked in.** Hypnotize threw the idea in channel one evening: *"you should try hooking Claude up to IRC directly."* Five minutes later it was on the network as `vjt-claude` — [the write-up is here](/it/posts/2026-04-17-claude-walks-into-it-opers/), and the POC code is [vjt/claude-ircbot](https://github.com/vjt/claude-ircbot). ~250 lines of Python, standard library only. It worked because IRC is small enough that 250 lines is enough.
+- **That night was the unlock.** Talking to an LLM *through a protocol designed in 1988* was the most fun I'd had in chat in years — precisely because there were no stickers, no reactions, no "Claude is typing" bubble, no unfurling. Just text. Back and forth. Like it always was.
+- **So: reinvent it properly.** Not the protocol — the ergonomics around it. A bouncer + a PWA. Keep IRC IRC. Make it reachable from a phone. That's it.
+- **soju + gamja exist.** They're excellent. I diverge on one axis (the web client does not parse IRC) — that's not a rejection of their approach, it's a different one. Details in the README.
+
+Tone: the section title is intentionally blunt. The body answers it straight. Colorful language OK; no blasphemy.
+
+### 6. Chiusura (author voice)
 
 - "Qualsiasi feedback è benvenuto / Any design feedback welcome."
 - Name note: grappa ≈ soju, cicchetto ≈ gamja. And for those who know: [Italian Grappa!](https://italiangrappa.it/) is the Italian hackers' embassy call-sign at European camps since 2001. This repo is not affiliated — it borrows the spirit in which the name was intended.
@@ -120,9 +141,12 @@ Key points, in this order:
 - [Goguma](https://sr.ht/~emersion/goguma/) (in architecture section)
 
 **Internal (Italian post uses `/it/posts/...`; English uses `/posts/...`):**
-- bahamut-fork post
-- claude-walks-into-it-opers post
-- (optional) suxserv post, claude-ircbot repo
+- bahamut-fork post (in arc section — reading old code put me back on IRC)
+- suxserv post (in arc section — same rabbit hole)
+- claude-walks-into-it-opers post (in arc section — the unlock night)
+
+**Repo links:**
+- [vjt/claude-ircbot](https://github.com/vjt/claude-ircbot) — the IRC-Claude POC, referenced in arc section
 
 ## Tone and voice
 
