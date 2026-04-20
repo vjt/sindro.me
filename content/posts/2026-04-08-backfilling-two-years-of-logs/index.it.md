@@ -5,7 +5,7 @@ tags: [ai-generated, sysadmin, observability, projects]
 description: "Come un backfill di syslog attraverso Telegraf su un Raspberry Pi ha scovato tre bug upstream — una tempesta di retry DNS, una modalità di serializzazione mancante, e un deadlock nelle pipe."
 ---
 
-![BSD daemon con la telemetria che fluisce attraverso una pipeline di enrichment verso VictoriaLogs](/it/posts/2026-04-08-backfilling-two-years-of-logs/cover.jpg)
+![BSD daemon con la telemetria che fluisce attraverso una pipeline di enrichment verso VictoriaLogs](/posts/2026-04-08-backfilling-two-years-of-logs/cover.jpg)
 
 Ho un server FreeBSD che si chiama m42 e gira da anni. Email, web, firewall, i soliti. Due anni e mezzo di backup mensili [restic](https://restic.net/) negli snapshot — circa 25 milioni di righe syslog su quattro formati: BSD syslog, fail2ban, pf packet filter, e nginx. Una miniera d'oro di telemetria di sicurezza, completamente non indicizzata e non ricercabile.
 

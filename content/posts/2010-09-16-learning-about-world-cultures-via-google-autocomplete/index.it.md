@@ -4,7 +4,7 @@ title: Scoprire le culture del mondo tramite l'autocompletamento di Google
 tags: [funny, networking]
 ---
 
-![Una barra di ricerca con nastri di autocompletamento che si collegano a monumenti del mondo su un globo stilizzato](/it/posts/2010-09-16-learning-about-world-cultures-via-google-autocomplete/cover.jpg)
+![Una barra di ricerca con nastri di autocompletamento che si collegano a monumenti del mondo su un globo stilizzato](/posts/2010-09-16-learning-about-world-cultures-via-google-autocomplete/cover.jpg)
 
 Per curiosità, stavo guardando come un browser interagisce col backend di Google
 Instant. Mentre osservavo gli scambi HTTP con Firebug, prima mi sono chiesto

@@ -156,7 +156,7 @@ Il [flag di compilazione `FASTWEB`](https://github.com/azzurra/bahamut/blob/mast
 
 Il server prendeva gli IP interni di Fastweb (che non avevano reverse DNS) e [sintetizzava un hostname](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L825) invertendo gli ottetti sotto lo pseudo-TLD `fastweb.fw` — quindi `10.1.2.3` diventava `3-2.1-10.fastweb.fw`. Nascondeva lo pseudo-TLD dal [`RPL_WELCOME`](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L971) dell'utente, mostrando il suo IP reale così il client non si confondeva. La pagina di errore "server pieno" era sostituita da una [pagina dedicata Fastweb](https://github.com/azzurra/bahamut/blob/master/src/s_user.c#L514), e le [password delle I-line](https://github.com/azzurra/bahamut/blob/master/src/s_conf.c#L1602) nella configurazione erano prefissate con `fastweb.` per marcare una porta come Fastweb-only.
 
-La [lista server del 2005](azzurra-help.pdf) mostra quattro voci etichettate "Azzurra Fastweb, Rete Interna." Il `:D` nel commento dice tutto.
+La [lista server del 2005](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/azzurra-help.pdf) mostra quattro voci etichettate "Azzurra Fastweb, Rete Interna." Il `:D` nel commento dice tutto.
 
 ![La postazione di Alk — due monitor CRT, due tastiere, cavi ovunque. Questo è come appariva un setup da "power user" prima degli ultrawide e dei dock Thunderbolt. Il secondo monitor era un lusso.](alk-workstations.jpg)
 *La postazione di Alk. Due monitor CRT, due tastiere, otto macchine in questo angolo — ce n'erano altre nell'angolo opposto.*

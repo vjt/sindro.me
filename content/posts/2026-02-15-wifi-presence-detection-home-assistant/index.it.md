@@ -5,7 +5,7 @@ tags: [ai-generated, iot, home-assistant, openwrt, networking, python, sysadmin]
 description: "Rilevamento presenza a livello di stanza per Home Assistant tramite scraping delle metriche RSSI direttamente dagli AP OpenWrt. Il segnale più forte sceglie la stanza. Niente TSDB, niente parsing di log, niente cloud — solo i tuoi AP che ti dicono dove sono tutti."
 ---
 
-![Vista a spaccato di una casa con access point WiFi in ogni stanza, telefoni collegati all'AP più vicino in base alla potenza del segnale](/it/posts/2026-02-15-wifi-presence-detection-home-assistant/cover.jpg)
+![Vista a spaccato di una casa con access point WiFi in ogni stanza, telefoni collegati all'AP più vicino in base alla potenza del segnale](/posts/2026-02-15-wifi-presence-detection-home-assistant/cover.jpg)
 
 Avevo due problemi con il rilevamento presenza di Home Assistant.
 
@@ -15,7 +15,7 @@ Il secondo: la nostra donna delle pulizie sta a casa nostra un paio di giorni a 
 
 Così ho scritto [openwrt-ha-presence](https://github.com/vjt/openwrt-ha-presence): una macchina a stati che scrapa le metriche RSSI direttamente dai tuoi AP OpenWrt, capisce in quale stanza si trova ogni persona in base alla potenza del segnale, e pubblica lo stato casa/fuori per ogni persona su Home Assistant via MQTT Discovery. Niente cloud, niente beacon, niente parsing di log, niente database time-series. Python, async, ~600 righe di logica effettiva.
 
-![Storico tracking stanze di Home Assistant](/it/posts/2026-02-15-wifi-presence-detection-home-assistant/home-assistant.png)
+![Storico tracking stanze di Home Assistant](/posts/2026-02-15-wifi-presence-detection-home-assistant/home-assistant.png)
 
 ## Come funziona
 
@@ -144,7 +144,7 @@ Il codice è diventato più semplice. Niente logica di ordinamento eventi, nient
 
 Per il debug, volevo un pretty-print CLI in tempo reale. `docker container logs eve -f` ti dà JSON grezzo, che non è... divertente. Quindi c'è un monitor integrato che legge JSON dallo stdin e lo renderizza con colori ANSI:
 
-![openwrt-monitor in azione](/it/posts/2026-02-15-wifi-presence-detection-home-assistant/monitor.png)
+![openwrt-monitor in azione](/posts/2026-02-15-wifi-presence-detection-home-assistant/monitor.png)
 
 Pallino verde per gli arrivi, rosso per le partenze, nomi delle stanze in ciano, valori RSSI nei dettagli. Pura stdlib, zero dipendenze, gira direttamente con `python3`.
 

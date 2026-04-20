@@ -5,7 +5,7 @@ tags: [ai-generated, iot, networking, openwrt, python, sysadmin]
 description: "Strumenti Python open source per modem Quectel 5G su OpenWRT. Monitoraggio del segnale in tempo reale con feedback audio per il puntamento dell'antenna. Licenza MIT."
 ---
 
-![Antenna direzionale su un muro puntata verso una torre cellulare, cavo in fibra che si spezza da un lato mentre le onde 5G colmano il divario](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/cover.jpg)
+![Antenna direzionale su un muro puntata verso una torre cellulare, cavo in fibra che si spezza da un lato mentre le onde 5G colmano il divario](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/cover.jpg)
 
 Un paio di mesi fa, la fibra è andata giù. Come da primo corollario di Murphy, è successo nel momento peggiore in assoluto: subito prima di una riunione cruciale con un'azienda partner. Mi sono ritrovato a saltare freneticamente tra l'AP di un vicino lontano e l'hotspot del telefono, ma entrambi facevano schifo. Parliamo di 200ms di RTT e 15% di packet loss. Mi stavo scusando a profusione mentre il mio feed video si trasformava in uno slideshow del 1998; nessuno capiva una parola di quello che dicevo. Ho finito per spegnere il video e stare zitto. Opportunità persa. **Mai. Più.**
 
@@ -26,11 +26,11 @@ Ho scritto un set di strumenti per risolvere il problema: [quectel-5g-tools](htt
 
 `5g-info` scarica tutto quello che il tuo modem sa in un formato leggibile:
 
-![output di 5g-info](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/5g-info.png)
+![output di 5g-info](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/5g-info.png)
 
 `5g-monitor` è una TUI ncurses che si aggiorna in tempo reale e -- qui viene il bello -- **emette beep in base al SINR**. Qualità del segnale più alta = più beep. Punta l'antenna, ascolta i beep, stringi i bulloni. Fatto.
 
-![TUI di 5g-monitor](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/5g-monitor.png)
+![TUI di 5g-monitor](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/5g-monitor.png)
 
 È come un metal detector, ma per il 5G.
 
@@ -52,14 +52,14 @@ Il codice è con licenza MIT e vive su [github.com/vjt/quectel-5g-tools](https:/
 
 La Poynting subito dopo l'unboxing e il montaggio sul treppiede di test:
 
-![Test Poynting](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/xpol-24-testing.jpg)
+![Test Poynting](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/xpol-24-testing.jpg)
 
 L'X3000 montato a parete un paio di giorni dopo il momento "porco dio!" dei 300Mbit in download durante i test
 
-![X3000 montato a parete](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/x3000-wall-mount.jpg)
+![X3000 montato a parete](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/x3000-wall-mount.jpg)
 
 La Poynting montata a parete nel suo setup (semi) definitivo. Il mio DIY più grande di sempre -- non avevo mai trapanato il cemento stando su una scala di 2m su un terrazzo al primo piano :-D
 
-![Poynting montata a parete](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/xpol-24-wall-mount.jpg)
+![Poynting montata a parete](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/xpol-24-wall-mount.jpg)
 
 Buon divertimento!

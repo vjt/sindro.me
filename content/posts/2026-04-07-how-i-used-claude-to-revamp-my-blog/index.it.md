@@ -5,7 +5,7 @@ tags: [ai-generated, projects, sysadmin]
 description: "Un post meta sull'uso di Claude Code per tradurre 69 articoli, ridisegnare il layout da zero e aggiungere un easter egg con la sequenza di boot — tutto in 48 ore di iterazione continua."
 ---
 
-![Uno sviluppatore sorridente davanti a un blog ridisegnato, mentre un robot AI soddisfatto riposa sullo sfondo circondato da token di codice fluttuanti](/it/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/cover.jpg)
+![Uno sviluppatore sorridente davanti a un blog ridisegnato, mentre un robot AI soddisfatto riposa sullo sfondo circondato da token di codice fluttuanti](/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/cover.jpg)
 
 È come avere un ingegnere incredibilmente veloce, competente e preciso seduto accanto a te — uno che ti lascia davvero fluire creativamente senza freni. Dici "e se facessimo..." e trenta secondi dopo hai un prototipo funzionante davanti agli occhi. Dici "no, più così" e ha già finito prima che tu abbia spiegato il perché.
 
@@ -15,7 +15,7 @@ description: "Un post meta sull'uso di Claude Code per tradurre 69 articoli, rid
 
 Ecco il mio grafico di contribuzione su GitHub, per dimostrare che non sto esagerando:
 
-![Attività GitHub con una valanga di commit](/it/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/github-activity.png)
+![Attività GitHub con una valanga di commit](/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/github-activity.png)
 
 Quel muro verde sono 40 giorni di lavoro con Claude su un sacco di progetti — [integrazioni domotiche](/it/posts/2026-04-04-verisure-italy-home-assistant/), [strumenti di rete per OpenWrt](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/), [rilevamento presenza WiFi](/it/posts/2026-02-15-wifi-presence-detection-home-assistant/), [tooling per modem 5G](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/), e questo redesign del blog. Solo gli ultimi due giorni coprono una fetta ridicola del totale.
 
@@ -23,7 +23,7 @@ Quel muro verde sono 40 giorni di lavoro con Claude su un sacco di progetti — 
 
 Questo blog esiste dal 2007, ma la versione Hugo risale al 2023 quando ho migrato da WordPress. Usava il [tema Poison](https://github.com/lukeorth/poison) (ora forkato come [Sindrome](https://github.com/vjt/hugo-sindrome-theme)) — un fork di Hyde/Poole — con sidebar scura, solo in inglese, e un layout che urlava "il 2015 chiama, vuole il suo CSS indietro."
 
-![Il vecchio layout — sidebar scura, solo inglese, CSS Hyde/Poole](/it/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/old-layout-desktop.png)
+![Il vecchio layout — sidebar scura, solo inglese, CSS Hyde/Poole](/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/old-layout-desktop.png)
 
 Funzionava. Ma si sentiva datato. La sidebar era troppo larga su mobile, l'area di contenuto troppo stretta su desktop, e il tutto era solo in inglese nonostante io sia italiano e abbia un pubblico in entrambe le lingue.
 
@@ -39,7 +39,7 @@ La prima grande mossa è stata tradurre tutti e 69 gli articoli dall'inglese all
 
 Claude ha gestito le traduzioni con buona qualità — non perfette, ma più che sufficienti per un blog tecnico dove il gergo resta comunque in inglese. Il tono conversazionale in italiano usa il "tu" informale, che si adatta bene al mio stile di scrittura.
 
-![Dopo l'i18n — stesso layout scuro, ma ora bilingue con il selettore di lingua](/it/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/i18n-layout-desktop.png)
+![Dopo l'i18n — stesso layout scuro, ma ora bilingue con il selettore di lingua](/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/i18n-layout-desktop.png)
 
 Nota il selettore con le bandiere nell'angolo in alto a sinistra della sidebar. Stesso layout scuro, ma ora il sito funziona in entrambe le lingue.
 
@@ -51,7 +51,7 @@ Nota il selettore con le bandiere nell'angolo in alto a sinistra della sidebar. 
 
 Claude Code ha un sistema di plugin chiamato [Superpowers](https://github.com/anthropics/claude-code) che include una skill di brainstorming con un **visual companion** — un server web locale che renderizza mockup nel browser mentre discuti le opzioni di design dal terminale.
 
-![Il visual companion del brainstorming che mostra le direzioni di layout](/it/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/brainstorm-companion.png)
+![Il visual companion del brainstorming che mostra le direzioni di layout](/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/brainstorm-companion.png)
 
 Ed è qui che la cosa diventa meta: Claude gira su un Raspberry Pi 5 (il mio server di casa), ma il browser è sul mio laptop. La connessione è un reverse tunnel SSH:
 
@@ -98,11 +98,11 @@ Ogni ciclo durava circa 60 secondi. In due ore abbiamo fatto decine di ritocchi 
 
 ## Il risultato
 
-![Nuovo layout — chiaro, pulito, CSS Grid, responsive](/it/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/new-layout-desktop.png)
+![Nuovo layout — chiaro, pulito, CSS Grid, responsive](/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/new-layout-desktop.png)
 
 Pulito. Light-first con dark mode di sistema. Tre colonne su desktop, hamburger su tablet/telefono. Il contenuto ha finalmente spazio per respirare, i blocchi di codice non richiedono scroll orizzontale, e il TOC sta dove ti aspetti che stia.
 
-![Layout mobile con menu hamburger](/it/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/new-layout-mobile.png)
+![Layout mobile con menu hamburger](/posts/2026-04-07-how-i-used-claude-to-revamp-my-blog/new-layout-mobile.png)
 
 Su mobile: header compatto con brand + selettore di lingua, TOC collassabile, e la sidebar scorre fuori quando tocchi l'hamburger. Niente più scroll infinito oltre una sidebar gigante per arrivare al contenuto.
 

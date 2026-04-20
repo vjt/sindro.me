@@ -11,9 +11,9 @@ featuredImage: cover.jpg
 Per il quadro generale — perché Myousica era in anticipo sui tempi e chi lo fa oggi — vedi la [retrospettiva del 2026](/it/posts/2026-04-11-myousica-eighteen-years-later/).
 {{< /retrospective >}}
 
-![Mewsic](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/logo.jpg)
+![Mewsic](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/logo.jpg)
 
-![Dal video promozionale di Myousica — la band animata](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-promo-band.jpg)
+![Dal video promozionale di Myousica — la band animata](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-promo-band.jpg)
 
 Oggi rilasciamo il codice sorgente di Myousica — la piattaforma collaborativa per il remixaggio musicale che stiamo costruendo dalla fine del 2007. Abbiamo [lanciato a settembre 2008](/it/posts/2008-09-11-myousica-com-was-born-today/) dopo 9 mesi di sviluppo, l'abbiamo tenuta in piedi per circa 5 mesi, e abbiamo messo il sito in pausa a febbraio 2009. Il progetto è stato ribattezzato [Mewsic](https://github.com/mewsic) lungo il percorso, ma l'idea è la stessa. Piuttosto che lasciare il codice a marcire su un server privato, lo mettiamo tutto su GitHub. Cronologia completa, difetti inclusi.
 
@@ -84,7 +84,7 @@ end
 
 Ecco come appare l'albero dei remix nella UI — lo [screenshot originale di Vaclav](https://dribbble.com/shots/192454-Myousica-remix) che mostra come le canzoni si collegano attraverso i remix:
 
-![L'albero dei remix di Myousica — canzoni che si ramificano in remix](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-remix-dribbble.png)
+![L'albero dei remix di Myousica — canzoni che si ramificano in remix](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-remix-dribbble.png)
 
 Questo significa che le tracce fluiscono attraverso il sistema. La mia traccia di basso può finire in dozzine di remix. Il metodo `find_most_collaborated` trova le canzoni che condividono tracce con il maggior numero di altre canzoni — il materiale più remixato nel sistema:
 
@@ -168,7 +168,7 @@ Far funzionare la pipeline di encoding audio ha richiesto un po' di iterazione. 
 
 ## La ricerca
 
-![La UI di ricerca e strumenti — 35 strumenti, filtro per genere, valutazioni](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-search.png)
+![La UI di ricerca e strumenti — 35 strumenti, filtro per genere, valutazioni](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-search.png)
 
 Myousica usa [Sphinx](http://sphinxsearch.com/) tramite il plugin [thinking-sphinx](https://github.com/pat/thinking-sphinx) per la ricerca full-text. L'editor multitraccia consuma l'API di ricerca via XML per permetterti di trovare tracce da aggiungere al tuo mix — filtrate per strumento, genere, BPM, tonalità, paese o semplicemente testo libero:
 
@@ -241,7 +241,7 @@ Far parlare tutti e quattro i servizi tra loro non è stato banale. Il git log d
 
 ## Funzionalità social
 
-![Gli utenti più attivi e la classifica amicizie](/it/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-community.png)
+![Gli utenti più attivi e la classifica amicizie](/posts/2010-10-14-myousica-collaborative-music-remixing-platform/myousica-community.png)
 
 Oltre alla funzionalità musicale di base, Myousica è una piattaforma social completa. Il codebase ha 36 modelli e 82 migration — c'è parecchia roba.
 

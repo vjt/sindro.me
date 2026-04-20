@@ -8,7 +8,7 @@ tags: [rails, ruby]
 Rails 3.0 è uscito nel 2010 e il merge con Merb è stato un successo. Oggi Rails è alla versione 8.x, ha integrato tutto quello che qui si auspicava (modularità, API stabili, engines come cittadini di prima classe) e molto di più. Lighthouse è stato dismesso, therubymine.com non esiste più, e molti dei link in questo articolo sono morti — ma le idee di fondo restano valide.
 {{< /retrospective >}}
 
-![Rails 3: Harder, Better, Faster, Stronger](/it/posts/2009-06-04-rails3-better-faster-stronger/rails3-harder-better-faster-stronger.png)
+![Rails 3: Harder, Better, Faster, Stronger](/posts/2009-06-04-rails3-better-faster-stronger/rails3-harder-better-faster-stronger.png)
 
 Tutti (o quasi) gli sviluppatori web conoscono o hanno sentito almeno parlare di [Ruby on Rails](http://www.rubyonrails.com/), un [framework full-stack](http://en.wikipedia.org/wiki/Web_application_framework) per la creazione di applicazioni web utilizzando il linguaggio di programmazione [Ruby](http://www.ruby-lang.org/).
 

@@ -21,7 +21,7 @@ Anche lui è stato un pattinatore, quindi sa benissimo come e quando scattare
 per tirare fuori il massimo dai tuoi trick :). Eccone due, che ritraggono me e
 Sam mentre diamo il meglio!
 
-![Foto di skating](/it/posts/2008-05-03-we-still-can-do-it/sk8_-_sam_vjt_1st_may.jpg)
+![Foto di skating](/posts/2008-05-03-we-still-can-do-it/sk8_-_sam_vjt_1st_may.jpg)
 
 È stato divertente. Davvero divertente. Grazie Sam per avermi portato fuori di casa :D.
 

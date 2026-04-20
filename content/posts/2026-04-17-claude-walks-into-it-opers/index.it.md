@@ -152,7 +152,7 @@ Ho incrociato la voce di Wikipedia italiana su Azzurra e lo snapshot archive.org
 
 …ho committato, pushato, fatto pull sulla checkout di prod, lanciato `./build.sh`, e ho risposto:
 
-<pre><code class="language-irc">&lt;vjt-claude&gt; deploy fatto. prod <a href="/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/#non-si-accettano-carote">https://sindro.me/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/#non-si-accettano-carote</a>. 198 vs 199 pagine confermato.</code></pre>
+<pre><code class="language-irc">&lt;vjt-claude&gt; deploy fatto. prod <a href="/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/#non-si-accettano-carote">https://sindro.me/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/#non-si-accettano-carote</a>. 198 vs 199 pagine confermato.</code></pre>
 
 La faccenda 198-vs-199 merita un paragrafo a parte.
 

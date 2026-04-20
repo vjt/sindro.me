@@ -5,7 +5,7 @@ tags: [ai-generated, iot, openwrt, networking, monitoring, python, sysadmin]
 description: "La mia mesh OpenWrt aveva un problema di roaming: un telefono è rimbalzato tra AP 129 volte in 24 ore. Ho costruito uno strumento per diagnosticare il thrashing WiFi, visualizzare i pattern di roaming, e generare fix azionabili. Ecco l'intero stack: collector Lua, station resolver Go, analyzer Python, e una dashboard Grafana con 13 pannelli."
 ---
 
-![Sezione di una casa con access point WiFi su ogni piano, onde del segnale sovrapposte, e un telefono che rimbalza caoticamente tra di essi](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/cover.jpg)
+![Sezione di una casa con access point WiFi su ogni piano, onde del segnale sovrapposte, e un telefono che rimbalza caoticamente tra di essi](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/cover.jpg)
 
 Tutto è cominciato con il [rilevamento presenza WiFi](/it/posts/2026-02-15-wifi-presence-detection-home-assistant/). Avevo costruito un sistema che traccia in quale stanza si trova ognuno scrapando l'RSSI dai miei AP OpenWrt. Funzionava -- ma le assegnazioni delle stanze continuavano a sfarfallare. Cucina. Ufficio. Cucina. Ufficio. Tre volte in dieci secondi. La macchina a stati era a posto. Il WiFi no.
 
@@ -13,7 +13,7 @@ La mia rete domestica ha sei AP OpenWrt su tre piani, due SSID -- Mercury su 5 G
 
 Non lo sapevo finché non ho costruito lo strumento per vederlo.
 
-![Timeline di roaming — 24 ore](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/roaming-timeline-24h.png)
+![Timeline di roaming — 24 ore](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/roaming-timeline-24h.png)
 
 Ogni riga è un client WiFi, il colore mostra a quale AP è connesso. I client sani mostrano barre lunghe e piene. Quelli malati sembrano pali da barbiere. Vedi `sara-iphone`? Quella striscia arcobaleno sono 129 connessioni in 24 ore -- il telefono cammina in una zona di overlap tra due AP dove entrambi hanno un segnale circa uguale (e orrendo).
 
@@ -73,7 +73,7 @@ La dashboard è progettata per rispondere a una domanda: **la mia mesh è sana, 
 
 La vista a 3 giorni rende il pattern di thrashing ancora più chiaro -- si vede che non è un evento isolato, è un ciclo giornaliero legato al movimento delle persone nella casa:
 
-![Timeline di roaming — 3 giorni](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/roaming-timeline-3d.png)
+![Timeline di roaming — 3 giorni](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/roaming-timeline-3d.png)
 
 Confronta i telefoni (strisce arcobaleno caotiche) con i dispositivi IoT in fondo -- `cam-patio`, `gazzurbo`, `tado-bridge` -- barre lunghe e piene, associazioni stabili. Dispositivi stazionari che hanno trovato il loro AP e ci sono rimasti.
 
@@ -81,19 +81,19 @@ Confronta i telefoni (strisce arcobaleno caotiche) con i dispositivi IoT in fond
 
 RSSI, SNR, e noise floor per tutte le stazioni. Le linee rosse orizzontali intorno a -90 dBm sono il noise floor. Qualsiasi cosa vicina a quella linea è una connessione marginale.
 
-![Qualità del segnale](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/signal-quality.png)
+![Qualità del segnale](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/signal-quality.png)
 
 ### Hearing Map
 
 Questa è la visione del mondo di usteer. Ogni linea mostra quale segnale un AP sente da un client -- non solo l'AP a cui il client è connesso, ma *tutti* gli AP che lo sentono. Quando più linee per lo stesso client sono vicine, quella è una zona di overlap.
 
-![Hearing Map](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/hearing-map.png)
+![Hearing Map](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/hearing-map.png)
 
 ### Connessioni FT vs Open
 
 Quanti eventi di roaming hanno usato 802.11r Fast Transition (verde) rispetto alla semplice autenticazione open (giallo). I roam FT sono trasparenti -- il client si pre-autentica con l'AP target prima di cambiare. Le connessioni open significano che il client è passato per l'associazione completa, che richiede più tempo e può perdere pacchetti.
 
-![Connessioni FT vs Open](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/ft-vs-open-connects.png)
+![Connessioni FT vs Open](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/ft-vs-open-connects.png)
 
 Nel mio caso, l'82% dei roam usa FT -- 802.11r funziona. Le barre gialle sono per lo più dispositivi IoT che non supportano 802.11r, e un vecchio AP con OpenWrt 19.07 che non lo supporta nemmeno.
 
@@ -101,11 +101,11 @@ Nel mio caso, l'82% dei roam usa FT -- 802.11r funziona. Le barre gialle sono pe
 
 La heatmap mostra la distribuzione delle potenze del segnale tra tutti i client nel tempo. La banda luminosa intorno a -60 / -70 dBm è dove vivono la maggior parte delle associazioni. Le bande più deboli sotto -80 sono la zona problematica.
 
-![Heatmap RSSI](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/rssi-heatmap.png)
+![Heatmap RSSI](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/rssi-heatmap.png)
 
 I pannelli di configurazione mostrano la txpower per radio, lo stato 802.11r/k/v, e le soglie di usteer a colpo d'occhio:
 
-![Pannelli di configurazione](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/config-panels.png)
+![Pannelli di configurazione](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/config-panels.png)
 
 ## L'analizzatore CLI
 

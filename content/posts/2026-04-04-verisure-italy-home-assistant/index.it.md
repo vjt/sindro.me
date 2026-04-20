@@ -5,7 +5,7 @@ tags: [ai-generated, reverse-engineering, iot, home-assistant, python, security]
 description: "L'app Verisure fa schifo: lenta, piena di pubblicità, zero automazioni. L'ho rimpiazzata con un componente custom per Home Assistant."
 ---
 
-![Un telefono rotto con l'app bloatware dell'allarme buttato nel cestino, mentre una dashboard Home Assistant brilla trionfante su un tablet](/it/posts/2026-04-04-verisure-italy-home-assistant/cover.jpg)
+![Un telefono rotto con l'app bloatware dell'allarme buttato nel cestino, mentre una dashboard Home Assistant brilla trionfante su un tablet](/posts/2026-04-04-verisure-italy-home-assistant/cover.jpg)
 
 L'app Verisure fa schifo. Lì, l'ho detto.
 
@@ -71,7 +71,7 @@ delle telecamere.
 - **Dashboard auto-generata** — pannello allarme, griglia telecamere,
   pulsanti di cattura, tutto populato automaticamente nella sidebar di HA
 
-![La dashboard Verisure auto-generata](/it/posts/2026-04-04-verisure-italy-home-assistant/dashboard.png)
+![La dashboard Verisure auto-generata](/posts/2026-04-04-verisure-italy-home-assistant/dashboard.png)
 
 ### Le automazioni che l'app non può fare
 
@@ -91,7 +91,7 @@ aperte, e forza l'attivazione. Un allarme attivo con eccezioni è
 meglio di un allarme spento. Le routine Verisure? Il pannello annuncia il
 fallimento — ma se non sei lì ad ascoltarlo, l'allarme resta spento.
 
-![Force arm: allarme bloccato, un tap per forzare](/it/posts/2026-04-04-verisure-italy-home-assistant/force-arm.png)
+![Force arm: allarme bloccato, un tap per forzare](/posts/2026-04-04-verisure-italy-home-assistant/force-arm.png)
 
 **Arma notturno intelligente.** Non "attiva a mezzanotte" come le
 routine Verisure. Attiva tra mezzanotte e le 7 solo quando rileva che
