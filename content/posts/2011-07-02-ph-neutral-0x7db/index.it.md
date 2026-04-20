@@ -14,7 +14,7 @@ insieme a un badge über-l33t personalizzato con il nostro nickname e l'hash
 della chiave.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/phneutral-badge.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/phneutral-badge.jpg" >}}
 
 
 <p>Essendo la mia prima esperienza a una conferenza di sicurezza internazionale
@@ -42,7 +42,7 @@ repeater pilotata da un box OpenBSD — vogliono che il pubblico la hacki perch�
 beh, &#8220;you are the Worst Case Scenario.&#8221; :-)</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/ap-tree.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/ap-tree.jpg" >}}
 
 
 <p>Poi è stato presentato il divertente video Hacker Hacker:</p>
@@ -60,7 +60,7 @@ allowfullscreen="yay"></iframe></p>
 vedremo cosa porta il giorno dopo.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/funny-nhaima.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/funny-nhaima.jpg" >}}
 
 
 <h2><a href="http://ph-neutral.darklab.org/talks/sj.html">Sniffjoke &#8211; un
@@ -88,7 +88,7 @@ href="http://www.wireshark.org/lists/wireshark-dev/200904/msg00343.html">thread
 su Wireshark</a>.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/dante-poirot.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/dante-poirot.jpg" >}}
 
 
 <h2><a href="http://ph-neutral.darklab.org/talks/wlan.html">Storie horror dei
@@ -130,7 +130,7 @@ basano la chiave di rete interamente sul <span class="caps">MAC</span>
 interno. Aggiungici le password di default e hai il quadro completo.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/wifi-armory.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/wifi-armory.jpg" >}}
 
 
 <p>Se vuoi saperne di più, dovresti procurarti un po' di <a
@@ -162,7 +162,7 @@ anche se gli strumenti ci permettono di implementare reti sicure, spesso
 l'implementazione di tali strumenti è inefficace e soggetta a rottura.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/laf0rge.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/laf0rge.jpg" >}}
 
 
 <p>Ci ha mostrato come funziona la segnalazione sulla rete. Ha iniziato
@@ -195,7 +195,7 @@ EuSecWest2010_AndreiCostin_HackingPrintersForFunAndProfit_full.pdf">qui</a>
 :)</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/naif-sleeping.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/naif-sleeping.jpg" >}}
 
 
 <h2><a href="http://ph-neutral.darklab.org/talks/chip_and_pin.html">Chip &#38;
@@ -229,7 +229,7 @@ numero di carta e PIN corrispondono, sia perché questa è ormai considerata una
 tecnologia &#8220;sicura&#8221; che non può essere violata.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/inversepath.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/inversepath.jpg" >}}
 
 
 <p>Grazie ad Andrea Barisani e Davide Bianco per averci informato sulla falla di
@@ -259,7 +259,7 @@ che lo sia mai, eh, 0dayz?) ma lo sarà domani, e te la prenderai in quel posto
 se non ti tieni aggiornato. <span class="caps">PAROLA</span>.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/argp.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/argp.jpg" >}}
 
 
 <h2>Progressi nell'evasione di <span class="caps">ASLR</span> su Win32</h2>
@@ -304,7 +304,7 @@ href="/posts/2011-07-02-ph-neutral-0x7db/Advances_in_Win32_ASLR_Evasion.pdf">qui
 &#8211; grazie per la condivisione <a href="http://twitter.com/not_me">@not_me</a>!</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/jf.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/jf.jpg" >}}
 
 
 <p>JF si è scusato almeno 4 volte prima di finire per chiudere il portatile e
@@ -379,7 +379,7 @@ href="http://en.wikipedia.org/wiki/Executable_and_Linkable_Format"><span
 class="caps">ELF</span></a>..."</em> LOL! :-D.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/dwarf.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/dwarf.jpg" >}}
 
 
 <p>La cosa interessante è anche che il codice <span class="caps">DWARF</span>
@@ -443,7 +443,7 @@ crittografia per verificare l'identità dell'AP e cerca di prevenire
 l'eavesdropping.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/party1.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/party1.jpg" >}}
 
 
 <blockquote> <p>- &#8220;amico, sei davvero una barba grigia a una conferenza di
@@ -480,7 +480,7 @@ porzioni dello spazio di indirizzamento: letteralmente respira dentro il sistema
 operativo.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/party2.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/party2.jpg" >}}
 
 
 <p>Mi stupisce come ho trovato forti corrispondenze con la <a
@@ -510,7 +510,7 @@ sicuramente lavorare per Microsoft!&#8221;<br/> - &#8220;ehm, no...&#8221;<br/>
 <p>Alle 5:15, è meglio andare a letto, in attesa del prossimo buongiorno!</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/morning.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/morning.jpg" >}}
 
 
 <h2>Giorno 3 &#8211; <a href="http://ph-neutral.darklab.org/talks/newav.html"
@@ -553,7 +553,7 @@ firme.</p>
 <h2><span class="caps">XSLT</span> offensivo</h2>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/xslt.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/xslt.jpg" >}}
 
 
 <p><code>XSLT</code> è un linguaggio usato per trasformare documenti <span
@@ -576,7 +576,7 @@ href="http://prezi.com/y_fuybfudgnd/offensive-xslt/">qui</a>. Utenti Liferay,
 avvisati</a> :-)</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/an0nym0us.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/an0nym0us.jpg" >}}
 
 
 <h2>Parole finali</h2>

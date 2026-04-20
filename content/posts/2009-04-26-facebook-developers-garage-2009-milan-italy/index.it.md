@@ -88,7 +88,7 @@ href="http://en.wikipedia.org/wiki/Murphy's_Law">legge di Murphy</a>, perche'
 le app non hanno funzionato al primo colpo :).</p>
 
 
-<p style="text-align:center;"><img src="/posts/2009-04-26-facebook-developers-garage-2009-milan-italy/pilu_and_reggie.jpg"/></p>
+{{< figure src="/posts/2009-04-26-facebook-developers-garage-2009-milan-italy/pilu_and_reggie.jpg" >}}
 
 
 <p><a href="http://qik.com/video/1529172">Terzo talk</a> di <a
@@ -145,7 +145,7 @@ sul tuo profilo una volta finito :).</p>
 riunito con un mio amico, arrivato in ritardo come al solito ;).</p>
 
 
-<p style="text-align:center;"><img src="/posts/2009-04-26-facebook-developers-garage-2009-milan-italy/relax_at_facebook_developer_garage_2009_in_milan.jpg"/></p>
+{{< figure src="/posts/2009-04-26-facebook-developers-garage-2009-milan-italy/relax_at_facebook_developer_garage_2009_in_milan.jpg" >}}
 
 <h1>Pomeriggio: marketing e comunicazione</h1>
 

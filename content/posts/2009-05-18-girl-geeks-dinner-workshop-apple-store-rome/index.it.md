@@ -26,7 +26,7 @@ tags: [apple, geek, networking, social, web2.0, events]
 <h1>Social networking</h1>
 
 
-<p style="text-align:center;"><img src="http://farm4.static.flickr.com/3309/3539071418_03d68168f3.jpg?v=0" alt="" /></p>
+{{< figure src="http://farm4.static.flickr.com/3309/3539071418_03d68168f3.jpg?v=0" >}}
 
 
 <p style="text-align:right;"><cite>foto: <a href="http://www.flickr.com/photos/girlgeekdinnersroma/3539071418/in/pool-girlgeekdinnersitalia/">girlgeekdinnersroma</a></cite></p>
@@ -121,7 +121,7 @@ tags: [apple, geek, networking, social, web2.0, events]
 <h1>Produttivita'</h1>
 
 
-<p style="text-align:center;"><img src="https://farm3.static.flickr.com/2113/3538262891_e704ef0055.jpg?v=0" alt="" /></p>
+{{< figure src="https://farm3.static.flickr.com/2113/3538262891_e704ef0055.jpg?v=0" >}}
 
 
 <p style="text-align:right;"><cite>foto: <a href="https://www.flickr.com/photos/girlgeekdinnersroma/3538262891/in/pool-girlgeekdinnersitalia/">girlgeekdinnersroma</a></cite></p>
@@ -234,7 +234,7 @@ tags: [apple, geek, networking, social, web2.0, events]
 
 <p><big><em>Applauso, e grazie per essere venute!</em></big></p>
 
-<p style="text-align:center;"><img src="http://farm4.static.flickr.com/3414/3535028705_fffc931721.jpg?v=0" alt="" /></p>
+{{< figure src="http://farm4.static.flickr.com/3414/3535028705_fffc931721.jpg?v=0" >}}
 
 <p style="text-align:right;"><cite>Foto: <a href="http://www.flickr.com/photos/girlgeekdinnersroma/3535028705/in/pool-girlgeekdinnersitalia/">girlgeekdinnersroma</a></cite></p>
 

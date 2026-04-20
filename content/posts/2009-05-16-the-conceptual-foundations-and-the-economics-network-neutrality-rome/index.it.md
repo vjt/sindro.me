@@ -28,7 +28,7 @@ palazzo Rospigliosi</a> nel cuore di <a
 href="http://en.wikipedia.org/wiki/Rome">Roma</a>.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-rome/IMG_0261.jpg" alt="" /></p>
+{{< figure src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-rome/IMG_0261.jpg" >}}
 
 
 <p style="text-align:right;"><em>Nella foto: <a
@@ -88,7 +88,7 @@ VoIP/IPTV: questo e' quello che verra' chiamato &#8220;IP
 frazionato&#8221;.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-rome/ngn-pipes.png" alt="" /></p>
+{{< figure src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-rome/ngn-pipes.png" >}}
 
 
 <p>Fintanto che la concorrenza rimane in piedi, applicare sovrapprezzi per QoS

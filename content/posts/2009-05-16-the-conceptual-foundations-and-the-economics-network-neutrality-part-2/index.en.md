@@ -23,9 +23,7 @@ spokesmen remarks over the current situation and possible future
 developments.</p>
 
 
-<p style="text-align:center;"><img
-src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/rospigliosi-palace-statues-room-nnsquad-convention.jpg"
-alt="" /></p>
+{{< figure src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/rospigliosi-palace-statues-room-nnsquad-convention.jpg" >}}
 
 
 <p><a name="continue"></a> The first speech started at 2.15PM and was held by
@@ -80,8 +78,7 @@ href="http://www.linuxjournal.com/article/4962">microsoft servers are running
 on linux</a> :).</p>
 
 
-<p style="text-align:center;"><img
-src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/akamai-how-content-delivery-network-works.png" alt="" /></p>
+{{< figure src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/akamai-how-content-delivery-network-works.png" >}}
 
 
 <p style="text-align:right;"><cite>Source: <a
@@ -144,9 +141,7 @@ comment</a> explains my point of view on this matter, and was also exposed
 later by a member of the audience.</p>
 
 
-<p style="text-align:center;"><img
-src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/bandwidth-usage-p2p.png"
-alt="" /></p>
+{{< figure src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/bandwidth-usage-p2p.png" >}}
 
 
 <p style="text-align:right;"><cite>Source: <a
@@ -216,9 +211,7 @@ evil technologies, and make sure ISPs respect them. We need a huge dose of
 <strong>Faith</strong>, I&#8217;d guess.</p>
 
 
-<p style="text-align:center;"><img
-src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/have-faith.jpg"
-alt="" /></p>
+{{< figure src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/have-faith.jpg" >}}
 
 
 <p style="text-align:right;"><cite>Photo by <a

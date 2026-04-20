@@ -27,7 +27,7 @@ century Rospigliosi palace</a> in the heart of <a
 href="http://en.wikipedia.org/wiki/Rome">Rome</a>.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-rome/IMG_0261.jpg" alt="" /></p>
+{{< figure src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-rome/IMG_0261.jpg" >}}
 
 
 <p style="text-align:right;"><em>In this photo: <a
@@ -84,7 +84,7 @@ separated pipes, all dedicated to different kinds of data, e.g. VoIP/IPTV: this
 is what is going to be called &#8220;Fractionalized IP&#8221;.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-rome/ngn-pipes.png" alt="" /></p>
+{{< figure src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-rome/ngn-pipes.png" >}}
 
 
 <p>As long as competition remains in place, applying surcharges for guaranteed

@@ -14,7 +14,7 @@ along with an über-l33t badge customized with our nickname and the key
 hash.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/phneutral-badge.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/phneutral-badge.jpg" >}}
 
 
 <p>Being my first experience at an international security conf (I’ve only been
@@ -42,7 +42,7 @@ by an OpenBSD box &#8211; they want the audience to hack it because, well,
 &#8220;you are the Worst Case Scenario.&#8221; :-)</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/ap-tree.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/ap-tree.jpg" >}}
 
 
 <p>Then, the funny Hacker Hacker video was presented:</p>
@@ -60,7 +60,7 @@ allowfullscreen="yay"></iframe></p>
 and see what the next day would bring.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/funny-nhaima.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/funny-nhaima.jpg" >}}
 
 
 <h2><a href="http://ph-neutral.darklab.org/talks/sj.html">Sniffjoke &#8211; a
@@ -86,7 +86,7 @@ href="http://www.wireshark.org/lists/wireshark-dev/200904/msg00343.html">wiresha
 thread</a>.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/dante-poirot.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/dante-poirot.jpg" >}}
 
 
 <h2><a href="http://ph-neutral.darklab.org/talks/wlan.html"><span
@@ -127,7 +127,7 @@ network key entirely on the internal <span class="caps">MAC</span>. Couple it
 with default passwords and you get the picture.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/wifi-armory.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/wifi-armory.jpg" >}}
 
 
 <p>If you want to know more, you should get some <a
@@ -159,7 +159,7 @@ even if the tools allow us to implement secure networks, often the
 implementations of such tools is ineffective and prone to breakage.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/laf0rge.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/laf0rge.jpg" >}}
 
 
 <p>He showed us how the signaling on the network works. He started by first
@@ -192,7 +192,7 @@ EuSecWest2010_AndreiCostin_HackingPrintersForFunAndProfit_full.pdf">here</a>
 :)</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/naif-sleeping.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/naif-sleeping.jpg" >}}
 
 
 <h2><a href="http://ph-neutral.darklab.org/talks/chip_and_pin.html">Chip &#38;
@@ -226,7 +226,7 @@ the card number and pin match, and because this is now considered as a
 &#8220;secure&#8221; technology that cannot be broken.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/inversepath.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/inversepath.jpg" >}}
 
 
 <p>Thanks to Andrea Barisani and Davide Bianco for making us aware of the
@@ -256,7 +256,7 @@ get updated for years. Maybe it&#8217;s not broken today (if ever, ya&#8217;now
 not keep up to date. <span class="caps">WORD</span>.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/argp.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/argp.jpg" >}}
 
 
 <h2>Advances in win32 <span class="caps">ASLR</span> evasion</h2>
@@ -300,7 +300,7 @@ href="/posts/2011-07-02-ph-neutral-0x7db/Advances_in_Win32_ASLR_Evasion.pdf">her
 &#8211; thanks for sharing <a href="http://twitter.com/not_me">@not_me</a>!</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/jf.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/jf.jpg" >}}
 
 
 <p>JF apologized at least 4 times before ending up closing his laptop and
@@ -373,7 +373,7 @@ href="http://en.wikipedia.org/wiki/Executable_and_Linkable_Format"><span
 class="caps">ELF</span></a> story&#8230;”</em> LOL! :-D.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/dwarf.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/dwarf.jpg" >}}
 
 
 <p>What&#8217;s interesting is also that <span class="caps">DWARF</span> code
@@ -436,7 +436,7 @@ balances clients between the APs, using cryptography to verify the AP identity
 and trying to prevent eavesdropping.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/party1.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/party1.jpg" >}}
 
 
 <blockquote> <p>- &#8220;man, you are actually a grey beard at a security
@@ -471,7 +471,7 @@ AS numbers from netblocks, a kernel hacker learns to recognize portions of the
 address space: he/she literally breathes within the operating system.</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/party2.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/party2.jpg" >}}
 
 
 <p>It amazes me how I found strong matches of Jeff Hawkins&#8217; <a
@@ -502,7 +502,7 @@ so my assumption was incorrect. sorry for bothering! :D&#8221;<br/></p>
 morning!</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/morning.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/morning.jpg" >}}
 
 
 <h2>Day 3 &#8211; <a href="http://ph-neutral.darklab.org/talks/newav.html"
@@ -544,7 +544,7 @@ signatures exist.</p>
 <h2>Offensive <span class="caps">XSLT</span></h2>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/xslt.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/xslt.jpg" >}}
 
 
 <p><code>XSLT</code> is a language used to transform <span
@@ -567,7 +567,7 @@ href="http://prezi.com/y_fuybfudgnd/offensive-xslt/">here</a>. Liferay users,
 been warned</a> :-)</p>
 
 
-<p style="text-align:center;"><img src="/posts/2011-07-02-ph-neutral-0x7db/an0nym0us.jpg" alt="" /></p>
+{{< figure src="/posts/2011-07-02-ph-neutral-0x7db/an0nym0us.jpg" >}}
 
 
 <h2>Final words</h2>

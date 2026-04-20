@@ -23,9 +23,7 @@ l'occasione di sentire le osservazioni dei portavoce delle telco sulla
 situazione attuale e sui possibili sviluppi futuri.</p>
 
 
-<p style="text-align:center;"><img
-src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/rospigliosi-palace-statues-room-nnsquad-convention.jpg"
-alt="" /></p>
+{{< figure src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/rospigliosi-palace-statues-room-nnsquad-convention.jpg" >}}
 
 
 <p><a name="continue"></a> Il primo intervento e' iniziato alle 14:15 ed e'
@@ -81,8 +79,7 @@ che <a href="http://www.linuxjournal.com/article/4962">i server Microsoft
 girano su Linux</a> :).</p>
 
 
-<p style="text-align:center;"><img
-src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/akamai-how-content-delivery-network-works.png" alt="" /></p>
+{{< figure src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/akamai-how-content-delivery-network-works.png" >}}
 
 
 <p style="text-align:right;"><cite>Fonte: <a
@@ -149,9 +146,7 @@ commento</a> spiega il mio punto di vista sulla questione, ed e' stato esposto
 anche da un membro del pubblico successivamente.</p>
 
 
-<p style="text-align:center;"><img
-src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/bandwidth-usage-p2p.png"
-alt="" /></p>
+{{< figure src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/bandwidth-usage-p2p.png" >}}
 
 
 <p style="text-align:right;"><cite>Fonte: <a
@@ -223,9 +218,7 @@ tecnologie potenzialmente pericolose e assicurarci che gli ISP le rispettino.
 Serve una dose enorme di <strong>Fede</strong>, direi.</p>
 
 
-<p style="text-align:center;"><img
-src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/have-faith.jpg"
-alt="" /></p>
+{{< figure src="/posts/2009-05-16-the-conceptual-foundations-and-the-economics-network-neutrality-part-2/have-faith.jpg" >}}
 
 
 <p style="text-align:right;"><cite>Foto di <a
