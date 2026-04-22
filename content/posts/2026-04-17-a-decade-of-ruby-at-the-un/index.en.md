@@ -8,7 +8,7 @@ featuredImage: cover.jpg
 draft: true
 ---
 
-IFAD runs on a lot of things — SAP, PeopleSoft, Oracle, SharePoint, plus a Sybase from the year 2000 that, when I arrived, held a surprising amount of institutional memory. It also runs on Ruby — that's why I was there.
+IFAD runs on a lot of things — PeopleSoft, Oracle, SharePoint, plus a Sybase from the year 2000 that, when I arrived, held a surprising amount of institutional memory. It also runs on Ruby — that's why I was there.
 
 I walked into the Rome offices in the spring of 2011 as a consultant on an agile team that didn't look or act like the rest of the place. The rest of the place was an intergovernmental agency: careful, deliberate, dependent on external vendors, tied to procurement cycles and risk frameworks, understandably slow. Our team was five or six people who shipped software. We didn't replace the enterprise side — we complemented it. When something needed to be done now, and done well, and owned by people inside the building, we got the call.
 
@@ -80,7 +80,7 @@ Victoria was my business focal point for the duration of the build. She translat
 
 The Member States Platform was new code, but it didn't live alone. It pulled its people, countries, meetings, sessions, and roles from a back-office system that had been at IFAD long before me: a Java application built around the year 2000, running on top of a Sybase database. The system had a name too — **CIAO**, for *Contact Information Available Online*, which also happens to be the Italian word for hello and goodbye. A back-office at a Rome-based UN agency ought to greet you in Italian; whoever named it in 2000 got that right.
 
-The Java app was adequate for its original purpose, which was to act as an internal registry of people, countries, and events: forms for creating them, screens for editing them, reports for auditing them. Whoever wrote it in 2000 did a professional job with the tools of the time.
+The Java app was adequate for its original purpose, which was to act as an internal registry of people, countries, and events: forms for creating them, screens for editing them, reports for auditing them. Andrea De Baggis, who wrote it in the early 2000s, did a professional job with the tools of the time.
 
 The problem was the data model. It had been implemented using the [entity-attribute-value](https://en.wikipedia.org/wiki/Entity%E2%80%93attribute%E2%80%93value_model) pattern: one big table holding every attribute of every entity as a row. An entity was a bag of rows; a query for "the list of Heads of Delegation for Governing Council 36 whose country is a List A member" was ten joins and, on a warm day, ten minutes.
 
