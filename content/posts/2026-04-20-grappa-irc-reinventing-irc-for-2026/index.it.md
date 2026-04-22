@@ -92,8 +92,6 @@ Due facade sopra lo stesso store: REST+SSE primaria, listener IRCv3 opzionale (p
 
 Auth: bridge SASL contro il NickServ upstream. Self-hostabile su qualsiasi VPS, o — a tendere — deploy one-click via Docker su un provider qualsiasi, con immagine sicura di default.
 
-![Laboratorio artigiano con varie ruote appese alla parete — antiche, meccaniche, pesanti, con raggi rotti, incomplete. Al banco, un artigiano affiancato da un braccio robotico assembla una ruota nuova. Blueprints alla parete, attrezzi sparsi.](wheel-reinvention.jpg)
-
 ## Perché reinventare: le alternative esistono, ma non fanno questo
 
 Domanda lecita: *"gli strumenti ci sono già, no?"* Parzialmente. I pezzi ci sono, sparsi. Nessuno li mette insieme nel modo che ha senso per me.
@@ -105,6 +103,8 @@ Domanda lecita: *"gli strumenti ci sono già, no?"* Parzialmente. I pezzi ci son
 - **[Matrix](https://matrix.org/) (+ bridge IRC)** — altro protocollo, altra filosofia. Matrix è un sistema di messaggistica moderno con rooms, reactions, thread, E2E encryption, upload di file. I bridge IRC esistono, sono valorosi, ma sono fragili per natura — mappare un protocollo moderno su uno del 1988 perde sempre qualcosa. E quanto al self-host: Matrix è self-hostabile in teoria, ma nella pratica Synapse è notoriamente pesante in RAM e complessità operativa. Non è IRC semplificato, è un prodotto diverso con vibes diverse. Anni fa ho usato Matrix e l'ho trovato bloated — niente contro il progetto, semplicemente non è quello che cerco.
 
 Nessuno di questi, da solo, mette insieme **tutta** la lista: bouncer che tiene lo storico + API web JSON + PWA installabile irssi-shape + self-host one-click + riconoscimento/sintesi vocale lato dispositivo + zero parsing IRC nel browser. grappa-irc prova a chiudere quel buco.
+
+![Laboratorio artigiano con varie ruote appese alla parete — antiche, meccaniche, pesanti, con raggi rotti, incomplete. Al banco, un artigiano affiancato da un braccio robotico assembla una ruota nuova. Blueprints alla parete, attrezzi sparsi.](wheel-reinvention.jpg)
 
 ## Ma chi te lo fa fare
 
