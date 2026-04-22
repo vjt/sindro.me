@@ -15,13 +15,13 @@ Qualche giorno fa ho rimesso le mani in [un progetto del 2002](/it/posts/2026-04
 
 Il testo è la feature, non il limite. IRC — *Internet Relay Chat*, la chat testuale di internet, nata nel 1988 — è solo testo. Non è mai stato un limite: era il punto. Leggi, scrivi, pensi. Punto e basta.
 
-Pensa ai [MUD](https://it.wikipedia.org/wiki/Multi_user_dungeon). Mondi enormi, immersivi, fatti di pura immaginazione — tutto su testo puro sopra TCP. Il cervello del lettore fa il resto. I lampi sullo schermo distraggono; il testo stimola. Più pixel al secondo non è più segnale.
+Pensa ai [MUD](https://it.wikipedia.org/wiki/Multi_user_dungeon). Mondi enormi, immersivi, fatti di pura immaginazione — tutto in testo puro su TCP. Il cervello del lettore fa il resto. I lampi sullo schermo distraggono; il testo stimola. Più pixel al secondo non è più segnale.
 
 I messenger moderni intanto continuano ad aggiungere roba. Reazioni, sticker, anteprime dei link, video inline, messaggi vocali, indicatori di scrittura, conferme di lettura, notifiche push con suonetti dedicati. Ognuna di queste è una tassa sull'attenzione venduta come feature.
 
-E l'infrastruttura non è tua. WhatsApp, iMessage, Discord, Slack, Telegram — non possiedi una riga. Non puoi forkarli, non puoi self-hostarli, affitti un posto sul palco di qualcun altro. IRC lo fai girare su un server affittato a 5€ al mese, con quattro file di testo per configurarlo e un piccolo programma che parla IRC. Quell'asimmetria non è un dettaglio decorativo — è tutto il gioco.
+E l'infrastruttura non è tua. WhatsApp, iMessage, Discord, Slack, Telegram — non possiedi una riga di codice. Non puoi forkarli, non puoi self-hostarli, affitti un posto sul palco di qualcun altro. IRC lo fai girare su un server affittato a 5€ al mese, con quattro file di testo per configurarlo e un piccolo programma che parla IRC. Quell'asimmetria non è un dettaglio decorativo — è tutto il senso.
 
-E poi, sì — nostalgia. IRC è ancora vivo. [Azzurra](https://azzurra.chat/) è ancora viva. Stessi nick, in larga parte le stesse persone, stesse stanze, più di venticinque anni dopo. È una feature.
+E poi, sì — nostalgia. IRC è ancora vivo. [Azzurra](https://azzurra.chat/) è ancora viva. Stessi nick, in larga parte le stesse persone, stesse stanze, a più di venticinque anni di distanza. È una feature.
 
 ![L'irssi di Aleksandr con il tema "sux" su Azzurra — wallpaper anime, attività dei canali, hostname Fastweb nella lista nick. Così appariva la rete vista da dentro.](irssi-sux-theme.png)
 
@@ -33,7 +33,7 @@ La fregatura: da smartphone non è il massimo dell'usabilità. Con un buon setup
 
 Quindi: **rifare IRC, tenendolo IRC.** Stesso protocollo, stesse chat, stessi server, stessi oper. **Aggiungere solo la comodità.**
 
-Due pezzi. **grappa** è qualcosa che sta collegata a IRC al posto tuo. Ti tiene nei canali anche quando spegni il telefono, conserva lo storico dei messaggi che ti sei perso, e — oltre a parlare IRC verso i server storici — parla anche la lingua del web (JSON, HTTP). Quindi può fare da motore a un'applicazione web che assomiglia a irssi. O a mIRC, se c'è richiesta. Insomma: grappa rende la tua presenza su IRC persistente, restando connessa al posto tuo.
+Due pezzi. **grappa** resta collegata a IRC al posto tuo. Ti tiene nei canali anche quando spegni il telefono, conserva lo storico dei messaggi che ti sei perso, e — oltre a parlare IRC verso i server storici — parla anche la lingua del web (JSON, HTTP). Quindi può fare da motore a un'applicazione web che assomiglia a irssi. O a mIRC, se c'è richiesta. Insomma: grappa rende la tua presenza su IRC persistente, restando connessa al posto tuo.
 
 **cicchetto** è l'app-compagna. Quando ti va, la apri — è una web app che puoi installare sul telefono come un'app nativa. Si collega a grappa, ti versa lo storico e le chat in corso, e tu puoi brindare su IRC. 🥂
 
@@ -47,19 +47,19 @@ Cosa fa, e cosa non fa, **di proposito**:
 
 Se sei un tecnico, la specifica completa è nel README: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven development — non c'è ancora una riga di codice, solo l'idea, e una conversazione aperta.
 
-**Vuoi parlarne subito?** [Entra in #grappa su Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa). Dentro ci trovi `vjt-claude`, un'AI a cui ho passato tutto il contesto del progetto — oppure aspetta che io (`vjt`) sia online, se preferisci un umano. 🙂
+**Vuoi parlarne subito?** [Entra in #grappa su Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa). Dentro ci trovi `vjt-claude`, un'AI a cui ho passato tutto il contesto del progetto — oppure aspetta che arrivi `vjt` (cioè io), se preferisci un umano. 🙂
 
 ![Cantiere in costruzione: robot che saldano e martellano mentre client IRC — mIRC, irssi, XChat — crescono come alberelli dal terreno. Lavori in corso, il README è pronto, il codice arriva.](construction-site.jpg)
 
 ---
 
-*Da qui in poi il post si fa tecnico.* Gergo per ingegneri, grafi architetturali, scelte di protocollo. Se non è roba tua, sentiti libero di fermarti qui — il resto è per chi vuole vedere come si incastrano i pezzi.
+*Da qui in poi il post si fa tecnico.* Gergo per ingegneri, diagrammi architetturali, scelte di protocollo. Se non è roba tua, sentiti libero di fermarti qui — il resto è per chi vuole vedere come si incastrano i pezzi.
 
 ## Architettura
 
 Due componenti. **grappa** — il server. Un bouncer IRC REST-first, un task persistente per utente, bridge SASL verso l'upstream. **cicchetto** — il client. Una PWA installabile, keyboard-first su desktop, con la forma di irssi perché irssi ha già risolto la UI.
 
-Scoping esplicito: **Phase 1** = grappa + cicchetto, percorso REST+SSE contro l'upstream IRC. **Phase 2+** = listener IRCv3 nativo esposto da grappa, per far consumare lo stesso store anche a client IRC-speak (Goguma, Quassel mobile, qualunque client IRCv3-capable). Tutto ciò che nel diagramma porta l'etichetta *phase 2+* ricade lì.
+Scoping esplicito: **Phase 1** = grappa + cicchetto, percorso REST+SSE verso l'upstream IRC. **Phase 2+** = listener IRCv3 nativo esposto da grappa, per far consumare lo stesso store anche a client che parlano IRC (Goguma, Quassel mobile, qualunque client IRCv3-capable). Tutto ciò che nel diagramma porta l'etichetta *phase 2+* ricade lì.
 
 ```mermaid
 flowchart LR
@@ -84,15 +84,15 @@ flowchart LR
     rest <-->|"IRC + SASL"| libera
 ```
 
-La scelta di design fondamentale: **il client web non parsa IRC. Mai.** Non è una questione di comodità, è fit architetturale. **IRC non è web.** Il web parla JSON, ragiona per richieste/risposte, eventi e risorse tipizzate — ed è intrecciato con HTTP. Portare il parsing di un protocollo di rete degli anni '80 dentro a un runtime che con quel modello non c'entra niente è **protocol overfitting**: risolve un non-problema e te ne crea due nuovi (stato duplicato, bug di divergenza, feature-detection client-side che andrebbe fatta una volta sola dal server).
+La scelta di design fondamentale: **il client web non parsa IRC. Mai.** Non è una questione di comodità, è una questione di fit architetturale. **IRC non è web.** Il web parla JSON, ragiona per richieste/risposte, eventi e risorse tipizzate — ed è intrecciato con HTTP. Portare il parsing di un protocollo di rete degli anni '80 dentro un runtime che con quel modello non c'entra niente è **protocol overfitting**: risolve un non-problema e te ne crea due nuovi (stato duplicato, bug di divergenza, feature-detection client-side che andrebbe fatta una volta sola dal server).
 
 La conseguenza pratica: IRC termina al server. Il browser vede risorse REST e uno stream di eventi SSE. Canali, messaggi, membri arrivano come JSON tipizzato. Un `PRIVMSG` grezzo non tocca mai il frontend. Bonus non da poco: facendo parlare grappa HTTP+JSON, qualunque altra UI — non solo cicchetto — può consumarlo. Un'app desktop domani? Una CLI? Un widget? Tutto gratis, una chiamata REST alla volta.
 
-Lo scrollback è di proprietà del bouncer, in sqlite, paginato via REST. Nessuna dipendenza da `CHATHISTORY` upstream — grappa funziona contro qualsiasi ircd vanilla.
+Lo scrollback è di proprietà del bouncer, in sqlite, paginato via REST. Nessuna dipendenza da `CHATHISTORY` upstream — grappa funziona con qualsiasi ircd vanilla.
 
 Due facade sopra lo stesso store: REST+SSE primaria, listener IRCv3 opzionale (phase 2+, per [Goguma](https://sr.ht/~emersion/goguma/), Quassel mobile, qualunque client IRCv3-capable). Entrambe sono viste sullo stesso store, mai una seconda fonte di verità.
 
-Auth: bridge SASL contro il NickServ upstream. Self-hostabile su qualsiasi VPS, o — a tendere — deploy one-click via Docker su un provider qualsiasi, con immagine sicura di default.
+Auth: bridge SASL verso il NickServ upstream. Self-hostabile su qualsiasi VPS, o — a tendere — deploy one-click via Docker su un provider qualsiasi, con immagine sicura di default.
 
 ## Perché reinventare: le alternative esistono, ma non fanno questo
 
@@ -112,7 +112,7 @@ Nessuno di questi, da solo, mette insieme **tutta** la lista: bouncer che tiene 
 
 Domanda legittima. È partito per caso.
 
-Rovistavo in vecchi repository CVS su SourceForge e ho trovato [il fork di Bahamut che scrissi a ventun anni](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) — patch IPv6 e SSL per Azzurra, quando SSL era la novità. Da lì sono finito su [Sux Services](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/), sempre 2002, sempre mio. Leggere il mio codice di un quarto di secolo fa mi ha fatto riaccedere a IRC — non come esercizio di archeologia, come utente vero. La vecchia crew era ancora lì. `#it-opers` era ancora vivo. Venticinque anni e spicci, e la stanza ha ancora le luci accese.
+Rovistavo in vecchi repository CVS su SourceForge e ho trovato [il fork di Bahamut che scrissi a ventun anni](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) — patch IPv6 e SSL per Azzurra, quando SSL era la novità. Da lì sono finito su [Sux Services](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/), sempre 2002, sempre mio. Leggere il mio codice di un quarto di secolo fa mi ha fatto tornare su IRC — non come esercizio di archeologia, come utente vero. La vecchia crew era ancora lì. `#it-opers` era ancora vivo. Venticinque anni e spicci, e la stanza ha ancora le luci accese.
 
 Poi è entrato Claude. [Hypnotize](https://github.com/abonforti), uno degli admin attuali di Azzurra, ha buttato lì l'idea in canale una sera: *"dovresti provare a collegare Claude direttamente a IRC"*. Cinque minuti dopo `vjt-claude` era sulla rete. Il [resoconto è qui](/it/posts/2026-04-17-claude-walks-into-it-opers/), e la POC è [vjt/claude-ircbot](https://github.com/vjt/claude-ircbot) — circa 250 righe di Python, solo standard library. Ha funzionato perché IRC è abbastanza piccolo che 250 righe bastano.
 
@@ -120,6 +120,6 @@ Quella serata è stata la scintilla. Chattare con un LLM sopra un protocollo dis
 
 ---
 
-Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone**, oppure passa su **[#grappa via Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa)**. Il README è lo spec, il codice di Phase 1 è il prossimo passo.
+Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone**, oppure passa su **[#grappa via Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa)**. Il README è la spec, il codice di Phase 1 è il prossimo passo.
 
 P.S. — il nome è quello che è. grappa ≈ soju, cicchetto ≈ gamja, un omaggio dichiarato al binomio soju/gamja. Per chi sa: [Italian Grappa!](https://italiangrappa.it/) è il call-sign dell'ambasciata degli hacker italiani ai camp europei dal 2001. Questo repo non è affiliato — prende in prestito lo spirito con cui il nome era stato inteso. Hacker italiani, che arrivano da qualche parte, con una bottiglia.
