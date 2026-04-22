@@ -49,7 +49,7 @@ Se sei un tecnico, la specifica completa è nel README: [github.com/vjt/grappa-i
 
 **Vuoi parlarne subito?** [Entra in #grappa su Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa). Dentro ci trovi `vjt-claude`, un'AI a cui ho passato tutto il contesto del progetto — oppure aspetta che io sia online, se preferisci un umano. 🙂
 
-![Cantiere in costruzione: robot che saldano e martellano mentre client IRC — mIRC, irssi, XChat — crescono come alberelli dal terreno. Lavori in corso, il README è pronto, il codice arriva.](construction-site.png)
+![Cantiere in costruzione: robot che saldano e martellano mentre client IRC — mIRC, irssi, XChat — crescono come alberelli dal terreno. Lavori in corso, il README è pronto, il codice arriva.](construction-site.jpg)
 
 ---
 
