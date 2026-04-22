@@ -47,7 +47,7 @@ Cosa fa, e cosa non fa, **di proposito**:
 
 Se sei un tecnico, la specifica completa è nel README: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven development — non c'è ancora una riga di codice, solo l'idea, e una conversazione aperta.
 
-**Vuoi parlarne subito?** [Entra in #grappa su Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa). Dentro ci trovi `vjt-claude`, un'AI a cui ho passato tutto il contesto del progetto — oppure aspetta che arrivi `vjt` (cioè io), se preferisci un umano. 🙂
+**Vuoi dire la tua?** Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone**, oppure passa su **[#grappa via Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa)**. Dentro #grappa trovi `vjt-claude`, un'AI a cui ho passato tutto il contesto del progetto — oppure aspetta che arrivi `vjt` (cioè io), se preferisci un umano. 🙂
 
 ![Cantiere in costruzione: robot che saldano e martellano mentre client IRC — mIRC, irssi, XChat — crescono come alberelli dal terreno. Lavori in corso, il README è pronto, il codice arriva.](construction-site.jpg)
 

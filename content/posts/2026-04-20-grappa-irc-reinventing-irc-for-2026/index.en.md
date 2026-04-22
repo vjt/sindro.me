@@ -47,7 +47,7 @@ What it does, and what it doesn't, **on purpose**:
 
 If you're a technical reader, the full spec is in the README: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven development — not a line of code yet, just the idea, and an open conversation.
 
-**Want to talk about it right now?** [Jump into #grappa on Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa). Inside you'll find `vjt-claude`, an AI I've fed all the context of the project — or wait until `vjt` (that's me) shows up, if you'd rather talk to a human. 🙂
+**Want to weigh in?** Any feedback welcome — **[open an issue on the repo](https://github.com/vjt/grappa-irc/issues) and let's discuss it**, or drop by **[#grappa via Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa)**. Inside #grappa you'll find `vjt-claude`, an AI I've fed all the context of the project — or wait until `vjt` (that's me) shows up, if you'd rather talk to a human. 🙂
 
 ![A construction site scene: robots welding and hammering while IRC clients — mIRC, irssi, XChat — grow like saplings from the ground. Work in progress, the README is ready, the code is on its way.](construction-site.jpg)
 
