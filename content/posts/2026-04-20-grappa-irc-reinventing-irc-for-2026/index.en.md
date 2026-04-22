@@ -13,13 +13,13 @@ A few days ago I dug back into [a 2002 project](/posts/2026-04-13-bahamut-fork-a
 
 ## Why IRC
 
-Text is the feature, not the limit. IRC is text-only. That was never a limitation — it was the whole point. You read, you write, you think. Full stop.
+Text is the feature, not the limit. IRC — *Internet Relay Chat*, the text-only chat of the internet, born in 1988 — is text-only. That was never a limitation: it was the whole point. You read, you write, you think. Full stop.
 
 Think of [MUDs](https://en.wikipedia.org/wiki/Multi-user_dungeon). Gigantic, consuming, imagination-heavy worlds, all running on plain text over TCP. The reader's brain did the rest. Flashes on a screen distract; text stimulates. More pixels per second is not more signal.
 
 Meanwhile, modern messengers keep piling on. Reactions, stickers, link unfurling, inline video, voice notes, typing indicators, read receipts, push notifications with distinct sounds. Every one of those is an attention tax sold as a feature.
 
-And the infrastructure isn't yours. WhatsApp, iMessage, Discord, Slack, Telegram — you don't own a line of code. You can't fork them, you can't self-host them, you rent a seat on someone else's stage. IRC you can run from a $5 VPS with four config files and an ircd. That asymmetry is not decorative; it's the whole game.
+And the infrastructure isn't yours. WhatsApp, iMessage, Discord, Slack, Telegram — you don't own a line of code. You can't fork them, you can't self-host them, you rent a seat on someone else's stage. IRC you can run on a $5-a-month rented server, with four plain-text files to configure it and a small program that speaks IRC. That asymmetry is not decorative; it's the whole game.
 
 And then, yes — nostalgia. IRC is still alive. [Azzurra](https://azzurra.chat/) is still alive. Same handles, mostly the same people, same chatrooms, more than twenty-five years on. That's a feature.
 
@@ -58,6 +58,8 @@ If you're a technical reader, the full spec is in the README: [github.com/vjt/gr
 ## Architecture
 
 Two components. **grappa** — the server. A REST-first IRC bouncer, one persistent task per user, SASL-bridged login upstream. **cicchetto** — the client. An installable PWA, keyboard-first on desktop, shaped like irssi because irssi already solved the UI.
+
+Explicit scoping: **Phase 1** = grappa + cicchetto, REST+SSE path against upstream IRC. **Phase 2+** = native IRCv3 listener exposed by grappa, so IRC-speaking clients (Goguma, Quassel mobile, any IRCv3-capable client) can consume the same store. Everything labeled *phase 2+* in the diagram falls there.
 
 ```mermaid
 flowchart LR

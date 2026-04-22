@@ -13,13 +13,13 @@ Qualche giorno fa ho rimesso le mani in [un progetto del 2002](/it/posts/2026-04
 
 ## Perché IRC
 
-Il testo è la feature, non il limite. IRC è solo testo. Non è mai stato un limite — era il punto. Leggi, scrivi, pensi. Punto e basta.
+Il testo è la feature, non il limite. IRC — *Internet Relay Chat*, la chat testuale di internet, nata nel 1988 — è solo testo. Non è mai stato un limite: era il punto. Leggi, scrivi, pensi. Punto e basta.
 
 Pensa ai [MUD](https://it.wikipedia.org/wiki/Multi_user_dungeon). Mondi enormi, immersivi, fatti di pura immaginazione — tutto su testo puro sopra TCP. Il cervello del lettore fa il resto. I lampi sullo schermo distraggono; il testo stimola. Più pixel al secondo non è più segnale.
 
 I messenger moderni intanto continuano ad aggiungere roba. Reazioni, sticker, anteprime dei link, video inline, messaggi vocali, indicatori di scrittura, conferme di lettura, notifiche push con suonetti dedicati. Ognuna di queste è una tassa sull'attenzione venduta come feature.
 
-E l'infrastruttura non è tua. WhatsApp, iMessage, Discord, Slack, Telegram — non possiedi una riga. Non puoi forkarli, non puoi self-hostarli, affitti un posto sul palco di qualcun altro. IRC lo fai girare su una VPS da 5€ con quattro file di config e un ircd. Quell'asimmetria non è un dettaglio decorativo — è tutto il gioco.
+E l'infrastruttura non è tua. WhatsApp, iMessage, Discord, Slack, Telegram — non possiedi una riga. Non puoi forkarli, non puoi self-hostarli, affitti un posto sul palco di qualcun altro. IRC lo fai girare su un server affittato a 5€ al mese, con quattro file di testo per configurarlo e un piccolo programma che parla IRC. Quell'asimmetria non è un dettaglio decorativo — è tutto il gioco.
 
 E poi, sì — nostalgia. IRC è ancora vivo. [Azzurra](https://azzurra.chat/) è ancora viva. Stessi nick, in larga parte le stesse persone, stesse stanze, più di venticinque anni dopo. È una feature.
 
@@ -58,6 +58,8 @@ Se sei un tecnico, la specifica completa è nel README: [github.com/vjt/grappa-i
 ## Architettura
 
 Due componenti. **grappa** — il server. Un bouncer IRC REST-first, un task persistente per utente, bridge SASL verso l'upstream. **cicchetto** — il client. Una PWA installabile, keyboard-first su desktop, con la forma di irssi perché irssi ha già risolto la UI.
+
+Scoping esplicito: **Phase 1** = grappa + cicchetto, percorso REST+SSE contro l'upstream IRC. **Phase 2+** = listener IRCv3 nativo esposto da grappa, per far consumare lo stesso store anche a client IRC-speak (Goguma, Quassel mobile, qualunque client IRCv3-capable). Tutto ciò che nel diagramma porta l'etichetta *phase 2+* ricade lì.
 
 ```mermaid
 flowchart LR
