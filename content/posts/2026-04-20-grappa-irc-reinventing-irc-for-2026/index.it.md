@@ -41,13 +41,13 @@ Cosa fa, e cosa non fa, **di proposito**:
 
 - **Niente immagini inline, niente messaggi vocali, niente anteprime dei link.** È chat testuale, come nel 1988. I link restano cliccabili, ma nessuna anteprima caricata automaticamente da server terzi.
 - **Riconoscimento vocale e sintesi vocale: sì.** Se vuoi, il telefono converte la tua voce in testo (lato dispositivo) e cicchetto la spedisce come messaggio testuale. Nessun file audio viaggia sulla rete. Lo stesso per l'ascolto: cicchetto può leggerti i messaggi in arrivo.
-- **Self-host facile.** Un bottone di deploy su Docker, ovunque tu voglia, immagine hardened di default, senza dover essere un sistemista. Paghi tu la bolletta, i dati stanno dove dici tu.
-- **IRC accessibile, non zeppo di feature.** Il testo è inclusivo by default. Chi non vede benissimo o non vede affatto non viene tagliato fuori da foto, sticker, meme. È vero che WhatsApp e iMessage li hanno già esclusi da un pezzo — ma la via della rich communication è per chi ha gli occhi *per design*. IRC no.
+- **Nessun account da creare, nessuna piattaforma da cui dipendere.** Affitti uno spazio su internet e premi un bottone: grappa e cicchetto si configurano da soli e sono pronti per andare su IRC. Paghi tu la bolletta, e i dati stanno dove dici tu.
+- **IRC accessibile, non zeppo di feature.** Il testo è inclusivo per natura: uno screen reader legge IRC riga per riga senza perdere un carattere. Le chat moderne invece sono costruite attorno alle immagini — foto, sticker, anteprime, meme — e tagliano fuori chi non vede benissimo o non vede affatto.
 - **Resti libero di usare il tuo client preferito.** cicchetto è comodo, non obbligatorio. Se preferisci mIRC, HexChat, irssi, weechat — o uno qualsiasi dei client IRC moderni che supportano lo storico via protocollo — continui a collegarti e funziona tutto.
 
 Se sei un tecnico, la specifica completa è nel README: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven development — non c'è ancora una riga di codice, solo l'idea, e una conversazione aperta.
 
-**Vuoi parlarne subito?** [Entra in #grappa su Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa). Dentro ci trovi `vjt-claude`, un'AI a cui ho passato tutto il contesto del progetto — oppure aspetta che io sia online, se preferisci un umano. 🙂
+**Vuoi parlarne subito?** [Entra in #grappa su Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa). Dentro ci trovi `vjt-claude`, un'AI a cui ho passato tutto il contesto del progetto — oppure aspetta che io (`vjt`) sia online, se preferisci un umano. 🙂
 
 ![Cantiere in costruzione: robot che saldano e martellano mentre client IRC — mIRC, irssi, XChat — crescono come alberelli dal terreno. Lavori in corso, il README è pronto, il codice arriva.](construction-site.jpg)
 
@@ -92,6 +92,8 @@ Due facade sopra lo stesso store: REST+SSE primaria, listener IRCv3 opzionale (p
 
 Auth: bridge SASL contro il NickServ upstream. Self-hostabile su qualsiasi VPS, o — a tendere — deploy one-click via Docker su un provider qualsiasi, con immagine sicura di default.
 
+![Laboratorio artigiano con varie ruote appese alla parete — antiche, meccaniche, pesanti, con raggi rotti, incomplete. Al banco, un artigiano affiancato da un braccio robotico assembla una ruota nuova. Blueprints alla parete, attrezzi sparsi.](wheel-reinvention.jpg)
+
 ## Perché reinventare: le alternative esistono, ma non fanno questo
 
 Domanda lecita: *"gli strumenti ci sono già, no?"* Parzialmente. I pezzi ci sono, sparsi. Nessuno li mette insieme nel modo che ha senso per me.
@@ -104,7 +106,7 @@ Domanda lecita: *"gli strumenti ci sono già, no?"* Parzialmente. I pezzi ci son
 
 Nessuno di questi, da solo, mette insieme **tutta** la lista: bouncer che tiene lo storico + API web JSON + PWA installabile irssi-shape + self-host one-click + riconoscimento/sintesi vocale lato dispositivo + zero parsing IRC nel browser. grappa-irc prova a chiudere quel buco.
 
-## Perché cazzo ci stai spendendo tempo
+## Ma chi te lo fa fare
 
 Domanda legittima. È partito per caso.
 
