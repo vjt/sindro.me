@@ -1,5 +1,5 @@
 ---
-title: "A decade of Ruby at the UN"
+title: "My decade at the UN: Ruby, IBM, and infrastructure"
 date: 2026-04-17
 tags: [ruby, rails, ifad, retrospective, open-source, panmind]
 description: "How IFAD ended up running production Ruby apps since 2008, and what I built there."
