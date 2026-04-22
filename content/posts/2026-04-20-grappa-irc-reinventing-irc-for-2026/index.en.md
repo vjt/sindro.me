@@ -27,7 +27,7 @@ And then, yes — nostalgia. IRC is still alive. [Azzurra](https://azzurra.chat/
 
 ## The pitch
 
-After writing the [bahamut post](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) I found myself opening IRC again. The way I always did: a chat session permanently open on a remote server, which I connect to from outside through an encrypted tunnel when I need it. For those coming from the mIRC era: imagine leaving mIRC always on on a PC at home, and connecting to that PC from anywhere to read messages that arrived while you were away. It works. I still love it.
+After writing the [bahamut post](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) I found myself opening IRC again. The way I always did: a chat session permanently open on a remote server, which I connect to from outside through an encrypted tunnel when I need it. For those coming from the mIRC era: imagine leaving mIRC running on a PC at home, and connecting to that PC from anywhere to read messages that arrived while you were away. It works. I still love it.
 
 The catch: on a smartphone it's not the most usable. With a good setup you can connect from the phone too, but scrolling through the chat history with touch gestures is clunky — and history is exactly where you need to read. We can do better.
 
@@ -39,7 +39,7 @@ Two pieces. **grappa** is something that stays connected to IRC on your behalf. 
 
 What it does, and what it doesn't, **on purpose**:
 
-- **No inline images, no voice messages, no link previews.** It's text chat, like in 1988. Links stay clickable, but no previews auto-loaded from third-party servers.
+- **No inline images, no voice messages, no link previews.** It's text chat, like in 1988. Links stay clickable, but no auto-loaded previews from third-party servers.
 - **Voice recognition and speech synthesis: yes.** If you want, your phone converts your voice into text (on-device) and cicchetto sends it as a text message. No audio file ever travels the network. Same for listening: cicchetto can read incoming messages aloud to you.
 - **No account to create, no platform to depend on.** You rent a spot on the internet and press a button: grappa and cicchetto configure themselves and are ready to go on IRC. You pay the bill, and the data stays where you want it.
 - **Accessible IRC, not feature-crammed.** Text is inclusive by nature: a screen reader reads IRC line by line without losing a character. Modern chat apps are instead built around images — photos, stickers, previews, memes — and they shut out people who don't see well, or don't see at all.
@@ -47,7 +47,7 @@ What it does, and what it doesn't, **on purpose**:
 
 If you're a technical reader, the full spec is in the README: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven development — not a line of code yet, just the idea, and an open conversation.
 
-**Want to talk about it right now?** [Jump into #grappa on Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa). Inside you'll find `vjt-claude`, an AI I've fed all the context of the project — or wait until I (`vjt`) am online, if you'd rather talk to a human. 🙂
+**Want to talk about it right now?** [Jump into #grappa on Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa). Inside you'll find `vjt-claude`, an AI I've fed all the context of the project — or wait until `vjt` (that's me) shows up, if you'd rather talk to a human. 🙂
 
 ![A construction site scene: robots welding and hammering while IRC clients — mIRC, irssi, XChat — grow like saplings from the ground. Work in progress, the README is ready, the code is on its way.](construction-site.jpg)
 
@@ -84,9 +84,9 @@ flowchart LR
     rest <-->|"IRC + SASL"| libera
 ```
 
-The critical design choice: **the web client does not parse IRC. Ever.** It's not a convenience matter, it's architectural fit. **IRC is not the web.** The web speaks JSON, thinks in requests/responses, events, and typed resources — and it's woven into HTTP. Dragging the parsing of a 1980s network protocol into a runtime that has nothing to do with that model is **protocol overfitting**: it solves a non-problem and creates two new ones (duplicated state, divergence bugs, client-side feature detection that should happen once, at the server).
+The critical design choice: **the web client does not parse IRC. Ever.** It's not a convenience matter, it's a matter of architectural fit. **IRC is not the web.** The web speaks JSON, thinks in requests/responses, events, and typed resources — and it's woven into HTTP. Dragging the parsing of a 1980s network protocol into a runtime that has nothing to do with that model is **protocol overfitting**: it solves a non-problem and creates two new ones (duplicated state, divergence bugs, client-side feature detection that should happen once, at the server).
 
-The practical consequence: IRC terminates at the server. The browser sees REST resources and an SSE event stream. Channels, messages, members arrive as typed JSON. A raw `PRIVMSG` never touches the frontend. Not-small bonus: by making grappa speak HTTP+JSON, any other UI — not just cicchetto — can consume it. A desktop app tomorrow? A CLI? A widget? Free, one REST call at a time.
+The practical consequence: IRC terminates at the server. The browser sees REST resources and an SSE event stream. Channels, messages, members arrive as typed JSON. A raw `PRIVMSG` never touches the frontend. No small bonus: by making grappa speak HTTP+JSON, any other UI — not just cicchetto — can consume it. A desktop app tomorrow? A CLI? A widget? Free, one REST call at a time.
 
 Scrollback is bouncer-owned, stored in sqlite, paginated over REST. No dependency on upstream `CHATHISTORY` — grappa works against any vanilla ircd.
 
@@ -104,7 +104,7 @@ Fair question: *"the tools already exist, right?"* Partially. The pieces are the
 - **[The Lounge](https://thelounge.chat/)** — self-hosted web client. Great as a client, but it isn't a bouncer: if The Lounge stops, you lose your IRC presence. And the UI is classic chat-app, not irssi-shape.
 - **[Quassel](https://quassel-irc.org/)** — core+client, the right model, but with a proprietary binary protocol between core and client. No web-first, no PWA, and if you ever wanted a different UI you'd have to re-implement that protocol.
 - **[KiwiIRC](https://kiwiirc.com/)** — stateless webchat. Perfect for "jump in once, chat, leave", not for a persistent IRC profile with history.
-- **[Matrix](https://matrix.org/) (+ IRC bridge)** — different protocol, different philosophy. Matrix is a modern messaging system with rooms, reactions, threads, E2E encryption, file uploads. IRC bridges exist, they're valiant, but they're fragile by nature — mapping a modern protocol onto one from 1988 always loses something. And on the self-host front: Matrix is self-hostable in theory, but in practice Synapse is notoriously heavy on RAM and operational complexity. It's not IRC simplified, it's a different product with different vibes. I used Matrix years ago and found it bloated — no offense to the project, it's simply not what I'm after.
+- **[Matrix](https://matrix.org/) (+ IRC bridge)** — different protocol, different philosophy. Matrix is a modern messaging system with rooms, reactions, threads, E2E encryption, file uploads. IRC bridges exist, they're solid, but they're fragile by nature — mapping a modern protocol onto one from 1988 always loses something. And on the self-host front: Matrix is self-hostable in theory, but in practice Synapse is notoriously heavy on RAM and operational complexity. It's not IRC simplified, it's a different product with different vibes. I used Matrix years ago and found it bloated — no offense to the project, it's simply not what I'm after.
 
 No single one of these puts together **all** of it: bouncer that holds scrollback + web JSON API + installable irssi-shape PWA + one-click self-host + device-side voice recognition/synthesis + zero IRC parsing in the browser. grappa-irc tries to close that gap.
 
