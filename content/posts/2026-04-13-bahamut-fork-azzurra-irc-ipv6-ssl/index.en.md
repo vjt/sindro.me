@@ -158,6 +158,8 @@ The server took Fastweb's internal IPs (which had no reverse DNS) and [synthesiz
 
 The [2005 server list](azzurra-help.pdf) shows four entries labeled "Azzurra Fastweb, Rete Interna." The `:D` in the comment says it all.
 
+*Update, April 23, 2026 — [PR #23](https://github.com/azzurra/bahamut/pull/23):* twenty-four years after that `:D` in the comment, [morph removes the digital mold](https://github.com/azzurra/bahamut/pull/23) with a stroke of vim. `-75 / +4`. The commit message reads *"The Fastweb MAN is long gone and hopefully will never come back again."* `#ifdef FASTWEB` is officially dead code.
+
 ![Alk's workstation — two CRT monitors, two keyboards, cables everywhere. This is what a "power user" setup looked like before ultrawide displays and Thunderbolt docks. The second monitor was a luxury.](alk-workstations.jpg)
 *Alk's workstation. Two CRT monitors, two keyboards, eight boxes in this corner alone — there were more in the other corner.*
 

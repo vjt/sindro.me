@@ -158,6 +158,8 @@ Il server prendeva gli IP interni di Fastweb (che non avevano reverse DNS) e [si
 
 La [lista server del 2005](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/azzurra-help.pdf) mostra quattro voci etichettate "Azzurra Fastweb, Rete Interna." Il `:D` nel commento dice tutto.
 
+*Update, 23 aprile 2026 — [PR #23](https://github.com/azzurra/bahamut/pull/23):* ventiquattro anni dopo quella `:D` nel commento, [morph rimuove la muffa digitale](https://github.com/azzurra/bahamut/pull/23) con un colpo di vim. `-75 / +4`. Il commit message recita *"The Fastweb MAN is long gone and hopefully will never come back again."* Il `#ifdef FASTWEB` è ufficialmente codice morto.
+
 ![La postazione di Alk — due monitor CRT, due tastiere, cavi ovunque. Questo è come appariva un setup da "power user" prima degli ultrawide e dei dock Thunderbolt. Il secondo monitor era un lusso.](alk-workstations.jpg)
 *La postazione di Alk. Due monitor CRT, due tastiere, otto macchine in questo angolo — ce n'erano altre nell'angolo opposto.*
 
