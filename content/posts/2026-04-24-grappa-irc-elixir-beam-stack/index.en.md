@@ -11,10 +11,6 @@ featuredImage: cover.jpg
 
 <!--more-->
 
-## Work in progress
-
-A separate session in `~/code/IRC/grappa-irc` is writing the README, design notes, and the Phase 1 plan. I want the design solid before putting down a line of code.
-
 ## Stack: Elixir on BEAM
 
 First take was Rust + tokio + axum + sqlx. Solid on memory safety and per-core performance, IRC parser ready in the `irc` crate, walking-skeleton plan already drafted.
@@ -29,11 +25,11 @@ Then I stepped back and looked at the problem again. What does grappa actually d
 
 That list is the **original Erlang brief**. Telecom in the '80s = millions of concurrent calls, long-running, isolated, hot-upgradable. It's exactly the shape of an IRC bouncer multiplied by N users — a fit so clean I felt slow for not seeing it sooner.
 
-And on top sits **Phoenix**: mature web framework, native REST + Channels (WebSocket/SSE), with client-side (`phoenix.js`) already battle-tested at Discord scale. I don't have to reinvent the transport between grappa and cicchetto: it's there, proven, designed for exactly the pattern of *stateful per-user server pushing events to the browser*.
+And on top sits **Phoenix**: mature web framework, native REST + Channels (WebSocket), with client-side (`phoenix.js`) already battle-tested at Discord scale. I don't have to reinvent the transport between grappa and cicchetto: it's there, proven, designed for exactly the pattern of *stateful per-user server pushing events to the browser*.
 
-Pattern matching on tuples and binaries collapses an IRC parser into three lines. Supervision trees replace "one tokio task per user" with a declarative model: a `DynamicSupervisor` spawns a `GenServer` per user, and if one crashes it restarts on its own, no neighbors disturbed. Hot reload is free from the runtime. Mnesia or Ecto + sqlite for scrollback.
+Pattern matching on tuples and binaries collapses an IRC parser into three lines. Supervision trees replace "one tokio task per user" with a declarative model: a `DynamicSupervisor` spawns one `GenServer` per user, and if one crashes it restarts on its own, no neighbors disturbed. Hot reload comes free from the runtime. Mnesia or Ecto + sqlite for scrollback.
 
-WhatsApp has run on BEAM forever — not nostalgia, the model fits. Discord moved their gateway to Elixir for the same reasons. The pattern has been proven at scales grappa will never see.
+WhatsApp has run on BEAM forever — not nostalgia: the model fits. Pattern proven at scales grappa will never see.
 
 Rust is still one of my favorite languages. For grappa, though, BEAM is the fit.
 
