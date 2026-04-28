@@ -76,4 +76,8 @@ Ho una sola telecamera Arlo. È cloud-only by design e su quello non potevo farc
 HACS → Custom repositories → https://github.com/vjt/ha-eisenberg
 ```
 
-Oppure clicca il badge **Open in HACS** sul README — fa un deep-link nella tua istanza col repo precompilato. Sorgente MIT. La libreria client è `pyeisenberg` su PyPI.
+Oppure clicca il badge qua sotto — fa un deep-link nella tua istanza Home Assistant col repo precompilato:
+
+[![Apri la tua istanza Home Assistant e apri un repository nel Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=vjt&repository=ha-eisenberg&category=integration)
+
+Sorgente MIT. La libreria client è `pyeisenberg` su PyPI.

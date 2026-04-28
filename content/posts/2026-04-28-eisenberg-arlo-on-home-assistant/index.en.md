@@ -76,4 +76,8 @@ I have one Arlo camera. It's cloud-only by design and there was nothing I could 
 HACS → Custom repositories → https://github.com/vjt/ha-eisenberg
 ```
 
-Or click the **Open in HACS** badge in the README — it deep-links into your instance with the repo pre-filled. Source is MIT. The client library is `pyeisenberg` on PyPI.
+Or click the badge below — it deep-links into your Home Assistant instance with the repo pre-filled:
+
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=vjt&repository=ha-eisenberg&category=integration)
+
+Source is MIT. The client library is `pyeisenberg` on PyPI.
