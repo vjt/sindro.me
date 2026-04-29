@@ -11,7 +11,9 @@ featuredImage: cover.jpg
 uplink — from stock GL.iNet firmware (OpenWrt 21.02, kernel 5.4) to vanilla
 OpenWrt 25.12 (kernel 6.12.79). The modem — a Quectel RM520N-GL on PCIe/MHI
 — works perfectly. There are at least seven distinct ways to get things
-wrong before you get there. I found most of them. This is the map.
+wrong before you get there. I found most of them. This is the map. If you
+want a pre-built image, head over to [Jeeves r1 on
+GitHub](https://github.com/vjt/openwrt-glinet-x3000/releases/tag/jeeves-r1).
 
 <!--more-->
 
