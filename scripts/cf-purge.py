@@ -12,6 +12,13 @@ leaving sibling subdomains (remark., noema., vjt.) cache untouched.
 When invoked without --old-dir (first run, missing manifest), emits the
 full URL list from the new build — CF treats unknown URLs as no-ops, so
 this is safe and idempotent.
+
+Defaults read from environment (sourced via .env):
+  HUGO_BASEURL → --base
+  CF_ZONE_ID   → --zone-id
+
+So from the prod checkout, this is enough:
+  . ./.env && python scripts/cf-purge.py
 """
 
 from __future__ import annotations
@@ -99,14 +106,14 @@ def cf_purge(zone_id: str, token: str, urls: list[str]) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--new-dir", required=True, type=Path,
-                    help="Build directory just produced (e.g. public/)")
+    ap.add_argument("--new-dir", type=Path, default=Path("public"),
+                    help="Build directory just produced (default: public)")
     ap.add_argument("--old-dir", type=Path,
                     help="Previous build directory (e.g. public_old_$$/) for diff")
-    ap.add_argument("--base", required=True,
-                    help="Apex base URL (e.g. https://sindro.me)")
-    ap.add_argument("--zone-id", required=True,
-                    help="Cloudflare zone ID for the apex")
+    ap.add_argument("--base", default=os.environ.get("HUGO_BASEURL"),
+                    help="Apex base URL (default: $HUGO_BASEURL from .env)")
+    ap.add_argument("--zone-id", default=os.environ.get("CF_ZONE_ID"),
+                    help="Cloudflare zone ID (default: $CF_ZONE_ID from .env)")
     ap.add_argument("--token-file", default=os.path.expanduser(
                         "~/.config/cloudflare/purge-token"),
                     help="Path to file containing CF API token")
@@ -115,6 +122,10 @@ def main() -> int:
     ap.add_argument("--batch-size", type=int, default=BATCH_SIZE)
     args = ap.parse_args()
 
+    if not args.base:
+        raise SystemExit("--base not given and HUGO_BASEURL not set; source .env first")
+    if not args.zone_id:
+        raise SystemExit("--zone-id not given and CF_ZONE_ID not set; source .env first")
     if not args.new_dir.is_dir():
         raise SystemExit(f"--new-dir does not exist: {args.new_dir}")
 

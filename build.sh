@@ -43,11 +43,7 @@ if [ -n "${CF_ZONE_ID:-}" ]; then
   else
     PURGE_PY="python3"
   fi
-  "$PURGE_PY" scripts/cf-purge.py \
-    --new-dir public \
-    --old-dir "public_old_$$" \
-    --base "${HUGO_BASEURL:-https://sindro.me}" \
-    --zone-id "$CF_ZONE_ID"
+  "$PURGE_PY" scripts/cf-purge.py --old-dir "public_old_$$"
 fi
 
 rm -rf "public_old_$$"
