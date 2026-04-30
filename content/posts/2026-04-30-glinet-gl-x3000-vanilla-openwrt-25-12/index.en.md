@@ -47,12 +47,12 @@ to hold a specific cell, the modem stopped attaching to *any* tower at
 all. I suspect this has to do with how their stack drives the NSA
 attach, but I never proved it — by that point I already wanted to be
 off stock and didn't feel like reverse-engineering vendor code. So I
-started writing my own lock
-[around](https://github.com/vjt/quectel-5g-tools/blob/master/bin/5g-lock)
-`AT+QNWLOCK` / `AT+QNWCFG`. That was a losing battle: GL.iNet's stack
-notices out-of-band AT changes and reverts them on its own schedule.
-To actually own the radio policy, I needed the AT path to stay where I
-left it — and the only way there was vanilla.
+started writing my own —
+[`5g-lock`](https://github.com/vjt/quectel-5g-tools/blob/master/bin/5g-lock),
+a thin wrapper around `AT+QNWLOCK` / `AT+QNWCFG`. That was a losing
+battle: GL.iNet's stack notices out-of-band AT changes and reverts them
+on its own schedule. To actually own the radio policy, I needed the AT
+path to stay where I left it — and the only way there was vanilla.
 
 Vanilla OpenWrt 25.12 brings mainline MHI/MBIM support for the modem's
 PCIe data path (more on those acronyms in a moment), ModemManager
@@ -166,12 +166,7 @@ is the only path.
 This one cost me the most time. Symptoms: the modem comes up fine,
 ModemManager connects, traffic flows — and then, **two minutes later,
 reproducibly every time**, the modem disappears with a cascade of kernel
-errors. To make matters worse, the failure also drags the rest of the
-PCI bus down: every couple of seconds the kernel resets the link, the
-on-board ethernet port hangs while it does, and SSH stalls. I had a
-~one-minute window of usable shell right after boot, then 2-3-second
-windows roughly every 30 seconds. Debugging it was not exactly
-ergonomic.
+errors:
 
 ```
 pci 0000:01:00.0: AER: Correctable error message received
@@ -179,6 +174,12 @@ pci 0000:01:00.0: PCIe Bus Error: severity=Correctable, type=Physical Layer
 pci 0000:01:00.0: MHI: channel not open
 pci 0000:01:00.0: PCIe: ERROR CmpltTO
 ```
+
+To make matters worse, the failure also drags the rest of the PCI bus
+down: every couple of seconds the kernel resets the link, the on-board
+ethernet port hangs while it does, and SSH stalls. I had a ~one-minute
+window of usable shell right after boot, then 2–3 second windows roughly
+every 30 seconds. Debugging it was not exactly ergonomic.
 
 What's happening: the kernel's PCIe port power management is putting the
 PCIe port into D3hot (link power-down). When traffic arrives, the port
@@ -412,9 +413,9 @@ could claw back a dB.
 
 {{< figure src="me-antenna.jpg" alt="Selfie taken from below — the author at bottom-left of frame, the directional 5G antenna mounted on the building wall above him, sunlit countryside and a vineyard in the background under a clear sky" caption="It worked. ~+1 dB SINR after re-pointing, ~+40 Mbps throughput. Five minutes of ladder time, well spent." >}}
 
-The other thing the graph shows are the gaps in *both* SINR and RSRP —
-those are not plotting artifacts. Those are full 5G outages, hours-long
-windows where the modem lost signal entirely. That is the other reason
+Look at the graph again: the gaps in *both* SINR and RSRP are not
+plotting artifacts. Those are full 5G outages, hours-long windows where
+the modem lost signal entirely. That is the other reason
 I'm done with GL.iNet stock firmware. When 5G drops on stock, the router
 falls back to 4G — and stays there. My local LTE is around 5 Mbit/s. I've
 already [learned the hard
