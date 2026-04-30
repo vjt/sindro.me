@@ -7,10 +7,11 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-**TL;DR:** I migrated my GL-iNet GL-X3000 (Spitz AX) — Jeeves, my 5G backup
-uplink — from stock GL.iNet firmware (OpenWrt 21.02, kernel 5.4) to vanilla
-OpenWrt 25.12 (kernel 6.12.79). The modem — a Quectel RM520N-GL on PCIe/MHI
-— works perfectly. There are four distinct ways to get things wrong before
+**TL;DR:** I migrated my GL-iNet GL-X3000 (Spitz AX) — Jeeves, [my 5G
+backup uplink](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/) —
+from stock GL.iNet firmware (OpenWrt 21.02, kernel 5.4) to vanilla OpenWrt
+25.12 (kernel 6.12.79). The modem — a Quectel RM520N-GL on PCIe/MHI —
+works perfectly. There are four distinct ways to get things wrong before
 you get there. I found most of them. This is the map. If you want a
 pre-built image, head over to [Jeeves r2 on
 GitHub](https://github.com/vjt/openwrt-glinet-x3000/releases/tag/jeeves-r2).
@@ -30,51 +31,73 @@ The stock firmware is GL.iNet's flavour of OpenWrt 21.02, shipping on
 kernel 5.4. That kernel reached end of life in December 2022. But the
 kernel age is not the main reason I switched.
 
-The main reason is **control**. I do heavy customization on this network:
-band locking, cell locking, automatic reconnect logic when 5G drops or
-signal degrades. The stock GL.iNet firmware gets in the way on all three
-fronts.
+The main reason is **control**. I want to drive every aspect of this
+connectivity layer myself.
 
-The most frustrating issue: when 5G drops and only LTE Band 3 stays up,
-GL.iNet's automation keeps Jeeves on 4G-only — and stays there.
-Indefinitely. My local LTE averages around 5 Mbit/s. If I don't notice and
-manually intervene, I sit on a 5 Mbit/s backup for hours before the radio
-goes back to 5G. That is not acceptable for a link that is supposed to
-cover for fiber outages.
+The most visible problem: when 5G drops and only LTE stays up, GL.iNet's
+automation does not try to bring 5G back. It just leaves the radio on 4G,
+indefinitely. My local LTE averages around 5 Mbit/s. If I don't notice
+and manually intervene, the backup link sits at 5 Mbit/s for hours
+before the radio walks itself back to 5G. That is not acceptable for
+something supposed to cover for fiber outages.
 
-The second issue: GL.iNet ships its own band and cell locking logic, and
-it conflicts with mine. My carrier deploys 5G-NSA (non-standalone), and
-GL.iNet's stock automation does not handle the NSA attach sequence
-correctly for my provider. Every time I tried to hold a specific cell, I
-ended up fighting the firmware.
+The harder problem is cell locking. My carrier deploys 5G-NSA
+(non-standalone), and GL.iNet's own automation does not handle the NSA
+attach sequence correctly for my provider — every time I tried to hold a
+specific cell from the GL.iNet UI, the lock didn't stick. So I started
+writing my own around `AT+QNWLOCK` / `AT+QNWCFG`. That was a losing
+battle: GL.iNet's stack notices out-of-band AT changes and reverts them
+on its own schedule. To actually own the radio policy, I needed the AT
+path to stay where I left it — and the only way there was vanilla.
 
-Vanilla OpenWrt 25.12 offers mainline MHI support for the modem's PCIe
-data path, ModemManager integration, a proper apk-based package manager,
-and the entire current package ecosystem. GL.iNet's firmware is a fork
-with proprietary drivers and its own update cycle. Vanilla is the real
-thing — and it lets me own every bit of the connectivity stack.
+Vanilla OpenWrt 25.12 brings mainline MHI/MBIM support for the modem's
+PCIe data path (more on those acronyms in a moment), ModemManager
+integration, the new apk-based package manager, and the entire current
+package ecosystem. GL.iNet's firmware is a fork: they ship a useful set
+of additional packages through their own repositories, but they also run
+their own update cycle, and tracking their SDK across releases is
+significantly more work than tracking vanilla. Vanilla is the real thing
+— and it lets me own every bit of the connectivity stack.
 
 {{< figure src="last-70-days-5g-telemetry.png" alt="Three stacked Grafana panels — SINR, RSRP, RSRQ — covering 70 days from 02/20 to 04/30. All three panels show multiple multi-hour vertical gaps where the data series is missing entirely, mixed with the usual daily oscillation in interference" caption="Seventy days of 5G signal telemetry. The gaps in all three panels are real outages — many of them hours long, sometimes covering 4G fallback periods where even LTE was unreachable and the modem didn't recover on its own. With vanilla OpenWrt I get to react to those instead of riding them out. If you're wondering how I collect this, it's [quectel-5g-tools](https://github.com/vjt/quectel-5g-tools) feeding an internal VictoriaMetrics, plotted with [this Grafana dashboard](https://grafana.com/grafana/dashboards/24835-ultimate-isp-5g-lte-monitor-quectel-rm520-gl/)." >}}
 
-I expected this migration to take a while — a vendor fork to vanilla on
-hardware nobody officially supports rarely lands in an afternoon. It
-didn't actually take that long. But there were a handful of places where
-the right thing to do wasn't obvious, and this is what I learned in
-those.
+The GL-X3000 is supported by the OpenWrt community — the [official wiki
+entry](https://openwrt.org/toh/gl.inet/gl-x3000#setup_5g_connectivity)
+walks you through 5G connectivity end to end. The catch is that it only
+covers the modem's **USB** data path, which works out of the box but
+caps the throughput well below what the radio is actually capable of —
+the PCIe path is significantly faster, and I didn't want a bottleneck on
+the very link that's supposed to cover for fiber outages. Going PCIe
+needs a kernel patch (more on this below) and a custom build. So I built
+the image myself. It didn't take that long, but there were a handful of
+places where the right thing to do wasn't obvious, and this is what I
+learned in those.
 
 ## The Lay of the Land
 
-Before diving into pitfalls, a quick orientation on how this hardware
-works. The RM520N-GL talks to the host over **both** PCIe and USB
-simultaneously. Stock GL.iNet firmware used a proprietary `pcie_mhi`
-driver exposing `/dev/mhi_*` devices. Vanilla OpenWrt uses the mainline
-`mhi_pci_generic` driver, which exposes `/dev/wwan0mbim0` (MBIM data
-path), `/dev/wwan0at0` (AT command port), and friends — no QMI over MHI,
-MBIM only.
+The RM520N-GL talks to the host over **both** PCIe and USB simultaneously,
+through a small stack of acronyms it's worth unpacking up front:
 
-The USB side exposes four serial ports (`/dev/ttyUSB0`–`3`) for AT/NMEA/DIAG
-commands, and — after a composition switch — an ADB interface. More on that
-later.
+- **MHI** — Modem Host Interface. Qualcomm's transport layer over PCIe
+  for cellular modems. It carves the PCI link into channels and runs
+  control + data + diagnostic streams on top. Roughly the equivalent of
+  USB endpoints, but on the PCI bus.
+- **MBIM** — Mobile Broadband Interface Model. A USB-IF standard for
+  carrying network packets and a control channel between host and modem.
+  On the GL-X3000 it rides on top of MHI; the kernel exposes it as a
+  netdev plus a control character device (`/dev/wwan0mbim0`).
+- **QMI** — Qualcomm MSM Interface. The older, vendor-defined alternative
+  to MBIM. Still widely used on USB-only modems, but the mainline
+  `mhi_pci_generic` driver only does MBIM over MHI on this hardware.
+
+Stock GL.iNet firmware used a proprietary `pcie_mhi` driver exposing
+`/dev/mhi_*` device nodes. Vanilla OpenWrt uses the upstream
+`mhi_pci_generic` driver, which exposes `/dev/wwan0mbim0` (MBIM data
+path), `/dev/wwan0at0` (AT command port), and friends.
+
+The USB side exposes four serial ports (`/dev/ttyUSB0`–`3`) for
+AT/NMEA/DIAG commands, and — after a composition switch — an ADB
+interface. More on that later.
 
 ## How to Flash It
 
@@ -218,25 +241,24 @@ The final image includes, beyond the standard OpenWrt 25.12 package set:
   TUI with signal quality display and configurable audio beeps, `5g-lock`
   handles band and cell locking, `quectel-at` is a zero-ceremony AT
   command wrapper. There's also a Prometheus collector — that's what
-  feeds the [full Grafana dashboard](full-5g-dashboard.jpg) shown earlier
-  — and `5g-led-bars`, a procd daemon that drives the four 5G signal LEDs
-  on the GL-X3000's front panel from PCC/SCC NR-RSRP in real time.
-- **`qfirehose` 1.4.17** — the standard Quectel firmware flasher.
-  Upstream is currently at 1.7, but I picked 1.4.17 (originally
-  `nippynetworks/qfirehose`) because it was the version pre-packaged in
-  another reputable OpenWrt feed and had been stable for everyone using
-  it. I forked it into [vjt/qfirehose](https://github.com/vjt/qfirehose)
-  to add a clean OpenWrt package recipe so the binary lands directly in
-  the image.
+  feeds [this Grafana dashboard](full-5g-dashboard.jpg) — and
+  `5g-led-bars`, a procd daemon that drives the four 5G signal LEDs on
+  the GL-X3000's front panel from PCC/SCC NR-RSRP in real time.
+- **[`qfirehose` 1.4.17](https://github.com/vjt/qfirehose)** — the
+  standard Quectel firmware flasher. Upstream is currently at 1.7, but I
+  picked 1.4.17 (originally `nippynetworks/qfirehose`) because it was
+  the version pre-packaged in another reputable OpenWrt feed and had
+  been stable for everyone using it. I forked it to add a clean OpenWrt
+  package recipe so the binary lands directly in the image.
 - **[`adb` + `fastboot`
-  35.0.2](https://github.com/vjt/openwrt-android-tools)** — for modem USB
-  composition switches and ADB access into the SDX62.
-- **`telegraf-full`** — pushing metrics to my internal Prometheus.
+  35.0.2](https://github.com/vjt/openwrt-android-tools)** — for modem
+  USB composition switches and ADB access into the SDX62.
 - **[`wifi-dethrash-collector`](https://github.com/vjt/openwrt-dethrash)**
   — a Prometheus collector tracking Wi-Fi parameters, paired with the
   [client-thrash analysis it grew out
   of](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/).
-- A rootfs overlay with my internal CA and the apk feed signing key.
+- A rootfs overlay with my internal CA and my package-feed signing keys.
+- **`telegraf-full`** — pushing metrics to my internal VictoriaMetrics.
 
 {{< figure src="signal-rabdomant.jpg" alt="A phone resting on an orange tool bag, screen showing the 5g-monitor TUI: TIM carrier, IDLE state, BEEP:ON, LTE Band 3 with PCI 427 SINR 8 dB, 5G-NSA Band n78 with PCI 920 SINR 14 dB, full carrier aggregation breakdown and a list of neighbour cells, with a multitool half-visible on the side" caption="`5g-monitor` in the field. PCC, SCC, neighbour cells, all the signal you need to decide whether to keep climbing." >}}
 
@@ -252,10 +274,9 @@ and you have a working build tree pinned to OpenWrt 25.12 with every
 kernel patch applied and every custom package wired in via `feeds.conf`.
 `make` from there.
 
-The reason I have anything *more* than that is I update packages
-regularly and re-flash often enough that I got tired of running SDK
-builds by hand. So I [built a
-dispatcher](/posts/2026-03-28-openwrt-builder/):
+I don't want to re-flash for every package update, and I don't want to
+run SDK builds by hand every time something needs to be rebuilt. So I
+[built a dispatcher](/posts/2026-03-28-openwrt-builder/):
 [`openwrt-builder`](https://github.com/vjt/openwrt-builder) polls GitHub
 for changes, kicks off remote SDK builds on Hetzner spot instances, and
 serves the resulting apk index over HTTP on the management VLAN, signed
