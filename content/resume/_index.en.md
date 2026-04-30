@@ -33,7 +33,10 @@ Tech Lead with {{< years-since "1999-12-01" >}}+ years of experience delivering 
 ## Meta Platforms — Production Engineer
 *December 2021 – Present · {{< years-since "2021-12-01" >}}+ years*
 
-**Bootstrap / [MetalOS](/posts/2025-10-09-all-systems-go/)** (2023–present) — bare-metal OS powering millions of servers globally. Part of the Datacenter Automation org; EMEA team owns the net-booting infrastructure.
+### Bootstrap / [MetalOS](/posts/2025-10-09-all-systems-go/)
+*2023 – Present*
+
+Bare-metal OS powering millions of servers globally. Part of the Datacenter Automation org; EMEA team owns the net-booting infrastructure.
 
 - Halved re-provisioning cycles across the fleet, reducing downtime and hardware churn
 - Designed and rolled out hardware identification mechanisms for early OS imaging
@@ -41,7 +44,10 @@ Tech Lead with {{< years-since "1999-12-01" >}}+ years of experience delivering 
 - Led deprecation of legacy net-booting systems, migrating to newer building blocks
 - Negotiated technical trade-offs across multiple teams for secure server lifecycle automation
 
-**Unprovisioning** (2021–2023) — asset decommissioning and secure erasure before hardware exits company premises.
+### Unprovisioning
+*2021 – 2023*
+
+Asset decommissioning and secure erasure before hardware exits company premises.
 
 - Led deprecation and migration off legacy unprovisioning systems
 - Developed and rolled out next-generation unprovisioning workflows
@@ -49,10 +55,10 @@ Tech Lead with {{< years-since "1999-12-01" >}}+ years of experience delivering 
 - Mentored junior engineers across multiple time zones
 
 ## IFAD (United Nations)
-*January 2011 – November 2021 · 11 years*
+*January 2011 – November 2021 · 10+ years*
 
 ### Tech Lead
-*February 2016 – November 2021 · 5 years*
+*February 2016 – November 2021 · 5+ years*
 
 Led the technical side of a critical financial system implementing electronic disbursement of IFAD financings to borrower countries.
 

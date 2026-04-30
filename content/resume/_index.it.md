@@ -33,7 +33,10 @@ Tech Lead con {{< years-since "1999-12-01" >}}+ anni di esperienza nella realizz
 ## Meta Platforms — Production Engineer
 *Dicembre 2021 – Presente · {{< years-since "2021-12-01" >}}+ anni*
 
-**Bootstrap / [MetalOS](/it/posts/2025-10-09-all-systems-go/)** (2023–presente) — sistema operativo bare-metal che alimenta milioni di server a livello globale. Parte dell'organizzazione Datacenter Automation; il team EMEA gestisce l'infrastruttura di net-booting.
+### Bootstrap / [MetalOS](/it/posts/2025-10-09-all-systems-go/)
+*2023 – Presente*
+
+Sistema operativo bare-metal che alimenta milioni di server a livello globale. Parte dell'organizzazione Datacenter Automation; il team EMEA gestisce l'infrastruttura di net-booting.
 
 - Dimezzato i cicli di re-provisioning dell'intera flotta, riducendo i tempi di inattività e il ricambio hardware
 - Progettato e distribuito meccanismi di identificazione hardware per l'imaging iniziale del sistema operativo
@@ -41,7 +44,10 @@ Tech Lead con {{< years-since "1999-12-01" >}}+ anni di esperienza nella realizz
 - Guidato la dismissione dei sistemi di net-booting legacy, migrando verso building block più recenti
 - Negoziato compromessi tecnici tra più team per l'automazione sicura del ciclo di vita dei server
 
-**Unprovisioning** (2021–2023) — decommissioning degli asset e cancellazione sicura prima che l'hardware lasci i locali aziendali.
+### Unprovisioning
+*2021 – 2023*
+
+Decommissioning degli asset e cancellazione sicura prima che l'hardware lasci i locali aziendali.
 
 - Guidato la dismissione e la migrazione dai sistemi di unprovisioning legacy
 - Sviluppato e distribuito workflow di unprovisioning di nuova generazione
@@ -49,10 +55,10 @@ Tech Lead con {{< years-since "1999-12-01" >}}+ anni di esperienza nella realizz
 - Fatto da mentor a ingegneri junior su più fusi orari
 
 ## IFAD (Nazioni Unite)
-*Gennaio 2011 – Novembre 2021 · 11 anni*
+*Gennaio 2011 – Novembre 2021 · 10+ anni*
 
 ### Tech Lead
-*Febbraio 2016 – Novembre 2021 · 5 anni*
+*Febbraio 2016 – Novembre 2021 · 5+ anni*
 
 Guidato il lato tecnico di un sistema finanziario critico per l'erogazione elettronica dei finanziamenti IFAD ai paesi mutuatari.
 
