@@ -24,6 +24,22 @@ hugo server -D          # Dev server with drafts on localhost:1313
 
 Note: Hugo is NOT installed on this machine (Raspberry Pi). Builds happen on `vjt@m42` (FreeBSD server) at `/srv/www/sindro.me/staging/` and `/srv/www/sindro.me/prod/`.
 
+## First-time clone setup
+
+Activate the EXIF safety pre-commit hook (one-time, per clone):
+
+```bash
+git config core.hooksPath scripts/git-hooks
+```
+
+The hook (`scripts/git-hooks/pre-commit`) blocks commits that introduce images/videos with identifying EXIF (GPS, camera Make/Model, Software, serials, etc). Requires `exiftool`:
+
+- Debian/Ubuntu: `sudo apt install -y libimage-exiftool-perl`
+- FreeBSD: `pkg install p5-Image-ExifTool`
+- macOS: `brew install exiftool`
+
+To strip metadata manually: `exiftool -overwrite_original -all= -tagsFromFile @ -ICC_Profile <files>`.
+
 ## Multilingual (i18n)
 
 - **English** is the default language, served at `/` (no prefix)

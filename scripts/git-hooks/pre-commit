@@ -1,0 +1,42 @@
+#!/bin/sh
+# pre-commit: block commits that introduce identifying EXIF metadata.
+#
+# Scans staged image/video files for GPS, camera Make/Model, Software,
+# serial numbers, and other identifying tags. Fails the commit on any hit.
+#
+# Triggered by: git config core.hooksPath scripts/git-hooks
+
+set -eu
+
+if ! command -v exiftool >/dev/null 2>&1; then
+    printf 'pre-commit: exiftool not installed — required for EXIF safety scan\n' >&2
+    printf '  Debian/Ubuntu: sudo apt install -y libimage-exiftool-perl\n' >&2
+    printf '  FreeBSD:       pkg install p5-Image-ExifTool\n' >&2
+    printf '  macOS:         brew install exiftool\n' >&2
+    exit 1
+fi
+
+# Collect staged image/video files (added/copied/modified, NUL-delimited).
+staged=$(git diff --cached --name-only --diff-filter=ACM -z \
+    | tr '\0' '\n' \
+    | grep -iE '\.(jpe?g|png|heic|tiff?|webp|mp4|mov|m4v)$' || true)
+
+[ -z "$staged" ] && exit 0
+
+# Probe for identifying tags. Output is the path of any file that hits.
+dirty=$(printf '%s\n' "$staged" | tr '\n' '\0' \
+    | xargs -0 -r exiftool -m -q \
+        -if '$Make or $Model or $GPSLatitude or $GPSLongitude or $GPSPosition or $LocationInfo or $Software or $SerialNumber or $OwnerName or $Artist or $Creator or $Author or $XPAuthor or "$By-line" or $Copyright or $XPComment or $LensModel or $LensSerialNumber or $CameraSerialNumber or $UserComment' \
+        -p '$directory/$filename' 2>/dev/null || true)
+
+if [ -n "$dirty" ]; then
+    printf 'pre-commit: blocked — staged files leak identifying EXIF metadata:\n\n' >&2
+    printf '%s\n' "$dirty" | sed 's/^/  - /' >&2
+    printf '\nStrip with:\n\n  exiftool -overwrite_original -all= -tagsFromFile @ -ICC_Profile \\\n' >&2
+    printf '%s\n' "$dirty" | awk '{ printf "    %s%s\n", $0, (NR==total ? "" : " \\") }' total="$(printf '%s\n' "$dirty" | wc -l)" >&2
+    printf '\nFor a JPEG masquerading as .png, use: convert <file> -strip <file>\n' >&2
+    printf 'Then re-stage with: git add <files> && git commit\n' >&2
+    exit 1
+fi
+
+exit 0
