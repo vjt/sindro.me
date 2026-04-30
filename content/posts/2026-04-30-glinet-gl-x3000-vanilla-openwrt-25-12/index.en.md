@@ -10,7 +10,7 @@ featuredImage: cover.jpg
 **TL;DR:** I migrated my GL-iNet GL-X3000 (Spitz AX) — Jeeves, my 5G backup
 uplink — from stock GL.iNet firmware (OpenWrt 21.02, kernel 5.4) to vanilla
 OpenWrt 25.12 (kernel 6.12.79). The modem — a Quectel RM520N-GL on PCIe/MHI
-— works perfectly. There are five distinct ways to get things wrong before
+— works perfectly. There are four distinct ways to get things wrong before
 you get there. I found most of them. This is the map. If you want a
 pre-built image, head over to [Jeeves r2 on
 GitHub](https://github.com/vjt/openwrt-glinet-x3000/releases/tag/jeeves-r2).
@@ -54,10 +54,13 @@ and the entire current package ecosystem. GL.iNet's firmware is a fork
 with proprietary drivers and its own update cycle. Vanilla is the real
 thing — and it lets me own every bit of the connectivity stack.
 
-{{< figure src="last-70-days-5g-telemetry.png" alt="Three stacked Grafana panels — SINR, RSRP, RSRQ — covering 70 days from 02/20 to 04/30 for the n78 cell I'm normally attached to. All three panels show multiple multi-hour vertical gaps where the data series is missing entirely, mixed with the usual daily oscillation in interference" caption="Seventy days of n78 signal telemetry. The gaps in all three panels are real outages — many of them hours long, sometimes covering 4G fallback periods where even LTE was unreachable and the modem didn't recover on its own. With vanilla OpenWrt I get to react to those instead of riding them out. If you're wondering how I collect this, it's [quectel-5g-tools](https://github.com/vjt/quectel-5g-tools) feeding an internal VictoriaMetrics, plotted with [this Grafana dashboard](https://grafana.com/grafana/dashboards/24835-ultimate-isp-5g-lte-monitor-quectel-rm520-gl/)." >}}
+{{< figure src="last-70-days-5g-telemetry.png" alt="Three stacked Grafana panels — SINR, RSRP, RSRQ — covering 70 days from 02/20 to 04/30. All three panels show multiple multi-hour vertical gaps where the data series is missing entirely, mixed with the usual daily oscillation in interference" caption="Seventy days of 5G signal telemetry. The gaps in all three panels are real outages — many of them hours long, sometimes covering 4G fallback periods where even LTE was unreachable and the modem didn't recover on its own. With vanilla OpenWrt I get to react to those instead of riding them out. If you're wondering how I collect this, it's [quectel-5g-tools](https://github.com/vjt/quectel-5g-tools) feeding an internal VictoriaMetrics, plotted with [this Grafana dashboard](https://grafana.com/grafana/dashboards/24835-ultimate-isp-5g-lte-monitor-quectel-rm520-gl/)." >}}
 
-The migration took longer than it should have. Here is everything I
-learned.
+I expected this migration to take a while — a vendor fork to vanilla on
+hardware nobody officially supports rarely lands in an afternoon. It
+didn't actually take that long. But there were a handful of places where
+the right thing to do wasn't obvious, and this is what I learned in
+those.
 
 ## The Lay of the Land
 
@@ -205,76 +208,6 @@ importantly, [my telemetry
 pipeline](https://github.com/vjt/quectel-5g-tools) keeps reading signal
 metrics straight from the modem without a fight.
 
-## Pitfall 5: ADB Is Behind a Firmware Gate
-
-The RM520N-GL runs its own Linux inside the Qualcomm SDX62 baseband SoC.
-ADB access into that userland is extremely useful — logs, firmware
-diagnostics, `/usrdata` — and it is locked by default.
-
-There are two locks. First, the ADB USB interface is disabled in the
-default USB composition. You enable it with a composition switch:
-
-```sh
-# Inspect current composition
-quectel-at 'AT+QCFG="usbcfg"'
-# +QCFG: "usbcfg",0x2C7C,0x0801,1,1,1,1,1,0,0   ← ADB off (second-to-last bit)
-
-# Flip the ADB bit on
-quectel-at 'AT+QCFG="usbcfg",0x2C7C,0x0801,1,1,1,1,1,1,0'
-# OK
-```
-
-Then there's the second lock — a challenge-response on `AT+QADBKEY`:
-
-```sh
-# Step 1: get the challenge
-quectel-at 'AT+QADBKEY?'
-# +QADBKEY: 12345678
-
-# Step 2: compute the response (offline tool)
-./qadbkey-unlock 12345678
-# 0jXKXQwSwMxYoeg
-
-# Step 3: submit
-quectel-at 'AT+QADBKEY="0jXKXQwSwMxYoeg"'
-# OK
-```
-
-The response is not asymmetric crypto. Looking at
-[`qadbkey-unlock`](https://github.com/vjt/qadbkey-unlock) — my fork of the
-original community tool — the algorithm is plain MD5-crypt: take the
-hardcoded passphrase `SH_adb_quectel`, salt it with the challenge value
-the modem just gave you, run `crypt(3)`, slice 15 characters out of the
-hash. The "secret" is the passphrase, reverse-engineered out of Quectel
-firmware years ago. It survives reboots and modem firmware upgrades — as
-long as you stay on a compatible firmware branch.
-
-Once both locks are open, you can shell into the modem's SoC:
-
-```
-root@jeeves:~# uname -a
-Linux jeeves 6.12.79 #0 SMP Tue Apr 28 15:21:30 2026 aarch64 GNU/Linux
-root@jeeves:~# adb shell
-/ # uname -a
-Linux sdxlemur 5.4.210-perf #1 PREEMPT Fri Mar 1 06:52:45 UTC 2024 armv7l GNU/Linux
-```
-
-A router-shaped box. Two SoCs, two architectures, two kernels. The
-aarch64 one runs your network. The armv7l one runs inside your modem, and
-you can shell into it.
-
-Here is the gate: Quectel removed `AT+QADBKEY?` entirely in firmware
-`RM520NGLAAR_A0.301` and later. EU Radio Equipment Directive (RED DA)
-compliance — there's a whole [discussion
-thread](https://github.com/iamromulan/cellular-modem-wiki/discussions/122)
-about it. Once you flash firmware `≥ A0.301`, ADB is gone. There is no
-supported path back.
-
-Jeeves is currently on `A03A03M4G`, which is safely below the gate. I
-keep a mandatory checklist before any modem firmware update: read
-`AT+QGMR`, compare the build identifier against `A0.301` lexically, and
-either proceed or stop.
-
 ## What I Actually Baked In
 
 The final image includes, beyond the standard OpenWrt 25.12 package set:
@@ -311,22 +244,96 @@ The final image includes, beyond the standard OpenWrt 25.12 package set:
   <source src="5g-monitor-beep.mp4" type="video/mp4">
 </video>
 
-You don't need any of this to rebuild the image yourself. Clone
+If you don't trust my binary and want to build the image yourself —
+fair enough — I've automated the setup. Clone
 [vjt/openwrt-glinet-x3000](https://github.com/vjt/openwrt-glinet-x3000),
 run [`x3000/prepare.sh`](https://github.com/vjt/openwrt-glinet-x3000/blob/openwrt-25.12/x3000/prepare.sh),
-and you have a working build tree pinned to OpenWrt 25.12 with all the
-patches applied and all the custom packages wired in. `make` from there.
+and you have a working build tree pinned to OpenWrt 25.12 with every
+kernel patch applied and every custom package wired in via `feeds.conf`.
+`make` from there.
 
 The reason I have anything *more* than that is I update packages
 regularly and re-flash often enough that I got tired of running SDK
-builds by hand. So I built [`openwrt-builder`](https://github.com/vjt/openwrt-builder)
-— a small dispatcher that polls GitHub for changes, kicks off remote SDK
-builds on Hetzner spot instances, and serves the resulting apk index
-over HTTP on the management VLAN, signed with an ECDSA P-256 key whose
-pubkey is baked into the image. The builder lives on
+builds by hand. So I [built a
+dispatcher](/posts/2026-03-28-openwrt-builder/):
+[`openwrt-builder`](https://github.com/vjt/openwrt-builder) polls GitHub
+for changes, kicks off remote SDK builds on Hetzner spot instances, and
+serves the resulting apk index over HTTP on the management VLAN, signed
+with an ECDSA P-256 key whose pubkey is baked into the image. The
+builder lives on
 [nowhere](/posts/2026-01-20-raspberry-pi-luks-encrypted-root/), my
-always-on Raspberry Pi. None of that is required to use the image — it's
-just a convenience layer for me. Anyone can rebuild from the repo.
+always-on Raspberry Pi. None of that is required to use or rebuild the
+image — it's just a convenience layer for me.
+
+## Bonus: There's Another Linux Inside the Modem
+
+While we're here: the RM520N-GL runs its own Linux inside the Qualcomm
+SDX62 baseband SoC. ADB access into that userland is extremely useful —
+logs, firmware diagnostics, `/usrdata` — and it is locked by default.
+
+There are two locks. First, the ADB USB interface is disabled in the
+default USB composition. You enable it with a composition switch:
+
+```sh
+# Inspect current composition
+quectel-at 'AT+QCFG="usbcfg"'
+# +QCFG: "usbcfg",0x2C7C,0x0801,1,1,1,1,1,0,0   ← ADB off (second-to-last bit)
+
+# Flip the ADB bit on
+quectel-at 'AT+QCFG="usbcfg",0x2C7C,0x0801,1,1,1,1,1,1,0'
+# OK
+```
+
+Then there's the second lock — a challenge-response on `AT+QADBKEY`:
+
+```sh
+# Step 1: get the challenge
+quectel-at 'AT+QADBKEY?'
+# +QADBKEY: 12345678
+
+# Step 2: compute the response (offline tool)
+./qadbkey-unlock 12345678
+# 0jXKXQwSwMxYoeg
+
+# Step 3: submit
+quectel-at 'AT+QADBKEY="0jXKXQwSwMxYoeg"'
+# OK
+```
+
+The response is not asymmetric crypto. Looking at
+[`qadbkey-unlock`](https://github.com/vjt/qadbkey-unlock) — my fork of
+the original community tool — the algorithm is plain MD5-crypt: take the
+hardcoded passphrase `SH_adb_quectel`, salt it with the challenge value
+the modem just gave you, run `crypt(3)`, slice 15 characters out of the
+hash. The "secret" is the passphrase, reverse-engineered out of Quectel
+firmware years ago. The unlock state survives reboots and modem firmware
+upgrades — as long as you stay on a compatible firmware branch.
+
+Once both locks are open, you can shell into the modem's SoC:
+
+```
+root@jeeves:~# uname -a
+Linux jeeves 6.12.79 #0 SMP Tue Apr 28 15:21:30 2026 aarch64 GNU/Linux
+root@jeeves:~# adb shell
+/ # uname -a
+Linux sdxlemur 5.4.210-perf #1 PREEMPT Fri Mar 1 06:52:45 UTC 2024 armv7l GNU/Linux
+```
+
+A router-shaped box. Two SoCs, two architectures, two kernels. The
+aarch64 one runs your network. The armv7l one runs inside your modem,
+and you can shell into it.
+
+Watch the gate, though: Quectel removed `AT+QADBKEY?` entirely in
+firmware `RM520NGLAAR_A0.301` and later. EU Radio Equipment Directive
+(RED DA) compliance — there's a whole [discussion
+thread](https://github.com/iamromulan/cellular-modem-wiki/discussions/122)
+about it. Once you flash firmware `≥ A0.301`, ADB is gone. There is no
+supported path back.
+
+Jeeves is currently on `A03A03M4G`, which is safely below the gate. I
+keep a mandatory checklist before any modem firmware update: read
+`AT+QGMR`, compare the build identifier against `A0.301` lexically, and
+either proceed or stop.
 
 ## Epilogue: The SINR Mystery
 
@@ -335,11 +342,11 @@ of around 18 dB to 12 dB — over the course of a couple of minutes. Same
 RSRP, same cell, same beam, just 6 dB more noise. Nothing changed on my
 side. I wasn't watching the dashboard at the time, and didn't notice.
 
-I noticed the morning *after* I flashed vanilla OpenWrt. I ran a speed
-test out of habit: ~200 Mbps where I used to see ~350. That made me
-unhappy. My first instinct was to suspect the migration — a regression in
-the kernel, in MHI, in something I'd just changed. But I had something
-the previous-me didn't: long-term telemetry.
+I caught it two weeks late, *after* I flashed vanilla OpenWrt. I ran a
+speed test out of habit and got ~200 Mbps where I used to see ~350. That
+made me unhappy. My first instinct was to suspect the migration — a
+regression in the kernel, in MHI, in something I'd just changed. But I
+had something the previous-me didn't: long-term telemetry.
 
 {{< figure src="sinr-drop.png" alt="Two stacked Grafana panels labelled SINR and RSRP, ranging from 03/30 to 04/27. The SINR panel shows a baseline around 17–18 dB until mid-April, then drops to ~11–13 dB and stays there. The RSRP panel stays flat between -94 and -97 dBm across the entire window. Both panels show several visible vertical gaps where data is missing entirely. Multiple coloured series, one per PCI on the n78 band" caption="Two months of SINR (top) and RSRP (bottom) for the n78 cell I'm normally attached to — the one with the strongest signal at my location. RSRP is flat across the whole window: same signal strength. The SINR baseline shifts down mid-April: same signal, more noise. The vertical gaps in *both* panels are real outages — hours-long windows where the modem lost the carrier entirely. Those outages are the other reason I'm running my own firmware." >}}
 
