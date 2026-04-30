@@ -268,7 +268,9 @@ L'immagine finale, oltre al set di pacchetti standard di OpenWrt
   qualità del segnale e beep audio configurabili, `5g-lock` gestisce
   il band e cell locking, `quectel-at` è un wrapper a basso attrito
   per i comandi AT. C'è anche un collettore Prometheus — è quello che
-  alimenta [questa dashboard Grafana](full-5g-dashboard.jpg) — e
+  alimenta [questa dashboard
+  Grafana](/posts/2026-04-30-glinet-gl-x3000-vanilla-openwrt-25-12/full-5g-dashboard.jpg)
+  — e
   `5g-led-bars`, un demone procd che pilota in tempo reale i quattro
   LED di segnale 5G sul pannello frontale del GL-X3000 dal NR-RSRP di
   PCC/SCC.
