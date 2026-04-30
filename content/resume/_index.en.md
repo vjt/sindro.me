@@ -48,7 +48,10 @@ Tech Lead with {{< years-since "1999-12-01" >}}+ years of experience delivering 
 - Worked cross-functionally with DC ops to ensure secure erasure and physical destruction
 - Mentored junior engineers across multiple time zones
 
-## IFAD (United Nations) — Tech Lead
+## IFAD (United Nations)
+*January 2011 – November 2021 · 11 years*
+
+### Tech Lead
 *February 2016 – November 2021 · 5 years*
 
 Led the technical side of a critical financial system implementing electronic disbursement of IFAD financings to borrower countries.
@@ -58,7 +61,7 @@ Led the technical side of a critical financial system implementing electronic di
 - Led full infrastructure automation ([example](/posts/2026-04-11-ansible-wsadmin/)), persuaded its re-use across existing line-of-business applications
 - Oversaw [security design](/posts/2020-09-11-integrating-onespan-2fa-with-ruby/), delegated vulnerability assessments and hardening
 
-## IFAD (United Nations) — Software Engineer & Sysadmin
+### Software Engineer & Sysadmin
 *January 2011 – January 2016 · 5 years*
 
 - Architected and developed multiple line-of-business applications: [DMS](/posts/2016-01-15-document-pipeline-heathen-colore/), CRMs, BPM workflows, [authorization](/posts/2015-02-28-eaco-authorization-ruby/), webcasting

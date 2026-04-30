@@ -48,6 +48,8 @@ h1:first-of-type {
 h1 { font-size: 12pt; border-bottom: 2px solid #268bd2; padding-bottom: 3pt; }
 h2 { color: #268bd2; font-size: 10.5pt; margin-bottom: 2pt; }
 h2 + p em { color: #555; font-size: 9pt; }
+h3 { color: #268bd2; font-size: 10pt; font-weight: 500; margin: 0.5rem 0 1pt 0; }
+h3 + p em { color: #555; font-size: 8.5pt; }
 hr { border: none; border-top: 1px solid #ddd; margin: 0.8rem 0; }
 a { color: #268bd2; text-decoration: none; }
 ul { padding-left: 1.2rem; margin: 0.3rem 0; }
