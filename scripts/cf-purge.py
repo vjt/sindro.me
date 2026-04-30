@@ -25,17 +25,15 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import json
 import os
 import sys
-import urllib.error
-import urllib.request
 from pathlib import Path
 from typing import Iterable
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _cf import DEFAULT_BATCH_SIZE, load_token, purge_urls
+
 CONTENT_EXTS = {".html", ".xml"}
-CF_PURGE_URL = "https://api.cloudflare.com/client/v4/zones/{zone}/purge_cache"
-BATCH_SIZE = 30
 
 
 def hash_tree(root: Path) -> dict[str, str]:
@@ -76,34 +74,6 @@ def filter_apex(urls: Iterable[str], base: str) -> list[str]:
     return sorted(u for u in urls if u.startswith(base) or u == base.rstrip("/"))
 
 
-def chunked(seq: list[str], size: int) -> Iterable[list[str]]:
-    for i in range(0, len(seq), size):
-        yield seq[i : i + size]
-
-
-def cf_purge(zone_id: str, token: str, urls: list[str]) -> None:
-    body = json.dumps({"files": urls}).encode("utf-8")
-    req = urllib.request.Request(
-        CF_PURGE_URL.format(zone=zone_id),
-        data=body,
-        method="POST",
-        headers={
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json",
-        },
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            payload = json.loads(resp.read().decode("utf-8"))
-    except urllib.error.HTTPError as exc:
-        body_text = exc.read().decode("utf-8", errors="replace")
-        raise SystemExit(f"CF purge HTTP {exc.code}: {body_text}") from exc
-    except urllib.error.URLError as exc:
-        raise SystemExit(f"CF purge network error: {exc}") from exc
-    if not payload.get("success"):
-        raise SystemExit(f"CF purge failed: {payload}")
-
-
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--new-dir", type=Path, default=Path("public"),
@@ -119,7 +89,7 @@ def main() -> int:
                     help="Path to file containing CF API token")
     ap.add_argument("--dry-run", action="store_true",
                     help="Print URLs to purge, do not call CF API")
-    ap.add_argument("--batch-size", type=int, default=BATCH_SIZE)
+    ap.add_argument("--batch-size", type=int, default=DEFAULT_BATCH_SIZE)
     args = ap.parse_args()
 
     if not args.base:
@@ -154,11 +124,8 @@ def main() -> int:
     if args.dry_run:
         return 0
 
-    token = Path(args.token_file).read_text().strip()
-    for batch in chunked(urls, args.batch_size):
-        cf_purge(args.zone_id, token, batch)
-        print(f"cf-purge: purged batch of {len(batch)}", file=sys.stderr)
-
+    token = load_token(args.token_file)
+    purge_urls(args.zone_id, token, urls, args.batch_size)
     return 0
 
 
