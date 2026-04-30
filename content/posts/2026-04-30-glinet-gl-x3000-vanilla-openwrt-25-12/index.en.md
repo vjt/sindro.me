@@ -42,13 +42,17 @@ before the radio walks itself back to 5G. That is not acceptable for
 something supposed to cover for fiber outages.
 
 The harder problem is cell locking. My carrier deploys 5G-NSA
-(non-standalone), and GL.iNet's own automation does not handle the NSA
-attach sequence correctly for my provider — every time I tried to hold a
-specific cell from the GL.iNet UI, the lock didn't stick. So I started
-writing my own around `AT+QNWLOCK` / `AT+QNWCFG`. That was a losing
-battle: GL.iNet's stack notices out-of-band AT changes and reverts them
-on its own schedule. To actually own the radio policy, I needed the AT
-path to stay where I left it — and the only way there was vanilla.
+(non-standalone), and the moment I asked GL.iNet's stock tower-lock UI
+to hold a specific cell, the modem stopped attaching to *any* tower at
+all. I suspect this has to do with how their stack drives the NSA
+attach, but I never proved it — by that point I already wanted to be
+off stock and didn't feel like reverse-engineering vendor code. So I
+started writing my own lock
+[around](https://github.com/vjt/quectel-5g-tools/blob/master/bin/5g-lock)
+`AT+QNWLOCK` / `AT+QNWCFG`. That was a losing battle: GL.iNet's stack
+notices out-of-band AT changes and reverts them on its own schedule.
+To actually own the radio policy, I needed the AT path to stay where I
+left it — and the only way there was vanilla.
 
 Vanilla OpenWrt 25.12 brings mainline MHI/MBIM support for the modem's
 PCIe data path (more on those acronyms in a moment), ModemManager
@@ -162,7 +166,12 @@ is the only path.
 This one cost me the most time. Symptoms: the modem comes up fine,
 ModemManager connects, traffic flows — and then, **two minutes later,
 reproducibly every time**, the modem disappears with a cascade of kernel
-errors:
+errors. To make matters worse, the failure also drags the rest of the
+PCI bus down: every couple of seconds the kernel resets the link, the
+on-board ethernet port hangs while it does, and SSH stalls. I had a
+~one-minute window of usable shell right after boot, then 2-3-second
+windows roughly every 30 seconds. Debugging it was not exactly
+ergonomic.
 
 ```
 pci 0000:01:00.0: AER: Correctable error message received
@@ -177,9 +186,8 @@ wakes up, but the MHI bus never fully recovers from the link-down event.
 The PCIe AER layer starts logging Completion Timeouts. The modem goes
 silent.
 
-The [fix is
-blunt](https://github.com/vjt/openwrt-glinet-x3000/commit/4087faad55849b7891008482fe0d8beae81714b8)
-and permanent:
+The [workaround is
+blunt](https://github.com/vjt/openwrt-glinet-x3000/commit/4087faad55849b7891008482fe0d8beae81714b8):
 
 ```
 pcie_port_pm=off
@@ -187,7 +195,10 @@ pcie_port_pm=off
 
 in the kernel command line. This disables PCIe port power management
 globally. On the GL-X3000 that means the modem link stays at full power.
-No more crashes.
+No more crashes — but it's a workaround, not a fix. The underlying
+interaction between the MHI driver and the PCIe PM core is still wrong;
+I'm hoping a future kernel release sorts it out and lets me drop the
+flag.
 
 Note for the cautious: if the modem *does* wedge in this state, runtime
 mitigations don't help. The only recovery is a host reboot. You cannot
@@ -207,7 +218,8 @@ reboot the router — it's faster and less exciting.
 
 ## Pitfall 4: ModemManager Will Steal Your AT Ports
 
-The vanilla OpenWrt `modemmanager` package includes a udev/hotplug rule
+The vanilla OpenWrt `modemmanager` package includes a [udev/hotplug
+rule](https://github.com/openwrt/packages/blob/master/net/modemmanager/files/etc/hotplug.d/tty/25-modemmanager-tty)
 (`/etc/hotplug.d/tty/25-modemmanager-tty`) that hands every USB serial
 port that looks like a modem to ModemManager. The RM520N-GL's
 `/dev/ttyUSB0`–`3` all match. ModemManager opens them and keeps them
@@ -246,10 +258,12 @@ The final image includes, beyond the standard OpenWrt 25.12 package set:
   the GL-X3000's front panel from PCC/SCC NR-RSRP in real time.
 - **[`qfirehose` 1.4.17](https://github.com/vjt/qfirehose)** — the
   standard Quectel firmware flasher. Upstream is currently at 1.7, but I
-  picked 1.4.17 (originally `nippynetworks/qfirehose`) because it was
-  the version pre-packaged in another reputable OpenWrt feed and had
-  been stable for everyone using it. I forked it to add a clean OpenWrt
-  package recipe so the binary lands directly in the image.
+  picked 1.4.17 (originally
+  [`nippynetworks/qfirehose`](https://github.com/nippynetworks/qfirehose))
+  because it was the version pre-packaged in another reputable OpenWrt
+  feed and had been stable for everyone using it. I forked it to add a
+  clean OpenWrt package recipe so the binary lands directly in the
+  image.
 - **[`adb` + `fastboot`
   35.0.2](https://github.com/vjt/openwrt-android-tools)** — for modem
   USB composition switches and ADB access into the SDX62.
