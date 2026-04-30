@@ -88,7 +88,8 @@ First professional role. Built and maintained UNIX/Windows server infrastructure
 
 **Recent projects** — [github.com/vjt](https://github.com/vjt)
 
-- **[ha-verisure-italy](https://github.com/vjt/ha-verisure-italy)** — [Home Assistant integration for Verisure Italy](/posts/2026-04-04-verisure-italy-home-assistant/). GraphQL API client, typed with Pydantic, 165 tests, pyright strict.
+- **[ha-verisure-italy](https://github.com/vjt/ha-verisure-italy)** & **[ha-eisenberg](https://github.com/vjt/ha-eisenberg)** — Home Assistant integrations: [Verisure Italy security system](/posts/2026-04-04-verisure-italy-home-assistant/) (GraphQL client, Pydantic-typed, 165 tests, pyright strict) and [Arlo cameras](/posts/2026-04-28-eisenberg-arlo-on-home-assistant/) reverse-engineered into a clean local-first integration.
+- **[openwrt-glinet-x3000](https://github.com/vjt/openwrt-glinet-x3000)** & **[openwrt-builder](https://github.com/vjt/openwrt-builder)** — [Vanilla OpenWrt 25.12 image for the GL-X3000](/posts/2026-04-30-glinet-gl-x3000-vanilla-openwrt-25-12/) with a [throwaway-VM cross-arch package build pipeline](/posts/2026-03-28-openwrt-builder/) feeding it.
 - **[openwrt-ha-presence](https://github.com/vjt/openwrt-ha-presence)** — [WiFi-based room presence detection](/posts/2026-02-15-wifi-presence-detection-home-assistant/) for Home Assistant via OpenWrt and MQTT; paired with a [mesh dethrash analyzer](/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/).
 - **[quectel-5g-tools](https://github.com/vjt/quectel-5g-tools)** — [Parser and monitor for Quectel 5G modems](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/) cell information.
 - **[mfsroot-geli-dropbear](https://github.com/vjt/mfsroot-geli-dropbear)** — FreeBSD initial RAM disk for [remote GELI-encrypted ZFS unlock](/posts/2023-08-13-freebsd-encrypted-root-on-zfs/) over SSH; [full init/PAM/reroot environment](/posts/2026-01-28-freebsd-encrypted-zfs-remote-unlock/), not a shell hack.
@@ -96,7 +97,7 @@ First professional role. Built and maintained UNIX/Windows server infrastructure
 **Community roots**
 
 - **[Antifork.ORG](https://antifork.org)** (2007–present) — Maintaining the legacy infrastructure and [code](https://github.com/antifork) of this group of hackers/friends from the early 2000s.
-- **[Azzurra IRC Network](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/)** (2002–2005) — [Forked the Bahamut IRCd](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) for Italy's largest IRC network: IPv6, SSL, hostname cloaking. Added SSL to the irssi client. [Wrote IRC services from scratch](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/).
+- **[Azzurra IRC Network](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/)** (2002–2005) — [Forked the Bahamut IRCd](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) for Italy's largest IRC network: IPv6, SSL, hostname cloaking. Added SSL to the irssi client. [Wrote IRC services from scratch](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/). Twenty years later, [reviving IRC for 2026 with grappa-irc](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/) — a BNC + PWA reboot, [now in active development on Elixir/BEAM](/posts/2026-04-24-grappa-irc-elixir-beam-stack/).
 
 ---
 

@@ -7,7 +7,7 @@ featuredImage: cover.jpg
 description: "A Docker-based system that auto-polls git repos, spins up ephemeral Hetzner VMs for cross-architecture OpenWrt package builds, and puts it all behind a Telegram bot. Full cycle: ~2 minutes, ~EUR 0.001 per build."
 ---
 
-I maintain a bunch of custom OpenWrt packages across four architectures: MediaTek Filogic (aarch64), Raspberry Pi 2 (ARM), Ramips MT7621 (MIPS), and Atheros ath79 (MIPS). The OpenWrt SDK only runs on x86_64. I don't have a dedicated build server. I don't want one either — a box sitting idle 99.9% of the time just to compile `.ipk` files every few days is offensive to my sense of resource allocation.
+I maintain a bunch of custom OpenWrt packages across four architectures: MediaTek Filogic (aarch64) — including [the GL-X3000 running my own vanilla OpenWrt 25.12 build](/posts/2026-04-30-glinet-gl-x3000-vanilla-openwrt-25-12/), Raspberry Pi 2 (ARM), Ramips MT7621 (MIPS), and Atheros ath79 (MIPS). The OpenWrt SDK only runs on x86_64. I don't have a dedicated build server. I don't want one either — a box sitting idle 99.9% of the time just to compile `.ipk` files every few days is offensive to my sense of resource allocation.
 
 So I built [openwrt-builder](https://github.com/vjt/openwrt-builder): a system that polls my repos for changes, spins up a throwaway Hetzner cloud VM when it needs to compile, builds the packages, ships them back, and destroys the server. All controlled via Telegram.
 

@@ -88,7 +88,8 @@ Primo ruolo professionale. Costruito e mantenuto infrastrutture server UNIX/Wind
 
 **Progetti recenti** — [github.com/vjt](https://github.com/vjt)
 
-- **[ha-verisure-italy](https://github.com/vjt/ha-verisure-italy)** — [Integrazione Home Assistant per Verisure Italia](/it/posts/2026-04-04-verisure-italy-home-assistant/). Client API GraphQL, tipizzato con Pydantic, 165 test, pyright strict.
+- **[ha-verisure-italy](https://github.com/vjt/ha-verisure-italy)** & **[ha-eisenberg](https://github.com/vjt/ha-eisenberg)** — Integrazioni Home Assistant: [sistema di allarme Verisure Italia](/it/posts/2026-04-04-verisure-italy-home-assistant/) (client GraphQL, tipizzato con Pydantic, 165 test, pyright strict) e [telecamere Arlo](/it/posts/2026-04-28-eisenberg-arlo-on-home-assistant/) reverse-engineered in un'integrazione local-first pulita.
+- **[openwrt-glinet-x3000](https://github.com/vjt/openwrt-glinet-x3000)** & **[openwrt-builder](https://github.com/vjt/openwrt-builder)** — [Immagine OpenWrt 25.12 vanilla per il GL-X3000](/it/posts/2026-04-30-glinet-gl-x3000-vanilla-openwrt-25-12/) con la [pipeline di build cross-architettura su VM usa-e-getta](/it/posts/2026-03-28-openwrt-builder/) che la alimenta.
 - **[openwrt-ha-presence](https://github.com/vjt/openwrt-ha-presence)** — [Rilevamento presenza WiFi per stanza](/it/posts/2026-02-15-wifi-presence-detection-home-assistant/) via OpenWrt e MQTT per Home Assistant; affiancato da un [analizzatore di dethrash mesh](/it/posts/2026-04-03-wifi-dethrash-openwrt-mesh-analyzer/).
 - **[quectel-5g-tools](https://github.com/vjt/quectel-5g-tools)** — [Parser e monitor per modem Quectel 5G](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/), informazioni delle celle.
 - **[mfsroot-geli-dropbear](https://github.com/vjt/mfsroot-geli-dropbear)** — RAM disk iniziale FreeBSD per [sblocco remoto ZFS cifrato con GELI](/it/posts/2023-08-13-freebsd-encrypted-root-on-zfs/) via SSH; [ambiente completo con init/PAM/reroot](/it/posts/2026-01-28-freebsd-encrypted-zfs-remote-unlock/), non uno shell hack.
@@ -96,7 +97,7 @@ Primo ruolo professionale. Costruito e mantenuto infrastrutture server UNIX/Wind
 **Radici nella community**
 
 - **[Antifork.ORG](https://antifork.org)** (2007–presente) — Mantengo l'infrastruttura storica e il [codice](https://github.com/antifork) di questo gruppo di hacker/amici dai primi anni 2000.
-- **[Azzurra IRC Network](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/)** (2002–2005) — [Forkato il server Bahamut](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) per la più grande rete IRC italiana: IPv6, SSL, hostname cloaking. Aggiunto SSL al client irssi. [Scritto IRC services da zero](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/).
+- **[Azzurra IRC Network](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/)** (2002–2005) — [Forkato il server Bahamut](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) per la più grande rete IRC italiana: IPv6, SSL, hostname cloaking. Aggiunto SSL al client irssi. [Scritto IRC services da zero](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/). Vent'anni dopo, [riportare in vita IRC nel 2026 con grappa-irc](/it/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/) — un BNC + PWA reboot, [ora in sviluppo attivo su Elixir/BEAM](/it/posts/2026-04-24-grappa-irc-elixir-beam-stack/).
 
 ---
 

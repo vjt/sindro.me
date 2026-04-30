@@ -46,6 +46,8 @@ C'è anche `force-bands` se vuoi bloccare il modem su bande LTE/NR specifiche (u
 
 Il mio backup 5G ora va a 300+ Mbps in download, 50+ in upload. Quando la fibra muore, il mio router fa failover automaticamente grazie a `mwan3`. Le riunioni continuano. I clienti non se ne accorgono. La pressione sanguigna resta normale.
 
+*Aggiornamento, aprile 2026: l'X3000 nel frattempo è migrato dal firmware GL.iNet stock a OpenWrt 25.12 vanilla — la storia completa in [GL-X3000 su OpenWRT 25.12 vanilla: tutto funzionante](/it/posts/2026-04-30-glinet-gl-x3000-vanilla-openwrt-25-12/). E `mwan3` si è rivelato avere una sua patologia sottile insieme a banIP — postmortem in [Come banIP ha distrutto il throughput del mio WireGuard da febbraio](/it/posts/2026-04-07-banip-icmp-mwan3/).*
+
 Il codice è con licenza MIT e vive su [github.com/vjt/quectel-5g-tools](https://github.com/vjt/quectel-5g-tools). Le PR sono benvenute.
 
 ## Immagini

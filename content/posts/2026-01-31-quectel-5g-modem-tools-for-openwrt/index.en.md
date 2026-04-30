@@ -46,6 +46,8 @@ There's also `force-bands` if you want to lock your modem to specific LTE/NR ban
 
 My 5G backup now sits at 300+ Mbps down, 50+ up. When fiber dies, my router fails over automatically courtesy of `mwan3`. Meetings continue. Clients remain unaware. Blood pressure stays normal.
 
+*Update, April 2026: the X3000 has since migrated off stock GL.iNet firmware to vanilla OpenWrt 25.12 — full story in [GL-X3000 on Vanilla OpenWRT 25.12: Fully Working](/posts/2026-04-30-glinet-gl-x3000-vanilla-openwrt-25-12/). And `mwan3` turned out to have its own subtle failure mode with banIP — postmortem in [How banIP Nuked My WireGuard Throughput Since February](/posts/2026-04-07-banip-icmp-mwan3/).*
+
 The code is MIT licensed and lives at [github.com/vjt/quectel-5g-tools](https://github.com/vjt/quectel-5g-tools). PRs welcome.
 
 ## Images

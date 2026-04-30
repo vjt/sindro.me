@@ -294,7 +294,9 @@ L'immagine finale, oltre al set di pacchetti standard di OpenWrt
   perché era la versione preconfezionata in un altro feed OpenWrt
   reputato e si era dimostrata stabile. L'ho forkato per aggiungere
   una build OpenWrt pulita, così il binario finisce direttamente
-  nell'immagine.
+  nell'immagine — compilato e distribuito tramite il [mio
+  openwrt-builder](/it/posts/2026-03-28-openwrt-builder/) come ogni
+  altro pacchetto custom su questo router.
 - **[`adb` + `fastboot`
   35.0.2](https://github.com/vjt/openwrt-android-tools)** — per gli
   switch di composizione USB del modem e l'accesso ADB nel SDX62.
