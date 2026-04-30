@@ -300,12 +300,13 @@ quectel-at 'AT+QADBKEY="0jXKXQwSwMxYoeg"'
 # OK
 ```
 
-The response is not asymmetric crypto. Looking at
-[`qadbkey-unlock`](https://github.com/vjt/qadbkey-unlock) — my fork of
-the original community tool — the algorithm is plain MD5-crypt: take the
-hardcoded passphrase `SH_adb_quectel`, salt it with the challenge value
-the modem just gave you, run `crypt(3)`, slice 15 characters out of the
-hash. The "secret" is the passphrase, reverse-engineered out of Quectel
+The response is not asymmetric crypto. Looking at the [seven lines that
+compute
+it](https://github.com/vjt/qadbkey-unlock/blob/master/qadbkey-unlock2.py#L32-L38)
+in `qadbkey-unlock` — my fork of the original community tool — the
+algorithm is plain MD5-crypt: take the hardcoded passphrase
+`SH_adb_quectel`, salt it with the challenge value the modem just gave
+you, run `crypt(3)`, slice 15 characters out of the hash. The "secret" is the passphrase, reverse-engineered out of Quectel
 firmware years ago. The unlock state survives reboots and modem firmware
 upgrades — as long as you stay on a compatible firmware branch.
 
