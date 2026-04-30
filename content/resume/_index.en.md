@@ -36,7 +36,7 @@ Tech Lead with {{< years-since "1999-12-01" >}}+ years of experience delivering 
 ### Bootstrap / [MetalOS](/posts/2025-10-09-all-systems-go/)
 *2023 – Present*
 
-Bare-metal OS powering millions of servers globally. Part of the Datacenter Automation org; EMEA team owns the net-booting infrastructure.
+I work on a bare-metal OS powering millions of servers globally. Part of the Datacenter Automation org; our team owns the lower OS layers, the net-booting infrastructure and the provisioning automation.
 
 - Halved re-provisioning cycles across the fleet, reducing downtime and hardware churn
 - Designed and rolled out hardware identification mechanisms for early OS imaging
