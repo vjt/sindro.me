@@ -24,7 +24,7 @@ GitHub](https://github.com/vjt/openwrt-glinet-x3000/releases/tag/jeeves-r2).
 Jeeves è il mio uplink 5G di backup. Quando la fibra cade — [e cade,
 sempre nel momento
 peggiore](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/) —
-Jeeves è quello che mi separa da una riunione persa. L'hardware è
+Jeeves è quello che mi salva da una riunione persa. L'hardware è
 ottimo: MediaTek MT7981B (Filogic 820), Wi-Fi 6, USB 3.0, e un modem 5G
 Quectel RM520N-GL su slot M.2 collegato sia a PCIe sia a USB.
 
@@ -41,16 +41,16 @@ semplicemente la radio sul 4G, all'infinito. Qui da me l'LTE va sui 5
 Mbit/s. Se non me ne accorgo e non intervengo a mano, il link di
 backup resta fermo a 5 Mbit/s per ore prima che la radio decida da
 sola di tornare al 5G. Non è accettabile per qualcosa che dovrebbe
-sostituire la fibra in caduta.
+sostituire la fibra.
 
 Il problema più tosto è il cell locking. Il mio operatore distribuisce
 il 5G-NSA (non-standalone), e nel momento in cui ho chiesto al pannello
-GL.iNet di stock di tenere fermo un cell specifico, il modem ha smesso
-di agganciarsi a *qualsiasi* tower. Sospetto che c'entri il modo in cui
-il loro stack pilota la procedura di attach NSA, ma non l'ho mai
-provato — a quel punto volevo già togliermi dallo stock e non avevo
-voglia di mettermi a fare reverse-engineering di codice vendor. Quindi
-mi sono messo a scriverne una mia —
+GL.iNet di stock di bloccare una torre specifica, il modem ha smesso di
+agganciarsi a *qualsiasi* tower. Sospetto che c'entri il modo in cui il
+loro stack pilota la procedura di attach NSA, ma non l'ho mai provato
+— a quel punto volevo già togliermi dallo stock e non avevo voglia di
+mettermi a fare reverse-engineering di codice vendor. Quindi mi sono
+scritto il mio sistema di locking, che parla direttamente col modem —
 [`5g-lock`](https://github.com/vjt/quectel-5g-tools/blob/master/bin/5g-lock),
 un wrapper sottile attorno a `AT+QNWLOCK` / `AT+QNWCFG`. Battaglia
 persa: lo stack GL.iNet si accorge dei cambi AT fuori-banda e li
@@ -68,19 +68,36 @@ release, e seguire il loro SDK da una versione all'altra è
 significativamente più lavoro che seguire il vanilla. Vanilla è la cosa
 vera — e mi lascia possedere ogni bit dello stack di connettività.
 
+Un piccolo glossario per il grafico che segue — sono i quattro numeri
+che ogni pipeline di telemetria cellulare traccia per ogni cella:
+
+- **RSRP** — Reference Signal Received Power. Quanto forte arriva al
+  modem il segnale della torre. Come quanto arriva forte la voce di un
+  amico dall'altra parte della stanza.
+- **SINR** — Signal-to-Interference-plus-Noise Ratio. Quanto è pulito
+  quel segnale rispetto a tutto il resto del rumore in giro. Stesso
+  amico, stessa voce, ma in una biblioteca silenziosa vs un caffè
+  affollato — è il numero in dB a cambiare.
+- **RSRQ** — Reference Signal Received Quality. Una vista combinata di
+  segnale rispetto al carico della cella: alto quando la cella è
+  scarica, scende quando è piena di utenti.
+- **PCI** — Physical Cell ID. Il "nome" della torre dal punto di vista
+  del modem: numero diverso = cella diversa.
+
 {{< figure src="last-70-days-5g-telemetry.png" alt="Tre pannelli Grafana impilati — SINR, RSRP, RSRQ — su 70 giorni dal 02/20 al 04/30. Tutti e tre i pannelli mostrano vari buchi verticali multi-ora dove la serie dati manca del tutto, mescolati con la solita oscillazione giornaliera dell'interferenza" caption="Settanta giorni di telemetria del segnale 5G. I buchi nei tre pannelli sono outage veri — molti durano ore, in qualche caso coprono periodi di fallback su 4G in cui anche l'LTE era irraggiungibile e il modem non si è ripreso da solo. Con OpenWrt vanilla riesco a reagirci, invece di subirli. Se ti stai chiedendo come raccolgo questa roba, è [quectel-5g-tools](https://github.com/vjt/quectel-5g-tools) che alimenta una VictoriaMetrics interna, plottata con [questa dashboard Grafana](https://grafana.com/grafana/dashboards/24835-ultimate-isp-5g-lte-monitor-quectel-rm520-gl/)." >}}
 
 Il GL-X3000 è supportato dalla community OpenWrt — la [pagina ufficiale
 del wiki](https://openwrt.org/toh/gl.inet/gl-x3000#setup_5g_connectivity)
 ti accompagna nella configurazione 5G dall'inizio alla fine. La
 fregatura è che copre solo il path dati **USB** del modem, che funziona
-out of the box ma tappa il throughput ben sotto quello che la radio
-riesce davvero a fare — il path PCIe è significativamente più veloce, e
-non volevo un collo di bottiglia proprio sul link che dovrebbe
-sostituire la fibra. Il PCIe richiede una patch al kernel (vedi sotto)
-e una build personalizzata. Quindi l'immagine me la sono fatta. Non ci
-ho messo molto, ma c'erano un paio di passaggi in cui la cosa giusta da
-fare non era ovvia, e questo è quello che ho imparato lì in mezzo.
+ma riduce notevolmente la banda disponibile rispetto a quello che la
+radio riesce davvero a fare — il path PCIe è significativamente più
+veloce, e non volevo un collo di bottiglia proprio sul link che
+dovrebbe sostituire la fibra in caduta. Il PCIe richiede una patch al
+kernel (vedi sotto) e una build personalizzata. Quindi l'immagine me
+la sono fatta. Non ci ho messo molto, ma c'erano un paio di passaggi
+in cui la cosa giusta da fare non era ovvia, e questo è quello che ho
+imparato nel processo.
 
 ## Come è fatto
 
@@ -96,10 +113,6 @@ vale la pena chiarire subito:
   trasportare pacchetti di rete e un canale di controllo tra host e
   modem. Sul GL-X3000 viaggia sopra MHI; il kernel lo espone come
   netdev più un device a caratteri di controllo (`/dev/wwan0mbim0`).
-- **QMI** — Qualcomm MSM Interface. L'alternativa più vecchia,
-  vendor-defined, a MBIM. Ancora ampiamente usata sui modem solo-USB,
-  ma il driver mainline `mhi_pci_generic` su questo hardware fa solo
-  MBIM su MHI.
 
 Il firmware GL.iNet di stock usava un driver proprietario `pcie_mhi`
 che esponeva i nodi `/dev/mhi_*`. OpenWrt vanilla usa il driver
@@ -126,8 +139,7 @@ chosen wrong file."*
 La procedura: tieni premuto Reset mentre accendi, metti il PC su un IP
 statico nel range `192.168.1.0/24`, apri `192.168.1.1` nel browser,
 carica il sysupgrade. Circa 90 secondi. Da lì in poi, lo stesso file
-sysupgrade è quello che usi anche per gli upgrade in-place — resti
-sullo U-Boot di stock, continui a usare sysupgrade per sempre.
+sysupgrade è quello che usi anche per gli upgrade in-place.
 
 Prima di flashare, fai un backup del bootloader di stock:
 
@@ -272,8 +284,9 @@ L'immagine finale, oltre al set di pacchetti standard di OpenWrt
   Grafana](/posts/2026-04-30-glinet-gl-x3000-vanilla-openwrt-25-12/full-5g-dashboard.jpg)
   — e
   `5g-led-bars`, un demone procd che pilota in tempo reale i quattro
-  LED di segnale 5G sul pannello frontale del GL-X3000 dal NR-RSRP di
-  PCC/SCC.
+  LED di segnale 5G sul pannello frontale del GL-X3000 a partire
+  dall'RSRP (potenza del segnale) del 5G quando il modem è agganciato,
+  o dell'LTE se il 5G è giù.
 - **[`qfirehose` 1.4.17](https://github.com/vjt/qfirehose)** — il
   flasher di firmware Quectel standard. Upstream è arrivato a 1.7,
   ma ho scelto la 1.4.17 (originariamente
@@ -298,30 +311,16 @@ L'immagine finale, oltre al set di pacchetti standard di OpenWrt
 {{< figure src="signal-rabdomant.jpg" alt="Un telefono appoggiato su una borsa porta-attrezzi arancione, lo schermo mostra la TUI di 5g-monitor: operatore TIM, stato IDLE, BEEP:ON, LTE Banda 3 con PCI 427 SINR 8 dB, 5G-NSA Banda n78 con PCI 920 SINR 14 dB, breakdown completo di carrier aggregation e una lista di celle vicine, con un multitool semi-visibile a lato" caption="`5g-monitor` sul campo. PCC, SCC, celle vicine, tutto il segnale che ti serve per decidere se vale la pena salire ancora un altro gradino della scala." >}}
 
 <video controls preload="metadata" width="100%">
-  <source src="5g-monitor-beep.mp4" type="video/mp4">
+  <source src="/posts/2026-04-30-glinet-gl-x3000-vanilla-openwrt-25-12/5g-monitor-beep.mp4" type="video/mp4">
 </video>
 
-Se il mio binario non ti convince e vuoi compilarti l'immagine da
-solo — più che giusto — ho automatizzato il setup. Cloni
+Se la mia immagine precompilata non ti convince e te la vuoi
+compilare da solo — più che giusto — ho automatizzato il setup. Cloni
 [vjt/openwrt-glinet-x3000](https://github.com/vjt/openwrt-glinet-x3000),
 lanci [`x3000/prepare.sh`](https://github.com/vjt/openwrt-glinet-x3000/blob/openwrt-25.12/x3000/prepare.sh),
 e ti ritrovi un build tree funzionante pinnato a OpenWrt 25.12 con
 tutte le patch del kernel applicate e tutti i pacchetti custom
 collegati via `feeds.conf`. Da lì un `make` e via.
-
-Non ho voglia di riflashare per ogni aggiornamento di pacchetto, e
-non ho voglia di lanciare build SDK a mano ogni volta che qualcosa va
-ricostruito. Quindi mi sono [fatto un
-dispatcher](/it/posts/2026-03-28-openwrt-builder/):
-[`openwrt-builder`](https://github.com/vjt/openwrt-builder) fa
-polling di GitHub, lancia build SDK remote su istanze spot Hetzner, e
-serve l'indice apk risultante via HTTP sulla VLAN di management,
-firmato con una chiave ECDSA P-256 la cui pubkey è dentro l'immagine.
-Il builder gira su
-[nowhere](/it/posts/2026-01-20-raspberry-pi-luks-encrypted-root/),
-il mio Raspberry Pi sempre acceso. Niente di tutto questo è richiesto
-per usare o ricostruire l'immagine — è solo uno strato di comodità
-per me.
 
 ## Bonus: c'è un altro Linux dentro al modem
 
@@ -386,19 +385,19 @@ Una scatola a forma di router. Due SoC, due architetture, due kernel.
 Quello aarch64 fa girare la rete. Quello armv7l gira dentro al modem,
 e ci puoi entrare in shell.
 
-Attenzione però al cancello: Quectel ha rimosso `AT+QADBKEY?` del
-tutto a partire dal firmware `RM520NGLAAR_A0.301`. Compliance con la
+Una nota importante, però: Quectel ha rimosso `AT+QADBKEY?` del tutto
+a partire dal firmware `RM520NGLAAR_A0.301`. Compliance con la
 Radio Equipment Directive (RED DA) europea — c'è un intero [thread di
 discussione](https://github.com/iamromulan/cellular-modem-wiki/discussions/122)
 in proposito. Una volta che flashi un firmware `≥ A0.301`, l'ADB
 sparisce. Niente percorso supportato per tornare indietro.
 
-Jeeves al momento è su `A03A03M4G`, che è abbondantemente sotto al
-cancello. Tengo una checklist obbligatoria prima di ogni aggiornamento
+Jeeves al momento è su `A03A03M4G` — comodamente prima del taglio
+`A0.301`. Tengo una checklist obbligatoria prima di ogni aggiornamento
 firmware del modem: leggo `AT+QGMR`, confronto lessicograficamente
 l'identificatore di build con `A0.301`, e procedo o mi fermo.
 
-## Epilogo: il mistero del SINR
+## Epilogo: il mistero del SINR perduto
 
 Circa due settimane prima di questa migrazione, il mio SINR sul 5G è
 crollato da una baseline intorno ai 18 dB a 12 dB — nel giro di un
@@ -406,12 +405,12 @@ paio di minuti. Stesso RSRP, stessa cella, stesso beam, solo 6 dB in
 più di rumore. Niente di cambiato dal mio lato. Non stavo guardando la
 dashboard al momento, e non me ne sono accorto.
 
-L'ho beccato due settimane in ritardo, *dopo* aver flashato OpenWrt
-vanilla. Ho lanciato uno speed test per abitudine e mi è uscito ~200
-Mbps dove di solito ne avevo ~350. Cosa che mi ha dato fastidio. Il
-mio primo istinto è stato quello di sospettare la migrazione — una
-regressione nel kernel, in MHI, in qualcosa che avevo appena toccato.
-Ma avevo qualcosa che il me-precedente non aveva: telemetria
+La cosa naturale da fare appena flashato vanilla era lanciare uno
+speed test per verificare le performance. ~200 Mbps dove di solito ne
+avevo ~350. *Oh no, è più lento.* Il mio primo istinto è stato
+sospettare vanilla — una regressione dovuta alla migrazione appena
+fatta, da qualche parte nel nuovo kernel, in MHI, o lungo il driver
+path. Ma avevo qualcosa che il me-precedente non aveva: telemetria
 long-term.
 
 {{< figure src="sinr-drop.png" alt="Due pannelli Grafana impilati etichettati SINR e RSRP, dal 03/30 al 04/27. Il pannello SINR mostra una baseline intorno ai 17–18 dB fino a metà aprile, poi cala a ~11–13 dB e ci resta. Il pannello RSRP resta piatto tra -94 e -97 dBm su tutta la finestra. Entrambi mostrano vari buchi verticali in cui i dati mancano del tutto. Più serie colorate, una per PCI sulla banda n78" caption="Due mesi di SINR (sopra) e RSRP (sotto) per la cella n78 a cui mi attacco normalmente — quella col segnale più forte qui. RSRP è piatto su tutta la finestra: stesso segnale. La baseline del SINR cala a metà aprile: stesso segnale, più rumore. I buchi verticali in *entrambi* i pannelli sono outage veri — finestre lunghe ore in cui il modem ha perso del tutto la portante. Quegli outage sono l'altro motivo per cui sto facendo girare il mio firmware." >}}
@@ -446,18 +445,10 @@ preciso dell'antenna mi facesse recuperare almeno un dB.
 
 {{< figure src="me-antenna.jpg" alt="Selfie scattato dal basso — l'autore in basso a sinistra, sopra di lui l'antenna direzionale 5G montata sul muro dell'edificio, sullo sfondo campagna soleggiata e una vigna sotto un cielo limpido" caption="Funzionato. ~+1 dB di SINR dopo il ri-puntamento, ~+40 Mbps di throughput. Cinque minuti di scala ben spesi." >}}
 
-Guarda di nuovo il grafico: i buchi in *entrambi* i pannelli SINR e
-RSRP non sono artefatti del plotting. Sono outage 5G veri, finestre
-lunghe ore in cui il modem ha perso del tutto il segnale. È l'altro
-motivo per cui ho chiuso col firmware GL.iNet di stock. Quando il 5G
-cade su stock, il router fa fallback al 4G — e ci resta. Qui da me
-l'LTE va sui 5 Mbit/s. Ho già [imparato sulla mia
-pelle](/it/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/) che
-prezzo abbia un outage di 5G a sorpresa in una riunione che conta.
-OpenWrt vanilla mi dà la superficie che mi serve per scrivere la mia
-logica di reconnect — accorgermi dell'outage, aspettare che il 5G
-torni, ribaltare in automatico — invece di combattere col fork
-GL.iNet. Non l'ho ancora scritta. Ma adesso *posso*.
+OpenWrt vanilla mi dà finalmente la superficie che mi serve per
+scrivere la logica di reconnect che quegli outage richiedono —
+accorgermi del drop, aspettare che il 5G torni, ribaltare la radio in
+automatico. Non l'ho ancora scritta. Ma adesso *posso*.
 
 L'affidabilità non è un'impostazione. L'affidabilità è qualcosa che ti
 costruisci. E per costruirla, ti serve il sorgente.
