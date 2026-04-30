@@ -44,13 +44,14 @@ if [ -n "$bad_rel" ]; then
   fail=1
 fi
 
-# (3) Relative src="..." inside raw HTML tags in .it.md (e.g. <video><source src="clip.mp4">,
-# <img src="diagram.svg">, <audio src="..."> ). Same browser-resolution
-# problem as (2): the IT page URL is /it/posts/slug/, so a bare filename
-# becomes /it/posts/slug/clip.mp4 and 404s. Match src="..." values that
-# start with an alphanumeric (not a '/' for absolute paths and not a
-# scheme like https://) and contain neither '/' nor ':' before the dot.
-bad_src=$(grep -rn -E 'src="[A-Za-z0-9_][A-Za-z0-9._-]*\.\w+"' content --include='*.it.md' || true)
+# (3) Relative src="..." inside raw HTML tags in .it.md (e.g.
+# <video><source src="clip.mp4">, <img src="diagram.svg">). Same
+# browser-resolution problem as (2): the IT page URL is /it/posts/slug/,
+# so a bare filename becomes /it/posts/slug/clip.mp4 and 404s.
+# Skip lines that are Hugo shortcode invocations ({{< figure src="..." >}})
+# — those go through Resources.GetMatch and resolve correctly.
+bad_src=$(grep -rn -E 'src="[A-Za-z0-9_][A-Za-z0-9._-]*\.\w+"' content --include='*.it.md' \
+  | grep -v '{{<' || true)
 if [ -n "$bad_src" ]; then
   echo "ERROR: relative src=\"...\" in raw HTML in .it.md — use absolute /posts/slug/file.ext (browser resolves against /it/... and 404s):"
   echo "$bad_src"
