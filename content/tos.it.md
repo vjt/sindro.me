@@ -1,6 +1,7 @@
 ---
 title: Termini di servizio di sindro.me
 date: 2023-08-12
+weight: 20
 noComments: true
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: Cancellazione dei dati da sindro.me
 date: 2023-08-12
+weight: 10
 noComments: true
 ---
 

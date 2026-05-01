@@ -1,6 +1,7 @@
 ---
 title: Privacy policy for sindro.me
 date: 2023-08-12
+weight: 30
 noComments: true
 ---
 

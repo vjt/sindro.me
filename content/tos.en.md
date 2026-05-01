@@ -1,6 +1,7 @@
 ---
 title: Terms of service for sindro.me
 date: 2023-08-12
+weight: 20
 noComments: true
 ---
 

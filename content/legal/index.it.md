@@ -1,6 +1,7 @@
 ---
 title: "Le Scritte in Piccolo"
 date: 2023-08-12
+weight: 40
 noComments: true
 featuredImage: cover.jpg
 ---
