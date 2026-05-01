@@ -1,6 +1,7 @@
 ---
 title: "mwan3 Failover Without the Hung Connections"
 date: 2026-05-01
+draft: true
 tags: [openwrt, mwan3, networking, conntrack, nftables, devlog]
 description: "mwan3 reroutes new flows on uplink failure. Existing flows hang for up to two hours. Here's why, and a small selective conntrack flush that fixes it without nuking the rest of the router."
 image: cover.jpg
