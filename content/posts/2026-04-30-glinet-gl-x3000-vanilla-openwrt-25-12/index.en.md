@@ -13,8 +13,9 @@ from stock GL.iNet firmware (OpenWrt 21.02, kernel 5.4) to vanilla OpenWrt
 25.12 (kernel 6.12.79). The modem — a Quectel RM520N-GL on PCIe/MHI —
 works perfectly. There are four distinct ways to get things wrong before
 you get there. I found most of them. This is the map. If you want a
-pre-built image, head over to [Jeeves r2 on
-GitHub](https://github.com/vjt/openwrt-glinet-x3000/releases/tag/jeeves-r2).
+pre-built image, jump straight to the
+[releases page](https://github.com/vjt/openwrt-glinet-x3000/releases) and
+flash the latest `jeeves-rN` sysupgrade bin.
 
 <!--more-->
 
@@ -258,7 +259,9 @@ metrics straight from the modem without a fight.
 
 ## What I Actually Baked In
 
-The final image includes, beyond the standard OpenWrt 25.12 package set:
+The final image — published as `jeeves-rN` on the
+[releases page](https://github.com/vjt/openwrt-glinet-x3000/releases) —
+includes, beyond the standard OpenWrt 25.12 package set:
 
 - **[`quectel-5g-tools`](https://github.com/vjt/quectel-5g-tools)** — a
   collection of Lua tools I wrote for monitoring and interacting with the
@@ -431,6 +434,7 @@ build it, you need the source.
 Everything — kernel patches, custom packages, build scripts, rootfs
 overlay — lives in
 [vjt/openwrt-glinet-x3000](https://github.com/vjt/openwrt-glinet-x3000).
-The pre-built image is [Jeeves
-r2](https://github.com/vjt/openwrt-glinet-x3000/releases/tag/jeeves-r2)
-— a sensible starting point if you want to skip the build step.
+Pre-built images are tagged on the
+[releases page](https://github.com/vjt/openwrt-glinet-x3000/releases)
+as `jeeves-rN` — a sensible starting point if you want to skip the
+build step.
