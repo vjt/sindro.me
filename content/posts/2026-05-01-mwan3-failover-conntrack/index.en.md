@@ -3,15 +3,15 @@ title: "mwan3 Failover Without the Hung Connections"
 date: 2026-05-01
 draft: true
 tags: [openwrt, mwan3, networking, conntrack, nftables, devlog]
-description: "mwan3 reroutes new flows on uplink failure. Existing flows hang for up to two hours. Here's why, and a small selective conntrack flush that fixes it without nuking the rest of the router."
+description: "mwan3 reroutes new flows on uplink failure. Existing flows hang for hours. Here's why, and a small selective conntrack flush that fixes it without nuking the rest of the router."
 image: cover.jpg
 featuredImage: cover.jpg
 ---
 
 **TL;DR:** mwan3 reroutes *new* flows when an uplink dies. Existing
-flows stay pinned to the dead mark — conntrack remembers, fw4 flow
-offload happily keeps shovelling packets down a dead pipe, and
-long-lived TCP sockets hang until `tcp_keepalive_time` fires (default:
+flows stay pinned to the dead path — conntrack remembers, the firewall
+flow offload happily keeps shovelling packets down a dead pipe, and
+long-lived TCP sockets hang until the kernel keepalive fires (default:
 two hours). The native `flush_conntrack` option is a global nuke. The
 fix is a fifteen-line `/etc/mwan3.user` that does a *selective*
 conntrack flush by mwan3 mark on `disconnected` events only.
@@ -21,32 +21,45 @@ conntrack flush by mwan3 mark on `disconnected` events only.
 ## How I Got Here
 
 After [migrating Jeeves to vanilla OpenWrt
-25.12](/posts/2026-04-30-glinet-gl-x3000-vanilla-openwrt-25-12/) I
-decided to do something I'd been putting off for embarrassingly long:
-actually *test* failover end-to-end on the gateway. Pull the fiber,
-watch what happens. Pull the 5G, watch what happens. Repeat.
+25.12](/posts/2026-04-30-glinet-gl-x3000-vanilla-openwrt-25-12/), I
+finally ran the failover tests I should have been running monthly all
+along: pull the fiber, watch what happens. Pull the 5G, watch what
+happens. Repeat.
 
-mwan3 did its job: pings to `1.1.1.1` recovered in a handful of
-seconds, the routing tables flipped over to the surviving member, new
-sessions came up on the right interface. Looked great.
+The scenario was always the same. mwan3 itself did its job — pings to
+`1.1.1.1` recovered in seconds, the routing tables flipped to the
+surviving member, new sessions came up on the right interface — but
+every long-lived TCP connection that had been established *before* the
+failover just sat there, dead. They came back eventually. On a
+wall-clock measured in *hours*, not seconds.
 
-What didn't look great: my Technitium DoT sockets to upstream
-resolvers were hung. SSH sessions through the gateway were hung. The
-HA WebSocket was hung. Anything with a long-lived TCP connection
-established *before* the failover was sitting there, dead, while new
-connections worked fine. They eventually came back, but on a wall-clock
-timer measured in minutes-to-hours, not in seconds.
+I had known about this for a while and had been working around it.
+Embarrassingly long, in fact. The trigger to finally sit down and fix
+it properly was that the failover testing made the lingering
+connections impossible to keep ignoring.
+
+The casualty list, on my home network: the [Technitium DNS
+server](https://technitium.com/dns/) that forwards every outbound
+query in the house over DNS-over-TLS to upstream resolvers (so my ISP
+doesn't get to log who I'm talking to) holds long-lived TLS sockets
+that hung. SSH sessions through the gateway hung. The Home Assistant
+WebSocket to its mobile companion app hung. Anything with a
+persistent TCP connection from before the failover sat there, mute,
+while new connections worked fine.
 
 That's not failover. That's a coin flip.
 
 ## What's Actually Happening
 
-`golem` runs mwan3 with two members:
+My default gateway, `golem`, is a [GL.iNet
+GL-MT6000](https://www.gl-inet.com/products/gl-mt6000/) running
+vanilla OpenWrt — a quad-core ARM box with two SFP cages and decent
+NAT throughput. It runs mwan3 across two members:
 
-| Member | Iface     | Device         | Mark (mmx_mask `0x3F00`) |
-|--------|-----------|----------------|--------------------------|
-| fiber  | `wan`     | `eth1`         | `0x100` (id 1 << 8)      |
-| 5G     | `wan5g`   | `br-lan.253`   | `0x200` (id 2 << 8)      |
+| Member | mwan3 iface | Linux device  | Mark (mmx_mask `0x3F00`) |
+|--------|-------------|---------------|--------------------------|
+| fiber  | `wan`       | `eth1` (PPPoE) | `0x100` (id 1 << 8)      |
+| 5G     | `wan5g`     | `br-lan.253` (VLAN to Jeeves) | `0x200` (id 2 << 8)      |
 
 When fiber dies, mwan3:
 
@@ -54,54 +67,73 @@ When fiber dies, mwan3:
 2. Walks away.
 
 What it does *not* do: anything to the conntrack entries created while
-fiber was alive. Those entries still carry `ct mark = 0x100`. The fw4
-flow offload table — `hook ingress priority filter`, devices include
-`eth1` — is still happily offloading those flows down `eth1`. Packets
-hit the dead device and drop at L2.
+fiber was alive. Those entries still carry `ct mark = 0x100`, the
+fiber mark.
 
-The TCP layer in the client doesn't know. As far as the kernel is
-concerned, the socket is healthy. There is no RST, no ICMP unreachable,
-no signal. The send buffer fills. Eventually `tcp_keepalive_time`
-fires, the kernel notices, and the socket dies. With the default of
-**7200 seconds** that's two hours.
+That's already a problem on its own. But on this router I make it
+worse on purpose: I run with **software flow offload** enabled in fw4
+(OpenWrt's nftables-based firewall). Flow offload is a kernel
+fast-path: once conntrack has classified a flow as ESTABLISHED,
+subsequent packets bypass the regular netfilter chains and ride a
+dedicated forwarding shortcut, halving (roughly) the per-packet CPU
+cost. Important for a 1 Gbit fiber line on an ARM router; very
+important for not melting under heavy 5G NAT.
 
-You can shorten the keepalive globally, but doing so is risky and
-generic — and it doesn't help the actual problem, which is that
+The shortcut is keyed on the flow's tuple plus output device. After
+fiber dies, the offloaded entries for fiber-marked flows still point
+at `eth1`. The router cheerfully keeps shovelling packets at a device
+whose link is down. Packets drop at L2 — no ICMP, no error, no
+nothing. The TCP layer in the client doesn't know.
+
+As far as the client kernel is concerned, the socket is healthy. The
+send buffer fills. Eventually `tcp_keepalive_time` fires, the kernel
+notices, and the socket dies. With the default of **7200 seconds**
+that's two hours. (Some applications run their own short keepalives
+and recover sooner; many don't, and inherit whatever the kernel does.)
+
+You can shorten the kernel keepalive globally, but doing so is risky
+and generic — and it doesn't help the actual problem, which is that
 conntrack is wrong.
 
-## Things I Tried That Didn't Work
+## Things I Considered That Didn't Work
 
-I came at this from four angles before landing on the right one. None
-of these worked, and the reasons are interesting.
+I came at this from four angles before landing on the right one. The
+reasons each one fails are interesting in themselves.
 
-**`ss -K` on the client.** The plan: kill the offending sockets from
-the client side and let the application reconnect. Sounds clean. It
-doesn't work on `nowhere`, the Pi 5 that hosts most of those sockets,
-because the `rpt-rpi-2712` kernel ships without
-`CONFIG_INET_DIAG_DESTROY`. `ss -K` returns 0 and does nothing. Silent
-no-op. I now have a memory note on this for future me.
+**`ss -K` on the clients.** Kill the offending sockets from the client
+side, let the application reconnect. Two problems. First, it's a
+per-client fix: I'd have to deploy a hook on every device that ever
+holds a long-lived socket through this gateway, and keep doing so as
+the device list grows. Wrong layer. Second, even on the one client
+where I'd actually started prototyping it (`nowhere`, the Pi 5 that
+hosts most of the heavy long-lived sockets), the `rpt-rpi-2712`
+kernel ships without `CONFIG_INET_DIAG_DESTROY`. `ss -K` returns 0
+and does nothing. Silent no-op. Two strikes; never sent a packet.
 
-**Forge a spoofed RST from the gateway.** The plan: have `golem`
-inject a TCP RST into the existing flow with the right tuple, so the
-client kernel marks the socket `ECONNRESET` and the app reconnects.
-Won't work because RFC 5961 requires the RST sequence number to be
-within the receive window — and conntrack does not expose the current
-sequence numbers. `conntrack -L -o extended` and `-o xml` both omit
-them. Out-of-window RSTs are silently discarded.
+**Forge a spoofed RST from the gateway.** Have `golem` inject a TCP
+RST into each affected flow with the right tuple, so the client kernel
+marks the socket `ECONNRESET` and the application reconnects. RFC 5961
+requires the RST sequence number to be inside the receiver's window —
+and conntrack does not expose the current sequence numbers (`-o
+extended` and `-o xml` both omit them). Out-of-window RSTs are
+silently discarded. Dead end without a packet capture per flow.
 
-**Permanent nft `reject with tcp reset` rule on the dead mark.** The
-plan: stand a forwarding rule that issues a TCP reset for any packet
-still trying to leave via the dead-uplink mark. Bypassed by fw4 flow
-offload. Offloaded packets skip the `forward` chain entirely — that's
-literally what offload *does*. The rule never fires until the offload
-entry is invalidated. Which only happens on... a conntrack flush.
+**Permanent nft `reject with tcp reset` rule on the dead mark.** Stand
+a firewall rule in the forward chain that issues a TCP reset whenever
+a packet still tries to leave with the dead-uplink mark. The rule is
+correct in spirit, but the moment a flow is in the offload table it
+no longer traverses the forward chain at all — that's literally what
+offload *does*: skip the chains. The rule never sees the packet
+unless the offload entry is invalidated first. Which only happens
+on... a conntrack flush. Circular.
 
-**mwan3's native `flush_conntrack` option.** This one looked promising
-right up until I read the source. It's implemented as `echo f >
-/proc/net/nf_conntrack`: a *global* flush. Every flow on the router.
+**mwan3's native `flush_conntrack` option.** Looked promising right
+up until I read the source: it's implemented as `echo f >
+/proc/net/nf_conntrack`, a *global* flush of every flow on the router.
 Wireguard, Tailscale, LAN-to-LAN forwarding, the surviving WAN's
-established connections, all of it. Every time mwan3 emits any tracked
-event. Massive collateral damage for a problem that needs surgery.
+established connections, all of it. Every time mwan3 emits any
+configured event. Massive collateral damage for a problem that needs
+surgery.
 
 ## The Fix
 
@@ -134,94 +166,61 @@ case "$ACTION" in
 esac
 ```
 
-Two non-obvious parts.
-
-`config_load mwan3` is mandatory. `mwan3_get_iface_id` reads from
-`mwan3_iface_tbl`, which is populated by walking the mwan3 config.
-Without the load, the lookup returns empty, the mark is `0x000`, and
-`conntrack -D -m 0/0x3F00` matches every unmarked flow on the router
-— local traffic, the lot. I caught it manually before the script
-shipped. The empty-id guard is the seatbelt.
-
-The `local` declarations live inside a function because
-`/etc/hotplug.d/iface/16-mwan3-user` invokes the script through
-`env -i ACTION=… INTERFACE=… DEVICE=… /etc/mwan3.user` under bare ash
-— which doesn't allow `local` at top level.
+One thing that almost shot my foot off: `config_load mwan3` is
+mandatory. `mwan3_get_iface_id` reads from a runtime table that is
+only populated after the mwan3 config has been walked. Skip the load,
+the lookup returns empty, the mark computes to `0x000`, and `conntrack
+-D -m 0/0x3F00` matches every *unmarked* flow on the router —
+local-origin traffic, LAN-to-LAN, the lot. The `[ -n "$id" ] && [
+"$id" != "0" ]` line is the seatbelt that refuses to fire on an empty
+or zero id, so even if something else changes upstream, the script
+won't go on a rampage. I tripped the bug once at the prompt while
+prototyping and the guard caught it.
 
 ## What Happens Now
 
 When fiber dies:
 
 1. mwan3track misses pings, emits `disconnected wan`.
-2. mwan3 updates routing: new flows mark `0x200` (5G).
+2. mwan3 updates the routing tables: new flows mark `0x200` (5G).
 3. `/etc/mwan3.user` runs.
 4. Conntrack entries with `mark & 0x3F00 == 0x100` are deleted, which
-   also drops their fw4 flowtable offload entries.
-5. The next packet on a previously-pinned socket hits `golem` with no
-   conntrack match → kernel forwards via the current default route
-   (5G), creates a fresh conntrack entry with `mark=0x200`, SNAT swaps
-   the source IP from the fiber WAN address to the 5G one.
-6. The remote sees a TCP segment from a new tuple.
+   also drops their fw4 flow offload entries. Subsequent packets for
+   those flows go back to traversing the regular netfilter path.
+5. The next packet on a previously-pinned socket reaches `golem`
+   without a matching conntrack entry. Provided
+   `nf_conntrack_tcp_loose` is on (the OpenWrt default), the kernel
+   accepts the mid-stream segment as a fresh ESTABLISHED conntrack
+   entry, routes it via the now-current default route (5G), and the
+   masquerade rule on the 5G WAN rewrites its source IP and port to
+   the 5G WAN address.
+6. The remote receives a TCP segment from a tuple it has never seen
+   before.
 
 The remote's behaviour is now the dominant variable.
 
 **Polite remote** (most CDNs, Google, Cloudflare DoT): unsolicited
-segment → RST back → client kernel marks the socket `ECONNRESET` →
-application reconnects within an RTT. This is what 99% of the internet
-does.
+segment for an unknown tuple → RST back → the client kernel marks the
+socket `ECONNRESET` → the application reconnects within an RTT. This
+is what 99% of the internet does.
 
 **Silent-drop remote** (some enterprise firewalls, some BGP anycast
-frontends): swallows the segment, no reply. Client retransmits per
-`tcp_retries2` until the kernel gives up (~15 minutes by default) or
-the application's own timeout fires. For DoT specifically, Technitium
-has short app-level timeouts and reissues queries on a fresh socket
+frontends): swallows the segment, no reply. The client retransmits
+per `tcp_retries2` until the kernel gives up (~15 minutes by default)
+or the application's own timeout fires first. For DoT, Technitium has
+short app-level timeouts and reissues queries on a fresh socket
 within seconds. The bound is set by the application, not by the
-kernel.
+kernel. If a particular long-lived service of yours happens to live
+behind a silent-drop remote and has a long app timeout, you have an
+escalation path: turn flow offload off and add the nft RST rule on
+the wrong-mark exit — but I have not needed to.
 
 That's enough. Failover now actually fails over. Pings recover, *and*
 sockets recover, on the same timescale.
 
-## If Silent-Drop Becomes A Problem
-
-It hasn't, for me. If it ever does, the escalation path is:
-
-1. Turn off TCP flow offload on the gateway. Then forwarding
-   *actually* traverses `forward`, and a permanent nft `reject with
-   tcp reset` rule on packets exiting the wrong device for their mark
-   fires on the first segment of any zombie flow. CPU cost per
-   packet goes up; profile before/after.
-2. App-level "force reload" in the few hold-outs. Out of scope.
-
-## Verifying It
-
-`golem` ships logs to `nowhere`'s rsyslog → Telegraf → VictoriaLogs.
-Live tail:
-
-```sh
-ssh root@golem 'logread -f | grep mwan3-flush'
-```
-
-Or query VictoriaLogs directly:
-
-```sh
-curl -sk 'https://victoria.bad.ass/select/logsql/query' \
-  --data-urlencode 'query=_stream:{tags.hostname="golem"} mwan3-flush' \
-  --data-urlencode 'start=-1d' | jq .
-```
-
-Manual fire (will flush real conntrack — only do this on a router you
-can afford to have hiccup briefly):
-
-```sh
-ACTION=disconnected INTERFACE=wan /etc/mwan3.user
-```
-
-Expect a single log line. Expect `conntrack -L | grep -c 'mark=256'`
-to go to roughly zero — `256` decimal is `0x100` hex, the fiber mark.
-
 ---
 
-The whole thing is fifteen lines of shell pinned to one hotplug event.
+The whole thing is fifteen lines of shell hooked to one hotplug event.
 The mwan3 author already did the hard part — every flow is marked,
 every event is fired, every primitive is sitting there waiting to be
 composed. All that was missing was the surgical flush. Reliability is
