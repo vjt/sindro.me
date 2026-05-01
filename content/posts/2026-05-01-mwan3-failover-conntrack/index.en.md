@@ -118,6 +118,8 @@ something that's supposed to be transparent.
 
 ## Things I Considered That Didn't Work
 
+{{< figure src="rejected.jpg" alt="Engraved-plate illustration in amber and teal on cream blueprint grid: four discarded surgical instruments laid on a wooden workbench. Left to right: a pair of fine scissors with a fractured tip, an antique syringe with a curling scroll of cipher pinned to it, a small fence section with a hidden tunnel beneath it carrying a glowing data packet, and a brass bell jar containing a tangle of severed network conduits. Each instrument is tagged with a circular brass marker; faint dotted measurement lines and arrows annotate the bench" caption="Four instruments tried and rejected: per-client surgery, the spoofed RST that can't read a window, the rule the offload tunnels under, and the global-flush bell jar." >}}
+
 I came at this from four angles before landing on the right one. The
 reasons each one fails are interesting in themselves.
 
@@ -157,6 +159,8 @@ that needs surgery.
 
 ## The Fix
 
+{{< figure src="the-fix.jpg" alt="Engraved-plate illustration in amber and teal on cream blueprint grid: a long horizontal row of small luminous packet-envelopes on a workbench. Most glow warm amber and are intact; a contiguous run in the middle glows cool teal and is being delicately lifted away one by one by a precise floating scalpel of light, leaving the bare grid exposed beneath them. Inset top-left: a hand pressing a carved wooden stamp inscribed with a small abstract glyph. Faint dotted measurement lines and tiny annotation arrows around the gap" caption="Surgery, not amputation: only the dead-marked entries leave the bench." >}}
+
 What was needed: flush *only* the conntrack entries marked with the
 dead uplink's mwan3 mark, *only* on `disconnected` events. Conntrack
 already supports this — `conntrack -D -m <mark>/<mask>` deletes by
@@ -194,6 +198,8 @@ esac
 > an empty or zero id.
 
 ## What Happens Now
+
+{{< figure src="recovery.jpg" alt="Engraved-plate illustration in amber and teal on cream blueprint grid: a horizontal flow diagram. On the left, a small antique computer terminal with brass cogs visible emits a glowing amber data packet. The packet meets a teal pipe drawn faintly and crossed out (the dead path), then re-routes through a parallel amber pipe. The pipe terminates in a brass lens or transformer that visibly rewrites the packet's identification mark. The packet then arrives at a fortified cloud-castle on the right. A thin teal arrow flows back along the bottom of the frame to the terminal, where a small bright bloom of light depicts a fresh new connection. Faint dotted measurement lines and circular brass tags annotate the path" caption="The recovery loop: dead path crossed out, alive path takes over, masquerade rewrites the source, the remote answers, the client reconnects." >}}
 
 When fiber dies:
 
