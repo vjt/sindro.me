@@ -1,7 +1,6 @@
 ---
 title: "mwan3 Failover Without the Hung Connections"
 date: 2026-05-01
-draft: true
 tags: [openwrt, mwan3, networking, conntrack, nftables, devlog]
 description: "mwan3 reroutes new flows on uplink failure. Existing flows linger for minutes. Here's why, and a small selective conntrack flush that fixes it without nuking the rest of the router."
 image: cover.jpg
@@ -44,14 +43,14 @@ actually dig in and figure out where the slowness was coming from. The
 new round of drills made the lingering connections impossible to keep
 filing under "later".
 
-The casualty list, on my home network: the [Technitium DNS
+First on the casualty list, on my home network: the [Technitium DNS
 server](https://technitium.com/dns/) that forwards every outbound
 query in the house over DNS-over-TLS to upstream resolvers (so my ISP
 doesn't get to see the names I'm asking for — UDP/53 in cleartext is
-not a hill I'm dying on) holds long-lived TLS sockets that hung. The
-Home Assistant WebSocket to its mobile companion app hung. Anything
-with a persistent TCP connection from before the failover sat there,
-mute, while new connections worked fine.
+not a hill I'm dying on). Its long-lived TLS sockets to those
+resolvers hung. The Home Assistant WebSocket to its mobile companion
+app hung. Anything with a persistent TCP connection from before the
+failover sat there, mute, while new connections worked fine.
 
 That's not failover. That's a coin flip.
 
@@ -87,15 +86,15 @@ gigabit fiber line.
 
 The shortcut is keyed on the flow's tuple plus output device. After
 fiber dies, the offloaded entries for fiber-marked flows still point
-at `eth1`. From `golem`'s point of view, eth1's link to the ISP
+at `eth1`. From `golem`'s point of view, `eth1`'s link to the ISP
 modem is perfectly healthy — mwan3 detected the failure via *upstream*
 ping timeouts, not via a local link-down event. So the router keeps
 emitting packets onto the dead path. Where they actually die depends
 on what failed (the modem's PPPoE session, the optical fiber upstream,
 the ISP's gateway — pick one). The modem will probably emit ICMP
 Destination Unreachable for the first few packets it can't forward,
-and golem will dutifully un-SNAT and forward those errors back to the
-LAN client — but TCP, [per RFC
+and `golem` will dutifully un-SNAT and forward those errors back to
+the LAN client — but TCP, [per RFC
 5461](https://datatracker.ietf.org/doc/html/rfc5461), treats ICMP
 unreachables on an established connection as soft errors and
 ignores them while retransmitting, rather than tearing the socket
@@ -125,8 +124,7 @@ reasons each one fails are interesting in themselves.
 **`ss -K` on the clients.** Kill the offending sockets from the client
 side, let the application reconnect. Wrong layer: I'd have to deploy
 a hook on every device that ever holds a long-lived socket through
-this gateway, and keep doing so as the device list grows. It's a
-per-client fix to a router-level problem.
+this gateway, and keep doing so as the device list grows.
 
 **Forge a spoofed RST from the gateway.** Have `golem` inject a TCP
 RST into each affected flow with the right tuple, so the client kernel

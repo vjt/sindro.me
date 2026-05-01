@@ -1,7 +1,6 @@
 ---
 title: "Failover mwan3 senza connessioni appese"
 date: 2026-05-01
-draft: true
 tags: [openwrt, mwan3, networking, conntrack, nftables, devlog]
 description: "mwan3 sposta i flussi nuovi quando un uplink cade. Quelli esistenti restano appesi per minuti. Ecco perché, e un piccolo flush selettivo del conntrack che risolve senza rasare al suolo il resto del router."
 image: cover.jpg
@@ -45,15 +44,16 @@ di mettermi giù sul serio a capire da dove venisse la lentezza. Il
 nuovo giro di esercitazioni ha reso impossibile continuare ad
 archiviare le connessioni appese sotto "dopo".
 
-Lista delle vittime, sulla mia rete di casa: il [server DNS
-Technitium](https://technitium.com/dns/) che inoltra ogni query in
-uscita dalla casa via DNS-over-TLS verso resolver upstream (così il
-mio ISP non vede in chiaro i nomi che chiedo — il DNS in cleartext su
-UDP/53 non è una battaglia che ho voglia di combattere) tiene aperti
-socket TLS a vita lunga che restavano appesi. Il WebSocket di Home
-Assistant verso la sua app companion sul telefono restava appeso.
-Qualunque cosa con una connessione TCP persistente da prima del
-failover restava lì, muta, mentre quelle nuove andavano benissimo.
+Primo della lista delle vittime, sulla mia rete di casa: il [server
+DNS Technitium](https://technitium.com/dns/) che inoltra ogni query
+in uscita dalla casa via DNS-over-TLS verso resolver upstream (così
+il mio ISP non vede in chiaro i nomi che chiedo — il DNS in cleartext
+su UDP/53 non è una battaglia che ho voglia di combattere). I suoi
+socket TLS a vita lunga verso quei resolver restavano appesi. Il
+WebSocket di Home Assistant verso la sua app companion sul telefono
+restava appeso. Qualunque cosa con una connessione TCP persistente
+da prima del failover restava lì, muta, mentre quelle nuove andavano
+benissimo.
 
 Quello non è failover. È testa o croce.
 
@@ -92,15 +92,15 @@ gigabit.
 La scorciatoia ha come chiave la tupla del flusso più il device di
 output. Quando la fibra cade, le entry offloadate per i flussi
 marcati fibra puntano ancora a `eth1`. Dal punto di vista di `golem`,
-il link di eth1 verso il modem dell'ISP è in perfetta salute — mwan3
-ha rilevato il guasto via timeout dei ping *upstream*, non via un
-evento link-down locale. Quindi il router continua a sputare
+il link di `eth1` verso il modem dell'ISP è in perfetta salute —
+mwan3 ha rilevato il guasto via timeout dei ping *upstream*, non via
+un evento link-down locale. Quindi il router continua a sputare
 pacchetti sul percorso morto. Dove muoiano davvero dipende da cosa
 si è rotto (la sessione PPPoE del modem, la fibra ottica a monte, il
 gateway dell'ISP — scegli pure). Il modem probabilmente emette ICMP
 Destination Unreachable per i primi pacchetti che non riesce a
-inoltrare, e golem fa diligentemente l'un-SNAT e li gira indietro al
-client di LAN — ma il TCP, [per RFC
+inoltrare, e `golem` fa diligentemente l'un-SNAT e li gira indietro
+al client di LAN — ma il TCP, [per RFC
 5461](https://datatracker.ietf.org/doc/html/rfc5461), tratta gli
 ICMP unreachable su una connessione stabilita come *soft errors* e
 li ignora mentre ritrasmette, invece di abbattere il socket al primo
@@ -109,10 +109,10 @@ L'applicazione aspetta.
 
 Prima o poi scatta il timeout applicativo che la connessione si porta
 dietro — i client DoT ne hanno di corti, i WebSocket fanno
-pong-timeout in decine di secondi, SSH dipende dal `ServerAliveInterval`
-che hai impostato, se l'hai impostato — e l'applicazione chiude il
-socket morto, ne apre uno nuovo, e si rimette in piedi sull'uplink
-vivo.
+pong-timeout in decine di secondi, SSH dipende dal
+`ServerAliveInterval`, se ne hai impostato uno — e l'applicazione
+chiude il socket morto, ne apre uno nuovo, e si rimette in piedi
+sull'uplink vivo.
 
 Il `tcp_keepalive_time` del kernel è impostato di default a 7200
 secondi, quindi senza nessun timeout applicativo finisci sul
@@ -132,8 +132,7 @@ giusta. I motivi per cui ognuna fallisce sono interessanti in sé.
 lasciare che l'applicazione si riconnetta. Layer sbagliato: dovrei
 piazzare un hook su ogni device che apra una connessione a vita lunga
 attraverso questo gateway, e continuare a farlo a mano a mano che la
-lista dei device cresce. È una soluzione per-client per un problema
-a livello di router.
+lista dei device cresce.
 
 **Forgiare un RST spoofato dal gateway.** Far iniettare a `golem` un
 TCP RST nel flusso esistente con la tupla giusta, così il kernel del
@@ -220,7 +219,7 @@ Quando la fibra cade:
    di fw4. I pacchetti successivi per quei flussi tornano a passare
    per la pipeline regolare di netfilter.
 5. Il prossimo pacchetto su un socket precedentemente inchiodato
-   arriva su `golem` senza una entry conntrack che corrisponda. A
+   arriva su `golem` senza un'entry conntrack che corrisponda. A
    patto che
    [`nf_conntrack_tcp_loose`](https://www.kernel.org/doc/Documentation/networking/nf_conntrack-sysctl.rst)
    sia attivo — il default su OpenWrt — il kernel accetta il segmento
