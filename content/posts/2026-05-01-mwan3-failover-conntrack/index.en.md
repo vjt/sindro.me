@@ -26,22 +26,23 @@ Jeeves](/posts/2026-04-30-glinet-gl-x3000-vanilla-openwrt-25-12/) — my
 GL.iNet GL-X3000, the 5G router that handles the
 [backup uplink so I don't lose another
 meeting](/posts/2026-01-31-quectel-5g-modem-tools-for-openwrt/) — to
-vanilla OpenWrt 25.12, I finally ran the failover tests I should have
-been running monthly all along: pull the fiber, watch what happens.
-Pull the 5G, watch what happens. Repeat.
+vanilla OpenWrt 25.12, I went back to running my failover drills on
+the gateway: pull the fiber, watch what happens. Pull the 5G, watch
+what happens. Repeat.
 
-The scenario was always the same. mwan3 itself did its job — pings to
-`1.1.1.1` recovered in seconds, the routing tables flipped to the
-surviving member, new sessions came up on the right interface — but
-every long-lived TCP connection that had been established *before* the
-failover just sat there, dead. They came back eventually. On a
-wall-clock measured in *minutes*, governed entirely by the application
-layer's own timeouts, never by the network.
+The scenario was always the same one I'd been observing for months.
+mwan3 itself did its job — pings to `1.1.1.1` recovered in seconds,
+the routing tables flipped to the surviving member, new sessions came
+up on the right interface — but every long-lived TCP connection that
+had been established *before* the failover just sat there, dead. They
+came back eventually. On a wall-clock measured in *minutes*, usually
+governed by the application layer's own timeouts.
 
-I had known about this for a while and had been working around it.
-Embarrassingly long, in fact. The trigger to finally sit down and fix
-it properly was that the failover testing made the lingering
-connections impossible to keep ignoring.
+I'd known about this for a while and had been working around it.
+Embarrassingly long, in fact — I'd just never carved out the time to
+actually dig in and figure out where the slowness was coming from. The
+new round of drills made the lingering connections impossible to keep
+filing under "later".
 
 The casualty list, on my home network: the [Technitium DNS
 server](https://technitium.com/dns/) that forwards every outbound
@@ -90,23 +91,28 @@ fiber dies, the offloaded entries for fiber-marked flows still point
 at `eth1`. From `golem`'s point of view, eth1's link to the ISP
 modem is perfectly healthy — mwan3 detected the failure via *upstream*
 ping timeouts, not via a local link-down event. So the router keeps
-emitting packets onto the dead path. Where they actually die
-depends on what failed (the modem's PPPoE session, the optical fiber
-upstream, the ISP's gateway — pick one), but none of that bubbles
-back to the original LAN client as a useful TCP signal. No RST. No
-ICMP unreachable. The client just stops getting acks.
+emitting packets onto the dead path. Where they actually die depends
+on what failed (the modem's PPPoE session, the optical fiber upstream,
+the ISP's gateway — pick one). The modem will probably emit ICMP
+Destination Unreachable for the first few packets it can't forward,
+and golem will dutifully un-SNAT and forward those errors back to the
+LAN client — but TCP, [per RFC
+5461](https://datatracker.ietf.org/doc/html/rfc5461), treats ICMP
+unreachables on an established connection as soft errors and
+ignores them while retransmitting, rather than tearing the socket
+down on the first one. The client kernel keeps the socket open. The
+application waits.
 
-As far as the client kernel is concerned, the socket is healthy. The
-send buffer fills. The application waits. Eventually whatever
-app-level timeout it carries for that connection fires (DoT clients
-have short ones, WebSockets pong-timeout in tens of seconds, SSH
-takes minutes), it closes the dead socket, opens a new one, and
-recovers — over the alive uplink, this time.
+Eventually whatever app-level timeout the application carries for
+that connection fires (DoT clients have short ones, WebSockets
+pong-timeout in tens of seconds, SSH depends on whatever
+`ServerAliveInterval` you set, if any), it closes the dead socket,
+opens a new one, and recovers — over the alive uplink, this time.
 
 The kernel's own `tcp_keepalive_time` is set to 7200 seconds by
-default, so without short app-level timeouts you'd be looking at the
-two-hour fallback. In practice nothing on my network is patient
-enough to wait for that, and you measure the actual recovery in
+default, so without any app-level timeout at all you'd be looking at
+the two-hour fallback. In practice nothing on my network is patient
+enough to wait for that, and the actual recovery measures in
 single-digit to low-double-digit minutes. Still way too long for
 something that's supposed to be transparent.
 
@@ -116,14 +122,10 @@ I came at this from four angles before landing on the right one. The
 reasons each one fails are interesting in themselves.
 
 **`ss -K` on the clients.** Kill the offending sockets from the client
-side, let the application reconnect. Wrong layer, even before you ask
-how: I'd have to deploy a hook on every device that ever holds a
-long-lived socket through this gateway, and keep doing so as the
-device list grows. It's a per-client fix to a router-level problem.
-It also turned out, when I went to prototype it, that the Pi 5
-hosting most of those sockets ships a kernel without
-`CONFIG_INET_DIAG_DESTROY` — `ss -K` returns 0 and does nothing.
-Two strikes; never sent a packet.
+side, let the application reconnect. Wrong layer: I'd have to deploy
+a hook on every device that ever holds a long-lived socket through
+this gateway, and keep doing so as the device list grows. It's a
+per-client fix to a router-level problem.
 
 **Forge a spoofed RST from the gateway.** Have `golem` inject a TCP
 RST into each affected flow with the right tuple, so the client kernel
@@ -182,14 +184,14 @@ case "$ACTION" in
 esac
 ```
 
-One thing that almost shot my foot off: `config_load mwan3` is
-mandatory. `mwan3_get_iface_id` reads from a runtime table that is
-only populated after the mwan3 config has been walked. Skip the load,
-the lookup returns empty, the mark computes to `0x000`, and `conntrack
--D -m 0/0x3F00` matches every *unmarked* flow on the router —
-local-origin traffic, LAN-to-LAN, the lot. The `[ -n "$id" ] && [
-"$id" != "0" ]` line is the seatbelt that refuses to fire on an empty
-or zero id.
+> *One thing that almost shot my foot off:* `config_load mwan3` is
+> mandatory. `mwan3_get_iface_id` reads from a runtime table that is
+> only populated after the mwan3 config has been walked. Skip the
+> load, the lookup returns empty, the mark computes to `0x000`, and
+> `conntrack -D -m 0/0x3F00` matches every *unmarked* flow on the
+> router — local-origin traffic, LAN-to-LAN, the lot. The `[ -n "$id"
+> ] && [ "$id" != "0" ]` line is the seatbelt that refuses to fire on
+> an empty or zero id.
 
 ## What Happens Now
 
@@ -240,3 +242,9 @@ The mwan3 author already did the hard part — every flow is marked,
 every event is fired, every primitive is sitting there waiting to be
 composed. All that was missing was the surgical flush. Reliability is
 not a setting. Reliability is something you build.
+
+Both `/etc/mwan3.user` and the `mwan-ct` operator helper (list, count,
+top-talkers, inspect-offload, manual flush by uplink) live in
+[**vjt/mwan3-selective-flush**](https://github.com/vjt/mwan3-selective-flush)
+on GitHub. Drop them in, smoke-test with the recipe in the README,
+done.
