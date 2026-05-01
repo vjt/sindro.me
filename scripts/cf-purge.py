@@ -2,9 +2,18 @@
 """
 Purge Cloudflare cache for content that changed in this build.
 
-Compares two build directories by SHA-256 hashing all HTML/XML output,
-emits the set of URLs whose content changed (or was deleted), and POSTs
-the URL list to Cloudflare's purge_cache endpoint.
+Compares two build directories by SHA-256 hashing HTML/XML output and
+non-fingerprinted binary assets (images, PDFs, audio, text), emits the
+set of URLs whose content changed (or was deleted), and POSTs the URL
+list to Cloudflare's purge_cache endpoint.
+
+Hugo-fingerprinted assets (e.g. *_hu_<hash>.webp, js/bundle.<hash>.js,
+fonts/*.woff2) are skipped: their URLs change with content, so old
+cache entries become orphans rather than stale. Use cf-purge-static.py
+when only response headers change on those stable URLs.
+
+Videos (.mp4, LFS-tracked) are skipped: they rarely change in place
+and hashing them is expensive.
 
 Scope is restricted to the apex hostname (e.g. https://sindro.me/),
 leaving sibling subdomains (remark., noema., vjt.) cache untouched.
@@ -26,6 +35,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import os
+import re
 import sys
 from pathlib import Path
 from typing import Iterable
@@ -33,7 +43,23 @@ from typing import Iterable
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _cf import DEFAULT_BATCH_SIZE, load_token, purge_urls
 
-CONTENT_EXTS = {".html", ".xml"}
+TEXT_EXTS = {".html", ".xml"}
+BINARY_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg",
+               ".ico", ".pdf", ".asc", ".pub", ".txt", ".mp3"}
+TRACKED_EXTS = TEXT_EXTS | BINARY_EXTS
+
+# Hugo-fingerprinted URLs change with content, so the old URL becomes
+# an orphan rather than stale — no purge needed. Header-only changes
+# on these stable-URL families are handled by cf-purge-static.py.
+HU_FINGERPRINT = re.compile(r"_hu_[a-f0-9]+\.(webp|jpg|jpeg|png|gif)$", re.IGNORECASE)
+JS_FINGERPRINT = re.compile(r"^js/bundle\.[a-f0-9]+\.js$")
+FONT_FINGERPRINT = re.compile(r"^fonts/.+\.woff2$")
+
+
+def is_fingerprinted(rel: str) -> bool:
+    return bool(HU_FINGERPRINT.search(rel)
+                or JS_FINGERPRINT.match(rel)
+                or FONT_FINGERPRINT.match(rel))
 
 
 def hash_tree(root: Path) -> dict[str, str]:
@@ -41,9 +67,11 @@ def hash_tree(root: Path) -> dict[str, str]:
     for path in root.rglob("*"):
         if not path.is_file():
             continue
-        if path.suffix.lower() not in CONTENT_EXTS:
+        if path.suffix.lower() not in TRACKED_EXTS:
             continue
-        rel = str(path.relative_to(root))
+        rel = path.relative_to(root).as_posix()
+        if is_fingerprinted(rel):
+            continue
         manifest[rel] = hashlib.sha256(path.read_bytes()).hexdigest()
     return manifest
 
