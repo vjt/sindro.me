@@ -41,7 +41,6 @@ defaultContentLanguageInSubdir = false
   remark42 = true
   remark42_host = "https://remark.sindro.me"
   remark42_site_id = "remark.sindro.me"
-  remark42_url = "https://sindro.me"
 
   console_tagline = "You found the console. You're one of us."
   source_url = "https://github.com/vjt/sindro.me"
