@@ -59,8 +59,7 @@ That's not failover. That's a coin flip.
 
 My default gateway, `golem`, is a [GL.iNet
 GL-MT6000](https://www.gl-inet.com/products/gl-mt6000/) running
-vanilla OpenWrt — a quad-core ARM box with a generous spread of
-2.5GbE ports. It runs
+vanilla OpenWrt. It runs
 [mwan3](https://openwrt.org/docs/guide-user/network/wan/multiwan/mwan3)
 across two members:
 
@@ -103,11 +102,11 @@ ignores them while retransmitting, rather than tearing the socket
 down on the first one. The client kernel keeps the socket open. The
 application waits.
 
-Eventually whatever app-level timeout the application carries for
-that connection fires (DoT clients have short ones, WebSockets
-pong-timeout in tens of seconds, SSH depends on whatever
-`ServerAliveInterval` you set, if any), it closes the dead socket,
-opens a new one, and recovers — over the alive uplink, this time.
+Eventually whatever app-level timeout that connection has fires —
+DoT clients carry short ones, WebSockets pong-timeout in tens of
+seconds, SSH depends on whatever `ServerAliveInterval` you set, if
+any — and the application closes the dead socket, opens a new one,
+and recovers over the alive uplink.
 
 The kernel's own `tcp_keepalive_time` is set to 7200 seconds by
 default, so without any app-level timeout at all you'd be looking at
@@ -212,11 +211,11 @@ When fiber dies:
 5. The next packet on a previously-pinned socket reaches `golem`
    without a matching conntrack entry. Provided
    [`nf_conntrack_tcp_loose`](https://www.kernel.org/doc/Documentation/networking/nf_conntrack-sysctl.rst)
-   is on (the OpenWrt default — verified `= 1` on golem, kernel
-   6.6.119), the kernel accepts the mid-stream segment as a fresh
-   ESTABLISHED conntrack entry, routes it via the now-current default
-   route (5G), and the masquerade rule on the 5G WAN rewrites its
-   source IP and port to the 5G WAN address.
+   is on — the default on OpenWrt — the kernel accepts the
+   mid-stream segment as a fresh ESTABLISHED conntrack entry, routes
+   it via the now-current default route (5G), and the masquerade
+   rule on the 5G WAN rewrites its source IP and port to the 5G WAN
+   address.
 6. The remote receives a TCP segment from a tuple it has never seen
    before.
 
