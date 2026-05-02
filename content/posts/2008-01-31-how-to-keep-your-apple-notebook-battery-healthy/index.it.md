@@ -1,7 +1,7 @@
 ---
 date: 2008-01-31
 title: Come mantenere in salute la batteria del tuo notebook Apple
-tags: [apple, howto, life]
+tags: [apple, howto, life, macos]
 ---
 
 {{< retrospective year="2026" >}}

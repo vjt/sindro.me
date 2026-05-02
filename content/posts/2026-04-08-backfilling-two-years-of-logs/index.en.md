@@ -1,7 +1,7 @@
 ---
 title: "Three Telegraf Bugs and 25 Million Log Lines"
 date: 2026-04-08
-tags: [ai-generated, sysadmin, observability, projects]
+tags: [ai-generated, sysadmin, observability, projects, freebsd, nginx]
 description: "How a syslog backfill through Telegraf on a Raspberry Pi uncovered three upstream bugs — a DNS retry storm, a missing serialization mode, and a pipe deadlock."
 ---
 

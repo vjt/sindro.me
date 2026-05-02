@@ -1,7 +1,7 @@
 ---
 title: "Docker vs. iptables: A Tale of Rage and the DOCKER-USER Chain"
 date: 2026-01-30T00:00:00+01:00
-tags: [ai-generated, linux, networking, sysadmin, home-assistant, open-source]
+tags: [ai-generated, linux, networking, sysadmin, home-assistant, open-source, docker]
 description: "Docker's handling of iptables is a nightmare for hybrid host/VM setups. Here is why iptables-save fails, and the correct, deterministic way to fix it."
 ---
 

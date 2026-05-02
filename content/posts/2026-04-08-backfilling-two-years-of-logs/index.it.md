@@ -1,7 +1,7 @@
 ---
 title: "Tre bug di Telegraf e 25 milioni di righe di log"
 date: 2026-04-08
-tags: [ai-generated, sysadmin, observability, projects]
+tags: [ai-generated, sysadmin, observability, projects, freebsd, nginx]
 description: "Come un backfill di syslog attraverso Telegraf su un Raspberry Pi ha scovato tre bug upstream — una tempesta di retry DNS, una modalità di serializzazione mancante, e un deadlock nelle pipe."
 ---
 

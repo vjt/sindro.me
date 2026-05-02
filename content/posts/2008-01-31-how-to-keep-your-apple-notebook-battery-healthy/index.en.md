@@ -1,7 +1,7 @@
 ---
 date: 2008-01-31
 title: how to keep your apple notebook battery healthy
-tags: [apple, howto, life]
+tags: [apple, howto, life, macos]
 ---
 
 {{< retrospective year="2026" >}}

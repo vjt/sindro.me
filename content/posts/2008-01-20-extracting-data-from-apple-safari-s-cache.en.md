@@ -1,7 +1,7 @@
 ---
 title: Extracting data from Apple Safari's cache
 date: 2008-01-20
-tags: [apple, backup]
+tags: [apple, backup, macos]
 ---
 
 {{< retrospective year="2026" >}}

@@ -1,7 +1,7 @@
 ---
 title: Estrarre dati dalla cache di Apple Safari
 date: 2008-01-20
-tags: [apple, backup]
+tags: [apple, backup, macos]
 ---
 
 {{< retrospective year="2026" >}}

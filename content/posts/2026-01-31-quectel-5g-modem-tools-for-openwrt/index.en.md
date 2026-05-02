@@ -1,7 +1,7 @@
 ---
 title: "5G as Fiber Backup: Never Miss a Meeting Again"
 date: 2026-01-31
-tags: [ai-generated, iot, networking, openwrt, python, sysadmin, open-source]
+tags: [ai-generated, iot, networking, openwrt, python, sysadmin, open-source, 5g, glinet, modem, quectel]
 description: "Open source Python tools for Quectel 5G modems on OpenWRT. Real-time signal monitoring with audio feedback for antenna pointing. MIT licensed."
 ---
 
