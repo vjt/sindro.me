@@ -1,7 +1,7 @@
 ---
 title: "decaf: Modello Redditi PF su investimenti esteri (senza commercialista)"
 date: 2026-04-18
-tags: [python, open-source, investimenti-esteri, dichiarazione-redditi, modello-redditi-pf, interactive-brokers, charles-schwab, rsu]
+tags: [python, open-source, investimenti-esteri, dichiarazione-redditi, modello-redditi-pf, interactive-brokers, charles-schwab, rsu, ai-generated]
 description: "decaf è un tool Python open source per compilare il Modello Redditi PF su investimenti esteri: prende i file dei broker (Interactive Brokers Flex Query, Charles Schwab RSU) e calcola Quadro RW (monitoraggio + IVAFE), Quadro RT (plusvalenze 26% con conversione per-lotto art. 9 c. 2 TUIR), Quadro RL (dividendi esteri, ritenute), soglia valutaria art. 67(1)(c-ter). Per residenti fiscali italiani con conti IBKR o Schwab — tutto senza commercialista. Tre fixture di test intitolate a tre santi patroni dell'audio-cult italiano."
 image: cover.png
 featuredImage: cover.png

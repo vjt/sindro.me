@@ -1,7 +1,7 @@
 ---
 title: "How banIP Nuked My WireGuard Throughput Since February"
 date: 2026-04-07
-tags: [openwrt, wireguard, networking, debugging, mwan3, banip]
+tags: [openwrt, wireguard, networking, debugging, mwan3, banip, ai-generated]
 description: "A firewall ICMP rate limit was dropping mwan3 health check replies, making the fiber link look flaky, forcing WireGuard traffic onto a 2 Mbps 5G backup. For two months."
 featuredImage: cover.jpg
 ---

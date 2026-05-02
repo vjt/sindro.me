@@ -1,7 +1,7 @@
 ---
 title: "Myousica: a collaborative music remixing platform"
 date: 2010-10-14
-tags: ["rails", "ruby", "myousica", "open-source", "music"]
+tags: [rails, ruby, myousica, open-source, music]
 description: "Open-sourcing Myousica (now Mewsic), the collaborative music platform we built between 2007 and 2010 — a Rails app where musicians upload tracks, remix each other's songs, and mix everything in the browser."
 image: cover.jpg
 featuredImage: cover.jpg

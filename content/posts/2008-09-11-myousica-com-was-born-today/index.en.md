@@ -1,7 +1,7 @@
 ---
 title: "myousica.com was born today"
 date: 2008-09-11
-tags: ["myousica", "music", "ruby", "rails", "open-source"]
+tags: [myousica, music, ruby, rails, open-source]
 description: "Today we released the output of 9 months of hard work: myousica.com, a social networking site for musicians."
 ---
 

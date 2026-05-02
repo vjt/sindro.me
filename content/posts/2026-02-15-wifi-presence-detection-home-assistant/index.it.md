@@ -1,7 +1,7 @@
 ---
 title: "Rilevamento presenza WiFi per Home Assistant con OpenWrt"
 date: 2026-02-15
-tags: [ai-generated, iot, home-assistant, openwrt, networking, python, sysadmin]
+tags: [ai-generated, iot, home-assistant, openwrt, networking, python, sysadmin, open-source]
 description: "Rilevamento presenza a livello di stanza per Home Assistant tramite scraping delle metriche RSSI direttamente dagli AP OpenWrt. Il segnale più forte sceglie la stanza. Niente TSDB, niente parsing di log, niente cloud — solo i tuoi AP che ti dicono dove sono tutti."
 ---
 

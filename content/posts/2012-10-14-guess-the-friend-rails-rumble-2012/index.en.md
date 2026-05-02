@@ -1,7 +1,7 @@
 ---
 title: '"Guess The Friend" — 48 hours of Rails Rumble madness'
 date: 2012-10-14
-tags: [rails, ruby, hackathon, facebook]
+tags: [rails, ruby, hackathon, facebook, open-source]
 image: cover.jpg
 featuredImage: cover.jpg
 ---

@@ -1,7 +1,7 @@
 ---
 date: 2008-10-22T15:00:00Z
 title: Pushing git commit messages to lighthouse in a batch
-tags: [git, ruby]
+tags: [git, ruby, open-source]
 ---
 
 {{< retrospective year="2026" >}}

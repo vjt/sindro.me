@@ -1,7 +1,7 @@
 ---
 date: 2009-01-29T19:00:00Z
 title: "A permalink_fu improvement: allow modification of permalinks and send HTTP redirects on-the-fly"
-tags: [ruby, projects, rails]
+tags: [ruby, projects, rails, open-source]
 ---
 
 {{< retrospective year="2026" >}}

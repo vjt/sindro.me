@@ -1,7 +1,7 @@
 ---
 title: "The Myousica multitrack: audio mixing in the browser"
 date: 2010-10-16
-tags: ["myousica", "music", "flash", "actionscript", "audio", "open-source"]
+tags: [myousica, music, flash, actionscript, audio, open-source]
 description: "Inside the Flash/Flex multitrack audio editor that powers Myousica — 16-track synchronized playback, real-time recording via RTMP, waveform visualization, and a state machine to keep it all together."
 image: cover.jpg
 featuredImage: cover.jpg

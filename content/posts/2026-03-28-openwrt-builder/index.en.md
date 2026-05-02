@@ -1,7 +1,7 @@
 ---
 title: "Building OpenWrt packages with throwaway cloud VMs and a Telegram bot"
 date: 2026-03-28
-tags: [openwrt, docker, python, networking]
+tags: [openwrt, docker, python, networking, ai-generated, open-source]
 image: cover.jpg
 featuredImage: cover.jpg
 description: "A Docker-based system that auto-polls git repos, spins up ephemeral Hetzner VMs for cross-architecture OpenWrt package builds, and puts it all behind a Telegram bot. Full cycle: ~2 minutes, ~EUR 0.001 per build."

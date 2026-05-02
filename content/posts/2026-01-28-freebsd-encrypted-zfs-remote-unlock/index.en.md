@@ -1,7 +1,7 @@
 ---
 title: FreeBSD encrypted ZFS remote unlocking via SSH
 date: 2026-01-28
-tags: [ai-generated, freebsd, sysadmin, security]
+tags: [ai-generated, freebsd, sysadmin, security, open-source]
 ---
 
 ![A locked server rack in a dark data center, an SSH connection beam reaching toward a glowing encryption padlock](/posts/2026-01-28-freebsd-encrypted-zfs-remote-unlock/cover.jpg)

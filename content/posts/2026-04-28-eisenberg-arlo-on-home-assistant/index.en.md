@@ -1,7 +1,7 @@
 ---
 title: "Eisenberg: Arlo cameras on Home Assistant, the easy way"
 date: 2026-04-28
-tags: [home-assistant, arlo, hacs, mqtt, python, devlog]
+tags: [home-assistant, arlo, hacs, mqtt, python, projects, ai-generated, open-source]
 description: "A small, typed, event-driven Home Assistant integration for Arlo cameras. Push approval once, then silent for 14 days."
 image: cover.jpg
 featuredImage: cover.jpg

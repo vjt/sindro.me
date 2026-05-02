@@ -1,7 +1,7 @@
 ---
 title: 'Rails 3: Better, Faster, Stronger'
 date: 2009-06-04
-tags: [rails, ruby]
+tags: [rails, ruby, open-source]
 ---
 
 {{< retrospective year="2026" >}}

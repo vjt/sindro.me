@@ -1,7 +1,7 @@
 ---
 title: "GRcalc: A Graphical Calculator in Turbo Pascal, 2002"
 date: 2026-04-15
-tags: [pascal, graphics, parser, university, retrospective, archaeology]
+tags: [pascal, graphics, parser, university, retrospective, archaeology, ai-generated, open-source]
 description: "My programming exam asked for structs of books saved to a binary file. I built a graphical calculator with an expression parser, recursive evaluator, and real-time rendering instead. The professor gave me 25/30 because she didn't understand the code. I left the university."
 image: cover.jpg
 featuredImage: cover.jpg

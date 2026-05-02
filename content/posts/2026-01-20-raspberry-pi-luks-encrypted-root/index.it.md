@@ -2,7 +2,7 @@
 title: Root cifrata con LUKS su Raspberry PI 5
 date: 2026-01-20
 updated: 2026-03-14
-tags: [linux, sysadmin, security]
+tags: [linux, sysadmin, security, ai-generated, open-source]
 ---
 
 ![Un Raspberry Pi 5 su una scrivania con un SSD raffigurato come una cassaforte luminosa, un lucchetto che fluttua sopra](/posts/2026-01-20-raspberry-pi-luks-encrypted-root/cover.jpg)

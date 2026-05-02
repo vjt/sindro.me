@@ -1,7 +1,7 @@
 ---
 date: 2010-05-11T19:00:00Z
 title: "Spent my day on Erlang-Ruby-Marshal today ;-)"
-tags: [erlang, projects, ruby]
+tags: [erlang, projects, ruby, open-source]
 ---
 
 {{< retrospective year="2026" >}}

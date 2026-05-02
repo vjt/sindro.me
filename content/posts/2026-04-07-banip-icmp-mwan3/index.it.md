@@ -1,7 +1,7 @@
 ---
 title: "Come banIP ha distrutto il throughput del mio WireGuard da febbraio"
 date: 2026-04-07
-tags: [openwrt, wireguard, networking, debugging, mwan3, banip]
+tags: [openwrt, wireguard, networking, debugging, mwan3, banip, ai-generated]
 description: "Un rate limit ICMP del firewall droppava le risposte degli health check di mwan3, facendo sembrare instabile la fibra e forzando il traffico WireGuard sul backup 5G a 2 Mbps. Per due mesi."
 featuredImage: cover.jpg
 ---

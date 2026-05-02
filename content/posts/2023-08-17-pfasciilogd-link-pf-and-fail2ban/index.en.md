@@ -1,7 +1,7 @@
 ---
 title: 'pfasciilogd: link pf and fail2ban'
 date: 2023-08-17
-tags: [freebsd, sysadmin, security]
+tags: [freebsd, sysadmin, security, open-source]
 ---
 
 ![A fortress wall of glowing firewall rules with Beastie standing guard, deflecting port scanners with a ban hammer](/posts/2023-08-17-pfasciilogd-link-pf-and-fail2ban/cover.jpg)

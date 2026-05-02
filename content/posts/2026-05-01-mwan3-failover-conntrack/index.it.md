@@ -1,7 +1,7 @@
 ---
 title: "Failover mwan3 senza connessioni appese"
 date: 2026-05-01
-tags: [openwrt, mwan3, networking, conntrack, nftables, devlog]
+tags: [openwrt, mwan3, networking, conntrack, nftables, projects, ai-generated, open-source]
 description: "mwan3 sposta i flussi nuovi quando un uplink cade. Quelli esistenti restano appesi per minuti. Ecco perché, e un piccolo flush selettivo del conntrack che risolve senza rasare al suolo il resto del router."
 image: cover.jpg
 featuredImage: cover.jpg

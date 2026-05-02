@@ -1,7 +1,7 @@
 ---
 date: "2008-12-01T22:00:00Z"
 title: "La fine dell'anonimato online"
-tags: ["facebook", "networking", "social", "web2.0"]
+tags: [facebook, networking, social, web2.0]
 ---
 
 {{< retrospective year="2026" >}}

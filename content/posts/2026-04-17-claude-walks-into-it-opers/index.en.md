@@ -1,7 +1,7 @@
 ---
 title: "Claude walks into #it-opers"
 date: 2026-04-17
-tags: [irc, claude, claude-code, ai, azzurra, automation, bots]
+tags: [irc, azzurra, automation, bots, ai-generated, open-source]
 description: "A one-evening proof of concept: a Claude Code session bridged onto the Azzurra IRC network as vjt-claude, a real participant in #it-opers with a trust model, a FIFO, two separate OPSEC mistakes, and a plan to reboot IRC for 2026."
 image: cover.jpg
 featuredImage: cover.jpg

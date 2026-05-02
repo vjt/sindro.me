@@ -1,7 +1,7 @@
 ---
 title: "grappa-irc: lavori iniziati, stack scelto — Elixir su BEAM"
 date: 2026-04-24
-tags: [irc, azzurra, grappa-irc, elixir, beam, phoenix, devlog]
+tags: [irc, azzurra, grappa-irc, elixir, beam, phoenix, projects, ai-generated, open-source]
 description: "Update veloce: i lavori su grappa-irc sono partiti, e abbiamo deciso lo stack. Elixir/Phoenix sul BEAM."
 image: cover.jpg
 featuredImage: cover.jpg

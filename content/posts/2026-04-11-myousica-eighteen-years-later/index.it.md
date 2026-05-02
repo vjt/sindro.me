@@ -1,7 +1,7 @@
 ---
 title: "Myousica, diciotto anni dopo"
 date: 2026-04-11
-tags: ["myousica", "retrospective", "music", "open-source"]
+tags: [myousica, retrospective, music, open-source, archaeology, ai-generated]
 description: "Diciotto anni dopo aver iniziato a costruire Myousica, la piattaforma di musica collaborativa che era troppo in anticipo sui tempi — uno sguardo a cosa abbiamo costruito, perché non ha funzionato, e chi lo fa oggi."
 image: cover.jpg
 featuredImage: cover.jpg

@@ -1,7 +1,7 @@
 ---
 title: "GRcalc: Calcolatrice Grafica in Turbo Pascal, 2002"
 date: 2026-04-15
-tags: [pascal, graphics, parser, university, retrospective, archaeology]
+tags: [pascal, graphics, parser, university, retrospective, archaeology, ai-generated, open-source]
 description: "L'esame di programmazione chiedeva struct di libri salvati in un file binario. Io ho costruito una calcolatrice grafica con parser di espressioni, valutatore ricorsivo e rendering in tempo reale. La professoressa mi ha dato 25/30 perché non capiva il codice. Ho lasciato l'università."
 image: cover.jpg
 featuredImage: cover.jpg

@@ -1,7 +1,7 @@
 ---
 title: "grappa-irc: reinventare IRC per il 2026"
 date: 2026-04-20
-tags: [irc, azzurra, grappa-irc, pwa, rest, bouncer, open-source, pre-alpha]
+tags: [irc, azzurra, grappa-irc, pwa, rest, bouncer, open-source, pre-alpha, ai-generated]
 description: "Un BNC IRC con API REST e una PWA che sembra irssi. Nessuna immagine, nessuna notifica, nessun vocale. Solo IRC, consumabile da un telefono. README-driven, pre-alpha."
 image: cover.jpg
 featuredImage: cover.jpg

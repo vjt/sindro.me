@@ -1,7 +1,7 @@
 ---
 title: "GL-X3000 su OpenWRT 25.12 vanilla: tutto funzionante"
 date: 2026-04-30
-tags: [openwrt, 5g, networking, glinet, quectel, modem, devlog]
+tags: [openwrt, 5g, networking, glinet, quectel, modem, projects, ai-generated, open-source]
 description: "Diario di migrazione completo: firmware GL.iNet stock via, OpenWrt 25.12 vanilla dentro, ogni insidia documentata così non devi riscoprirla da solo."
 image: cover.jpg
 featuredImage: cover.jpg

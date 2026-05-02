@@ -2,7 +2,7 @@
 title: Raspberry PI 5 encrypted root with LUKS
 date: 2026-01-20
 updated: 2026-03-14
-tags: [linux, sysadmin, security]
+tags: [linux, sysadmin, security, ai-generated, open-source]
 ---
 
 ![A Raspberry Pi 5 on a desk with an SSD depicted as a glowing vault, a padlock icon floating above](/posts/2026-01-20-raspberry-pi-luks-encrypted-root/cover.jpg)

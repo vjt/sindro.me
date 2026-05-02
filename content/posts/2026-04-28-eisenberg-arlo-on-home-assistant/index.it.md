@@ -1,7 +1,7 @@
 ---
 title: "Eisenberg: telecamere Arlo su Home Assistant, fatto bene"
 date: 2026-04-28
-tags: [home-assistant, arlo, hacs, mqtt, python, devlog]
+tags: [home-assistant, arlo, hacs, mqtt, python, projects, ai-generated, open-source]
 description: "Una integration Home Assistant per le telecamere Arlo: piccola, tipata, event-driven. Push una volta, poi silenzio per 14 giorni."
 image: cover.jpg
 featuredImage: cover.jpg

@@ -1,7 +1,7 @@
 ---
 title: "decaf: Italian Modello Redditi PF on foreign investments (without a commercialista)"
 date: 2026-04-18
-tags: [python, open-source, foreign-investments, italian-tax-return, modello-redditi-pf, interactive-brokers, charles-schwab, rsu]
+tags: [python, open-source, foreign-investments, italian-tax-return, modello-redditi-pf, interactive-brokers, charles-schwab, rsu, ai-generated]
 description: "decaf is an open-source Python tool that fills the Italian Modello Redditi PF on foreign investments: takes broker files (Interactive Brokers Flex Query, Charles Schwab RSU) and computes Quadro RW (monitoring + IVAFE), Quadro RT (26% capital gains with per-lot ECB conversion per art. 9 c. 2 TUIR), Quadro RL (foreign dividends, withholdings), currency threshold under art. 67(1)(c-ter). For Italian tax residents with IBKR or Schwab accounts — all without a commercialista. Three test fixtures named after three Italian audio-cult saints."
 image: cover.png
 featuredImage: cover.png

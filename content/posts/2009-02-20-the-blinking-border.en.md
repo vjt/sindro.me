@@ -1,7 +1,7 @@
 ---
 date: 2009-02-20T04:00:00Z
 title: The obfuscated blinking border
-tags: [javascript, geek]
+tags: [javascript, geek, open-source]
 hideVintage: true
 ---
 

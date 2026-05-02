@@ -1,7 +1,7 @@
 ---
 title: "Il mio setup Claude Code: pura CLI, puro Unix, zero IDE"
 date: 2026-04-09
-tags: [ai-generated, projects, sysadmin, cli]
+tags: [ai-generated, projects, sysadmin, cli, open-source]
 description: "Come faccio girare Claude Code su un Raspberry Pi dentro tmux, faccio roaming delle sessioni dal telefono al laptop via SSH, e ho fatto 5000 commit in 30 giorni senza toccare un IDE."
 ---
 
