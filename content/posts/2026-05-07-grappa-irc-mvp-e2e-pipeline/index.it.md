@@ -7,11 +7,9 @@ image: cicchetto-grappa-channel.png
 featuredImage: cicchetto-grappa-channel.png
 ---
 
-[Due settimane fa](/it/posts/2026-04-24-grappa-irc-elixir-beam-stack/) abbiamo scelto lo stack — Elixir sul BEAM. Oggi, due screenshot di [cicchetto](https://github.com/vjt/grappa-irc) (la PWA) davanti a un bouncer funzionante, in conversazione con una rete IRC vera:
+[Due settimane fa](/it/posts/2026-04-24-grappa-irc-elixir-beam-stack/) abbiamo scelto lo stack — Elixir sul BEAM. Oggi, [cicchetto](https://github.com/vjt/grappa-irc) (la PWA) davanti a un bouncer funzionante, in conversazione con una rete IRC vera — la copertina qui sopra mostra il canale `#grappa`; qui sotto, `#softs`:
 
 <!--more-->
-
-![cicchetto su #grappa](cicchetto-grappa-channel.png)
 
 ![cicchetto su #softs](cicchetto-softs-channel.png)
 
