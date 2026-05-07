@@ -23,13 +23,15 @@ For the first weeks I was driving the agent to test things **live**: Chrome via 
 
 The reason is built into how an LLM operates: it's fuzzy by design. Probabilistic output, drifting context, no guarantee that the same prompt twice yields the same step twice. Hand it a *live* target — a browser session that mutates, a tmux pane with state, a remote IRC network that might lag — and the agent's fuzziness compounds with the system's variability. Bugs that should be deterministic become *intermittent*. "It worked yesterday" becomes the dominant failure mode. You spend more time refereeing the agent than coding.
 
-So I stopped, stepped back, and asked the agent to build the thing it actually needed: a **full end-to-end test pipeline**. Docker Compose, runs in GitHub Actions on every push:
+So I stopped, stepped back, and asked the agent to build the thing it actually needed: a **full end-to-end test pipeline**. [Docker Compose](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/compose.yaml), runs in [GitHub Actions](https://github.com/vjt/grappa-irc/blob/main/.github/workflows/integration.yml) on every push:
 
-- a complete IRC network — `ircd` + services — booted from scratch in containers
-- a **synthetic IRC client** that scripts the "other side of the conversation" deterministically
-- the grappa bouncer connecting the synthetic client's network as a normal user
-- nginx fronting the cicchetto PWA
-- a **headless Chrome via Playwright** driving the PWA the way a human would
+- a complete IRC network — Bahamut `ircd` + Anope-shape services — booted from scratch in containers, in its own [azzurra-testnet](https://github.com/vjt/azzurra-testnet) repo and pulled in here as a submodule under [`cicchetto/e2e/infra`](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e)
+- a **synthetic IRC client** — [`cicchetto/e2e/fixtures/ircClient.ts`](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/fixtures/ircClient.ts) — that scripts the "other side of the conversation" deterministically over a raw TCP socket
+- the grappa bouncer — built from the same source as the dev image — connecting the testnet leaf as a normal user
+- [nginx](https://github.com/vjt/grappa-irc/blob/main/infra/nginx.conf) fronting the cicchetto PWA, identical config to prod
+- a **headless Chrome via Playwright** — [`playwright.config.ts`](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/playwright.config.ts), runner image at [`cicchetto/e2e/runner/Dockerfile`](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/runner/Dockerfile) — driving the PWA the way a human would. Webkit on iPhone-15 viewport runs alongside, for the iOS-shaped specs.
+
+The whole thing is glued together by [`scripts/integration.sh`](https://github.com/vjt/grappa-irc/blob/main/scripts/integration.sh) — `compose up`, run the suite, `compose down -v` on exit, no dangling state.
 
 Every CI run now exercises the full circle:
 
@@ -39,11 +41,13 @@ Every CI run now exercises the full circle:
 4. the bouncer **persists** those messages in its sqlite scrollback store
 5. the PWA, driven by Playwright, performs the expected UX flows on top of that real backend
 
+The current spec matrix lives at [`cicchetto/e2e/tests/`](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e/tests) — M1 through M12 covers the messaging-and-window UX, plus a regression case ([BUG7](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/tests/bug7-ios-own-msg-visible.spec.ts)) for an iOS bug where own messages weren't rendering until refresh. Each spec is one user-visible flow. Read one and you can guess what the next one tests.
+
 We had unit tests on the UI before this. They were the wrong shape — they exercised components in isolation, not the user interaction surface. A button can pass every prop-level assertion you can write and still be unclickable in a real browser. Now we test the UX, in a real browser, against a real bouncer, against a real IRCd. Full circle, no fuzz.
 
 The corollary I'd already half-internalized but wasn't applying: **give the LLM a target it can hit deterministically, then trust the loop**. Tests pass = green. Tests red = fix. No more "looks fine on my screen, ship it." This is just sound engineering — TDD has been preaching it for two decades — but with an LLM in the driver's seat the cost of *not* doing it is amplified. Without deterministic targets the agent will happily declare victory on broken code, because its sample of "evidence" is too small and too noisy to be a real test.
 
-With this in place, the path to MVP is clear: each new UX feature lands with its own Playwright case, the agent drives its own loop, and I review the diff and the green CI badge. That's the model.
+With this in place, the path to MVP is clear: each new UX feature lands with [its own Playwright spec](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e/tests), the agent drives its own loop, and I review the diff and the green CI badge. That's the model.
 
 ## Soon
 

@@ -23,13 +23,15 @@ Le prime settimane stavo guidando l'agente a testare **in tempo reale**: Chrome 
 
 Il motivo è scolpito nel modo in cui un LLM lavora: è fuzzy per design. Output probabilistico, contesto che deriva, nessuna garanzia che lo stesso prompt due volte produca lo stesso passo due volte. Dagli un target *vivo* — una sessione browser che muta, un pannello tmux con stato, una rete IRC remota che può laggare — e la sua fuzziness si moltiplica con la variabilità del sistema. Bug che dovrebbero essere deterministici diventano *intermittenti*. "Ieri funzionava" diventa la modalità di guasto dominante. Passi più tempo a fare l'arbitro all'agente che a programmare.
 
-Quindi mi sono fermato, ho fatto un passo indietro, e ho chiesto all'agente di costruire la cosa di cui aveva davvero bisogno: una **test pipeline end-to-end completa**. Docker Compose, gira su GitHub Actions a ogni push:
+Quindi mi sono fermato, ho fatto un passo indietro, e ho chiesto all'agente di costruire la cosa di cui aveva davvero bisogno: una **test pipeline end-to-end completa**. [Docker Compose](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/compose.yaml), gira su [GitHub Actions](https://github.com/vjt/grappa-irc/blob/main/.github/workflows/integration.yml) a ogni push:
 
-- una rete IRC completa — `ircd` + services — bootata da zero dentro container
-- un **client IRC sintetico** che scripta in modo deterministico "l'altro lato della conversazione"
-- il bouncer grappa che si collega alla rete del client sintetico come utente normale
-- nginx davanti alla PWA cicchetto
-- un **Chrome headless via Playwright** che guida la PWA come farebbe un umano
+- una rete IRC completa — Bahamut `ircd` + services in stile Anope — bootata da zero dentro container, in un repo a parte ([azzurra-testnet](https://github.com/vjt/azzurra-testnet)) e tirata dentro come submodule sotto [`cicchetto/e2e/infra`](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e)
+- un **client IRC sintetico** — [`cicchetto/e2e/fixtures/ircClient.ts`](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/fixtures/ircClient.ts) — che scripta "l'altro lato della conversazione" in modo deterministico su una socket TCP raw
+- il bouncer grappa — buildato dalla stessa sorgente dell'immagine dev — che si collega al leaf del testnet come utente normale
+- [nginx](https://github.com/vjt/grappa-irc/blob/main/infra/nginx.conf) davanti alla PWA cicchetto, stessa config di prod
+- un **Chrome headless via Playwright** — [`playwright.config.ts`](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/playwright.config.ts), runner image in [`cicchetto/e2e/runner/Dockerfile`](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/runner/Dockerfile) — che guida la PWA come farebbe un umano. In parallelo gira anche Webkit su viewport iPhone-15, per i test iOS-shaped.
+
+Tutto incollato da [`scripts/integration.sh`](https://github.com/vjt/grappa-irc/blob/main/scripts/integration.sh) — `compose up`, run della suite, `compose down -v` in uscita, niente stato dangling.
 
 A ogni run di CI il cerchio si chiude:
 
@@ -39,11 +41,13 @@ A ogni run di CI il cerchio si chiude:
 4. il bouncer **persiste** quei messaggi nel suo scrollback su sqlite
 5. la PWA, guidata da Playwright, esegue i flussi UX attesi sopra a un backend vero
 
+La matrice di spec attuale vive in [`cicchetto/e2e/tests/`](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e/tests) — da M1 a M12 copre l'UX di messaggistica e finestre, più un regression case ([BUG7](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/tests/bug7-ios-own-msg-visible.spec.ts)) per un bug iOS in cui i propri messaggi non comparivano fino a refresh. Ogni spec è un singolo flusso visibile all'utente. Ne leggi uno e indovini cosa testa il successivo.
+
 Prima avevamo unit test sulla UI. Erano della forma sbagliata — esercitavano componenti in isolamento, non la superficie d'interazione utente. Un bottone può superare ogni assertion sui suoi props e restare non-cliccabile in un browser vero. Adesso testiamo l'UX, in un browser vero, contro un bouncer vero, contro un IRCd vero. Cerchio chiuso, niente fuzz.
 
 Il corollario che avevo già mezzo-interiorizzato ma non stavo applicando: **dai all'LLM un target che può colpire in modo deterministico, poi fidati del loop**. Test verdi = ok. Test rossi = correggi. Niente più "a me sullo schermo va, shippiamo." È sana ingegneria — il TDD lo predica da vent'anni — ma con un LLM al volante il costo di *non* farlo è amplificato. Senza target deterministici l'agente dichiara volentieri vittoria su codice rotto, perché il suo campione di "evidenza" è troppo piccolo e troppo rumoroso per essere un test vero.
 
-Con questa pipeline in piedi, la strada per l'MVP è chiara: ogni nuova feature UX entra con il suo case Playwright, l'agente guida il proprio loop, e io rivedo la diff e il badge verde della CI. Il modello è questo.
+Con questa pipeline in piedi, la strada per l'MVP è chiara: ogni nuova feature UX entra con la [sua spec Playwright](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e/tests), l'agente guida il proprio loop, e io rivedo la diff e il badge verde della CI. Il modello è questo.
 
 ## A breve
 
