@@ -17,7 +17,7 @@ Non è ancora bello, non è feature-complete, ma i messaggi viaggiano round-trip
 
 ## La lezione: agli LLM serve qualcosa di deterministico contro cui testare
 
-Per qualche giorno ho inseguito i primi bug UX guidando l'agente **in tempo reale** — Chrome via MCP, irssi via tmux, Azzurra vera dall'altro lato, occhio agli screenshot e copia-incolla degli errori in console. È stato molto frustrante. Fuzziness dell'LLM + rete reale condivisa = nessun segnale consistente, un sacco di "rilancialo, viene un altro risultato", un sacco di tirare a indovinare.
+Per qualche giorno ho inseguito i primi bug UX guidando l'agente **in tempo reale** — Chrome via MCP, irssi via tmux, Azzurra vera dall'altro lato. L'agente vedeva direttamente lo schermo e leggeva la console; io guidavo e basta. È stato molto frustrante. Fuzziness dell'LLM + rete reale condivisa = nessun segnale consistente, un sacco di "rilancialo, viene un altro risultato", un sacco di tirare a indovinare.
 
 L'LLM che pilota il browser ha il suo posto: catturare lo stato che nasce da una sequenza di click umani + fetch, scoprire un bug specifico. Usarlo come *loop di sviluppo* è stato l'errore.
 

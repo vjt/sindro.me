@@ -17,7 +17,7 @@ It's not pretty yet, it's not feature-complete, but messages flow round-trip —
 
 ## The lesson: LLMs need something deterministic to test against
 
-For a few days I chased the first UX bugs by driving the agent **live** — Chrome via MCP, irssi via tmux, live Azzurra on the other end, eyeballing screenshots and pasting console errors back. It was very frustrating. LLM fuzziness + a real shared network = no consistent signal, lots of "ran it again, different result", lots of guessing.
+For a few days I chased the first UX bugs by driving the agent **live** — Chrome via MCP, irssi via tmux, live Azzurra on the other end. The agent could see the screen and read the console directly; I just steered. It was very frustrating. LLM fuzziness + a real shared network = no consistent signal, lots of "ran it again, different result", lots of guessing.
 
 LLM-driven browsing has a place: capturing state from a sequence of human clicks + fetches, scoping out one specific bug. Using it as the *development loop* was the mistake.
 
