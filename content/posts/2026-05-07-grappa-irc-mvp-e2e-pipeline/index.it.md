@@ -13,7 +13,7 @@ featuredImage: cicchetto-grappa-channel.png
 
 ![cicchetto su #sniffo](cicchetto-sniffo-channel.png)
 
-Non è ancora bello, non è feature-complete, ma i messaggi viaggiano round-trip — IRC ↔ grappa ↔ cicchetto — lo scrollback persiste, lo switch tra canali funziona, e la sidebar in stile irssi si riconosce. L'MVP è **vicino**.
+Non è ancora bello, non è feature-complete, ma i messaggi viaggiano round-trip — IRC ↔ grappa ↔ cicchetto — lo scrollback persiste, lo switch tra canali funziona. L'MVP è **vicino**.
 
 ## La lezione: agli LLM serve qualcosa di deterministico contro cui testare
 
