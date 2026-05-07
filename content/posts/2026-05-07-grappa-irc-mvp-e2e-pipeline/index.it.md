@@ -17,19 +17,15 @@ Non è ancora bello, non è feature-complete, ma i messaggi viaggiano round-trip
 
 ## La lezione: agli LLM serve qualcosa di deterministico contro cui testare
 
-La parte onesta di questo update è la lezione che ho dovuto imparare a testate.
+Per qualche giorno ho inseguito i primi bug UX guidando l'agente **in tempo reale** — Chrome via MCP, irssi via tmux, Azzurra vera dall'altro lato, occhio agli screenshot e copia-incolla degli errori in console. È stato molto frustrante. Fuzziness dell'LLM + rete reale condivisa = nessun segnale consistente, un sacco di "rilancialo, viene un altro risultato", un sacco di tirare a indovinare.
 
-Le prime settimane stavo guidando l'agente a testare **in tempo reale**: Chrome via MCP, irssi via tmux, occhio agli screenshot, copia-incolla degli errori in console. Questa modalità ha il suo posto — è genuinamente utile quando sai già che qualcosa non va e ti serve un paio di mani in più per smanettarci, riprodurre un bug puntuale, isolare un comportamento strano in una sessione usa-e-getta. Come *loop di sviluppo*, però — una rete di regressione che giri a ogni modifica per assicurarti che niente si sia rotto — non scala, e non scalerà mai.
+L'LLM che pilota il browser ha il suo posto: catturare lo stato che nasce da una sequenza di click umani + fetch, scoprire un bug specifico. Usarlo come *loop di sviluppo* è stato l'errore.
 
-Due motivi, entrambi strutturali.
+Quindi mi sono fermato, ho fatto un passo indietro, e ho chiesto all'agente di costruire la cosa di cui aveva davvero bisogno: una **test pipeline end-to-end completa** con vere spec UX. Di colpo non era più l'LLM a fare i test — lo faceva del software di test vero. Il risultato è cambiato di colpo: ogni push, cerchio chiuso, verde o rosso, niente da guardare a occhio.
 
-Primo, un LLM è fuzzy per design — output probabilistico, contesto che deriva, nessuna garanzia che lo stesso prompt due volte produca la stessa sequenza di azioni due volte. È tollerabile per una caccia al bug puntuale: l'agente fa il lavoro di gambe, tu leggi il risultato, la varianza vive dentro una singola sessione ad-hoc. È fatale come check di regressione a ogni push: non puoi lanciare "guida il browser, guida il client IRC, dimmi se si è rotto qualcosa" in automatico e fidarti di una risposta diversa ogni volta.
+## Il setup di CI a cerchio chiuso
 
-Secondo, e più tosto, **descrivere cosa verificare in prosa non scala**. Non stavamo provando a spec-drivare nessuna infrastruttura — il lato IRC era Azzurra stessa, una rete pubblica vera — ma anche solo narrare il *comportamento atteso* tra un bouncer e una SPA in un browser è troppo precisarello da fare in modo affidabile. "Il messaggio è arrivato su `#grappa`, sul tab giusto, col mittente giusto, nella posizione giusta dello scrollback, e il badge degli unread si è azzerato al focus" ha una dozzina di modi di fallire, e scriverlo per ogni check, a ogni modifica, in prosa, restando consistente, è una battaglia persa. L'agente dirà "sembra a posto"; non hai una verità falsificabile. Con un'assertion Playwright, sì.
-
-C'è poi la zavorra del testare in rete vera sotto a tutto questo: testare contro Azzurra reale significa lag reale, altri umani veri, canali che si inquinano quando li spammi di messaggi di test, nessun reset pulito tra una run e l'altra. Utile quando stai inseguendo un bug specifico. Insostenibile come segnale verde/rosso da controllare a ogni push.
-
-Quindi mi sono fermato, ho fatto un passo indietro, e ho chiesto all'agente di costruire la cosa di cui aveva davvero bisogno: una **test pipeline end-to-end completa**. [Docker Compose](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/compose.yaml), gira su [GitHub Actions](https://github.com/vjt/grappa-irc/blob/main/.github/workflows/integration.yml) a ogni push:
+[Docker Compose](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/compose.yaml), gira su [GitHub Actions](https://github.com/vjt/grappa-irc/blob/main/.github/workflows/integration.yml):
 
 - una rete IRC completa — Bahamut `ircd` + services in stile Anope — bootata da zero dentro container, in un repo a parte ([azzurra-testnet](https://github.com/vjt/azzurra-testnet)) e tirata dentro come submodule sotto [`cicchetto/e2e/infra`](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e)
 - un **client IRC sintetico** — [`cicchetto/e2e/fixtures/ircClient.ts`](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/fixtures/ircClient.ts) — che scripta "l'altro lato della conversazione" in modo deterministico su una socket TCP raw
@@ -49,9 +45,7 @@ A ogni run di CI il cerchio si chiude:
 
 La matrice di spec attuale vive in [`cicchetto/e2e/tests/`](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e/tests) — da M1 a M12 copre l'UX di messaggistica e finestre, più un regression case ([BUG7](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/tests/bug7-ios-own-msg-visible.spec.ts)) per un bug iOS in cui i propri messaggi non comparivano fino a refresh. Ogni spec è un singolo flusso visibile all'utente. Ne leggi uno e indovini cosa testa il successivo.
 
-Prima avevamo unit test sulla UI. Erano della forma sbagliata — esercitavano componenti in isolamento, non la superficie d'interazione utente. Un bottone può superare ogni assertion sui suoi props e restare non-cliccabile in un browser vero. Adesso testiamo l'UX, in un browser vero, contro un bouncer vero, contro un IRCd vero. Cerchio chiuso, niente fuzz.
-
-Il corollario che avevo già mezzo-interiorizzato ma non stavo applicando: **dai all'LLM un target che può colpire in modo deterministico, poi fidati del loop**. Test verdi = ok. Test rossi = correggi. Niente più "a me sullo schermo va, shippiamo." È sana ingegneria — il TDD lo predica da vent'anni — ma con un LLM al volante il costo di *non* farlo è amplificato. Senza target deterministici l'agente dichiara volentieri vittoria su codice rotto, perché il suo campione di "evidenza" è troppo piccolo e troppo rumoroso per essere un test vero.
+Prima avevamo unit test sulla UI — forma sbagliata: esercitavano componenti in isolamento, non la superficie d'interazione utente. Un bottone può superare ogni assertion sui suoi props e restare non-cliccabile in un browser vero. Adesso testiamo l'UX, in un browser vero, contro un bouncer vero, contro un IRCd vero. Cerchio chiuso, niente fuzz.
 
 Con questa pipeline in piedi, la strada per l'MVP è chiara: ogni nuova feature UX entra con la [sua spec Playwright](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e/tests), l'agente guida il proprio loop, e io rivedo la diff e il badge verde della CI. Il modello è questo.
 

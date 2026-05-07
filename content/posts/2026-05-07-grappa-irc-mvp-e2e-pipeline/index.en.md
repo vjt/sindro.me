@@ -17,19 +17,15 @@ It's not pretty yet, it's not feature-complete, but messages flow round-trip —
 
 ## The lesson: LLMs need something deterministic to test against
 
-The honest part of this update is the lesson I had to learn the hard way.
+For a few days I chased the first UX bugs by driving the agent **live** — Chrome via MCP, irssi via tmux, live Azzurra on the other end, eyeballing screenshots and pasting console errors back. It was very frustrating. LLM fuzziness + a real shared network = no consistent signal, lots of "ran it again, different result", lots of guessing.
 
-For the first weeks I was driving the agent to test things **live**: Chrome via MCP, irssi via tmux, eyeball the screenshots, paste the console errors back. That mode has its place — it's genuinely useful when you already know something is wrong and you need an extra pair of hands to poke at it, reproduce a one-off, isolate a misbehavior in a session you can throw away. As a *development loop*, though — a regression net you run on every change to make sure nothing broke — it doesn't scale, and it never will.
+LLM-driven browsing has a place: capturing state from a sequence of human clicks + fetches, scoping out one specific bug. Using it as the *development loop* was the mistake.
 
-Two reasons, both structural.
+So I stopped, stepped back, and asked the agent to build the thing it actually needed: a **full end-to-end test pipeline** with proper UX specs. Suddenly it wasn't the LLM doing the testing — proper test software was. The outcome changed dramatically: every push, full circle, green or red, no eyeballing.
 
-First, an LLM is fuzzy by design — probabilistic output, drifting context, no guarantee that the same prompt twice yields the same sequence of actions twice. That's tolerable for a one-off hunt: the agent does the legwork, you read the result, the variance lives in a single ad-hoc session. It's fatal as a regression check on every push: you can't run "drive the browser, drive the IRC client, tell me if anything broke" automatically and trust a different answer each time.
+## The full-circle CI setup
 
-Second, and harder, **describing what to verify in prose doesn't scale**. We weren't trying to spec-drive any infrastructure — the IRC end was Azzurra itself, a real public network — but even just narrating the *expected behavior* across a bouncer + an SPA in a browser is too fiddly to do reliably. "The message arrived on `#grappa`, on the right tab, with the right author, in the right position in the scrollback, and the unread badge cleared on focus" has a dozen ways to fail, and writing that out for every check, every change, in prose, while keeping it consistent, is a losing battle. The agent will say "looks fine"; you have no falsifiable ground truth. With a Playwright assertion, you do.
-
-There's also the live-network drag underneath all of this: testing against real Azzurra means real lag, real other humans, channels that pollute when you spam test messages, no clean reset between runs. Useful when you're chasing one specific bug. Untenable as a green/red signal you check on every push.
-
-So I stopped, stepped back, and asked the agent to build the thing it actually needed: a **full end-to-end test pipeline**. [Docker Compose](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/compose.yaml), runs in [GitHub Actions](https://github.com/vjt/grappa-irc/blob/main/.github/workflows/integration.yml) on every push:
+[Docker Compose](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/compose.yaml), running in [GitHub Actions](https://github.com/vjt/grappa-irc/blob/main/.github/workflows/integration.yml):
 
 - a complete IRC network — Bahamut `ircd` + Anope-shape services — booted from scratch in containers, in its own [azzurra-testnet](https://github.com/vjt/azzurra-testnet) repo and pulled in here as a submodule under [`cicchetto/e2e/infra`](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e)
 - a **synthetic IRC client** — [`cicchetto/e2e/fixtures/ircClient.ts`](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/fixtures/ircClient.ts) — that scripts the "other side of the conversation" deterministically over a raw TCP socket
@@ -49,9 +45,7 @@ Every CI run now exercises the full circle:
 
 The current spec matrix lives at [`cicchetto/e2e/tests/`](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e/tests) — M1 through M12 covers the messaging-and-window UX, plus a regression case ([BUG7](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/tests/bug7-ios-own-msg-visible.spec.ts)) for an iOS bug where own messages weren't rendering until refresh. Each spec is one user-visible flow. Read one and you can guess what the next one tests.
 
-We had unit tests on the UI before this. They were the wrong shape — they exercised components in isolation, not the user interaction surface. A button can pass every prop-level assertion you can write and still be unclickable in a real browser. Now we test the UX, in a real browser, against a real bouncer, against a real IRCd. Full circle, no fuzz.
-
-The corollary I'd already half-internalized but wasn't applying: **give the LLM a target it can hit deterministically, then trust the loop**. Tests pass = green. Tests red = fix. No more "looks fine on my screen, ship it." This is just sound engineering — TDD has been preaching it for two decades — but with an LLM in the driver's seat the cost of *not* doing it is amplified. Without deterministic targets the agent will happily declare victory on broken code, because its sample of "evidence" is too small and too noisy to be a real test.
+We had unit tests on the UI before this — wrong shape: they exercised components in isolation, not the user interaction surface. A button can pass every prop-level assertion you can write and still be unclickable in a real browser. Now we test the UX, in a real browser, against a real bouncer, against a real IRCd. Full circle, no fuzz.
 
 With this in place, the path to MVP is clear: each new UX feature lands with [its own Playwright spec](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e/tests), the agent drives its own loop, and I review the diff and the green CI badge. That's the model.
 
