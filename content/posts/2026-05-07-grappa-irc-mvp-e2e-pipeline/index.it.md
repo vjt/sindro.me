@@ -19,9 +19,13 @@ Non è ancora bello, non è feature-complete, ma i messaggi viaggiano round-trip
 
 La parte onesta di questo update è la lezione che ho dovuto imparare a testate.
 
-Le prime settimane stavo guidando l'agente a testare **in tempo reale**: Chrome via MCP, irssi via tmux, occhio agli screenshot, copia-incolla degli errori in console. Per uno spike di cinque minuti regge. Come loop di sviluppo, **non** regge.
+Le prime settimane stavo guidando l'agente a testare **in tempo reale**: Chrome via MCP, irssi via tmux, occhio agli screenshot, copia-incolla degli errori in console. Questa modalità ha il suo posto — è genuinamente utile quando sai già che qualcosa non va e ti serve un paio di mani in più per smanettarci, riprodurre un bug puntuale, isolare un comportamento strano in una sessione usa-e-getta. Come *loop di sviluppo*, però — una rete di regressione che giri a ogni modifica per assicurarti che niente si sia rotto — non scala, e non scalerà mai.
 
-Il motivo è scolpito nel modo in cui un LLM lavora: è fuzzy per design. Output probabilistico, contesto che deriva, nessuna garanzia che lo stesso prompt due volte produca lo stesso passo due volte. Dagli un target *vivo* — una sessione browser che muta, un pannello tmux con stato, una rete IRC remota che può laggare — e la sua fuzziness si moltiplica con la variabilità del sistema. Bug che dovrebbero essere deterministici diventano *intermittenti*. "Ieri funzionava" diventa la modalità di guasto dominante. Passi più tempo a fare l'arbitro all'agente che a programmare.
+Due motivi, entrambi strutturali.
+
+Primo, un LLM è fuzzy per design — output probabilistico, contesto che deriva, nessuna garanzia che lo stesso prompt due volte produca la stessa sequenza di azioni due volte. È tollerabile per una caccia al bug puntuale: l'agente fa il lavoro di gambe, tu leggi il risultato, la varianza vive dentro una singola sessione ad-hoc. È fatale come check di regressione a ogni push: non puoi lanciare "guida il browser, guida il client IRC, dimmi se si è rotto qualcosa" in automatico e fidarti di una risposta diversa ogni volta.
+
+Secondo, e più tosto, il setup stesso sconfigge la guida via linguaggio naturale. Due server IRC + services, un bouncer, una SPA, un nginx davanti — descrivere il comportamento end-to-end giusto in prosa, abbastanza dettagliata perché un LLM lo verifichi in modo consistente, è una battaglia persa. La superficie è troppo grande; i failure mode sono troppi; la spec in prosa cresce più di quanto un umano riesca a mantenerla. Quello che è chiaro in un prompt è ambiguo nel successivo. Servono spec *verificabili dalla macchina*, non narrate.
 
 Quindi mi sono fermato, ho fatto un passo indietro, e ho chiesto all'agente di costruire la cosa di cui aveva davvero bisogno: una **test pipeline end-to-end completa**. [Docker Compose](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/compose.yaml), gira su [GitHub Actions](https://github.com/vjt/grappa-irc/blob/main/.github/workflows/integration.yml) a ogni push:
 

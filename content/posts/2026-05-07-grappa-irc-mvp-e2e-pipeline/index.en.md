@@ -19,9 +19,13 @@ It's not pretty yet, it's not feature-complete, but messages flow round-trip —
 
 The honest part of this update is the lesson I had to learn the hard way.
 
-For the first weeks I was driving the agent to test things **live**: Chrome via MCP, irssi via tmux, eyeball the screenshots, paste the console errors back. That kind of works for a five-minute spike. It does **not** work as a development loop.
+For the first weeks I was driving the agent to test things **live**: Chrome via MCP, irssi via tmux, eyeball the screenshots, paste the console errors back. That mode has its place — it's genuinely useful when you already know something is wrong and you need an extra pair of hands to poke at it, reproduce a one-off, isolate a misbehavior in a session you can throw away. As a *development loop*, though — a regression net you run on every change to make sure nothing broke — it doesn't scale, and it never will.
 
-The reason is built into how an LLM operates: it's fuzzy by design. Probabilistic output, drifting context, no guarantee that the same prompt twice yields the same step twice. Hand it a *live* target — a browser session that mutates, a tmux pane with state, a remote IRC network that might lag — and the agent's fuzziness compounds with the system's variability. Bugs that should be deterministic become *intermittent*. "It worked yesterday" becomes the dominant failure mode. You spend more time refereeing the agent than coding.
+Two reasons, both structural.
+
+First, an LLM is fuzzy by design — probabilistic output, drifting context, no guarantee that the same prompt twice yields the same sequence of actions twice. That's tolerable for a one-off hunt: the agent does the legwork, you read the result, the variance lives in a single ad-hoc session. It's fatal as a regression check on every push: you can't run "drive the browser, drive the IRC client, tell me if anything broke" automatically and trust a different answer each time.
+
+Second, and harder, the setup itself defeats natural-language driving. Two IRC servers + services, a bouncer, an SPA, an nginx in front of it — describing the right end-to-end behavior in prose, in enough detail that an LLM can verify it consistently, is a losing battle. The surface area is too large; the failure modes are too many; the prose specification grows faster than any human can maintain. What's clear in one prompt is ambiguous in the next. You need *machine-checkable* specs, not narrated ones.
 
 So I stopped, stepped back, and asked the agent to build the thing it actually needed: a **full end-to-end test pipeline**. [Docker Compose](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/compose.yaml), runs in [GitHub Actions](https://github.com/vjt/grappa-irc/blob/main/.github/workflows/integration.yml) on every push:
 
