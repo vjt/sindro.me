@@ -27,7 +27,7 @@ Quindi mi sono fermato, ho fatto un passo indietro, e ho chiesto all'agente di c
 
 [Docker Compose](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/compose.yaml), gira su [GitHub Actions](https://github.com/vjt/grappa-irc/blob/main/.github/workflows/integration.yml):
 
-- una rete IRC completa — Bahamut `ircd` + services in stile Anope — bootata da zero dentro container, in un repo a parte ([azzurra-testnet](https://github.com/vjt/azzurra-testnet)) e tirata dentro come submodule sotto [`cicchetto/e2e/infra`](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e)
+- una rete IRC completa — l'[ircd Bahamut](https://github.com/azzurra/bahamut) e i [services](https://github.com/azzurra/services) di Azzurra stessa — bootata da zero dentro container, in un repo a parte ([azzurra-testnet](https://github.com/vjt/azzurra-testnet)) e tirata dentro come submodule sotto [`cicchetto/e2e/infra`](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e)
 - un **client IRC sintetico** — [`cicchetto/e2e/fixtures/ircClient.ts`](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/fixtures/ircClient.ts) — che scripta "l'altro lato della conversazione" in modo deterministico su una socket TCP raw
 - il bouncer grappa — buildato dalla stessa sorgente dell'immagine dev — che si collega al leaf del testnet come utente normale
 - [nginx](https://github.com/vjt/grappa-irc/blob/main/infra/nginx.conf) davanti alla PWA cicchetto, stessa config di prod
