@@ -45,7 +45,7 @@ A ogni run di CI il cerchio si chiude:
 
 La matrice di spec attuale vive in [`cicchetto/e2e/tests/`](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e/tests) — da M1 a M12 copre l'UX di messaggistica e finestre, più un regression case ([BUG7](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/tests/bug7-ios-own-msg-visible.spec.ts)) per un bug iOS in cui i propri messaggi non comparivano fino a refresh. Ogni spec è un singolo flusso visibile all'utente. Ne leggi uno e indovini cosa testa il successivo.
 
-Prima avevamo unit test sulla UI — forma sbagliata: esercitavano componenti in isolamento, non la superficie d'interazione utente. Un bottone può superare ogni assertion sui suoi props e restare non-cliccabile in un browser vero. Adesso testiamo l'UX, in un browser vero, contro un bouncer vero, contro un IRCd vero. Cerchio chiuso, niente fuzz.
+Abbiamo unit test sulla UI da sempre — vanno bene, semplicemente non sono integration test. Verificano componenti in isolamento; un bottone può superare ogni assertion sui suoi props e restare non-cliccabile in un browser vero. Quello che mancava erano gli integration test. Ora ci sono entrambi: unit test sui componenti, spec end-to-end sull'UX, contro un bouncer vero e un IRCd vero.
 
 Con questa pipeline in piedi, la strada per l'MVP è chiara: ogni nuova feature UX entra con la [sua spec Playwright](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e/tests), l'agente guida il proprio loop, e io rivedo la diff e il badge verde della CI. Il modello è questo.
 

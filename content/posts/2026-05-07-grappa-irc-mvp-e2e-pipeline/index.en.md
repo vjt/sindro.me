@@ -45,7 +45,7 @@ Every CI run now exercises the full circle:
 
 The current spec matrix lives at [`cicchetto/e2e/tests/`](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e/tests) — M1 through M12 covers the messaging-and-window UX, plus a regression case ([BUG7](https://github.com/vjt/grappa-irc/blob/main/cicchetto/e2e/tests/bug7-ios-own-msg-visible.spec.ts)) for an iOS bug where own messages weren't rendering until refresh. Each spec is one user-visible flow. Read one and you can guess what the next one tests.
 
-We had unit tests on the UI before this — wrong shape: they exercised components in isolation, not the user interaction surface. A button can pass every prop-level assertion you can write and still be unclickable in a real browser. Now we test the UX, in a real browser, against a real bouncer, against a real IRCd. Full circle, no fuzz.
+We've had unit tests on the UI all along — they're fine, they're just not integration tests. They check components in isolation; a button can pass every prop-level assertion you can write and still be unclickable in a real browser. The integration suite is what we were missing. Now we have both: unit tests on the components, end-to-end specs on the UX, against a real bouncer and a real IRCd.
 
 With this in place, the path to MVP is clear: each new UX feature lands with [its own Playwright spec](https://github.com/vjt/grappa-irc/tree/main/cicchetto/e2e/tests), the agent drives its own loop, and I review the diff and the green CI badge. That's the model.
 
