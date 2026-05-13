@@ -56,7 +56,7 @@ defaultContentLanguageInSubdir = false
     [languages.en.params]
       flag = "🇬🇧"
       description = "feeling bold on the internet"
-      blurb = "This is sindro.me, a weblog by Marcello Barnaba (@vjt) about technology, development, software, the internet, entertainment, politics, sociology, and the answer to Life, Universe, and Everything (42)."
+      blurb = "This is sindro.me, a weblog by [Marcello Barnaba](/about/) (@vjt) about technology, development, software, the internet, entertainment, politics, sociology, and the answer to Life, Universe, and Everything (42)."
       menu = [
         { Name = "Home", URL = "/" },
         { Name = "About", URL = "/about/", HasChildren = false },
@@ -77,7 +77,7 @@ defaultContentLanguageInSubdir = false
     [languages.it.params]
       flag = "🇮🇹"
       description = "feeling bold on the internet"
-      blurb = "Questo è sindro.me, un blog di Marcello Barnaba (@vjt) su tecnologia, sviluppo, software, internet, intrattenimento, politica, sociologia e la risposta alla Vita, all'Universo e a Tutto Quanto (42)."
+      blurb = "Questo è sindro.me, un blog di [Marcello Barnaba](/it/about/) (@vjt) su tecnologia, sviluppo, software, internet, intrattenimento, politica, sociologia e la risposta alla Vita, all'Universo e a Tutto Quanto (42)."
       menu = [
         { Name = "Home", URL = "/it/" },
         { Name = "Chi sono", URL = "/it/about/", HasChildren = false },

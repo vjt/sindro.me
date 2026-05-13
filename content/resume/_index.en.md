@@ -14,6 +14,8 @@ footer_images:
 
 # Marcello Barnaba
 
+*software engineer at heart, system administrator by vocation, network aficionado by necessity*
+
 **Production Engineer** · Rome, Italy · [vjt@openssl.it](mailto:vjt@openssl.it)
 
 [GitHub](https://github.com/vjt) · [LinkedIn](https://linkedin.com/in/marcellobarnaba) · [Twitter](https://twitter.com/vjt) · [Blog](https://sindro.me)

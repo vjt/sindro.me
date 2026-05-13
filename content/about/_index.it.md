@@ -7,6 +7,8 @@ noComments: true
 featuredImage: cover.jpg
 ---
 
+*software engineer nell'animo, sistemista per vocazione, appassionato di reti per necessità*
+
 Ciao! Sono Marcello Barnaba, un nerd informatico italiano, nato l'11 aprile
 1981, attualmente a [Roma, Italia](https://maps.app.goo.gl/hPk6oSuYz6akYp4o6).
 

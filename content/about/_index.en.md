@@ -7,6 +7,8 @@ noComments: true
 featuredImage: cover.jpg
 ---
 
+*software engineer at heart, system administrator by vocation, network aficionado by necessity*
+
 Hello! I'm Marcello Barnaba, an Italian computer nerd, born on April, 11th
 1981, currently located in [Rome, Italy](https://maps.app.goo.gl/hPk6oSuYz6akYp4o6).
 

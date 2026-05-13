@@ -14,6 +14,8 @@ footer_images:
 
 # Marcello Barnaba
 
+*software engineer nell'animo, sistemista per vocazione, appassionato di reti per necessità*
+
 **Production Engineer** · Roma, Italia · [vjt@openssl.it](mailto:vjt@openssl.it)
 
 [GitHub](https://github.com/vjt) · [LinkedIn](https://linkedin.com/in/marcellobarnaba) · [Twitter](https://twitter.com/vjt) · [Blog](https://sindro.me)
