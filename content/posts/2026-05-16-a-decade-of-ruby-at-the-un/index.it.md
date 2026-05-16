@@ -5,7 +5,6 @@ tags: [ruby, rails, ifad, retrospettiva, open-source, panmind, ai-generated]
 description: "Come IFAD è finito a far girare applicazioni Ruby in produzione dal 2008, e cosa ci ho costruito sopra."
 image: cover.jpg
 featuredImage: cover.jpg
-draft: true
 ---
 
 IFAD gira su tante cose — PeopleSoft, Oracle, SharePoint, più un Sybase del 2000 che, quando sono arrivato, custodiva una sorprendente quantità di memoria istituzionale. Gira anche su Ruby — ed è per quello che ero lì.

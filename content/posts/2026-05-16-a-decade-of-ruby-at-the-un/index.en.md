@@ -5,7 +5,6 @@ tags: [ruby, rails, ifad, retrospective, open-source, panmind, ai-generated]
 description: "How IFAD ended up running production Ruby apps since 2008, and what I built there."
 image: cover.jpg
 featuredImage: cover.jpg
-draft: true
 ---
 
 IFAD runs on a lot of things — PeopleSoft, Oracle, SharePoint, plus a Sybase from the year 2000 that, when I arrived, held a surprising amount of institutional memory. It also runs on Ruby — that's why I was there.
