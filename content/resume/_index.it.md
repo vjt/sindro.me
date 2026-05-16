@@ -60,19 +60,23 @@ Decommissioning degli asset e cancellazione sicura prima che l'hardware lasci i 
 *Gennaio 2011 – Novembre 2021 · 10+ anni*
 
 ### Tech Lead
-*Febbraio 2016 – Novembre 2021 · 5+ anni*
+*Febbraio 2016 – Novembre 2021 · 5+ anni · [Retrospettiva del decennio](/it/posts/2026-05-16-a-decade-of-ruby-at-the-un/#crossing-over-tech-lead-in-territorio-ibm)*
 
 Guidato il lato tecnico di un sistema finanziario critico per l'erogazione elettronica dei finanziamenti IFAD ai paesi mutuatari.
 
 - Revisionato proposte tecniche, scritto documentazione, condotto colloqui e assunzioni
 - Fatto da collegamento tra stakeholder interni, fornitori esterni e supplier
 - Guidato l'automazione completa dell'infrastruttura ([esempio](/it/posts/2026-04-11-ansible-wsadmin/)), convincendo al suo riutilizzo nelle applicazioni line-of-business esistenti
-- Supervisionato il [design della sicurezza](/it/posts/2020-09-11-integrating-onespan-2fa-with-ruby/), delegando vulnerability assessment e hardening
+- Contribuito al primo programma CISO dell'agenzia: 2FA enterprise ([OneSpan](/it/posts/2020-09-11-integrating-onespan-2fa-with-ruby/)), segmentazione di rete, disciplina sugli account di servizio; delegato vulnerability assessment e hardening
+- Progettato e operato un [cluster di aggregazione log](/it/posts/2026-05-16-a-decade-of-ruby-at-the-un/#il-log-cluster) Elasticsearch da 10 TiB su hardware Google Search Appliance ripurposato, al servizio di sviluppatori, sysadmin, business analyst e Security sotto uno schema coerente
+- Costruito Octoflow per raccogliere telemetria NetFlow dagli application server, accoppiando le request web con i flussi di pacchetti che le trasportavano
 
 ### Software Engineer & Sysadmin
-*Gennaio 2011 – Gennaio 2016 · 5 anni*
+*Gennaio 2011 – Gennaio 2016 · 5 anni · [Retrospettiva del decennio](/it/posts/2026-05-16-a-decade-of-ruby-at-the-un/#primo-incarico-la-member-states-platform)*
 
 - Progettato e sviluppato molteplici applicazioni aziendali: [DMS](/it/posts/2016-01-15-document-pipeline-heathen-colore/), CRM, workflow BPM, [autorizzazione](/it/posts/2015-02-28-eaco-authorization-ruby/), webcasting
+- Riscritto il back-office legacy Sybase/EAV in un sistema Rails normalizzato con JSON API — tempi di query da dieci minuti a millisecondi, con cut-over che preservava ogni ID esterno
+- Architettato [Reticulum](/it/posts/2026-05-16-a-decade-of-ruby-at-the-un/#reticulum-il-grafo): un grafo HTTP/JSON di servizi di dati canonici consumati da ogni app Rails del team; autore di Hawk, la libreria client basata su libcurl che lo rendeva veloce
 - Costruito il [versioning temporale](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/) nel data layer, abilitando audit history completo nelle applicazioni finanziarie
 - Costruito, messo in sicurezza e mantenuto ambienti dev/staging/prod per 30+ applicazioni Ruby
 - Creato librerie di framework condivise, rilasciate come open source dove possibile ([data-confirm-modal](/it/posts/2013-07-02-data-confirm-modal/), [ChronoModel](/it/posts/2012-05-07-chronomodel-time-travel-postgresql/), [Eaco](/it/posts/2015-02-28-eaco-authorization-ruby/))
