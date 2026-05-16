@@ -1,6 +1,6 @@
 ---
-title: "My decade at the UN: Ruby, IBM, and infrastructure"
-date: 2026-04-17
+title: "My decade of Ruby at the UN"
+date: 2026-05-16
 tags: [ruby, rails, ifad, retrospective, open-source, panmind, ai-generated]
 description: "How IFAD ended up running production Ruby apps since 2008, and what I built there."
 image: cover.jpg
@@ -10,7 +10,7 @@ draft: true
 
 IFAD runs on a lot of things — PeopleSoft, Oracle, SharePoint, plus a Sybase from the year 2000 that, when I arrived, held a surprising amount of institutional memory. It also runs on Ruby — that's why I was there.
 
-I walked into the Rome offices in the spring of 2011 as a consultant on an agile team that didn't look or act like the rest of the place. The rest of the place was an intergovernmental agency: careful, deliberate, dependent on external vendors, tied to procurement cycles and risk frameworks, understandably slow. Our team was five or six people who shipped software. We didn't replace the enterprise side — we complemented it. When something needed to be done now, and done well, and owned by people inside the building, we got the call.
+I walked into the Rome offices in the spring of 2011 as a consultant on an agile team that didn't look or act like the rest of the place. The rest of the place was an intergovernmental agency, with the procurement cycles, vendor relationships, and risk frameworks appropriate to its scale and mandate. Our team was five or six people who shipped software. We didn't replace the enterprise side — we complemented it. When something needed an in-house team working on a short cycle, we got the call.
 
 The person who had made that call possible, years before I arrived, was [Amedeo Paglione](https://www.linkedin.com/in/amedeo-paglione-72a83825/).
 
@@ -18,9 +18,9 @@ The person who had made that call possible, years before I arrived, was [Amedeo 
 
 ## Why Ruby was already there
 
-Around 2008, well before me, Amedeo was building internal tools at IFAD in Ruby on Rails. The story that got passed down — and that I verified over the next decade — is that he shipped things faster than every contractor the organization had on retainer. Someone inside IFAD noticed. Then someone else noticed. By the time I turned up, Rails was not a rebellion; it was earned territory. You don't argue with the team that ships.
+Around 2008, well before me, Amedeo was building internal tools at IFAD in Ruby on Rails. The story that got passed down — and that I verified over the next decade — is that his stack let IFAD turn requirements around on cycle times the organization hadn't seen before. Someone inside IFAD noticed. Then someone else noticed. By the time I turned up, Rails had earned its place in the stack. You don't argue with the team that ships.
 
-That's the culture I walked into. Ruby wasn't there because anyone made an executive decision to adopt it. It was there because a handful of people had quietly demonstrated, over and over, that they could turn a requirement into working software in the time it took a vendor to write a statement of work.
+That's the culture I walked into. Ruby's place at IFAD wasn't the result of a top-down platform decision — it was the result of bottom-up adoption that the organization had recognized and supported. A handful of people had quietly demonstrated, over and over, that they could turn a requirement into working software in the time it took a vendor to write a statement of work.
 
 Amedeo is a visionary, and he thinks in decades. I've written about him in posts about [ChronoModel](/posts/2012-05-07-chronomodel-time-travel-postgresql/) and [Hermes](/posts/2013-10-20-hermes-rails-rumble-2013/), and I'll keep doing it, because almost everything I'm about to describe started with a conversation with him.
 
@@ -128,9 +128,9 @@ That work isn't exciting in the telling, but it's where the team's credibility c
 
 After several years on the agile team, I crossed into the enterprise side of IFAD's IT as tech lead on a large finance project built on IBM technology. I won't say much about the project itself — most of the work sits under the kind of constraints where "can't say much" is the right answer.
 
-I reported to [Simone Giorgi](https://www.linkedin.com/in/simone-giorgi-2a811a/), with [Thomas Bousios](https://www.linkedin.com/in/thomas-bousios-b49760/) one level up as the director of the area. They picked me because years of shipping on the agile side had earned it. Knowing both sides — software engineering and the infrastructure it runs on — was what the role needed. Thomas was also the director who stood up IFAD's first CISO office and drove the security programme across the estate — enterprise 2FA, network segmentation, service-account discipline. On paper we were an unlikely pairing: him enterprise-oriented, me DIY; in practice it worked, and worked remarkably well — that pairing is what let me ship [ansible-wsadmin](/posts/2026-04-11-ansible-wsadmin/) and the [OneSpan integration](/posts/2020-09-11-integrating-onespan-2fa-with-ruby/).
+I reported to [Simone Giorgi](https://www.linkedin.com/in/simone-giorgi-2a811a/), with [Thomas Bousios](https://www.linkedin.com/in/thomas-bousios-b49760/) one level up as the director of the area. They picked me because years of shipping on the agile side had earned it. Knowing both sides — software engineering and the infrastructure it runs on — was what the role needed. Thomas was also the director who stood up IFAD's first CISO office and drove the security programme across the estate — enterprise 2FA, network segmentation, service-account discipline. On paper we were an unlikely pairing: him enterprise-focused, me engineering-led; in practice it worked, and worked remarkably well — that pairing is what let me ship [ansible-wsadmin](/posts/2026-04-11-ansible-wsadmin/) and the [OneSpan integration](/posts/2020-09-11-integrating-onespan-2fa-with-ruby/).
 
-The stack was different: IBM-based, under governance that runs on slower cycles, more risk scaffolding, narrower room to improvise. Different sport, same game. I brought the agile team's engineering rigor — reviewable code, reproducible deployments, real tests — into a programme that hadn't always demanded them, and got back, from Simone and Thomas, a real education in operating inside tighter governance without losing speed. I owe both of them a debt.
+The stack was different: IBM-based, under tighter governance that runs on slower cycles, more risk scaffolding, narrower room to improvise. Different sport, same game. I brought the agile team's engineering rigor — reviewable code, reproducible deployments, real tests — into a programme where they became increasingly important, and got back, from Simone and Thomas, a real education in operating inside tighter governance without losing speed. I owe both of them a debt.
 
 The business analyst on the project was [Michelle Lockwood](https://www.linkedin.com/in/michelle-lockwood-8929a55/), and Michelle was instrumental to its outcome — the same way Victoria and Shamela had been instrumental on Members.
 
