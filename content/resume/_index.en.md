@@ -76,7 +76,7 @@ Led the technical side of a critical financial system implementing electronic di
 
 - Architected and developed multiple line-of-business applications: [DMS](/posts/2016-01-15-document-pipeline-heathen-colore/), CRMs, BPM workflows, [authorization](/posts/2015-02-28-eaco-authorization-ruby/), webcasting
 - Rewrote the legacy Sybase/EAV back-office into a normalized Rails system with a JSON API — query times from ten minutes to milliseconds, with cut-over preserving every external ID
-- Architected [Reticulum](/posts/2026-05-16-a-decade-of-ruby-at-the-un/#reticulum-the-graph): an HTTP/JSON graph of canonical-data services consumed by every Rails app on the team; authored Hawk, the libcurl-backed client library that made it fast
+- Helped build [Reticulum](/posts/2026-05-16-a-decade-of-ruby-at-the-un/#reticulum-the-graph): an HTTP/JSON graph of canonical-data services consumed by every Rails app on the team; authored Hawk, the libcurl-backed client library that made it fast
 - Built [temporal versioning](/posts/2012-05-07-chronomodel-time-travel-postgresql/) into the data layer, enabling full audit history across financial applications
 - Built, secured and maintained dev/staging/prod environments for 30+ Ruby applications
 - Established shared framework libraries, releasing as open source where possible ([data-confirm-modal](/posts/2013-07-02-data-confirm-modal/), [ChronoModel](/posts/2012-05-07-chronomodel-time-travel-postgresql/), [Eaco](/posts/2015-02-28-eaco-authorization-ruby/))
