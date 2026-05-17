@@ -1,7 +1,7 @@
 ---
 title: "Il mio decennio di Ruby all'ONU"
 date: 2026-05-16
-tags: [ruby, rails, ifad, retrospettiva, open-source, panmind, ai-generated]
+tags: [ruby, rails, ifad, retrospective, open-source, panmind, ai-generated]
 description: "Come IFAD è finito a far girare applicazioni Ruby in produzione dal 2008, e cosa ci ho costruito sopra."
 image: cover.jpg
 featuredImage: cover.jpg
