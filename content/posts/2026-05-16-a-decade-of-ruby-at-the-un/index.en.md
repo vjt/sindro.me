@@ -31,7 +31,7 @@ In the audience that night was [Simone Carletti](https://github.com/weppos), who
 
 I got that job because I'd been sharing my work publicly. The plugins weren't a marketing exercise — they were the byproduct of real engineering we'd chosen to publish because it felt like the right thing to do. Side effect: they let someone who could only evaluate me from a distance actually evaluate me. From the commits and the talk, Simone could tell I could write the code *and* talk about it. Enough signal to start a conversation.
 
-Share your work.
+Share your work. It gives other people a way to find you that a CV never will.
 
 ## First assignment: the Member States Platform
 
