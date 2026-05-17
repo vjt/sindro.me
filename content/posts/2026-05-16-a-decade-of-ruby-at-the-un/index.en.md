@@ -25,13 +25,13 @@ Amedeo is a visionary, and he thinks in decades. I've written about him in posts
 
 ## How I got there
 
-In July 2010 I was at [Panmind](/posts/2026-04-12-panmind-ahead-of-its-time/) in Rome, and at a [Ruby Social Club meetup in Milan](/posts/2010-08-05-panmind-at-ruby-social-club/) to present a set of open source plugins we'd been extracting from our product. The plugins weren't revolutionary — an SSL helper, a Google Analytics wrapper, a ReCaptcha interface, a jQuery-driven AJAX navigation layer — but they were careful, documented, tested, and we'd put them on GitHub because they'd been useful to us and might be useful to other people.
+In July 2010 I was at [Panmind](/posts/2026-04-12-panmind-ahead-of-its-time/) in Rome, and at a [Ruby Social Club meetup in Milan](/posts/2010-08-05-panmind-at-ruby-social-club/) to present a set of open source plugins we'd been extracting from our product. The plugins weren't revolutionary — an SSL helper, a Google Analytics wrapper, a ReCaptcha interface, a jQuery-driven AJAX navigation layer — but they were solid, and we'd put them on GitHub because they'd been useful to us and might be useful to other people.
 
 In the audience that night was [Simone Carletti](https://github.com/weppos), who worked at IFAD at the time. He listened to a Panmind engineer talk about the plugins he'd written and the decisions behind them, and a few months later asked whether I might be interested in a new opportunity. By the spring of 2011 I was in Rome, on Amedeo's team, writing the members platform.
 
-This is the part I'd like the younger engineer reading this to take seriously: I got that job because I'd been sharing my work publicly. The plugins weren't a marketing exercise — they were the byproduct of real engineering we'd chosen to publish because it felt like the right thing to do. But they had a side effect, which is that they let someone who could only evaluate me from a distance actually evaluate me. Simone could tell, from the commits and the talk, that I could write the code *and* talk about it. That was enough signal to start a conversation.
+I got that job because I'd been sharing my work publicly. The plugins weren't a marketing exercise — they were the byproduct of real engineering we'd chosen to publish because it felt like the right thing to do. Side effect: they let someone who could only evaluate me from a distance actually evaluate me. From the commits and the talk, Simone could tell I could write the code *and* talk about it. Enough signal to start a conversation.
 
-Share your work. It gives other people a way to find you that a CV never will.
+Share your work.
 
 ## First assignment: the Member States Platform
 
@@ -51,7 +51,7 @@ The platform's access rules are a three-dimensional matrix with exceptions on ev
 
 On top of that, every meeting has its own rules. And on top of *those* rules, there are per-meeting overrides for specific delegations — the kind of carve-out that an intergovernmental agency generates naturally, meeting after meeting. That set of rules drove two things: who could see which documents, and who got the e-mail when a new document was published.
 
-The whole thing was implemented inside the database. A base view encoded the full matrix — person × country × meeting × role-in-meeting — and a hierarchy of additional views layered per-meeting overrides on top. The override views hard-coded the meeting IDs they applied to; a smell anywhere else, but fine here, because a meeting ID — once assigned to a Governing Council or Executive Board session — never changes. Rails queried the views and stayed out of the way. The authorization logic lived where the data lived, which is where it should live. It was fast.
+The whole thing was implemented inside the database. A base view encoded the full matrix — person × country × meeting × role-in-meeting — and a hierarchy of additional views layered per-meeting overrides on top. The override views hard-coded the meeting IDs they applied to; a smell anywhere else, but fine here, because a meeting ID — once assigned to a Governing Council or Executive Board session — never changes. Rails queried the views and stayed out of the way. The authorization logic lived where the data lived. Fast.
 
 Whatever Ruby-side checks remained on top, I wrote in-line. [Eaco](/posts/2015-02-28-eaco-authorization-ruby/) would eventually be the right place for them, but in 2011 Eaco didn't exist.
 
@@ -65,7 +65,7 @@ The harder part was the workflow and observability around publishing. The Office
 
 Then there was batching. You don't want to send ten separate emails to a delegation on a busy publishing day. I built a queueing mechanism that collected notifications as documents went live, waited for a configurable window, and sent them out as digests. Each delegate could choose their own frequency. The design came straight out of years on Linux mailing lists, where the digest option had long been the civilized way to subscribe to a high-volume list.
 
-None of this was novel on its own. Making it hang together coherently, across four languages and a meeting calendar that never paused, was the work.
+None of this was novel on its own. Making it hang together across four languages and a meeting calendar that never paused was the work.
 
 ### The award
 
@@ -73,7 +73,7 @@ None of this was novel on its own. Making it hang together coherently, across fo
 
 In December 2011 the platform won [IFAD's Outstanding Project/Initiative award](https://ifad-un.blogspot.com/2011/12/celebrating-27-extraordinary-colleagues.html). The citation went to Amedeo and the three cross-departmental staff who had conceived it, sponsored it, and championed it across silos: Shamela Brown, Victoria Chiartano, and Paola de Leva. Consultants don't qualify for those awards, so my name isn't on the citation. Fair enough — they did the harder job. I got to write the code.
 
-Victoria was my business focal point for the duration of the build. She translated two decades of how IFAD actually runs its governing-body cycles into requirements I could build against, and pushed back when my engineering instincts ran ahead of the business reality. Members is what it is because the engineering and the business analysis were done together, by people who respected each other and argued productively when they disagreed. That combination — good engineering alongside good business competence — is rarer than either alone.
+Victoria was my business focal point for the duration of the build. She translated two decades of how IFAD actually runs its governing-body cycles into requirements I could build against, and pushed back when my engineering instincts ran ahead of the business reality. Members is what it is because the engineering and the business analysis were done together, by people who respected each other and argued productively when they disagreed.
 
 ## The Sybase underneath
 
@@ -97,17 +97,17 @@ The harder part was the API. The Members Platform had to switch from reading Syb
 
 What's relevant here is what I built on the consuming side, because it became a gem. Rails in 2011–2013 gave you [ActiveResource](https://github.com/rails/activeresource) for consuming JSON APIs, and ActiveResource was too magic, too slow, and too eager to pretend that a remote call was a local method call. I wanted something that looked familiar on the surface — so the rest of the team wouldn't have to learn a new API — but that was honest about network boundaries underneath, and faster in the common case. That gem became [Hawk](https://github.com/ifad/hawk). The idea was a thin, non-magic client layered on top of [Typhoeus](https://github.com/typhoeus/typhoeus) and [Ethon](https://github.com/typhoeus/ethon) — libcurl under the hood — with explicit batching and connection reuse.
 
-Hawk is also still missing its documentation. The usage section in the README has been a `TODO` since my first commit. Lesson: if the docs aren't there on day one, they never arrive, and the project drifts toward NIH — the next person who needs what your gem does finds it easier to write their own than to reverse-engineer yours.
+Hawk is also still missing its documentation. The README's usage section has been a `TODO` since my first commit. If the docs aren't there on day one they never arrive, and the project drifts toward NIH — the next person who needs what your gem does writes their own instead of reverse-engineering yours.
 
 ## Reticulum: the graph
 
 {{< figure src="reticulum.jpg" alt="An antique parchment chart on a candlelit table showing a constellation-like network of glowing golden nodes connected by luminous threads with visible loops, a brass astrolabe to the left and a quill in an inkwell to the right" >}}
 
-Hawk and the JSON back-office were, individually, unremarkable pieces of engineering — a client, a server, an API. What made them matter was that Amedeo was already three steps ahead.
+Hawk and the JSON back-office were, individually, a client and a server. They mattered because Amedeo was three steps ahead.
 
 His vision, which he had been articulating since before I arrived, was that every system at IFAD holding canonical data should expose it as an HTTP JSON API, and every application that needed that data should consume it over the wire instead of keeping its own copy. Single source of truth per domain. No duplicate country lists, no out-of-sync people databases, no reconciliation scripts that mostly worked. An enterprise service bus, except without the commercial bus product — just HTTP, JSON, and a set of disciplined services.
 
-Internally we called it Reticulum, and it was modeled as a graph — resources linked to other resources, cycles allowed. A country pointed to its Lists; a List pointed back at its members; a meeting pointed at its Governing Body and at the people holding roles in it. Walk the graph in either direction; navigation and dependencies fell out of the same structure.
+Internally we called it Reticulum, modeled as a graph — resources linked to other resources, cycles allowed. A country pointed to its Lists; a List pointed back at its members; a meeting pointed at its Governing Body and at the people holding roles in it. The graph was walkable in either direction; navigation and dependencies came from the same structure.
 
 This sounds ordinary today. In 2012, inside a UN agency, with an enterprise side still wiring systems together through nightly batch files and shared database links, it was ambitious, and it was correct. We built it. Every Rails app on the team eventually spoke the same set of APIs. New apps came up in weeks instead of months, because the hard part — *where is the authoritative list of X* — had been answered once, and the answer was always "call this endpoint."
 
@@ -115,7 +115,7 @@ The agile team didn't replace the enterprise side of IFAD; we weren't trying to.
 
 ## Three around a table
 
-By around 2013 the agile side of IFAD's IT had crystallized into a small group. Amedeo led it. [Lleïr Borràs Metje](https://github.com/lleirborras) joined at about that time as a lead engineer, and from then on he, Amedeo, and I were the core. I wouldn't have shipped half of what I shipped without Lleïr. When a feature needed to land fast, we'd run an internal hackathon — the three of us in a room for a day or two — and ship it end-to-end into one of our tools. One visionary, two engineers who trusted each other, and a team small enough to fit around a table. That's the practical shape of everything Reticulum made possible.
+By around 2013 the agile side of IFAD's IT had crystallized into a small group. Amedeo led it. [Lleïr Borràs Metje](https://github.com/lleirborras) joined around then as a lead engineer, and from then on he, Amedeo, and I were the core. I wouldn't have shipped half of what I shipped without Lleïr. When a feature needed to land fast, we'd run an internal hackathon — the three of us in a room for a day or two — and ship it end-to-end into one of our tools. One visionary, two engineers, and a team small enough to fit around a table.
 
 Not everything the three of us did on the agile team is worth a standalone post. A large chunk of those years was infrastructure work nobody writes conference talks about: Ansible playbooks that rolled out Rails apps, server bootstrap, deployment plumbing, monitoring, backup jobs, the ten thousand small things that sit between a git commit and production.
 
@@ -139,9 +139,9 @@ On the IBM side, the vendor's project manager was [Eugenio Catello](https://www.
 
 I worked with **WebSphere Application Server** — a piece of Java infrastructure of a very specific era, with its own deployment model, its own tooling, and its own preferred way of doing things. I wrote [ansible-wsadmin](/posts/2026-04-11-ansible-wsadmin/) to bring WebSphere deployment into the same Git-driven, reviewable, idempotent workflow the agile team had taken for granted on Rails. It took a while, because WebSphere does not like being automated.
 
-I also worked with **IBM Security Access Manager** (ISAM), an enterprise authentication gateway from the same family of products. I wrote [omniauth-ibmisam](https://github.com/vjt/omniauth-ibmisam) to let Rails apps accept ISAM-authenticated sessions without pretending to speak the rest of the ISAM ecosystem. That gem is short, unglamorous, and does exactly one useful thing — which is how I like gems.
+I also worked with **IBM Security Access Manager** (ISAM), an enterprise authentication gateway from the same family. I wrote [omniauth-ibmisam](https://github.com/vjt/omniauth-ibmisam) to let Rails apps accept ISAM-authenticated sessions without pretending to speak the rest of the ISAM ecosystem. Short gem, does one thing.
 
-A large share of the work was integration across the IBM and Oracle sides of IFAD's stack: the kind nobody writes conference talks about, but that keeps organizations running. If you ever have to connect two enterprise products whose vendors swear they were designed to work together — they weren't, they never have been, they never will be — you want Simone and Michelle in the room.
+A large share of the work was integration across the IBM and Oracle sides of IFAD's stack — the kind that keeps organizations running. If you ever have to connect two enterprise products whose vendors swear they were designed to work together (they weren't), you want Simone and Michelle in the room.
 
 ### The log cluster
 
@@ -153,7 +153,7 @@ The piece I'm proudest of from those years is the central log aggregation platfo
 
 The work landed with two engineers who reported to me: [Riccardo Massullo](https://github.com/riccardomassullo) and [Gian Piero Carrubba](https://github.com/gpiero). They wrote the OS automation that brought the appliances up reproducibly, and the three of us layered Elasticsearch, Kibana, and APM on top under an enterprise license. The cluster collected logs from both sides of IFAD's IT — the Ruby stack on the agile side, the IBM stack on the enterprise side. IBM application servers are noisy; they write fat stack traces ten directories deep across multiple log files, in formats that were never meant to be machine-read twice. We wrote Filebeat configurations that tailed everything and a large Logstash pipeline that parsed it properly — handling multiline records, enriching events with GeoIP and AS-number lookups, and normalizing fields across sources so a Rails request could be cross-checked against the WebSphere call it triggered without translating between two schemas.
 
-What made the cluster useful was less the technology than the audience. IBM shipped its own dashboards for ISAM and WebSphere; they were competent, and they were product-centric — designed to tell you about the product, not about your project. Ours was project-centric. Developers used it to diagnose malfunctioning code across the stack. Sysadmins used it to assess operational status at a glance. Business analysts used it to see how people were actually using the platforms. Security, under CISO [Guillaume Farret](https://www.linkedin.com/in/guillaume-farret/), used it to build alerts on suspicious patterns. One cluster, four audiences, one consistent schema. At its peak the cluster held around 10 TiB of indexed data across roughly two years of retention, with separate rollover policies tuned per data type.
+What made the cluster useful was the audience, not the technology. IBM shipped its own dashboards for ISAM and WebSphere; they were product-centric — designed to tell you about the product, not about your project. Ours was project-centric. Developers used it to diagnose malfunctioning code across the stack. Sysadmins used it for operational status at a glance. Business analysts used it to see how people were actually using the platforms. Security, under CISO [Guillaume Farret](https://www.linkedin.com/in/guillaume-farret/), built alerts on suspicious patterns. One cluster, four audiences, one consistent schema. At peak the cluster held around 10 TiB of indexed data across roughly two years of retention, with rollover policies tuned per data type.
 
 Logs weren't the only telemetry we piped in. IFAD's firewalls and switches had built-in NetFlow exporters that pushed records directly at Logstash, which parsed them into Elasticsearch as they came through. The application servers didn't have that. [Octoflow](https://github.com/ifad/octoflow) was the small Python service Riccardo and I built on top of [nprobe](https://www.ntop.org/products/netflow/nprobe/) to close the gap — a collector/filter/exporter running alongside each app server, generating flow records from its own traffic and shipping them into the same pipeline. The schema followed the [ElastiFlow](https://www.elastiflow.com/) conventions, which gave the security side ready-made Kibana dashboards and a vocabulary the industry already spoke. A web request reaching a WebSphere application server could be paired with the actual packet flows that had carried it.
 
@@ -173,4 +173,4 @@ In late 2021 I took an offer from Meta and moved to Dublin. Ten years at IFAD en
 
 Amedeo's vision is still the shape of the agile side of IFAD's stack. Small services, clear APIs, single sources of truth, agile team complementing the enterprise machine. It survived a decade.
 
-What I took away from those ten years — more than any of the code — is this: when a place decides to trust a team, protect it, and let it ship, and when that team is led by someone who actually thinks about the organization and not about themselves, you get an extraordinary amount of software out of a very small group of people, over a very long time. That combination is rarer than it should be. And I didn't walk into it by accident — I walked into it because I'd been publishing what I built, and the right person had noticed. That's still the best advice I have for anyone starting out.
+Ten years' takeaway: when a place trusts a team, protects it, and lets it ship — and that team is led by someone who thinks about the organization, not themselves — you get an extraordinary amount of software out of very few people. That combination is rarer than it should be.
