@@ -123,6 +123,14 @@ def resolve_shortcodes_it(text):
     return text
 
 
+def make_links_absolute(html, base_url):
+    """Convert relative links (href="/...") to absolute URLs."""
+    # Replace href="/path" with href="https://sindro.me/path"
+    # Only matches href attributes that start with / (relative to root)
+    # Does not affect already-absolute URLs (http://, https://, mailto:, #)
+    return re.sub(r'href="(/[^"]*)"', f'href="{base_url}\\1"', html)
+
+
 def build_pdf(lang, output_name):
     md_path = ROOT / "content" / "resume" / f"_index.{lang}.md"
     if not md_path.exists():
@@ -135,6 +143,7 @@ def build_pdf(lang, output_name):
         body = resolve_shortcodes_it(body)
 
     html_body = markdown.markdown(body)
+    html_body = make_links_absolute(html_body, BASE_URL)
 
     static = ROOT / "static"
     photo = f'<img src="file://{static}/vjt.jpg" class="photo" alt="">'
