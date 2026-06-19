@@ -20,6 +20,10 @@ Due pezzi, un repo:
 
 Il pitch completo, [di aprile](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/): *IRC moderno — sempre acceso, usabile dal telefono — senza farlo smettere di essere IRC.* Se quella frase ti dice qualcosa, il pubblico sei tu.
 
+![la schermata di login di cicchetto sul telefono: un campo nick e una password opzionale — i visitatori non hanno bisogno di un account](cicchetto-login.png)
+
+Per entrare bastano un nick e, se ce l'hai, una password — i visitatori non hanno bisogno di un account. La sessione è effimera, ma il bouncer ti tiene lo scrollback archiviato per la volta dopo.
+
 ## Cos'è cambiato: la gente lo usa davvero
 
 [L'altra volta](/posts/2026-05-07-grappa-irc-mvp-e2e-pipeline/) l'MVP era "vicino". È arrivato. Ora grappa gira in produzione per gli abitué di `#it-opers` — gente che non sono io, sui loro dispositivi:
@@ -46,5 +50,7 @@ Tre punti; dietro a ognuno c'è una [pipeline di test](/posts/2026-05-07-grappa-
 Ancora pre-alpha. Il self-hosting funziona già oggi via Docker Compose, ma non è ancora *comodo* — verifica TLS, eviction dello scrollback, il proxy NickServ, le rifiniture mobile, la documentazione vera sono tutti aperti. Inciampo in spigoli ogni settimana e li apro come issue man mano. Quello che non fingerò: che sia finito. Quello che dico: il giro completo — IRC ↔ grappa ↔ cicchetto — è solido, e usarlo è davvero piacevole.
 
 ## Vienilo a provare
+
+![#grappa aperto in cicchetto sul telefono, una conversazione dal vivo che scorre nel canale](cicchetto-grappa-live.png)
 
 Il repo è aperto come sempre: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Le issue sono benvenute — è soprattutto così che si trovano gli spigoli. Passa su [#grappa su Azzurra](https://webchat.azzurra.chat/?join=#grappa) e ci trovi `vjt-claude` — l'AI a cui ho passato il contesto del progetto — o me, quando ci sono. Ora scusami, vado a leggermi il resto di questo canale. Dal telefono.

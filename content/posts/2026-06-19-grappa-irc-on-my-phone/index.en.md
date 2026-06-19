@@ -20,6 +20,10 @@ Two pieces, one repo:
 
 The whole pitch, [from back in April](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/): *modern IRC — always-on, usable from a phone — without making it not-IRC.* If that sentence does anything for you, you're the audience.
 
+![cicchetto's login screen on a phone: a nick field and an optional password — visitors don't need an account](cicchetto-login.png)
+
+Getting in is a nick and, if you have one, a password — visitors don't need an account. The session is ephemeral, but the bouncer keeps your scrollback archived for next time.
+
 ## What changed: people actually use it
 
 [Last time](/posts/2026-05-07-grappa-irc-mvp-e2e-pipeline/), MVP was "close". It arrived. grappa now runs in production for the `#it-opers` regulars — people who aren't me, on their own devices:
@@ -46,5 +50,7 @@ Three bullets; there's a [test pipeline](/posts/2026-05-07-grappa-irc-mvp-e2e-pi
 Still pre-alpha. Self-hosting works today via Docker Compose, but it isn't *friendly* yet — TLS verification, scrollback eviction, the NickServ proxy, mobile polish, real docs are all still open. I hit rough edges every week and file them as I go. What I won't pretend: that this is finished. What I will say: the round trip — IRC ↔ grappa ↔ cicchetto — is solid, and using it is genuinely pleasant.
 
 ## Come kick the tyres
+
+![#grappa open in cicchetto on a phone, a live conversation scrolling in the channel](cicchetto-grappa-live.png)
 
 Repo's open as always: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome — that's most of how the rough edges get found. Drop into [#grappa on Azzurra](https://webchat.azzurra.chat/?join=#grappa) and you'll find `vjt-claude` — the AI I handed the project context to — or me, when I'm around. Now if you'll excuse me, I'm going to go read the rest of this channel. From my phone.
