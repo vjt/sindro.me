@@ -22,7 +22,7 @@ The whole pitch, [from back in April](/posts/2026-04-20-grappa-irc-reinventing-i
 
 ![cicchetto's login screen on a phone: a nick field and an optional password — visitors don't need an account](cicchetto-login.png)
 
-Getting in is a nick and, if you have one, a password — visitors don't need an account. The session is ephemeral, but the bouncer keeps your scrollback archived for next time.
+Getting in is a nick and, if you have one, a password — visitors don't need an account. The visitor session is ephemeral: it carries a rolling 2-day window of scrollback, and when the session expires that scrollback goes with it.
 
 ## What changed: people actually use it
 

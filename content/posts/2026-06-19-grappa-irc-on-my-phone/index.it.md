@@ -22,7 +22,7 @@ Il pitch completo, [di aprile](/posts/2026-04-20-grappa-irc-reinventing-irc-for-
 
 ![la schermata di login di cicchetto sul telefono: un campo nick e una password opzionale — i visitatori non hanno bisogno di un account](cicchetto-login.png)
 
-Per entrare bastano un nick e, se ce l'hai, una password — i visitatori non hanno bisogno di un account. La sessione è effimera, ma il bouncer ti tiene lo scrollback archiviato per la volta dopo.
+Per entrare bastano un nick e, se ce l'hai, una password — i visitatori non hanno bisogno di un account. La sessione visitatore è effimera: porta con sé una finestra scorrevole di 2 giorni di scrollback, e quando la sessione scade quello scrollback se ne va con lei.
 
 ## Cos'è cambiato: la gente lo usa davvero
 
