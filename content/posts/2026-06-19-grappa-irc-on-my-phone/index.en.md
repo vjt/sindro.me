@@ -21,9 +21,9 @@ A bouncer and its frontends, one repo:
 
 The whole pitch, [from back in April](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/): *modern IRC — always-on, usable from a phone — without making it not-IRC.* If that sentence does anything for you, you're the audience.
 
-![cicchetto's login screen on a phone: a nick field and an optional password — visitors don't need an account](cicchetto-login.png)
+![cicchetto's login screen on a phone: just a nick — a password is only for registered users](cicchetto-login.png)
 
-Getting in is a nick and, if you have one, a password — visitors don't need an account. The visitor session is ephemeral: it carries a rolling 2-day window of scrollback, and when the session expires that scrollback goes with it.
+A nick is all you need to get in. The password is only for registered users — and registration only exists if you run your own grappa. Either way the bouncer is doing the real work: it stays connected to IRC for you, whether the app is open or not. Close the tab, come back later, reopen — you're still on, and you pick the conversation back up. Scrollback rides along, a rolling window the bouncer holds for you, so remembering it isn't your phone's job.
 
 ## What changed: people actually use it
 

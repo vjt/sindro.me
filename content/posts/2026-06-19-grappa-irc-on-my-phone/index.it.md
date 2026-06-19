@@ -21,9 +21,9 @@ Un bouncer e i suoi frontend, un repo:
 
 Il pitch completo, [di aprile](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/): *IRC moderno — sempre acceso, usabile dal telefono — senza farlo smettere di essere IRC.* Se quella frase ti dice qualcosa, il pubblico sei tu.
 
-![la schermata di login di cicchetto sul telefono: un campo nick e una password opzionale — i visitatori non hanno bisogno di un account](cicchetto-login.png)
+![la schermata di login di cicchetto sul telefono: solo un nick — la password è soltanto per gli utenti registrati](cicchetto-login.png)
 
-Per entrare bastano un nick e, se ce l'hai, una password — i visitatori non hanno bisogno di un account. La sessione visitatore è effimera: porta con sé una finestra scorrevole di 2 giorni di scrollback, e quando la sessione scade quello scrollback se ne va con lei.
+Per entrare basta un nick. La password serve solo agli utenti registrati — e la registrazione esiste solo se ti ospiti grappa per conto tuo. In ogni caso il lavoro vero lo fa il bouncer: resta connesso a IRC al posto tuo, che l'app sia aperta o no. Chiudi la scheda, torni più tardi, riapri — sei ancora dentro, e riprendi la conversazione da dove l'avevi lasciata. Lo scrollback viaggia con te, una finestra scorrevole che tiene il bouncer, così ricordarselo non è compito del telefono.
 
 ## Cos'è cambiato: la gente lo usa davvero
 
