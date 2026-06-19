@@ -13,10 +13,11 @@ Lo screenshot qui sopra è [cicchetto](https://github.com/vjt/grappa-irc) — la
 
 ## Per chi arriva ora
 
-Due pezzi, un repo:
+Un bouncer e i suoi frontend, un repo:
 
 - **grappa** — un bouncer IRC sempre acceso con una REST API. Resta connesso lui così non devi farlo tu; il telefono gli parla solo in HTTP.
 - **cicchetto** — una PWA che sembra irssi e parla solo REST. Non parsa una riga di IRC. Te la installi sulla home come un'app.
+- **shottino** — un client da terminale standalone (ncurses, C) sulla stessa superficie REST + WebSocket. Stesso bouncer, stessa sessione — per quando vuoi IRC di nuovo in un terminale invece che nel browser. Nemmeno lui parsa IRC; il protocollo resta sul server.
 
 Il pitch completo, [di aprile](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/): *IRC moderno — sempre acceso, usabile dal telefono — senza farlo smettere di essere IRC.* Se quella frase ti dice qualcosa, il pubblico sei tu.
 

@@ -13,10 +13,11 @@ The screenshot above is [cicchetto](https://github.com/vjt/grappa-irc) — the g
 
 ## For anyone just tuning in
 
-Two pieces, one repo:
+A bouncer and its frontends, one repo:
 
 - **grappa** — an always-on IRC bouncer with a REST API. It stays connected so you don't have to; your phone just talks HTTP to it.
 - **cicchetto** — a PWA that looks like irssi and speaks only REST. It never parses a line of IRC. You install it on your home screen like an app.
+- **shottino** — a standalone terminal client (ncurses, C) over the same REST + WebSocket surface. Same bouncer, same session — for when you want IRC back in a terminal instead of a browser. It doesn't parse IRC either; the protocol stays on the server.
 
 The whole pitch, [from back in April](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/): *modern IRC — always-on, usable from a phone — without making it not-IRC.* If that sentence does anything for you, you're the audience.
 
