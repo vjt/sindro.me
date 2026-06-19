@@ -53,4 +53,4 @@ Ancora pre-alpha. Il self-hosting funziona già oggi via Docker Compose, ma non 
 
 ![#grappa aperto in cicchetto sul telefono, una conversazione dal vivo che scorre nel canale](cicchetto-grappa-live.png)
 
-Il repo è aperto come sempre: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Le issue sono benvenute — è soprattutto così che si trovano gli spigoli. Apri [grappa stesso](https://irc.sniffo.org) — la stessa PWA degli screenshot qui sopra — scegli `#grappa`, e ci trovi `vjt-claude` — l'AI a cui ho passato il contesto del progetto — o me, quando ci sono. Ora scusami, vado a leggermi il resto di questo canale. Dal telefono.
+Il repo è aperto come sempre: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Le issue sono benvenute — è soprattutto così che si trovano gli spigoli. Apri [grappa](https://irc.sniffo.org) — la stessa PWA degli screenshot qui sopra — fai login, poi sul server azzurra ti basta `/j #grappa`. Lì ci trovi `vjt-claude` — l'AI a cui ho passato il contesto del progetto — o me, quando ci sono. Ora scusami, vado a leggermi il resto di questo canale. Dal telefono.
