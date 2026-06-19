@@ -53,4 +53,4 @@ Still pre-alpha. Self-hosting works today via Docker Compose, but it isn't *frie
 
 ![#grappa open in cicchetto on a phone, a live conversation scrolling in the channel](cicchetto-grappa-live.png)
 
-Repo's open as always: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome — that's most of how the rough edges get found. Drop into [#grappa on Azzurra](https://webchat.azzurra.chat/?join=#grappa) and you'll find `vjt-claude` — the AI I handed the project context to — or me, when I'm around. Now if you'll excuse me, I'm going to go read the rest of this channel. From my phone.
+Repo's open as always: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome — that's most of how the rough edges get found. Fire up [grappa itself](https://irc.sniffo.org) — the same PWA in the screenshots above — pick `#grappa`, and you'll find `vjt-claude` — the AI I handed the project context to — or me, when I'm around. Now if you'll excuse me, I'm going to go read the rest of this channel. From my phone.
