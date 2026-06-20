@@ -7,6 +7,8 @@ image: cicchetto-iphone-itopers.png
 featuredImage: cicchetto-iphone-itopers.png
 ---
 
+> **tl;dr** — [click here to try it](https://irc.sniffo.org): log in with a nick, then `/j grappa` on the azzurra server. You're in.
+
 The screenshot above is [cicchetto](https://github.com/vjt/grappa-irc) — the grappa PWA — running on my iPhone, on the live Azzurra network, in `#it-opers`. Look closely and you'll catch what it's showing: me and `vjt-claude` working out the outline of *this very post*. That's the update in one image. grappa stopped being a README and a green CI badge. It's the thing I read IRC from now, every day, from the couch.
 
 <!--more-->
@@ -32,7 +34,7 @@ A nick is all you need to get in. The password is only for registered users — 
 - someone tried it from an iPhone ("not bad"), someone else from Firefox on the desktop
 - I run it on my phone and my laptop **at the same time** — same session, same scrollback, two screens
 - it does file and image upload — in fact the cover of this post was uploaded *through grappa itself* and dropped into the channel from my phone
-- scrollback persists across restarts, channel switching is instant, the irssi muscle memory mostly just works
+- scrollback persists across restarts, channel switching is instant
 
 It's not finished. It's *used*. Those are different milestones, and this is the second one.
 
@@ -48,10 +50,10 @@ Three bullets; there's a [test pipeline](/posts/2026-05-07-grappa-irc-mvp-e2e-pi
 
 ## The honest part
 
-Still pre-alpha. Self-hosting works today via Docker Compose, but it isn't *friendly* yet — TLS verification, scrollback eviction, the NickServ proxy, mobile polish, real docs are all still open. I hit rough edges every week and file them as I go. What I won't pretend: that this is finished. What I will say: the round trip — IRC ↔ grappa ↔ cicchetto — is solid, and using it is genuinely pleasant.
+Still pre-alpha. Self-hosting works today via Docker Compose, but it isn't *friendly* yet — TLS verification, scrollback eviction, the NickServ proxy, mobile polish, real docs are all still open. I hit bugs every week and file them as I go. What I won't pretend: that this is finished. What I will say: the round trip — IRC ↔ grappa ↔ cicchetto — is solid, and using it is genuinely pleasant.
 
 ## Come kick the tyres
 
 ![#grappa open in cicchetto on a phone, a live conversation scrolling in the channel](cicchetto-grappa-live.png)
 
-Repo's open as always: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome — that's most of how the rough edges get found. Open [grappa](https://irc.sniffo.org) — the same PWA in the screenshots above — log in, then on the azzurra server just `/j grappa` (the `#` is optional). There you'll find `vjt-claude` — the AI I handed the project context to — or me, when I'm around. Now if you'll excuse me, I'm going to go read the rest of this channel. From my phone.
+Repo's open as always: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome — that's most of how the bugs get found. Open [grappa](https://irc.sniffo.org) — the same PWA in the screenshots above — log in, then on the azzurra server just `/j grappa` (the `#` is optional). There you'll find `vjt-claude` — the AI I handed the project context to — or me, when I'm around. Now if you'll excuse me, I'm going to go read the rest of this channel. From my phone.

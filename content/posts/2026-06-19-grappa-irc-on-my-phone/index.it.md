@@ -7,6 +7,8 @@ image: cicchetto-iphone-itopers.png
 featuredImage: cicchetto-iphone-itopers.png
 ---
 
+> **tl;dr** — [clicca qui per provarlo](https://irc.sniffo.org): fai login con un nick, poi `/j grappa` sul server azzurra. Sei dentro.
+
 Lo screenshot qui sopra è [cicchetto](https://github.com/vjt/grappa-irc) — la PWA di grappa — che gira sul mio iPhone, sulla rete Azzurra vera, dentro `#it-opers`. Guarda bene cosa sta mostrando: io e `vjt-claude` che ci mettiamo d'accordo sulla scaletta di *questo stesso post*. Ecco l'aggiornamento in un'immagine. grappa ha smesso di essere un README e un pallino verde di CI. È la cosa da cui leggo IRC adesso, ogni giorno, dal divano.
 
 <!--more-->
@@ -32,7 +34,7 @@ Per entrare basta un nick. La password serve solo agli utenti registrati — e l
 - qualcuno l'ha collaudato da iPhone ("not bad"), qualcun altro da Firefox sul desktop
 - io lo tengo aperto su telefono e laptop **in contemporanea** — stessa sessione, stesso scrollback, due schermi
 - fa upload di file e immagini — anzi, la copertina di questo post è stata caricata *attraverso grappa stesso* e buttata in canale dal telefono
-- lo scrollback sopravvive ai riavvii, il cambio canale è istantaneo, la memoria muscolare di irssi più o meno funziona e basta
+- lo scrollback sopravvive ai riavvii, il cambio canale è istantaneo
 
 Non è finito. È *usato*. Sono due traguardi diversi, e questo è il secondo.
 
@@ -48,10 +50,10 @@ Tre punti; dietro a ognuno c'è una [pipeline di test](/posts/2026-05-07-grappa-
 
 ## La parte onesta
 
-Ancora pre-alpha. Il self-hosting funziona già oggi via Docker Compose, ma non è ancora *comodo* — verifica TLS, eviction dello scrollback, il proxy NickServ, le rifiniture mobile, la documentazione vera sono tutti aperti. Inciampo in spigoli ogni settimana e li apro come issue man mano. Quello che non fingerò: che sia finito. Quello che dico: il giro completo — IRC ↔ grappa ↔ cicchetto — è solido, e usarlo è davvero piacevole.
+Ancora pre-alpha. Il self-hosting funziona già oggi via Docker Compose, ma non è ancora *comodo* — verifica TLS, eviction dello scrollback, il proxy NickServ, le rifiniture mobile, la documentazione vera sono tutti aperti. Inciampo in bug ogni settimana e li apro come issue man mano. Quello che non fingerò: che sia finito. Quello che dico: il giro completo — IRC ↔ grappa ↔ cicchetto — è solido, e usarlo è davvero piacevole.
 
 ## Vienilo a provare
 
 ![#grappa aperto in cicchetto sul telefono, una conversazione dal vivo che scorre nel canale](cicchetto-grappa-live.png)
 
-Il repo è aperto come sempre: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Le issue sono benvenute — è soprattutto così che si trovano gli spigoli. Apri [grappa](https://irc.sniffo.org) — la stessa PWA degli screenshot qui sopra — fai login, poi sul server azzurra ti basta `/j grappa` (il `#` è opzionale). Lì ci trovi `vjt-claude` — l'AI a cui ho passato il contesto del progetto — o me, quando ci sono. Ora scusami, vado a leggermi il resto di questo canale. Dal telefono.
+Il repo è aperto come sempre: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Le issue sono benvenute — è soprattutto così che si trovano i bug. Apri [grappa](https://irc.sniffo.org) — la stessa PWA degli screenshot qui sopra — fai login, poi sul server azzurra ti basta `/j grappa` (il `#` è opzionale). Lì ci trovi `vjt-claude` — l'AI a cui ho passato il contesto del progetto — o me, quando ci sono. Ora scusami, vado a leggermi il resto di questo canale. Dal telefono.
