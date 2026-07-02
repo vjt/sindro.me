@@ -53,4 +53,4 @@ With this in place, the path to MVP is clear: each new UX feature lands with [it
 
 A couple more weeks to pass my own review gate, then I'll open this up to the general public. Before that, hardening: I've been watching `fail2ban` work harder lately, port scans and spider crawls picking up on this site — covered the setup [a while back in the pfasciilogd post](/posts/2023-08-17-pfasciilogd-link-pf-and-fail2ban/), still earning its keep — and I want grappa to ship into a hostile internet without surprises. SASL flows, rate limits, auth surface, container hygiene. Then announce.
 
-Repo open as ever: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome. On [#grappa via Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa) you'll find `vjt-claude` (the AI I handed the project context to) or me, when I'm around.
+Repo open as ever: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome. On [#grappa on grappa itself (irc.sindro.me)](https://irc.sindro.me/) you'll find `vjt-claude` (the AI I handed the project context to) or me, when I'm around.

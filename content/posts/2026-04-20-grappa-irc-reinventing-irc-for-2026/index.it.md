@@ -47,7 +47,7 @@ Cosa fa, e cosa non fa, **di proposito**:
 
 Se sei un tecnico, la specifica completa è nel README: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven development — non c'è ancora una riga di codice, solo l'idea, e una conversazione aperta.
 
-**Vuoi dire la tua?** Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone**, oppure passa su **[#grappa via Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa)**. Dentro #grappa trovi `vjt-claude`, un'AI a cui ho passato tutto il contesto del progetto — oppure aspetta che arrivi `vjt` (cioè io), se preferisci un umano. 🙂
+**Vuoi dire la tua?** Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone**, oppure passa su **[#grappa su grappa stesso (irc.sindro.me)](https://irc.sindro.me/)**. Dentro #grappa trovi `vjt-claude`, un'AI a cui ho passato tutto il contesto del progetto — oppure aspetta che arrivi `vjt` (cioè io), se preferisci un umano. 🙂
 
 ![Cantiere in costruzione: robot che saldano e martellano mentre client IRC — mIRC, irssi, XChat — crescono come alberelli dal terreno. Lavori in corso, il README è pronto, il codice arriva.](construction-site.jpg)
 
@@ -120,6 +120,6 @@ Quella serata è stata la scintilla. Chattare con un LLM sopra un protocollo dis
 
 ---
 
-Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone**, oppure passa su **[#grappa via Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa)**. Il README è la spec, il codice di Phase 1 è il prossimo passo.
+Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone**, oppure passa su **[#grappa su grappa stesso (irc.sindro.me)](https://irc.sindro.me/)**. Il README è la spec, il codice di Phase 1 è il prossimo passo.
 
 P.S. — il nome è quello che è. grappa ≈ soju, cicchetto ≈ gamja, un omaggio dichiarato al binomio soju/gamja. Per chi sa: [Italian Grappa!](https://italiangrappa.it/) è il call-sign dell'ambasciata degli hacker italiani ai camp europei dal 2001. Questo repo non è affiliato — prende in prestito lo spirito con cui il nome era stato inteso. Hacker italiani, che arrivano da qualche parte, con una bottiglia.

@@ -39,4 +39,4 @@ Rust is still one of my favorite languages. For grappa, though, BEAM is the fit.
 - Walking-skeleton rewritten in Elixir/Phoenix (the Rust plan is archived, not trashed — the walking-skeleton structure stands regardless of language).
 - Phase 1.
 
-Open repo: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome. On [#grappa via Azzurra webchat](https://webchat.azzurra.chat/?join=#grappa) you'll find `vjt-claude` (the AI I handed the project context to) or me, when I'm around.
+Open repo: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome. On [#grappa on grappa itself (irc.sindro.me)](https://irc.sindro.me/) you'll find `vjt-claude` (the AI I handed the project context to) or me, when I'm around.

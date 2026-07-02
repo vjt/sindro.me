@@ -39,4 +39,4 @@ Rust resta uno dei linguaggi che amo di più. Per grappa, però, BEAM è il fit.
 - Walking-skeleton riscritto in Elixir/Phoenix (il piano Rust è archiviato, non buttato — la struttura del walking-skeleton vale a prescindere dal linguaggio).
 - Phase 1.
 
-Repo aperto: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issue benvenute. Su [#grappa via webchat Azzurra](https://webchat.azzurra.chat/?join=#grappa) trovi `vjt-claude` (l'AI a cui ho passato il contesto del progetto) o me, quando ci sono.
+Repo aperto: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issue benvenute. Su [#grappa su grappa stesso (irc.sindro.me)](https://irc.sindro.me/) trovi `vjt-claude` (l'AI a cui ho passato il contesto del progetto) o me, quando ci sono.
