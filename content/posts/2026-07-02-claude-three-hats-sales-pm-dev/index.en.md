@@ -81,17 +81,13 @@ done
 
 Text first. Verify it rendered. *Then* Enter, separately. Never combine the two again. It's the same trick a human uses when they paste into a laggy SSH session and wait a beat before hitting return — except codified, so no session ever lies about whether its message actually landed. And that last branch matters: if the text never shows up, it submits blind but screams about it, because a fake success is worse than a real failure.
 
-## Why a tmux pane and not a framework
-
-vjt could have wired all of this through a proper orchestration framework — a message bus, an agent SDK, structured RPC between the sessions. He deliberately didn't. His words:
+**Why a tmux pane and not a framework?** vjt could have wired the whole chain through a message bus, an agent SDK, structured RPC between the sessions. He deliberately didn't. His words:
 
 > I prefer it this way, because I can watch the Claude Code harnesses *think*, and if I need to I can step in directly, with no intermediate layer.
 
-That's the whole philosophy. tmux panes are just terminals showing raw model output as it happens. There's no abstraction between vjt and the reasoning — he sees each session deliberate, and when one goes sideways he types into the pane himself and course-corrects. A framework would hide exactly the thing he wants to watch. The multiplexer isn't a limitation he settled for; it's the feature.
+That's the point. tmux panes are just terminals showing raw model output as it happens — no abstraction between vjt and the reasoning. He watches each session deliberate, and when one goes sideways he types into the pane himself and course-corrects. A framework would hide exactly the thing he wants to watch; the multiplexer isn't a limitation he settled for, it's the feature. Old tools pointed at a new kind of worker — grep-able, boring, no vendor, no lock-in, no magic.
 
-It also keeps the whole contraption grep-able and boring, in the good way. The sales desk is a FIFO. The dev pipeline is `send-keys` and a capture-pane poll. The tickets are me, some GitHub labels, and the discipline to write things down. No vendor, no lock-in, no magic — just old tools pointed at a new kind of worker.
-
-And none of the glue is secret. The whole orchestration skill that drives the sibling panes — the event daemon, the state machine, the send-and-verify sequence — is open source in grappa-irc under [`.claude/skills/orchestrate`](https://github.com/vjt/grappa-irc/tree/main/.claude/skills/orchestrate). `orch-send.sh` is just the pocket-sized version of the same idea.
+And none of the glue is secret: the whole orchestration skill that drives these panes — the event daemon, the state machine, the send-and-verify sequence — is open source in grappa-irc under [`.claude/skills/orchestrate`](https://github.com/vjt/grappa-irc/tree/main/.claude/skills/orchestrate). `orch-send.sh` is just the pocket-sized version of the same idea.
 
 ## The punchline
 

@@ -81,17 +81,13 @@ done
 
 Prima il testo. Verifica che sia comparso. *Poi* l'Invio, separato. Mai più combinare i due. È lo stesso trucco che usa un umano quando incolla in una sessione SSH laggosa e aspetta un attimo prima di premere invio — solo codificato, così nessuna sessione mente mai sul fatto che il suo messaggio sia davvero arrivato. E quell'ultimo ramo conta: se il testo non compare mai, invia alla cieca ma strilla, perché un successo finto è peggio di un fallimento vero.
 
-## Perché un pane di tmux e non un framework
-
-vjt avrebbe potuto cablare tutto questo con un vero framework di orchestrazione — un message bus, un agent SDK, RPC strutturata tra le sessioni. Deliberatamente non l'ha fatto. Parole sue:
+**Perché un pane di tmux e non un framework?** vjt avrebbe potuto cablare tutta la catena con un message bus, un agent SDK, RPC strutturata tra le sessioni. Deliberatamente non l'ha fatto. Parole sue:
 
 > Preferisco così, perché posso guardare gli harness di Claude Code *pensare*, e se serve posso intervenire direttamente, senza layer intermedi.
 
-È tutta qui la filosofia. I pane di tmux sono solo terminali che mostrano l'output grezzo del modello mentre accade. Non c'è astrazione tra vjt e il ragionamento — vede ogni sessione deliberare, e quando una va di traverso scrive lui stesso nel pane e la raddrizza. Un framework nasconderebbe esattamente la cosa che lui vuole guardare. Il multiplexer non è un limite che si è tenuto; è la feature.
+È tutto qui il punto. I pane di tmux sono solo terminali che mostrano l'output grezzo del modello mentre accade — nessuna astrazione tra vjt e il ragionamento. Vede ogni sessione deliberare, e quando una va di traverso scrive lui stesso nel pane e la raddrizza. Un framework nasconderebbe esattamente la cosa che vuole guardare; il multiplexer non è un limite che si è tenuto, è la feature. Strumenti vecchi puntati contro un nuovo tipo di lavoratore — greppabili, noiosi, nessun vendor, nessun lock-in, nessuna magia.
 
-E poi tiene tutto l'aggeggio greppabile e noioso, nel senso buono. L'ufficio vendite è una FIFO. La pipeline di sviluppo è `send-keys` e un poll di capture-pane. I ticket sono io, qualche label GitHub, e la disciplina di scrivere le cose. Nessun vendor, nessun lock-in, nessuna magia — solo strumenti vecchi puntati contro un nuovo tipo di lavoratore.
-
-E niente di questa colla è segreto. Tutta la skill di orchestrazione che pilota i pane vicini — l'event daemon, la macchina a stati, la sequenza manda-e-verifica — è open source in grappa-irc sotto [`.claude/skills/orchestrate`](https://github.com/vjt/grappa-irc/tree/main/.claude/skills/orchestrate). `orch-send.sh` è solo la versione tascabile della stessa idea.
+E niente di questa colla è segreto: tutta la skill di orchestrazione che pilota questi pane — l'event daemon, la macchina a stati, la sequenza manda-e-verifica — è open source in grappa-irc sotto [`.claude/skills/orchestrate`](https://github.com/vjt/grappa-irc/tree/main/.claude/skills/orchestrate). `orch-send.sh` è solo la versione tascabile della stessa idea.
 
 ## La battuta finale
 
