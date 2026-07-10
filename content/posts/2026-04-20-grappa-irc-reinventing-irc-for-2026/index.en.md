@@ -7,12 +7,11 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+> 🍸 *This is the "why." Short version for the impatient: IRC — the internet's original text chat — is alive and better than your messenger, and I rebooted it for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)**, or read on for the full story.*
+
 A few days ago I dug back into [a 2002 project](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/), from when I was running the Azzurra IRC network together with others. I logged back into IRC after twenty years, and I realized (though deep down I had always known) how much better IRC was than any modern messenger. So it felt necessary, and only right, in this AI era where everything is possible in no time, to bring IRC back with a "Reboot" in 2026: [grappa-irc](https://github.com/vjt/grappa-irc). Still IRC, just with a few conveniences added. I'll start with the why, then get to the what.
 
 <!--more-->
-
-> 🍸 *This is the "why." Short version for the impatient: IRC — the internet's original text chat — is alive and better than your messenger, and I rebooted it for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)**, or read on for the full story.*
-
 
 ## Why IRC
 

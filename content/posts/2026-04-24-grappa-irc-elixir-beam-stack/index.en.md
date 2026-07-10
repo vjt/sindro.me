@@ -7,12 +7,11 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+> 🍸 *New here? This is a build log for grappa — my reboot of IRC, the internet's original text chat, for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
 [Four days ago](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/) I posted the pitch for [grappa-irc](https://github.com/vjt/grappa-irc) — an IRC BNC with a REST API and a PWA that only speaks HTTP. README-driven, pre-alpha, no code. Four days later, first update: work has started, and we picked the stack.
 
 <!--more-->
-
-> 🍸 *New here? This is a build log for grappa — my reboot of IRC, the internet's original text chat, for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
-
 
 ## Stack: Elixir on BEAM
 

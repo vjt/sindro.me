@@ -7,14 +7,13 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+> 🍸 *New here? Twenty-four years after these patches I'm bringing IRC back — the internet's original text chat, rebooted for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
 This is the prequel to [Sux Services: Multithreaded, SQL-Backed IRC Services from Scratch, 2002](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/). Before I started writing IRC services from scratch, I spent the better part of a year doing something arguably crazier: forking an IRC server to add IPv6 and SSL (now known as TLS). I was twenty-one.
 
 The project lived in a CVS repository on SourceForge — it's [still there](https://bahamut-inet6.sf.net/), a digital fossil. Claude converted it to Git — [171 commits](https://github.com/vjt/bahamut-inet6/commits/master/), three authors, continuous history from February 2002 to January 2006. I wrote it — a fork of [Bahamut](https://en.wikipedia.org/wiki/Bahamut_(IRCd)), the IRC daemon that powered [DALnet](https://en.wikipedia.org/wiki/DALnet), one of the largest IRC networks of its era. Let me tell you about it.
 
 <!--more-->
-
-> 🍸 *New here? Twenty-four years after these patches I'm bringing IRC back — the internet's original text chat, rebooted for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
-
 
 ## How I got here
 

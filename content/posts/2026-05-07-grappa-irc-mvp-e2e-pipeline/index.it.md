@@ -7,12 +7,11 @@ image: cicchetto-grappa-channel.png
 featuredImage: cicchetto-grappa-channel.png
 ---
 
+> 🍸 *Capitato qui per caso? Questo è un diario di sviluppo di grappa — il mio reboot di IRC per il 2026, la chat testuale originale di internet. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
 [Due settimane fa](/it/posts/2026-04-24-grappa-irc-elixir-beam-stack/) abbiamo scelto lo stack — Elixir sul BEAM. Oggi, [cicchetto](https://github.com/vjt/grappa-irc) (la PWA) davanti a un bouncer funzionante, in conversazione con una rete IRC vera — la copertina qui sopra mostra il canale `#grappa`; qui sotto, `#sniffo`:
 
 <!--more-->
-
-> 🍸 *Capitato qui per caso? Questo è un diario di sviluppo di grappa — il mio reboot di IRC per il 2026, la chat testuale originale di internet. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
-
 
 ![cicchetto su #sniffo](cicchetto-sniffo-channel.png)
 

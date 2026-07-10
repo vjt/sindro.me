@@ -7,12 +7,11 @@ image: cicchetto-grappa-channel.png
 featuredImage: cicchetto-grappa-channel.png
 ---
 
+> 🍸 *New here? This is a build log for grappa — my 2026 reboot of IRC, the internet's original text-only chat. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
 [Two weeks ago](/posts/2026-04-24-grappa-irc-elixir-beam-stack/) we picked the stack — Elixir on BEAM. Today, [cicchetto](https://github.com/vjt/grappa-irc) (the PWA) in front of a working bouncer, talking to a real IRC network — the cover above shows the `#grappa` channel; below, `#sniffo`:
 
 <!--more-->
-
-> 🍸 *New here? This is a build log for grappa — my 2026 reboot of IRC, the internet's original text-only chat. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
-
 
 ![cicchetto on #sniffo](cicchetto-sniffo-channel.png)
 

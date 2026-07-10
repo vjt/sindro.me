@@ -7,12 +7,11 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+> 🍸 *Questo è il "perché". Versione breve per gli impazienti: IRC — la chat testuale originale di internet — è viva e meglio del tuo messenger, e io l'ho rifatta per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)**, oppure continua per la storia completa.*
+
 Qualche giorno fa ho rimesso le mani in [un progetto del 2002](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/), di quando gestivo assieme ad altri la rete IRC Azzurra. Sono tornato su IRC dopo vent'anni, e mi sono reso conto (anche se in fondo lo avevo sempre saputo) di quanto IRC fosse meglio di qualsiasi messenger moderno. Così mi è sembrato necessario e doveroso, in quest'era dell'AI in cui tutto è possibile in poco tempo, riportare in auge IRC facendo un "Reboot" nel 2026: [grappa-irc](https://github.com/vjt/grappa-irc). Sempre IRC, ma con qualche comodità in più. Parto dal perché, e poi arrivo al cosa.
 
 <!--more-->
-
-> 🍸 *Questo è il "perché". Versione breve per gli impazienti: IRC — la chat testuale originale di internet — è viva e meglio del tuo messenger, e io l'ho rifatta per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)**, oppure continua per la storia completa.*
-
 
 ## Perché IRC
 

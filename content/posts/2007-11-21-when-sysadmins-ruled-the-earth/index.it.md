@@ -8,6 +8,8 @@ featuredImage: cover.jpg
 hideVintage: true
 ---
 
+> 🍸 *Capitato qui per caso? Ai tempi di questa storia i sysadmin si coordinavano su IRC. IRC è ancora vivo — e l'ho rifatto per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
 <style>
 /* Chat/IRC/Usenet messages — wrap long lines, generous spacing */
 .highlight pre {
@@ -28,9 +30,6 @@ Voto: 10+ per la cosa più geek che abbia mai letto. Vale davvero l'ora
 necessaria per leggerlo tutto.
 
 <!--more-->
-
-> 🍸 *Capitato qui per caso? Ai tempi di questa storia i sysadmin si coordinavano su IRC. IRC è ancora vivo — e l'ho rifatto per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
-
 
 ---
 

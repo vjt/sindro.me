@@ -7,14 +7,13 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+> 🍸 *New here? Not an IRC post — but the same itch to dig up my old code led me to reboot IRC itself for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
 In February 2002 I was 20 years old and taking a Programmazione (Programming) exam. The assignment was: a data structure representing books, stored as binary records in a file. Write a program to list, add, and delete them.
 
 I didn't do that. I built a graphical calculator instead.
 
 <!--more-->
-
-> 🍸 *New here? Not an IRC post — but the same itch to dig up my old code led me to reboot IRC itself for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
-
 
 ## What the assignment asked for
 

@@ -7,6 +7,8 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+> 🍸 *Capitato qui per caso? Questi IRC services li ho scritti da zero nel 2002 — e ora ho rifatto tutta l'esperienza IRC per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
 Questo è il sequel di [Forkare Bahamut per Azzurra IRC: IPv6 e SSL nel 2002](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/). Dopo aver forkato il server IRC, ho iniziato a scrivere services da zero.
 
 Una delle cose che mi piace di più del lavorare con [Claude](/tags/ai-generated/) è l'archeologia digitale. Ho passato vent'anni ad accumulare vecchi progetti su dischi di backup, SourceForge, server dimenticati — codice che ho scritto e non ho mai più guardato. Adesso posso puntare Claude su un tarball e dire "converti questo in git" o "spiegami cosa pensava il me ventunenne qui" e avere una conversazione vera e propria col mio passato.
@@ -14,9 +16,6 @@ Una delle cose che mi piace di più del lavorare con [Claude](/tags/ai-generated
 Lo scavo di oggi: sono andato su SourceForge e ho scaricato il repository CVS di [un progetto del 2003](/it/posts/2003-03-16-suxserv-wip/) — **Sux Services**, il mio tentativo di scrivere IRC services da zero, in C, per la [rete IRC Azzurra](https://azzurra.chat). Ho detto "Claude, converti questo repo CVS in git" e pochi minuti dopo avevo un [repository Git](https://github.com/vjt/suxserv) pulito con 954 commit, tre autori, e una storia continua da settembre 2002 a novembre 2005.
 
 <!--more-->
-
-> 🍸 *Capitato qui per caso? Questi IRC services li ho scritti da zero nel 2002 — e ora ho rifatto tutta l'esperienza IRC per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
-
 
 Non ho mai finito questo progetto. Ho lasciato la rete prima che fosse pronto per la produzione. Uno sviluppatore lettone l'ha preso in mano, ha scritto 192 commit, e poi la traccia si perde.
 

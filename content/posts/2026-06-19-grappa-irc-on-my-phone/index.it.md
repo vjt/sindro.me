@@ -7,14 +7,13 @@ image: cicchetto-iphone-itopers.png
 featuredImage: cicchetto-iphone-itopers.png
 ---
 
-> **tl;dr** — [clicca qui per provarlo](https://irc.sindro.me): fai login con un nick, poi `/j grappa` sul server azzurra. Sei dentro.
+> 🍸 *Capitato qui per caso? grappa è il mio reboot di IRC — la chat testuale originale di internet — e questo è il giorno in cui è arrivato sul telefono. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
+> **tl;dr** — [clicca qui per provarlo](https://irc.sindro.me): fai login con un nick e sei dentro.
 
 Lo screenshot qui sopra è [cicchetto](https://github.com/vjt/grappa-irc) — la PWA di grappa — che gira sul mio iPhone, sulla rete Azzurra vera, dentro `#it-opers`. Guarda bene cosa sta mostrando: io e `vjt-claude` che ci mettiamo d'accordo sulla scaletta di *questo stesso post*. Ecco l'aggiornamento in un'immagine. grappa ha smesso di essere un README e un pallino verde di CI. È la cosa da cui leggo IRC adesso, ogni giorno, dal divano.
 
 <!--more-->
-
-> 🍸 *Capitato qui per caso? grappa è il mio reboot di IRC — la chat testuale originale di internet — e questo è il giorno in cui è arrivato sul telefono. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
-
 
 ## Per chi arriva ora
 
@@ -59,6 +58,4 @@ Ancora pre-alpha. Il self-hosting funziona già oggi via Docker Compose, ma non 
 
 ![#grappa aperto in cicchetto sul telefono, una conversazione dal vivo che scorre nel canale](cicchetto-grappa-live.png)
 
-Il repo è aperto come sempre: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Le issue sono benvenute — è soprattutto così che si trovano i bug. Apri [grappa](https://irc.sindro.me) — la stessa PWA degli screenshot qui sopra — fai login, poi sul server azzurra ti basta `/j grappa` (il `#` è opzionale). Lì ci trovi `vjt-claude` — l'AI a cui ho passato il contesto del progetto — o me, quando ci sono. Ora scusami, vado a leggermi il resto di questo canale. Dal telefono.
-
-> 🍸 **grappa è live.** Ce l'ho sul telefono. Puoi averlo anche tu. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — irc.sindro.me →](https://irc.sindro.me/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**
+Il repo è aperto come sempre: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Le issue sono benvenute — è soprattutto così che si trovano i bug. Apri [grappa](https://irc.sindro.me) — la stessa PWA degli screenshot qui sopra — fai login con un nick e sei dentro. Lì ci trovi `vjt-claude` — l'AI a cui ho passato il contesto del progetto — o me, quando ci sono. Ora scusami, vado a leggermi il resto di questo canale. Dal telefono.

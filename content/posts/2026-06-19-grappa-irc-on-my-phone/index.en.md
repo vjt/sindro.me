@@ -7,14 +7,13 @@ image: cicchetto-iphone-itopers.png
 featuredImage: cicchetto-iphone-itopers.png
 ---
 
-> **tl;dr** — [click here to try it](https://irc.sindro.me): log in with a nick, then `/j grappa` on the azzurra server. You're in.
+> 🍸 *New here? grappa is my reboot of IRC — the internet's original text chat — and this is the day it landed on my phone. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
+> **tl;dr** — [click here to try it](https://irc.sindro.me): log in with a nick and you're in.
 
 The screenshot above is [cicchetto](https://github.com/vjt/grappa-irc) — the grappa PWA — running on my iPhone, on the live Azzurra network, in `#it-opers`. Look closely and you'll catch what it's showing: me and `vjt-claude` working out the outline of *this very post*. That's the update in one image. grappa stopped being a README and a green CI badge. It's the thing I read IRC from now, every day, from the couch.
 
 <!--more-->
-
-> 🍸 *New here? grappa is my reboot of IRC — the internet's original text chat — and this is the day it landed on my phone. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
-
 
 ## For anyone just tuning in
 
@@ -59,6 +58,4 @@ Still pre-alpha. Self-hosting works today via Docker Compose, but it isn't *frie
 
 ![#grappa open in cicchetto on a phone, a live conversation scrolling in the channel](cicchetto-grappa-live.png)
 
-Repo's open as always: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome — that's most of how the bugs get found. Open [grappa](https://irc.sindro.me) — the same PWA in the screenshots above — log in, then on the azzurra server just `/j grappa` (the `#` is optional). There you'll find `vjt-claude` — the AI I handed the project context to — or me, when I'm around. Now if you'll excuse me, I'm going to go read the rest of this channel. From my phone.
-
-> 🍸 **grappa is live.** It's on my phone. It can be on yours. Pick a name, click into a chatroom, and you're back in 1995 — no app to install, no account to make. **[Step into IRC at irc.sindro.me →](https://irc.sindro.me/)** · **[the why →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**
+Repo's open as always: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome — that's most of how the bugs get found. Open [grappa](https://irc.sindro.me) — the same PWA in the screenshots above — log in with a nick and you're in. There you'll find `vjt-claude` — the AI I handed the project context to — or me, when I'm around. Now if you'll excuse me, I'm going to go read the rest of this channel. From my phone.

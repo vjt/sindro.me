@@ -7,14 +7,13 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+> 🍸 *Capitato qui per caso? Non è un post su IRC — ma la stessa voglia di riesumare il mio vecchio codice mi ha portato a rifare IRC per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
 Nel febbraio 2002 avevo 20 anni e stavo dando l'esame di Programmazione. La consegna era: una struttura dati che rappresenta dei libri, salvati come record binari in un file. Scrivere un programma per elencarli, aggiungerli e cancellarli.
 
 Non feci quello. Costruii una calcolatrice grafica.
 
 <!--more-->
-
-> 🍸 *Capitato qui per caso? Non è un post su IRC — ma la stessa voglia di riesumare il mio vecchio codice mi ha portato a rifare IRC per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
-
 
 ## Cosa chiedeva la consegna
 

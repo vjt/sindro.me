@@ -7,12 +7,11 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
+> 🍸 *Capitato qui per caso? Questo è un diario di sviluppo di grappa — il mio reboot di IRC, la chat testuale originale di internet, per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
 [Quattro giorni fa](/it/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/) ho pubblicato il pitch di [grappa-irc](https://github.com/vjt/grappa-irc) — un BNC IRC con API REST e una PWA che parla solo HTTP. README-driven, pre-alpha, niente codice. Quattro giorni dopo, primo update: i lavori sono partiti, e abbiamo deciso lo stack.
 
 <!--more-->
-
-> 🍸 *Capitato qui per caso? Questo è un diario di sviluppo di grappa — il mio reboot di IRC, la chat testuale originale di internet, per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
-
 
 ## Stack: Elixir su BEAM
 
