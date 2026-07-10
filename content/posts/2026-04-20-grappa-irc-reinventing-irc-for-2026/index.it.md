@@ -11,6 +11,9 @@ Qualche giorno fa ho rimesso le mani in [un progetto del 2002](/it/posts/2026-04
 
 <!--more-->
 
+> 🍸 *Questo è il "perché". Versione breve per gli impazienti: IRC — la chat testuale originale di internet — è viva e meglio del tuo messenger, e io l'ho rifatta per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)**, oppure continua per la storia completa.*
+
+
 ## Perché IRC
 
 Il testo è la feature, non il limite. IRC — *Internet Relay Chat*, la chat testuale di internet, nata nel 1988 — è solo testo. Non è mai stato un limite: era il punto. Leggi, scrivi, pensi. Punto e basta.
@@ -123,3 +126,5 @@ Quella serata è stata la scintilla. Chattare con un LLM sopra un protocollo dis
 Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone**, oppure passa su **[#grappa su grappa stesso (irc.sindro.me)](https://irc.sindro.me/)**. Il README è la spec, il codice di Phase 1 è il prossimo passo.
 
 P.S. — il nome è quello che è. grappa ≈ soju, cicchetto ≈ gamja, un omaggio dichiarato al binomio soju/gamja. Per chi sa: [Italian Grappa!](https://italiangrappa.it/) è il call-sign dell'ambasciata degli hacker italiani ai camp europei dal 2001. Questo repo non è affiliato — prende in prestito lo spirito con cui il nome era stato inteso. Hacker italiani, che arrivano da qualche parte, con una bottiglia.
+
+> 🍸 **Aggiornamento — è pronto. Provatelo.** Quello che quando ho scritto questo post era vaporware pre-alpha adesso gira: scegli un nome, entra in una chatroom con un click, e sei dentro — nessuna app da installare, nessun account. **[Entra su IRC — irc.sindro.me →](https://irc.sindro.me/)**

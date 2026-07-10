@@ -29,6 +29,9 @@ needed to read it completely.
 
 <!--more-->
 
+> 🍸 *New here? Back when this story was written, sysadmins coordinated over IRC. IRC's still alive — and I rebooted it for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
+
 ---
 
 > **Note:** The full text of this story is reproduced below under the terms of its [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/) license. It was originally published in [Jim Baen's Universe, Vol 1 Num 2, August 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) and the original text is available on the author's website at [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). This is one of the best pieces of geek fiction ever written — I added section headings and additional illustrations (generated with Gemini) to enhance the reading experience, alongside the original artwork by [Rob Dumuhosky](https://www.robdumuhosky.com/), and an [Italian translation](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/) to share it with a wider audience.
@@ -1138,3 +1141,5 @@ It was what he did. He was a sysadmin.
 [![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/2.5/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/2.5/)
 
 "When Sysadmins Ruled the Earth" by [Cory Doctorow](https://craphound.com/) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 2.5 Generic License](https://creativecommons.org/licenses/by-nc-sa/2.5/). Originally published in *Jim Baen's Universe*, August 2006. [Original text on craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). Section illustrations generated with Gemini.
+
+> 🍸 **grappa is live.** The sysadmins have gone home; the IRC they lived on hasn't. Pick a name, click into a chatroom, and you're back in 1995 — no app to install, no account to make. **[Step into IRC at irc.sindro.me →](https://irc.sindro.me/)** · **[the why →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

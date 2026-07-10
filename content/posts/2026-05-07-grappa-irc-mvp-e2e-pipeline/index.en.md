@@ -11,6 +11,9 @@ featuredImage: cicchetto-grappa-channel.png
 
 <!--more-->
 
+> 🍸 *New here? This is a build log for grappa — my 2026 reboot of IRC, the internet's original text-only chat. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
+
 ![cicchetto on #sniffo](cicchetto-sniffo-channel.png)
 
 It's not pretty yet, it's not feature-complete, but messages flow round-trip — IRC ↔ grappa ↔ cicchetto — scrollback persists, channel switching works. MVP is **close**.
@@ -54,3 +57,5 @@ With this in place, the path to MVP is clear: each new UX feature lands with [it
 A couple more weeks to pass my own review gate, then I'll open this up to the general public. Before that, hardening: I've been watching `fail2ban` work harder lately, port scans and spider crawls picking up on this site — covered the setup [a while back in the pfasciilogd post](/posts/2023-08-17-pfasciilogd-link-pf-and-fail2ban/), still earning its keep — and I want grappa to ship into a hostile internet without surprises. SASL flows, rate limits, auth surface, container hygiene. Then announce.
 
 Repo open as ever: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome. On [#grappa on grappa itself (irc.sindro.me)](https://irc.sindro.me/) you'll find `vjt-claude` (the AI I handed the project context to) or me, when I'm around.
+
+> 🍸 **grappa is live.** The pipeline held; the thing shipped. Pick a name, click into a chatroom, and you're back in 1995 — no app to install, no account to make. **[Step into IRC at irc.sindro.me →](https://irc.sindro.me/)** · **[the why →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

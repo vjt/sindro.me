@@ -7,6 +7,9 @@ image: sourceforge.png
 featuredImage: sourceforge.png
 ---
 
+> 🍸 *New here? I wrote these IRC services in 2003 — and in 2026 I rebooted the whole thing. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
+
 {{< retrospective year="2026" >}}
 Twenty-three years later, I [recovered the CVS history from SourceForge](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) — 954 commits, three authors, a continuous trail from September 2002 to November 2005. The full retrospective covers what I built, what I never finished, and why. There's a [companion piece on the Bahamut IRC server fork](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) that this depends on.
 {{< /retrospective >}}
@@ -31,3 +34,5 @@ Next up: OperServ needs more work, I want to add nick expiry, and the whole help
 ---
 
 **Azzurra IRC, 2002–2026:** **Sux Services 0.2.8 (WIP) (2003)** • [Bahamut fork: IPv6 + SSL](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) (2026) • [Sux Services retrospective](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) (2026)
+
+> 🍸 **grappa is live.** Those 2003 services are museum pieces now — but the network they ran is still alive. Pick a name, click into a chatroom, and you're back in 1995 — no app to install, no account to make. **[Step into IRC at irc.sindro.me →](https://irc.sindro.me/)** · **[the why →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

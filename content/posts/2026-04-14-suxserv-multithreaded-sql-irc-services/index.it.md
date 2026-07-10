@@ -15,6 +15,9 @@ Lo scavo di oggi: sono andato su SourceForge e ho scaricato il repository CVS di
 
 <!--more-->
 
+> 🍸 *Capitato qui per caso? Questi IRC services li ho scritti da zero nel 2002 — e ora ho rifatto tutta l'esperienza IRC per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
+
 Non ho mai finito questo progetto. Ho lasciato la rete prima che fosse pronto per la produzione. Uno sviluppatore lettone l'ha preso in mano, ha scritto 192 commit, e poi la traccia si perde.
 
 Ne [avevo scritto all'epoca](/it/posts/2003-03-16-suxserv-wip/) — un post WIP del marzo 2003, quando NickServ e ChanServ funzionavano e stavo facendo stress test con 100 bot.
@@ -395,3 +398,5 @@ Non ce l'ha fatta, del tutto. Ma il tentativo è valso più del risultato.
 ---
 
 **Azzurra IRC, 2002–2026:** [Sux Services 0.2.8 (WIP)](/it/posts/2003-03-16-suxserv-wip/) (2003) • [Bahamut fork: IPv6 + SSL](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) (2026) • **Sux Services retrospettiva (2026)** • [Claude entra in #it-opers](/it/posts/2026-04-17-claude-walks-into-it-opers/) (2026)
+
+> 🍸 **grappa è live.** I services li ho scritti io; adesso è tornato tutto. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — irc.sindro.me →](https://irc.sindro.me/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

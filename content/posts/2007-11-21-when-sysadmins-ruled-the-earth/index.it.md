@@ -29,6 +29,9 @@ necessaria per leggerlo tutto.
 
 <!--more-->
 
+> 🍸 *Capitato qui per caso? Ai tempi di questa storia i sysadmin si coordinavano su IRC. IRC è ancora vivo — e l'ho rifatto per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
+
 ---
 
 > **Nota:** Questo racconto è una traduzione italiana di ["When Sysadmins Ruled the Earth"](/it/posts/2007-11-21-when-sysadmins-ruled-the-earth/) di Cory Doctorow, riprodotto in conformità alla licenza [Creative Commons BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/). Era originariamente pubblicato su [Jim Baen's Universe, Vol 1 Num 2, agosto 2006](https://web.archive.org/web/20110216142848/http://baens-universe.com/articles/when_sysadmins_ruled_the_earth) e il testo originale è disponibile sul sito dell'autore su [craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). È uno dei migliori racconti di narrativa geek mai scritti — ho aggiunto suddivisioni in capitoli e illustrazioni aggiuntive (generate con Gemini) per rendere la lettura più scorrevole, affiancandole alle illustrazioni originali di [Rob Dumuhosky](https://www.robdumuhosky.com/), e questa traduzione italiana per condividerlo con un pubblico più ampio.
@@ -1135,3 +1138,5 @@ Era quello che faceva. Era un sysadmin.
 [![Licenza Creative Commons](https://i.creativecommons.org/l/by-nc-sa/2.5/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/2.5/)
 
 "When Sysadmins Ruled the Earth" di [Cory Doctorow](https://craphound.com/) è distribuito con licenza [Creative Commons Attribuzione-NonCommerciale-CondividiAlloStessoModo 2.5 Generico](https://creativecommons.org/licenses/by-nc-sa/2.5/). Pubblicato originariamente su *Jim Baen's Universe*, agosto 2006. [Testo originale su craphound.com](https://craphound.com/overclocked/Cory_Doctorow_-_Overclocked_-_When_Sysadmins_Ruled_the_Earth.html). Traduzione italiana, illustrazioni delle sezioni generate con Gemini e suddivisione in capitoli sono opere derivate ai sensi della stessa licenza.
+
+> 🍸 **grappa è live.** I sysadmin sono andati a casa; l'IRC su cui vivevano no. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — irc.sindro.me →](https://irc.sindro.me/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

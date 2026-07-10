@@ -13,6 +13,9 @@ Il progetto viveva in un repository CVS su SourceForge — è [ancora lì](https
 
 <!--more-->
 
+> 🍸 *Capitato qui per caso? Ventiquattro anni dopo queste patch sto riportando in vita IRC — la chat testuale originale di internet, in versione 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
+
 ## Come ci sono arrivato
 
 Ho scoperto IRC nello stesso modo in cui ho scoperto Linux — attraverso [linux&c](https://it.wikipedia.org/wiki/Linux_%26_C.), una rivista italiana (ci sono [copie scansionate su Archive.org](https://archive.org/search?query=subject%3A%22Linux+%26+C.+%28rivista%29%22), compreso il [numero #0](https://archive.org/details/LinuxC00) che comprai) che era uno dei pochi punti d'ingresso al mondo open-source per gli adolescenti italiani alla fine degli anni '90. Un articolo menzionava [Azzurra](https://azzurra.chat) ([storia](https://web.archive.org/web/20200814231133/https://www.azzurra.org/?mod=history)), la rete IRC italiana. Mi sono connesso, ho fondato un canale con gli amici — [#sniffo](https://sniffo.org) (pattinaggio in linea e facce buffe, niente di farmaceutico) — e un asse Monopoli/Milano/Bologna di *smanettoni* era nato.
@@ -489,3 +492,5 @@ Il fork era in produzione. Era ora di costruire qualcosa da zero. Questa è la [
 ---
 
 **Azzurra IRC, 2002–2026:** [Sux Services 0.2.8 (WIP)](/it/posts/2003-03-16-suxserv-wip/) (2003) • **Bahamut fork: IPv6 + SSL (2026)** • [Sux Services retrospettiva](/it/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) (2026) • [Claude entra in #it-opers](/it/posts/2026-04-17-claude-walks-into-it-opers/) (2026)
+
+> 🍸 **grappa è live.** La storia del 2002 finisce qui; quella del 2026 gira adesso. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — irc.sindro.me →](https://irc.sindro.me/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

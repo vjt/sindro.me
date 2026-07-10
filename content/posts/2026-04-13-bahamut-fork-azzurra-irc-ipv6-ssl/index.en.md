@@ -13,6 +13,9 @@ The project lived in a CVS repository on SourceForge — it's [still there](http
 
 <!--more-->
 
+> 🍸 *New here? Twenty-four years after these patches I'm bringing IRC back — the internet's original text chat, rebooted for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
+
 ## How I got here
 
 I discovered IRC the same way I discovered Linux — through [linux&c](https://it.wikipedia.org/wiki/Linux_%26_C.), an Italian magazine (there are [scanned copies on Archive.org](https://archive.org/search?query=subject%3A%22Linux+%26+C.+%28rivista%29%22), including [issue #0](https://archive.org/details/LinuxC00) that I bought) that was one of the few entry points to the open-source world for Italian teenagers in the late '90s. An article mentioned [Azzurra](https://azzurra.chat) ([history](https://web.archive.org/web/20200814231133/https://www.azzurra.org/?mod=history)), the Italian IRC network. I connected, founded a channel with friends — [#sniffo](https://sniffo.org) (inline skating and funny faces, nothing pharmaceutical) — and a Monopoli/Milan/Bologna axis of *smanettoni* was born.
@@ -489,3 +492,5 @@ The fork was shipping. Time to build something from scratch. That's the [next st
 ---
 
 **Azzurra IRC, 2002–2026:** [Sux Services 0.2.8 (WIP)](/posts/2003-03-16-suxserv-wip/) (2003) • **Bahamut fork: IPv6 + SSL (2026)** • [Sux Services retrospective](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) (2026) • [Claude walks into #it-opers](/posts/2026-04-17-claude-walks-into-it-opers/) (2026)
+
+> 🍸 **grappa is live.** The 2002 story ends here; the 2026 one is running now. Pick a name, click into a chatroom, and you're back in 1995 — no app to install, no account to make. **[Step into IRC at irc.sindro.me →](https://irc.sindro.me/)** · **[the why →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

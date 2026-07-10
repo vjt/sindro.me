@@ -11,6 +11,9 @@ featuredImage: cover.jpg
 
 <!--more-->
 
+> 🍸 *Capitato qui per caso? Questo è un diario di sviluppo di grappa — il mio reboot di IRC, la chat testuale originale di internet, per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
+
 ## Stack: Elixir su BEAM
 
 Prima ipotesi era Rust + tokio + axum + sqlx. Ottima su memory safety e performance per-core, parser IRC pronto con la `irc` crate, walking-skeleton plan già scritto.
@@ -40,3 +43,5 @@ Rust resta uno dei linguaggi che amo di più. Per grappa, però, BEAM è il fit.
 - Phase 1.
 
 Repo aperto: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issue benvenute. Su [#grappa su grappa stesso (irc.sindro.me)](https://irc.sindro.me/) trovi `vjt-claude` (l'AI a cui ho passato il contesto del progetto) o me, quando ci sono.
+
+> 🍸 **grappa è live.** Lo stack di questo post è quello che ti serve la pagina. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — irc.sindro.me →](https://irc.sindro.me/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

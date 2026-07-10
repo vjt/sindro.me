@@ -13,6 +13,9 @@ I didn't do that. I built a graphical calculator instead.
 
 <!--more-->
 
+> 🍸 *New here? Not an IRC post — but the same itch to dig up my old code led me to reboot IRC itself for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
+
 ## What the assignment asked for
 
 The professor wanted a `record` of type Book — title, author, year, price — written sequentially to a binary file with `BlockWrite`. A menu: list all books, add a book, delete by index. Maybe search. The kind of program where the hardest part is remembering that Turbo Pascal file offsets are zero-based.
@@ -123,3 +126,5 @@ The code sat on [barnaba.openssl.it](https://barnaba.openssl.it) for the next tw
 GRcalc is not good software. It has bugs, no operator precedence, hardcoded delays. But it's an honest artifact of what a 20-year-old who read too many man pages and not enough textbooks could build when he decided the assignment was boring.
 
 25/30.
+
+> 🍸 **grappa is live.** That calculator never shipped. This one did. Pick a name, click into a chatroom, and you're back in 1995 — no app to install, no account to make. **[Step into IRC at irc.sindro.me →](https://irc.sindro.me/)** · **[the why →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

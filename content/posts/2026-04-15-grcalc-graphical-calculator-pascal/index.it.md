@@ -13,6 +13,9 @@ Non feci quello. Costruii una calcolatrice grafica.
 
 <!--more-->
 
+> 🍸 *Capitato qui per caso? Non è un post su IRC — ma la stessa voglia di riesumare il mio vecchio codice mi ha portato a rifare IRC per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+
+
 ## Cosa chiedeva la consegna
 
 La professoressa voleva un `record` di tipo Libro — titolo, autore, anno, prezzo — scritto sequenzialmente in un file binario con `BlockWrite`. Un menu: elenca tutti i libri, aggiungi un libro, cancella per indice. Magari cerca. Il tipo di programma dove la parte più difficile è ricordarsi che gli offset dei file in Turbo Pascal partono da zero.
@@ -123,3 +126,5 @@ Il codice è rimasto su [barnaba.openssl.it](https://barnaba.openssl.it) per i v
 GRcalc non è buon software. Ha bug, nessuna precedenza degli operatori, delay hardcoded. Ma è un artefatto onesto di cosa un ventenne che leggeva troppe man page e non abbastanza libri di testo poteva costruire quando decideva che la consegna era noiosa.
 
 25/30.
+
+> 🍸 **grappa è live.** Quella calcolatrice non è mai uscita. Questa sì. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — irc.sindro.me →](https://irc.sindro.me/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

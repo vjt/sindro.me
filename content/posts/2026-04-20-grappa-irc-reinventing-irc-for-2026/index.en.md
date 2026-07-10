@@ -11,6 +11,9 @@ A few days ago I dug back into [a 2002 project](/posts/2026-04-13-bahamut-fork-a
 
 <!--more-->
 
+> 🍸 *This is the "why." Short version for the impatient: IRC — the internet's original text chat — is alive and better than your messenger, and I rebooted it for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)**, or read on for the full story.*
+
+
 ## Why IRC
 
 Text is the feature, not the limit. IRC — *Internet Relay Chat*, the text-only chat of the internet, born in 1988 — is text-only. That was never a limitation: it was the whole point. You read, you write, you think. Full stop.
@@ -123,3 +126,5 @@ That night was the unlock. Talking to an LLM over a protocol designed in 1988 wa
 Any feedback welcome — **[open an issue on the repo](https://github.com/vjt/grappa-irc/issues) and let's discuss it**, or drop by **[#grappa on grappa itself (irc.sindro.me)](https://irc.sindro.me/)**. The README is the spec, Phase 1 code is the next step.
 
 P.S. — the naming is what it is. grappa ≈ soju, cicchetto ≈ gamja, a deliberate riff on the soju/gamja pairing. For those who know: [Italian Grappa!](https://italiangrappa.it/) has been the call-sign of the Italian hackers' embassy at European camps since 2001. This repo is not affiliated — it just borrows the spirit in which the name was intended. Italian hackers, showing up somewhere, with a bottle.
+
+> 🍸 **Update — it's ready. Go try it.** What was pre-alpha vaporware when I wrote this is running now: pick a name, click into a chatroom, and you're in — no app to install, no account to make. **[Step into IRC at irc.sindro.me →](https://irc.sindro.me/)**
