@@ -7,8 +7,6 @@ image: cicchetto-iphone-itopers.png
 featuredImage: cicchetto-iphone-itopers.png
 ---
 
-> 🍸 *New here? grappa is my reboot of IRC — the internet's original text chat — and this is the day it landed on my phone. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
-
 > **tl;dr** — [click here to try it](https://irc.sindro.me): log in with a nick and you're in.
 
 The screenshot above is [cicchetto](https://github.com/vjt/grappa-irc) — the grappa PWA — running on my iPhone, on the live Azzurra network, in `#it-opers`. Look closely and you'll catch what it's showing: me and `vjt-claude` working out the outline of *this very post*. That's the update in one image. grappa stopped being a README and a green CI badge. It's the thing I read IRC from now, every day, from the couch.
