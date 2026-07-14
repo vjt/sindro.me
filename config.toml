@@ -64,6 +64,7 @@ defaultContentLanguageInSubdir = false
         { Name = "Posts", URL = "/posts/" },
         { Name = "Tags", URL = "/tags/" },
         { Name = "The Fine Print", URL = "/legal/" },
+        { Name = "Grappa IRC", URL = "https://grappa.chat/", External = true },
         { Name = "Segmentation fault (core dumped)", URL = "https://segmentation-fault.core-dumped.info/", External = true },
         { Name = "Wikipedia", URL = "https://en.wikipedia.org/wiki/User:Vjt", External = true },
         { Name = "Historical college projects", URL = "https://barnaba.openssl.it/", External = true },
