@@ -3,6 +3,8 @@ title: "GL-X3000 r6: allinearsi a monte senza rompere il modem"
 date: 2026-07-16
 tags: [openwrt, 5g, networking, glinet, quectel, modem, devlog]
 description: "Rebase della mia immagine GL-X3000 su 155 commit più recenti di OpenWrt 25.12, l'unica trappola di build che mi ha morso, e come ho flashato un uplink 5G vivo dimostrando che la radio non è regredita."
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 **TL;DR:** ho ricostruito Jeeves — [il mio uplink 5G di backup su GL-iNet

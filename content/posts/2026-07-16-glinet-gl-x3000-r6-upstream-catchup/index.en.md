@@ -3,6 +3,8 @@ title: "GL-X3000 r6: Catching Up With Upstream Without Breaking the Modem"
 date: 2026-07-16
 tags: [openwrt, 5g, networking, glinet, quectel, modem, devlog]
 description: "Rebasing my GL-X3000 image onto 155 commits of newer OpenWrt 25.12, the one build trap that bit me, and how I flashed a live 5G uplink and proved the radio didn't regress."
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 **TL;DR:** I rebuilt Jeeves — [my GL-iNet GL-X3000 5G backup
