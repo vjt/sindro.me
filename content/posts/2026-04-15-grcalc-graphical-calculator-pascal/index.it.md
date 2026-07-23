@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-> 🍸 *Capitato qui per caso? Non è un post su IRC — ma la stessa voglia di riesumare il mio vecchio codice mi ha portato a rifare IRC per il 2026. **[Clicca qui per tornare nel 1995 →](https://grappa.chat/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+> 🍸 *Capitato qui per caso? Non è un post su IRC — ma la stessa voglia di riesumare il mio vecchio codice mi ha portato a rifare IRC per il 2026. **[Clicca qui per tornare nel 1995 →](https://grappa.chat/it/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
 
 Nel febbraio 2002 avevo 20 anni e stavo dando l'esame di Programmazione. La consegna era: una struttura dati che rappresenta dei libri, salvati come record binari in un file. Scrivere un programma per elencarli, aggiungerli e cancellarli.
 
@@ -126,4 +126,4 @@ GRcalc non è buon software. Ha bug, nessuna precedenza degli operatori, delay h
 
 25/30.
 
-> 🍸 **grappa è live.** Quella calcolatrice non è mai uscita. Questa sì. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — grappa.chat →](https://grappa.chat/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**
+> 🍸 **grappa è live.** Quella calcolatrice non è mai uscita. Questa sì. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — grappa.chat →](https://grappa.chat/it/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

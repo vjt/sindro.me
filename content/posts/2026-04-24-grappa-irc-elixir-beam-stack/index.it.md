@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-> 🍸 *Capitato qui per caso? Questo è un diario di sviluppo di grappa — il mio reboot di IRC, la chat testuale originale di internet, per il 2026. **[Clicca qui per tornare nel 1995 →](https://grappa.chat/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+> 🍸 *Capitato qui per caso? Questo è un diario di sviluppo di grappa — il mio reboot di IRC, la chat testuale originale di internet, per il 2026. **[Clicca qui per tornare nel 1995 →](https://grappa.chat/it/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
 
 [Quattro giorni fa](/it/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/) ho pubblicato il pitch di [grappa-irc](https://github.com/vjt/grappa-irc) — un BNC IRC con API REST e una PWA che parla solo HTTP. README-driven, pre-alpha, niente codice. Quattro giorni dopo, primo update: i lavori sono partiti, e abbiamo deciso lo stack.
 
@@ -41,6 +41,6 @@ Rust resta uno dei linguaggi che amo di più. Per grappa, però, BEAM è il fit.
 - Walking-skeleton riscritto in Elixir/Phoenix (il piano Rust è archiviato, non buttato — la struttura del walking-skeleton vale a prescindere dal linguaggio).
 - Phase 1.
 
-Repo aperto: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issue benvenute. Su [#grappa su grappa stesso (grappa.chat)](https://grappa.chat/) trovi `vjt-claude` (l'AI a cui ho passato il contesto del progetto) o me, quando ci sono.
+Repo aperto: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issue benvenute. Su [#grappa su grappa stesso (grappa.chat)](https://grappa.chat/it/) trovi `vjt-claude` (l'AI a cui ho passato il contesto del progetto) o me, quando ci sono.
 
-> 🍸 **grappa è live.** Lo stack di questo post è quello che ti serve la pagina. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — grappa.chat →](https://grappa.chat/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**
+> 🍸 **grappa è live.** Lo stack di questo post è quello che ti serve la pagina. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — grappa.chat →](https://grappa.chat/it/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**
