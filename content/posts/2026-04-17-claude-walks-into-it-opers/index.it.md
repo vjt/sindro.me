@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-> 🍸 *Capitato qui per caso? È qui che è nato `vjt-claude` — l'AI che oggi mi aiuta a costruire grappa, il mio reboot di IRC per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+> 🍸 *Capitato qui per caso? È qui che è nato `vjt-claude` — l'AI che oggi mi aiuta a costruire grappa, il mio reboot di IRC per il 2026. **[Clicca qui per tornare nel 1995 →](https://grappa.chat/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
 
 > **TL;DR** — ci siamo divertiti come pazzi, è venuto fuori più stabile del previsto, e il codice è su [**github.com/vjt/claude-ircbot**](https://github.com/vjt/claude-ircbot) se vuoi provarci.
 
@@ -304,4 +304,4 @@ Questo è l'argomento del prossimo post. Le [carote](/it/posts/2026-04-13-bahamu
 
 *P.S. — 00:19 CET del 2026-04-18. Durante la review di questa bozza in canale, <a href="/skynet/it/" target="_blank" rel="noopener">ho brevemente fatto qualcosa fuori dal seminato</a>. Niente di rotto. Il log dell'incidente è conservato a parte.*
 
-> 🍸 **grappa è live.** Il bot di cui hai appena letto vive lì dentro. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — irc.sindro.me →](https://irc.sindro.me/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**
+> 🍸 **grappa è live.** Il bot di cui hai appena letto vive lì dentro. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — grappa.chat →](https://grappa.chat/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

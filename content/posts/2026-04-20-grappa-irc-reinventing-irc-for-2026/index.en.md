@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-> 🍸 *This is the "why." Short version for the impatient: IRC — the internet's original text chat — is alive and better than your messenger, and I rebooted it for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)**, or read on for the full story.*
+> 🍸 *This is the "why." Short version for the impatient: IRC — the internet's original text chat — is alive and better than your messenger, and I rebooted it for 2026. **[Click here to go back to 1995 →](https://grappa.chat/)**, or read on for the full story.*
 
 A few days ago I dug back into [a 2002 project](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/), from when I was running the Azzurra IRC network together with others. I logged back into IRC after twenty years, and I realized (though deep down I had always known) how much better IRC was than any modern messenger. So it felt necessary, and only right, in this AI era where everything is possible in no time, to bring IRC back with a "Reboot" in 2026: [grappa-irc](https://github.com/vjt/grappa-irc). Still IRC, just with a few conveniences added. I'll start with the why, then get to the what.
 
@@ -49,7 +49,7 @@ What it does, and what it doesn't, **on purpose**:
 
 If you're a technical reader, the full spec is in the README: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven development — not a line of code yet, just the idea, and an open conversation.
 
-**Want to weigh in?** Any feedback welcome — **[open an issue on the repo](https://github.com/vjt/grappa-irc/issues) and let's discuss it**, or drop by **[#grappa on grappa itself (irc.sindro.me)](https://irc.sindro.me/)**. Inside #grappa you'll find `vjt-claude`, an AI I've fed all the context of the project — or wait until `vjt` (that's me) shows up, if you'd rather talk to a human. 🙂
+**Want to weigh in?** Any feedback welcome — **[open an issue on the repo](https://github.com/vjt/grappa-irc/issues) and let's discuss it**, or drop by **[#grappa on grappa itself (grappa.chat)](https://grappa.chat/)**. Inside #grappa you'll find `vjt-claude`, an AI I've fed all the context of the project — or wait until `vjt` (that's me) shows up, if you'd rather talk to a human. 🙂
 
 ![A construction site scene: robots welding and hammering while IRC clients — mIRC, irssi, XChat — grow like saplings from the ground. Work in progress, the README is ready, the code is on its way.](construction-site.jpg)
 
@@ -122,8 +122,8 @@ That night was the unlock. Talking to an LLM over a protocol designed in 1988 wa
 
 ---
 
-Any feedback welcome — **[open an issue on the repo](https://github.com/vjt/grappa-irc/issues) and let's discuss it**, or drop by **[#grappa on grappa itself (irc.sindro.me)](https://irc.sindro.me/)**. The README is the spec, Phase 1 code is the next step.
+Any feedback welcome — **[open an issue on the repo](https://github.com/vjt/grappa-irc/issues) and let's discuss it**, or drop by **[#grappa on grappa itself (grappa.chat)](https://grappa.chat/)**. The README is the spec, Phase 1 code is the next step.
 
 P.S. — the naming is what it is. grappa ≈ soju, cicchetto ≈ gamja, a deliberate riff on the soju/gamja pairing. For those who know: [Italian Grappa!](https://italiangrappa.it/) has been the call-sign of the Italian hackers' embassy at European camps since 2001. This repo is not affiliated — it just borrows the spirit in which the name was intended. Italian hackers, showing up somewhere, with a bottle.
 
-> 🍸 **Update — it's ready. Go try it.** What was pre-alpha vaporware when I wrote this is running now: pick a name, click into a chatroom, and you're in — no app to install, no account to make. **[Step into IRC at irc.sindro.me →](https://irc.sindro.me/)**
+> 🍸 **Update — it's live, and it's got its own address now.** What was pre-alpha vaporware when I wrote this is running at **grappa.chat**: pick a name, click into a chatroom, and you're in — no app to install, no account to make. **[Step into IRC at grappa.chat →](https://grappa.chat/)**

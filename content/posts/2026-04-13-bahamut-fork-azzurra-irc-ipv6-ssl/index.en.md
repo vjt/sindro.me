@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-> 🍸 *New here? Twenty-four years after these patches I'm bringing IRC back — the internet's original text chat, rebooted for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+> 🍸 *New here? Twenty-four years after these patches I'm bringing IRC back — the internet's original text chat, rebooted for 2026. **[Click here to go back to 1995 →](https://grappa.chat/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
 
 This is the prequel to [Sux Services: Multithreaded, SQL-Backed IRC Services from Scratch, 2002](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/). Before I started writing IRC services from scratch, I spent the better part of a year doing something arguably crazier: forking an IRC server to add IPv6 and SSL (now known as TLS). I was twenty-one.
 
@@ -492,4 +492,4 @@ The fork was shipping. Time to build something from scratch. That's the [next st
 
 **Azzurra IRC, 2002–2026:** [Sux Services 0.2.8 (WIP)](/posts/2003-03-16-suxserv-wip/) (2003) • **Bahamut fork: IPv6 + SSL (2026)** • [Sux Services retrospective](/posts/2026-04-14-suxserv-multithreaded-sql-irc-services/) (2026) • [Claude walks into #it-opers](/posts/2026-04-17-claude-walks-into-it-opers/) (2026)
 
-> 🍸 **grappa is live.** The 2002 story ends here; the 2026 one is running now. Pick a name, click into a chatroom, and you're back in 1995 — no app to install, no account to make. **[Step into IRC at irc.sindro.me →](https://irc.sindro.me/)** · **[the why →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**
+> 🍸 **grappa is live.** The 2002 story ends here; the 2026 one is running now. Pick a name, click into a chatroom, and you're back in 1995 — no app to install, no account to make. **[Step into IRC at grappa.chat →](https://grappa.chat/)** · **[the why →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

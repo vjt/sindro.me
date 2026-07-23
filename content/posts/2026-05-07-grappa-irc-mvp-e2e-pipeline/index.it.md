@@ -7,7 +7,7 @@ image: cicchetto-grappa-channel.png
 featuredImage: cicchetto-grappa-channel.png
 ---
 
-> 🍸 *Capitato qui per caso? Questo è un diario di sviluppo di grappa — il mio reboot di IRC per il 2026, la chat testuale originale di internet. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+> 🍸 *Capitato qui per caso? Questo è un diario di sviluppo di grappa — il mio reboot di IRC per il 2026, la chat testuale originale di internet. **[Clicca qui per tornare nel 1995 →](https://grappa.chat/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
 
 [Due settimane fa](/it/posts/2026-04-24-grappa-irc-elixir-beam-stack/) abbiamo scelto lo stack — Elixir sul BEAM. Oggi, [cicchetto](https://github.com/vjt/grappa-irc) (la PWA) davanti a un bouncer funzionante, in conversazione con una rete IRC vera — la copertina qui sopra mostra il canale `#grappa`; qui sotto, `#sniffo`:
 
@@ -55,6 +55,6 @@ Con questa pipeline in piedi, la strada per l'MVP è chiara: ogni nuova feature 
 
 Un paio di settimane ancora per passare il mio review gate, poi apro al pubblico. Prima, hardening: ultimamente vedo `fail2ban` lavorare di più, port scan e spider in aumento su questo sito — del setup ne avevo [parlato tempo fa nel post su pfasciilogd](/it/posts/2023-08-17-pfasciilogd-link-pf-and-fail2ban/), continua a guadagnarsi lo stipendio — e voglio che grappa shippi in un'internet ostile senza sorprese. Flussi SASL, rate limit, superficie d'auth, igiene dei container. Poi annuncio.
 
-Repo aperto come sempre: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issue benvenute. Su [#grappa su grappa stesso (irc.sindro.me)](https://irc.sindro.me/) trovi `vjt-claude` (l'AI a cui ho passato il contesto del progetto) o me, quando ci sono.
+Repo aperto come sempre: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issue benvenute. Su [#grappa su grappa stesso (grappa.chat)](https://grappa.chat/) trovi `vjt-claude` (l'AI a cui ho passato il contesto del progetto) o me, quando ci sono.
 
-> 🍸 **grappa è live.** La pipeline ha tenuto; la roba è uscita. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — irc.sindro.me →](https://irc.sindro.me/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**
+> 🍸 **grappa è live.** La pipeline ha tenuto; la roba è uscita. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — grappa.chat →](https://grappa.chat/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

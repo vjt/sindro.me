@@ -7,9 +7,9 @@ image: sourceforge.png
 featuredImage: sourceforge.png
 ---
 
-> 🍸 *Capitato qui per caso? Questi IRC services li ho scritti nel 2003 — e nel 2026 ho rifatto tutto quanto. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+> 🍸 *Capitato qui per caso? Questi IRC services li ho scritti nel 2003 — e nel 2026 ho rifatto tutto quanto. **[Clicca qui per tornare nel 1995 →](https://grappa.chat/)** · oppure leggi **[perché lo faccio →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
 
 
 Questo post è disponibile solo in [inglese](/en/posts/2003-03-16-suxserv-wip/).
 
-> 🍸 **grappa è live.** Quei services del 2003 ormai sono pezzi da museo — ma la rete che facevano girare è ancora viva. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — irc.sindro.me →](https://irc.sindro.me/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**
+> 🍸 **grappa è live.** Quei services del 2003 ormai sono pezzi da museo — ma la rete che facevano girare è ancora viva. Scegli un nome, entra in una chatroom con un click, e sei tornato nel 1995 — nessuna app da installare, nessun account. **[Entra su IRC — grappa.chat →](https://grappa.chat/)** · **[il perché →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

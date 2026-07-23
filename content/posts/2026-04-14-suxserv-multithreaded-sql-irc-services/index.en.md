@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-> 🍸 *New here? I wrote these IRC services from scratch in 2002 — and now I've rebooted the whole IRC experience for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+> 🍸 *New here? I wrote these IRC services from scratch in 2002 — and now I've rebooted the whole IRC experience for 2026. **[Click here to go back to 1995 →](https://grappa.chat/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
 
 This is the sequel to [Forking Bahamut for Azzurra IRC: IPv6 and SSL in 2002](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/). After forking the IRC server, I started writing services from scratch.
 
@@ -398,4 +398,4 @@ He couldn't, quite. But the attempt was worth more than the result.
 
 **Azzurra IRC, 2002–2026:** [Sux Services 0.2.8 (WIP)](/posts/2003-03-16-suxserv-wip/) (2003) • [Bahamut fork: IPv6 + SSL](/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/) (2026) • **Sux Services retrospective (2026)** • [Claude walks into #it-opers](/posts/2026-04-17-claude-walks-into-it-opers/) (2026)
 
-> 🍸 **grappa is live.** I wrote the services; now the whole thing is back. Pick a name, click into a chatroom, and you're back in 1995 — no app to install, no account to make. **[Step into IRC at irc.sindro.me →](https://irc.sindro.me/)** · **[the why →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**
+> 🍸 **grappa is live.** I wrote the services; now the whole thing is back. Pick a name, click into a chatroom, and you're back in 1995 — no app to install, no account to make. **[Step into IRC at grappa.chat →](https://grappa.chat/)** · **[the why →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

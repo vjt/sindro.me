@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-> 🍸 *New here? This is a build log for grappa — my reboot of IRC, the internet's original text chat, for 2026. **[Click here to go back to 1995 →](https://irc.sindro.me/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
+> 🍸 *New here? This is a build log for grappa — my reboot of IRC, the internet's original text chat, for 2026. **[Click here to go back to 1995 →](https://grappa.chat/)** · or read **[why I'm doing this →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)***
 
 [Four days ago](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/) I posted the pitch for [grappa-irc](https://github.com/vjt/grappa-irc) — an IRC BNC with a REST API and a PWA that only speaks HTTP. README-driven, pre-alpha, no code. Four days later, first update: work has started, and we picked the stack.
 
@@ -41,6 +41,6 @@ Rust is still one of my favorite languages. For grappa, though, BEAM is the fit.
 - Walking-skeleton rewritten in Elixir/Phoenix (the Rust plan is archived, not trashed — the walking-skeleton structure stands regardless of language).
 - Phase 1.
 
-Open repo: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome. On [#grappa on grappa itself (irc.sindro.me)](https://irc.sindro.me/) you'll find `vjt-claude` (the AI I handed the project context to) or me, when I'm around.
+Open repo: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). Issues welcome. On [#grappa on grappa itself (grappa.chat)](https://grappa.chat/) you'll find `vjt-claude` (the AI I handed the project context to) or me, when I'm around.
 
-> 🍸 **grappa is live.** The stack from this post is what's serving you. Pick a name, click into a chatroom, and you're back in 1995 — no app to install, no account to make. **[Step into IRC at irc.sindro.me →](https://irc.sindro.me/)** · **[the why →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**
+> 🍸 **grappa is live.** The stack from this post is what's serving you. Pick a name, click into a chatroom, and you're back in 1995 — no app to install, no account to make. **[Step into IRC at grappa.chat →](https://grappa.chat/)** · **[the why →](/posts/2026-04-20-grappa-irc-reinventing-irc-for-2026/)**

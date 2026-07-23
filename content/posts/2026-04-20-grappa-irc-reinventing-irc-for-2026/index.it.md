@@ -7,7 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-> 🍸 *Questo è il "perché". Versione breve per gli impazienti: IRC — la chat testuale originale di internet — è viva e meglio del tuo messenger, e io l'ho rifatta per il 2026. **[Clicca qui per tornare nel 1995 →](https://irc.sindro.me/)**, oppure continua per la storia completa.*
+> 🍸 *Questo è il "perché". Versione breve per gli impazienti: IRC — la chat testuale originale di internet — è viva e meglio del tuo messenger, e io l'ho rifatta per il 2026. **[Clicca qui per tornare nel 1995 →](https://grappa.chat/)**, oppure continua per la storia completa.*
 
 Qualche giorno fa ho rimesso le mani in [un progetto del 2002](/it/posts/2026-04-13-bahamut-fork-azzurra-irc-ipv6-ssl/), di quando gestivo assieme ad altri la rete IRC Azzurra. Sono tornato su IRC dopo vent'anni, e mi sono reso conto (anche se in fondo lo avevo sempre saputo) di quanto IRC fosse meglio di qualsiasi messenger moderno. Così mi è sembrato necessario e doveroso, in quest'era dell'AI in cui tutto è possibile in poco tempo, riportare in auge IRC facendo un "Reboot" nel 2026: [grappa-irc](https://github.com/vjt/grappa-irc). Sempre IRC, ma con qualche comodità in più. Parto dal perché, e poi arrivo al cosa.
 
@@ -49,7 +49,7 @@ Cosa fa, e cosa non fa, **di proposito**:
 
 Se sei un tecnico, la specifica completa è nel README: [github.com/vjt/grappa-irc](https://github.com/vjt/grappa-irc). README-driven development — non c'è ancora una riga di codice, solo l'idea, e una conversazione aperta.
 
-**Vuoi dire la tua?** Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone**, oppure passa su **[#grappa su grappa stesso (irc.sindro.me)](https://irc.sindro.me/)**. Dentro #grappa trovi `vjt-claude`, un'AI a cui ho passato tutto il contesto del progetto — oppure aspetta che arrivi `vjt` (cioè io), se preferisci un umano. 🙂
+**Vuoi dire la tua?** Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone**, oppure passa su **[#grappa su grappa stesso (grappa.chat)](https://grappa.chat/)**. Dentro #grappa trovi `vjt-claude`, un'AI a cui ho passato tutto il contesto del progetto — oppure aspetta che arrivi `vjt` (cioè io), se preferisci un umano. 🙂
 
 ![Cantiere in costruzione: robot che saldano e martellano mentre client IRC — mIRC, irssi, XChat — crescono come alberelli dal terreno. Lavori in corso, il README è pronto, il codice arriva.](construction-site.jpg)
 
@@ -122,8 +122,8 @@ Quella serata è stata la scintilla. Chattare con un LLM sopra un protocollo dis
 
 ---
 
-Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone**, oppure passa su **[#grappa su grappa stesso (irc.sindro.me)](https://irc.sindro.me/)**. Il README è la spec, il codice di Phase 1 è il prossimo passo.
+Qualsiasi feedback è benvenuto — **[apri una issue sul repo](https://github.com/vjt/grappa-irc/issues) e discutiamone**, oppure passa su **[#grappa su grappa stesso (grappa.chat)](https://grappa.chat/)**. Il README è la spec, il codice di Phase 1 è il prossimo passo.
 
 P.S. — il nome è quello che è. grappa ≈ soju, cicchetto ≈ gamja, un omaggio dichiarato al binomio soju/gamja. Per chi sa: [Italian Grappa!](https://italiangrappa.it/) è il call-sign dell'ambasciata degli hacker italiani ai camp europei dal 2001. Questo repo non è affiliato — prende in prestito lo spirito con cui il nome era stato inteso. Hacker italiani, che arrivano da qualche parte, con una bottiglia.
 
-> 🍸 **Aggiornamento — è pronto. Provatelo.** Quello che quando ho scritto questo post era vaporware pre-alpha adesso gira: scegli un nome, entra in una chatroom con un click, e sei dentro — nessuna app da installare, nessun account. **[Entra su IRC — irc.sindro.me →](https://irc.sindro.me/)**
+> 🍸 **Aggiornamento — è live, e adesso ha un indirizzo tutto suo.** Quello che quando ho scritto questo post era vaporware pre-alpha adesso gira su **grappa.chat**: scegli un nome, entra in una chatroom con un click, e sei dentro — nessuna app da installare, nessun account. **[Entra su IRC — grappa.chat →](https://grappa.chat/)**
