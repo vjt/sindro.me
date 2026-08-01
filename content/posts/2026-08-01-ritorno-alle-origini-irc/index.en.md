@@ -3,11 +3,13 @@ title: "Back to the roots — IRC"
 date: 2026-08-01
 tags: [irc, azzurra, grappa-irc, social, retrospective, open-source]
 description: "In 1988 a Finn invented IRC. In 1999 it was my way in to people, passions and work. In 2008 I left it for social media. In 2026 I went back — and wrote the client I needed."
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 > 🍸 *Landed here by accident? This is the story of why I went back to IRC after eighteen years — and how [grappa](https://grappa.chat), the client I wrote to stay there, came out of it. **[Click here to go back to 1995 →](https://grappa.chat)***
 
-In 1988 a Finn named Jarkko Oikarinen, with the tools and the technology of the day, invented Internet Relay Chat, IRC: a spare yet intricate system that became the first "chat" on the internet. You pick a pseudonym, you get on the network, you walk into a room where there are other pseudonyms, and everyone can send messages to the room or privately (they're called "queries"). Not that different from a WhatsApp or Telegram group. But in 1999.
+In 1988 a Finn named Jarkko Oikarinen, with the tools and the technology of the day, invented Internet Relay Chat, IRC: a spare yet intricate system that became the first "chat" on the internet to catch on for real. You pick a pseudonym, you get on the network, you walk into a room where there are other pseudonyms, and everyone can send messages to the room or privately (they're called "queries"). Not that different from a WhatsApp or Telegram group. But in 1990.
 
 <!--more-->
 

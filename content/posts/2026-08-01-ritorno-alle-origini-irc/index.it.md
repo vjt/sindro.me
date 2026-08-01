@@ -3,11 +3,13 @@ title: "Ritorno alle origini — IRC"
 date: 2026-08-01
 tags: [irc, azzurra, grappa-irc, social, retrospective, open-source]
 description: "Nel 1988 un finlandese inventò IRC. Nel 1999 è stata la mia porta d'accesso a persone, passioni e lavoro. Nel 2008 l'ho lasciato per i social. Nel 2026 ci sono tornato — e ho scritto il client che mi serviva."
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 > 🍸 *Capitato qui per caso? Questa è la storia del perché sono tornato su IRC dopo diciotto anni — e di come è nato [grappa](https://grappa.chat/it/), il client che ho scritto per starci. **[Clicca qui per tornare nel 1995 →](https://grappa.chat/it/)***
 
-Nel 1988 un finlandese di nome Jarkko Oikarinen, con gli strumenti e la tecnologia dell'epoca, inventò Internet Relay Chat, IRC, un sistema scarno ed elaborato per realizzare quella che fu la prima "chat" su internet. Scegli uno pseudonimo, entri sulla rete, entri in una stanza dove ci sono altri pseudonimi, e ognuno può mandare messaggi alla stanza o anche privatamente (si chiamano "query"). Non dissimili da un gruppo whatsapp o telegram. Ma nel 1999.
+Nel 1988 un finlandese di nome Jarkko Oikarinen, con gli strumenti e la tecnologia dell'epoca, inventò Internet Relay Chat, IRC, un sistema scarno ed elaborato per realizzare quella che sarebbe diventata la prima "chat" di internet a diffondersi davvero. Scegli uno pseudonimo, entri sulla rete, entri in una stanza dove ci sono altri pseudonimi, e ognuno può mandare messaggi alla stanza o anche privatamente (si chiamano "query"). Non dissimili da un gruppo whatsapp o telegram. Ma nel 1990.
 
 <!--more-->
 
