@@ -47,11 +47,47 @@ accorgi il giorno che la cerchi.
 
 ## Come è stato fatto
 
-Il forum ha cambiato software due volte — phpBB 1.4.0, poi phpBB 2.0.x, poi vBulletin — e
-la Wayback Machine ha fotografato tutte e tre le epoche, con tutte le skin che si sono
-succedute. Sono cinque markup diversi per lo stesso contenuto, e l'importatore li parsa
-tutti: 8834 snapshot vBulletin più 1604 pagine del vecchio board, ISO-8859-1, spesso
-tagliate a metà.
+Premessa, perché mi sembra scorretto non dirla: **il codice di questo archivio è
+interamente generato da un LLM**. Ho descritto quello che volevo a Claude in una sessione
+lunga — l'importatore, il merge, il renderer, gli script di download e anche questo post
+sono usciti da lì. Io ho dato le istruzioni, ho letto quello che tornava, ho detto dove
+sbagliava e ho deciso cosa tenere. Il mestiere non è sparito, si è spostato: la parte
+noiosa la fa la macchina, sapere cosa si vuole e accorgersi quando il risultato è una
+sciocchezza no.
+
+L'architettura sta in una riga. Si chiede l'indice all'Archive, si scarica la lista degli
+URL, si prendono **uno alla volta**, si parsano, si buttano in SQLite, e da SQLite si
+generano le pagine statiche.
+
+Il primo passo è l'indice CDX: `web.archive.org/cdx/search/cdx?url=forum.azzurra.org*`,
+venti pagine di risultati, filtrate a `statuscode:200`, e **senza `collapse=urlkey`** —
+quello collassato tiene un solo snapshot per URL, e se proprio quello l'Archive lo serve
+vuoto non hai un ripiego. Vengono fuori timestamp, URL originale, mimetype e digest per
+ogni scatto di ogni pagina: da lì si estrae, per ogni discussione, la lista degli snapshot
+buoni in ordine di preferenza.
+
+Il secondo è lo scaricamento, e va fatto in serie. Ogni URL si prende nella forma
+`web/<timestamp>id_/<url>`: il suffisso `id_` restituisce i byte originali del 2004, senza
+la barra di navigazione che l'Archive inietta. Tre secondi di pausa fra una richiesta e
+l'altra, e dopo cinque fallimenti di fila due minuti di raffreddamento, perché a quel punto
+non è un errore tuo: è l'Archive che ha chiuso la porta. Lo script è ripartibile e non
+riscarica mai un file già su disco — che, con una lista da diecimila pagine e una rete che
+si stufa, è la differenza fra finire e ricominciare.
+
+Il terzo è il parsing, in tre passate e non una. Il forum ha cambiato software due volte —
+phpBB 1.4.0, poi phpBB 2.0.x, poi vBulletin — e la Wayback Machine ha fotografato tutte e
+tre le epoche, con tutte le skin che si sono succedute: cinque markup diversi per lo stesso
+contenuto, ISO-8859-1, spesso tagliati a metà. Prima si importano gli 8834 snapshot
+vBulletin nelle tabelle vere (`forums`, `threads`, `posts`, più l'indice FTS5), poi le 1604
+pagine del vecchio board in tabelle di appoggio a parte, e solo alla fine un terzo script
+fonde le seconde nelle prime. Il database non è un formato d'archivio, è un indice di
+lavoro: si butta e si rifà in tre minuti.
+
+L'ultimo passo legge SQLite e sputa HTML: una pagina per discussione, una per sezione, più
+l'indice full-text lato client. Nessun database in produzione, nessun processo da tenere
+vivo, niente che possa cadere alle tre di notte.
+
+## Dove si inciampa
 
 **Scaricare in parallelo non funziona, e non te lo dice.** Il primo giro lanciava i batch
 in parallelo e rispondeva `HTTP 200` per tutto. Circa 2360 di quei 200 avevano il corpo di

@@ -47,10 +47,46 @@ looking for it.
 
 ## How it was done
 
-The forum changed software twice — phpBB 1.4.0, then phpBB 2.0.x, then vBulletin — and the
-Wayback Machine photographed all three eras, with every skin that came and went. That's
-five different markups for the same content, and the importer parses all of them: 8834
-vBulletin snapshots plus 1604 pages of the old board, ISO-8859-1, often cut in half.
+A note up front, because leaving it out would be dishonest: **the code of this archive is
+entirely LLM-generated**. I described what I wanted to Claude over a long session — the
+importer, the merge, the renderer, the download scripts and this post came out of there. I
+gave the instructions, read what came back, said where it was wrong and decided what to
+keep. The craft didn't disappear, it moved: the machine does the boring part, knowing what
+you want and noticing when the result is nonsense is still on you.
+
+The architecture fits in one line. You ask the Archive for its index, you download the list
+of URLs, you fetch them **one at a time**, you parse them, you dump them into SQLite, and
+from SQLite you generate the static pages.
+
+The first step is the CDX index: `web.archive.org/cdx/search/cdx?url=forum.azzurra.org*`,
+twenty pages of results, filtered to `statuscode:200`, and **without `collapse=urlkey`** —
+the collapsed index keeps exactly one snapshot per URL, and if that one is the one the
+Archive serves empty, you have no fallback. Out come timestamp, original URL, mimetype and
+digest for every shot of every page: from there you extract, per thread, the list of good
+snapshots in order of preference.
+
+The second is the download, and it has to be serial. Every URL is fetched as
+`web/<timestamp>id_/<url>`: the `id_` suffix returns the original 2004 bytes, without the
+navigation bar the Archive injects. Three seconds of pause between requests, and after five
+consecutive failures a two-minute cooldown, because at that point it isn't your error: the
+Archive has shut the door. The script is resumable and never refetches a file already on
+disk — which, with a ten-thousand-page list and a network that gets bored, is the
+difference between finishing and starting over.
+
+The third is parsing, in three passes and not one. The forum changed software twice — phpBB
+1.4.0, then phpBB 2.0.x, then vBulletin — and the Wayback Machine photographed all three
+eras, with every skin that came and went: five different markups for the same content,
+ISO-8859-1, often cut in half. First the 8834 vBulletin snapshots go into the real tables
+(`forums`, `threads`, `posts`, plus the FTS5 index), then the 1604 pages of the old board
+into separate staging tables, and only at the end does a third script fold the latter into
+the former. The database is not an archival format, it's a working index: throw it away and
+it comes back in three minutes.
+
+The last step reads SQLite and spits out HTML: one page per thread, one per section, plus
+the client-side full-text index. No database in production, no process to keep alive,
+nothing that can fall over at three in the morning.
+
+## Where you trip
 
 **Downloading in parallel doesn't work, and it won't tell you.** The first run fired
 batches in parallel and answered `HTTP 200` to everything. Around 2360 of those 200s had a
