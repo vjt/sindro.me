@@ -34,18 +34,26 @@ discussione, HTML statico che si scarica con `wget -r` e sopravvive a me.
 Perché è archeologia digitale, e tirare fuori roba morta per rimetterla in circolo è uno
 dei mestieri più belli che ci siano. Su `web.archive.org` quel forum c'è ancora, in teoria:
 in pratica ogni pagina è una richiesta a una macchina che regge la memoria di tutto il web
-con le donazioni, e ci mette mezzo minuto a servirti una discussione del 2004. Qui ci mette
-il tempo di un `GET` su un file: è HTML statico, e si scarica tutto.
+con le donazioni, e ci mette mezzo minuto a servirti una discussione del 2004. Qui ci
+mettono qualche millisecondo, perché sono pagine già pronte.
 
 Non è una critica all'Archive, è il contrario. Senza di loro questa roba non esisteva più:
 il dominio è scaduto, il database è finito dove finiscono i database, nessuno aveva un
 backup. Loro l'avevano fotografata per quindici anni senza che nessuno glielo chiedesse.
-Io gli mando 10 dollari al mese e continuerò a mandarglieli; se ti è mai capitato di
-ritrovare grazie a loro qualcosa che davi per perso, valuta di fare altrettanto. La storia
-di internet non si conserva da sola: se ne va in silenzio, un dominio alla volta, e te ne
-accorgi il giorno che la cerchi.
+Io gli mando [10 dollari al mese](https://archive.org/donate) e continuerò a mandarglieli;
+se ti è mai capitato di ritrovare grazie a loro qualcosa che davi per perso, valuta di fare
+altrettanto. La storia di internet non si conserva da sola: se ne va in silenzio, un
+dominio alla volta, e te ne accorgi il giorno che la cerchi.
+
+E se c'eri, il pezzo divertente è
+[la ricerca](https://vjt.github.io/azzurra-forum-archive/cerca/): cerca il tuo nick e
+rileggiti com'eri vent'anni fa. Non sempre è una bella scoperta.
 
 ## Come è stato fatto
+
+Da qui in poi è roba tecnica. Se non ti interessa, hai già il link che conta:
+[vai a leggerti il forum](https://vjt.github.io/azzurra-forum-archive/), che è il motivo
+per cui l'ho fatto.
 
 Premessa, perché mi sembra scorretto non dirla: **il codice di questo archivio è
 interamente generato da un LLM**. Ho descritto quello che volevo a Claude in una sessione
@@ -70,9 +78,9 @@ Il secondo è lo scaricamento, e va fatto in serie. Ogni URL si prende nella for
 `web/<timestamp>id_/<url>`: il suffisso `id_` restituisce i byte originali del 2004, senza
 la barra di navigazione che l'Archive inietta. Tre secondi di pausa fra una richiesta e
 l'altra, e dopo cinque fallimenti di fila due minuti di raffreddamento, perché a quel punto
-non è un errore tuo: è l'Archive che ha chiuso la porta. Lo script è ripartibile e non
-riscarica mai un file già su disco — che, con una lista da diecimila pagine e una rete che
-si stufa, è la differenza fra finire e ricominciare.
+non è un errore tuo: è l'Archive che ha chiuso la porta. Se lo script si ferma lo rilanci e
+riprende da dov'era, perché un file già su disco non lo riscarica: con una lista da
+diecimila pagine e una rete che si stufa, è la differenza fra finire e ricominciare.
 
 Il terzo è il parsing, in tre passate e non una. Il forum ha cambiato software due volte —
 phpBB 1.4.0, poi phpBB 2.0.x, poi vBulletin — e la Wayback Machine ha fotografato tutte e
@@ -92,7 +100,7 @@ vivo, niente che possa cadere alle tre di notte.
 **Scaricare in parallelo non funziona, e non te lo dice.** Il primo giro lanciava i batch
 in parallelo e rispondeva `HTTP 200` per tutto. Circa 2360 di quei 200 avevano il corpo di
 lunghezza zero: è così che l'Archive rifiuta, senza dichiararlo. `curl` esce con `rc=0`,
-tu leggi "successo" e ti porti a casa file vuoti. In serie, con quattro secondi di pausa e
+tu leggi "successo" e ti porti a casa file vuoti. In serie, con tre secondi di pausa e
 un raffreddamento lungo, la stessa lista ha reso il 100%. Un errore onesto vale mille volte
 un successo finto.
 
@@ -128,6 +136,10 @@ l'Archive elenca per loro torna vuoto.
 
 Quello che resta è di chi l'ha scritto. Se sei l'autore di un messaggio e lo rivuoi via, si
 apre una issue e sparisce.
+
+Il forum sta qui: **<https://vjt.github.io/azzurra-forum-archive/>**. Il codice, se ti
+serve per rifare la stessa cosa con un altro forum morto, sta
+[su GitHub](https://github.com/vjt/azzurra-forum-archive).
 
 > 🍸 *Azzurra c'è ancora, e IRC pure. Se ti è venuta voglia di vedere com'è oggi:
 > **[grappa.chat](https://grappa.chat/it/)** — scegli un nome, clicca su una stanza, e sei

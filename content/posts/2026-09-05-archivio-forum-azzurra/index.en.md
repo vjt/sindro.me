@@ -34,18 +34,26 @@ static HTML you can pull down with `wget -r` and that will outlive me.
 Because it's digital archaeology, and dragging dead things back into circulation is one of
 the finest jobs there is. That forum is still on `web.archive.org`, in theory: in practice
 every page is a request to a machine that holds up the memory of the entire web on
-donations, and it takes half a minute to serve you a thread from 2004. Here it takes as
-long as a `GET` on a file: it's static HTML, and you can download the lot.
+donations, and it takes half a minute to serve you a thread from 2004. Here it takes a few
+milliseconds, because the pages are already built.
 
 That's not a complaint about the Archive, it's the opposite. Without them this material no
 longer existed: the domain lapsed, the database went where databases go, nobody had a
 backup. They had been photographing it for fifteen years without anyone asking. I send them
-10 dollars a month and I'll keep sending them; if you've ever found something you'd given
-up for lost thanks to them, consider doing the same. The history of the internet does not
-preserve itself: it leaves quietly, one domain at a time, and you notice the day you go
-looking for it.
+[10 dollars a month](https://archive.org/donate) and I'll keep sending them; if you've ever
+found something you'd given up for lost thanks to them, consider doing the same. The
+history of the internet does not preserve itself: it leaves quietly, one domain at a time,
+and you notice the day you go looking for it.
+
+And if you were there, the fun part is
+[the search](https://vjt.github.io/azzurra-forum-archive/cerca/): look up your own nick and
+read yourself twenty years younger. It isn't always a pleasant discovery.
 
 ## How it was done
+
+From here on it's technical. If you don't care, you already have the link that matters:
+[go and read the forum](https://vjt.github.io/azzurra-forum-archive/), which is why I did
+this in the first place.
 
 A note up front, because leaving it out would be dishonest: **the code of this archive is
 entirely LLM-generated**. I described what I wanted to Claude over a long session — the
@@ -69,9 +77,10 @@ The second is the download, and it has to be serial. Every URL is fetched as
 `web/<timestamp>id_/<url>`: the `id_` suffix returns the original 2004 bytes, without the
 navigation bar the Archive injects. Three seconds of pause between requests, and after five
 consecutive failures a two-minute cooldown, because at that point it isn't your error: the
-Archive has shut the door. The script is resumable and never refetches a file already on
-disk — which, with a ten-thousand-page list and a network that gets bored, is the
-difference between finishing and starting over.
+Archive has shut the door. If the script stops you run it again and it picks up where it
+left off, because it never refetches a file that's already on disk: with a
+ten-thousand-page list and a network that gets bored, that's the difference between
+finishing and starting over.
 
 The third is parsing, in three passes and not one. The forum changed software twice — phpBB
 1.4.0, then phpBB 2.0.x, then vBulletin — and the Wayback Machine photographed all three
@@ -91,7 +100,7 @@ nothing that can fall over at three in the morning.
 **Downloading in parallel doesn't work, and it won't tell you.** The first run fired
 batches in parallel and answered `HTTP 200` to everything. Around 2360 of those 200s had a
 zero-length body: that's how the Archive says no, without declaring it. `curl` exits
-`rc=0`, you read "success", and you take home empty files. Serially, with a four-second
+`rc=0`, you read "success", and you take home empty files. Serially, with a three-second
 pause and a long cooldown, the same list returned 100%. An honest error is worth a thousand
 fake successes.
 
@@ -126,6 +135,10 @@ Archive lists for them comes back empty.
 
 What's left belongs to whoever wrote it. If you're the author of a message and you want it
 gone, open an issue and it goes.
+
+The forum is here: **<https://vjt.github.io/azzurra-forum-archive/>**. The code, if you need
+it to do the same to another dead forum, is
+[on GitHub](https://github.com/vjt/azzurra-forum-archive).
 
 > 🍸 *Azzurra is still there, and so is IRC. If this gave you the urge to see what it looks
 > like today: **[grappa.chat](https://grappa.chat/)** — pick a name, click a room, and
