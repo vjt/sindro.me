@@ -356,6 +356,8 @@ disegnata in SVG. Il cestello gira mentre lava e tutta la macchina balla
 durante la centrifuga. Non serve a niente, ed è la cosa che preferisco di
 tutta la casa.
 
+![La dashboard di Peppina: la lavatrice disegnata in SVG, con programma, avvio, stop e avvio programmato](/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-dashboard.jpg)
+
 Anche la lavastoviglie (Filippa, via Home Connect) si avvia da HA. Per ora
 non rompe le palle.
 

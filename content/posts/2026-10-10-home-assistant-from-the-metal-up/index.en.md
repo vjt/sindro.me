@@ -344,6 +344,8 @@ On top of that it has a dashboard: one full-page card with the machine
 drawn in SVG. The drum turns while it washes and the whole thing shakes on
 the spin cycle. It's useless, and it's my favourite thing in the house.
 
+![The Peppina dashboard: the washing machine drawn in SVG, with program, start, stop and schedule controls](/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-dashboard.jpg)
+
 The dishwasher (Filippa, via Home Connect) can be started from HA too.
 It doesn't nag yet.
 
