@@ -298,7 +298,7 @@ dimenticato di copiare una riga.
 È la parte su cui su IRC mi fanno più domande.
 
 Peppina è la nostra lavatrice, sul cloud hOn di Haier. L'app ufficiale
-hOn fa schifo al cazzo, porcoddio, e di automazioni non ha mai sentito
+hOn fa schifo al cazzo 🤬🤬🤬 e di automazioni non ha mai sentito
 parlare. Quindi adesso vive in Home
 Assistant. L'integrazione della community
 [hon](https://github.com/gvigroux/hon) la legge bene, ma

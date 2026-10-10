@@ -289,7 +289,7 @@ up on only one phone because someone forgot to copy a line.
 This is the part people on IRC ask about most.
 
 Peppina is our washing machine, on Haier's hOn cloud. The official hOn
-app is a steaming pile of garbage, porcoddio, and it can't automate
+app is a steaming pile of garbage 🤬🤬🤬 and it can't automate
 anything. So it lives in Home Assistant now. The
 community [hon](https://github.com/gvigroux/hon) integration reads it fine,
 but it can't **stop** a program or schedule a **delayed start** that HA
