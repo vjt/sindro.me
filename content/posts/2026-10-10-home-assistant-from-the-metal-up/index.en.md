@@ -290,15 +290,29 @@ up on only one phone because someone forgot to copy a line.
 
 This is the part people on IRC ask about most.
 
+![Peppina, in the flesh: a Haier with towels on its head](/posts/2026-10-10-home-assistant-from-the-metal-up/peppina.jpg)
+
 Peppina is our washing machine, on Haier's hOn cloud. The official hOn
 app is a steaming pile of garbage 🤬🤬🤬 and it can't automate
 anything. So it lives in Home Assistant now. The
 community [hon](https://github.com/gvigroux/hon) integration reads it fine,
 but it can't **stop** a program or schedule a **delayed start** that HA
-owns. So I wrote [Peppina](https://github.com/vjt/peppina), a small
-integration that reuses hon's live connection (no second login) and adds a
-program selector, start and stop buttons, and a delayed start that HA
-schedules itself and that survives a restart.
+owns. So I wrote [Peppina](https://github.com/vjt/peppina): program
+selector, start and stop buttons, and a delayed start that HA schedules
+itself and that survives a restart. It started as an add-on riding hon's
+connection; since version 0.3.0 it talks to the hOn cloud with its own
+small client, logs in by itself, and hon is gone.
+
+Here it is starting a drum-clean cycle from Home Assistant, nobody
+touching the panel:
+
+<video controls muted playsinline preload="metadata" width="100%">
+  <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-start.mp4" type="video/mp4">
+</video>
+
+And this is how the official app ended:
+
+![iOS asking "Remove hOn?"](/posts/2026-10-10-home-assistant-from-the-metal-up/hon-delete.jpg)
 
 The integration didn't solve the actual problem, which is a human one. You
 load the machine, enable remote control on the panel so HA can start it,
@@ -347,6 +361,12 @@ drawn in SVG. The drum turns while it washes and the whole thing shakes on
 the spin cycle. It's useless, and it's my favourite thing in the house.
 
 ![The Peppina dashboard: the washing machine drawn in SVG, with program, start, stop and schedule controls](/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-dashboard.jpg)
+
+And here it is washing, on the phone:
+
+<video autoplay loop muted playsinline width="50%">
+  <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-dashboard.mp4" type="video/mp4">
+</video>
 
 The dishwasher (Filippa, via Home Connect) can be started from HA too.
 It doesn't nag yet.

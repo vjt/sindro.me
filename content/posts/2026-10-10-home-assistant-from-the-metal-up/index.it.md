@@ -299,17 +299,30 @@ dimenticato di copiare una riga.
 
 È la parte su cui su IRC mi fanno più domande.
 
+![Peppina in carne e ossa: una Haier con gli asciugamani in testa](/posts/2026-10-10-home-assistant-from-the-metal-up/peppina.jpg)
+
 Peppina è la nostra lavatrice, sul cloud hOn di Haier. L'app ufficiale
 hOn fa schifo al cazzo 🤬🤬🤬 e di automazioni non ha mai sentito
 parlare. Quindi adesso vive in Home
 Assistant. L'integrazione della community
 [hon](https://github.com/gvigroux/hon) la legge bene, ma
 non sa **fermare** un programma né fare un **avvio ritardato** gestito da
-HA. Quindi ho scritto [Peppina](https://github.com/vjt/peppina),
-un'integrazione piccola che riusa la connessione già aperta di hon (niente
-secondo login) e aggiunge la scelta del programma, i pulsanti di avvio e
-stop, e un avvio ritardato che pianifica HA stesso e che sopravvive a un
-riavvio.
+HA. Quindi ho scritto [Peppina](https://github.com/vjt/peppina): scelta
+del programma, pulsanti di avvio e stop, e un avvio ritardato che
+pianifica HA stesso e che sopravvive a un riavvio. È nata come aggiunta
+che cavalcava la connessione di hon; dalla versione 0.3.0 parla col cloud
+hOn con un client suo, fa il login da sola, e hon è sparita.
+
+Eccola che parte con un ciclo di pulizia del cestello lanciato da Home
+Assistant, senza che nessuno tocchi il pannello:
+
+<video controls muted playsinline preload="metadata" width="100%">
+  <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-start.mp4" type="video/mp4">
+</video>
+
+E così è finita l'app ufficiale:
+
+![iOS che chiede "Rimuovere hOn?"](/posts/2026-10-10-home-assistant-from-the-metal-up/hon-delete.jpg)
 
 L'integrazione però non risolveva il problema vero, che è umano. Carichi
 la lavatrice, attivi il controllo remoto sul pannello perché HA possa
@@ -359,6 +372,12 @@ durante la centrifuga. Non serve a niente, ed è la cosa che preferisco di
 tutta la casa.
 
 ![La dashboard di Peppina: la lavatrice disegnata in SVG, con programma, avvio, stop e avvio programmato](/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-dashboard.jpg)
+
+E qui mentre lava, sul telefono:
+
+<video autoplay loop muted playsinline width="50%">
+  <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-dashboard.mp4" type="video/mp4">
+</video>
 
 Anche la lavastoviglie (Filippa, via Home Connect) si avvia da HA. Per ora
 non rompe le palle.
