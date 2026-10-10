@@ -3,6 +3,8 @@ title: "Home Assistant dal ferro in su"
 date: 2026-10-10
 tags: [home-assistant, raspberry-pi, libvirt, kvm, luks, restic, backup, openwrt, mqtt, nut, ai-generated]
 description: "Tutto lo stack sotto il mio Home Assistant: un Raspberry Pi 5 cifrato, HAOS come guest KVM, snapshot della VM congelate ogni notte e spedite al NAS con restic, e sopra le automazioni: allarme, presenza, UPS, e una lavatrice che rompe le palle."
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 Mi chiedono spesso com'è fatto il mio Home Assistant. Salta fuori su IRC
@@ -229,6 +231,11 @@ quelli leggono tre consumatori diversi:
   batteria, corrente tornata, batteria scarica) lancia uno scriptino che
   pubblica su MQTT `nut/notify`. HA lo raccoglie e manda un push
   **subito**.
+
+Ed è la parte che conta di più: **quando salta la corrente, sul telefono
+mi arriva una notifica critica**, quella che suona anche col silenzioso e
+col Non disturbare. Un blackout alle 3 di notte è proprio quando vuoi
+essere svegliato, perché il conto alla rovescia dell'UPS è già partito.
 - **L'integrazione NUT di HA** interroga ogni UPS ogni 60 secondi. È il
   ripiego per quando a rompersi è MQTT o lo script lato host.
 - **Telegraf** li legge tutti e tre ogni 10 secondi e li mette in
@@ -290,8 +297,11 @@ dimenticato di copiare una riga.
 
 È la parte su cui su IRC mi fanno più domande.
 
-Peppina è la nostra lavatrice, sul cloud hOn di Haier. L'integrazione
-della community [hon](https://github.com/gvigroux/hon) la legge bene, ma
+Peppina è la nostra lavatrice, sul cloud hOn di Haier. L'app ufficiale
+hOn fa schifo al cazzo, porcoddio, e di automazioni non ha mai sentito
+parlare. Quindi adesso vive in Home
+Assistant. L'integrazione della community
+[hon](https://github.com/gvigroux/hon) la legge bene, ma
 non sa **fermare** un programma né fare un **avvio ritardato** gestito da
 HA. Quindi ho scritto [Peppina](https://github.com/vjt/peppina),
 un'integrazione piccola che riusa la connessione già aperta di hon (niente
@@ -328,10 +338,14 @@ Intorno ci sono tre guardie:
    sospeso viene annullato, perché tanto fallirebbe.
 3. **Il tormento.** Quando il ciclo finisce si accende un flag "da
    stendere", e **ogni ora dalle 07:00 alle 23:00, ovunque io sia**, mi
-   arriva un push con un pulsante "Stesa". Smette quando qualcuno preme il
+   arriva un push con un pulsante "Stesa", più uno **appena rientro a
+   casa**, che è il momento in cui posso davvero farci qualcosa. Smette
+   quando qualcuno preme il
    pulsante, o quando la lavatrice viene riaccesa dopo almeno cinque
    minuti spenta. hOn sparisce dalla rete per circa un minuto alla volta,
    e i cinque minuti servono a non contare quei buchi.
+
+![Il tormento: "Peppina ha finito alle 20:02: stendi il bucato"](/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-nag.png)
 
 All'inizio il tormento partiva solo se ero a casa. Era inutile: io sono
 fuori, i panni bagnati sono in casa, e continuano a inacidire. Adesso
@@ -377,35 +391,16 @@ non torna mai su HA. E c'è una regola scritta col sangue, di oggi.
 
 ### Il giorno in cui l'allarme si è inserito con tutti in casa
 
-Oggi pomeriggio ho cambiato i template della presenza. Ho fatto il push e
-ricaricato il dominio `template`. Quando HA ricarica i template **ricrea
-le entità**, e per un momento i sensori di presenza valgono *off*, poi
-*unavailable*, poi di nuovo il loro valore vero.
+Oggi pomeriggio ho cambiato i template della presenza e li ho ricaricati.
+Il reload dei template **ricrea le entità**: per una frazione di secondo
+la presenza ha letto *off*, l'automazione "l'ultimo che esce" è scattata,
+e l'allarme si è inserito in totale con noi due in casa.
 
-L'automazione "l'ultimo che esce" è scattata su quell'*off*. L'allarme si
-è inserito in totale, con noi due in casa. Disinserirlo è stato rapido, ma
-non è il genere di errore che vuoi fare due volte.
-
-Le correzioni sono state tre:
-
-1. **Debounce.** Il trigger "casa vuota" adesso deve restare *off* per
-   qualche secondo prima di contare. Il buco di un reload va giù e torna
-   su in meno di un secondo.
-2. **Availability.** I sensori template dicono *unavailable* invece di
-   *off* finché i loro ingressi non sono pronti, e le automazioni non
-   trattano unavailable come casa vuota.
-3. **La procedura.** Prima di ricaricare i template, **spegni le
-   automazioni che ci si attaccano**: kill switch off, reload, controlla
-   gli stati, kill switch on. Adesso è scritto nel `CLAUDE.md` del repo,
-   con la data, così la prossima sessione lo legge prima di toccare
-   qualsiasi cosa.
-
-Racconto questa storia perché una casa che si automatizza da sola è un
-sistema distribuito con dentro delle persone. Valgono le stesse regole di
-sempre: dai per scontato che i sensori mentano, non far decidere una cosa
-irreversibile a una sola transizione, controlla che l'azione sia avvenuta
-davvero, e tieni un secondo meccanismo per quando il primo manca il colpo.
-L'unica differenza è che gli utenti ci dormono dentro.
+Le correzioni: qualche secondo di debounce su "casa vuota",
+*unavailable* invece di *off* finché gli ingressi non sono pronti, e una
+regola ora scritta nel `CLAUDE.md` del repo: **kill switch spento prima
+di ricaricare i template**. I sensori mentono; una sola transizione non
+deve mai decidere una cosa irreversibile.
 
 ## I pezzi che puoi prendere
 

@@ -3,6 +3,8 @@ title: "Home Assistant from the metal up"
 date: 2026-10-10
 tags: [home-assistant, raspberry-pi, libvirt, kvm, luks, restic, backup, openwrt, mqtt, nut, ai-generated]
 description: "The whole stack under my Home Assistant: an encrypted Raspberry Pi 5, HAOS as a KVM guest, nightly quiesced VM snapshots shipped to the NAS with restic, and the automations on top: alarm, presence, UPS, and a washing machine that nags."
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 People keep asking me how my Home Assistant is set up. It shows up on IRC
@@ -223,6 +225,11 @@ them:
 - **`upsmon` on the host** watches all three and runs a small script on
   every event (on battery, back on line, low battery) that publishes to
   MQTT `nut/notify`. HA picks it up and sends a push **instantly**.
+
+That's the part that matters most: **when the power goes, my phone gets a
+critical notification**, the kind that rings through silent mode and Do
+Not Disturb. A blackout at 3 AM is exactly when you want to be woken up,
+because the UPS clock is already running.
 - **HA's NUT integration** polls each UPS every 60 seconds. That's the
   fallback for when MQTT or the host-side script is the thing that broke.
 - **Telegraf** scrapes all three every 10 seconds into VictoriaMetrics, for
@@ -281,7 +288,9 @@ up on only one phone because someone forgot to copy a line.
 
 This is the part people on IRC ask about most.
 
-Peppina is our washing machine, on Haier's hOn cloud. The
+Peppina is our washing machine, on Haier's hOn cloud. The official hOn
+app is a steaming pile of garbage, porcoddio, and it can't automate
+anything. So it lives in Home Assistant now. The
 community [hon](https://github.com/gvigroux/hon) integration reads it fine,
 but it can't **stop** a program or schedule a **delayed start** that HA
 owns. So I wrote [Peppina](https://github.com/vjt/peppina), a small
@@ -318,10 +327,14 @@ Then there are three guards around that:
    start gets cancelled, because otherwise it would just fail.
 3. **The nag.** When the cycle ends, a "da stendere" (needs hanging) flag
    turns on, and **every hour from 07:00 to 23:00, wherever I am**, I get a
-   push with a "Stesa" (hung) button. It stops when someone taps the
+   push with a "Stesa" (hung) button, plus one **the moment I walk in
+   the door**, because that's when I can actually do something about
+   it. It stops when someone taps the
    button, or when the machine is switched on again after five minutes
    off. hOn drops off the network for about a minute at a time, and the
    five minutes keep those blips from counting.
+
+![The nag: "Peppina ha finito alle 20:02: stendi il bucato"](/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-nag.png)
 
 The nag first only ran while I was home. That turned out to be pointless:
 I'm not home, the wet laundry is, and it's still going sour. Now it runs
@@ -366,34 +379,15 @@ today.
 
 ### The day the alarm armed itself with everyone home
 
-This afternoon I changed the presence templates. I pushed the change and
-reloaded the `template` domain. When HA reloads templates it **recreates
-the entities**, and for a moment the presence sensors read *off*, then
-*unavailable*, then their real value again.
+This afternoon I changed the presence templates and reloaded them. A
+template reload **recreates the entities**: for a split second presence
+read *off*, the "last one out" automation fired, and the alarm armed in
+away mode with both of us in the house.
 
-The "last one out" automation fired on that *off*. The alarm armed in away
-mode, with both of us in the house. Disarming it was quick, but it's not
-the kind of mistake you want to make twice.
-
-There were three fixes:
-
-1. **Debounce.** The "house is empty" trigger now has to stay *off* for a
-   few seconds before it counts. A reload blip goes off and back on within
-   a second.
-2. **Availability.** The template sensors report *unavailable* instead of
-   *off* while their inputs aren't ready, and the automations don't treat
-   unavailable as empty.
-3. **The procedure.** Before reloading templates, **turn off the
-   automations that trigger on them**: kill switch off, reload, check the
-   states, kill switch on. It's now written into the repo's `CLAUDE.md`,
-   with the date, so the next session reads it before it touches anything.
-
-The reason I'm telling this story is that a home that automates itself is
-a distributed system with people living inside it. The same rules apply
-as anywhere else: assume the sensors lie, don't let one transition decide
-something irreversible, check that the action actually happened, and keep
-a second mechanism for when the first one misses. The only difference is
-that the users sleep in it.
+The fixes: a few seconds of debounce on "house is empty", *unavailable*
+instead of *off* while the inputs aren't ready, and a rule now written in
+the repo's `CLAUDE.md`: **kill switch off before reloading templates**.
+Sensors lie; one transition must never decide something irreversible.
 
 ## Pieces you can take
 
