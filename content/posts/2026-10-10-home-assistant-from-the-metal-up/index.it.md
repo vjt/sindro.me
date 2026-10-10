@@ -293,6 +293,8 @@ i telefoni, così c'è una sola chiamata per messaggio, i testi sono in
 italiano, e niente arriva a un telefono solo perché qualcuno si è
 dimenticato di copiare una riga.
 
+![Lockscreen: allarme che si inserisce e si disattiva da solo, telecamere che passano in Home Mode, Peppina che chiede di stendere, Verisure e il bridge Telegram — tutto smistato sul telefono dal gruppo notify](/posts/2026-10-10-home-assistant-from-the-metal-up/ha-notifiche.jpg)
+
 ## Peppina: la lavatrice che rompe le palle
 
 È la parte su cui su IRC mi fanno più domande.

@@ -284,6 +284,8 @@ All notifications go to one **notify group** that fans out to both phones,
 so there's one call per message, the texts are in Italian, and nothing ends
 up on only one phone because someone forgot to copy a line.
 
+![Lockscreen: the alarm arming and disarming itself, cameras switching to Home Mode, Peppina asking me to hang the laundry, Verisure and the Telegram bridge — all fanned out to the phone by the notify group](/posts/2026-10-10-home-assistant-from-the-metal-up/ha-notifiche.jpg)
+
 ## Peppina: the washing machine that nags
 
 This is the part people on IRC ask about most.
