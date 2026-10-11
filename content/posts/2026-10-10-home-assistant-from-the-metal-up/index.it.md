@@ -387,8 +387,7 @@ telecamera **Reolink**, la **TV LG** col Wake-on-LAN (l'integrazione webOS
 non sa accendere la TV, quindi la accende un pacchetto WoL),
 **SwitchBot**, dispositivi **Matter/Thread** tramite l'add-on del Matter
 server, **Mosquitto** come broker MQTT, un avviso di batteria scarica sul
-telefono per ciascuno di noi, e lo spazzolino **Oral-B**, che ho già
-nominato sopra e che continuo a non difendere.
+telefono per ciascuno di noi, e lo spazzolino **Oral-B**.
 
 ## Come si gestisce: git, YAML, e Claude
 

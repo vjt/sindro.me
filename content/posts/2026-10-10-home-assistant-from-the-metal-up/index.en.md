@@ -378,7 +378,7 @@ camera, the **LG TV** with Wake-on-LAN (the webOS integration can't turn
 the TV on, so a WoL packet does it), **SwitchBot**, **Matter/Thread**
 devices through the Matter server add-on, **Mosquitto** as the MQTT
 broker, a phone-battery alert for each of us, and the **Oral-B**
-toothbrush, which I mentioned above and still won't defend.
+toothbrush.
 
 ## How it's managed: git, YAML, and Claude
 
