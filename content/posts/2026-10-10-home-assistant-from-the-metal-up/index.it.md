@@ -270,8 +270,6 @@ dove vive gente. La forma è questa:
 - **La modalità notte** si inserisce quando siamo davvero tutti e due in
   camera da letto, ed è la presenza WiFi per stanza che lo rende possibile.
 - **Al rientro** ti arriva una notifica con un pulsante "Disattiva".
-  Quando entrambi i residenti sono a casa secondo il GPS, si disinserisce
-  da solo.
 - **Quando si rompe l'allarme stesso**: se l'integrazione riceve un codice
   di stato che non conosce, o l'entità resta non disponibile per cinque
   minuti, parte un push critico. Un'integrazione dell'allarme rotta vuol

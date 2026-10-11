@@ -263,7 +263,7 @@ alarm of a house where people live. Here's the shape of it:
 - **Night mode** turns on when both of us are actually in the bedroom, and
   room-level WiFi presence is what makes that possible.
 - **Arriving home**: you get an actionable notification with a "Disattiva"
-  button. When both residents are home by GPS, it disarms by itself.
+  button.
 - **The alarm itself breaking**: if the integration reports a state code it
   doesn't recognize, or the entity stays unavailable for five minutes, a
   critical push goes out. A broken alarm
