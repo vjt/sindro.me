@@ -7,8 +7,7 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-People keep asking me how my Home Assistant is set up. It shows up on IRC
-whenever the washing machine finishes or the alarm arms itself, and someone
+People on IRC keep asking me how my Home Assistant is set up, and someone
 always wants to copy it. So here's all of it, starting from the hardware.
 
 The order is deliberate. Automations are the visible part, but they sit on

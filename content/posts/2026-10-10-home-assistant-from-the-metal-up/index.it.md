@@ -7,9 +7,8 @@ image: cover.jpg
 featuredImage: cover.jpg
 ---
 
-Mi chiedono spesso com'è fatto il mio Home Assistant. Salta fuori su IRC
-ogni volta che finisce la lavatrice o che l'allarme si inserisce da solo, e
-c'è sempre qualcuno che lo vuole copiare. Quindi eccolo tutto, partendo
+Su IRC mi chiedono spesso com'è fatto il mio Home Assistant, e c'è sempre
+qualcuno che lo vuole copiare. Quindi eccolo tutto, partendo
 dall'hardware.
 
 L'ordine è voluto. Le automazioni sono la parte che si vede, ma stanno
