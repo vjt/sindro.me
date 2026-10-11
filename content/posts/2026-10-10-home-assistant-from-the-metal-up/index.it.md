@@ -222,9 +222,10 @@ GPS.
 
 ### UPS: tre unità, tre strade
 
-Gli UPS sono tre: uno sotto il Pi, uno sotto il NAS, e uno sotto **gino**,
-un vecchio Pi 2B col suo server NUT. Ogni UPS ha un server NUT, e da
-quelli leggono tre consumatori diversi:
+Gli UPS sono tre: uno per il Pi e il gateway, uno per il NAS e la TV, e
+uno per la mia workstation. Quest'ultimo è collegato a **pingu**, che fa
+girare NUT su OpenWrt. Ogni UPS ha un server NUT, e da quelli leggono tre
+consumatori diversi:
 
 - **`upsmon` sull'host** li sorveglia tutti e tre, e a ogni evento (a
   batteria, corrente tornata, batteria scarica) lancia uno scriptino che

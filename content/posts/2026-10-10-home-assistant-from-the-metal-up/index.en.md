@@ -217,9 +217,10 @@ wrong. Arriving home needs GPS.
 
 ### UPS: three units, three paths
 
-There are three UPS units: one under the Pi, one under the NAS, and one
-under **gino**, an old Pi 2B with its own NUT server. Each UPS has a NUT server, and three different consumers read from
-them:
+There are three UPS units: one for the Pi and the gateway, one for the NAS
+and the TV, and one for my workstation. That last one is plugged into
+**pingu**, which runs NUT on OpenWrt. Each UPS has a NUT server, and three
+different consumers read from them:
 
 - **`upsmon` on the host** watches all three and runs a small script on
   every event (on battery, back on line, low battery) that publishes to
