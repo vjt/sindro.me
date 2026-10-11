@@ -325,7 +325,7 @@ E così è finita l'app ufficiale:
 L'integrazione però non risolveva il problema vero, che è umano. Carichi
 la lavatrice, attivi il controllo remoto sul pannello perché HA possa
 avviarla, e poi ti dimentichi di avviarla. La mattina dopo trovi i panni
-bagnati e mai lavati.
+ancora sporchi nel cestello, mai lavati.
 
 Quindi prima ho guardato i dati: cinque settimane di storia, quelle
 recuperate dai backup. Quando viene caricata la lavatrice, e quando parte

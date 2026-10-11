@@ -316,8 +316,8 @@ And this is how the official app ended:
 
 The integration didn't solve the actual problem, which is a human one. You
 load the machine, enable remote control on the panel so HA can start it,
-and then forget to start it. The next morning you find wet laundry that has
-never been washed.
+and then forget to start it. The next morning the laundry is still in the drum,
+dirty, never washed.
 
 So first I looked at the data: five weeks of history, the ones I'd
 recovered from the backups. When does the machine get loaded, and when
