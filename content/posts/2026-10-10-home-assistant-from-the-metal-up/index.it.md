@@ -377,6 +377,12 @@ E qui mentre lava, sul telefono:
   <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-dashboard.mp4" type="video/mp4">
 </video>
 
+E in centrifuga, che trema davvero:
+
+<video autoplay loop muted playsinline width="50%">
+  <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-spin.mp4" type="video/mp4">
+</video>
+
 ## Filippa: la sorella, la lavastoviglie
 
 Filippa è la nostra lavastoviglie Bosch. A differenza di Peppina, una

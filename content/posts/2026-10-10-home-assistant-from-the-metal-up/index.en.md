@@ -368,6 +368,12 @@ And here it is washing, on the phone:
   <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-dashboard.mp4" type="video/mp4">
 </video>
 
+And on the spin cycle, shaking for real:
+
+<video autoplay loop muted playsinline width="50%">
+  <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-spin.mp4" type="video/mp4">
+</video>
+
 ## Filippa: her sister, the dishwasher
 
 Filippa is our Bosch dishwasher. Unlike Peppina, she already had a decent
