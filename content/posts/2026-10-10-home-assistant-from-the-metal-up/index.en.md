@@ -368,8 +368,35 @@ And here it is washing, on the phone:
   <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-dashboard.mp4" type="video/mp4">
 </video>
 
-The dishwasher (Filippa, via Home Connect) can be started from HA too.
-It doesn't nag yet.
+## Filippa: her sister, the dishwasher
+
+Filippa is our Bosch dishwasher. Unlike Peppina, she already had a decent
+way into Home Assistant: the core **Home Connect** integration, with
+changes pushed by the cloud. What it doesn't give you is a way to *use*
+her: twelve program keys like `dishcare_dishwasher_program_kurz_60`, a pile
+of option switches that come and go with the program, and a start service
+you fill in by hand.
+
+So [Filippa](https://github.com/vjt/filippa) adds no cloud client of her
+own. She sits on top of the home_connect entities, learns from their
+history how often each program runs and how long it really takes (on day
+one she pulled nine cycles out of the recorder: the machine estimated
+155 minutes for the last one, it took 152), and gives the dishwasher the
+same treatment as her sister: programs in plain Italian, most used first,
+option pills, start, and a stop that asks twice, because a cycle stopped
+by mistake leaves you with wet, dirty dishes. She never sends a delayed
+start.
+
+![The Filippa dashboard: the dishwasher drawn in SVG, washing, with the most used programs below](/posts/2026-10-10-home-assistant-from-the-metal-up/filippa-dashboard.jpg)
+
+The spray arms turn, water fans out, steam rises, and the remaining time
+shows on the display and on the floor, like Bosch's TimeLight:
+
+<video autoplay loop muted playsinline width="50%">
+  <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/filippa-dashboard.mp4" type="video/mp4">
+</video>
+
+She doesn't nag yet.
 
 ## The rest of it
 
@@ -424,6 +451,8 @@ Most of this is mine and published:
 - [ha-eisenberg](https://github.com/vjt/ha-eisenberg): Arlo cameras
 - [peppina](https://github.com/vjt/peppina): hOn washing machine controls
   and the dancing dashboard
+- [filippa](https://github.com/vjt/filippa): the same, for a Home Connect
+  dishwasher, on top of the core integration
 
 The backup scripts and the HA config itself stay private, because they
 describe my house. But this post covers what they do, and the snapshot

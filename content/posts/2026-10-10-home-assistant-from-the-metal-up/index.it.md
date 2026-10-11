@@ -377,8 +377,36 @@ E qui mentre lava, sul telefono:
   <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-dashboard.mp4" type="video/mp4">
 </video>
 
-Anche la lavastoviglie (Filippa, via Home Connect) si avvia da HA. Per ora
-non rompe le palle.
+## Filippa: la sorella, la lavastoviglie
+
+Filippa è la nostra lavastoviglie Bosch. A differenza di Peppina, una
+strada decente per entrare in Home Assistant ce l'aveva già:
+l'integrazione ufficiale **Home Connect**, con i cambi di stato spinti dal
+cloud. Quello che non ti dà è un modo per *usarla*: dodici chiavi di
+programma tipo `dishcare_dishwasher_program_kurz_60`, una pila di switch
+di opzioni che vanno e vengono col programma, e un servizio di avvio da
+compilare a mano.
+
+Quindi [Filippa](https://github.com/vjt/filippa) non si porta un client
+cloud suo. Sta sopra le entità di home_connect, impara dalla loro storia
+quanto spesso gira ogni programma e quanto dura davvero (il primo giorno
+ha tirato fuori nove cicli dal recorder: per l'ultimo la macchina
+stimava 155 minuti, ne ha messi 152), e dà alla lavastoviglie lo stesso
+trattamento della sorella: programmi in italiano, i più usati in testa,
+opzioni come pillole, avvio, e uno stop che chiede due volte, perché un
+ciclo fermato per sbaglio ti lascia i piatti bagnati e sporchi. L'avvio
+ritardato non lo manda mai.
+
+![La dashboard di Filippa: la lavastoviglie disegnata in SVG, mentre lava, con sotto i programmi più usati](/posts/2026-10-10-home-assistant-from-the-metal-up/filippa-dashboard.jpg)
+
+I bracci girano, l'acqua spruzza, sale il vapore, e il tempo che manca sta
+sul display e sul pavimento, come il TimeLight di Bosch:
+
+<video autoplay loop muted playsinline width="50%">
+  <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/filippa-dashboard.mp4" type="video/mp4">
+</video>
+
+Per ora non rompe le palle.
 
 ## Il resto
 
@@ -433,6 +461,8 @@ Quasi tutto è mio ed è pubblicato:
 - [ha-eisenberg](https://github.com/vjt/ha-eisenberg): telecamere Arlo
 - [peppina](https://github.com/vjt/peppina): controlli per le lavatrici
   hOn e la dashboard che balla
+- [filippa](https://github.com/vjt/filippa): lo stesso per una
+  lavastoviglie Home Connect, sopra l'integrazione ufficiale
 
 Gli script di backup e la config di HA restano privati, perché descrivono
 casa mia. Ma questo post racconta cosa fanno, e il balletto della snapshot
