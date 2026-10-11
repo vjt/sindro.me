@@ -368,13 +368,13 @@ the spin cycle. It's useless, and it's my favourite thing in the house.
 
 And here it is washing, on the phone:
 
-<video autoplay loop muted playsinline width="50%">
+<video autoplay loop muted playsinline controls preload="metadata" width="50%" poster="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-dashboard-poster.jpg">
   <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-dashboard.mp4" type="video/mp4">
 </video>
 
 And on the spin cycle, shaking for real:
 
-<video autoplay loop muted playsinline width="50%">
+<video autoplay loop muted playsinline controls preload="metadata" width="50%" poster="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-spin-poster.jpg">
   <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-spin.mp4" type="video/mp4">
 </video>
 
@@ -402,7 +402,7 @@ start.
 The spray arms turn, water fans out, steam rises, and the remaining time
 shows on the display and on the floor, like Bosch's TimeLight:
 
-<video autoplay loop muted playsinline width="50%">
+<video autoplay loop muted playsinline controls preload="metadata" width="50%" poster="/posts/2026-10-10-home-assistant-from-the-metal-up/filippa-dashboard-poster.jpg">
   <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/filippa-dashboard.mp4" type="video/mp4">
 </video>
 
