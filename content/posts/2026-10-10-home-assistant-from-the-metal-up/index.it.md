@@ -350,9 +350,9 @@ Intorno ci sono tre guardie:
 2. **Controllo remoto spento** prima dell'avvio ritardato: l'avvio in
    sospeso viene annullato, perché tanto fallirebbe.
 3. **Il tormento.** Quando il ciclo finisce si accende un flag "da
-   stendere", e **ogni ora dalle 07:00 alle 23:00, ovunque io sia**, mi
-   arriva un push con un pulsante "Stesa", più uno **appena rientro a
-   casa**, che è il momento in cui posso davvero farci qualcosa. Smette
+   stendere", e **ogni ora dalle 07:00 alle 23:00** chi di noi è a casa
+   riceve un push con un pulsante "Stesa", più uno **appena uno di noi
+   rientra**, che è il momento in cui possiamo davvero farci qualcosa. Smette
    quando qualcuno preme il
    pulsante, o quando la lavatrice viene riaccesa dopo almeno cinque
    minuti spenta. hOn sparisce dalla rete per circa un minuto alla volta,
@@ -360,9 +360,13 @@ Intorno ci sono tre guardie:
 
 ![Il tormento: "Peppina ha finito alle 20:02: stendi il bucato"](/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-nag.png)
 
-All'inizio il tormento partiva solo se ero a casa. Era inutile: io sono
-fuori, i panni bagnati sono in casa, e continuano a inacidire. Adesso
-parte ovunque, ogni ora invece che ogni quarto d'ora.
+Il tormento ha avuto tre versioni. All'inizio partiva solo se ero a casa,
+ogni quarto d'ora. Poi ovunque, ogni ora: io sono fuori, i panni bagnati
+sono in casa, e continuano a inacidire. Ma un push su cui non puoi fare
+niente è solo rumore, e mia moglie all'università non ne ha bisogno a metà
+lezione. Adesso arriva a chi è a casa, e solo dopo **sei ore** di bucato
+bagnato nel cestello diventa critico e arriva a tutti e due, ovunque
+siamo.
 
 In più ha una dashboard: una card a tutta pagina con la lavatrice
 disegnata in SVG. Il cestello gira mentre lava e tutta la macchina balla

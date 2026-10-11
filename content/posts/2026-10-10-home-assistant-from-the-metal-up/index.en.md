@@ -342,19 +342,23 @@ Then there are three guards around that:
 2. **Remote control switched off** before the delayed start: the pending
    start gets cancelled, because otherwise it would just fail.
 3. **The nag.** When the cycle ends, a "da stendere" (needs hanging) flag
-   turns on, and **every hour from 07:00 to 23:00, wherever I am**, I get a
-   push with a "Stesa" (hung) button, plus one **the moment I walk in
-   the door**, because that's when I can actually do something about
-   it. It stops when someone taps the
+   turns on, and **every hour from 07:00 to 23:00**, whoever of us is
+   home gets a push with a "Stesa" (hung) button, plus one **the moment
+   one of us walks in the door**, because that's when we can actually do
+   something about it. It stops when someone taps the
    button, or when the machine is switched on again after five minutes
    off. hOn drops off the network for about a minute at a time, and the
    five minutes keep those blips from counting.
 
 ![The nag: "Peppina ha finito alle 20:02: stendi il bucato"](/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-nag.png)
 
-The nag first only ran while I was home. That turned out to be pointless:
-I'm not home, the wet laundry is, and it's still going sour. Now it runs
-everywhere, hourly instead of every fifteen minutes.
+The nag went through three versions. First it only ran while I was home,
+every fifteen minutes. Then it ran everywhere, hourly: I'm not home, the
+wet laundry is, and it's still going sour. But a push I can't act on is
+just noise, and my wife at university doesn't need one in the middle of a
+lecture. So now it goes to whoever is home, and only after **six hours**
+wet in the drum does it turn critical and reach both of us, wherever we
+are.
 
 On top of that it has a dashboard: one full-page card with the machine
 drawn in SVG. The drum turns while it washes and the whole thing shakes on
