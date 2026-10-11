@@ -314,7 +314,7 @@ hOn con un client suo, fa il login da sola, e hon è sparita.
 Eccola che parte con un ciclo di pulizia del cestello lanciato da Home
 Assistant, senza che nessuno tocchi il pannello:
 
-<video controls muted playsinline preload="metadata" width="100%">
+<video controls muted playsinline preload="metadata" width="100%" poster="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-start-poster.jpg">
   <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-start.mp4" type="video/mp4">
 </video>
 

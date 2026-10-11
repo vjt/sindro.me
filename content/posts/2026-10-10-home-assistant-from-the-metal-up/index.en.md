@@ -306,7 +306,7 @@ small client, logs in by itself, and hon is gone.
 Here it is starting a drum-clean cycle from Home Assistant, nobody
 touching the panel:
 
-<video controls muted playsinline preload="metadata" width="100%">
+<video controls muted playsinline preload="metadata" width="100%" poster="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-start-poster.jpg">
   <source src="/posts/2026-10-10-home-assistant-from-the-metal-up/peppina-start.mp4" type="video/mp4">
 </video>
 
