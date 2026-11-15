@@ -66,7 +66,7 @@ ROMs sorted into folders, by genre or anything else, are browsed as folders.
 
 Recently played answers the first question, what actually gets played:
 
-![Recently played: Super Mario Bros. Wonder, New Super Mario Bros. U and others; one title blurred](/posts/2026-11-15-batocera-in-home-assistant/page-recently-played.jpg)
+![Recently played, 50 games: Super Mario Bros. Wonder playing now, Mario Kart 8 Deluxe, New Super Mario Bros. U and others; one title blurred](/posts/2026-11-15-batocera-in-home-assistant/page-recently-played.jpg)
 
 Tap a game and the sheet says what it is: year, genre, players, rating,
 who made it, its description. **PRESS START**, and it runs on the TV. If

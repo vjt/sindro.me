@@ -71,7 +71,7 @@ cartelle.
 I giocati di recente rispondono alla prima domanda, a cosa si gioca
 davvero:
 
-![Giocati di recente: Super Mario Bros. Wonder, New Super Mario Bros. U e altri; un titolo sfocato](/posts/2026-11-15-batocera-in-home-assistant/page-recently-played.jpg)
+![Giocati di recente, 50 giochi: Super Mario Bros. Wonder in corso, Mario Kart 8 Deluxe, New Super Mario Bros. U e altri; un titolo sfocato](/posts/2026-11-15-batocera-in-home-assistant/page-recently-played.jpg)
 
 Tocchi un gioco e la scheda dice cos'è: anno, genere, giocatori, voto,
 chi l'ha fatto, la descrizione. **PRESS START**, e parte sulla TV. Se ce
