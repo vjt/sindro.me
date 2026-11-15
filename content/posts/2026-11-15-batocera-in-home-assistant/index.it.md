@@ -99,6 +99,17 @@ finché qualcuno guarda.
 
 <img src="/posts/2026-11-15-batocera-in-home-assistant/page-live.webp" width="576" height="1200" alt="Lo schermo in diretta: Super Mario Bros. Wonder in corso, la TV mostrata a circa un fotogramma al secondo" loading="lazy">
 
+## Spegnere e accendere
+
+SHUT DOWN spegne la console come fa il menu di EmulationStation, quindi le
+liste dei giochi vengono salvate, dopo aver chiuso il gioco come fa lo
+stop. A console spenta la pagina lo dice, e i giochi restano lì da
+sfogliare. POWER ON la sveglia dalla rete, senza indirizzi MAC da scrivere:
+è la console stessa, finché è accesa, a dire a Home Assistant come
+svegliarla.
+
+![La pagina Batocera a console spenta: OFFLINE, nessun segnale dalla console, un bottone POWER ON, i giochi ancora da sfogliare](/posts/2026-11-15-batocera-in-home-assistant/page-offline.jpg)
+
 ## I limiti
 
 Tre, per tutta la console: un limite giornaliero in minuti, una fascia di
@@ -132,7 +143,7 @@ SSH e lo tiene aggiornato, mai a partita in corso. I dettagli sono nel
 
 Tre giornate di lavoro con Claude Code: io dicevo cosa volevo, provavo su
 joker e sul telefono, e rimandavo indietro quello che non andava. Dalla
-0.2 alla 0.7.1, sedici release, quasi trecento test.
+0.2 alla 0.9.1, diciannove release, quasi trecento test.
 
 Strada facendo ho preso abbastanza trappole di Batocera da metterle per
 iscritto: [batocera-skill](https://github.com/vjt/batocera-skill), una skill

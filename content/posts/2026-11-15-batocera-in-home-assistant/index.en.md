@@ -94,6 +94,16 @@ someone's watching.
 
 <img src="/posts/2026-11-15-batocera-in-home-assistant/page-live.webp" width="576" height="1200" alt="The live screen: Super Mario Bros. Wonder playing, the TV shown at about a frame per second" loading="lazy">
 
+## Off and on
+
+SHUT DOWN turns the box off the way EmulationStation's own menu does, so
+the game lists are saved, after quitting the game the way stop does. With
+the box off the page says so, and the games are still there to browse.
+POWER ON wakes it over the network, with no MAC address to type in: the box
+tells Home Assistant how to wake it while it's on.
+
+![The Batocera page with the box off: OFFLINE, no signal from the box, a POWER ON button, the games still there to browse](/posts/2026-11-15-batocera-in-home-assistant/page-offline.jpg)
+
 ## Limits
 
 Three, for the whole box: a daily limit in minutes, a window of allowed
@@ -125,7 +135,7 @@ keeps it up to date, never in the middle of a game. Details in the
 ## How it was born
 
 Three days of work with Claude Code: I said what I wanted, tried it on
-joker and on my phone, and sent back what was wrong. 0.2 to 0.7.1, sixteen
+joker and on my phone, and sent back what was wrong. 0.2 to 0.9.1, nineteen
 releases, close to three hundred tests.
 
 Along the way I hit enough Batocera pitfalls to write them down:
