@@ -4,6 +4,8 @@ date: 2026-11-15
 draft: true
 tags: [home-assistant, batocera, retrogaming, emulationstation, mqtt, hacs, claude-code, ai-generated]
 description: "ha-batocera: a Home Assistant integration for a Batocera retrogaming box. Search the catalog and launch games from the phone, see what gets played and for how long, watch the TV live, quit a stuck game, and set playtime limits."
+image: cover.jpg
+featuredImage: cover.jpg
 ---
 
 > **Before we start.** Batocera is a Linux distribution for retrogaming:
