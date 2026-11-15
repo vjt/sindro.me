@@ -1,7 +1,6 @@
 ---
 title: "Batocera in Home Assistant"
 date: 2026-11-15
-draft: true
 tags: [home-assistant, batocera, retrogaming, emulationstation, mqtt, hacs, claude-code, ai-generated]
 description: "ha-batocera: a Home Assistant integration for a Batocera retrogaming box. Search the catalog and launch games from the phone, see what gets played and for how long, watch the TV live, quit a stuck game, and set playtime limits."
 image: cover.jpg
@@ -50,9 +49,13 @@ system with its logo.
 
 ![The Batocera page on a phone: INSERT COIN, a search box, and tiles for favourites, recently played and each system](/posts/2026-11-15-batocera-in-home-assistant/page-systems.jpg)
 
-Search works at every level, across all systems or inside one.
+Search works at every level, across all systems or inside one. It also
+looks in what the games' descriptions say: those come after the matches by
+name, under IN THE DESCRIPTION.
 
 ![Searching "mario" with the phone keyboard](/posts/2026-11-15-batocera-in-home-assistant/page-search.jpg)
+
+![Searching "robotnik": 19 found, one by name and the rest under IN THE DESCRIPTION, from Mega Drive to MAME](/posts/2026-11-15-batocera-in-home-assistant/page-search-description.jpg)
 
 Filters by genre, decade and rating, in one system or across all of them,
 combine with the search. Every place says how many games it holds, a search
@@ -89,7 +92,7 @@ The preview in the bar is a screenshot of the TV, refreshed every 15
 seconds. Tap it and it goes live, about a frame per second, for as long as
 someone's watching.
 
-![The live screen: Mario Kart 8 Deluxe's title screen, as the TV shows it](/posts/2026-11-15-batocera-in-home-assistant/page-live-screen.jpg)
+<img src="/posts/2026-11-15-batocera-in-home-assistant/page-live.webp" width="576" height="1200" alt="The live screen: Super Mario Bros. Wonder playing, the TV shown at about a frame per second" loading="lazy">
 
 ## Limits
 

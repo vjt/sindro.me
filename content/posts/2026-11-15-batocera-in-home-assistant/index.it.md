@@ -1,7 +1,6 @@
 ---
 title: "Batocera dentro Home Assistant"
 date: 2026-11-15
-draft: true
 tags: [home-assistant, batocera, retrogaming, emulationstation, mqtt, hacs, claude-code, ai-generated]
 description: "ha-batocera: un'integrazione Home Assistant per una console di retrogaming con Batocera. Cerchi e lanci i giochi dal telefono, vedi a cosa si gioca e per quanto, guardi la TV in diretta, chiudi un gioco piantato e metti dei limiti di tempo."
 image: cover.jpg
@@ -54,8 +53,12 @@ recente, una tessera per sistema col suo logo.
 ![La pagina Batocera sul telefono: INSERT COIN, la casella di ricerca, e le tessere di preferiti, giocati di recente e di ogni sistema](/posts/2026-11-15-batocera-in-home-assistant/page-systems.jpg)
 
 La ricerca funziona a ogni livello, su tutti i sistemi o dentro uno solo.
+Cerca anche in quello che dicono le descrizioni dei giochi: quelli vengono
+dopo i risultati per nome, sotto IN THE DESCRIPTION.
 
 ![Ricerca di "mario" con la tastiera del telefono](/posts/2026-11-15-batocera-in-home-assistant/page-search.jpg)
+
+![Ricerca di "robotnik": 19 trovati, uno per nome e gli altri sotto IN THE DESCRIPTION, dal Mega Drive al MAME](/posts/2026-11-15-batocera-in-home-assistant/page-search-description.jpg)
 
 I filtri per genere, decennio e voto, dentro un sistema o su tutti, si
 combinano con la ricerca. Ogni livello dice quanti giochi contiene, la
@@ -94,7 +97,7 @@ L'anteprima nella barra è uno screenshot della TV, aggiornato ogni 15
 secondi. La tocchi e va in diretta, più o meno un fotogramma al secondo,
 finché qualcuno guarda.
 
-![Lo schermo in diretta: la schermata iniziale di Mario Kart 8 Deluxe, come la mostra la TV](/posts/2026-11-15-batocera-in-home-assistant/page-live-screen.jpg)
+<img src="/posts/2026-11-15-batocera-in-home-assistant/page-live.webp" width="576" height="1200" alt="Lo schermo in diretta: Super Mario Bros. Wonder in corso, la TV mostrata a circa un fotogramma al secondo" loading="lazy">
 
 ## I limiti
 
