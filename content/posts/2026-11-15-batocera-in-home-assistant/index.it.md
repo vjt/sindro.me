@@ -57,15 +57,27 @@ La ricerca funziona a ogni livello, su tutti i sistemi o dentro uno solo.
 
 ![Ricerca di "mario" con la tastiera del telefono](/posts/2026-11-15-batocera-in-home-assistant/page-search.jpg)
 
+I filtri per genere, decennio e voto, dentro un sistema o su tutti, si
+combinano con la ricerca. Ogni livello dice quanti giochi contiene, la
+ricerca o i filtri quanti ne hanno trovati.
+
+![La home filtrata sui platform degli anni '80 e cercata per "mario": 9 trovati, ogni tessera col suo sistema](/posts/2026-11-15-batocera-in-home-assistant/page-filters.jpg)
+
+Le ROM divise in cartelle, per genere o come ti pare, si sfogliano come
+cartelle.
+
+![Nintendo 64, 259 giochi, le ROM in cartelle per genere: action, fighting, platform, racing e così via](/posts/2026-11-15-batocera-in-home-assistant/page-folders.jpg)
+
 I giocati di recente rispondono alla prima domanda, a cosa si gioca
 davvero:
 
 ![Giocati di recente: Super Mario Bros. Wonder, New Super Mario Bros. U e altri; un titolo sfocato](/posts/2026-11-15-batocera-in-home-assistant/page-recently-played.jpg)
 
-Tocchi un gioco, **PRESS START**, e parte sulla TV. Se ce n'è già uno
-aperto, la scheda dice quale sta per chiudere.
+Tocchi un gioco e la scheda dice cos'è: anno, genere, giocatori, voto,
+chi l'ha fatto, la descrizione. **PRESS START**, e parte sulla TV. Se ce
+n'è già uno aperto, la scheda dice quale sta per chiudere.
 
-![La scheda di lancio di Mario Kart 8, che avvisa che chiuderà Mario Kart 8 Deluxe](/posts/2026-11-15-batocera-in-home-assistant/page-press-start.jpg)
+![La scheda di lancio di Metal Sonic Rebooted: 2018, platform, un giocatore, quattro stelle, autori e descrizione, che avvisa che chiuderà Super Mario Bros. Wonder](/posts/2026-11-15-batocera-in-home-assistant/page-press-start.jpg)
 
 Mentre si gioca, la barra in alto mostra cosa, da quanto, e quanto tempo
 resta. KILL vuole due tocchi, perché un gioco chiuso per sbaglio perde
@@ -115,10 +127,9 @@ SSH e lo tiene aggiornato, mai a partita in corso. I dettagli sono nel
 
 ## Com'è nato
 
-Due giornate di lavoro con Claude Code, a una settimana di distanza: io
-dicevo cosa volevo, provavo su joker e sul telefono, e rimandavo indietro
-quello che non andava. Dalla 0.2 alla 0.5.4, tredici release, circa
-duecento test.
+Tre giornate di lavoro con Claude Code: io dicevo cosa volevo, provavo su
+joker e sul telefono, e rimandavo indietro quello che non andava. Dalla
+0.2 alla 0.7.1, sedici release, quasi trecento test.
 
 Strada facendo ho preso abbastanza trappole di Batocera da metterle per
 iscritto: [batocera-skill](https://github.com/vjt/batocera-skill), una skill

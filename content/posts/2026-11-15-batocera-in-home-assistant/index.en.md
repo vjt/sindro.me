@@ -54,14 +54,25 @@ Search works at every level, across all systems or inside one.
 
 ![Searching "mario" with the phone keyboard](/posts/2026-11-15-batocera-in-home-assistant/page-search.jpg)
 
+Filters by genre, decade and rating, in one system or across all of them,
+combine with the search. Every place says how many games it holds, a search
+or the filters how many they found.
+
+![The home filtered to 1980s platform games and searched for "mario": 9 found, each tile naming its system](/posts/2026-11-15-batocera-in-home-assistant/page-filters.jpg)
+
+ROMs sorted into folders, by genre or anything else, are browsed as folders.
+
+![Nintendo 64, 259 games, its ROMs in folders by genre: action, fighting, platform, racing and so on](/posts/2026-11-15-batocera-in-home-assistant/page-folders.jpg)
+
 Recently played answers the first question, what actually gets played:
 
 ![Recently played: Super Mario Bros. Wonder, New Super Mario Bros. U and others; one title blurred](/posts/2026-11-15-batocera-in-home-assistant/page-recently-played.jpg)
 
-Tap a game, **PRESS START**, and it runs on the TV. If something is
-already running, the sheet says what it's about to quit.
+Tap a game and the sheet says what it is: year, genre, players, rating,
+who made it, its description. **PRESS START**, and it runs on the TV. If
+something is already running, the sheet says what it's about to quit.
 
-![The launch sheet for Mario Kart 8, warning that it quits Mario Kart 8 Deluxe](/posts/2026-11-15-batocera-in-home-assistant/page-press-start.jpg)
+![The launch sheet for Metal Sonic Rebooted: 2018, platform, one player, four stars, its authors and description, warning that it quits Super Mario Bros. Wonder](/posts/2026-11-15-batocera-in-home-assistant/page-press-start.jpg)
 
 While a game runs, the bar on top shows what's playing, for how long, and
 how much time is left. KILL takes two taps, because a game quit by mistake
@@ -110,9 +121,9 @@ keeps it up to date, never in the middle of a game. Details in the
 
 ## How it was born
 
-Two days of work with Claude Code, a week apart: I said what I wanted,
-tried it on joker and on my phone, and sent back what was wrong. 0.2 to
-0.5.4, thirteen releases, about two hundred tests.
+Three days of work with Claude Code: I said what I wanted, tried it on
+joker and on my phone, and sent back what was wrong. 0.2 to 0.7.1, sixteen
+releases, close to three hundred tests.
 
 Along the way I hit enough Batocera pitfalls to write them down:
 [batocera-skill](https://github.com/vjt/batocera-skill), a Claude Code skill
